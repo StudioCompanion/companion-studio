@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Companion</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐕</text></svg>">
 <style>
 
 body, html {
@@ -16,8 +17,9 @@ body, html {
   height: 100%;
   background: white;
   font-family: system-ui, Arial, sans-serif;
-  font-size: 50px;
+  font-size: 11px;
   letter-spacing: 0px;
+  line-height: 18px;
 }
 
 #introduction {
@@ -29,7 +31,28 @@ body, html {
   text-align: center;
 }
 
+/* unvisited link */
+a:link {
+  color: rgb(150,150,150);
+  text-decoration: none;
+}
 
+/* visited link */
+a:visited {
+  color: rgb(150,150,150);
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: rgb(0,0,0);
+}
+
+/* selected link */
+a:active {
+  color: rgb(150,150,150);
+  text-decoration: none;
+}
 
 </style>
 </head>
@@ -37,7 +60,11 @@ body, html {
 
 
   <div id="introduction">
-   🌊
+   <p>Companion. <br><br>
+    🐕&nbsp; By your side designing & building digital experiences & services.<br>
+   🌐&nbsp; Operating globally with a select network of collaborators.<br>
+   📱&nbsp; Creating work for screens of all shapes and sizes.<br><br>
+   <a href="mailto:hello@companion.studio">Sound good? Say hello.</a></p>
  </div>
 
 </body>
