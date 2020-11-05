@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Companion</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐕</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet">
 <style>
 
 body, html {
@@ -16,16 +17,17 @@ body, html {
   width: 100%;
   height: 100%;
   background: white;
-  font-family: system-ui, Arial, sans-serif;
-  font-size: 11px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
   letter-spacing: 0px;
-  line-height: 15px;
+  line-height: 22px;
 }
 
 #introduction {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   text-align: center;
@@ -39,9 +41,14 @@ p {
     margin-inline-end: 0px;
 }
 
-.container {
+.container, #time-alive, #name {
   width: auto;
-  padding: 10px;
+  margin: 40px 0px;
+}
+
+.container, #time-alive, #name {
+  padding: 0px 20px;
+  max-width: 650px;
 }
 
 /* unvisited link */
@@ -71,18 +78,55 @@ a:active {
 </head>
 <body>
 
-
   <div id="introduction">
+   <div id="name">      <p>Companion</p></div>
     <div class="container">
-      <p>Companion</p>
-      <p>🐕&nbsp; By your side creating digital experiences, services & products.</p>
-      <p>🌐&nbsp; We operate globally with a network of collaborators to enrich your business through design, technology and strategic thinking.</p>
+      <p>🐕&nbsp; Creating digital experiences, services & products by your side.</p>
+      <p>🌐&nbsp; Operate globally with a network of collaborators to enrich your business through design, technology and strategic thinking.</p>
       <p>🔎&nbsp; We explore the purpose and values behind your business, tidying up the clutter and bringing focus to the core of what you do.</p>
-      <p>🌱&nbsp; We partner with people that share our values to enrich the lives of people and the places we inhabit.</p>
-      <p>🏗&nbsp; Whether this is creating tools and services for the everyday, or inspiring through entertainment & culture, we work with you to build meaning and fulfil potential.</p>
+      <p>🌱&nbsp; We partner with people that share our values: openness and a desire to do better for the people & world around us.</p>
+      <p>🏗&nbsp;   Whether this is creating tools and services for the everyday, or inspiring through entertainment & culture, we work with you to build meaning and fulfil potential.</p>
       <p><a href="mailto:hello@companion.studio">If your business needs a collective of makers, thinkers and creators, say hello.</a></p>
    </div>
+
+   <div id="time-alive">We're ... old. That's ... closer to the extinction of Polar Bears if climate change continues.<br><a href='https://www.worldwildlife.org/stories/our-planet-is-warming-here-s-what-s-at-stake-if-we-don-t-act-now'>Take Action Now.</a></div>
  </div>
+
+<script>
+var startDateTime = new Date(2020,8,14,24,1,0,0); // YYYY (M-1) D H m s (start time and date from DB)
+var startStamp = startDateTime.getTime();
+
+var newDate = new Date();
+var newStamp = newDate.getTime();
+
+var timer;
+
+function updateClock() {
+    newDate = new Date();
+    newStamp = newDate.getTime();
+    var diff = Math.round((newStamp-startStamp)/1000);
+
+    var d = Math.floor(diff/(24*60*60));
+    diff = diff-(d*24*60*60);
+    var h = Math.floor(diff/(60*60));
+    diff = diff-(h*60*60);
+    var m = Math.floor(diff/(60));
+    diff = diff-(m*60);
+    var s = diff;
+
+    var totalMins = d*1440 + h*60 + m;
+    console.log(totalMins);
+    console.log(s);
+    var formatted = (totalMins).toLocaleString('en');
+    console.log(formatted);
+    var calc = totalMins / 4.205e+7 * 100;
+    var age = calc.toFixed(5);
+
+    document.getElementById("time-alive").innerHTML = "We're "+formatted+"m "+s+"s old. That's "+age+"% closer to the extinction of Polar Bears if climate change continues. <a href='https://www.worldwildlife.org/stories/our-planet-is-warming-here-s-what-s-at-stake-if-we-don-t-act-now'>Take Action Now.</a>";
+}
+
+setInterval(updateClock, 1000);
+</script>
 
 </body>
 </html>
