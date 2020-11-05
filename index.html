@@ -89,7 +89,7 @@ a:active {
       <p><a href="mailto:hello@companion.studio">If your business needs a collective of makers, thinkers and creators, say hello.</a></p>
    </div>
 
-   <div id="time-alive">We're ... old. That's ... closer to the extinction of Polar Bears if climate change continues.<br><a href='https://www.worldwildlife.org/stories/our-planet-is-warming-here-s-what-s-at-stake-if-we-don-t-act-now'>Take Action Now.</a></div>
+   <div id="time-alive">We're ... old. That's ... closer to the <a href="https://www.nytimes.com/2020/07/20/climate/polar-bear-extinction.html">extinction of Polar Bears</a> if climate change continues.<br><a href='https://www.worldwildlife.org/stories/our-planet-is-warming-here-s-what-s-at-stake-if-we-don-t-act-now'>Take Action Now.</a></div>
  </div>
 
 <script>
@@ -115,14 +115,14 @@ function updateClock() {
     var s = diff;
 
     var totalMins = d*1440 + h*60 + m;
-    console.log(totalMins);
-    console.log(s);
+    // console.log(totalMins);
+    // console.log(s);
     var formatted = (totalMins).toLocaleString('en');
-    console.log(formatted);
+    // console.log(formatted);
     var calc = totalMins / 4.205e+7 * 100;
     var age = calc.toFixed(2);
 
-    document.getElementById("time-alive").innerHTML = "We're "+formatted+"m "+s+"s old. That's "+age+"% closer to the extinction of Polar Bears if climate change continues. <a href='https://www.worldwildlife.org/stories/our-planet-is-warming-here-s-what-s-at-stake-if-we-don-t-act-now'>Take Action Now.</a>";
+    document.getElementById("time-alive").innerHTML = "We're "+formatted+"m "+s+"s old. That's "+age+"% closer to the <a href='https://www.nytimes.com/2020/07/20/climate/polar-bear-extinction.html'>extinction of Polar Bears</a> if climate change continues. <a href='https://www.worldwildlife.org/stories/our-planet-is-warming-here-s-what-s-at-stake-if-we-don-t-act-now'>Take Action Now.</a>";
 }
 
 setInterval(updateClock, 1000);
