@@ -120,7 +120,7 @@ function updateClock() {
     var formatted = (totalMins).toLocaleString('en');
     console.log(formatted);
     var calc = totalMins / 4.205e+7 * 100;
-    var age = calc.toFixed(5);
+    var age = calc.toFixed(2);
 
     document.getElementById("time-alive").innerHTML = "We're "+formatted+"m "+s+"s old. That's "+age+"% closer to the extinction of Polar Bears if climate change continues. <a href='https://www.worldwildlife.org/stories/our-planet-is-warming-here-s-what-s-at-stake-if-we-don-t-act-now'>Take Action Now.</a>";
 }
