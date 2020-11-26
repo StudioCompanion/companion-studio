@@ -1,0 +1,257 @@
+/*! project-name v0.0.1 | (c) 2020 YOUR NAME | MIT License | http://link-to-your-git-repo.com */
+@charset "UTF-8";
+/**
+ * @section Base Styles
+ */
+/* apply a natural box layout model to all elements, but allowing components to change */
+/* line 6, src/sass/components/_base.scss */
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* line 9, src/sass/components/_base.scss */
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+/* line 13, src/sass/components/_base.scss */
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0px;
+  font-family: 'Reckless TRIAL Light', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+  background: #E8E8EE;
+  color: #080B37;
+}
+
+/* line 25, src/sass/components/_base.scss */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+/* line 32, src/sass/components/_base.scss */
+h1, p {
+  font-size: 40px;
+  margin: 0px;
+  font-weight: normal;
+  line-height: 135%;
+}
+
+@media only screen and (max-width: 600px) {
+  /* line 41, src/sass/components/_base.scss */
+  h1, p {
+    font-size: 24px;
+    margin: 0px;
+    font-weight: normal;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  /* line 49, src/sass/components/_base.scss */
+  h1, p {
+    font-size: 34px;
+    margin: 0px;
+    font-weight: normal;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* line 57, src/sass/components/_base.scss */
+  h1, p {
+    font-size: 34px;
+    margin: 0px;
+    font-weight: normal;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  /* line 65, src/sass/components/_base.scss */
+  h1, p {
+    font-size: 38px;
+    margin: 0px;
+    font-weight: normal;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  /* line 73, src/sass/components/_base.scss */
+  h1, p {
+    font-size: 38px;
+    margin: 0px;
+    font-weight: normal;
+  }
+}
+
+/* line 3, src/sass/main.scss */
+body, html {
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  height: auto;
+}
+
+/* line 12, src/sass/main.scss */
+body {
+  background: #cdcdda;
+  background: -webkit-gradient(linear, left bottom, left top, from(#cdcdda), to(#e8e8ee));
+  background: linear-gradient(0deg, #cdcdda 0%, #e8e8ee 100%);
+  /* linear is enabled default, it’s not necessary to add it make it work but it can make your code more expressive */
+}
+
+/* line 36, src/sass/main.scss */
+.page-container {
+  max-width: 100%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* line 45, src/sass/main.scss */
+.page-container .image-holder:first-of-type {
+  margin-top: 20vh;
+}
+
+/* line 49, src/sass/main.scss */
+.page-container .last {
+  height: auto !important;
+  margin-bottom: 3vh !important;
+}
+
+/* line 54, src/sass/main.scss */
+.page-container .image-holder {
+  max-width: 95%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 3vh;
+}
+
+/* line 62, src/sass/main.scss */
+.page-container .image-holder img {
+  width: 100%;
+  max-width: 800px;
+  max-height: 800px;
+  display: block;
+}
+
+/* line 70, src/sass/main.scss */
+.page-container .image-holder-extraWide {
+  max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 3vh;
+}
+
+/* line 78, src/sass/main.scss */
+.page-container .image-holder-extraWide img {
+  width: 100%;
+  max-width: 1600px;
+  max-height: 1000px;
+  display: block;
+}
+
+/* line 86, src/sass/main.scss */
+.page-container .text-holder {
+  position: relative;
+  display: block;
+  width: 85%;
+  max-width: 850px;
+  height: 50vh;
+  padding: 0vh 0 10vh 0;
+}
+
+/* line 94, src/sass/main.scss */
+.page-container .text-holder p, .page-container .text-holder h1 {
+  top: 40vh;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+/* line 101, src/sass/main.scss */
+.footer-container {
+  width: 100%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: 5vh;
+}
+
+/* line 110, src/sass/main.scss */
+.footer-container ul {
+  list-style: none;
+  -webkit-margin-before: 0px;
+          margin-block-start: 0px;
+  -webkit-margin-after: 0px;
+          margin-block-end: 0px;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
+  -webkit-padding-start: 0px;
+          padding-inline-start: 0px;
+}
+
+/* line 118, src/sass/main.scss */
+.footer-container ul li {
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px 10px 15px 0px;
+}
+
+/* line 123, src/sass/main.scss */
+.footer-container ul li a {
+  border-bottom: 1px solid black;
+}

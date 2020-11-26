@@ -1,0 +1,128 @@
+@import "components/base";
+
+body, html {
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  height: auto;
+}
+
+body {
+  background: rgb(205,205,218);
+background: linear-gradient(0deg, rgba(205,205,218,1) 0%, rgba(232,232,238,1) 100%);
+	// animation-name: backgroundColorPalette;
+	// animation-duration: 15s;
+	// animation-iteration-count: infinite;
+	// animation-direction: alternate;
+	// animation-timing-function: linear;
+	/* linear is enabled default, it’s not necessary to add it make it work but it can make your code more expressive */
+}
+//
+// @keyframes backgroundColorPalette {
+// 	0% {
+// 		background: #E8E8EE;
+// 	}
+// 	50% {
+// 		background: #CDCDDA;
+// 	}
+// 	100% {
+// 		background: #E8E8EE;
+// 	}
+// }
+
+
+.page-container {
+  max-width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  // position: relative;
+
+  .image-holder:first-of-type {
+    margin-top: 20vh;
+  }
+
+  .last {
+    height: auto !important;
+    margin-bottom: 3vh !important;
+  }
+
+  .image-holder {
+    max-width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 3vh;
+
+    img {
+      width: 100%;
+      max-width: 800px;
+      max-height: 800px;
+      display: block;
+    }
+  }
+
+  .image-holder-extraWide {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 3vh;
+
+    img {
+      width: 100%;
+      max-width: 1600px;
+      max-height: 1000px;
+      display: block;
+    }
+  }
+
+  .text-holder {
+    position: relative;
+    display: block;
+    width: 85%;
+    max-width: 850px;
+    height: 50vh;
+    padding: 0vh 0 10vh 0;
+
+    p, h1 {
+      top: 40vh;
+      position: sticky;
+    }
+  }
+}
+
+.footer-container  {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: 5vh;
+
+  ul {
+    list-style: none;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+
+    li {
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px 10px 15px 0px;
+
+      a {
+        border-bottom: 1px solid black;
+      }
+    }
+  }
+}
