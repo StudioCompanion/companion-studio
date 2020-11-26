@@ -3,33 +3,41 @@
 /**
  * @section Base Styles
  */
+@font-face {
+  font-family: 'Reckless TRIAL';
+  src: url("../RecklessTRIAL-Light.woff2") format("woff2"), url("../RecklessTRIAL-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* apply a natural box layout model to all elements, but allowing components to change */
-/* line 6, src/sass/components/_base.scss */
+/* line 16, src/sass/components/_base.scss */
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
-/* line 9, src/sass/components/_base.scss */
+/* line 19, src/sass/components/_base.scss */
 *, *:before, *:after {
   -webkit-box-sizing: inherit;
           box-sizing: inherit;
 }
 
-/* line 13, src/sass/components/_base.scss */
+/* line 23, src/sass/components/_base.scss */
 body, html {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0px;
-  font-family: 'Reckless TRIAL Light', sans-serif;
+  font-family: 'Reckless TRIAL', courier;
   -webkit-font-smoothing: antialiased;
   font-weight: normal;
   background: #E8E8EE;
   color: #080B37;
 }
 
-/* line 25, src/sass/components/_base.scss */
+/* line 35, src/sass/components/_base.scss */
 input,
 textarea,
 select,
@@ -37,7 +45,7 @@ button {
   font: inherit;
 }
 
-/* line 32, src/sass/components/_base.scss */
+/* line 42, src/sass/components/_base.scss */
 h1, p {
   font-size: 40px;
   margin: 0px;
@@ -46,7 +54,7 @@ h1, p {
 }
 
 @media only screen and (max-width: 600px) {
-  /* line 41, src/sass/components/_base.scss */
+  /* line 51, src/sass/components/_base.scss */
   h1, p {
     font-size: 24px;
     margin: 0px;
@@ -55,7 +63,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 600px) {
-  /* line 49, src/sass/components/_base.scss */
+  /* line 59, src/sass/components/_base.scss */
   h1, p {
     font-size: 34px;
     margin: 0px;
@@ -64,7 +72,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 57, src/sass/components/_base.scss */
+  /* line 67, src/sass/components/_base.scss */
   h1, p {
     font-size: 34px;
     margin: 0px;
@@ -73,7 +81,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 992px) {
-  /* line 65, src/sass/components/_base.scss */
+  /* line 75, src/sass/components/_base.scss */
   h1, p {
     font-size: 38px;
     margin: 0px;
@@ -82,7 +90,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 1200px) {
-  /* line 73, src/sass/components/_base.scss */
+  /* line 83, src/sass/components/_base.scss */
   h1, p {
     font-size: 38px;
     margin: 0px;

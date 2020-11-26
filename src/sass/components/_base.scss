@@ -2,6 +2,16 @@
  * @section Base Styles
  */
 
+
+ @font-face {
+     font-family: 'Reckless TRIAL';
+     src: url('../RecklessTRIAL-Light.woff2') format('woff2'),
+         url('../RecklessTRIAL-Light.woff') format('woff');
+     font-weight: 300;
+     font-style: normal;
+     font-display: swap;
+ }
+
  /* apply a natural box layout model to all elements, but allowing components to change */
  html {
    box-sizing: border-box;
@@ -15,7 +25,7 @@ body, html {
 	height: 100%;
 	margin: 0;
 	padding: 0px;
-	font-family: 'Reckless TRIAL Light', sans-serif;
+	font-family: 'Reckless TRIAL', courier;
 	-webkit-font-smoothing: antialiased;
 	font-weight: normal;
 	background: #E8E8EE;
