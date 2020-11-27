@@ -1,5 +1,4 @@
 /*! project-name v0.0.1 | (c) 2020 YOUR NAME | MIT License | http://link-to-your-git-repo.com */
-@charset "UTF-8";
 /**
  * @section Base Styles
  */
@@ -53,26 +52,8 @@ h1, p {
   line-height: 135%;
 }
 
-@-webkit-keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @media only screen and (max-width: 600px) {
-  /* line 55, src/sass/components/_base.scss */
+  /* line 50, src/sass/components/_base.scss */
   h1, p {
     font-size: 24px;
     margin: 0px;
@@ -81,7 +62,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 600px) {
-  /* line 63, src/sass/components/_base.scss */
+  /* line 58, src/sass/components/_base.scss */
   h1, p {
     font-size: 34px;
     margin: 0px;
@@ -90,7 +71,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 71, src/sass/components/_base.scss */
+  /* line 66, src/sass/components/_base.scss */
   h1, p {
     font-size: 34px;
     margin: 0px;
@@ -99,7 +80,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 992px) {
-  /* line 79, src/sass/components/_base.scss */
+  /* line 74, src/sass/components/_base.scss */
   h1, p {
     font-size: 38px;
     margin: 0px;
@@ -108,7 +89,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 1200px) {
-  /* line 87, src/sass/components/_base.scss */
+  /* line 82, src/sass/components/_base.scss */
   h1, p {
     font-size: 38px;
     margin: 0px;
@@ -127,11 +108,37 @@ body, html {
 }
 
 /* line 12, src/sass/main.scss */
-body {
+body, html {
   background: #cdcdda;
   background: -webkit-gradient(linear, left bottom, left top, from(#cdcdda), to(#e8e8ee));
   background: linear-gradient(0deg, #cdcdda 0%, #e8e8ee 100%);
-  /* linear is enabled default, it’s not necessary to add it make it work but it can make your code more expressive */
+}
+
+/* line 18, src/sass/main.scss */
+.fixedBottom {
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  opacity: 80%;
+  background: #b0b0c4;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(176, 176, 196, 0)), color-stop(5.77%, rgba(176, 176, 196, 0.00361617)), color-stop(11.34%, rgba(176, 176, 196, 0.0141377)), color-stop(16.72%, rgba(177, 177, 197, 0.0310742)), color-stop(21.92%, rgba(178, 178, 197, 0.0539352)), color-stop(26.94%, rgba(179, 179, 198, 0.0822302)), color-stop(31.8%, rgba(180, 180, 199, 0.115469)), color-stop(36.49%, rgba(181, 181, 200, 0.15316)), color-stop(41.04%, rgba(183, 183, 201, 0.194815)), color-stop(45.44%, rgba(184, 184, 202, 0.239941)), color-stop(49.71%, rgba(186, 186, 203, 0.28805)), color-stop(53.85%, rgba(187, 187, 204, 0.338649)), color-stop(57.88%, rgba(189, 189, 206, 0.39125)), color-stop(61.79%, rgba(191, 191, 207, 0.445361)), color-stop(65.6%, rgba(193, 193, 208, 0.500492)), color-stop(69.33%, rgba(194, 194, 210, 0.556152)), color-stop(72.96%, rgba(196, 196, 211, 0.611852)), color-stop(76.52%, rgba(198, 198, 212, 0.6671)), color-stop(80.02%, rgba(200, 200, 214, 0.721406)), color-stop(83.45%, rgba(201, 201, 215, 0.77428)), color-stop(86.83%, rgba(203, 203, 216, 0.825231)), color-stop(90.17%, rgba(204, 204, 217, 0.87377)), color-stop(93.47%, rgba(206, 206, 218, 0.919404)), color-stop(96.74%, rgba(207, 207, 219, 0.961644)), to(#d0d0dc));
+  background: linear-gradient(180deg, rgba(176, 176, 196, 0) 0%, rgba(176, 176, 196, 0.00361617) 5.77%, rgba(176, 176, 196, 0.0141377) 11.34%, rgba(177, 177, 197, 0.0310742) 16.72%, rgba(178, 178, 197, 0.0539352) 21.92%, rgba(179, 179, 198, 0.0822302) 26.94%, rgba(180, 180, 199, 0.115469) 31.8%, rgba(181, 181, 200, 0.15316) 36.49%, rgba(183, 183, 201, 0.194815) 41.04%, rgba(184, 184, 202, 0.239941) 45.44%, rgba(186, 186, 203, 0.28805) 49.71%, rgba(187, 187, 204, 0.338649) 53.85%, rgba(189, 189, 206, 0.39125) 57.88%, rgba(191, 191, 207, 0.445361) 61.79%, rgba(193, 193, 208, 0.500492) 65.6%, rgba(194, 194, 210, 0.556152) 69.33%, rgba(196, 196, 211, 0.611852) 72.96%, rgba(198, 198, 212, 0.6671) 76.52%, rgba(200, 200, 214, 0.721406) 80.02%, rgba(201, 201, 215, 0.77428) 83.45%, rgba(203, 203, 216, 0.825231) 86.83%, rgba(204, 204, 217, 0.87377) 90.17%, rgba(206, 206, 218, 0.919404) 93.47%, rgba(207, 207, 219, 0.961644) 96.74%, #d0d0dc 100%);
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
 }
 
 @keyframes fadein {
@@ -147,7 +154,7 @@ body {
   }
 }
 
-/* line 46, src/sass/main.scss */
+/* line 74, src/sass/main.scss */
 .page-container {
   opacity: 0;
   max-width: 100%;
@@ -165,6 +172,8 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+  z-index: 1;
   -webkit-animation: fadein 1.25s forwards;
   /* Safari, Chrome and Opera > 12.1 */
   /* Firefox < 16 */
@@ -177,18 +186,18 @@ body {
           animation-delay: 0.5s;
 }
 
-/* line 64, src/sass/main.scss */
+/* line 93, src/sass/main.scss */
 .page-container .image-holder:first-of-type {
   margin-top: 20vh;
 }
 
-/* line 68, src/sass/main.scss */
+/* line 97, src/sass/main.scss */
 .page-container .last {
   height: auto !important;
   margin-bottom: 3vh !important;
 }
 
-/* line 73, src/sass/main.scss */
+/* line 102, src/sass/main.scss */
 .page-container .image-holder {
   max-width: 95%;
   display: -webkit-box;
@@ -207,7 +216,7 @@ body {
   margin-bottom: 3vh;
 }
 
-/* line 81, src/sass/main.scss */
+/* line 110, src/sass/main.scss */
 .page-container .image-holder img {
   width: 100%;
   max-width: 800px;
@@ -215,7 +224,7 @@ body {
   display: block;
 }
 
-/* line 89, src/sass/main.scss */
+/* line 118, src/sass/main.scss */
 .page-container .image-holder-extraWide {
   max-width: 100%;
   display: -webkit-box;
@@ -234,7 +243,7 @@ body {
   margin-bottom: 3vh;
 }
 
-/* line 97, src/sass/main.scss */
+/* line 126, src/sass/main.scss */
 .page-container .image-holder-extraWide img {
   width: 100%;
   max-width: 1600px;
@@ -242,7 +251,7 @@ body {
   display: block;
 }
 
-/* line 105, src/sass/main.scss */
+/* line 134, src/sass/main.scss */
 .page-container .text-holder {
   position: relative;
   display: block;
@@ -252,14 +261,14 @@ body {
   padding: 0vh 0 10vh 0;
 }
 
-/* line 113, src/sass/main.scss */
+/* line 142, src/sass/main.scss */
 .page-container .text-holder p, .page-container .text-holder h1 {
   top: 40vh;
   position: -webkit-sticky;
   position: sticky;
 }
 
-/* line 120, src/sass/main.scss */
+/* line 149, src/sass/main.scss */
 .footer-container {
   width: 100%;
   text-align: center;
@@ -279,7 +288,7 @@ body {
   margin-bottom: 5vh;
 }
 
-/* line 129, src/sass/main.scss */
+/* line 158, src/sass/main.scss */
 .footer-container ul {
   list-style: none;
   -webkit-margin-before: 0px;
@@ -294,14 +303,14 @@ body {
           padding-inline-start: 0px;
 }
 
-/* line 137, src/sass/main.scss */
+/* line 166, src/sass/main.scss */
 .footer-container ul li {
   text-decoration: none;
   display: inline-block;
   margin: 10px 10px 15px 0px;
 }
 
-/* line 142, src/sass/main.scss */
+/* line 171, src/sass/main.scss */
 .footer-container ul li a {
   border-bottom: 1px solid black;
 }

@@ -9,28 +9,56 @@ body, html {
   height: auto;
 }
 
-body {
+body,html {
   background: rgb(205,205,218);
-background: linear-gradient(0deg, rgba(205,205,218,1) 0%, rgba(232,232,238,1) 100%);
-	// animation-name: backgroundColorPalette;
-	// animation-duration: 15s;
-	// animation-iteration-count: infinite;
-	// animation-direction: alternate;
-	// animation-timing-function: linear;
-	/* linear is enabled default, it’s not necessary to add it make it work but it can make your code more expressive */
+  background: linear-gradient(0deg, rgba(205,205,218,1) 0%, rgba(232,232,238,1) 100%);
 }
-//
-// @keyframes backgroundColorPalette {
-// 	0% {
-// 		background: #E8E8EE;
-// 	}
-// 	50% {
-// 		background: #CDCDDA;
-// 	}
-// 	100% {
-// 		background: #E8E8EE;
-// 	}
-// }
+
+
+.fixedBottom {
+  height: 70px;
+  // background: yellow;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  opacity: 80%;
+
+
+
+
+  background: rgb(176,176,196);
+  background: linear-gradient(
+    /* Gradient direction goes here */
+    180deg,
+    hsla(240,14.49%,72.94%,0) 0%,
+    hsla(240,14.49%,72.98%,0.0036161748) 5.77%,
+    hsla(240,14.49%,73.11%,0.0141377315) 11.34%,
+    hsla(240,14.48%,73.31%,0.0310742188) 16.72%,
+    hsla(240,14.47%,73.58%,0.0539351852) 21.92%,
+    hsla(240,14.46%,73.91%,0.0822301794) 26.94%,
+    hsla(240,14.44%,74.3%,0.11546875) 31.8%,
+    hsla(240,14.43%,74.73%,0.1531604456) 36.49%,
+    hsla(240,14.42%,75.21%,0.1948148148) 41.04%,
+    hsla(240,14.41%,75.73%,0.2399414062) 45.44%,
+    hsla(240,14.4%,76.27%,0.2880497685) 49.71%,
+    hsla(240,14.39%,76.84%,0.3386494502) 53.85%,
+    hsla(240,14.38%,77.43%,0.39125) 57.88%,
+    hsla(240,14.38%,78.03%,0.4453609664) 61.79%,
+    hsla(240,14.39%,78.64%,0.5004918981) 65.6%,
+    hsla(240,14.39%,79.24%,0.5561523438) 69.33%,
+    hsla(240,14.41%,79.84%,0.6118518519) 72.96%,
+    hsla(240,14.42%,80.44%,0.6670999711) 76.52%,
+    hsla(240,14.44%,81.02%,0.72140625) 80.02%,
+    hsla(240,14.47%,81.58%,0.7742802373) 83.45%,
+    hsla(240,14.5%,82.11%,0.8252314815) 86.83%,
+    hsla(240,14.53%,82.62%,0.8737695313) 90.17%,
+    hsla(240,14.56%,83.09%,0.9194039352) 93.47%,
+    hsla(240,14.6%,83.53%,0.9616442419) 96.74%,
+    hsl(240,14.63%,83.92%) 100%
+  );
+}
 
 @keyframes fadein {
     from {
@@ -51,7 +79,8 @@ background: linear-gradient(0deg, rgba(205,205,218,1) 0%, rgba(232,232,238,1) 10
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  // position: relative;
+  position: relative;
+  z-index: 1;
 
   -webkit-animation: fadein 1.25s forwards; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 1.25s forwards; /* Firefox < 16 */
