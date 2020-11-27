@@ -45,55 +45,104 @@ button {
 }
 
 /* line 42, src/sass/components/_base.scss */
-h1, p {
+h1, .big, h2 {
   font-size: 40px;
   margin: 0px;
   font-weight: normal;
   line-height: 135%;
 }
 
+/* line 49, src/sass/components/_base.scss */
+.small {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 135%;
+  max-width: 800px;
+  margin: 1vh auto 0 auto;
+}
+
 @media only screen and (max-width: 600px) {
-  /* line 50, src/sass/components/_base.scss */
-  h1, p {
+  /* line 58, src/sass/components/_base.scss */
+  h1, .big, h2 {
     font-size: 22px;
     margin: 0px;
     font-weight: normal;
   }
+  /* line 63, src/sass/components/_base.scss */
+  .small {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 135%;
+    max-width: 800px;
+    margin: 1vh auto 0 auto;
+  }
 }
 
 @media only screen and (min-width: 600px) {
-  /* line 58, src/sass/components/_base.scss */
-  h1, p {
+  /* line 73, src/sass/components/_base.scss */
+  h1, .big, h2 {
     font-size: 34px;
     margin: 0px;
     font-weight: normal;
+  }
+  /* line 78, src/sass/components/_base.scss */
+  .small {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 135%;
+    max-width: 800px;
+    margin: 1vh auto 0 auto;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 66, src/sass/components/_base.scss */
-  h1, p {
+  /* line 88, src/sass/components/_base.scss */
+  h1, .big, h2 {
     font-size: 34px;
     margin: 0px;
     font-weight: normal;
   }
+  /* line 93, src/sass/components/_base.scss */
+  .small {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 135%;
+    max-width: 800px;
+    margin: 1vh auto 0 auto;
+  }
 }
 
 @media only screen and (min-width: 992px) {
-  /* line 74, src/sass/components/_base.scss */
-  h1, p {
+  /* line 103, src/sass/components/_base.scss */
+  h1, .big, h2 {
     font-size: 38px;
     margin: 0px;
     font-weight: normal;
   }
+  /* line 108, src/sass/components/_base.scss */
+  .small {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 135%;
+    max-width: 800px;
+    margin: 1vh auto 0 auto;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
-  /* line 82, src/sass/components/_base.scss */
-  h1, p {
+  /* line 118, src/sass/components/_base.scss */
+  h1, .big, h2 {
     font-size: 38px;
     margin: 0px;
     font-weight: normal;
+  }
+  /* line 123, src/sass/components/_base.scss */
+  .small {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 135%;
+    max-width: 800px;
+    margin: 1vh auto 0 auto;
   }
 }
 
@@ -122,7 +171,7 @@ body, html {
   bottom: 0;
   left: 0;
   z-index: 3;
-  opacity: 80%;
+  pointer-events: none;
   background: #b0b0c4;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(176, 176, 196, 0)), color-stop(5.77%, rgba(176, 176, 196, 0.00361617)), color-stop(11.34%, rgba(176, 176, 196, 0.0141377)), color-stop(16.72%, rgba(177, 177, 197, 0.0310742)), color-stop(21.92%, rgba(178, 178, 197, 0.0539352)), color-stop(26.94%, rgba(179, 179, 198, 0.0822302)), color-stop(31.8%, rgba(180, 180, 199, 0.115469)), color-stop(36.49%, rgba(181, 181, 200, 0.15316)), color-stop(41.04%, rgba(183, 183, 201, 0.194815)), color-stop(45.44%, rgba(184, 184, 202, 0.239941)), color-stop(49.71%, rgba(186, 186, 203, 0.28805)), color-stop(53.85%, rgba(187, 187, 204, 0.338649)), color-stop(57.88%, rgba(189, 189, 206, 0.39125)), color-stop(61.79%, rgba(191, 191, 207, 0.445361)), color-stop(65.6%, rgba(193, 193, 208, 0.500492)), color-stop(69.33%, rgba(194, 194, 210, 0.556152)), color-stop(72.96%, rgba(196, 196, 211, 0.611852)), color-stop(76.52%, rgba(198, 198, 212, 0.6671)), color-stop(80.02%, rgba(200, 200, 214, 0.721406)), color-stop(83.45%, rgba(201, 201, 215, 0.77428)), color-stop(86.83%, rgba(203, 203, 216, 0.825231)), color-stop(90.17%, rgba(204, 204, 217, 0.87377)), color-stop(93.47%, rgba(206, 206, 218, 0.919404)), color-stop(96.74%, rgba(207, 207, 219, 0.961644)), to(#d0d0dc));
   background: linear-gradient(180deg, rgba(176, 176, 196, 0) 0%, rgba(176, 176, 196, 0.00361617) 5.77%, rgba(176, 176, 196, 0.0141377) 11.34%, rgba(177, 177, 197, 0.0310742) 16.72%, rgba(178, 178, 197, 0.0539352) 21.92%, rgba(179, 179, 198, 0.0822302) 26.94%, rgba(180, 180, 199, 0.115469) 31.8%, rgba(181, 181, 200, 0.15316) 36.49%, rgba(183, 183, 201, 0.194815) 41.04%, rgba(184, 184, 202, 0.239941) 45.44%, rgba(186, 186, 203, 0.28805) 49.71%, rgba(187, 187, 204, 0.338649) 53.85%, rgba(189, 189, 206, 0.39125) 57.88%, rgba(191, 191, 207, 0.445361) 61.79%, rgba(193, 193, 208, 0.500492) 65.6%, rgba(194, 194, 210, 0.556152) 69.33%, rgba(196, 196, 211, 0.611852) 72.96%, rgba(198, 198, 212, 0.6671) 76.52%, rgba(200, 200, 214, 0.721406) 80.02%, rgba(201, 201, 215, 0.77428) 83.45%, rgba(203, 203, 216, 0.825231) 86.83%, rgba(204, 204, 217, 0.87377) 90.17%, rgba(206, 206, 218, 0.919404) 93.47%, rgba(207, 207, 219, 0.961644) 96.74%, #d0d0dc 100%);
@@ -154,7 +203,7 @@ body, html {
   }
 }
 
-/* line 74, src/sass/main.scss */
+/* line 69, src/sass/main.scss */
 .page-container {
   opacity: 0;
   max-width: 100%;
@@ -186,18 +235,18 @@ body, html {
           animation-delay: 0.5s;
 }
 
-/* line 93, src/sass/main.scss */
+/* line 88, src/sass/main.scss */
 .page-container .image-holder:first-of-type {
   margin-top: 20vh;
 }
 
-/* line 97, src/sass/main.scss */
+/* line 92, src/sass/main.scss */
 .page-container .last {
   height: auto !important;
   margin-bottom: 3vh !important;
 }
 
-/* line 102, src/sass/main.scss */
+/* line 97, src/sass/main.scss */
 .page-container .image-holder {
   max-width: 95%;
   display: -webkit-box;
@@ -216,7 +265,7 @@ body, html {
   margin-bottom: 3vh;
 }
 
-/* line 110, src/sass/main.scss */
+/* line 105, src/sass/main.scss */
 .page-container .image-holder img {
   width: 100%;
   max-width: 800px;
@@ -224,7 +273,7 @@ body, html {
   display: block;
 }
 
-/* line 118, src/sass/main.scss */
+/* line 113, src/sass/main.scss */
 .page-container .image-holder-extraWide {
   max-width: 100%;
   display: -webkit-box;
@@ -243,7 +292,7 @@ body, html {
   margin-bottom: 3vh;
 }
 
-/* line 126, src/sass/main.scss */
+/* line 121, src/sass/main.scss */
 .page-container .image-holder-extraWide img {
   width: 100%;
   max-width: 1600px;
@@ -251,7 +300,34 @@ body, html {
   display: block;
 }
 
-/* line 134, src/sass/main.scss */
+/* line 129, src/sass/main.scss */
+.page-container .image-holder-heightCap {
+  max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 3vh;
+  margin-top: 15vh;
+}
+
+/* line 138, src/sass/main.scss */
+.page-container .image-holder-heightCap img {
+  max-width: 90%;
+  max-height: 700px;
+  display: block;
+}
+
+/* line 146, src/sass/main.scss */
 .page-container .text-holder {
   position: relative;
   display: block;
@@ -261,14 +337,21 @@ body, html {
   padding: 0vh 0 3vh 0;
 }
 
-/* line 142, src/sass/main.scss */
+/* line 154, src/sass/main.scss */
 .page-container .text-holder p, .page-container .text-holder h1 {
   top: 40vh;
   position: -webkit-sticky;
   position: sticky;
 }
 
-/* line 149, src/sass/main.scss */
+/* line 161, src/sass/main.scss */
+.stickyContainer {
+  top: 40vh;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+/* line 166, src/sass/main.scss */
 .footer-container {
   width: 100%;
   text-align: center;
@@ -285,10 +368,10 @@ body, html {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  margin-bottom: 5vh;
+  margin-bottom: 8vh;
 }
 
-/* line 158, src/sass/main.scss */
+/* line 175, src/sass/main.scss */
 .footer-container ul {
   list-style: none;
   -webkit-margin-before: 0px;
@@ -303,14 +386,34 @@ body, html {
           padding-inline-start: 0px;
 }
 
-/* line 166, src/sass/main.scss */
+/* line 184, src/sass/main.scss */
+.footer-container ul .active a {
+  border-bottom: 1px solid transparent;
+  opacity: 0.5;
+}
+
+/* line 188, src/sass/main.scss */
+.footer-container ul .active a:hover {
+  opacity: 1;
+  border-bottom: 1px solid #080B37;
+}
+
+/* line 195, src/sass/main.scss */
 .footer-container ul li {
   text-decoration: none;
   display: inline-block;
   margin: 10px 10px 15px 0px;
 }
 
-/* line 171, src/sass/main.scss */
+/* line 200, src/sass/main.scss */
 .footer-container ul li a {
-  border-bottom: 1px solid black;
+  text-decoration: none;
+  border-bottom: 1px solid #080B37;
+  color: #080B37;
+}
+
+/* line 205, src/sass/main.scss */
+.footer-container ul li a:hover {
+  opacity: 0.5;
+  border-bottom: 1px solid transparent;
 }

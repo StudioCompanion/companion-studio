@@ -17,17 +17,12 @@ body,html {
 
 .fixedBottom {
   height: 70px;
-  // background: yellow;
   width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 3;
-  opacity: 80%;
-
-
-
-
+  pointer-events: none;
   background: rgb(176,176,196);
   background: linear-gradient(
     /* Gradient direction goes here */
@@ -131,6 +126,23 @@ body,html {
     }
   }
 
+  .image-holder-heightCap {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 3vh;
+    margin-top: 15vh;
+
+    img {
+      // width: 100%;
+      max-width: 90%;
+      max-height: 700px;
+      display: block;
+    }
+  }
+
   .text-holder {
     position: relative;
     display: block;
@@ -146,6 +158,11 @@ body,html {
   }
 }
 
+.stickyContainer {
+  top: 40vh;
+  position: sticky;
+}
+
 .footer-container  {
   width: 100%;
   text-align: center;
@@ -153,7 +170,7 @@ body,html {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  margin-bottom: 5vh;
+  margin-bottom: 8vh;
 
   ul {
     list-style: none;
@@ -163,13 +180,32 @@ body,html {
     margin-inline-end: 0px;
     padding-inline-start: 0px;
 
+    .active {
+      a {
+        border-bottom: 1px solid transparent;
+        opacity: 0.5;
+
+        &:hover {
+          opacity: 1;
+          border-bottom: 1px solid #080B37;
+        }
+      }
+    }
+
     li {
       text-decoration: none;
       display: inline-block;
       margin: 10px 10px 15px 0px;
 
       a {
-        border-bottom: 1px solid black;
+        text-decoration: none;
+        border-bottom: 1px solid #080B37;
+        color: #080B37;
+
+        &:hover {
+          opacity: 0.5;
+          border-bottom: 1px solid transparent;
+        }
       }
     }
   }
