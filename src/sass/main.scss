@@ -210,3 +210,14 @@ body,html {
     }
   }
 }
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid #080B37;
+  color: #080B37;
+
+  &:hover {
+    opacity: 0.5;
+    border-bottom: 1px solid transparent;
+  }
+}

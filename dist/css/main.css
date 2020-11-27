@@ -76,16 +76,28 @@ h1, .big, h2 {
     max-width: 800px;
     margin: 1vh auto 0 auto;
   }
+  /* line 71, src/sass/components/_base.scss */
+  .footer-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  /* line 74, src/sass/components/_base.scss */
+  .footer-container ul li {
+    display: block !important;
+    margin: 5px 0px 5px 0px !important;
+  }
 }
 
 @media only screen and (min-width: 600px) {
-  /* line 73, src/sass/components/_base.scss */
+  /* line 83, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 34px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 78, src/sass/components/_base.scss */
+  /* line 88, src/sass/components/_base.scss */
   .small {
     font-size: 18px;
     font-weight: normal;
@@ -93,16 +105,28 @@ h1, .big, h2 {
     max-width: 800px;
     margin: 1vh auto 0 auto;
   }
+  /* line 95, src/sass/components/_base.scss */
+  .footer-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  /* line 98, src/sass/components/_base.scss */
+  .footer-container ul li {
+    display: block !important;
+    margin: 5px 0px 5px 0px !important;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 88, src/sass/components/_base.scss */
+  /* line 107, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 34px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 93, src/sass/components/_base.scss */
+  /* line 112, src/sass/components/_base.scss */
   .small {
     font-size: 20px;
     font-weight: normal;
@@ -110,16 +134,28 @@ h1, .big, h2 {
     max-width: 800px;
     margin: 1vh auto 0 auto;
   }
+  /* line 119, src/sass/components/_base.scss */
+  .footer-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  /* line 122, src/sass/components/_base.scss */
+  .footer-container ul li {
+    display: block !important;
+    margin: 5px 0px 5px 0px !important;
+  }
 }
 
 @media only screen and (min-width: 992px) {
-  /* line 103, src/sass/components/_base.scss */
+  /* line 131, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 38px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 108, src/sass/components/_base.scss */
+  /* line 136, src/sass/components/_base.scss */
   .small {
     font-size: 24px;
     font-weight: normal;
@@ -127,16 +163,28 @@ h1, .big, h2 {
     max-width: 800px;
     margin: 1vh auto 0 auto;
   }
+  /* line 143, src/sass/components/_base.scss */
+  .footer-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  /* line 146, src/sass/components/_base.scss */
+  .footer-container ul li {
+    display: inline-block !important;
+    margin: 10px 10px 15px 0px !important;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
-  /* line 118, src/sass/components/_base.scss */
+  /* line 155, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 38px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 123, src/sass/components/_base.scss */
+  /* line 160, src/sass/components/_base.scss */
   .small {
     font-size: 24px;
     font-weight: normal;
@@ -414,6 +462,19 @@ body, html {
 
 /* line 205, src/sass/main.scss */
 .footer-container ul li a:hover {
+  opacity: 0.5;
+  border-bottom: 1px solid transparent;
+}
+
+/* line 214, src/sass/main.scss */
+a {
+  text-decoration: none;
+  border-bottom: 1px solid #080B37;
+  color: #080B37;
+}
+
+/* line 219, src/sass/main.scss */
+a:hover {
   opacity: 0.5;
   border-bottom: 1px solid transparent;
 }
