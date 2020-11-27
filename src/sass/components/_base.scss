@@ -71,10 +71,7 @@ h1, .big, h2 {
   .footer-container {
     flex-direction: column;
     ul {
-      li {
-        display: block !important;
-        margin: 5px 0px 5px 0px !important;
-      }
+      flex-direction: column !important;
     }
   }
 }
@@ -95,10 +92,7 @@ h1, .big, h2 {
   .footer-container {
     flex-direction: column;
     ul {
-      li {
-        display: block !important;
-        margin: 5px 0px 5px 0px !important;
-      }
+      flex-direction: column !important;
     }
   }
 }
@@ -119,10 +113,7 @@ h1, .big, h2 {
   .footer-container {
     flex-direction: column;
     ul {
-      li {
-        display: block !important;
-        margin: 5px 0px 5px 0px !important;
-      }
+      flex-direction: column;
     }
   }
 }
@@ -143,10 +134,7 @@ h1, .big, h2 {
   .footer-container {
     flex-direction: column;
     ul {
-      li {
-        display: inline-block !important;
-        margin: 10px 10px 15px 0px !important;
-      }
+      // flex-direction: row !important;
     }
   }
 }

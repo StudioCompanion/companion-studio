@@ -122,7 +122,7 @@ function updateClock() {
     var calc = totalMins / 4.205e+7 * 100;
     var age = calc.toFixed(2);
 
-    document.getElementById("time-alive").innerHTML = "We're "+formatted+"m "+s+"s old. That's "+age+"% closer to the <a href='https://www.nytimes.com/2020/07/20/climate/polar-bear-extinction.html'>extinction of Polar Bears</a> if climate change continues. <a href='https://www.worldwildlife.org/stories/our-planet-is-warming-here-s-what-s-at-stake-if-we-don-t-act-now'>Take Action Now.</a>";
+    document.getElementById("time-alive").innerHTML = "We're "+d+"d "+s+"s old. That's "+age+"% closer to the <a href='https://www.nytimes.com/2020/07/20/climate/polar-bear-extinction.html'>extinction of Polar Bears</a> if climate change continues. <a href='https://www.worldwildlife.org/stories/our-planet-is-warming-here-s-what-s-at-stake-if-we-don-t-act-now'>Take Action Now.</a>";
 }
 
 setInterval(updateClock, 1000);

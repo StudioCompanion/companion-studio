@@ -83,21 +83,23 @@ h1, .big, h2 {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  /* line 74, src/sass/components/_base.scss */
-  .footer-container ul li {
-    display: block !important;
-    margin: 5px 0px 5px 0px !important;
+  /* line 73, src/sass/components/_base.scss */
+  .footer-container ul {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
   }
 }
 
 @media only screen and (min-width: 600px) {
-  /* line 83, src/sass/components/_base.scss */
+  /* line 80, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 34px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 88, src/sass/components/_base.scss */
+  /* line 85, src/sass/components/_base.scss */
   .small {
     font-size: 18px;
     font-weight: normal;
@@ -105,28 +107,30 @@ h1, .big, h2 {
     max-width: 800px;
     margin: 1vh auto 0 auto;
   }
-  /* line 95, src/sass/components/_base.scss */
+  /* line 92, src/sass/components/_base.scss */
   .footer-container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  /* line 98, src/sass/components/_base.scss */
-  .footer-container ul li {
-    display: block !important;
-    margin: 5px 0px 5px 0px !important;
+  /* line 94, src/sass/components/_base.scss */
+  .footer-container ul {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 107, src/sass/components/_base.scss */
+  /* line 101, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 34px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 112, src/sass/components/_base.scss */
+  /* line 106, src/sass/components/_base.scss */
   .small {
     font-size: 20px;
     font-weight: normal;
@@ -134,28 +138,30 @@ h1, .big, h2 {
     max-width: 800px;
     margin: 1vh auto 0 auto;
   }
-  /* line 119, src/sass/components/_base.scss */
+  /* line 113, src/sass/components/_base.scss */
   .footer-container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  /* line 122, src/sass/components/_base.scss */
-  .footer-container ul li {
-    display: block !important;
-    margin: 5px 0px 5px 0px !important;
+  /* line 115, src/sass/components/_base.scss */
+  .footer-container ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 
 @media only screen and (min-width: 992px) {
-  /* line 131, src/sass/components/_base.scss */
+  /* line 122, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 38px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 136, src/sass/components/_base.scss */
+  /* line 127, src/sass/components/_base.scss */
   .small {
     font-size: 24px;
     font-weight: normal;
@@ -163,28 +169,23 @@ h1, .big, h2 {
     max-width: 800px;
     margin: 1vh auto 0 auto;
   }
-  /* line 143, src/sass/components/_base.scss */
+  /* line 134, src/sass/components/_base.scss */
   .footer-container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  /* line 146, src/sass/components/_base.scss */
-  .footer-container ul li {
-    display: inline-block !important;
-    margin: 10px 10px 15px 0px !important;
-  }
 }
 
 @media only screen and (min-width: 1200px) {
-  /* line 155, src/sass/components/_base.scss */
+  /* line 143, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 38px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 160, src/sass/components/_base.scss */
+  /* line 148, src/sass/components/_base.scss */
   .small {
     font-size: 24px;
     font-weight: normal;
@@ -291,7 +292,7 @@ body, html {
 /* line 92, src/sass/main.scss */
 .page-container .last {
   height: auto !important;
-  margin-bottom: 3vh !important;
+  margin-bottom: 8vh !important;
 }
 
 /* line 97, src/sass/main.scss */
@@ -403,6 +404,11 @@ body, html {
 .footer-container {
   width: 100%;
   text-align: center;
+  margin-bottom: 8vh;
+}
+
+/* line 171, src/sass/main.scss */
+.footer-container ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -416,11 +422,6 @@ body, html {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  margin-bottom: 8vh;
-}
-
-/* line 175, src/sass/main.scss */
-.footer-container ul {
   list-style: none;
   -webkit-margin-before: 0px;
           margin-block-start: 0px;
@@ -434,23 +435,22 @@ body, html {
           padding-inline-start: 0px;
 }
 
-/* line 184, src/sass/main.scss */
+/* line 185, src/sass/main.scss */
 .footer-container ul .active a {
   border-bottom: 1px solid transparent;
   opacity: 0.5;
 }
 
-/* line 188, src/sass/main.scss */
+/* line 189, src/sass/main.scss */
 .footer-container ul .active a:hover {
   opacity: 1;
   border-bottom: 1px solid #080B37;
 }
 
-/* line 195, src/sass/main.scss */
+/* line 196, src/sass/main.scss */
 .footer-container ul li {
   text-decoration: none;
-  display: inline-block;
-  margin: 10px 10px 15px 0px;
+  margin: 2px 7px;
 }
 
 /* line 200, src/sass/main.scss */
@@ -477,4 +477,9 @@ a {
 a:hover {
   opacity: 0.5;
   border-bottom: 1px solid transparent;
+}
+
+/* line 225, src/sass/main.scss */
+.extraBuffer {
+  margin: 20px;
 }
