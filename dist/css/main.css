@@ -4,8 +4,8 @@
  * @section Base Styles
  */
 @font-face {
-  font-family: 'Reckless TRIAL';
-  src: url("../RecklessTRIAL-Light.woff2") format("woff2"), url("../RecklessTRIAL-Light.woff") format("woff");
+  font-family: 'Reckless Light';
+  src: url("../Reckless-Light.woff2") format("woff2"), url("../Reckless-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -30,7 +30,7 @@ body, html {
   height: 100%;
   margin: 0;
   padding: 0px;
-  font-family: 'Reckless TRIAL', courier;
+  font-family: 'Reckless Light', serif;
   -webkit-font-smoothing: antialiased;
   font-weight: normal;
   background: #E8E8EE;
@@ -53,8 +53,26 @@ h1, p {
   line-height: 135%;
 }
 
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @media only screen and (max-width: 600px) {
-  /* line 51, src/sass/components/_base.scss */
+  /* line 55, src/sass/components/_base.scss */
   h1, p {
     font-size: 24px;
     margin: 0px;
@@ -63,7 +81,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 600px) {
-  /* line 59, src/sass/components/_base.scss */
+  /* line 63, src/sass/components/_base.scss */
   h1, p {
     font-size: 34px;
     margin: 0px;
@@ -72,7 +90,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 67, src/sass/components/_base.scss */
+  /* line 71, src/sass/components/_base.scss */
   h1, p {
     font-size: 34px;
     margin: 0px;
@@ -81,7 +99,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 992px) {
-  /* line 75, src/sass/components/_base.scss */
+  /* line 79, src/sass/components/_base.scss */
   h1, p {
     font-size: 38px;
     margin: 0px;
@@ -90,7 +108,7 @@ h1, p {
 }
 
 @media only screen and (min-width: 1200px) {
-  /* line 83, src/sass/components/_base.scss */
+  /* line 87, src/sass/components/_base.scss */
   h1, p {
     font-size: 38px;
     margin: 0px;
@@ -116,8 +134,22 @@ body {
   /* linear is enabled default, it’s not necessary to add it make it work but it can make your code more expressive */
 }
 
-/* line 36, src/sass/main.scss */
+@keyframes fadein {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+/* line 46, src/sass/main.scss */
 .page-container {
+  opacity: 0;
   max-width: 100%;
   text-align: center;
   display: -webkit-box;
@@ -133,20 +165,30 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-animation: fadein 1.25s forwards;
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Firefox < 16 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+  animation: fadein 1.25s forwards;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
 }
 
-/* line 45, src/sass/main.scss */
+/* line 64, src/sass/main.scss */
 .page-container .image-holder:first-of-type {
   margin-top: 20vh;
 }
 
-/* line 49, src/sass/main.scss */
+/* line 68, src/sass/main.scss */
 .page-container .last {
   height: auto !important;
   margin-bottom: 3vh !important;
 }
 
-/* line 54, src/sass/main.scss */
+/* line 73, src/sass/main.scss */
 .page-container .image-holder {
   max-width: 95%;
   display: -webkit-box;
@@ -165,7 +207,7 @@ body {
   margin-bottom: 3vh;
 }
 
-/* line 62, src/sass/main.scss */
+/* line 81, src/sass/main.scss */
 .page-container .image-holder img {
   width: 100%;
   max-width: 800px;
@@ -173,7 +215,7 @@ body {
   display: block;
 }
 
-/* line 70, src/sass/main.scss */
+/* line 89, src/sass/main.scss */
 .page-container .image-holder-extraWide {
   max-width: 100%;
   display: -webkit-box;
@@ -192,7 +234,7 @@ body {
   margin-bottom: 3vh;
 }
 
-/* line 78, src/sass/main.scss */
+/* line 97, src/sass/main.scss */
 .page-container .image-holder-extraWide img {
   width: 100%;
   max-width: 1600px;
@@ -200,7 +242,7 @@ body {
   display: block;
 }
 
-/* line 86, src/sass/main.scss */
+/* line 105, src/sass/main.scss */
 .page-container .text-holder {
   position: relative;
   display: block;
@@ -210,14 +252,14 @@ body {
   padding: 0vh 0 10vh 0;
 }
 
-/* line 94, src/sass/main.scss */
+/* line 113, src/sass/main.scss */
 .page-container .text-holder p, .page-container .text-holder h1 {
   top: 40vh;
   position: -webkit-sticky;
   position: sticky;
 }
 
-/* line 101, src/sass/main.scss */
+/* line 120, src/sass/main.scss */
 .footer-container {
   width: 100%;
   text-align: center;
@@ -237,7 +279,7 @@ body {
   margin-bottom: 5vh;
 }
 
-/* line 110, src/sass/main.scss */
+/* line 129, src/sass/main.scss */
 .footer-container ul {
   list-style: none;
   -webkit-margin-before: 0px;
@@ -252,14 +294,14 @@ body {
           padding-inline-start: 0px;
 }
 
-/* line 118, src/sass/main.scss */
+/* line 137, src/sass/main.scss */
 .footer-container ul li {
   text-decoration: none;
   display: inline-block;
   margin: 10px 10px 15px 0px;
 }
 
-/* line 123, src/sass/main.scss */
+/* line 142, src/sass/main.scss */
 .footer-container ul li a {
   border-bottom: 1px solid black;
 }
