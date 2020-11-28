@@ -1,0 +1,155 @@
+/**
+ * @section Base Styles
+ */
+
+
+ @font-face {
+     font-family: 'Reckless Light';
+     src: url('../Reckless-Light.woff2') format('woff2'),
+         url('../Reckless-Light.woff') format('woff');
+     font-weight: 300;
+     font-style: normal;
+     font-display: swap;
+ }
+
+ /* apply a natural box layout model to all elements, but allowing components to change */
+ html {
+   box-sizing: border-box;
+ }
+ *, *:before, *:after {
+   box-sizing: inherit;
+ }
+
+body, html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0px;
+	font-family: 'Reckless Light', serif;
+	-webkit-font-smoothing: antialiased;
+	font-weight: normal;
+	background: #E8E8EE;
+	color: #080B37;
+}
+
+input,
+textarea,
+select,
+button {
+	font: inherit;
+}
+
+h1, .big, h2 {
+	font-size: 40px;
+	margin: 0px;
+	font-weight: normal;
+	line-height: 135%;
+}
+
+.small {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 135%;
+  max-width: 800px;
+  margin: 1vh auto 0 auto;
+}
+
+@media only screen and (max-width: 600px) {
+	h1, .big, h2 {
+		font-size: 21px;
+		margin: 0px;
+		font-weight: normal;
+	}
+  .small {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 135%;
+    max-width: 800px;
+    margin: 1vh auto 0 auto;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    ul {
+      flex-direction: column !important;
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+	h1, .big, h2 {
+		font-size: 34px;
+		margin: 0px;
+		font-weight: normal;
+	}
+  .small {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 135%;
+    max-width: 800px;
+    margin: 1vh auto 0 auto;
+  }
+  .footer-container {
+    flex-direction: column;
+    ul {
+      flex-direction: column !important;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+	h1, .big, h2 {
+		font-size: 34px;
+		margin: 0px;
+		font-weight: normal;
+	}
+  .small {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 135%;
+    max-width: 800px;
+    margin: 1vh auto 0 auto;
+  }
+  .footer-container {
+    flex-direction: column;
+    ul {
+      flex-direction: column;
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
+	h1, .big, h2 {
+		font-size: 38px;
+		margin: 0px;
+		font-weight: normal;
+	}
+  .small {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 135%;
+    max-width: 800px;
+    margin: 1vh auto 0 auto;
+  }
+  .footer-container {
+    flex-direction: column;
+    ul {
+      // flex-direction: row !important;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+	h1, .big, h2 {
+		font-size: 38px;
+		margin: 0px;
+		font-weight: normal;
+	}
+  .small {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 135%;
+    max-width: 800px;
+    margin: 1vh auto 0 auto;
+  }
+}
