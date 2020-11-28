@@ -64,13 +64,13 @@ h1, .big, h2 {
 @media only screen and (max-width: 600px) {
   /* line 58, src/sass/components/_base.scss */
   h1, .big, h2 {
-    font-size: 22px;
+    font-size: 21px;
     margin: 0px;
     font-weight: normal;
   }
   /* line 63, src/sass/components/_base.scss */
   .small {
-    font-size: 16px;
+    font-size: 13px;
     font-weight: normal;
     line-height: 135%;
     max-width: 800px;
