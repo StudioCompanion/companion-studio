@@ -32,6 +32,9 @@ body, html {
 	color: #080B37;
 }
 
+::-moz-selection { background: rgba(255,255,255,1); }
+::selection { background: rgba(255,255,255,1); }
+
 input,
 textarea,
 select,
