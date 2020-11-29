@@ -103,11 +103,12 @@ body,html {
     flex-direction: column;
     margin-bottom: 3vh;
 
-    img {
+    picture, img {
       width: 100%;
       max-width: 825px;
       max-height: 825px;
       display: block;
+      margin: 0 auto;
     }
   }
 
@@ -119,11 +120,12 @@ body,html {
     flex-direction: column;
     margin-bottom: 3vh;
 
-    img {
+    picture, img {
       width: 100%;
       max-width: 1600px;
       max-height: 1000px;
       display: block;
+      margin: 0 auto;
     }
   }
 
@@ -136,11 +138,12 @@ body,html {
     margin-bottom: 3vh;
     margin-top: 15vh;
 
-    img {
+    picture, img {
       // width: 100%;
       max-width: 90%;
       max-height: 700px;
       display: block;
+      margin: 0 auto;
     }
   }
 

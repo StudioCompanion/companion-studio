@@ -83,7 +83,7 @@ h1, .big, h2 {
   }
   /* line 66, src/sass/components/_base.scss */
   .small {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: normal;
     line-height: 135%;
     max-width: 800px;
@@ -311,7 +311,7 @@ body, html {
 
 /* line 98, src/sass/main.scss */
 .page-container .image-holder {
-  max-width: 95%;
+  max-width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -329,14 +329,15 @@ body, html {
 }
 
 /* line 106, src/sass/main.scss */
-.page-container .image-holder img {
+.page-container .image-holder picture, .page-container .image-holder img {
   width: 100%;
-  max-width: 800px;
-  max-height: 800px;
+  max-width: 825px;
+  max-height: 825px;
   display: block;
+  margin: 0 auto;
 }
 
-/* line 114, src/sass/main.scss */
+/* line 115, src/sass/main.scss */
 .page-container .image-holder-extraWide {
   max-width: 100%;
   display: -webkit-box;
@@ -355,15 +356,16 @@ body, html {
   margin-bottom: 3vh;
 }
 
-/* line 122, src/sass/main.scss */
-.page-container .image-holder-extraWide img {
+/* line 123, src/sass/main.scss */
+.page-container .image-holder-extraWide picture, .page-container .image-holder-extraWide img {
   width: 100%;
   max-width: 1600px;
   max-height: 1000px;
   display: block;
+  margin: 0 auto;
 }
 
-/* line 130, src/sass/main.scss */
+/* line 132, src/sass/main.scss */
 .page-container .image-holder-heightCap {
   max-width: 100%;
   display: -webkit-box;
@@ -383,14 +385,15 @@ body, html {
   margin-top: 15vh;
 }
 
-/* line 139, src/sass/main.scss */
-.page-container .image-holder-heightCap img {
+/* line 141, src/sass/main.scss */
+.page-container .image-holder-heightCap picture, .page-container .image-holder-heightCap img {
   max-width: 90%;
   max-height: 700px;
   display: block;
+  margin: 0 auto;
 }
 
-/* line 147, src/sass/main.scss */
+/* line 150, src/sass/main.scss */
 .page-container .text-holder {
   position: relative;
   display: block;
@@ -400,28 +403,28 @@ body, html {
   padding: 0vh 0 3vh 0;
 }
 
-/* line 155, src/sass/main.scss */
+/* line 158, src/sass/main.scss */
 .page-container .text-holder p, .page-container .text-holder h1 {
   top: 40vh;
   position: -webkit-sticky;
   position: sticky;
 }
 
-/* line 162, src/sass/main.scss */
+/* line 165, src/sass/main.scss */
 .stickyContainer {
   top: 40vh;
   position: -webkit-sticky;
   position: sticky;
 }
 
-/* line 167, src/sass/main.scss */
+/* line 170, src/sass/main.scss */
 .footer-container {
   width: 100%;
   text-align: center;
   margin-bottom: 8vh;
 }
 
-/* line 172, src/sass/main.scss */
+/* line 175, src/sass/main.scss */
 .footer-container ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -449,51 +452,51 @@ body, html {
           padding-inline-start: 0px;
 }
 
-/* line 186, src/sass/main.scss */
+/* line 189, src/sass/main.scss */
 .footer-container ul .active a {
   border-bottom: 1px solid transparent;
   opacity: 0.5;
 }
 
-/* line 190, src/sass/main.scss */
+/* line 193, src/sass/main.scss */
 .footer-container ul .active a:hover {
   opacity: 1;
   border-bottom: 1px solid #080B37;
 }
 
-/* line 197, src/sass/main.scss */
+/* line 200, src/sass/main.scss */
 .footer-container ul li {
   text-decoration: none;
   margin: 4px 0px;
 }
 
-/* line 201, src/sass/main.scss */
+/* line 204, src/sass/main.scss */
 .footer-container ul li a {
   text-decoration: none;
   border-bottom: 1px solid #080B37;
   color: #080B37;
 }
 
-/* line 206, src/sass/main.scss */
+/* line 209, src/sass/main.scss */
 .footer-container ul li a:hover {
   opacity: 0.5;
   border-bottom: 1px solid transparent;
 }
 
-/* line 215, src/sass/main.scss */
+/* line 218, src/sass/main.scss */
 a {
   text-decoration: none;
   border-bottom: 1px solid #080B37;
   color: #080B37;
 }
 
-/* line 220, src/sass/main.scss */
+/* line 223, src/sass/main.scss */
 a:hover {
   opacity: 0.5;
   border-bottom: 1px solid transparent;
 }
 
-/* line 226, src/sass/main.scss */
+/* line 229, src/sass/main.scss */
 .extraBuffer {
   margin: 20px;
 }
