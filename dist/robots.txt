@@ -1,0 +1,5 @@
+# Group 2
+User-agent: *
+Allow: /
+
+Sitemap: http://www.companion.studio/sitemap.xml

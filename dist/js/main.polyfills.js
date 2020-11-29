@@ -1,11 +1,4 @@
 /*! project-name v0.0.1 | (c) 2020 YOUR NAME | MIT License | http://link-to-your-git-repo.com */
-/**
- * Element.matches() polyfill (simple version)
- * https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
- */
-if (!Element.prototype.matches) {
-	Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-}
 var startDateTime = new Date(2020,8,14,24,1,0,0); // YYYY (M-1) D H m s (start time and date from DB)
 var startStamp = startDateTime.getTime();
 
