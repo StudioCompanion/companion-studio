@@ -1,7 +1,14 @@
 /**
  * @section Base Styles
  */
-
+ @font-face {
+     font-family: 'Reckless Regular';
+     src: url('../Reckless-Regular.woff2') format('woff2'),
+         url('../Reckless-Regular.woff') format('woff');
+     font-weight: 300;
+     font-style: normal;
+     font-display: swap;
+ }
 
  @font-face {
      font-family: 'Reckless Light';
