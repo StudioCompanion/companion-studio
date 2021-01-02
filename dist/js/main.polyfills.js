@@ -1,4 +1,4 @@
-/*! project-name v0.0.1 | (c) 2020 YOUR NAME | MIT License | http://link-to-your-git-repo.com */
+/*! project-name v0.0.1 | (c) 2021 YOUR NAME | MIT License | http://link-to-your-git-repo.com */
 var startDateTime = new Date(2020,8,14,24,1,0,0); // YYYY (M-1) D H m s (start time and date from DB)
 var startStamp = startDateTime.getTime();
 
