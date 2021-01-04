@@ -19,7 +19,7 @@ function updateClock() {
     diff = diff-(m*60);
     var s = diff;
 
-    document.getElementById("time-alive").innerHTML = "Companion is based in London and has been operating globally for "+d+"d "+h+"h "+m+"m "+s+"s";
+    document.getElementById("time-alive").innerHTML = "Companion is based in London and has been operating globally for "+d+"d "+h+"h "+m+"m "+s+"s.";
 }
 
 setInterval(updateClock, 1000);
