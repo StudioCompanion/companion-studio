@@ -690,6 +690,7 @@ a:hover {
 
 /* line 353, src/sass/main.scss */
 .contact-container .contact-form form {
+  padding: 0px 25px;
   min-width: 359px;
   width: 100%;
   max-width: 600px;
@@ -702,7 +703,7 @@ a:hover {
           flex-direction: column;
 }
 
-/* line 361, src/sass/main.scss */
+/* line 362, src/sass/main.scss */
 .contact-container .contact-form .kw-field-error-message {
   font-size: 12px;
   color: #ff3852;
@@ -710,7 +711,7 @@ a:hover {
   padding: 5px;
 }
 
-/* line 368, src/sass/main.scss */
+/* line 369, src/sass/main.scss */
 .contact-container .contact-form .kw-alert {
   width: 100%;
   padding: 15px 18px;
@@ -721,14 +722,14 @@ a:hover {
   font-weight: normal;
 }
 
-/* line 378, src/sass/main.scss */
+/* line 379, src/sass/main.scss */
 .contact-container .contact-form .kw-alert-error {
   color: #ff3852;
   background-color: #ffebee;
   display: none !important;
 }
 
-/* line 384, src/sass/main.scss */
+/* line 385, src/sass/main.scss */
 .contact-container .contact-form .form-row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -740,18 +741,18 @@ a:hover {
   margin-bottom: 20px;
 }
 
-/* line 389, src/sass/main.scss */
+/* line 390, src/sass/main.scss */
 .contact-container .contact-form .form-row .kw-border-error {
   background: #ffebee;
   border: 1px solid #ff3852;
 }
 
-/* line 392, src/sass/main.scss */
+/* line 393, src/sass/main.scss */
 .contact-container .contact-form .form-row .kw-border-error:hover {
   background: white;
 }
 
-/* line 397, src/sass/main.scss */
+/* line 398, src/sass/main.scss */
 .contact-container .contact-form .form-row label {
   font-size: 16px;
   font-weight: normal;
@@ -759,12 +760,12 @@ a:hover {
   margin-bottom: 5px;
 }
 
-/* line 404, src/sass/main.scss */
+/* line 405, src/sass/main.scss */
 .contact-container .contact-form .form-row textarea {
   height: 300px;
 }
 
-/* line 408, src/sass/main.scss */
+/* line 409, src/sass/main.scss */
 .contact-container .contact-form .form-row input, .contact-container .contact-form .form-row textarea {
   font-size: 24px;
   font-weight: normal;
@@ -778,20 +779,20 @@ a:hover {
   transition: all 250ms;
 }
 
-/* line 419, src/sass/main.scss */
+/* line 420, src/sass/main.scss */
 .contact-container .contact-form .form-row input:focus, .contact-container .contact-form .form-row textarea:focus {
   background: #fafafa;
   border: 1px solid #080B37;
 }
 
-/* line 424, src/sass/main.scss */
+/* line 425, src/sass/main.scss */
 .contact-container .contact-form .form-row input:hover, .contact-container .contact-form .form-row textarea:hover {
   -webkit-transition: all 250ms;
   transition: all 250ms;
   background: #f2f2f2;
 }
 
-/* line 430, src/sass/main.scss */
+/* line 431, src/sass/main.scss */
 .contact-container .contact-form .form-row button {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -822,7 +823,7 @@ a:hover {
      border-image: initial;
 }
 
-/* line 453, src/sass/main.scss */
+/* line 454, src/sass/main.scss */
 .contact-container .contact-form .form-row button:hover {
   -webkit-transition: all 250ms;
   transition: all 250ms;
