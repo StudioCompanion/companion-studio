@@ -614,3 +614,220 @@ a:hover {
   letter-spacing: -0.01em;
   color: #4B4E68;
 }
+
+/* line 302, src/sass/main.scss */
+:focus {
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+/* line 306, src/sass/main.scss */
+#form-btn {
+  border-bottom: 1px solid #080B37;
+  opacity: 1;
+}
+
+/* line 310, src/sass/main.scss */
+#form-btn:hover {
+  cursor: pointer;
+  opacity: 0.5;
+  border-bottom: 1px solid transparent;
+}
+
+/* line 317, src/sass/main.scss */
+.contact-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: rgba(232, 232, 238, 0.3);
+  -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: none;
+}
+
+/* line 331, src/sass/main.scss */
+.contact-container .contact-form {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 100px 0px;
+}
+
+/* line 340, src/sass/main.scss */
+.contact-container .contact-form #close-btn {
+  left: 0;
+  right: 0;
+  margin: auto auto 25px auto;
+  width: auto;
+  display: inline-block;
+  text-decoration: underline;
+}
+
+/* line 348, src/sass/main.scss */
+.contact-container .contact-form #close-btn:hover {
+  text-decoration: none;
+}
+
+/* line 353, src/sass/main.scss */
+.contact-container .contact-form form {
+  min-width: 359px;
+  width: 100%;
+  max-width: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+/* line 361, src/sass/main.scss */
+.contact-container .contact-form .kw-field-error-message {
+  font-size: 12px;
+  color: #ff3852;
+  display: block;
+  padding: 5px;
+}
+
+/* line 368, src/sass/main.scss */
+.contact-container .contact-form .kw-alert {
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  display: block;
+  font-weight: normal;
+}
+
+/* line 378, src/sass/main.scss */
+.contact-container .contact-form .kw-alert-error {
+  color: #ff3852;
+  background-color: #ffebee;
+  display: none !important;
+}
+
+/* line 384, src/sass/main.scss */
+.contact-container .contact-form .form-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* line 389, src/sass/main.scss */
+.contact-container .contact-form .form-row .kw-border-error {
+  background: #ffebee;
+  border: 1px solid #ff3852;
+}
+
+/* line 392, src/sass/main.scss */
+.contact-container .contact-form .form-row .kw-border-error:hover {
+  background: white;
+}
+
+/* line 397, src/sass/main.scss */
+.contact-container .contact-form .form-row label {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 135%;
+  margin-bottom: 5px;
+}
+
+/* line 404, src/sass/main.scss */
+.contact-container .contact-form .form-row textarea {
+  height: 300px;
+}
+
+/* line 408, src/sass/main.scss */
+.contact-container .contact-form .form-row input, .contact-container .contact-form .form-row textarea {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 135%;
+  border-radius: 8px;
+  border: 1px solid rgba(8, 11, 55, 0.4);
+  padding: 8px 15px;
+  background: white;
+  resize: none;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+}
+
+/* line 419, src/sass/main.scss */
+.contact-container .contact-form .form-row input:focus, .contact-container .contact-form .form-row textarea:focus {
+  background: #fafafa;
+  border: 1px solid #080B37;
+}
+
+/* line 424, src/sass/main.scss */
+.contact-container .contact-form .form-row input:hover, .contact-container .contact-form .form-row textarea:hover {
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+  background: #f2f2f2;
+}
+
+/* line 430, src/sass/main.scss */
+.contact-container .contact-form .form-row button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: white;
+  padding: 8px 15px 10px 15px;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  cursor: default;
+  background-color: #080B37;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  border-radius: 8px;
+  border-style: none;
+  border-color: none;
+  -o-border-image: initial;
+     border-image: initial;
+}
+
+/* line 453, src/sass/main.scss */
+.contact-container .contact-form .form-row button:hover {
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+  background: white;
+  border: 1px solid #080B37;
+  color: #080B37;
+  cursor: pointer;
+}

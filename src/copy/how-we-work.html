@@ -184,7 +184,7 @@
 		</div>
 
 		<div class="text-holder last">
-			<p class="big">If you’re interested in partnering with us then email <a href="mailto:hello@companion.studio">hello@companion.studio</a>.</p>
+			<p class="big">You can read more about <a href="/how-we-work.html">how we work</a> and if you’re interested in partnering with us then <span id="form-btn">tell us about your project</span> or <a href="mailto:hello@companion.studio">email us.</a></p>
 		</div>
 
 		<div class="footer-container">
@@ -199,9 +199,37 @@
 				<li><a href="https://www.instagram.com/companion_studio" target="_blank" rel="noopener noreferrer">Instagram</a></li>
 				<li><a href="mailto:hello@companion.studio" target="_blank" rel="noopener noreferrer">Contact</a></li>
 			</ul>
+			<p class="extraBuffer">Formerly operated as:<br> <a href="https://mylespalmer.co.uk/" target="_blank" rel="noopener noreferrer">Myles Palmer Studio</a></p>
 		</div>
 	</div>
 
+	<div id="contact-modal" class="contact-container">
+		<div class="contact-form">
+			<form no-reload success-message="Thanks for your submission! We'll be in touch." class="kwes-form" action="https://kwes.io/api/foreign/forms/i3yOKZ1rjYjWR1xMVMMo" enctype="multipart/form-data">
+				<div id="close-btn">Close</div>
+				<div class="form-row">
+					<label for="name">Name</label>
+					<input type="text" name="name" rules="required|max:255">
+				</div>
+
+				<div class="form-row">
+					<label for="email">Email</label>
+					<input type="email" name="email" rules="required|email">
+				</div>
+
+				<div class="form-row">
+					<label for="about">About Project</label>
+					<textarea name="about" rules="required|max:255"></textarea>
+				</div>
+
+				<div class="form-row">
+					<button type="submit">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="https://kwes.io/v2/kwes-script.js" defer></script>
 	<script src="js/main.polyfills.js"></script>
 </body>
 </html>
