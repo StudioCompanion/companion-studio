@@ -74,6 +74,12 @@ h1, .big, h2 {
 }
 
 /* line 59, src/sass/components/_base.scss */
+h3 {
+  font-weight: normal;
+  line-height: 135%;
+}
+
+/* line 64, src/sass/components/_base.scss */
 .small {
   font-size: 24px;
   font-weight: normal;
@@ -83,13 +89,13 @@ h1, .big, h2 {
 }
 
 @media only screen and (max-width: 600px) {
-  /* line 68, src/sass/components/_base.scss */
+  /* line 73, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 21px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 73, src/sass/components/_base.scss */
+  /* line 78, src/sass/components/_base.scss */
   .small {
     font-size: 14px;
     font-weight: normal;
@@ -97,14 +103,14 @@ h1, .big, h2 {
     max-width: 800px;
     margin: 1vh auto 0 auto;
   }
-  /* line 81, src/sass/components/_base.scss */
+  /* line 86, src/sass/components/_base.scss */
   .footer-container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  /* line 83, src/sass/components/_base.scss */
+  /* line 88, src/sass/components/_base.scss */
   .footer-container ul {
     -webkit-box-orient: vertical !important;
     -webkit-box-direction: normal !important;
@@ -114,13 +120,13 @@ h1, .big, h2 {
 }
 
 @media only screen and (min-width: 600px) {
-  /* line 90, src/sass/components/_base.scss */
+  /* line 95, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 34px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 95, src/sass/components/_base.scss */
+  /* line 100, src/sass/components/_base.scss */
   .small {
     font-size: 18px;
     font-weight: normal;
@@ -128,14 +134,14 @@ h1, .big, h2 {
     max-width: 800px;
     margin: 1vh auto 0 auto;
   }
-  /* line 102, src/sass/components/_base.scss */
+  /* line 107, src/sass/components/_base.scss */
   .footer-container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  /* line 104, src/sass/components/_base.scss */
+  /* line 109, src/sass/components/_base.scss */
   .footer-container ul {
     -webkit-box-orient: vertical !important;
     -webkit-box-direction: normal !important;
@@ -145,13 +151,13 @@ h1, .big, h2 {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 111, src/sass/components/_base.scss */
+  /* line 116, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 34px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 116, src/sass/components/_base.scss */
+  /* line 121, src/sass/components/_base.scss */
   .small {
     font-size: 20px;
     font-weight: normal;
@@ -159,14 +165,14 @@ h1, .big, h2 {
     max-width: 800px;
     margin: 1vh auto 0 auto;
   }
-  /* line 123, src/sass/components/_base.scss */
+  /* line 128, src/sass/components/_base.scss */
   .footer-container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  /* line 125, src/sass/components/_base.scss */
+  /* line 130, src/sass/components/_base.scss */
   .footer-container ul {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -176,13 +182,13 @@ h1, .big, h2 {
 }
 
 @media only screen and (min-width: 992px) {
-  /* line 132, src/sass/components/_base.scss */
+  /* line 137, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 38px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 137, src/sass/components/_base.scss */
+  /* line 142, src/sass/components/_base.scss */
   .small {
     font-size: 24px;
     font-weight: normal;
@@ -190,7 +196,7 @@ h1, .big, h2 {
     max-width: 800px;
     margin: 1vh auto 0 auto;
   }
-  /* line 144, src/sass/components/_base.scss */
+  /* line 149, src/sass/components/_base.scss */
   .footer-container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -200,13 +206,13 @@ h1, .big, h2 {
 }
 
 @media only screen and (min-width: 1200px) {
-  /* line 153, src/sass/components/_base.scss */
+  /* line 158, src/sass/components/_base.scss */
   h1, .big, h2 {
     font-size: 38px;
     margin: 0px;
     font-weight: normal;
   }
-  /* line 158, src/sass/components/_base.scss */
+  /* line 163, src/sass/components/_base.scss */
   .small {
     font-size: 24px;
     font-weight: normal;
@@ -444,21 +450,32 @@ body, html {
   position: sticky;
 }
 
-/* line 176, src/sass/main.scss */
+/* line 175, src/sass/main.scss */
+.page-container .policy-holder {
+  position: relative;
+  display: block;
+  width: 85%;
+  max-width: 850px;
+  height: auto;
+  padding: 0vh 0 3vh 0;
+  text-align: left;
+}
+
+/* line 191, src/sass/main.scss */
 .stickyContainer {
   top: 40vh;
   position: -webkit-sticky;
   position: sticky;
 }
 
-/* line 181, src/sass/main.scss */
+/* line 196, src/sass/main.scss */
 .footer-container {
   width: 100%;
   text-align: center;
   margin-bottom: 8vh;
 }
 
-/* line 186, src/sass/main.scss */
+/* line 201, src/sass/main.scss */
 .footer-container ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -486,56 +503,56 @@ body, html {
           padding-inline-start: 0px;
 }
 
-/* line 200, src/sass/main.scss */
+/* line 215, src/sass/main.scss */
 .footer-container ul .active a {
   border-bottom: 1px solid transparent;
   opacity: 0.5;
 }
 
-/* line 204, src/sass/main.scss */
+/* line 219, src/sass/main.scss */
 .footer-container ul .active a:hover {
   opacity: 1;
   border-bottom: 1px solid #080B37;
 }
 
-/* line 211, src/sass/main.scss */
+/* line 226, src/sass/main.scss */
 .footer-container ul li {
   text-decoration: none;
   margin: 4px 0px;
 }
 
-/* line 215, src/sass/main.scss */
+/* line 230, src/sass/main.scss */
 .footer-container ul li a {
   text-decoration: none;
   border-bottom: 1px solid #080B37;
   color: #080B37;
 }
 
-/* line 220, src/sass/main.scss */
+/* line 235, src/sass/main.scss */
 .footer-container ul li a:hover {
   opacity: 0.5;
   border-bottom: 1px solid transparent;
 }
 
-/* line 229, src/sass/main.scss */
+/* line 244, src/sass/main.scss */
 a {
   text-decoration: none;
   border-bottom: 1px solid #080B37;
   color: #080B37;
 }
 
-/* line 234, src/sass/main.scss */
+/* line 249, src/sass/main.scss */
 a:hover {
   opacity: 0.5;
   border-bottom: 1px solid transparent;
 }
 
-/* line 240, src/sass/main.scss */
+/* line 255, src/sass/main.scss */
 .extraBuffer {
   margin: 20px;
 }
 
-/* line 244, src/sass/main.scss */
+/* line 259, src/sass/main.scss */
 .announcements {
   padding: 7px 8px 8px 8px;
   position: fixed;
@@ -564,7 +581,7 @@ a:hover {
 }
 
 @media only screen and (max-width: 600px) {
-  /* line 244, src/sass/main.scss */
+  /* line 259, src/sass/main.scss */
   .announcements {
     top: 16px;
     left: 0;
@@ -574,7 +591,7 @@ a:hover {
   }
 }
 
-/* line 272, src/sass/main.scss */
+/* line 287, src/sass/main.scss */
 .announcements:hover {
   background: rgba(202, 202, 216, 0.7);
   -webkit-transition: all 250ms;
@@ -583,7 +600,7 @@ a:hover {
   border: 1px solid #4b4e68;
 }
 
-/* line 279, src/sass/main.scss */
+/* line 294, src/sass/main.scss */
 .announcements .announcements-block {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -600,7 +617,7 @@ a:hover {
           flex-direction: row;
 }
 
-/* line 285, src/sass/main.scss */
+/* line 300, src/sass/main.scss */
 .announcements .announcements-block p {
   margin: 0;
   margin-right: 30px;
@@ -615,25 +632,25 @@ a:hover {
   color: #4B4E68;
 }
 
-/* line 302, src/sass/main.scss */
+/* line 317, src/sass/main.scss */
 :focus {
   outline: -webkit-focus-ring-color auto 0px;
 }
 
-/* line 306, src/sass/main.scss */
+/* line 321, src/sass/main.scss */
 #form-btn {
   border-bottom: 1px solid #080B37;
   opacity: 1;
 }
 
-/* line 310, src/sass/main.scss */
+/* line 325, src/sass/main.scss */
 #form-btn:hover {
   cursor: pointer;
   opacity: 0.5;
   border-bottom: 1px solid transparent;
 }
 
-/* line 317, src/sass/main.scss */
+/* line 332, src/sass/main.scss */
 .contact-container {
   width: 100%;
   height: 100%;
@@ -656,7 +673,7 @@ a:hover {
   display: none;
 }
 
-/* line 331, src/sass/main.scss */
+/* line 346, src/sass/main.scss */
 .contact-container .contact-form {
   width: 100%;
   height: 100%;
@@ -673,7 +690,7 @@ a:hover {
   padding: 100px 0px;
 }
 
-/* line 340, src/sass/main.scss */
+/* line 355, src/sass/main.scss */
 .contact-container .contact-form #close-btn {
   left: 0;
   right: 0;
@@ -683,12 +700,12 @@ a:hover {
   text-decoration: underline;
 }
 
-/* line 348, src/sass/main.scss */
+/* line 363, src/sass/main.scss */
 .contact-container .contact-form #close-btn:hover {
   text-decoration: none;
 }
 
-/* line 353, src/sass/main.scss */
+/* line 368, src/sass/main.scss */
 .contact-container .contact-form form {
   margin: 0px 25px;
   min-width: 359px;
@@ -703,7 +720,7 @@ a:hover {
           flex-direction: column;
 }
 
-/* line 362, src/sass/main.scss */
+/* line 377, src/sass/main.scss */
 .contact-container .contact-form .kw-field-error-message {
   font-size: 12px;
   color: #ff3852;
@@ -711,7 +728,7 @@ a:hover {
   padding: 5px;
 }
 
-/* line 369, src/sass/main.scss */
+/* line 384, src/sass/main.scss */
 .contact-container .contact-form .kw-alert {
   width: 100%;
   padding: 15px 18px;
@@ -722,14 +739,14 @@ a:hover {
   font-weight: normal;
 }
 
-/* line 379, src/sass/main.scss */
+/* line 394, src/sass/main.scss */
 .contact-container .contact-form .kw-alert-error {
   color: #ff3852;
   background-color: #ffebee;
   display: none !important;
 }
 
-/* line 385, src/sass/main.scss */
+/* line 400, src/sass/main.scss */
 .contact-container .contact-form .form-row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -741,18 +758,18 @@ a:hover {
   margin-bottom: 20px;
 }
 
-/* line 390, src/sass/main.scss */
+/* line 405, src/sass/main.scss */
 .contact-container .contact-form .form-row .kw-border-error {
   background: #ffebee;
   border: 1px solid #ff3852;
 }
 
-/* line 393, src/sass/main.scss */
+/* line 408, src/sass/main.scss */
 .contact-container .contact-form .form-row .kw-border-error:hover {
   background: white;
 }
 
-/* line 398, src/sass/main.scss */
+/* line 413, src/sass/main.scss */
 .contact-container .contact-form .form-row label {
   font-size: 16px;
   font-weight: normal;
@@ -760,12 +777,12 @@ a:hover {
   margin-bottom: 5px;
 }
 
-/* line 405, src/sass/main.scss */
+/* line 420, src/sass/main.scss */
 .contact-container .contact-form .form-row textarea {
   height: 300px;
 }
 
-/* line 409, src/sass/main.scss */
+/* line 424, src/sass/main.scss */
 .contact-container .contact-form .form-row input, .contact-container .contact-form .form-row textarea {
   font-size: 24px;
   font-weight: normal;
@@ -779,20 +796,20 @@ a:hover {
   transition: all 250ms;
 }
 
-/* line 420, src/sass/main.scss */
+/* line 435, src/sass/main.scss */
 .contact-container .contact-form .form-row input:focus, .contact-container .contact-form .form-row textarea:focus {
   background: #fafafa;
   border: 1px solid #080B37;
 }
 
-/* line 425, src/sass/main.scss */
+/* line 440, src/sass/main.scss */
 .contact-container .contact-form .form-row input:hover, .contact-container .contact-form .form-row textarea:hover {
   -webkit-transition: all 250ms;
   transition: all 250ms;
   background: #f2f2f2;
 }
 
-/* line 431, src/sass/main.scss */
+/* line 446, src/sass/main.scss */
 .contact-container .contact-form .form-row button {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -823,7 +840,7 @@ a:hover {
      border-image: initial;
 }
 
-/* line 454, src/sass/main.scss */
+/* line 469, src/sass/main.scss */
 .contact-container .contact-form .form-row button:hover {
   -webkit-transition: all 250ms;
   transition: all 250ms;

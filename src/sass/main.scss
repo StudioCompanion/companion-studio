@@ -171,6 +171,21 @@ body,html {
       position: sticky;
     }
   }
+
+  .policy-holder {
+    position: relative;
+    display: block;
+    width: 85%;
+    max-width: 850px;
+    height: auto;
+    padding: 0vh 0 3vh 0;
+    text-align: left;
+
+    p, h1 {
+      // top: 40vh;
+      // position: sticky;
+    }
+  }
 }
 
 .stickyContainer {
