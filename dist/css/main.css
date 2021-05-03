@@ -455,27 +455,50 @@ body, html {
   position: relative;
   display: block;
   width: 85%;
-  max-width: 850px;
+  max-width: 650px;
   height: auto;
   padding: 0vh 0 3vh 0;
   text-align: left;
+  margin-top: 120px;
 }
 
-/* line 191, src/sass/main.scss */
+/* line 185, src/sass/main.scss */
+.page-container .policy-holder .textBlock {
+  margin-bottom: 32px;
+}
+
+/* line 188, src/sass/main.scss */
+.page-container .policy-holder .textBlock li {
+  margin-bottom: 8px;
+}
+
+/* line 192, src/sass/main.scss */
+.page-container .policy-holder .textBlock p {
+  -webkit-margin-before: 0em;
+          margin-block-start: 0em;
+  line-height: 135%;
+}
+
+/* line 197, src/sass/main.scss */
+.page-container .policy-holder .textBlock h3 {
+  margin-bottom: 8px;
+}
+
+/* line 209, src/sass/main.scss */
 .stickyContainer {
   top: 40vh;
   position: -webkit-sticky;
   position: sticky;
 }
 
-/* line 196, src/sass/main.scss */
+/* line 214, src/sass/main.scss */
 .footer-container {
   width: 100%;
   text-align: center;
   margin-bottom: 8vh;
 }
 
-/* line 201, src/sass/main.scss */
+/* line 219, src/sass/main.scss */
 .footer-container ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -503,56 +526,56 @@ body, html {
           padding-inline-start: 0px;
 }
 
-/* line 215, src/sass/main.scss */
+/* line 233, src/sass/main.scss */
 .footer-container ul .active a {
   border-bottom: 1px solid transparent;
   opacity: 0.5;
 }
 
-/* line 219, src/sass/main.scss */
+/* line 237, src/sass/main.scss */
 .footer-container ul .active a:hover {
   opacity: 1;
   border-bottom: 1px solid #080B37;
 }
 
-/* line 226, src/sass/main.scss */
+/* line 244, src/sass/main.scss */
 .footer-container ul li {
   text-decoration: none;
   margin: 4px 0px;
 }
 
-/* line 230, src/sass/main.scss */
+/* line 248, src/sass/main.scss */
 .footer-container ul li a {
   text-decoration: none;
   border-bottom: 1px solid #080B37;
   color: #080B37;
 }
 
-/* line 235, src/sass/main.scss */
+/* line 253, src/sass/main.scss */
 .footer-container ul li a:hover {
   opacity: 0.5;
   border-bottom: 1px solid transparent;
 }
 
-/* line 244, src/sass/main.scss */
+/* line 262, src/sass/main.scss */
 a {
   text-decoration: none;
   border-bottom: 1px solid #080B37;
   color: #080B37;
 }
 
-/* line 249, src/sass/main.scss */
+/* line 267, src/sass/main.scss */
 a:hover {
   opacity: 0.5;
   border-bottom: 1px solid transparent;
 }
 
-/* line 255, src/sass/main.scss */
+/* line 273, src/sass/main.scss */
 .extraBuffer {
   margin: 20px;
 }
 
-/* line 259, src/sass/main.scss */
+/* line 277, src/sass/main.scss */
 .announcements {
   padding: 7px 8px 8px 8px;
   position: fixed;
@@ -581,7 +604,7 @@ a:hover {
 }
 
 @media only screen and (max-width: 600px) {
-  /* line 259, src/sass/main.scss */
+  /* line 277, src/sass/main.scss */
   .announcements {
     top: 16px;
     left: 0;
@@ -591,7 +614,7 @@ a:hover {
   }
 }
 
-/* line 287, src/sass/main.scss */
+/* line 305, src/sass/main.scss */
 .announcements:hover {
   background: rgba(202, 202, 216, 0.7);
   -webkit-transition: all 250ms;
@@ -600,7 +623,7 @@ a:hover {
   border: 1px solid #4b4e68;
 }
 
-/* line 294, src/sass/main.scss */
+/* line 312, src/sass/main.scss */
 .announcements .announcements-block {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -617,7 +640,7 @@ a:hover {
           flex-direction: row;
 }
 
-/* line 300, src/sass/main.scss */
+/* line 318, src/sass/main.scss */
 .announcements .announcements-block p {
   margin: 0;
   margin-right: 30px;
@@ -632,25 +655,25 @@ a:hover {
   color: #4B4E68;
 }
 
-/* line 317, src/sass/main.scss */
+/* line 335, src/sass/main.scss */
 :focus {
   outline: -webkit-focus-ring-color auto 0px;
 }
 
-/* line 321, src/sass/main.scss */
+/* line 339, src/sass/main.scss */
 #form-btn {
   border-bottom: 1px solid #080B37;
   opacity: 1;
 }
 
-/* line 325, src/sass/main.scss */
+/* line 343, src/sass/main.scss */
 #form-btn:hover {
   cursor: pointer;
   opacity: 0.5;
   border-bottom: 1px solid transparent;
 }
 
-/* line 332, src/sass/main.scss */
+/* line 350, src/sass/main.scss */
 .contact-container {
   width: 100%;
   height: 100%;
@@ -673,7 +696,7 @@ a:hover {
   display: none;
 }
 
-/* line 346, src/sass/main.scss */
+/* line 364, src/sass/main.scss */
 .contact-container .contact-form {
   width: 100%;
   height: 100%;
@@ -690,7 +713,7 @@ a:hover {
   padding: 100px 0px;
 }
 
-/* line 355, src/sass/main.scss */
+/* line 373, src/sass/main.scss */
 .contact-container .contact-form #close-btn {
   left: 0;
   right: 0;
@@ -700,12 +723,12 @@ a:hover {
   text-decoration: underline;
 }
 
-/* line 363, src/sass/main.scss */
+/* line 381, src/sass/main.scss */
 .contact-container .contact-form #close-btn:hover {
   text-decoration: none;
 }
 
-/* line 368, src/sass/main.scss */
+/* line 386, src/sass/main.scss */
 .contact-container .contact-form form {
   margin: 0px 25px;
   min-width: 359px;
@@ -720,7 +743,7 @@ a:hover {
           flex-direction: column;
 }
 
-/* line 377, src/sass/main.scss */
+/* line 395, src/sass/main.scss */
 .contact-container .contact-form .kw-field-error-message {
   font-size: 12px;
   color: #ff3852;
@@ -728,7 +751,7 @@ a:hover {
   padding: 5px;
 }
 
-/* line 384, src/sass/main.scss */
+/* line 402, src/sass/main.scss */
 .contact-container .contact-form .kw-alert {
   width: 100%;
   padding: 15px 18px;
@@ -739,14 +762,14 @@ a:hover {
   font-weight: normal;
 }
 
-/* line 394, src/sass/main.scss */
+/* line 412, src/sass/main.scss */
 .contact-container .contact-form .kw-alert-error {
   color: #ff3852;
   background-color: #ffebee;
   display: none !important;
 }
 
-/* line 400, src/sass/main.scss */
+/* line 418, src/sass/main.scss */
 .contact-container .contact-form .form-row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -758,18 +781,18 @@ a:hover {
   margin-bottom: 20px;
 }
 
-/* line 405, src/sass/main.scss */
+/* line 423, src/sass/main.scss */
 .contact-container .contact-form .form-row .kw-border-error {
   background: #ffebee;
   border: 1px solid #ff3852;
 }
 
-/* line 408, src/sass/main.scss */
+/* line 426, src/sass/main.scss */
 .contact-container .contact-form .form-row .kw-border-error:hover {
   background: white;
 }
 
-/* line 413, src/sass/main.scss */
+/* line 431, src/sass/main.scss */
 .contact-container .contact-form .form-row label {
   font-size: 16px;
   font-weight: normal;
@@ -777,12 +800,12 @@ a:hover {
   margin-bottom: 5px;
 }
 
-/* line 420, src/sass/main.scss */
+/* line 438, src/sass/main.scss */
 .contact-container .contact-form .form-row textarea {
   height: 300px;
 }
 
-/* line 424, src/sass/main.scss */
+/* line 442, src/sass/main.scss */
 .contact-container .contact-form .form-row input, .contact-container .contact-form .form-row textarea {
   font-size: 24px;
   font-weight: normal;
@@ -796,20 +819,20 @@ a:hover {
   transition: all 250ms;
 }
 
-/* line 435, src/sass/main.scss */
+/* line 453, src/sass/main.scss */
 .contact-container .contact-form .form-row input:focus, .contact-container .contact-form .form-row textarea:focus {
   background: #fafafa;
   border: 1px solid #080B37;
 }
 
-/* line 440, src/sass/main.scss */
+/* line 458, src/sass/main.scss */
 .contact-container .contact-form .form-row input:hover, .contact-container .contact-form .form-row textarea:hover {
   -webkit-transition: all 250ms;
   transition: all 250ms;
   background: #f2f2f2;
 }
 
-/* line 446, src/sass/main.scss */
+/* line 464, src/sass/main.scss */
 .contact-container .contact-form .form-row button {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -840,7 +863,7 @@ a:hover {
      border-image: initial;
 }
 
-/* line 469, src/sass/main.scss */
+/* line 487, src/sass/main.scss */
 .contact-container .contact-form .form-row button:hover {
   -webkit-transition: all 250ms;
   transition: all 250ms;
