@@ -1,3 +1,28 @@
+$smType: 12px;
+$mdType: 12px;
+$lgType: 16px;
+$xlType: 24px;
+$xxlType: 24px;
+$xsSpace: 4px;
+$halfSpace: 8px;
+$wholeSpace: 16px;
+$doubleSpace: 24px;
+
+$black: #080B37;
+$inactiveBlack: #5C665C;
+$yellow: #FBF263;
+$white: #CDCDDA;
+$grey: #ECECED;
+$red: #C55948;
+
+@mixin Reckless {
+  font-family: 'Reckless', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 /**
  * @section Base Styles
  */
@@ -62,7 +87,7 @@ h3 {
 }
 
 .small {
-  font-size: 24px;
+  font-size: $xlType;
   font-weight: normal;
   line-height: 135%;
   max-width: 800px;
@@ -140,7 +165,7 @@ h3 {
 		font-weight: normal;
 	}
   .small {
-    font-size: 24px;
+    font-size: $xlType;
     font-weight: normal;
     line-height: 135%;
     max-width: 800px;
@@ -161,7 +186,7 @@ h3 {
 		font-weight: normal;
 	}
   .small {
-    font-size: 24px;
+    font-size: $xlType;
     font-weight: normal;
     line-height: 135%;
     max-width: 800px;

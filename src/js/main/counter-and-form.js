@@ -1,4 +1,4 @@
-var startDateTime = new Date(2020,8,14,24,1,0,0); // YYYY (M-1) D H m s (start time and date from DB)
+var startDateTime = new Date(2020,11,30,24,1,0,0); // YYYY (M-1) D H m s (start time and date from DB)
 var startStamp = startDateTime.getTime();
 
 var newDate = new Date();
@@ -19,7 +19,7 @@ function updateClock() {
     diff = diff-(m*60);
     var s = diff;
 
-    document.getElementById("time-alive").innerHTML = "Companion is based in London and has been operating globally for "+d+"d "+h+"h "+m+"m "+s+"s.";
+    document.getElementById("counter").innerHTML = ""+d+"d "+h+"h "+m+"m "+s+"s.";
 }
 
 setInterval(updateClock, 1000);

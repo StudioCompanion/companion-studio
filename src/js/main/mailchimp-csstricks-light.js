@@ -1,57 +1,3 @@
-/*! project-name v0.0.1 | (c) 2021 YOUR NAME | MIT License | http://link-to-your-git-repo.com */
-var startDateTime = new Date(2020,11,30,24,1,0,0); // YYYY (M-1) D H m s (start time and date from DB)
-var startStamp = startDateTime.getTime();
-
-var newDate = new Date();
-var newStamp = newDate.getTime();
-
-var timer;
-
-function updateClock() {
-    newDate = new Date();
-    newStamp = newDate.getTime();
-    var diff = Math.round((newStamp-startStamp)/1000);
-
-    var d = Math.floor(diff/(24*60*60));
-    diff = diff-(d*24*60*60);
-    var h = Math.floor(diff/(60*60));
-    diff = diff-(h*60*60);
-    var m = Math.floor(diff/(60));
-    diff = diff-(m*60);
-    var s = diff;
-
-    document.getElementById("counter").innerHTML = ""+d+"d "+h+"h "+m+"m "+s+"s.";
-}
-
-setInterval(updateClock, 1000);
-
-// Get the modal
-var modal = document.getElementById("contact-modal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("form-btn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementById("close-btn");
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-  console.log("Close Modal");
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
 // A Validity State Polyfill
 ;(function (window, document, undefined) {
 
@@ -615,7 +561,7 @@ var submitMailChimpForm = function (form) {
 };
 
 // Listen to all blur events
-document.addEventListener('blur', (function (event) {
+document.addEventListener('blur', function (event) {
 
 	// Only run if the field is in a form to be validated
 	if (!event.target.form.classList.contains('validate')) return;
@@ -632,11 +578,11 @@ document.addEventListener('blur', (function (event) {
 	// Otherwise, remove any existing error message
 	removeError(event.target);
 
-}), true);
+}, true);
 
 
 // Check all fields on submit
-document.addEventListener('submit', (function (event) {
+document.addEventListener('submit', function (event) {
 
 	// Only run on forms flagged for validation
 	if (!event.target.classList.contains('validate')) return;
@@ -669,4 +615,4 @@ document.addEventListener('submit', (function (event) {
 	// You could also bolt in an Ajax form submit process here
 	submitMailChimpForm(event.target);
 
-}), false);
+}, false);
