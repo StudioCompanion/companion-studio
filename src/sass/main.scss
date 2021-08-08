@@ -1,4 +1,6 @@
 @import "components/base";
+@import "components/mailchimp";
+
 
 body, html {
   width: 100%;
@@ -320,7 +322,7 @@ a {
       margin-right: 30px;
       padding: 0;
       font-family: 'Reckless Regular', serif;
-      font-size: 15px;
+      font-size: $lgType;
       font-style: normal;
       font-weight: normal;
       font-display: swap;
@@ -393,7 +395,7 @@ a {
     }
 
     .kw-field-error-message {
-      font-size: 12px;
+      font-size: $mdType;
       color: #ff3852;
       display: block;
       padding: 5px;
@@ -404,7 +406,7 @@ a {
       padding: 15px 18px;
       border-radius: 8px;
       margin-bottom: 20px;
-      font-size: 14px;
+      font-size: $mdType;
       display: block;
       font-weight: normal;
     }
@@ -429,7 +431,7 @@ a {
       }
 
       label {
-        font-size: 16px;
+        font-size: $mdType;
         font-weight: normal;
         line-height: 135%;
         margin-bottom: 5px;
@@ -440,7 +442,7 @@ a {
       }
 
       input, textarea {
-        font-size: 24px;
+        font-size: $xlType;
         font-weight: normal;
         line-height: 135%;
         border-radius: 8px;
@@ -491,6 +493,175 @@ a {
           color: #080B37;
           cursor: pointer;
         }
+      }
+    }
+  }
+}
+
+
+.footer {
+  // background: red;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+
+  .footer__pre {
+    padding: 0px 20px;
+    // background-color: orange;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .team {
+      // max-width: 500px;
+      // background: pink;
+    }
+
+    .sign-up  {
+      margin: 16px 0px 16px 0px;
+      // background: orange;
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        // font-size: $smType;
+        margin-bottom: 12px;
+        max-width: 400px;
+      }
+      .formContainer {
+        width: 100%;
+      }
+    }
+
+    .with-thanks  {
+      font-size: $smType;
+      max-width: 350px;
+      display: block;
+      margin-bottom: 16px;
+
+
+      .logo-container {
+        margin: 16px 0px;
+
+        .logo-container__logo {
+          height: 32px;
+          width: auto;
+          display: inline-block;
+          margin: 0px 10px;
+
+          &:hover {
+            opacity: 0.5;
+          }
+
+          img {
+            max-height: 100%;
+            display: block;
+          }
+        }
+      }
+    }
+
+
+    p {
+      max-width: 550px;
+    }
+  }
+
+  .footer__post {
+    width: 100%;
+    background: #080B37;
+    color: #CDCDDA;
+    font-size: $smType;
+    padding: 16px 16px;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    justify-content: space-between;
+
+    a {
+      text-decoration: underline;
+      opacity: 1;
+
+      &:hover {
+        opacity: 1;
+        text-decoration: none;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    a {
+      color: #CDCDDA;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      svg {
+        fill: #CDCDDA;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    .legal {
+      @media only screen and (max-width: 600px) {
+        padding: 20px 0px;
+      }
+    }
+
+    .social {
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social ul {
+      list-style: none;
+      width: auto;
+      margin-block-start: 0px;
+      margin-block-end: 0px;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      padding-inline-start: 0px;
+
+      @media only screen and (max-width: 600px) {
+        padding: 0px 0px 20px 0px;
+      }
+
+      li {
+        display: inline-block;
+        margin: 0px 10px;
+
+      }
+
+      li:first {
+        margin: 0px 0px;
       }
     }
   }
