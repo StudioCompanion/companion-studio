@@ -89,6 +89,7 @@ input[type="email"] {
 
 	@media (max-width: 600px) {
 		border-radius: 8px 8px 0px 0px;
+		margin: 0;
 	}
 
 	&:active,
@@ -107,14 +108,15 @@ input[type="email"] {
 	display: inline-block;
 	font-size: $mdType;
 	border-radius: 0 8px 8px 0;
-	@media (max-width: 600px) {
-		font-size: $mdType;
-		border-radius: 0px 0px 8px 8px;
-	}
 	font-weight: normal;
 	width: auto;
 	flex: 1 0 0;
 	margin-left: -2px;
+	@media (max-width: 600px) {
+		font-size: $mdType;
+		border-radius: 0px 0px 8px 8px;
+		margin: 0;
+	}
 }
 
 .button:active,
