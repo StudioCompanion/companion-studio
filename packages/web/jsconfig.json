@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["./src/client/components/*"],
+      "helpers/*": ["./src/client/helpers/*"],
+      "hooks/*": ["./src/client/hooks/*"],
+      "references/*": ["./src/client/references/*"],
+      "server/*": ["./src/server/*"],
+      "services/*": ["./src/server/services/*"],
+      "styles/*": ["./src/client/styles/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

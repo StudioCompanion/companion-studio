@@ -1,5 +1,4 @@
 module.exports = {
-  '*.{js,ts,tsx,css,md}': 'yarn prettier:write',
-  '*.{js,ts,tsx}': 'yarn run eslint',
-  '*.{ts,tsx}': () => 'yarn run test:ts'
+  '*.{js,ts,tsx,css,mdx}': 'yarn prettier:write',
+  '*.{js,ts,tsx}': 'yarn run lint',
 }

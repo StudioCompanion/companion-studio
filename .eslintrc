@@ -1,9 +1,37 @@
 {
-  "parserOptions": {
-    "project": ["./tsconfig.json"]
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
   },
-  "extends": ["@studiocompanion/eslint-config"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "plugins": ["react", "react-hooks", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "require-await": "warn",
+    "no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+    "prefer-const": "error",
+    "no-duplicate-imports": "error",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "react/jsx-key": "error",
+    "react/display-name": "off"
   }
 }
