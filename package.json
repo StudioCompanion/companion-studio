@@ -30,12 +30,13 @@
   },
   "scripts": {
     "lint": "eslint --cache --cache-location=node_modules/.cache/.eslintcache --fix",
+    "prepare": "husky install",
     "prettier:write": "prettier --write .",
     "prettier:check": "prettier --check .",
+    "storybook": "start-storybook -p 6006",
     "web:dev": "yarn workspace @studiocompanion/web dev",
     "web:build": "yarn workspace @studiocompanion/web build",
-    "web:start": "yarn workspace @studiocompanion/web start",
-    "prepare": "husky install"
+    "web:start": "yarn workspace @studiocompanion/web start"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
