@@ -1,8 +1,10 @@
 import Carousel from './Carousel'
-import Image from 'next/image'
+import Slide from './Slide'
 
-import testImage from '../../public/testdesktop_1.png'
-import testBg from '../../public/testbg_1.png'
+import testImage1 from '../../../public/testdesktop_1.png'
+import testImage2 from '../../../public/testdesktop_2.png'
+import testImage3 from '../../../public/testdesktop_3.png'
+import testBg from '../../../public/testbg_1.png'
 
 export default {
   title: 'Components/Carousel',
@@ -18,7 +20,9 @@ export default {
 
 const Template = (args) => (
   <Carousel {...args}>
-    <Image src={testImage} alt="" layout="fill" />
+    <Slide image={testImage1} alt="" />
+    <Slide image={testImage2} alt="" />
+    <Slide image={testImage3} alt="" />
   </Carousel>
 )
 
