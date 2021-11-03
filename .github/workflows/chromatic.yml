@@ -1,16 +1,18 @@
 # .github/workflows/chromatic.yml
 
 # Workflow name
-name: 'Chromatic'
+name: "Chromatic"
 
 # Event for the workflow
-'on':
+"on":
   push:
     branches:
       - main
+      - v2
   pull_request:
     branches:
       - main
+      - v2
 
 # List of jobs
 jobs:
