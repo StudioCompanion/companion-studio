@@ -3,6 +3,7 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
+import { useSpring, animated } from 'react-spring'
 
 import Slide from './Slide'
 
@@ -18,6 +19,10 @@ const Carousel = ({ bgColor, bgImage, items }) => {
   const [transition, setTransition] = useState(0)
   const [activeIndex, setActiveIndex] = useState(0)
   const [direction, setDirection] = useState(null)
+
+  const slide = useSpring({
+    transform: `translate3d(-${activeIndex * width}px, 0, 0)`,
+  })
 
   const nextSlide = () => {
     if (activeIndex === itemCount - 1) {
@@ -74,7 +79,7 @@ const Carousel = ({ bgColor, bgImage, items }) => {
             <CarouselContent
               translate={translate}
               transition={transition}
-              style={{ '--width': `${width * itemCount}px` }}
+              style={{ width: `${width * itemCount}px`, ...slide }}
             >
               {items.map((item, index) => (
                 <Slide key={index} url={item.url} alt={item.alt} />
@@ -100,6 +105,7 @@ Carousel.propTypes = {
   bgImage: PropTypes.string,
   children: PropTypes.node,
   items: PropTypes.array,
+  translate: PropTypes.number,
 }
 
 export default Carousel
@@ -125,11 +131,8 @@ const Inner = styled.div`
   overflow: hidden;
 `
 
-const CarouselContent = styled.div`
-  transform: translateX(-${(p) => p.translate}px);
-  transition: transform ease-out ${(p) => p.transition}s;
+const CarouselContent = styled(animated.div)`
   height: 100%;
-  width: var(--width);
   display: flex;
 `
 const Wrapper = styled.div``
