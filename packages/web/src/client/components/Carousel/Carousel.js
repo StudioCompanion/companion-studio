@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -11,6 +11,14 @@ import { ASPECT_RATIOS, RADII, DOTS, PADDING } from '../../styles/constants'
 
 const Carousel = ({ bgColor, bgImage, items }) => {
   const itemCount = items.length
+
+  const [video, setVideo] = useState(false)
+
+  useEffect(() => {
+    const regex = new RegExp(/^.*.(png|MP4|webm|WEBM)$/)
+    const videoItem = items.find((item) => regex.test(item.url) === true)
+    videoItem && setVideo(true)
+  }, [items])
 
   const [containerEl, bounds] = useMeasure()
   const { width } = bounds
