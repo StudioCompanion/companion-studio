@@ -6,7 +6,7 @@ import useMeasure from 'react-use-measure'
 
 import Slide from './Slide'
 
-import { ASPECT_RATIOS, RADII } from '../../styles/constants'
+import { ASPECT_RATIOS, RADII, DOTS, PADDING } from '../../styles/constants'
 
 const Carousel = ({ bgColor, bgImage, items }) => {
   const itemCount = items.length
@@ -59,29 +59,39 @@ const Carousel = ({ bgColor, bgImage, items }) => {
   }
 
   return (
-    <Container
-      $bgColor={bgColor}
-      $bgImage={bgImage}
-      ref={containerEl}
-      onMouseMove={handleMouseMove}
-      $direction={direction}
-      onClick={handleClick}
-    >
-      <Inner>
-        {itemCount === 1 && <Slide url={item[0].url} alt={item[0].alt} />}
-        {itemCount > 1 && (
-          <CarouselContent
-            translate={translate}
-            transition={transition}
-            style={{ '--width': `${width * itemCount}px` }}
-          >
-            {items.map((item, index) => (
-              <Slide key={index} url={item.url} alt={item.alt} />
-            ))}
-          </CarouselContent>
-        )}
-      </Inner>
-    </Container>
+    <Wrapper>
+      <Container
+        $bgColor={bgColor}
+        $bgImage={bgImage}
+        ref={containerEl}
+        onMouseMove={handleMouseMove}
+        $direction={direction}
+        onClick={handleClick}
+      >
+        <Inner>
+          {itemCount === 1 && <Slide url={item[0].url} alt={item[0].alt} />}
+          {itemCount > 1 && (
+            <CarouselContent
+              translate={translate}
+              transition={transition}
+              style={{ '--width': `${width * itemCount}px` }}
+            >
+              {items.map((item, index) => (
+                <Slide key={index} url={item.url} alt={item.alt} />
+              ))}
+            </CarouselContent>
+          )}
+        </Inner>
+      </Container>
+      <Caption>
+        <CaptionText>{items[activeIndex].caption}</CaptionText>
+        <Dots>
+          {items.map((item, index) => (
+            <Dot key={index} active={activeIndex === index} />
+          ))}
+        </Dots>
+      </Caption>
+    </Wrapper>
   )
 }
 
@@ -122,3 +132,25 @@ const CarouselContent = styled.div`
   width: var(--width);
   display: flex;
 `
+const Wrapper = styled.div``
+
+const Dots = styled.div`
+  display: flex;
+`
+
+const Dot = styled.div`
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: ${DOTS.color};
+  opacity: ${(p) => (p.active ? 1 : DOTS.opacity)};
+  margin-right: ${DOTS.spacing}px;
+`
+
+const Caption = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: ${PADDING[0]}px;
+`
+
+const CaptionText = styled.span``

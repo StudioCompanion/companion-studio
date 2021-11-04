@@ -20,14 +20,17 @@ const items = [
   {
     url: testImage1,
     alt: 'my lovely image',
+    caption: 'lovely first image',
   },
   {
     url: testImage2,
     alt: 'my lovely image',
+    caption: 'lovely second image',
   },
   {
     url: testImage3,
     alt: 'my lovely image',
+    caption: 'lovely third image',
   },
 ]
 const Template = (args) => <Carousel items={items} {...args} />
