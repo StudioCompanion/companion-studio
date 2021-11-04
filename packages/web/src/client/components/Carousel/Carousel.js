@@ -15,8 +15,6 @@ const Carousel = ({ bgColor, bgImage, items }) => {
   const [containerEl, bounds] = useMeasure()
   const { width } = bounds
 
-  const [translate, setTranslate] = useState(0)
-  const [transition, setTransition] = useState(0)
   const [activeIndex, setActiveIndex] = useState(0)
   const [direction, setDirection] = useState(null)
 
@@ -27,20 +25,16 @@ const Carousel = ({ bgColor, bgImage, items }) => {
   const nextSlide = () => {
     if (activeIndex === itemCount - 1) {
       setActiveIndex(0)
-      setTranslate(0)
     } else {
       setActiveIndex(activeIndex + 1)
-      setTranslate((activeIndex + 1) * width)
     }
   }
 
   const prevSlide = () => {
     if (activeIndex === 0) {
       setActiveIndex(itemCount - 1)
-      setTranslate((itemCount - 1) * width)
     } else {
       setActiveIndex(activeIndex - 1)
-      setTranslate((activeIndex - 1) * width)
     }
   }
 
@@ -77,8 +71,6 @@ const Carousel = ({ bgColor, bgImage, items }) => {
           {itemCount === 1 && <Slide url={item[0].url} alt={item[0].alt} />}
           {itemCount > 1 && (
             <CarouselContent
-              translate={translate}
-              transition={transition}
               style={{ width: `${width * itemCount}px`, ...slide }}
             >
               {items.map((item, index) => (
@@ -105,7 +97,6 @@ Carousel.propTypes = {
   bgImage: PropTypes.string,
   children: PropTypes.node,
   items: PropTypes.array,
-  translate: PropTypes.number,
 }
 
 export default Carousel
