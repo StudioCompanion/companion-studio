@@ -51,7 +51,6 @@ const Overlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  /* background-color: green; */
   z-index: 1;
   cursor: ${(p) => (p.$forward ? 'e-resize' : 'w-resize')};
 `

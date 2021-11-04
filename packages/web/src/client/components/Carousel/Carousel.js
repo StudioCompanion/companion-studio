@@ -1,33 +1,26 @@
-import { Children, useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
+
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import useMeasure from 'react-use-measure'
 
-import CursorOverlay from './CursorOverlay'
+import Slide from './Slide'
 
 import { ASPECT_RATIOS, RADII } from '../../styles/constants'
 
-const Carousel = ({ bgColor, bgImage, children }) => {
-  const childrenCount = Children.toArray(children).length
+const Carousel = ({ bgColor, bgImage, items }) => {
+  const itemCount = items.length
 
-  const containerEl = useRef(null)
-  const [width, setWidth] = useState()
-  const getWidth = () => {
-    const newWidth = containerEl.current.offsetWidth
-    setWidth(newWidth)
-  }
-  useEffect(() => {
-    getWidth()
-  }, [containerEl])
-  useEffect(() => {
-    window.addEventListener('resize', getWidth)
-  }, [])
+  const [containerEl, bounds] = useMeasure()
+  const { width } = bounds
 
   const [translate, setTranslate] = useState(0)
   const [transition, setTransition] = useState(0)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [direction, setDirection] = useState(null)
 
   const nextSlide = () => {
-    if (activeIndex === childrenCount - 1) {
+    if (activeIndex === itemCount - 1) {
       setActiveIndex(0)
       setTranslate(0)
     } else {
@@ -38,30 +31,53 @@ const Carousel = ({ bgColor, bgImage, children }) => {
 
   const prevSlide = () => {
     if (activeIndex === 0) {
-      setActiveIndex(childrenCount - 1)
-      setTranslate((childrenCount - 1) * width)
+      setActiveIndex(itemCount - 1)
+      setTranslate((itemCount - 1) * width)
     } else {
       setActiveIndex(activeIndex - 1)
       setTranslate((activeIndex - 1) * width)
     }
   }
 
+  const handleMouseMove = ({ clientX }) => {
+    const x = clientX - bounds.left
+    if (x >= Math.round(width / 2) && direction !== 'right') {
+      setDirection('right')
+    }
+    if (x < Math.round(width / 2) && direction !== 'left') {
+      setDirection('left')
+    }
+  }
+
+  const handleClick = () => {
+    if (direction === 'left') {
+      prevSlide()
+    }
+    if (direction === 'right') {
+      nextSlide()
+    }
+  }
+
   return (
-    <Container $bgColor={bgColor} $bgImage={bgImage} ref={containerEl}>
-      <CursorOverlay
-        width={width}
-        nextSlide={nextSlide}
-        prevSlide={prevSlide}
-      />
+    <Container
+      $bgColor={bgColor}
+      $bgImage={bgImage}
+      ref={containerEl}
+      onMouseMove={handleMouseMove}
+      $direction={direction}
+      onClick={handleClick}
+    >
       <Inner>
-        {childrenCount === 1 && <>{children}</>}
-        {childrenCount > 1 && (
+        {itemCount === 1 && <Slide url={item[0].url} alt={item[0].alt} />}
+        {itemCount > 1 && (
           <CarouselContent
             translate={translate}
             transition={transition}
-            containerWidth={width * childrenCount}
+            style={{ '--width': `${width * itemCount}px` }}
           >
-            {children}
+            {items.map((item, index) => (
+              <Slide key={index} url={item.url} alt={item.alt} />
+            ))}
           </CarouselContent>
         )}
       </Inner>
@@ -73,6 +89,7 @@ Carousel.propTypes = {
   bgColor: PropTypes.string,
   bgImage: PropTypes.string,
   children: PropTypes.node,
+  items: PropTypes.array,
 }
 
 export default Carousel
@@ -86,6 +103,7 @@ const Container = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: ${RADII.wrapper}px;
+  cursor: ${(p) => (p.$direction === 'right' ? 'e-resize' : 'w-resize')};
 `
 
 const Inner = styled.div`
@@ -101,6 +119,6 @@ const CarouselContent = styled.div`
   transform: translateX(-${(p) => p.translate}px);
   transition: transform ease-out ${(p) => p.transition}s;
   height: 100%;
-  width: ${(p) => p.containerWidth}px;
+  width: var(--width);
   display: flex;
 `

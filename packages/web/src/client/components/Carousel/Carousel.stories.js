@@ -1,5 +1,4 @@
 import Carousel from './Carousel'
-import Slide from './Slide'
 
 import testImage1 from '../../../public/testdesktop_1.png'
 import testImage2 from '../../../public/testdesktop_2.png'
@@ -17,14 +16,21 @@ export default {
     },
   },
 }
-
-const Template = (args) => (
-  <Carousel {...args}>
-    <Slide image={testImage1} alt="" />
-    <Slide image={testImage2} alt="" />
-    <Slide image={testImage3} alt="" />
-  </Carousel>
-)
+const items = [
+  {
+    url: testImage1,
+    alt: 'my lovely image',
+  },
+  {
+    url: testImage2,
+    alt: 'my lovely image',
+  },
+  {
+    url: testImage3,
+    alt: 'my lovely image',
+  },
+]
+const Template = (args) => <Carousel items={items} {...args} />
 
 export const FullW = Template.bind({})
 

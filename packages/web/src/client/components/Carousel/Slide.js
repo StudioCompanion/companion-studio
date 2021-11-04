@@ -5,16 +5,16 @@ import Image from 'next/image'
 
 import React from 'react'
 
-const Slide = ({ image, alt }) => {
+const Slide = ({ url, alt }) => {
   return (
     <ImageWrapper>
-      <Image src={image} alt={alt} layout="fill" />
+      <Image src={url} alt={alt} layout="fill" />
     </ImageWrapper>
   )
 }
 
 Slide.propTypes = {
-  image: PropTypes.string,
+  url: PropTypes.string,
   alt: PropTypes.string,
 }
 
