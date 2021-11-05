@@ -14,6 +14,7 @@ const Video = ({ url }) => {
   return (
     <VideoContainer>
       <VideoItem
+        autoPlay
         loop
         playsinline
         ref={videoRef}
