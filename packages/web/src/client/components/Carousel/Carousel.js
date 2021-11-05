@@ -10,6 +10,9 @@ import Slide from './Slide'
 import { ASPECT_RATIOS, RADII, DOTS, PADDING } from '../../styles/constants'
 import Video from './Video'
 
+const RIGHT = 'right'
+const LEFT = 'left'
+
 const Carousel = ({ bgColor, bgImage, items }) => {
   const itemCount = items.length
 
@@ -48,25 +51,25 @@ const Carousel = ({ bgColor, bgImage, items }) => {
       itemCount > 1 &&
       !video &&
       x >= Math.round(width / 2) &&
-      direction !== 'right'
+      direction !== RIGHT
     ) {
-      setDirection('right')
+      setDirection(RIGHT)
     }
     if (
       itemCount > 1 &&
       !video &&
       x < Math.round(width / 2) &&
-      direction !== 'left'
+      direction !== LEFT
     ) {
-      setDirection('left')
+      setDirection(LEFT)
     }
   }
 
   const handleClick = () => {
-    if (direction === 'left') {
+    if (direction === LEFT) {
       prevSlide()
     }
-    if (direction === 'right') {
+    if (direction === RIGHT) {
       nextSlide()
     }
   }
@@ -130,9 +133,9 @@ const Container = styled.div`
   background-position: center;
   border-radius: ${RADII.wrapper}px;
   cursor: ${(p) => {
-    if (p.$direction === 'right') {
+    if (p.$direction === RIGHT) {
       return 'e-resize'
-    } else if (p.$direction === 'left') {
+    } else if (p.$direction === LEFT) {
       return 'w-resize'
     } else return 'pointer'
   }};
@@ -161,9 +164,9 @@ const Dot = styled.div`
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: ${DOTS.color};
-  opacity: ${(p) => (p.active ? 1 : DOTS.opacity)};
-  margin-right: ${DOTS.spacing}px;
+  background-color: #080b37;
+  opacity: ${(p) => (p.active ? 1 : 0.2)};
+  margin-right: 4px;
 `
 
 const Caption = styled.div`
