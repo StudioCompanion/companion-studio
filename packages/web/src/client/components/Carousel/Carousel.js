@@ -104,7 +104,9 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL }) => {
         </Inner>
       </Container>
       <Caption>
-        <CaptionText>{items[activeIndex].caption}</CaptionText>
+        {items[activeIndex].caption && (
+          <CaptionText>{items[activeIndex].caption}</CaptionText>
+        )}
         {!video && itemCount > 1 && (
           <Dots>
             {items.map((item, index) => (
