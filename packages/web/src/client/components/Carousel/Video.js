@@ -31,7 +31,9 @@ Video.propTypes = {
 
 export default Video
 
-const VideoContainer = styled.div``
+const VideoContainer = styled.div`
+  height: 100%;
+`
 
 const VideoItem = styled.video`
   width: 100%;

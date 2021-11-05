@@ -5,9 +5,10 @@ import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
 import { useSpring, animated } from 'react-spring'
 
-import Slide from './Slide'
-
 import { ASPECT_RATIOS, RADII, PADDING, LAYOUTS } from '../../styles/constants'
+import { MEDIA_QUERIES } from '../../styles/mediaQueries'
+
+import Slide from './Slide'
 import Video from './Video'
 
 const FORWARD = 'forward'
@@ -27,7 +28,7 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL }) => {
   const [direction, setDirection] = useState(null)
 
   const slide = useSpring({
-    transform: `translate3d(-${activeIndex * width}px, 0, 0)`,
+    x: -activeIndex * width,
   })
 
   const nextSlide = () => {
@@ -126,16 +127,19 @@ Carousel.propTypes = {
 export default Carousel
 
 const Wrapper = styled.div`
-  width: ${({ layout }) => {
-    switch (layout) {
-      case FULL:
-        return '100%'
-      case HALF:
-        return '50%'
-      case TWO_THIRDS:
-        return `${(2 / 3) * 100}%`
-    }
-  }};
+  width: 100%;
+  ${MEDIA_QUERIES.tabletUp} {
+    width: ${({ layout }) => {
+      switch (layout) {
+        case FULL:
+          return '100%'
+        case HALF:
+          return '50%'
+        case TWO_THIRDS:
+          return `${(2 / 3) * 100}%`
+      }
+    }};
+  }
 `
 
 const Container = styled.div`
@@ -144,18 +148,18 @@ const Container = styled.div`
   padding-top: ${({ layout }) => {
     switch (layout) {
       case FULL:
-        return ASPECT_RATIOS.full
+        return ASPECT_RATIOS.full_mobile
       case HALF:
-        return ASPECT_RATIOS.half
+        return ASPECT_RATIOS.half_mobile
       case TWO_THIRDS:
-        return ASPECT_RATIOS.two_thirds
+        return ASPECT_RATIOS.two_thirds_mobile
     }
   }};
   background-color: ${(p) => (p.$bgColor ? p.$bgColor : 'transparent')};
   background-image: ${(p) => (p.$bgImage ? `url(${p.$bgImage})` : 'none')};
   background-size: cover;
   background-position: center;
-  border-radius: ${RADII.wrapper}px;
+  border-radius: ${RADII.wrapper_mobile}px;
   cursor: ${(p) => {
     if (p.$direction === FORWARD) {
       return 'e-resize'
@@ -164,6 +168,19 @@ const Container = styled.div`
     } else return 'pointer'
   }};
   overflow: hidden;
+  ${MEDIA_QUERIES.tabletUp} {
+    border-radius: ${RADII.wrapper}px;
+    padding-top: ${({ layout }) => {
+      switch (layout) {
+        case FULL:
+          return ASPECT_RATIOS.full
+        case HALF:
+          return ASPECT_RATIOS.half
+        case TWO_THIRDS:
+          return ASPECT_RATIOS.two_thirds
+      }
+    }};
+  }
 `
 
 const Inner = styled.div`
