@@ -1,5 +1,7 @@
 export const ASPECT_RATIOS = {
-  carousel: '56.25%',
+  full: '56.25%',
+  half: '114%',
+  two_thirds: '85%',
 }
 
 export const RADII = {
@@ -9,3 +11,5 @@ export const RADII = {
 }
 
 export const PADDING = [12]
+
+export const LAYOUTS = ['full', 'half', '2/3']

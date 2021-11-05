@@ -7,13 +7,14 @@ import { useSpring, animated } from 'react-spring'
 
 import Slide from './Slide'
 
-import { ASPECT_RATIOS, RADII, DOTS, PADDING } from '../../styles/constants'
+import { ASPECT_RATIOS, RADII, PADDING, LAYOUTS } from '../../styles/constants'
 import Video from './Video'
 
-const RIGHT = 'right'
-const LEFT = 'left'
+const FORWARD = 'forward'
+const BACKWARD = 'backward'
+const [FULL, HALF, TWO_THIRDS] = LAYOUTS
 
-const Carousel = ({ bgColor, bgImage, items }) => {
+const Carousel = ({ bgColor, bgImage, items, layout = FULL }) => {
   const itemCount = items.length
 
   const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
@@ -51,31 +52,31 @@ const Carousel = ({ bgColor, bgImage, items }) => {
       itemCount > 1 &&
       !video &&
       x >= Math.round(width / 2) &&
-      direction !== RIGHT
+      direction !== FORWARD
     ) {
-      setDirection(RIGHT)
+      setDirection(FORWARD)
     }
     if (
       itemCount > 1 &&
       !video &&
       x < Math.round(width / 2) &&
-      direction !== LEFT
+      direction !== BACKWARD
     ) {
-      setDirection(LEFT)
+      setDirection(BACKWARD)
     }
   }
 
   const handleClick = () => {
-    if (direction === LEFT) {
+    if (direction === BACKWARD) {
       prevSlide()
     }
-    if (direction === RIGHT) {
+    if (direction === FORWARD) {
       nextSlide()
     }
   }
 
   return (
-    <Wrapper>
+    <Wrapper layout={layout}>
       <Container
         $bgColor={bgColor}
         $bgImage={bgImage}
@@ -83,11 +84,12 @@ const Carousel = ({ bgColor, bgImage, items }) => {
         onMouseMove={handleMouseMove}
         $direction={direction}
         onClick={handleClick}
+        layout={layout}
       >
         <Inner>
           {video && <Video url={video.url} />}
           {!video && itemCount === 1 && (
-            <Slide url={item[0].url} alt={item[0].alt} />
+            <Slide url={items[0].url} alt={items[0].alt} />
           )}
           {!video && itemCount > 1 && (
             <CarouselContent
@@ -102,7 +104,7 @@ const Carousel = ({ bgColor, bgImage, items }) => {
       </Container>
       <Caption>
         <CaptionText>{items[activeIndex].caption}</CaptionText>
-        {!video && (
+        {!video && itemCount > 1 && (
           <Dots>
             {items.map((item, index) => (
               <Dot key={index} active={activeIndex === index} />
@@ -117,25 +119,47 @@ const Carousel = ({ bgColor, bgImage, items }) => {
 Carousel.propTypes = {
   bgColor: PropTypes.string,
   bgImage: PropTypes.string,
-  children: PropTypes.node,
   items: PropTypes.array,
+  layout: PropTypes.string,
 }
 
 export default Carousel
 
+const Wrapper = styled.div`
+  width: ${({ layout }) => {
+    switch (layout) {
+      case FULL:
+        return '100%'
+      case HALF:
+        return '50%'
+      case TWO_THIRDS:
+        return `${(2 / 3) * 100}%`
+    }
+  }};
+`
+
 const Container = styled.div`
   width: 100%;
   position: relative;
-  padding-top: ${ASPECT_RATIOS.carousel};
+  padding-top: ${({ layout }) => {
+    switch (layout) {
+      case FULL:
+        return ASPECT_RATIOS.full
+      case HALF:
+        return ASPECT_RATIOS.half
+      case TWO_THIRDS:
+        return ASPECT_RATIOS.two_thirds
+    }
+  }};
   background-color: ${(p) => (p.$bgColor ? p.$bgColor : 'transparent')};
   background-image: ${(p) => (p.$bgImage ? `url(${p.$bgImage})` : 'none')};
   background-size: cover;
   background-position: center;
   border-radius: ${RADII.wrapper}px;
   cursor: ${(p) => {
-    if (p.$direction === RIGHT) {
+    if (p.$direction === FORWARD) {
       return 'e-resize'
-    } else if (p.$direction === LEFT) {
+    } else if (p.$direction === BACKWARD) {
       return 'w-resize'
     } else return 'pointer'
   }};
@@ -154,7 +178,6 @@ const CarouselContent = styled(animated.div)`
   height: 100%;
   display: flex;
 `
-const Wrapper = styled.div``
 
 const Dots = styled.div`
   display: flex;
