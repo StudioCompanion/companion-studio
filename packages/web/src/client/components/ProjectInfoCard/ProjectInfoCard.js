@@ -32,7 +32,7 @@ const Container = styled.div`
   width: 100%;
   background-color: ${COLORS.greys[0]};
   border-radius: ${RADII.wrapper_mobile}px;
-  padding: ${PADDING[1]};
+  padding: ${PADDING[1]}px;
   ${MEDIA_QUERIES.tabletUp} {
     border-radius: ${RADII.wrapper}px;
   }
@@ -49,6 +49,6 @@ const Field = styled.p`
   line-height: 2.6rem;
 
   &:not(:last-child) {
-    margin-bottom: ${PADDING[2]};
+    margin-bottom: ${PADDING[2]}px;
   }
 `

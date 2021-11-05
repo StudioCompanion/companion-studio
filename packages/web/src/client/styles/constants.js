@@ -5,7 +5,7 @@ export const RADII = {
   video_mobile: 2,
 }
 
-export const PADDING = ['1.2rem', '1.6rem', '2.4rem']
+export const PADDING = [12, 16, 24]
 
 export const COLORS = {
   greys: ['#F6F6F8'],
