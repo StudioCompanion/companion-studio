@@ -32,6 +32,7 @@
     "no-duplicate-imports": "error",
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "react/jsx-key": "error",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }
