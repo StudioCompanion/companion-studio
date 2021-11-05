@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -8,17 +8,13 @@ import { useSpring, animated } from 'react-spring'
 import Slide from './Slide'
 
 import { ASPECT_RATIOS, RADII, DOTS, PADDING } from '../../styles/constants'
+import Video from './Video'
 
 const Carousel = ({ bgColor, bgImage, items }) => {
   const itemCount = items.length
 
-  const [video, setVideo] = useState(false)
-
-  useEffect(() => {
-    const regex = new RegExp(/^.*.(png|MP4|webm|WEBM)$/)
-    const videoItem = items.find((item) => regex.test(item.url) === true)
-    videoItem && setVideo(true)
-  }, [items])
+  const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
+  const video = items.find((item) => regex.test(item.url) === true)
 
   const [containerEl, bounds] = useMeasure()
   const { width } = bounds
@@ -48,10 +44,20 @@ const Carousel = ({ bgColor, bgImage, items }) => {
 
   const handleMouseMove = ({ clientX }) => {
     const x = clientX - bounds.left
-    if (x >= Math.round(width / 2) && direction !== 'right') {
+    if (
+      itemCount > 1 &&
+      !video &&
+      x >= Math.round(width / 2) &&
+      direction !== 'right'
+    ) {
       setDirection('right')
     }
-    if (x < Math.round(width / 2) && direction !== 'left') {
+    if (
+      itemCount > 1 &&
+      !video &&
+      x < Math.round(width / 2) &&
+      direction !== 'left'
+    ) {
       setDirection('left')
     }
   }
@@ -76,8 +82,11 @@ const Carousel = ({ bgColor, bgImage, items }) => {
         onClick={handleClick}
       >
         <Inner>
-          {itemCount === 1 && <Slide url={item[0].url} alt={item[0].alt} />}
-          {itemCount > 1 && (
+          {video && <Video url={video.url} />}
+          {!video && itemCount === 1 && (
+            <Slide url={item[0].url} alt={item[0].alt} />
+          )}
+          {!video && itemCount > 1 && (
             <CarouselContent
               style={{ width: `${width * itemCount}px`, ...slide }}
             >
@@ -90,11 +99,13 @@ const Carousel = ({ bgColor, bgImage, items }) => {
       </Container>
       <Caption>
         <CaptionText>{items[activeIndex].caption}</CaptionText>
-        <Dots>
-          {items.map((item, index) => (
-            <Dot key={index} active={activeIndex === index} />
-          ))}
-        </Dots>
+        {!video && (
+          <Dots>
+            {items.map((item, index) => (
+              <Dot key={index} active={activeIndex === index} />
+            ))}
+          </Dots>
+        )}
       </Caption>
     </Wrapper>
   )
@@ -118,7 +129,14 @@ const Container = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: ${RADII.wrapper}px;
-  cursor: ${(p) => (p.$direction === 'right' ? 'e-resize' : 'w-resize')};
+  cursor: ${(p) => {
+    if (p.$direction === 'right') {
+      return 'e-resize'
+    } else if (p.$direction === 'left') {
+      return 'w-resize'
+    } else return 'pointer'
+  }};
+  overflow: hidden;
 `
 
 const Inner = styled.div`
@@ -127,7 +145,6 @@ const Inner = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  overflow: hidden;
 `
 
 const CarouselContent = styled(animated.div)`
