@@ -1,8 +1,15 @@
 import { RouterContext } from 'next/dist/shared/lib/router-context'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import * as NextImage from 'next/image'
+import { createGlobalStyle } from 'styled-components'
+
+import { CSS_GLOBAL } from '../packages/web/src/client/styles/global'
 
 const { iphonex, iphone12 } = INITIAL_VIEWPORTS
+
+const GlobalStyle = createGlobalStyle`
+  ${CSS_GLOBAL}
+`
 
 const custom = {
   '13inch': {
@@ -32,6 +39,7 @@ export const decorators = [
   (Story) => (
     <>
       <Story />
+      <GlobalStyle />
     </>
   ),
 ]
