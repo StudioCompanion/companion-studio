@@ -2,19 +2,25 @@ import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 import Image from 'next/image'
+import { useMediaQuery } from 'react-responsive'
 
-import React from 'react'
+import { WIDTHS } from '../../styles/dimensions'
 
 const Slide = ({ url, alt }) => {
+  const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   return (
     <ImageWrapper>
-      <Image src={url} alt={alt} layout="fill" />
+      {tabletUp ? (
+        <Image src={url.desktop} alt={alt} layout="fill" />
+      ) : (
+        <Image src={url.mobile} alt={alt} layout="fill" />
+      )}
     </ImageWrapper>
   )
 }
 
 Slide.propTypes = {
-  url: PropTypes.string,
+  url: PropTypes.object,
   alt: PropTypes.string,
 }
 

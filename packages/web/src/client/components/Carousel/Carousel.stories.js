@@ -1,10 +1,17 @@
 import Carousel from './Carousel'
 
 import testImage1 from '../../../public/testdesktop_1.png'
+import testImage1_m from '../../../public/testdesktop_1_m.png'
 import testImage2 from '../../../public/testdesktop_2.png'
+import testImage2_m from '../../../public/testdesktop_2_m.png'
 import testImage3 from '../../../public/testdesktop_3.png'
+import testImage3_m from '../../../public/testdesktop_3_m.png'
 import testHalf from '../../../public/testhalf.png'
-import testTwoThirds from '../../../public/test2-3.png'
+import testHalf_m from '../../../public/testhalf_m.png'
+import testHalf2 from '../../../public/testhalf2.png'
+import testHalf2_m from '../../../public/testhalf2_m.png'
+import testTwoThirds2 from '../../../public/test2-3_2.png'
+import testTwoThirds2_m from '../../../public/test2-3_2_m.png'
 import testVid from '../../../public/testvid.mp4'
 import testBg from '../../../public/testbg_1.png'
 
@@ -13,30 +20,49 @@ const [FULL, HALF, TWO_THIRDS] = LAYOUTS
 
 const items = [
   {
-    url: testImage1,
-    alt: 'my lovely image',
-    caption: 'lovely first image',
-  },
-  {
-    url: testImage2,
+    url: {
+      desktop: testImage2,
+      mobile: testImage2_m,
+    },
     alt: 'my lovely image',
     caption: 'lovely second image',
   },
   {
-    url: testImage3,
+    url: {
+      desktop: testImage1,
+      mobile: testImage1_m,
+    },
+    alt: 'my lovely image',
+    caption: 'lovely first image',
+  },
+  {
+    url: {
+      desktop: testImage3,
+      mobile: testImage3_m,
+    },
     alt: 'my lovely image',
     caption: 'lovely third image',
   },
 ]
 
-const halfItem = {
-  url: testHalf,
-  alt: 'my lovely image',
-  caption: 'lovely half image',
-}
+const halfItems = [
+  {
+    url: {
+      desktop: testHalf2,
+      mobile: testHalf2_m,
+    },
+    alt: 'my lovely image',
+    caption: 'lovely half image',
+  },
+  {
+    url: { desktop: testHalf, mobile: testHalf_m },
+    alt: 'my lovely image',
+    caption: 'lovely half image',
+  },
+]
 
 const TwoThirdsItem = {
-  url: testTwoThirds,
+  url: { desktop: testTwoThirds2, mobile: testTwoThirds2_m },
   alt: 'my lovely image',
   caption: 'lovely 2/3 image',
 }
@@ -86,7 +112,7 @@ FullW_Video.args = { items: [videoItem, ...items], bgColor: '#E6EEEC' }
 
 export const HalfW = Template.bind({})
 
-HalfW.args = { layout: HALF, items: [halfItem], bgColor: '#E6EEEC' }
+HalfW.args = { layout: HALF, items: halfItems, bgColor: '#E6EEEC' }
 
 export const TwoThirdsW = Template.bind({})
 

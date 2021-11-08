@@ -14,8 +14,24 @@ import Video from './Video'
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
 const [FULL, HALF, TWO_THIRDS] = LAYOUTS
+const evalAspect = (aspect) => {
+  if (typeof aspect === 'string') {
+    const x = aspect.split('/')
+    return `${(x[1] / x[0]) * 100}%`
+  }
+  if (typeof aspect === 'number') {
+    return `${(1 / aspect) * 100}%`
+  }
+}
 
-const Carousel = ({ bgColor, bgImage, items, layout = FULL }) => {
+const Carousel = ({
+  bgColor,
+  bgImage,
+  items,
+  layout = FULL,
+  desktopAspect,
+  mobileAspect,
+}) => {
   const itemCount = items.length
 
   const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
@@ -86,6 +102,8 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL }) => {
         $direction={direction}
         onClick={handleClick}
         layout={layout}
+        $desktopAspect={desktopAspect}
+        $mobileAspect={mobileAspect}
       >
         <Inner>
           {video && <Video url={video.url} />}
@@ -124,6 +142,8 @@ Carousel.propTypes = {
   bgImage: PropTypes.string,
   items: PropTypes.array,
   layout: PropTypes.string,
+  desktopAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  mobileAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default Carousel
@@ -147,7 +167,10 @@ const Wrapper = styled.div`
 const Container = styled.div`
   width: 100%;
   position: relative;
-  padding-top: ${({ layout }) => {
+  padding-top: ${({ layout, $mobileAspect }) => {
+    if ($mobileAspect) {
+      return evalAspect($mobileAspect)
+    }
     switch (layout) {
       case FULL:
         return ASPECT_RATIOS.full_mobile
@@ -172,7 +195,10 @@ const Container = styled.div`
   overflow: hidden;
   ${MEDIA_QUERIES.tabletUp} {
     border-radius: ${RADII.wrapper}px;
-    padding-top: ${({ layout }) => {
+    padding-top: ${({ layout, $desktopAspect }) => {
+      if ($desktopAspect) {
+        return evalAspect($desktopAspect)
+      }
       switch (layout) {
         case FULL:
           return ASPECT_RATIOS.full
