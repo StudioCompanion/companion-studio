@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -7,6 +7,9 @@ import { useSpring, animated } from 'react-spring'
 
 import { ASPECT_RATIOS, RADII, PADDING, LAYOUTS } from '../../styles/constants'
 import { MEDIA_QUERIES } from '../../styles/mediaQueries'
+
+import right_arrow from '../../../public/cursor_right_arrow.svg'
+import left_arrow from '../../../public/cursor_left_arrow.svg'
 
 import Slide from './Slide'
 import Video from './Video'
@@ -39,12 +42,42 @@ const Carousel = ({
 
   const [containerEl, bounds] = useMeasure()
   const { width } = bounds
-
   const [activeIndex, setActiveIndex] = useState(0)
   const [direction, setDirection] = useState(null)
 
+  const transition = () => {
+    let _slides = []
+    if (activeIndex === itemCount - 1) {
+      _slides = [items[itemCount - 2], lastSlide, firstSlide]
+    } else if (activeIndex === 0) {
+      _slides = [lastSlide, firstSlide, secondSlide]
+    } else _slides = items.slice(activeIndex - 1, activeIndex + 2)
+
+    setState({
+      ...state,
+      _slides,
+      translate: width,
+    })
+  }
+
+  const transitionRef = useRef()
+
+  useEffect(() => {
+    transitionRef.current = transition
+  })
+
+  const lastSlide = items[itemCount - 1]
+  const firstSlide = items[0]
+  const secondSlide = items[1]
+  const [state, setState] = useState({
+    activeIndex: 0,
+    _slides: [lastSlide, firstSlide, secondSlide],
+    translate: width,
+  })
+
   const slide = useSpring({
     x: -activeIndex * width,
+    onRest: transitionRef.current,
   })
 
   const nextSlide = () => {
@@ -112,9 +145,12 @@ const Carousel = ({
           )}
           {!video && itemCount > 1 && (
             <CarouselContent
-              style={{ width: `${width * itemCount}px`, ...slide }}
+              style={{
+                width: `${width * state._slides.length}px`,
+                ...slide,
+              }}
             >
-              {items.map((item, index) => (
+              {state._slides.map((item, index) => (
                 <Slide key={index} url={item.url} alt={item.alt} />
               ))}
             </CarouselContent>
@@ -187,9 +223,9 @@ const Container = styled.div`
   border-radius: ${RADII.wrapper_mobile}px;
   cursor: ${(p) => {
     if (p.$direction === FORWARD) {
-      return 'e-resize'
+      return `url(${right_arrow}), auto;`
     } else if (p.$direction === BACKWARD) {
-      return 'w-resize'
+      return `url(${left_arrow}), auto;`
     } else return 'pointer'
   }};
   overflow: hidden;
@@ -243,4 +279,6 @@ const Caption = styled.div`
   margin-top: ${PADDING[0]}px;
 `
 
-const CaptionText = styled.span``
+const CaptionText = styled.span`
+  font-size: 1.2rem;
+`

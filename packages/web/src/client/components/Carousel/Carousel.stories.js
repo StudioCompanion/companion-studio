@@ -21,19 +21,19 @@ const [FULL, HALF, TWO_THIRDS] = LAYOUTS
 const items = [
   {
     url: {
-      desktop: testImage2,
-      mobile: testImage2_m,
-    },
-    alt: 'my lovely image',
-    caption: 'lovely second image',
-  },
-  {
-    url: {
       desktop: testImage1,
       mobile: testImage1_m,
     },
     alt: 'my lovely image',
     caption: 'lovely first image',
+  },
+  {
+    url: {
+      desktop: testImage2,
+      mobile: testImage2_m,
+    },
+    alt: 'my lovely image',
+    caption: 'lovely second image',
   },
   {
     url: {
