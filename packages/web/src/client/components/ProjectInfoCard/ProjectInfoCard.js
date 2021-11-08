@@ -35,6 +35,7 @@ const Container = styled.div`
   padding: ${PADDING[1]}px;
   ${MEDIA_QUERIES.tabletUp} {
     border-radius: ${RADII.wrapper}px;
+    max-width: 540px;
   }
 `
 
