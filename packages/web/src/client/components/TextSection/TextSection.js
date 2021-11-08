@@ -6,7 +6,7 @@ const TextSection = ({ heading, children }) => {
   return (
     <Container>
       <Heading>{heading}</Heading>
-      {children}
+      <Body>{children}</Body>
     </Container>
   )
 }
@@ -24,4 +24,7 @@ const Container = styled.div`
 const Heading = styled.h6`
   font-size: 1.2rem;
   margin-bottom: ${PADDING[0]}px;
+`
+const Body = styled.div`
+  font-size: 2rem;
 `
