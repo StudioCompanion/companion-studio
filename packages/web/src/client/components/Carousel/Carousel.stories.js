@@ -1,5 +1,7 @@
 import Carousel from './Carousel'
 
+import testHero from '../../../public/testhero.png'
+import testHero_m from '../../../public/testhero_m.png'
 import testImage1 from '../../../public/testdesktop_1.png'
 import testImage1_m from '../../../public/testdesktop_1_m.png'
 import testImage2 from '../../../public/testdesktop_2.png'
@@ -18,6 +20,14 @@ import testBg from '../../../public/testbg_1.png'
 import { LAYOUTS } from '../../styles/constants'
 const [FULL, HALF, TWO_THIRDS] = LAYOUTS
 
+const heroItem = {
+  url: {
+    desktop: testHero,
+    mobile: testHero_m,
+  },
+  alt: 'my lovely hero',
+  caption: 'lovely hero image',
+}
 const items = [
   {
     url: {
@@ -97,6 +107,10 @@ export default {
 }
 
 const Template = (args) => <Carousel {...args} />
+
+export const Hero = Template.bind({})
+
+Hero.args = { items: [heroItem] }
 
 export const FullW = Template.bind({})
 

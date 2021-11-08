@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
-import { useSpring, animated } from 'react-spring'
+import { useSpring, useTransition, animated } from 'react-spring'
 
 import { ASPECT_RATIOS, RADII, PADDING, LAYOUTS } from '../../styles/constants'
 import { MEDIA_QUERIES } from '../../styles/mediaQueries'
@@ -56,7 +56,6 @@ const Carousel = ({
     setState({
       ...state,
       _slides,
-      translate: width,
     })
   }
 
@@ -70,9 +69,7 @@ const Carousel = ({
   const firstSlide = items[0]
   const secondSlide = items[1]
   const [state, setState] = useState({
-    activeIndex: 0,
     _slides: [lastSlide, firstSlide, secondSlide],
-    translate: width,
   })
 
   const slide = useSpring({
