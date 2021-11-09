@@ -3,6 +3,11 @@ import styled from 'styled-components'
 
 import { COLORS, RADII, PADDING } from '../../styles/constants'
 import { MEDIA_QUERIES } from '../../styles/mediaQueries'
+import { getFontStyles } from '../../styles/getFontStyles'
+import {
+  FONT_STYLE_RECKLESS_20_400,
+  FONT_STYLE_RECKLESS_12_400,
+} from '../../styles/fonts'
 
 const ProjectInfoCard = ({ deliverables, collaborators, team, duration }) => {
   return (
@@ -31,23 +36,21 @@ export default ProjectInfoCard
 const Container = styled.div`
   width: 100%;
   background-color: ${COLORS.greys[0]};
-  border-radius: ${RADII.wrapper_mobile}px;
+  border-radius: 12px;
   padding: ${PADDING[1]}px;
+  color: ${COLORS.darkblue};
+  overflow-wrap: break-word;
   ${MEDIA_QUERIES.tabletUp} {
-    border-radius: ${RADII.wrapper}px;
     max-width: 540px;
   }
 `
 
 const Heading = styled.h6`
-  font-size: 1.2rem;
-  line-height: 1.44rem;
-  font-weight: normal;
+  ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
 `
 
 const Field = styled.p`
-  font-size: 2rem;
-  line-height: 2.6rem;
+  ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
 
   &:not(:last-child) {
     margin-bottom: ${PADDING[2]}px;
