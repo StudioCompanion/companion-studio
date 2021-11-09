@@ -38,7 +38,6 @@ const Container = styled.div`
   background-color: ${COLORS.greys[0]};
   border-radius: 12px;
   padding: ${PADDING[1]}px;
-  color: ${COLORS.darkblue};
   overflow-wrap: break-word;
   ${MEDIA_QUERIES.tabletUp} {
     max-width: 540px;

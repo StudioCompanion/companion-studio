@@ -1,3 +1,5 @@
+import { COLORS } from './constants'
+
 export const CSS_GLOBAL = `
   *,
   *:before,
@@ -17,6 +19,7 @@ export const CSS_GLOBAL = `
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    color: ${COLORS.darkblue} 
   }
 
   h1,
@@ -44,7 +47,6 @@ export const CSS_GLOBAL = `
   p {
     margin: 0;
   }
-
   @font-face {
     font-family: 'Apfel Groteszk';
     src: url('/fonts/ApfelGrotezk-Regular.woff') format('woff');
