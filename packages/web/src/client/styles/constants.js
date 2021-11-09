@@ -3,3 +3,7 @@ export const WIDTHS = {
 }
 
 export const PADDING = [12, 16, 24]
+
+export const COLORS = {
+  darkblue: '#080B37',
+}

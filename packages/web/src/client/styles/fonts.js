@@ -8,5 +8,5 @@ export const FONT_FAMILIES = [
     value: 'Reckless Neue',
   },
 ]
-
-export const FONT_STYLE_SOFIA_12_400 = 'FONT_STYLE_SOFIA_12_400'
+export const FONT_STYLE_RECKLESS_12_400 = 'FONT_STYLE_RECKLESS_12_400'
+export const FONT_STYLE_RECKLESS_32_400 = 'FONT_STYLE_RECKLESS_32_400'

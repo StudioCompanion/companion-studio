@@ -3,6 +3,11 @@ import styled from 'styled-components'
 
 import { MEDIA_QUERIES } from '../../styles/mediaQueries'
 import { WIDTHS, PADDING } from '../../styles/constants'
+import {
+  FONT_STYLE_RECKLESS_12_400,
+  FONT_STYLE_RECKLESS_32_400,
+} from '../../styles/fonts'
+import { getFontStyles } from '../../styles/getFontStyles'
 
 const ProjectInfoCard = ({ text, byLine }) => {
   return (
@@ -33,9 +38,13 @@ const Wrapper = styled.div`
   }
 `
 const Text = styled.div`
-  font-size: 3.2rem;
+  ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
   margin-bottom: ${PADDING[2]}px;
 `
 const ByLine = styled.div`
-  font-size: 2rem;
+  ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
+  ${MEDIA_QUERIES.tabletUp} {
+    font-size: 2rem;
+    line-height: 2.6rem;
+  }
 `
