@@ -66,11 +66,6 @@ export const getFontStyles = (type) => {
       fontProps += `
             font-size: 1.2rem;
             line-height: 1.44rem;
-
-            ${MEDIA_QUERIES.tabletUp}{
-              font-size: 1.2rem;
-              line-height: 1.44rem;
-            }
           `
       break
   }

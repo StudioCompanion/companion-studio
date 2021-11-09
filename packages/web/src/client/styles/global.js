@@ -47,18 +47,18 @@ export const CSS_GLOBAL = `
 
   @font-face {
     font-family: 'Apfel Groteszk';
-    src: url('/ApfelGrotezk-Regular.woff') format('woff');
+    src: url('/fonts/ApfelGrotezk-Regular.woff') format('woff');
   }
 
   @font-face {
     font-family: 'Reckless Neue';
-    src: url('/RecklessNeue-Book.woff') format('woff');
+    src: url('/fonts/RecklessNeue-Book.woff') format('woff');
     font-weight: 300;
   }
 
   @font-face {
     font-family: 'Reckless Neue';
-    src: url('/RecklessNeue-Regular.woff') format('woff');
+    src: url('/fonts/RecklessNeue-Regular.woff') format('woff');
     font-weight: 400;
   }
 `
