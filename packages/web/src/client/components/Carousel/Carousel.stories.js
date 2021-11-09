@@ -8,6 +8,8 @@ import testImage2 from '../../../public/testdesktop_2.png'
 import testImage2_m from '../../../public/testdesktop_2_m.png'
 import testImage3 from '../../../public/testdesktop_3.png'
 import testImage3_m from '../../../public/testdesktop_3_m.png'
+import testImage4 from '../../../public/testdesktop_4.png'
+import testImage4_m from '../../../public/testdesktop_4_m.png'
 import testHalf from '../../../public/testhalf.png'
 import testHalf_m from '../../../public/testhalf_m.png'
 import testHalf2 from '../../../public/testhalf2.png'
@@ -52,6 +54,14 @@ const items = [
     },
     alt: 'my lovely image',
     caption: 'lovely third image',
+  },
+  {
+    url: {
+      desktop: testImage4,
+      mobile: testImage4_m,
+    },
+    alt: 'my lovely image',
+    caption: 'lovely fourth image',
   },
 ]
 

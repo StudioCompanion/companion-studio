@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
-import { useSpring, useTransition, animated } from 'react-spring'
+import { useSpring, animated } from 'react-spring'
 
 import { ASPECT_RATIOS, RADII, PADDING, LAYOUTS } from '../../styles/constants'
 import { MEDIA_QUERIES } from '../../styles/mediaQueries'
@@ -42,42 +42,37 @@ const Carousel = ({
 
   const [containerEl, bounds] = useMeasure()
   const { width } = bounds
-  const [activeIndex, setActiveIndex] = useState(0)
+
   const [direction, setDirection] = useState(null)
 
-  const transition = () => {
-    let _slides = []
-    if (activeIndex === itemCount - 1) {
-      _slides = [items[itemCount - 2], lastSlide, firstSlide]
-    } else if (activeIndex === 0) {
-      _slides = [lastSlide, firstSlide, secondSlide]
-    } else _slides = items.slice(activeIndex - 1, activeIndex + 2)
-
-    setState({
-      ...state,
-      _slides,
-    })
-  }
-
-  const transitionRef = useRef()
-
-  useEffect(() => {
-    transitionRef.current = transition
-  })
+  const [activeIndex, setActiveIndex] = useState(0)
 
   const lastSlide = items[itemCount - 1]
   const firstSlide = items[0]
   const secondSlide = items[1]
   const [state, setState] = useState({
-    _slides: [lastSlide, firstSlide, secondSlide],
+    activeSlides: [lastSlide, firstSlide, secondSlide],
+    transform: -1,
   })
 
-  const slide = useSpring({
-    x: -activeIndex * width,
-    onRest: transitionRef.current,
+  const onSlideChange = () => {
+    let newActiveSlides = []
+    if (activeIndex === itemCount - 1) {
+      newActiveSlides = [items[itemCount - 2], lastSlide, firstSlide]
+    } else if (activeIndex === 0) {
+      newActiveSlides = [lastSlide, firstSlide, secondSlide]
+    } else newActiveSlides = items.slice(activeIndex - 1, activeIndex + 2)
+    setState({ activeSlides: newActiveSlides, transform: -1 })
+  }
+
+  const animation = useSpring({
+    x: state.transform * width,
+    immediate: state.transform === -1,
+    onRest: onSlideChange,
   })
 
   const nextSlide = () => {
+    setState({ ...state, transform: -2 })
     if (activeIndex === itemCount - 1) {
       setActiveIndex(0)
     } else {
@@ -86,6 +81,7 @@ const Carousel = ({
   }
 
   const prevSlide = () => {
+    setState({ ...state, transform: 0 })
     if (activeIndex === 0) {
       setActiveIndex(itemCount - 1)
     } else {
@@ -143,11 +139,11 @@ const Carousel = ({
           {!video && itemCount > 1 && (
             <CarouselContent
               style={{
-                width: `${width * state._slides.length}px`,
-                ...slide,
+                width: `${width * state.activeSlides.length}px`,
+                ...animation,
               }}
             >
-              {state._slides.map((item, index) => (
+              {state.activeSlides.map((item, index) => (
                 <Slide key={index} url={item.url} alt={item.alt} />
               ))}
             </CarouselContent>
