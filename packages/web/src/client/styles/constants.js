@@ -1,3 +1,4 @@
+
 export const ASPECT_RATIOS = {
   full: '56.25%',
   full_mobile: '69%',
@@ -17,3 +18,8 @@ export const RADII = {
 export const PADDING = [12]
 
 export const LAYOUTS = ['full', 'half', '2/3']
+
+export const COLORS = {
+  darkblue: '#080B37',
+}
+
