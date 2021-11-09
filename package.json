@@ -34,7 +34,7 @@
     "prettier:write": "prettier --write .",
     "prettier:check": "prettier --check .",
     "build-storybook": "build-storybook",
-    "storybook": "start-storybook -s packages/web/src/public -p 6006",
+    "storybook": "start-storybook -s packages/web/public -p 6006",
     "web:dev": "yarn workspace @studiocompanion/web dev",
     "web:build": "yarn workspace @studiocompanion/web build",
     "web:start": "yarn workspace @studiocompanion/web start",
