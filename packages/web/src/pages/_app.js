@@ -2,7 +2,9 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import { createGlobalStyle } from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
+import { DefaultSeo } from 'next-seo'
 
+import SEO from '../../next-seo.config'
 import { CSS_GLOBAL } from 'styles/global'
 
 const GlobalStyle = createGlobalStyle`
@@ -13,10 +15,13 @@ const components = {}
 
 function App({ Component, pageProps }) {
   return (
-    <MDXProvider components={components}>
-      <Component {...pageProps} />
-      <GlobalStyle />
-    </MDXProvider>
+    <>
+      <DefaultSeo {...SEO} />
+      <MDXProvider components={components}>
+        <Component {...pageProps} />
+        <GlobalStyle />
+      </MDXProvider>
+    </>
   )
 }
 
