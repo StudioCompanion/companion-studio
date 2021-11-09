@@ -9,7 +9,6 @@ import pause_cursor from '../../../public/cursor_pause.svg'
 const Video = ({ url }) => {
   const [playing, setPlaying] = useState(true)
   const videoRef = useRef()
-  useEffect(() => {})
   const firstUpdate = useRef(true)
   useEffect(() => {
     if (firstUpdate.current) {
@@ -23,6 +22,10 @@ const Video = ({ url }) => {
     playing && videoRef.current.play()
     !playing && videoRef.current.pause()
   }, [playing])
+
+  const handleVideoClick = () => {
+    setPlaying(!playing)
+  }
   return (
     <VideoContainer $playing={playing}>
       <VideoItem
@@ -30,7 +33,7 @@ const Video = ({ url }) => {
         loop
         playsinline
         ref={videoRef}
-        onClick={() => setPlaying(!playing)}
+        onClick={handleVideoClick}
         muted
       >
         <source src={url} type="video/mp4"></source>
