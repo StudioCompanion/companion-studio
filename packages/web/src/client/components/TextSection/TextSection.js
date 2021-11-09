@@ -9,11 +9,10 @@ import {
   FONT_STYLE_RECKLESS_20_400,
 } from '../../styles/fonts'
 
-const TextSection = ({ heading, children }) => {
+const TextSection = ({ children }) => {
   return (
     <Container>
-      <Heading>{heading}</Heading>
-      <Body>{children}</Body>
+      <BodyContainer>{children}</BodyContainer>
     </Container>
   )
 }
@@ -29,12 +28,12 @@ const Container = styled.div`
   ${MEDIA_QUERIES.tabletUp} {
     width: 50%;
   }
+  h3 {
+    ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
+    margin-bottom: ${PADDING[0]}px;
+  }
 `
-const Heading = styled.h6`
-  ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
-  margin-bottom: ${PADDING[0]}px;
-`
-const Body = styled.div`
+const BodyContainer = styled.div`
   ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
   p:not(:last-child) {
     margin-bottom: 40px;
