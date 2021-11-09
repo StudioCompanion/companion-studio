@@ -37,11 +37,11 @@ const Wrapper = styled.div`
     max-width: ${WIDTHS.centeredP}px;
   }
 `
-const Text = styled.div`
+const Text = styled.h2`
   ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
   margin-bottom: ${PADDING[2]}px;
 `
-const ByLine = styled.div`
+const ByLine = styled.h3`
   ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
   ${MEDIA_QUERIES.tabletUp} {
     font-size: 2rem;
