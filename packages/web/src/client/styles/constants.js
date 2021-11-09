@@ -1,4 +1,8 @@
 
+export const WIDTHS = {
+  centeredP: 653,
+}
+
 export const RADII = {
   wrapper: 8,
   wrapper_mobile: 4,
