@@ -35,10 +35,10 @@ const Container = styled.div`
 `
 const BodyContainer = styled.div`
   ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
-  p:not(:last-child) {
-    margin-bottom: 40px;
+  p + p {
+    margin-top: 40px;
     ${MEDIA_QUERIES.tabletUp} {
-      margin-bottom: 46px;
+      margin-top: 46px;
     }
   }
 `
