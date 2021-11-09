@@ -17,3 +17,6 @@ export const RADII = {
 export const PADDING = [12]
 
 export const LAYOUTS = ['full', 'half', '2/3']
+export const COLORS = {
+  darkblue: '#080B37',
+}
