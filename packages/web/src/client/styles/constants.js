@@ -8,6 +8,6 @@ export const RADII = {
 export const PADDING = [12, 16, 24]
 
 export const COLORS = {
-  greys: ['#F6F6F8'],
+  lightgrey: '#F6F6F8',
   darkblue: '#080B37',
 }

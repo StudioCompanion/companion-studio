@@ -33,9 +33,9 @@ ProjectInfoCard.propTypes = {
 
 export default ProjectInfoCard
 
-const Container = styled.div`
+const Container = styled.dl`
   width: 100%;
-  background-color: ${COLORS.greys[0]};
+  background-color: ${COLORS.lightgrey};
   border-radius: 12px;
   padding: ${PADDING[1]}px;
   overflow-wrap: break-word;
@@ -44,11 +44,11 @@ const Container = styled.div`
   }
 `
 
-const Heading = styled.h6`
+const Heading = styled.dt`
   ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
 `
 
-const Field = styled.p`
+const Field = styled.dd`
   ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
 
   &:not(:last-child) {
