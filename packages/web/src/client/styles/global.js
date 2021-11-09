@@ -44,7 +44,10 @@ export const CSS_GLOBAL = `
   h4,
   h5,
   h6,
-  p {
+  p,
+  dl,
+  dd,
+  dt {
     margin: 0;
   }
 
