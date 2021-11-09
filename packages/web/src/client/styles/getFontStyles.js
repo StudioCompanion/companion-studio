@@ -1,4 +1,8 @@
-import { FONT_FAMILIES, FONT_STYLE_SOFIA_12_400 } from './fonts'
+import {
+  FONT_FAMILIES,
+  FONT_STYLE_RECKLESS_12_400,
+  FONT_STYLE_RECKLESS_20_400,
+} from './fonts'
 import { MEDIA_QUERIES } from './mediaQueries'
 
 /**
@@ -62,16 +66,21 @@ export const getFontStyles = (type) => {
   }
 
   switch (type) {
-    case FONT_STYLE_SOFIA_12_400:
+    case FONT_STYLE_RECKLESS_12_400:
       fontProps += `
             font-size: 1.2rem;
-            line-height: 1.4rem;
-
-            ${MEDIA_QUERIES.tabletUp}{
-              font-size: 1.2rem;
-              line-height: 1.4rem;
-            }
+            line-height: 1.44rem;
           `
+      break
+    case FONT_STYLE_RECKLESS_20_400:
+      fontProps += `
+                  font-size: 1.7rem;
+                  line-height: 2.21rem;
+                  ${MEDIA_QUERIES.tabletUp}{
+                    font-size: 2rem;
+                    line-height: 2.6rem;
+                  }
+                `
       break
   }
 
