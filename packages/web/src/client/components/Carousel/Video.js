@@ -3,9 +3,6 @@ import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import play_cursor from '../../../public/cursor_play.svg'
-import pause_cursor from '../../../public/cursor_pause.svg'
-
 const Video = ({ url }) => {
   const [playing, setPlaying] = useState(true)
   const videoRef = useRef()
@@ -50,7 +47,9 @@ export default Video
 
 const VideoContainer = styled.div`
   cursor: ${(p) =>
-    p.$playing ? `url(${pause_cursor}), auto;` : `url(${play_cursor}), auto;`};
+    p.$playing
+      ? `url(/cursor_pause.svg), auto;`
+      : `url(cursor_play.svg), auto;`};
   height: 100%;
 `
 

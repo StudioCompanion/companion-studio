@@ -7,9 +7,8 @@ import { useSpring, animated } from 'react-spring'
 
 import { ASPECT_RATIOS, RADII, PADDING, LAYOUTS } from '../../styles/constants'
 import { MEDIA_QUERIES } from '../../styles/mediaQueries'
-
-import right_arrow from '../../../public/cursor_right_arrow.svg'
-import left_arrow from '../../../public/cursor_left_arrow.svg'
+import { FONT_STYLE_APFEL_12_400 } from '../../styles/fonts'
+import { getFontStyles } from '../../styles/getFontStyles'
 
 import Slide from './Slide'
 import Video from './Video'
@@ -216,9 +215,9 @@ const Container = styled.div`
   border-radius: ${RADII.wrapper_mobile}px;
   cursor: ${(p) => {
     if (p.$direction === FORWARD) {
-      return `url(${right_arrow}), auto;`
+      return `url(/cursor_right_arrow.svg), auto;`
     } else if (p.$direction === BACKWARD) {
-      return `url(${left_arrow}), auto;`
+      return `url(/cursor_left_arrow.svg), auto;`
     } else return 'pointer'
   }};
   overflow: hidden;
@@ -273,5 +272,5 @@ const Caption = styled.div`
 `
 
 const CaptionText = styled.span`
-  font-size: 1.2rem;
+  ${getFontStyles(FONT_STYLE_APFEL_12_400)}
 `

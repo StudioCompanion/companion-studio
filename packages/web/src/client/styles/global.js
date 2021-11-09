@@ -44,4 +44,21 @@ export const CSS_GLOBAL = `
   p {
     margin: 0;
   }
+
+  @font-face {
+    font-family: 'Apfel Groteszk';
+    src: url('/ApfelGrotezk-Regular.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Reckless Neue';
+    src: url('/RecklessNeue-Book.woff') format('woff');
+    font-weight: 300;
+  }
+
+  @font-face {
+    font-family: 'Reckless Neue';
+    src: url('/RecklessNeue-Regular.woff') format('woff');
+    font-weight: 400;
+  }
 `
