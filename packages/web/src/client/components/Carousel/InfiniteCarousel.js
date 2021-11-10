@@ -7,7 +7,7 @@
 import { useRef, useCallback, forwardRef, useImperativeHandle } from 'react'
 import PropTypes from 'prop-types'
 import useMeasure from 'react-use-measure'
-import { useDrag } from '@use-gesture/react'
+import { useDrag } from 'react-use-gesture'
 import { useSprings, animated } from '@react-spring/web'
 import styled from 'styled-components'
 
@@ -16,6 +16,7 @@ export const InfiniteSlider = forwardRef(
     const [measureRef, { width }] = useMeasure()
     const prev = useRef([0, 1])
     const index = useRef(0)
+    const isDragging = useRef(false)
 
     const [springs, api] = useSprings(
       items.length,
@@ -26,11 +27,6 @@ export const InfiniteSlider = forwardRef(
       [width]
     )
 
-    /**
-     *
-     * @param {number} x – current index
-     * @param {number} l – length of array
-     */
     const getIndex = useCallback(
       (x, l = items.length) => (x < 0 ? x + l : x) % l,
       [items]
@@ -41,30 +37,21 @@ export const InfiniteSlider = forwardRef(
       [getIndex]
     )
 
-    /**
-     *
-     * @param {number} vx
-     * @param {boolean} down
-     * @param {number} xDir
-     * @param {number} xMove
-     */
     const runSprings = useCallback(
-      (vx, down, xDir, xMove) => {
+      (vx, down, xDir, xMove, distance, cancel) => {
         // This decides if we move over to the next slide or back to the initial
-        if (!down) {
-          index.current +=
-            ((-xMove + (width + xMove)) / width) * (xDir > 0 ? -1 : 1)
+        if (down && (distance > width / 2 || Math.abs(vx) > 1)) {
+          cancel((index.current = index.current + (xDir > 0 ? -1 : 1)))
         }
         // The actual scrolling value
         const finalY = index.current * width
         // Defines currently visible slides
         const firstVis = getIndex(Math.floor(finalY / width) % items.length)
-        const firstVisIdx = vx < 0 ? items.length - 2 : 1
+        const firstVisIdx = vx < 0 ? items.length - 1 - 1 : 1
 
         api.start((i) => {
           const position = getPos(i, firstVis, firstVisIdx)
           const prevPosition = getPos(i, prev.current[0], prev.current[1])
-
           const rank =
             firstVis -
             (finalY < 0 ? items.length : 0) +
@@ -73,10 +60,14 @@ export const InfiniteSlider = forwardRef(
             (finalY < 0 && firstVis === 0 ? items.length : 0)
 
           return {
+            // x is the position of each of our slides
             x:
               (-finalY % (width * items.length)) +
               width * rank +
               (down ? xMove : 0),
+            // this defines if the movement is immediate
+            // So when an item is moved from one end to the other we don't
+            // see it moving
             immediate:
               vx < 0 ? prevPosition > position : prevPosition < position,
           }
@@ -87,20 +78,36 @@ export const InfiniteSlider = forwardRef(
     )
 
     const bind = useDrag(
-      ({ velocity: [vx], down, direction: [xDir], movement: [xMove] }) => {
-        items.length > 1 && vx && runSprings(-vx, down, xDir, xMove)
+      ({
+        vxvy: [vx],
+        down,
+        direction: [xDir],
+        movement: [xMove],
+        cancel,
+        distance,
+      }) => {
+        if (items.length > 1 && vx) {
+          isDragging.current = true
+          runSprings(-vx, down, xDir, xMove, distance, cancel)
+        } else {
+          isDragging.current = false
+        }
       }
     )
 
     useImperativeHandle(ref, () => ({
       next: (ind) => {
-        index.current += ind
-        runSprings(ind, true, -0, -0)
+        if (!isDragging.current) {
+          index.current += ind
+          runSprings(ind, true, -0, -0)
+        }
         return getIndex(index.current)
       },
       prev: (ind) => {
-        index.current += ind
-        runSprings(ind, true, -0, -0)
+        if (!isDragging.current) {
+          index.current += ind
+          runSprings(ind, true, -0, -0)
+        }
 
         /**
          * handles when we're moving backwards and go under 0
@@ -137,6 +144,7 @@ const InfiniteContainer = styled.div`
   height: 100%;
   width: 100%;
   touch-action: none;
+  overflow: hidden;
 `
 
 const InfiniteSlide = styled(animated.div)`
