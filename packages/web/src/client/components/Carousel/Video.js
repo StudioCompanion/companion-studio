@@ -2,11 +2,18 @@ import { useState, useEffect, useRef } from 'react'
 
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive'
+import useIntersectionObserver from '@react-hook/intersection-observer'
 
-const Video = ({ url }) => {
-  const [playing, setPlaying] = useState(true)
+import { WIDTHS } from '../../styles/dimensions'
+
+const Video = ({ video }) => {
+  const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   const videoRef = useRef()
   const firstUpdate = useRef(true)
+  const { isIntersecting } = useIntersectionObserver(videoRef)
+  const [playing, setPlaying] = useState(true)
+  const [isLoaded, setLoaded] = useState(false)
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false
@@ -20,9 +27,16 @@ const Video = ({ url }) => {
     !playing && videoRef.current.pause()
   }, [playing])
 
+  useEffect(() => {
+    if (isIntersecting && !isLoaded) {
+      setLoaded(true)
+    }
+  }, [isLoaded, isIntersecting])
+
   const handleVideoClick = () => {
     setPlaying(!playing)
   }
+
   return (
     <VideoContainer $playing={playing}>
       <VideoItem
@@ -32,15 +46,21 @@ const Video = ({ url }) => {
         ref={videoRef}
         onClick={handleVideoClick}
         muted
+        poster={tabletUp ? video.poster.desktop : video.poster.mobile}
       >
-        <source src={url} type="video/mp4"></source>
+        {isLoaded && (
+          <source
+            src={tabletUp ? video.url.desktop : video.url.mobile}
+            type="video/mp4"
+          ></source>
+        )}
       </VideoItem>
     </VideoContainer>
   )
 }
 
 Video.propTypes = {
-  url: PropTypes.string,
+  video: PropTypes.object,
 }
 
 export default Video
