@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
 
-import { RADII, PADDING, LAYOUTS } from 'styles/constants'
+import { RADII, LAYOUTS } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
@@ -180,7 +180,7 @@ const Dot = styled.div`
 const Caption = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: ${PADDING[0]}px;
+  margin-top: 12px;
 `
 
 const CaptionText = styled.span`

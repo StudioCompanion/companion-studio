@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { COLORS, PADDING } from 'styles/constants'
+import { COLORS } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
@@ -37,7 +37,7 @@ const Container = styled.dl`
   width: 100%;
   background-color: ${COLORS.lightgrey};
   border-radius: 12px;
-  padding: ${PADDING[1]}px;
+  padding: 16px;
   overflow-wrap: break-word;
   ${MEDIA_QUERIES.tabletUp} {
     max-width: 540px;
@@ -52,6 +52,6 @@ const Field = styled.dd`
   ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
 
   &:not(:last-child) {
-    margin-bottom: ${PADDING[2]}px;
+    margin-bottom: 24px;
   }
 `

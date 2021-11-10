@@ -18,7 +18,13 @@ export const RADII = {
   video_mobile: 2,
 }
 
-export const PADDING = [12]
+export const PADDING = {
+  xs: 12,
+  s: 16,
+  m: 20,
+  l: 24,
+  xl: 60,
+}
 
 export const LAYOUTS = ['full', 'half', '2/3']
 
