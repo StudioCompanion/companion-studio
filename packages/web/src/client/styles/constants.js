@@ -1,10 +1,16 @@
 export const ASPECT_RATIOS = {
-  full: '56.25%',
-  full_mobile: '69%',
-  half: '114%',
-  half_mobile: '103%',
-  two_thirds: '85%',
-  two_thirds_mobile: '69%',
+  full: {
+    desktop: '56.25%',
+    mobile: '69%',
+  },
+  half: {
+    desktop: '114%',
+    mobile: '103%',
+  },
+  two_thirds: {
+    desktop: '85%',
+    mobile: '69%',
+  },
 }
 
 export const WIDTHS = {

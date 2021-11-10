@@ -2,18 +2,17 @@ import { ASPECT_RATIOS, LAYOUTS } from 'styles/constants'
 
 const [FULL, HALF, TWO_THIRDS] = LAYOUTS
 
-export const getAspectRatio = (layout, suppliedVal) => {
+export const getAspectRatio = (layout, size, suppliedVal) => {
   if (suppliedVal) {
     return evalAspect(suppliedVal)
   }
-
   switch (layout) {
     case FULL:
-      return ASPECT_RATIOS.full_mobile
+      return ASPECT_RATIOS.full[size]
     case HALF:
-      return ASPECT_RATIOS.half_mobile
+      return ASPECT_RATIOS.half[size]
     case TWO_THIRDS:
-      return ASPECT_RATIOS.two_thirds_mobile
+      return ASPECT_RATIOS.two_thirds[size]
   }
 }
 

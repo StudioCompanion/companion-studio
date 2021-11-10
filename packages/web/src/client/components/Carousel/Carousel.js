@@ -135,7 +135,7 @@ const Container = styled.div`
   width: 100%;
   position: relative;
   padding-top: ${({ layout, $mobileAspect }) =>
-    getAspectRatio(layout, $mobileAspect)};
+    getAspectRatio(layout, 'mobile', $mobileAspect)};
   background-color: ${(p) => (p.$bgColor ? p.$bgColor : 'transparent')};
   background-image: ${(p) => (p.$bgImage ? `url(${p.$bgImage})` : 'none')};
   background-size: cover;
@@ -153,7 +153,7 @@ const Container = styled.div`
   ${MEDIA_QUERIES.tabletUp} {
     border-radius: ${RADII.wrapper}px;
     padding-top: ${({ layout, $desktopAspect }) =>
-      getAspectRatio(layout, $desktopAspect)};
+      getAspectRatio(layout, 'desktop', $desktopAspect)};
   }
 `
 
