@@ -1,11 +1,4 @@
 import Nav from './Nav'
-import Logo from '../../../../public/logo_placeholder.png'
-
-const navItems = [
-  { title: 'Work', url: '/work' },
-  { title: 'Approach', url: '/approach' },
-  { title: 'Team', url: '/team' },
-]
 
 const Template = (args) => <Nav {...args} />
 
@@ -14,6 +7,34 @@ export default {
   component: Nav,
 }
 
-export const Primary = Template.bind({})
+export const WorkPage = Template.bind({})
 
-Primary.args = { navItems: navItems, logo: Logo }
+WorkPage.parameters = {
+  nextRouter: {
+    pathname: '/work',
+  },
+}
+
+export const ApproachPage = Template.bind({})
+
+ApproachPage.parameters = {
+  nextRouter: {
+    pathname: '/approach',
+  },
+}
+
+export const TeamPage = Template.bind({})
+
+TeamPage.parameters = {
+  nextRouter: {
+    pathname: '/team',
+  },
+}
+
+export const HomePage = Template.bind({})
+
+HomePage.parameters = {
+  nextRouter: {
+    pathname: '/',
+  },
+}

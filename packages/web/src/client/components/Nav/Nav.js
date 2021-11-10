@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
@@ -8,38 +7,46 @@ import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
 import { COLORS, PADDING } from '../../styles/constants'
 
-const Nav = ({ logo, navItems }) => {
+const Nav = () => {
+  const navItems = [
+    { title: 'Work', url: '/work' },
+    { title: 'Approach', url: '/approach' },
+    { title: 'Team', url: '/team' },
+  ]
+
   const router = useRouter()
 
-  // For demonstration purposes:
-  const currentPath = '/work'
-  // const currentPath = router.pathname
+  const currentPath = router.pathname
 
   return (
-    <NavContainer>
-      <LogoWrapper>
-        <Image src={logo} width={45} height={45} alt="Companion" />
-      </LogoWrapper>
-      <NavWrapper>
-        <NavList>
-          {navItems.map((item, index) => (
-            <NavItem key={index} active={item.url === currentPath}>
-              <Link href={item.url}>
-                <NavLink active={item.url === currentPath}>
-                  {item.title}
-                </NavLink>
-              </Link>
-            </NavItem>
-          ))}
-        </NavList>
-      </NavWrapper>
-    </NavContainer>
+    <>
+      {currentPath !== '/' && (
+        <NavContainer>
+          <LogoWrapper>
+            <Image
+              src={'/logo_placeholder.png'}
+              width={45}
+              height={45}
+              alt="Companion"
+            />
+          </LogoWrapper>
+          <NavWrapper>
+            <NavList>
+              {navItems.map((item, index) => (
+                <NavItem key={index} active={item.url === currentPath}>
+                  <Link href={item.url} passHref>
+                    <NavLink active={item.url === currentPath}>
+                      {item.title}
+                    </NavLink>
+                  </Link>
+                </NavItem>
+              ))}
+            </NavList>
+          </NavWrapper>
+        </NavContainer>
+      )}
+    </>
   )
-}
-
-Nav.propTypes = {
-  navItems: PropTypes.array,
-  logo: PropTypes.string,
 }
 
 export default Nav
@@ -66,6 +73,7 @@ const NavItem = styled.li`
   margin-right: 20px;
 `
 const NavLink = styled.a`
+  text-decoration: none;
   display: block;
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};
   background-color: ${(p) => (p.active ? COLORS.darkblue : 'transparent')};
