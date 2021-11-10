@@ -118,7 +118,6 @@ Carousel.propTypes = {
 export default Carousel
 
 const Wrapper = styled.div`
-  margin-top: 150vh;
   width: 100%;
   ${MEDIA_QUERIES.tabletUp} {
     width: ${({ layout }) => {
