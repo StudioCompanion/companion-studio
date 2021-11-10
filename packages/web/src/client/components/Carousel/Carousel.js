@@ -30,8 +30,8 @@ const Carousel = ({
   mobileAspect,
 }) => {
   const itemCount = items.length
-  const video = items.find((item) =>
-    regex.test(item.url.desktop || item.url.mobile)
+  const video = items.find(
+    (item) => regex.test(item.url.desktop) || regex.test(item.url.desktop)
   )
   const [activeIndex, setActiveIndex] = useState(0)
 
