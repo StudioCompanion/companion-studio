@@ -43,6 +43,7 @@ const Video = ({ video }) => {
         setPlaying(false)
       }
     }
+    // check for autoPause variable to play only if the video has been automatically paused, not if the user has manually paused it
     if (autoPause.current && isIntersecting && !playing) {
       setPlaying(true)
       autoPause.current = false
