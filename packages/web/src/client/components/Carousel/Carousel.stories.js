@@ -17,6 +17,7 @@ import testHalf2_m from '../../../../public/testhalf2_m.png'
 import testTwoThirds2 from '../../../../public/test2-3_2.png'
 import testTwoThirds2_m from '../../../../public/test2-3_2_m.png'
 import testVid from '../../../../public/testvid.mp4'
+import testVid_poster from '../../../../public/testvid_placeholder.png'
 import testBg from '../../../../public/testbg_1.png'
 
 import { LAYOUTS } from '../../styles/constants'
@@ -88,7 +89,8 @@ const TwoThirdsItem = {
 }
 
 const videoItem = {
-  url: testVid,
+  poster: { desktop: testVid_poster, mobile: testVid_poster },
+  url: { desktop: testVid, mobile: testVid },
   caption: 'lovely video',
 }
 
