@@ -50,6 +50,7 @@ export const CSS_GLOBAL = `
   dt {
     margin: 0;
   }
+
   @font-face {
     font-family: 'Apfel Groteszk';
     src: url('/fonts/ApfelGrotezk-Regular.woff') format('woff');

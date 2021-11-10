@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { COLORS, RADII, PADDING } from '../../styles/constants'
-import { MEDIA_QUERIES } from '../../styles/mediaQueries'
-import { getFontStyles } from '../../styles/getFontStyles'
+import { COLORS, PADDING } from 'styles/constants'
+import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { getFontStyles } from 'styles/getFontStyles'
 import {
   FONT_STYLE_RECKLESS_20_400,
   FONT_STYLE_RECKLESS_12_400,
-} from '../../styles/fonts'
+} from 'styles/fonts'
 
 const ProjectInfoCard = ({ deliverables, collaborators, team, duration }) => {
   return (
