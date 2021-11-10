@@ -12,8 +12,10 @@ const Video = ({ video }) => {
   const videoRef = useRef()
   const firstUpdate = useRef(true)
   const { isIntersecting } = useIntersectionObserver(videoRef)
-  const [playing, setPlaying] = useState(true)
+  const [playing, setPlaying] = useState()
   const [isLoaded, setLoaded] = useState(false)
+  const autoPause = useRef(false)
+  
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false
@@ -33,6 +35,21 @@ const Video = ({ video }) => {
     }
   }, [isLoaded, isIntersecting])
 
+  useEffect(() => {
+    if (!isIntersecting) {
+      autoPause.current = true
+      if (firstUpdate.current) return
+      if (playing) {
+        setPlaying(false)
+      }
+    }
+    // check for autoPause variable to play only if the video has been automatically paused, not if the user has manually paused it
+    if (autoPause.current && isIntersecting && !playing) {
+      setPlaying(true)
+      autoPause.current = false
+    }
+  }, [playing, isIntersecting])
+  
   const handleVideoClick = () => {
     setPlaying(!playing)
   }
