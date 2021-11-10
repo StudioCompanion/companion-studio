@@ -48,8 +48,8 @@ export default Video
 const VideoContainer = styled.div`
   cursor: ${(p) =>
     p.$playing
-      ? `url(/cursor_pause.svg), auto;`
-      : `url(cursor_play.svg), auto;`};
+      ? `url(/icons/cursor_pause.svg), auto;`
+      : `url(/icons/cursor_play.svg), auto;`};
   height: 100%;
 `
 

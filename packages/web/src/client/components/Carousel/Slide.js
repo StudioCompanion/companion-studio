@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-
 import styled from 'styled-components'
 import Image from 'next/image'
 import { useMediaQuery } from 'react-responsive'
@@ -11,9 +10,9 @@ const Slide = ({ url, alt }) => {
   return (
     <ImageWrapper>
       {tabletUp ? (
-        <Image src={url.desktop} alt={alt} layout="fill" />
+        <Image draggable={false} src={url.desktop} alt={alt} layout="fill" />
       ) : (
-        <Image src={url.mobile} alt={alt} layout="fill" />
+        <Image draggable={false} src={url.mobile} alt={alt} layout="fill" />
       )}
     </ImageWrapper>
   )

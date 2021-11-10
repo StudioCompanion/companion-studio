@@ -1,30 +1,25 @@
-import { useState } from 'react'
-
+import { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
-import { useSpring, animated } from 'react-spring'
 
-import { ASPECT_RATIOS, RADII, PADDING, LAYOUTS } from '../../styles/constants'
-import { MEDIA_QUERIES } from '../../styles/mediaQueries'
-import { FONT_STYLE_APFEL_12_400 } from '../../styles/fonts'
-import { getFontStyles } from '../../styles/getFontStyles'
+import { RADII, PADDING, LAYOUTS } from 'styles/constants'
+import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
+import { getFontStyles } from 'styles/getFontStyles'
+
+import { getAspectRatio } from 'helpers/media'
 
 import Slide from './Slide'
 import Video from './Video'
+import { InfiniteSlider } from './InfiniteCarousel'
 
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
+
 const [FULL, HALF, TWO_THIRDS] = LAYOUTS
-const evalAspect = (aspect) => {
-  if (typeof aspect === 'string') {
-    const x = aspect.split('/')
-    return `${(x[1] / x[0]) * 100}%`
-  }
-  if (typeof aspect === 'number') {
-    return `${(1 / aspect) * 100}%`
-  }
-}
+
+const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
 
 const Carousel = ({
   bgColor,
@@ -35,128 +30,72 @@ const Carousel = ({
   mobileAspect,
 }) => {
   const itemCount = items.length
+  const video = items.find((item) => regex.test(item.url))
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
-  const video = items.find((item) => regex.test(item.url) === true)
-
-  const [containerEl, bounds] = useMeasure()
-  const { width } = bounds
+  const [containerEl, { width, left }] = useMeasure()
 
   const [direction, setDirection] = useState(null)
 
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  const lastSlide = items[itemCount - 1]
-  const firstSlide = items[0]
-  const secondSlide = items[1]
-  const [state, setState] = useState({
-    activeSlides: [lastSlide, firstSlide, secondSlide],
-    transform: -1,
-  })
-
-  const onSlideChange = () => {
-    let newActiveSlides = []
-    if (activeIndex === itemCount - 1) {
-      newActiveSlides = [items[itemCount - 2], lastSlide, firstSlide]
-    } else if (activeIndex === 0) {
-      newActiveSlides = [lastSlide, firstSlide, secondSlide]
-    } else newActiveSlides = items.slice(activeIndex - 1, activeIndex + 2)
-    setState({ activeSlides: newActiveSlides, transform: -1 })
-  }
-
-  const animation = useSpring({
-    x: state.transform * width,
-    immediate: state.transform === -1,
-    onRest: onSlideChange,
-  })
-
-  const nextSlide = () => {
-    setState({ ...state, transform: -2 })
-    if (activeIndex === itemCount - 1) {
-      setActiveIndex(0)
-    } else {
-      setActiveIndex(activeIndex + 1)
-    }
-  }
-
-  const prevSlide = () => {
-    setState({ ...state, transform: 0 })
-    if (activeIndex === 0) {
-      setActiveIndex(itemCount - 1)
-    } else {
-      setActiveIndex(activeIndex - 1)
-    }
-  }
-
   const handleMouseMove = ({ clientX }) => {
-    const x = clientX - bounds.left
-    if (
-      itemCount > 1 &&
-      !video &&
-      x >= Math.round(width / 2) &&
-      direction !== FORWARD
-    ) {
-      setDirection(FORWARD)
-    }
-    if (
-      itemCount > 1 &&
-      !video &&
-      x < Math.round(width / 2) &&
-      direction !== BACKWARD
-    ) {
-      setDirection(BACKWARD)
+    const x = clientX - left
+    if (itemCount > 1 && !video) {
+      if (x >= Math.round(width / 2) && direction !== FORWARD) {
+        setDirection(FORWARD)
+      }
+      if (x < Math.round(width / 2) && direction !== BACKWARD) {
+        setDirection(BACKWARD)
+      }
     }
   }
+
+  const sliderApi = useRef(null)
 
   const handleClick = () => {
-    if (direction === BACKWARD) {
-      prevSlide()
+    if (direction === BACKWARD && sliderApi.current.prev) {
+      const newInd = sliderApi.current.prev(-1)
+      setActiveIndex(newInd)
     }
-    if (direction === FORWARD) {
-      nextSlide()
+    if (direction === FORWARD && sliderApi.current.next) {
+      const newInd = sliderApi.current.next(1)
+      setActiveIndex(newInd)
     }
   }
 
   return (
     <Wrapper layout={layout}>
       <Container
-        $bgColor={bgColor}
-        $bgImage={bgImage}
         ref={containerEl}
         onMouseMove={handleMouseMove}
-        $direction={direction}
         onClick={handleClick}
         layout={layout}
+        $bgColor={bgColor}
+        $bgImage={bgImage}
+        $direction={direction}
         $desktopAspect={desktopAspect}
         $mobileAspect={mobileAspect}
       >
         <Inner>
-          {video && <Video url={video.url} />}
-          {!video && itemCount === 1 && (
-            <Slide url={items[0].url} alt={items[0].alt} />
-          )}
-          {!video && itemCount > 1 && (
-            <CarouselContent
-              style={{
-                width: `${width * state.activeSlides.length}px`,
-                ...animation,
-              }}
-            >
-              {state.activeSlides.map((item, index) => (
-                <Slide key={index} url={item.url} alt={item.alt} />
-              ))}
-            </CarouselContent>
+          {video ? (
+            <Video url={video.url} />
+          ) : (
+            <InfiniteSlider ref={sliderApi} items={items}>
+              {(item) => <Slide key={item.url} url={item.url} alt={item.alt} />}
+            </InfiniteSlider>
           )}
         </Inner>
       </Container>
       <Caption>
-        {items[activeIndex].caption && (
+        {items[activeIndex].caption ? (
           <CaptionText>{items[activeIndex].caption}</CaptionText>
-        )}
+        ) : null}
         {!video && itemCount > 1 && (
           <Dots>
-            {items.map((item, index) => (
-              <Dot key={index} active={activeIndex === index} />
+            {items.map((_, index) => (
+              <Dot
+                key={index}
+                style={{ opacity: activeIndex === index ? 1 : 0.2 }}
+              />
             ))}
           </Dots>
         )}
@@ -195,19 +134,8 @@ const Wrapper = styled.div`
 const Container = styled.div`
   width: 100%;
   position: relative;
-  padding-top: ${({ layout, $mobileAspect }) => {
-    if ($mobileAspect) {
-      return evalAspect($mobileAspect)
-    }
-    switch (layout) {
-      case FULL:
-        return ASPECT_RATIOS.full_mobile
-      case HALF:
-        return ASPECT_RATIOS.half_mobile
-      case TWO_THIRDS:
-        return ASPECT_RATIOS.two_thirds_mobile
-    }
-  }};
+  padding-top: ${({ layout, $mobileAspect }) =>
+    getAspectRatio(layout, $mobileAspect)};
   background-color: ${(p) => (p.$bgColor ? p.$bgColor : 'transparent')};
   background-image: ${(p) => (p.$bgImage ? `url(${p.$bgImage})` : 'none')};
   background-size: cover;
@@ -215,27 +143,17 @@ const Container = styled.div`
   border-radius: ${RADII.wrapper_mobile}px;
   cursor: ${(p) => {
     if (p.$direction === FORWARD) {
-      return `url(/cursor_right_arrow.svg), auto;`
+      return `url(/icons/cursor_right_arrow.svg), auto;`
     } else if (p.$direction === BACKWARD) {
-      return `url(/cursor_left_arrow.svg), auto;`
-    } else return 'pointer'
+      return `url(/icons/cursor_left_arrow.svg), auto;`
+    } else return 'default'
   }};
   overflow: hidden;
+
   ${MEDIA_QUERIES.tabletUp} {
     border-radius: ${RADII.wrapper}px;
-    padding-top: ${({ layout, $desktopAspect }) => {
-      if ($desktopAspect) {
-        return evalAspect($desktopAspect)
-      }
-      switch (layout) {
-        case FULL:
-          return ASPECT_RATIOS.full
-        case HALF:
-          return ASPECT_RATIOS.half
-        case TWO_THIRDS:
-          return ASPECT_RATIOS.two_thirds
-      }
-    }};
+    padding-top: ${({ layout, $desktopAspect }) =>
+      getAspectRatio(layout, $desktopAspect)};
   }
 `
 
@@ -247,11 +165,6 @@ const Inner = styled.div`
   left: 0;
 `
 
-const CarouselContent = styled(animated.div)`
-  height: 100%;
-  display: flex;
-`
-
 const Dots = styled.div`
   display: flex;
 `
@@ -261,7 +174,6 @@ const Dot = styled.div`
   height: 6px;
   border-radius: 50%;
   background-color: #080b37;
-  opacity: ${(p) => (p.active ? 1 : 0.2)};
   margin-right: 4px;
 `
 

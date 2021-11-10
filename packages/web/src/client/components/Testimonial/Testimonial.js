@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { MEDIA_QUERIES } from '../../styles/mediaQueries'
-import { WIDTHS, PADDING } from '../../styles/constants'
+import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { WIDTHS, PADDING } from 'styles/constants'
 import {
   FONT_STYLE_RECKLESS_12_400,
   FONT_STYLE_RECKLESS_32_400,
-} from '../../styles/fonts'
-import { getFontStyles } from '../../styles/getFontStyles'
+} from 'styles/fonts'
+import { getFontStyles } from 'styles/getFontStyles'
 
 const ProjectInfoCard = ({ text, byLine }) => {
   return (
