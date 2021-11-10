@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { WIDTHS, PADDING } from 'styles/constants'
+import { WIDTHS } from 'styles/constants'
 import {
   FONT_STYLE_RECKLESS_12_400,
   FONT_STYLE_RECKLESS_32_400,
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
 `
 const Text = styled.h2`
   ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
-  margin-bottom: ${PADDING[2]}px;
+  margin-bottom: 16px;
 `
 const ByLine = styled.h3`
   ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
