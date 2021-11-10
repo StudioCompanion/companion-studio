@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
@@ -23,7 +24,11 @@ const Nav = ({ logo, navItems }) => {
         <NavList>
           {navItems.map((item, index) => (
             <NavItem key={index} active={item.url === currentPath}>
-              {item.title}
+              <Link href={item.url}>
+                <NavLink active={item.url === currentPath}>
+                  {item.title}
+                </NavLink>
+              </Link>
             </NavItem>
           ))}
         </NavList>
@@ -58,10 +63,15 @@ const NavList = styled.ul`
   margin-right: -20px;
 `
 const NavItem = styled.li`
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)};
   margin-right: 20px;
+`
+const NavLink = styled.a`
+  display: block;
+  ${getFontStyles(FONT_STYLE_APFEL_12_400)};
   background-color: ${(p) => (p.active ? COLORS.darkblue : 'transparent')};
-  color: ${(p) => (p.active ? COLORS.white : 'rgba(8, 11, 55, 0.57)')};
   padding: 8px;
   border-radius: 500px;
+  color: ${(p) => (p.active ? COLORS.white : 'rgba(8, 11, 55, 0.57)')};
+  width: 100%;
+  height: 100%;
 `
