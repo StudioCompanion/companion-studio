@@ -3,7 +3,7 @@ import Testimonial from './Testimonial'
 const Template = (args) => <Testimonial {...args} />
 
 export default {
-  title: 'Testimonial',
+  title: 'Components/Testimonial',
   component: Testimonial,
 }
 

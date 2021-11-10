@@ -10,7 +10,7 @@ const ProjectInfo = {
 }
 
 export default {
-  title: 'Project Info Card',
+  title: 'Components/Project Info Card',
   component: ProjectInfoCard,
 }
 
