@@ -1,15 +1,35 @@
+export const DESKTOP = 'desktop'
+export const MOBILE = 'mobile'
+
+export const LAYOUTS = {
+  card: { STUDIO: 'studio', CASE_STUDY: 'case' },
+  carousel: { FULL: 'full', HALF: 'half', TWO_THIRDS: '2/3' },
+}
+
 export const ASPECT_RATIOS = {
-  full: {
-    desktop: '56.25%',
-    mobile: '69%',
+  carousel: {
+    full: {
+      desktop: '56.25%',
+      mobile: '69%',
+    },
+    half: {
+      desktop: '114%',
+      mobile: '103%',
+    },
+    two_thirds: {
+      desktop: '85%',
+      mobile: '69%',
+    },
   },
-  half: {
-    desktop: '114%',
-    mobile: '103%',
-  },
-  two_thirds: {
-    desktop: '85%',
-    mobile: '69%',
+  card: {
+    caseStudy: {
+      desktop: '107%',
+      mobile: '124%',
+    },
+    studio: {
+      desktop: '71%',
+      mobile: '80%',
+    },
   },
 }
 
@@ -31,8 +51,6 @@ export const PADDING = {
   l: 24,
   xl: 60,
 }
-
-export const LAYOUTS = ['full', 'half', '2/3']
 
 export const COLORS = {
   white: '#FFFFFF',

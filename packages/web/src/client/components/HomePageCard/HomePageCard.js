@@ -4,14 +4,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useMediaQuery } from 'react-responsive'
 
-import { COLORS, PADDING } from 'styles/constants'
+import { COLORS, PADDING, DESKTOP, MOBILE, LAYOUTS } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { WIDTHS } from '../../styles/dimensions'
+import { getAspectRatio } from 'helpers/media'
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 
+const { STUDIO, CASE_STUDY } = LAYOUTS.card
+
 const HomePageCard = ({
   type,
+  desktopAspect,
+  mobileAspect,
   image,
   heading,
   subheading,
@@ -21,17 +26,21 @@ const HomePageCard = ({
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   return (
     <CardWrapper>
-      <CardContainer>
+      <CardContainer
+        $type={type}
+        $mobileAspect={mobileAspect}
+        $desktopAspect={desktopAspect}
+      >
         <CardInner>
-          <CardText>
-            <ImageContainer>
-              <ImageWrapper>
-                <Image
-                  src={tabletUp ? image.desktop : image.mobile}
-                  layout="fill"
-                />
-              </ImageWrapper>
-            </ImageContainer>
+          <ImageContainer>
+            <ImageWrapper>
+              <Image
+                src={tabletUp ? image.desktop : image.mobile}
+                layout="fill"
+              />
+            </ImageWrapper>
+          </ImageContainer>
+          <CardText $type={type}>
             <CardHeadingWrapper>
               <CardHeading>{heading}</CardHeading>
               <CardSubheading>{subheading}</CardSubheading>
@@ -53,6 +62,8 @@ HomePageCard.propTypes = {
   button: PropTypes.string,
   link: PropTypes.string,
   type: PropTypes.string,
+  desktopAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  mobileAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default HomePageCard
@@ -67,11 +78,13 @@ const CardWrapper = styled.div`
 `
 const CardContainer = styled.div`
   background-color: ${COLORS.lightgrey_2};
-  padding-top: 71%;
+  padding-top: ${({ $type, $mobileAspect }) =>
+    getAspectRatio($type, MOBILE, $mobileAspect)};
   border-radius: 12px;
 
   ${MEDIA_QUERIES.tabletUp} {
-    padding-top: 71%;
+    padding-top: ${({ $type, $desktopAspect }) =>
+      getAspectRatio($type, DESKTOP, $desktopAspect)};
   }
 `
 const CardInner = styled.div`
@@ -88,11 +101,14 @@ const CardHeading = styled.h2``
 const CardSubheading = styled.h3``
 
 const CardText = styled.div`
+  position: relative;
+  z-index: 1;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-self: flex-end;
   align-items: flex-end;
+  color: ${(p) => (p.$type === CASE_STUDY ? COLORS.white : 'inherit')};
 `
 
 const CardButton = styled.a`
@@ -116,4 +132,6 @@ const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
 `
