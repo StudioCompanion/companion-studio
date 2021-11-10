@@ -15,7 +15,7 @@ const Video = ({ video }) => {
   const [playing, setPlaying] = useState()
   const [isLoaded, setLoaded] = useState(false)
   const autoPause = useRef(false)
-
+  
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false
@@ -49,6 +49,7 @@ const Video = ({ video }) => {
       autoPause.current = false
     }
   }, [playing, isIntersecting])
+  
   const handleVideoClick = () => {
     setPlaying(!playing)
   }
