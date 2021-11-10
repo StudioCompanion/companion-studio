@@ -35,6 +35,8 @@ export const PADDING = {
 export const LAYOUTS = ['full', 'half', '2/3']
 
 export const COLORS = {
+  white: '#FFFFFF',
   lightgrey: '#F6F6F8',
+  lightgrey_2: '#E8E8EE',
   darkblue: '#080B37',
 }
