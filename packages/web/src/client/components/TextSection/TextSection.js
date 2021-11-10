@@ -34,6 +34,14 @@ const Container = styled.div`
   }
 `
 const BodyContainer = styled.div`
+  ul {
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
   ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
   p + p {
     margin-top: 40px;
