@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import Image from 'next/image'
@@ -12,6 +13,22 @@ import {
 } from 'styles/fonts'
 
 const Footer = () => {
+  const dateFounded = new Date('2020-11-30').getTime()
+  const [currentTime, setCurrentTime] = useState(Date.now())
+
+  const timeActive = currentTime - dateFounded
+  const seconds = Math.floor((timeActive / 1000) % 60)
+  const minutes = Math.floor((timeActive / 1000 / 60) % 60)
+  const hours = Math.floor((timeActive / (1000 * 60 * 60)) % 24)
+  const days = Math.floor(timeActive / (1000 * 60 * 60 * 24))
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(Date.now())
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [])
   const footerLinks = [
     { title: 'Work', url: '/work' },
     { title: 'Approach', url: '/approach' },
@@ -33,8 +50,12 @@ const Footer = () => {
         <FooterLeft>
           <FooterText>
             Companion is based in London and has been operating globally for
-            235d 13h 10m 6s. We are proud to contribute 5% of our annual revenue
-            to organisations that create a better future for earth.
+            <span> {days}d </span>
+            <span>{hours}h </span>
+            <span>{minutes}min </span>
+            <span>{seconds}s </span>. We are proud to contribute 5% of our
+            annual revenue to organisations that create a better future for
+            earth.
           </FooterText>
           <FooterPartnerLogos>
             <FooterPartnerLogo>
@@ -127,6 +148,7 @@ const FooterRight = styled.div`
 `
 const FooterPartnerLogos = styled.div`
   display: flex;
+  align-items: center;
   margin-right: -45px;
   margin-bottom: -45px;
   ${MEDIA_QUERIES.tabletUp} {
