@@ -1,5 +1,4 @@
 export const ASPECT_RATIOS = {
-
   full: {
     desktop: '56.25%',
     mobile: '69%',
@@ -24,7 +23,6 @@ export const RADII = {
   video_desktop: 4,
   video_mobile: 2,
 }
-
 
 export const PADDING = {
   xs: 12,

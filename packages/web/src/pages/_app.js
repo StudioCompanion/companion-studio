@@ -7,6 +7,8 @@ import { DefaultSeo } from 'next-seo'
 import SEO from '../../next-seo.config'
 import { CSS_GLOBAL } from 'styles/global'
 
+import Layout from '../client/components/Layout'
+
 const GlobalStyle = createGlobalStyle`
   ${CSS_GLOBAL}
 `
@@ -15,13 +17,13 @@ const components = {}
 
 function App({ Component, pageProps }) {
   return (
-    <>
+    <Layout>
       <DefaultSeo {...SEO} />
       <MDXProvider components={components}>
         <Component {...pageProps} />
         <GlobalStyle />
       </MDXProvider>
-    </>
+    </Layout>
   )
 }
 
