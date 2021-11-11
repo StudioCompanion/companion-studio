@@ -1,5 +1,4 @@
 export const ASPECT_RATIOS = {
-
   full: {
     desktop: '56.25%',
     mobile: '69%',
@@ -25,7 +24,6 @@ export const RADII = {
   video_mobile: 2,
 }
 
-
 export const PADDING = {
   xs: 12,
   s: 16,
@@ -38,6 +36,30 @@ export const LAYOUTS = ['full', 'half', '2/3']
 
 export const COLORS = {
   lightgrey: '#F6F6F8',
+  lightgrey_3: '#E8E8EE',
   darkblue: '#080B37',
+  darkblue_light: 'rgba(8, 11, 55, .7)',
   white: '#FFFFFF',
 }
+
+export const THEMES = {
+  light: {
+    background: COLORS.white,
+    color: COLORS.darkblue,
+    hover_background: COLORS.lightgrey_3,
+    hover_color: COLORS.darkblue,
+  },
+  dark: {
+    background: COLORS.darkblue,
+    color: COLORS.white,
+    hover_background: COLORS.darkblue_light,
+    hover_color: COLORS.white,
+  },
+}
+
+export const COLOR = 'color'
+export const HOVER_COLOR = 'hover_color'
+export const BACKGROUND = 'background'
+export const HOVER_BACKGROUND = 'hover_background'
+export const LIGHT = 'light'
+export const DARK = 'dark'
