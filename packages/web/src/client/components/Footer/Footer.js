@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { Formik, Form, Field, ErrorMessage, useField } from 'formik'
 
 import { COLORS, HIDDEN } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
@@ -15,13 +16,11 @@ import {
 const Footer = () => {
   const dateFounded = new Date('2020-11-30').getTime()
   const [currentTime, setCurrentTime] = useState(Date.now())
-
   const timeActive = currentTime - dateFounded
   const seconds = Math.floor((timeActive / 1000) % 60)
   const minutes = Math.floor((timeActive / 1000 / 60) % 60)
   const hours = Math.floor((timeActive / (1000 * 60 * 60)) % 24)
   const days = Math.floor(timeActive / (1000 * 60 * 60 * 24))
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(Date.now())
@@ -29,6 +28,7 @@ const Footer = () => {
 
     return () => clearInterval(interval)
   }, [])
+
   const footerLinks = [
     { title: 'Work', url: '/work' },
     { title: 'Approach', url: '/approach' },
@@ -44,6 +44,12 @@ const Footer = () => {
       url: 'https://www.linkedin.com/company/companion-studio',
     },
   ]
+
+  const [showSuccess, setShowSuccess] = useState(false)
+
+  const handleSuccess = () => {
+    setShowSuccess(true)
+  }
   return (
     <FooterContainer>
       <FooterContent>
@@ -78,13 +84,48 @@ const Footer = () => {
         </FooterLeft>
         <FooterRight>
           <SignUp>
-            <SignUpForm>
-              <InputWrapper>
+            <Formik
+              initialValues={{ email: '' }}
+              validate={(values) => {
+                const errors = {}
+                if (!values.email) {
+                  errors.email = 'Please enter an email address'
+                } else if (
+                  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                ) {
+                  errors.email =
+                    'That didn’t work! Please enter a valid email address'
+                }
+                return errors
+              }}
+              onSubmit={async (values, { setSubmitting }) => {
+                await new Promise((r) => setTimeout(r, 500))
+                setSubmitting(false)
+                handleSuccess()
+              }}
+            >
+              {({ isSubmitting }) => (
+                <SignUpForm>
+                  <InputWrapper>
+                    <Input
+                      placeholder={'Subscribe for occasional ramblings'}
+                      type="email"
+                      name="email"
+                    />
+                    <Error name="email" component="div" />
+                    {showSuccess && <div>Success</div>}
+                  </InputWrapper>
+                  <FormButton type={'submit'} disabled={isSubmitting}>
+                    Submit
+                  </FormButton>
+                </SignUpForm>
+              )}
+              {/* <InputWrapper>
                 <Label>Subscribe for occasional ramblings</Label>
                 <Input placeholder={'Subscribe for occasional ramblings'} />
                 <FormButton>Submit</FormButton>
-              </InputWrapper>
-            </SignUpForm>
+              </InputWrapper> */}
+            </Formik>
           </SignUp>
         </FooterRight>
       </FooterContent>
@@ -191,22 +232,28 @@ const ImprintLine = styled.span`
   opacity: 0.5;
 `
 const SignUp = styled.div``
-const SignUpForm = styled.form``
-const InputWrapper = styled.div`
+const SignUpForm = styled.form`
   display: flex;
+  align-items: flex-start;
+`
+const InputWrapper = styled.div`
+  flex-grow: 1;
+  margin-right: 8px;
+`
+const Error = styled(ErrorMessage)`
+  margin-top: 8px;
 `
 const Label = styled.label`
   ${HIDDEN}
 `
-const Input = styled.input`
-  flex-grow: 1;
+const Input = styled(Field)`
+  width: 100%;
   padding: 6px 12px;
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};
   background-color: transparent;
   border: 1px solid ${COLORS.white};
   border-radius: 500px;
   color: ${COLORS.white};
-  margin-right: 8px;
   &::placeholder {
     color: rgba(255, 255, 255, 57%);
   }
@@ -218,6 +265,7 @@ const FormButton = styled.button`
   border-radius: 500px;
   border: none;
   cursor: pointer;
+  padding: 6px;
 `
 const FooterLinks = styled.div`
   display: grid;
