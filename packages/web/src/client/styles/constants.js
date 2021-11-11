@@ -37,4 +37,5 @@ export const LAYOUTS = ['full', 'half', '2/3']
 export const COLORS = {
   lightgrey: '#F6F6F8',
   darkblue: '#080B37',
+  white: '#FFFFFF',
 }
