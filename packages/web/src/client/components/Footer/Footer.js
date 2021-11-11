@@ -173,17 +173,17 @@ const FooterText = styled.p`
 const FooterLeft = styled.div`
   flex-shrink: 0;
   width: 100%;
-  max-width: 450px;
-  margin-right: 20px;
   ${MEDIA_QUERIES.tabletUp} {
+    max-width: 450px;
+    margin-right: 20px;
     flex-shrink: 1;
   }
 `
 const FooterRight = styled.div`
   width: 100%;
-  max-width: 450px;
   margin-top: 40px;
   ${MEDIA_QUERIES.tabletUp} {
+    max-width: 450px;
     margin-top: 0;
   }
 `
