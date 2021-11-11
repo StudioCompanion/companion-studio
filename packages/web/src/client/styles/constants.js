@@ -1,15 +1,35 @@
+export const DESKTOP = 'desktop'
+export const MOBILE = 'mobile'
+
+export const LAYOUTS = {
+  card: { STUDIO: 'studio', CASE_STUDY: 'case' },
+  carousel: { FULL: 'full', HALF: 'half', TWO_THIRDS: '2/3' },
+}
+
 export const ASPECT_RATIOS = {
-  full: {
-    desktop: '56.25%',
-    mobile: '69%',
+  carousel: {
+    full: {
+      desktop: '56.25%',
+      mobile: '69%',
+    },
+    half: {
+      desktop: '114%',
+      mobile: '103%',
+    },
+    two_thirds: {
+      desktop: '85%',
+      mobile: '69%',
+    },
   },
-  half: {
-    desktop: '114%',
-    mobile: '103%',
-  },
-  two_thirds: {
-    desktop: '85%',
-    mobile: '69%',
+  card: {
+    caseStudy: {
+      desktop: '107%',
+      mobile: '124%',
+    },
+    studio: {
+      desktop: '71%',
+      mobile: '80%',
+    },
   },
 }
 
@@ -32,9 +52,18 @@ export const PADDING = {
   xl: 60,
 }
 
-export const LAYOUTS = ['full', 'half', '2/3']
-
 export const COLORS = {
+  white: '#FFFFFF',
   lightgrey: '#F6F6F8',
+  lightgrey_2: '#E8E8EE',
   darkblue: '#080B37',
 }
+
+export const HIDDEN = `
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;`
