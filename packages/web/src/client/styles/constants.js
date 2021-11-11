@@ -75,6 +75,10 @@ export const THEMES = {
     hover_background: COLORS.darkblue_light,
     hover_color: COLORS.white,
   },
+  grey: {
+    background: COLORS.lightgrey_2,
+    color: COLORS.darkblue,
+  },
 }
 
 export const COLOR = 'color'
@@ -83,3 +87,4 @@ export const BACKGROUND = 'background'
 export const HOVER_BACKGROUND = 'hover_background'
 export const LIGHT = 'light'
 export const DARK = 'dark'
+export const GREY = 'grey'

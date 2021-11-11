@@ -30,7 +30,9 @@ const Button = ({ text, link, theme = LIGHT }) => {
     <>
       {link ? (
         <Link href={link} passHref>
-          <ButtonInner theme={theme} text={text} />
+          <ButtonAnchor>
+            <ButtonInner theme={theme} text={text} />
+          </ButtonAnchor>
         </Link>
       ) : (
         <ButtonInner theme={theme} text={text} />
@@ -47,7 +49,7 @@ Button.propTypes = {
 
 export default Button
 
-const ButtonContainer = styled.a`
+const ButtonContainer = styled.div`
   display: inline-block;
   border-radius: 500px;
   padding: 8px;
@@ -58,7 +60,10 @@ const ButtonContainer = styled.a`
   text-decoration: none;
   cursor: pointer;
 
-  &:hover {
+  a:hover & {
     background-color: ${(p) => getThemeValue(p.$theme, HOVER_BACKGROUND)};
   }
+`
+const ButtonAnchor = styled.a`
+  display: inline-block;
 `

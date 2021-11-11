@@ -4,14 +4,23 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useMediaQuery } from 'react-responsive'
 
-import { COLORS, PADDING, DESKTOP, MOBILE, LAYOUTS } from 'styles/constants'
+import {
+  PADDING,
+  DESKTOP,
+  MOBILE,
+  LAYOUTS,
+  LIGHT,
+  GREY,
+  COLOR,
+  BACKGROUND,
+} from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { WIDTHS } from '../../styles/dimensions'
 import { getAspectRatio } from 'helpers/media'
-import { getFontStyles } from 'styles/getFontStyles'
-import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
+import { getThemeValue } from 'helpers/theme'
+import Button from 'components/Button/Button'
 
-const { STUDIO, CASE_STUDY } = LAYOUTS.card
+const { STUDIO } = LAYOUTS.card
 
 const HomePageCard = ({
   type,
@@ -20,38 +29,46 @@ const HomePageCard = ({
   image,
   heading,
   subheading,
-  button = 'Read',
+  button,
   link,
+  theme = GREY,
 }) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   return (
-    <CardWrapper>
-      <CardContainer
-        $type={type}
-        $mobileAspect={mobileAspect}
-        $desktopAspect={desktopAspect}
-      >
-        <CardInner>
-          <ImageContainer>
-            <ImageWrapper>
-              <Image
-                src={tabletUp ? image.desktop : image.mobile}
-                layout="fill"
+    <Link href={link} passHref>
+      <CardWrapper>
+        <CardContainer
+          $theme={theme}
+          $type={type}
+          $mobileAspect={mobileAspect}
+          $desktopAspect={desktopAspect}
+        >
+          <CardInner>
+            <ImageContainer>
+              <ImageWrapper>
+                <Image
+                  src={tabletUp ? image.desktop : image.mobile}
+                  layout="fill"
+                  alt={heading}
+                />
+              </ImageWrapper>
+            </ImageContainer>
+            <CardText $theme={theme}>
+              <div>
+                <h2>{heading}</h2>
+                <h3>{subheading}</h3>
+              </div>
+              <Button
+                text={
+                  (button && button) || (type == STUDIO && 'View') || 'Read'
+                }
+                theme={LIGHT}
               />
-            </ImageWrapper>
-          </ImageContainer>
-          <CardText $type={type}>
-            <CardHeadingWrapper>
-              <CardHeading>{heading}</CardHeading>
-              <CardSubheading>{subheading}</CardSubheading>
-            </CardHeadingWrapper>
-            <Link href={link} passHref>
-              <CardButton>{button}</CardButton>
-            </Link>
-          </CardText>
-        </CardInner>
-      </CardContainer>
-    </CardWrapper>
+            </CardText>
+          </CardInner>
+        </CardContainer>
+      </CardWrapper>
+    </Link>
   )
 }
 
@@ -64,20 +81,23 @@ HomePageCard.propTypes = {
   type: PropTypes.string,
   desktopAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   mobileAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  theme: PropTypes.string,
 }
 
 export default HomePageCard
 
-const CardWrapper = styled.div`
+const CardWrapper = styled.a`
+  display: block;
   position: relative;
   margin: ${PADDING.s}px;
   ${MEDIA_QUERIES.tabletUp} {
     width: 50%;
     margin: ${PADDING.m}px;
   }
+  color: inherit;
 `
 const CardContainer = styled.div`
-  background-color: ${COLORS.lightgrey_2};
+  background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
   padding-top: ${({ $type, $mobileAspect }) =>
     getAspectRatio($type, MOBILE, $mobileAspect)};
   border-radius: 12px;
@@ -96,9 +116,6 @@ const CardInner = styled.div`
   display: flex;
   padding: 20px;
 `
-const CardHeadingWrapper = styled.div``
-const CardHeading = styled.h2``
-const CardSubheading = styled.h3``
 
 const CardText = styled.div`
   position: relative;
@@ -108,18 +125,7 @@ const CardText = styled.div`
   justify-content: space-between;
   align-self: flex-end;
   align-items: flex-end;
-  color: ${(p) => (p.$type === CASE_STUDY ? COLORS.white : 'inherit')};
-`
-
-const CardButton = styled.a`
-  display: block;
-  background-color: ${COLORS.white};
-  border-radius: 500px;
-  padding: 8px;
-  color: ${COLORS.darkblue};
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)}
-  z-index: 1;
-  text-decoration: none;
+  color: ${(p) => getThemeValue(p.$theme, COLOR)};
 `
 const ImageContainer = styled.div`
   position: absolute;
