@@ -19,6 +19,7 @@ export const WIDTHS = {
 
 export const RADII = {
   wrapper: 8,
+  wrapper_lg: 12,
   wrapper_mobile: 4,
   video_desktop: 4,
   video_mobile: 2,
