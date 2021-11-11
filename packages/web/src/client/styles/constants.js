@@ -57,6 +57,7 @@ export const COLORS = {
   lightgrey: '#F6F6F8',
   lightgrey_2: '#E8E8EE',
   darkblue: '#080B37',
+  white: '#FFFFFF',
 }
 
 export const HIDDEN = `
