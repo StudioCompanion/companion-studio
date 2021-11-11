@@ -1,6 +1,31 @@
 import { COLORS } from './constants'
+import { getFontStyles } from './getFontStyles'
+import {
+  FONT_STYLE_APFEL_12_400,
+  FONT_STYLE_RECKLESS_12_400,
+  FONT_STYLE_RECKLESS_17_400,
+  FONT_STYLE_RECKLESS_20_400,
+  FONT_STYLE_RECKLESS_58_400,
+} from './fonts'
 
 export const CSS_GLOBAL = `
+  @font-face {
+    font-family: 'Apfel Groteszk';
+    src: url('/fonts/ApfelGrotezk-Regular.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Reckless Neue';
+    src: url('/fonts/RecklessNeue-Book.woff') format('woff');
+    font-weight: 300;
+  }
+
+  @font-face {
+    font-family: 'Reckless Neue';
+    src: url('/fonts/RecklessNeue-Regular.woff') format('woff');
+    font-weight: 400;
+  }
+
   *,
   *:before,
   *:after {
@@ -51,20 +76,29 @@ export const CSS_GLOBAL = `
     margin: 0;
   }
 
+
   @font-face {
     font-family: 'Apfel Groteszk';
     src: url('/fonts/ApfelGrotezk-Regular.woff') format('woff');
   }
 
-  @font-face {
-    font-family: 'Reckless Neue';
-    src: url('/fonts/RecklessNeue-Book.woff') format('woff');
-    font-weight: 300;
+  h1 {
+    ${getFontStyles(FONT_STYLE_RECKLESS_58_400)}
   }
-
-  @font-face {
-    font-family: 'Reckless Neue';
-    src: url('/fonts/RecklessNeue-Regular.woff') format('woff');
-    font-weight: 400;
+  h2 {
+    ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
+  }
+  h3 {
+    ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
+  }
+  p {
+    ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
+  }
+  p a {
+      ${getFontStyles(FONT_STYLE_APFEL_12_400)}
+      color: inherit;
+    }
+  p a:hover {
+    opacity: .5;
   }
 `
