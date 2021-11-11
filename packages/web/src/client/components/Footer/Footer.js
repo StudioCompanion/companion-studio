@@ -3,15 +3,74 @@ import styled from 'styled-components'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, ErrorMessage } from 'formik'
+import isEmail from 'validator/es/lib/isEmail'
 
-import { COLORS, HIDDEN } from 'styles/constants'
+import Input from '../Inputs/Input'
+
+import { COLORS } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
   FONT_STYLE_RECKLESS_17_400,
   FONT_STYLE_APFEL_12_400,
 } from 'styles/fonts'
+
+const SignUpForm = () => {
+  const [showSuccess, setShowSuccess] = useState(false)
+
+  const handleSuccess = () => {
+    setShowSuccess(true)
+  }
+
+  const handleSubmit = async (values, { setSubmitting }) => {
+    await new Promise((r) => setTimeout(r, 500))
+    setSubmitting(false)
+    handleSuccess()
+  }
+
+  const validateForm = (values) => {
+    const errors = {}
+    if (!values.email) {
+      errors.email = 'Please enter an email address'
+    } else if (!isEmail(values.email)) {
+      errors.email = 'That didn’t work! Please enter a valid email address'
+    }
+    return errors
+  }
+
+  return (
+    <SignUp>
+      <Formik
+        initialValues={{ email: '' }}
+        validate={(values) => validateForm(values)}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => (
+          <FormContainer>
+            <InputWrapper>
+              <Input
+                name={'email'}
+                placeholder={'Subscribe for occasional ramblings'}
+                type={'email'}
+                showSuccess={showSuccess}
+              />
+              <FormFeedback>
+                {!showSuccess && <Error name={'email'} component="div" />}
+                {showSuccess && (
+                  <span>Success! Keep an eye out for our ramblings</span>
+                )}
+              </FormFeedback>
+            </InputWrapper>
+            <FormButton type={'submit'} disabled={isSubmitting}>
+              Submit
+            </FormButton>
+          </FormContainer>
+        )}
+      </Formik>
+    </SignUp>
+  )
+}
 
 const Footer = () => {
   const dateFounded = new Date('2020-11-30').getTime()
@@ -45,23 +104,15 @@ const Footer = () => {
     },
   ]
 
-  const [showSuccess, setShowSuccess] = useState(false)
-
-  const handleSuccess = () => {
-    setShowSuccess(true)
-  }
   return (
     <FooterContainer>
       <FooterContent>
         <FooterLeft>
           <FooterText>
-            Companion is based in London and has been operating globally for
-            <span> {days}d </span>
-            <span>{hours}h </span>
-            <span>{minutes}min </span>
-            <span>{seconds}s </span>. We are proud to contribute 5% of our
-            annual revenue to organisations that create a better future for
-            earth.
+            Companion is based in London and has been operating globally for{' '}
+            {days}d {hours}h {minutes}m {seconds}s. We are proud to contribute
+            5% of our annual revenue to organisations that create a better
+            future for earth.
           </FooterText>
           <FooterPartnerLogos>
             <FooterPartnerLogo>
@@ -83,50 +134,7 @@ const Footer = () => {
           </FooterPartnerLogos>
         </FooterLeft>
         <FooterRight>
-          <SignUp>
-            <Formik
-              initialValues={{ email: '' }}
-              validate={(values) => {
-                const errors = {}
-                if (!values.email) {
-                  errors.email = 'Please enter an email address'
-                } else if (
-                  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                ) {
-                  errors.email =
-                    'That didn’t work! Please enter a valid email address'
-                }
-                return errors
-              }}
-              onSubmit={async (values, { setSubmitting }) => {
-                await new Promise((r) => setTimeout(r, 500))
-                setSubmitting(false)
-                handleSuccess()
-              }}
-            >
-              {({ isSubmitting }) => (
-                <SignUpForm>
-                  <InputWrapper>
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      placeholder={'Subscribe for occasional ramblings'}
-                      type="email"
-                      name="email"
-                    />
-                    <FormFeedback>
-                      {!showSuccess && <Error name="email" component="div" />}
-                      {showSuccess && (
-                        <span>Success! Keep an eye out for our ramblings</span>
-                      )}
-                    </FormFeedback>
-                  </InputWrapper>
-                  <FormButton type={'submit'} disabled={isSubmitting}>
-                    Submit
-                  </FormButton>
-                </SignUpForm>
-              )}
-            </Formik>
-          </SignUp>
+          <SignUpForm />
         </FooterRight>
       </FooterContent>
       <Imprint>
@@ -232,7 +240,7 @@ const ImprintLine = styled.span`
   opacity: 0.5;
 `
 const SignUp = styled.div``
-const SignUpForm = styled(Form)`
+const FormContainer = styled(Form)`
   display: flex;
   align-items: flex-start;
 `
@@ -245,21 +253,7 @@ const FormFeedback = styled.div`
   ${getFontStyles(FONT_STYLE_APFEL_12_400)}
 `
 const Error = styled(ErrorMessage)``
-const Label = styled.label`
-  ${HIDDEN}
-`
-const Input = styled(Field)`
-  width: 100%;
-  padding: 6px 12px;
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)};
-  background-color: transparent;
-  border: 1px solid ${COLORS.white};
-  border-radius: 500px;
-  color: ${COLORS.white};
-  &::placeholder {
-    color: rgba(255, 255, 255, 57%);
-  }
-`
+
 const FormButton = styled.button`
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};
   background-color: ${COLORS.white};
