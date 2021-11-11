@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Formik, Form, Field, ErrorMessage, useField } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 import { COLORS, HIDDEN } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
@@ -107,24 +107,24 @@ const Footer = () => {
               {({ isSubmitting }) => (
                 <SignUpForm>
                   <InputWrapper>
+                    <Label htmlFor="email">Email</Label>
                     <Input
                       placeholder={'Subscribe for occasional ramblings'}
                       type="email"
                       name="email"
                     />
-                    <Error name="email" component="div" />
-                    {showSuccess && <div>Success</div>}
+                    <FormFeedback>
+                      {!showSuccess && <Error name="email" component="div" />}
+                      {showSuccess && (
+                        <span>Success! Keep an eye out for our ramblings</span>
+                      )}
+                    </FormFeedback>
                   </InputWrapper>
                   <FormButton type={'submit'} disabled={isSubmitting}>
                     Submit
                   </FormButton>
                 </SignUpForm>
               )}
-              {/* <InputWrapper>
-                <Label>Subscribe for occasional ramblings</Label>
-                <Input placeholder={'Subscribe for occasional ramblings'} />
-                <FormButton>Submit</FormButton>
-              </InputWrapper> */}
             </Formik>
           </SignUp>
         </FooterRight>
@@ -232,7 +232,7 @@ const ImprintLine = styled.span`
   opacity: 0.5;
 `
 const SignUp = styled.div``
-const SignUpForm = styled.form`
+const SignUpForm = styled(Form)`
   display: flex;
   align-items: flex-start;
 `
@@ -240,9 +240,11 @@ const InputWrapper = styled.div`
   flex-grow: 1;
   margin-right: 8px;
 `
-const Error = styled(ErrorMessage)`
+const FormFeedback = styled.div`
   margin-top: 8px;
+  ${getFontStyles(FONT_STYLE_APFEL_12_400)}
 `
+const Error = styled(ErrorMessage)``
 const Label = styled.label`
   ${HIDDEN}
 `
