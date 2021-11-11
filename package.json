@@ -33,7 +33,7 @@
     "prepare": "husky install",
     "prettier:write": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -s packages/web/public",
     "storybook": "start-storybook -s packages/web/public -p 6006",
     "web:dev": "yarn workspace @studiocompanion/web dev",
     "web:build": "yarn workspace @studiocompanion/web build",

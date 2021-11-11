@@ -1707,6 +1707,64 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
+"@react-hook/intersection-observer@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@react-hook/intersection-observer/-/intersection-observer-3.1.1.tgz#6b8fdb80d133c9c28bc8318368ecb3a1f8befc50"
+  integrity sha512-OTDx8/wFaRvzFtKl1dEUEXSOqK2zVJHporiTTdC2xO++0e9FEx9wIrPis5q3lqtXeZH9zYGLbk+aB75qNFbbuw==
+  dependencies:
+    "@react-hook/passive-layout-effect" "^1.2.0"
+    intersection-observer "^0.10.0"
+
+"@react-hook/passive-layout-effect@^1.2.0":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@react-hook/passive-layout-effect/-/passive-layout-effect-1.2.1.tgz#c06dac2d011f36d61259aa1c6df4f0d5e28bc55e"
+  integrity sha512-IwEphTD75liO8g+6taS+4oqz+nnroocNfWVHWz7j+N+ZO2vYrc6PV1q7GQhuahL0IOR7JccFTsFKQ/mb6iZWAg==
+
+"@react-spring/animated@~9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@react-spring/animated/-/animated-9.3.0.tgz#294f7696e450c4ae3abd2b59a6dd08bf70b53d3f"
+  integrity sha512-QvuyW77eDvLhdJyO6FFldlWlvnuKK2cpOx4+Zr962RyT/0IO1tbNDRO6G1vM8va6mbv6tmfYmRGKmKYePN3kVg==
+  dependencies:
+    "@react-spring/shared" "~9.3.0"
+    "@react-spring/types" "~9.3.0"
+
+"@react-spring/core@~9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@react-spring/core/-/core-9.3.0.tgz#2d0534c5b53c7e39b8e9ed3d996502828c90f4d4"
+  integrity sha512-SZQOIX7wkIagmucAi7zxqGGIb9A60o9n5922UrWo8Kl3FdG7FgrNwqr0kOI43/pMFeL70/PXwFhBatB03N5ctw==
+  dependencies:
+    "@react-spring/animated" "~9.3.0"
+    "@react-spring/shared" "~9.3.0"
+    "@react-spring/types" "~9.3.0"
+
+"@react-spring/rafz@~9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@react-spring/rafz/-/rafz-9.3.0.tgz#e791c0ae854f7c1a512ae87f34fff36934d82d29"
+  integrity sha512-FD04d2TNb3xOZ6+04qwDmC3d0H4X6gvhsxU71/nSm4PPYRqFzZEolcVPmrHlbGzco3bvXKI+Kp2pIrpXLPUJFA==
+
+"@react-spring/shared@~9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@react-spring/shared/-/shared-9.3.0.tgz#7b4393094a97a1384f74fd8088e0b896e8f0c411"
+  integrity sha512-7ZFY2Blu/wxbLGcYvQavyLUVi9bK/is1bsn11qZ9AaZb4iucRyIf2jgjBfKZFCq4qgi7S/7QmDQG7sucUyLELg==
+  dependencies:
+    "@react-spring/rafz" "~9.3.0"
+    "@react-spring/types" "~9.3.0"
+
+"@react-spring/types@~9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@react-spring/types/-/types-9.3.0.tgz#54ec58ca40414984209c8baa75fddd394f9e2949"
+  integrity sha512-q4cDr2RSPblXMD3Rxvk6qcC7nmhhfV2izEBP06hb8ZCXznA6qJirG3RMpi29kBtEQiw1lWR59hAXKhauaPtbOA==
+
+"@react-spring/web@^9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@react-spring/web/-/web-9.3.0.tgz#48d1ebdd1d484065e0a943dbbb343af259496427"
+  integrity sha512-OTAGKRdyz6fLRR1tABFyw9KMpytyATIndQrj0O6RG47GfjiInpf4+WZKxo763vpS7z1OlnkI81WLUm/sqOqAnA==
+  dependencies:
+    "@react-spring/animated" "~9.3.0"
+    "@react-spring/core" "~9.3.0"
+    "@react-spring/shared" "~9.3.0"
+    "@react-spring/types" "~9.3.0"
+
 "@storybook/addon-actions@6.3.12":
   version "6.3.12"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-6.3.12.tgz#69eb5f8f780f1b00456051da6290d4b959ba24a0"
@@ -4581,6 +4639,11 @@ css-loader@^3.6.0:
     schema-utils "^2.7.0"
     semver "^6.3.0"
 
+css-mediaquery@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/css-mediaquery/-/css-mediaquery-0.1.2.tgz#6a2c37344928618631c54bd33cedd301da18bea0"
+  integrity sha1-aiw3NEkoYYYxxUvTPO3TAdoYvqA=
+
 css-select@^4.1.3:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/css-select/-/css-select-4.1.3.tgz#a70440f70317f2669118ad74ff105e65849c7067"
@@ -4654,6 +4717,11 @@ data-uri-to-buffer@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/data-uri-to-buffer/-/data-uri-to-buffer-3.0.1.tgz#594b8973938c5bc2c33046535785341abc4f3636"
   integrity sha512-WboRycPNsVw3B3TL559F7kuBUM4d8CgMEvk6xEJlOp7OBPjt6G7z8WMWlD2rOFZLk6OYfFIUGsCOWzcQH9K2og==
+
+debounce@^1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.1.tgz#38881d8f4166a5c5848020c11827b834bcb3e0a5"
+  integrity sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==
 
 debug@2, debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0:
   version "2.6.9"
@@ -6475,6 +6543,11 @@ husky@^7.0.2:
   resolved "https://registry.yarnpkg.com/husky/-/husky-7.0.4.tgz#242048245dc49c8fb1bf0cc7cfb98dd722531535"
   integrity sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==
 
+hyphenate-style-name@^1.0.0:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
+  integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
+
 iconv-lite@0.4.24:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
@@ -6597,6 +6670,11 @@ interpret@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-2.2.0.tgz#1a78a0b5965c40a5416d007ad6f50ad27c417df9"
   integrity sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==
+
+intersection-observer@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/intersection-observer/-/intersection-observer-0.10.0.tgz#4d11d63c1ff67e21e62987be24d55218da1a1a69"
+  integrity sha512-fn4bQ0Xq8FTej09YC/jqKZwtijpvARlRp6wxL5WTA6yPe2YWSJ5RJh7Nm79rK2qB0wr6iDQzH60XGq5V/7u8YQ==
 
 invariant@^2.2.3, invariant@^2.2.4:
   version "2.2.4"
@@ -7609,6 +7687,13 @@ markdown-to-jsx@^7.1.3:
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.1.3.tgz#f00bae66c0abe7dd2d274123f84cb6bd2a2c7c6a"
   integrity sha512-jtQ6VyT7rMT5tPV0g2EJakEnXLiPksnvlYtwQsVVZ611JsWGN8bQ1tVSDX4s6JllfEH6wmsYxNjTUAMrPmNA8w==
+
+matchmediaquery@^0.3.0:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/matchmediaquery/-/matchmediaquery-0.3.1.tgz#8247edc47e499ebb7c58f62a9ff9ccf5b815c6d7"
+  integrity sha512-Hlk20WQHRIm9EE9luN1kjRjYXAQToHOIAHPJn9buxBwuhfTHoKUcX+lXBbxc85DVQfXYbEQ4HcwQdd128E3qHQ==
+  dependencies:
+    css-mediaquery "^0.1.2"
 
 md5.js@^1.3.4:
   version "1.3.5"
@@ -9298,6 +9383,16 @@ react-refresh@0.8.3, react-refresh@^0.8.3:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
+react-responsive@^9.0.0-beta.4:
+  version "9.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/react-responsive/-/react-responsive-9.0.0-beta.4.tgz#90c1f1a4048971497ca9795068af6803eabc0ddb"
+  integrity sha512-jQSs5kIi38T39Ku98r8s75jM6JAaNEeVrHPHTrL2EYWuv8nusV3KRQcZZ4VlfwndIRedxmpb4T8FXA9ltlCFiw==
+  dependencies:
+    hyphenate-style-name "^1.0.0"
+    matchmediaquery "^0.3.0"
+    prop-types "^15.6.1"
+    shallow-equal "^1.2.1"
+
 react-sizeme@^3.0.1:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/react-sizeme/-/react-sizeme-3.0.2.tgz#4a2f167905ba8f8b8d932a9e35164e459f9020e4"
@@ -9327,6 +9422,18 @@ react-textarea-autosize@^8.3.0:
     "@babel/runtime" "^7.10.2"
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
+
+react-use-gesture@6:
+  version "6.0.14"
+  resolved "https://registry.yarnpkg.com/react-use-gesture/-/react-use-gesture-6.0.14.tgz#ab2d35ef72a5fb6060a6160eb12568c276f8a4b1"
+  integrity sha512-d9cnZJ0DOFd3FIO76J776DyhtbODgbxGKu19lvc1aSNTnRV5EKr9V4Uda188l2Qh0Va3pqWGxEQlw72r2cmnFQ==
+
+react-use-measure@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-use-measure/-/react-use-measure-2.0.4.tgz#cb675b36eaeaf3681b94d5f5e08b2a1e081fedc9"
+  integrity sha512-7K2HIGaPMl3Q9ZQiEVjen3tRXl4UDda8LiTPy/QxP8dP2rl5gPBhf7mMH6MVjjRNv3loU7sNzey/ycPNnHVTxQ==
+  dependencies:
+    debounce "^1.2.0"
 
 react@^17.0.2:
   version "17.0.2"
@@ -9928,6 +10035,11 @@ shallow-clone@^3.0.0:
   dependencies:
     kind-of "^6.0.2"
 
+shallow-equal@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.2.1.tgz#4c16abfa56043aa20d050324efa68940b0da79da"
+  integrity sha512-S4vJDjHHMBaiZuT9NPb616CSmLf618jawtv3sufLl6ivK8WocjAo58cXwbRV1cgqxH0Qbv+iUt6m05eqEa2IRA==
+
 shallowequal@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
@@ -10198,6 +10310,13 @@ store2@^2.12.0:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.12.0.tgz#e1f1b7e1a59b6083b2596a8d067f6ee88fd4d3cf"
   integrity sha512-7t+/wpKLanLzSnQPX8WAcuLCCeuSHoWdQuh9SB3xD0kNOM38DNf+0Oa+wmvxmYueRzkmh6IcdKFtvTa+ecgPDw==
+
+storybook-addon-next-router@^3.0.8:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/storybook-addon-next-router/-/storybook-addon-next-router-3.0.8.tgz#6bed3eba168bbba238b2f3c636db64d41d148edc"
+  integrity sha512-6sxy67iQUMKME7hf+5PQ8WYS6G9i+fB0U2NrthLYutux7zJYvuL+ve34a0D/mw+UCM+YVV48tEFzidZUC9OVVg==
+  dependencies:
+    tslib "^2.3.0"
 
 storybook-addon-outline@^1.4.1:
   version "1.4.1"
