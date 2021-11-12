@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Formik, Form, ErrorMessage } from 'formik'
-import isEmail from 'validator/es/lib/isEmail'
+import isEmail from 'validator/lib/isEmail'
 
 import Input from '../Inputs/Input'
 

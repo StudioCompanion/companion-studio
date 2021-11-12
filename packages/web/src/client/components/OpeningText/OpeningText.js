@@ -32,7 +32,7 @@ const OpeningTextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 40px 0;
+  margin: 24px 0 40px 0;
   ${MEDIA_QUERIES.tabletUp} {
     position: fixed;
     top: 0;
