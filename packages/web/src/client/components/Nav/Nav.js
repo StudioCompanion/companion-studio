@@ -82,4 +82,9 @@ const NavLink = styled.a`
   color: ${(p) => (p.active ? COLORS.white : 'rgba(8, 11, 55, 0.57)')};
   width: 100%;
   height: 100%;
+
+  &:hover {
+    background-color: ${(p) =>
+      p.active ? COLORS.darkblue : COLORS.lightgrey_2};
+  }
 `
