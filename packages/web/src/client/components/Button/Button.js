@@ -3,14 +3,11 @@ import styled from 'styled-components'
 import Link from 'next/link'
 
 import {
-  COLORS,
   THEME_TYPES,
   COLOR,
-  HOVER_COLOR,
   BACKGROUND,
   HOVER_BACKGROUND,
 } from '../../styles/constants'
-import { MEDIA_QUERIES } from '../../styles/mediaQueries'
 import { getFontStyles } from '../../styles/getFontStyles'
 import { getThemeValue } from 'helpers/theme'
 import { FONT_STYLE_APFEL_12_400 } from '../../styles/fonts'
