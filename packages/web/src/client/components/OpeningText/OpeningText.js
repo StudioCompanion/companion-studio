@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 
@@ -8,24 +9,22 @@ import {
   FONT_STYLE_RECKLESS_32_400,
 } from 'styles/fonts'
 
-const OpeningText = () => {
+const OpeningText = ({ text }) => {
   return (
     <OpeningTextContainer>
       <OpeningTextInner>
         <LogoContainer>
           <Image src={'/logo_placeholder.png'} width={50} height={48} />
         </LogoContainer>
-        <OpeningTextCopy>
-          Companion is a design studio that partners with you to design and
-          build digital products that inspire, disrupt, entertain and create a
-          better future for people and planet.
-        </OpeningTextCopy>
+        <OpeningTextCopy>{text}</OpeningTextCopy>
       </OpeningTextInner>
     </OpeningTextContainer>
   )
 }
 
-OpeningText.propTypes = {}
+OpeningText.propTypes = {
+  text: PropTypes.string,
+}
 
 export default OpeningText
 
