@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
+import { useMediaQuery } from 'react-responsive'
 
 import Button from 'components/Button/Button'
 
 import { COLORS, RADII, PADDING, DARK } from 'styles/constants'
 import { WIDTHS } from '../../styles/dimensions'
-import { useMediaQuery } from 'react-responsive'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
@@ -52,7 +52,7 @@ const CalloutContainer = styled.a`
   }
 `
 
-const CalloutText = styled.h2`
+const CalloutText = styled.p`
   ${getFontStyles(FONT_STYLE_RECKLESS_17_400)}
   margin-bottom: 30px;
   ${MEDIA_QUERIES.tabletUp} {
