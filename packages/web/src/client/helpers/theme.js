@@ -1,4 +1,3 @@
-
 import { THEMES, THEME_TYPES } from '../styles/constants'
 export const getThemeValue = (theme, value) => {
   switch (theme) {

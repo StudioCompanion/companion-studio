@@ -62,8 +62,6 @@ export const COLORS = {
   white: '#FFFFFF',
 }
 
-
-
 export const HIDDEN = `
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

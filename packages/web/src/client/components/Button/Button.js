@@ -25,13 +25,11 @@ ButtonInner.propTypes = {
   theme: PropTypes.string,
 }
 
-
 const Button = ({ text, link, theme = THEME_TYPES.LIGHT }) => {
   return (
     <>
       {link ? (
         <Link href={link} passHref>
-
           <ButtonAnchor>
             <ButtonInner theme={theme} text={text} />
           </ButtonAnchor>
@@ -50,7 +48,6 @@ Button.propTypes = {
 }
 
 export default Button
-
 
 const ButtonContainer = styled.div`
   display: inline-block;
