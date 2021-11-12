@@ -5,7 +5,7 @@ import testStudioCard_mobile from '../../../../public/teststudio_card_m.png'
 import testCaseStudyCard from '../../../../public/testcasestudy_card.png'
 import testCaseStudyCard_mobile from '../../../../public/testcasestudy_card_m.png'
 
-import { LAYOUTS, DARK, GREY } from '../../styles/constants'
+import { LAYOUTS, THEME_TYPES } from '../../styles/constants'
 const { STUDIO, CASE_STUDY } = LAYOUTS.card
 
 const Template = (args) => <HomePageCard {...args} />
@@ -23,7 +23,7 @@ StudioCard.args = {
   heading: 'Our Approach',
   subheading: 'How and why we work the way we do',
   link: '/approach',
-  theme: GREY,
+  theme: THEME_TYPES.GREY,
 }
 
 export const CaseStudyCard = Template.bind({})
@@ -34,5 +34,5 @@ CaseStudyCard.args = {
   heading: 'The DO Lectures',
   subheading: 'A new look for the encouragement network',
   link: '#',
-  theme: DARK,
+  theme: THEME_TYPES.DARK,
 }
