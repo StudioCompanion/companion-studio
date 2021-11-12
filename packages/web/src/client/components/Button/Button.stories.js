@@ -1,5 +1,5 @@
 import Button from './Button'
-import { LIGHT, DARK } from '../../styles/constants'
+import { THEME_TYPES } from '../../styles/constants'
 
 const Template = (args) => <Button {...args} />
 
@@ -13,7 +13,7 @@ export const LightTheme = Template.bind({})
 LightTheme.args = { text: 'Message us' }
 
 export const DarkTheme = Template.bind({})
-DarkTheme.args = { text: 'Message us', theme: DARK }
+DarkTheme.args = { text: 'Message us', theme: THEME_TYPES.DARK }
 
 export const WithLink = Template.bind({})
 

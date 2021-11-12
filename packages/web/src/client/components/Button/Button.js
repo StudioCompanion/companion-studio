@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import {
   COLORS,
-  LIGHT,
+  THEME_TYPES,
   COLOR,
   HOVER_COLOR,
   BACKGROUND,
@@ -25,7 +25,7 @@ ButtonInner.propTypes = {
   theme: PropTypes.string,
 }
 
-const Button = ({ text, link, theme = LIGHT }) => {
+const Button = ({ text, link, theme = THEME_TYPES.LIGHT }) => {
   return (
     <>
       {link ? (

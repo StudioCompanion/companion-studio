@@ -9,8 +9,7 @@ import {
   DESKTOP,
   MOBILE,
   LAYOUTS,
-  LIGHT,
-  GREY,
+  THEME_TYPES,
   COLOR,
   BACKGROUND,
 } from 'styles/constants'
@@ -31,7 +30,7 @@ const HomePageCard = ({
   subheading,
   button,
   link,
-  theme = GREY,
+  theme = THEME_TYPES.GREY,
 }) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   return (
@@ -62,7 +61,7 @@ const HomePageCard = ({
                 text={
                   (button && button) || (type == STUDIO && 'View') || 'Read'
                 }
-                theme={LIGHT}
+                theme={THEME_TYPES.LIGHT}
               />
             </CardText>
           </CardInner>

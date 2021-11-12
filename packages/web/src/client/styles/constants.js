@@ -62,20 +62,30 @@ export const COLORS = {
   white: '#FFFFFF',
 }
 
+export const LIGHT = 'light'
+export const DARK = 'dark'
+export const GREY = 'grey'
+
+export const THEME_TYPES = {
+  LIGHT,
+  DARK,
+  GREY,
+}
+
 export const THEMES = {
-  light: {
+  [LIGHT]: {
     background: COLORS.white,
     color: COLORS.darkblue,
     hover_background: COLORS.lightgrey_2,
     hover_color: COLORS.darkblue,
   },
-  dark: {
+  [DARK]: {
     background: COLORS.darkblue,
     color: COLORS.white,
     hover_background: COLORS.darkblue_light,
     hover_color: COLORS.white,
   },
-  grey: {
+  [GREY]: {
     background: COLORS.lightgrey_2,
     color: COLORS.darkblue,
   },
@@ -85,6 +95,3 @@ export const COLOR = 'color'
 export const HOVER_COLOR = 'hover_color'
 export const BACKGROUND = 'background'
 export const HOVER_BACKGROUND = 'hover_background'
-export const LIGHT = 'light'
-export const DARK = 'dark'
-export const GREY = 'grey'
