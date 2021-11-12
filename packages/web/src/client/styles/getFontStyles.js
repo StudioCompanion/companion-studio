@@ -5,6 +5,8 @@ import {
   FONT_STYLE_RECKLESS_17_400,
   FONT_STYLE_RECKLESS_20_400,
   FONT_STYLE_RECKLESS_58_400,
+  FONT_STYLE_RECKLESS_32_400,
+
 } from './fonts'
 import { MEDIA_QUERIES } from './mediaQueries'
 
@@ -75,6 +77,13 @@ export const getFontStyles = (type) => {
             line-height: 1.44rem;
           `
       break
+
+    case FONT_STYLE_RECKLESS_17_400:
+      fontProps += `
+            font-size: 1.7rem;
+            line-height: 1.3;
+          `
+      break
     case FONT_STYLE_RECKLESS_12_400:
       fontProps += `
             font-size: 1.2rem;
@@ -87,10 +96,18 @@ export const getFontStyles = (type) => {
             line-height: 1.3;
           `
       break
+    case FONT_STYLE_RECKLESS_17_400:
+      fontProps += `
+            font-size: 1.7rem;
+
+            line-height: 1.3;
+          `
+      break
     case FONT_STYLE_RECKLESS_20_400:
       fontProps += `
             font-size: 1.7rem;
             line-height: 2.21rem;
+
             ${MEDIA_QUERIES.tabletUp}{
               font-size: 2rem;
               line-height: 2.6rem;

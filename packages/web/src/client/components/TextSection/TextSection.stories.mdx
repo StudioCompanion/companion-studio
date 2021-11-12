@@ -1,0 +1,39 @@
+import { Meta, Story } from '@storybook/addon-docs'
+import TextSection from './TextSection'
+
+<Meta title="Components/TextSection" component={TextSection} />
+
+export const Template = (args) => (
+  <TextSection {...args}>
+    <h3>Introduction</h3>
+    <p>
+      Our aim was to bring more <strong>familiar</strong> design patterns to
+      Alexander that ensured it was more <i>accessible</i> and usable for the
+      audience, whilst retaining the charm that the Alexander team liked of the
+      current application. <a href="#">Here is a link.</a> We did this by
+      undertaking discovery workshops with the Alexander team to find out what
+      they felt had been working for them and what areas we needed to address.
+    </p>
+    <ol>
+      <li>Lorem ipsum dolor sit amet</li>
+      <li>Lorem ipsum dolor sit amet</li>
+      <li>Lorem ipsum dolor sit amet</li>
+      <li>Lorem ipsum dolor sit amet</li>
+    </ol>
+    <p>
+      We broke down our findings from these discovery sessions into three main
+      areas. Discovery of content, utilisation of features and creating clear
+      communication of the apps propositon and offering.
+    </p>
+    <ul>
+      <li>Lorem ipsum dolor sit amet</li>
+      <li>Lorem ipsum dolor sit amet</li>
+      <li>Lorem ipsum dolor sit amet</li>
+      <li>Lorem ipsum dolor sit amet</li>
+    </ul>
+  </TextSection>
+)
+
+<Story name="Primary" args={{ heading: 'Approach' }}>
+  {Template.bind({})}
+</Story>

@@ -39,6 +39,7 @@ export const WIDTHS = {
 
 export const RADII = {
   wrapper: 8,
+  wrapper_lg: 12,
   wrapper_mobile: 4,
   video_desktop: 4,
   video_mobile: 2,
@@ -57,8 +58,10 @@ export const COLORS = {
   lightgrey: '#F6F6F8',
   lightgrey_2: '#E8E8EE',
   darkblue: '#080B37',
+  darkblue_light: 'rgba(8, 11, 55, .7)',
   white: '#FFFFFF',
 }
+
 
 export const HIDDEN = `
   clip: rect(0 0 0 0);
@@ -68,3 +71,37 @@ export const HIDDEN = `
   position: absolute;
   white-space: nowrap;
   width: 1px;`
+
+export const LIGHT = 'light'
+export const DARK = 'dark'
+export const GREY = 'grey'
+
+export const THEME_TYPES = {
+  LIGHT,
+  DARK,
+  GREY,
+}
+
+export const THEMES = {
+  [LIGHT]: {
+    background: COLORS.white,
+    color: COLORS.darkblue,
+    hover_background: COLORS.lightgrey_2,
+    hover_color: COLORS.darkblue,
+  },
+  [DARK]: {
+    background: COLORS.darkblue,
+    color: COLORS.white,
+    hover_background: COLORS.darkblue_light,
+    hover_color: COLORS.white,
+  },
+  [GREY]: {
+    background: COLORS.lightgrey_2,
+    color: COLORS.darkblue,
+  },
+}
+
+export const COLOR = 'color'
+export const HOVER_COLOR = 'hover_color'
+export const BACKGROUND = 'background'
+export const HOVER_BACKGROUND = 'hover_background'
