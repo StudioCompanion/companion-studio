@@ -6,7 +6,6 @@ import {
   FONT_STYLE_RECKLESS_20_400,
   FONT_STYLE_RECKLESS_58_400,
   FONT_STYLE_RECKLESS_32_400,
-
 } from './fonts'
 import { MEDIA_QUERIES } from './mediaQueries'
 
