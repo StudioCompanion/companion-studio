@@ -95,13 +95,6 @@ export const getFontStyles = (type) => {
             line-height: 1.3;
           `
       break
-    case FONT_STYLE_RECKLESS_17_400:
-      fontProps += `
-            font-size: 1.7rem;
-
-            line-height: 1.3;
-          `
-      break
     case FONT_STYLE_RECKLESS_20_400:
       fontProps += `
             font-size: 1.7rem;
@@ -110,6 +103,17 @@ export const getFontStyles = (type) => {
             ${MEDIA_QUERIES.tabletUp}{
               font-size: 2rem;
               line-height: 2.6rem;
+            }
+          `
+      break
+    case FONT_STYLE_RECKLESS_32_400:
+      fontProps += `
+            font-size: 2rem;
+            line-height: 2.6rem;
+
+            ${MEDIA_QUERIES.tabletUp}{
+              font-size: 3.2rem;
+              line-height: 3.84rem;
             }
           `
       break

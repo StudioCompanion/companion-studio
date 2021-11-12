@@ -40,7 +40,7 @@ export default Callout
 
 const CalloutContainer = styled.a`
   display: block;
-  background-color: ${COLORS.lightgrey_3};
+  background-color: ${COLORS.lightgrey_2};
   border-radius: ${RADII.wrapper_lg}px;
   padding: ${PADDING.s}px;
   display: flex;
