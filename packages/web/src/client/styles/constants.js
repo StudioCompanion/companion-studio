@@ -62,6 +62,16 @@ export const COLORS = {
   white: '#FFFFFF',
 }
 
+
+export const HIDDEN = `
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;`
+
 export const LIGHT = 'light'
 export const DARK = 'dark'
 export const GREY = 'grey'

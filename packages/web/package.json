@@ -10,6 +10,8 @@
   "dependencies": {
     "@react-hook/intersection-observer": "^3.1.1",
     "@react-spring/web": "^9.3.0",
+    "formik": "^2.2.9",
+    "moment": "^2.29.1",
     "next": "^12.0.2",
     "next-seo": "^4.28.1",
     "react": "^17.0.2",
@@ -18,6 +20,7 @@
     "react-use-gesture": "6",
     "react-use-measure": "^2.0.4",
     "storybook-addon-next-router": "^3.0.8",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "validator": "^13.7.0"
   }
 }
