@@ -29,7 +29,6 @@ const createAliasesFromPaths = () => {
 }
 
 module.exports = {
-
   stories: ['../**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-essentials', 'storybook-addon-next-router'],
   webpackFinal: async (config) => {

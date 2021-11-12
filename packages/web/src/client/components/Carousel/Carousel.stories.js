@@ -21,7 +21,7 @@ import testVid_poster from '../../../../public/testvid_placeholder.png'
 import testBg from '../../../../public/testbg_1.png'
 
 import { LAYOUTS } from '../../styles/constants'
-const [FULL, HALF, TWO_THIRDS] = LAYOUTS
+const { FULL, HALF, TWO_THIRDS } = LAYOUTS.carousel
 
 const heroItem = {
   url: {
@@ -104,9 +104,15 @@ export default {
       },
     },
     layout: {
-      options: LAYOUTS,
+      options: Object.keys(LAYOUTS.carousel),
+      mapping: LAYOUTS.carousel,
       control: {
         type: 'select',
+        labels: {
+          FULL: 'Full',
+          HALF: 'Half',
+          TWO_THIRDS: 'Two Thirds',
+        },
       },
     },
     bgImage: {

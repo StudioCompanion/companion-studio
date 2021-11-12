@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
 
-import { RADII, LAYOUTS } from 'styles/constants'
+import { RADII, LAYOUTS, DESKTOP, MOBILE } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
@@ -17,7 +17,7 @@ import { InfiniteSlider } from './InfiniteCarousel'
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
 
-const [FULL, HALF, TWO_THIRDS] = LAYOUTS
+const { FULL, HALF, TWO_THIRDS } = LAYOUTS.carousel
 
 const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
 
@@ -30,11 +30,11 @@ const Carousel = ({
   mobileAspect,
 }) => {
   const itemCount = items.length
-  
+
   const video = items.find(
     (item) => regex.test(item.url.desktop) || regex.test(item.url.desktop)
   )
-  
+
   const [activeIndex, setActiveIndex] = useState(0)
 
   const [containerEl, { width, left }] = useMeasure()
@@ -139,7 +139,7 @@ const Container = styled.div`
   width: 100%;
   position: relative;
   padding-top: ${({ layout, $mobileAspect }) =>
-    getAspectRatio(layout, 'mobile', $mobileAspect)};
+    getAspectRatio(layout, MOBILE, $mobileAspect)};
   background-color: ${(p) => (p.$bgColor ? p.$bgColor : 'transparent')};
   background-image: ${(p) => (p.$bgImage ? `url(${p.$bgImage})` : 'none')};
   background-size: cover;
@@ -157,7 +157,7 @@ const Container = styled.div`
   ${MEDIA_QUERIES.tabletUp} {
     border-radius: ${RADII.wrapper}px;
     padding-top: ${({ layout, $desktopAspect }) =>
-      getAspectRatio(layout, 'desktop', $desktopAspect)};
+      getAspectRatio(layout, DESKTOP, $desktopAspect)};
   }
 `
 
