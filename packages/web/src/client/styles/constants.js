@@ -71,9 +71,9 @@ export const HIDDEN = `
   white-space: nowrap;
   width: 1px;`
 
-export const LIGHT = 'light'
-export const DARK = 'dark'
-export const GREY = 'grey'
+const LIGHT = 'light'
+const DARK = 'dark'
+const GREY = 'grey'
 
 export const THEME_TYPES = {
   LIGHT,

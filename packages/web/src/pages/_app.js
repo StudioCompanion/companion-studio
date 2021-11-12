@@ -17,13 +17,15 @@ const components = {}
 
 function App({ Component, pageProps }) {
   return (
-    <Layout>
+    <>
       <DefaultSeo {...SEO} />
-      <MDXProvider components={components}>
-        <Component {...pageProps} />
-        <GlobalStyle />
-      </MDXProvider>
-    </Layout>
+      <Layout>
+        <MDXProvider components={components}>
+          <Component {...pageProps} />
+          <GlobalStyle />
+        </MDXProvider>
+      </Layout>
+    </>
   )
 }
 
