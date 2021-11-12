@@ -1,9 +1,12 @@
-import { THEMES, LIGHT, DARK } from '../styles/constants'
+
+import { THEMES, THEME_TYPES } from '../styles/constants'
 export const getThemeValue = (theme, value) => {
   switch (theme) {
-    case LIGHT:
+    case THEME_TYPES.LIGHT:
       return THEMES.light[value]
-    case DARK:
+    case THEME_TYPES.DARK:
       return THEMES.dark[value]
+    case THEME_TYPES.GREY:
+      return THEMES.grey[value]
   }
 }

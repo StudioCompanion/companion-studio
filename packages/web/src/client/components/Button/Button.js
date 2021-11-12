@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import {
   COLORS,
-  LIGHT,
+  THEME_TYPES,
   COLOR,
   HOVER_COLOR,
   BACKGROUND,
@@ -25,12 +25,16 @@ ButtonInner.propTypes = {
   theme: PropTypes.string,
 }
 
-const Button = ({ text, link, theme = LIGHT }) => {
+
+const Button = ({ text, link, theme = THEME_TYPES.LIGHT }) => {
   return (
     <>
       {link ? (
         <Link href={link} passHref>
-          <ButtonInner theme={theme} text={text} />
+
+          <ButtonAnchor>
+            <ButtonInner theme={theme} text={text} />
+          </ButtonAnchor>
         </Link>
       ) : (
         <ButtonInner theme={theme} text={text} />
@@ -47,7 +51,8 @@ Button.propTypes = {
 
 export default Button
 
-const ButtonContainer = styled.a`
+
+const ButtonContainer = styled.div`
   display: inline-block;
   border-radius: 500px;
   padding: 8px;
@@ -57,8 +62,10 @@ const ButtonContainer = styled.a`
   z-index: 1;
   text-decoration: none;
   cursor: pointer;
-
-  &:hover {
+  a:hover & {
     background-color: ${(p) => getThemeValue(p.$theme, HOVER_BACKGROUND)};
   }
+`
+const ButtonAnchor = styled.a`
+  display: inline-block;
 `
