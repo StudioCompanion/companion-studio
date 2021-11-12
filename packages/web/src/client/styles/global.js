@@ -53,7 +53,9 @@ export const CSS_GLOBAL = `
   h4,
   h5,
   h6,
-  p {
+  p,
+  dd,
+  dl {
     margin: 0;
   }
 
@@ -69,17 +71,8 @@ export const CSS_GLOBAL = `
   h4,
   h5,
   h6,
-  p,
-  dl,
-  dd,
-  dt {
+  p {
     margin: 0;
-  }
-
-
-  @font-face {
-    font-family: 'Apfel Groteszk';
-    src: url('/fonts/ApfelGrotezk-Regular.woff') format('woff');
   }
 
   h1 {
