@@ -75,8 +75,13 @@ export default ValuesGrid
 
 const GridContainer = styled.div`
   display: grid;
-  gap: ${PADDING.xl}px ${PADDING.m}px;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  grid-template-columns: 1fr;
+  ${MEDIA_QUERIES.tabletUp} {
+    gap: ${PADDING.xl}px ${PADDING.m}px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+
   ${MEDIA_QUERIES.largeDesktopUp} {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -87,13 +92,17 @@ const GridWrapper = styled.div`
 `
 const GridItemHeading = styled.h2`
   ${getFontStyles(FONT_STYLE_RECKLESS_26_400)}
+  margin-bottom: 20px;
 `
 const GridItemBody = styled.p`
   ${getFontStyles(FONT_STYLE_RECKLESS_17_400)}
 `
 const GridItemContainer = styled.div`
-  max-width: 425px;
+  ${MEDIA_QUERIES.tabletUp} {
+    max-width: 425px;
+  }
 `
 const ButtonWrapper = styled.div`
   align-self: center;
+  margin: 60px 0;
 `
