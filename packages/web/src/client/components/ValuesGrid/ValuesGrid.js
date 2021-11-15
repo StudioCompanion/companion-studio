@@ -12,27 +12,55 @@ import Button from 'components/Button/Button'
 
 const gridItems = [
   {
-    heading: `You want to learn new things`,
+    heading: [
+      'You want to ',
+      // eslint-disable-next-line react/jsx-key
+      <span className="underline underline--a">learn</span>,
+      ' new things',
+    ],
     body: 'You know you don’t know everything. You like to seek others viewpoints. Open minded, open to new ideas, approachable.',
   },
   {
-    heading: `You're curious`,
+    heading: [
+      `You're `,
+      // eslint-disable-next-line react/jsx-key
+      <span className="underline underline--b">curious</span>,
+    ],
     body: 'You seek to understand. You want to find new things and understand how they tick. You have a wide range of interests and can contribute outside of your own groove.',
   },
   {
-    heading: `You're a team player`,
+    heading: [
+      `You're a `,
+      // eslint-disable-next-line react/jsx-key
+      <span className="underline underline--c">team</span>,
+      ` player`,
+    ],
     body: 'You like being part of a team, on for the long game not the quick win. Everyone plays to the end. “If you want to go quickly go alone, if you want to go far go together”.',
   },
   {
-    heading: `Do good, better, best`,
+    heading: [
+      `Do good, `,
+      // eslint-disable-next-line react/jsx-key
+      <span className="underline underline--d">better</span>,
+      ` best`,
+    ],
     body: 'You know you make a difference to those around you and that rubs off. You know that bit by bit we all can make change happen, care more for the world and those we share it with.',
   },
   {
-    heading: `You're reliable`,
+    heading: [
+      `You're `,
+      // eslint-disable-next-line react/jsx-key
+      <span className="underline underline--e">reliable</span>,
+    ],
     body: 'You’re only as good as your word, you say so, it is so. You turn up and turn out ready for what face you every time.',
   },
   {
-    heading: `You don't bullshit`,
+    heading: [
+      `You `,
+      // eslint-disable-next-line react/jsx-key
+      <span className="underline underline--f">don&#39;t</span>,
+      ` bullshit`,
+    ],
     body: 'You say it how it is. You say “I don’t know but I can find out” no blag, fluff or fumbles you admit your mistakes and you probably don’t have time for gossip.',
   },
 ]
@@ -46,7 +74,7 @@ export const GridItem = ({ heading, body }) => {
   )
 }
 GridItem.propTypes = {
-  heading: PropTypes.string,
+  heading: PropTypes.array,
   body: PropTypes.string,
 }
 
@@ -93,6 +121,44 @@ const GridWrapper = styled.div`
 const GridItemHeading = styled.h2`
   ${getFontStyles(FONT_STYLE_RECKLESS_26_400)}
   margin-bottom: 20px;
+
+  .underline {
+    display: inline-block;
+    position: relative;
+  }
+  .underline::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    transform: translateY(30%);
+    width: 100%;
+    height: 20px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .underline--a::after {
+    background-image: url('/graphics/underline_a.png');
+  }
+  .underline--b::after {
+    background-image: url('/graphics/underline_b.png');
+  }
+  .underline--c::after {
+    background-image: url('/graphics/underline_c.png');
+  }
+  .underline--d::after {
+    background-image: url('/graphics/underline_d.png');
+  }
+  .underline--e::after {
+    background-image: url('/graphics/underline_e.png');
+  }
+  .underline--f::after {
+    background-image: url('/graphics/underline_f.png');
+  }
 `
 const GridItemBody = styled.p`
   ${getFontStyles(FONT_STYLE_RECKLESS_17_400)}
