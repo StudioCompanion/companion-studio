@@ -262,6 +262,10 @@ const FormButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 6px;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `
 const FooterLinks = styled.div`
   display: grid;
