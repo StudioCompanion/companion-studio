@@ -29,7 +29,11 @@ const Callout = () => {
       </div>
       {smallTabletUp && (
         <CalloutImageWrapper>
-          <Image src={'/callout_image.png'} width={176} height={174} />
+          <Image
+            src={'/images/graphics/callout_image.png'}
+            width={176}
+            height={174}
+          />
         </CalloutImageWrapper>
       )}
     </CalloutContainer>

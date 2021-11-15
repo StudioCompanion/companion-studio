@@ -116,20 +116,34 @@ const Footer = () => {
           </FooterText>
           <FooterPartnerLogos>
             <FooterPartnerLogo>
-              <Image src={'/partnerlogo_1percent.svg'} width={83} height={35} />
-            </FooterPartnerLogo>
-            <FooterPartnerLogo>
-              <Image src={'/partnerlogo_CLIP.svg'} width={55} height={35} />
+              <Image
+                src={'/images/graphics/partner-logos/partnerlogo_1percent.svg'}
+                width={83}
+                height={35}
+              />
             </FooterPartnerLogo>
             <FooterPartnerLogo>
               <Image
-                src={'/partnerlogo_newfutures.svg'}
+                src={'/images/graphics/partner-logos/partnerlogo_CLIP.svg'}
+                width={55}
+                height={35}
+              />
+            </FooterPartnerLogo>
+            <FooterPartnerLogo>
+              <Image
+                src={
+                  '/images/graphics/partner-logos/partnerlogo_newfutures.svg'
+                }
                 width={58}
                 height={35}
               />
             </FooterPartnerLogo>
             <FooterPartnerLogo>
-              <Image src={'/partnerlogo_AHU.png'} width={94} height={9} />
+              <Image
+                src={'/images/graphics/partner-logos/partnerlogo_AHU.png'}
+                width={94}
+                height={9}
+              />
             </FooterPartnerLogo>
           </FooterPartnerLogos>
         </FooterLeft>

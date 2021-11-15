@@ -14,7 +14,11 @@ const OpeningText = ({ text }) => {
     <OpeningTextContainer>
       <OpeningTextInner>
         <LogoContainer>
-          <Image src={'/logo_placeholder.png'} width={50} height={48} />
+          <Image
+            src={'/images/graphics/logo_placeholder.png'}
+            width={50}
+            height={48}
+          />
         </LogoContainer>
         <OpeningTextCopy>{text}</OpeningTextCopy>
       </OpeningTextInner>

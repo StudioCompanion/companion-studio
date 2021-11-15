@@ -24,7 +24,7 @@ const Nav = () => {
         <NavContainer>
           <LogoWrapper>
             <Image
-              src={'/logo_placeholder.png'}
+              src={'/images/graphics/logo_placeholder.png'}
               width={45}
               height={45}
               alt="Companion"
