@@ -15,7 +15,9 @@ import {
 } from 'styles/fonts'
 
 const Callout = () => {
-  const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
+  const smallTabletUp = useMediaQuery({
+    query: `(min-width: ${WIDTHS.smallTablet}px)`,
+  })
   return (
     <CalloutContainer href="mailto:hello@companion.studio">
       <div>
@@ -25,7 +27,7 @@ const Callout = () => {
         </CalloutText>
         <Button text={'Message us'} theme={DARK} />
       </div>
-      {tabletUp && (
+      {smallTabletUp && (
         <CalloutImageWrapper>
           <Image src={'/callout_image.png'} width={176} height={174} />
         </CalloutImageWrapper>
@@ -55,10 +57,23 @@ const CalloutContainer = styled.a`
 const CalloutText = styled.p`
   ${getFontStyles(FONT_STYLE_RECKLESS_17_400)}
   margin-bottom: 30px;
+  ${MEDIA_QUERIES.smallTabletUp} {
+    max-width: 300px;
+  }
   ${MEDIA_QUERIES.tabletUp} {
     max-width: 530px;
     ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
   }
 `
 
-const CalloutImageWrapper = styled.div``
+const CalloutImageWrapper = styled.div`
+  ${MEDIA_QUERIES.smallTabletUp} {
+    margin-left: 50px;
+    max-width: 125px;
+  }
+
+  ${MEDIA_QUERIES.tabletUp} {
+    margin-left: 0;
+    max-width: none;
+  }
+`
