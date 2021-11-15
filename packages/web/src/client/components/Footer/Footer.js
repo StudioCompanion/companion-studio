@@ -262,6 +262,7 @@ const FormButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 6px;
+  min-height: 30px;
 `
 const FooterLinks = styled.div`
   display: grid;
