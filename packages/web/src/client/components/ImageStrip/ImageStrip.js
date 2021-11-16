@@ -1,13 +1,11 @@
-import { useRef } from 'react'
 import useMeasure from 'react-use-measure'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 import Marquee from 'react-fast-marquee'
 
-import { COLORS, RADII, PADDING } from 'styles/constants'
+import { RADII, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { getFontStyles } from 'styles/getFontStyles'
 
 const SMALL = 'small'
 const MEDIUM = 'meidum'
@@ -19,22 +17,68 @@ const ImageStripImage = ({ size, rotation, src, alt, width, height }) => {
   function toRadians(angle) {
     return angle * (Math.PI / 180)
   }
-
+  const calcNewDimensions = (w, h, rotation) => {
+    if (!rotation || rotation === 0) {
+      return { x: w, y: h }
+    } else
+      return {
+        x:
+          Math.abs(w * Math.cos(toRadians(90 - rotation))) +
+          Math.abs(h * Math.cos(toRadians(rotation))),
+        y:
+          Math.abs(w * Math.sin(toRadians(rotation))) +
+          Math.abs(h * Math.sin(toRadians(90 - rotation))),
+      }
+  }
   const w = bounds.width
   const h = bounds.height
-  const newWidth =
-    w * Math.cos(toRadians(90 - rotation)) + h * Math.cos(toRadians(rotation))
-
+  const newWidth = calcNewDimensions(w, h, rotation).x
+  const newHeight = calcNewDimensions(w, h, rotation).y
   const paddingX = (newWidth - w) / 2
+  const paddingY = (newHeight - h) / 2
 
   return (
-    <ImageContainer $paddingX={paddingX}>
+    <ImageContainer $paddingX={paddingX} $paddingY={paddingY}>
       <ImageWrapper ref={imageRef} $size={size} $rotation={rotation}>
         <Image src={src} alt={alt} width={width} height={height} />
       </ImageWrapper>
     </ImageContainer>
   )
 }
+
+const ImageWrapper = styled.div`
+  max-width: ${({ $size }) => {
+    switch ($size) {
+      case LARGE:
+        return '275px'
+      case MEDIUM:
+        return '200px'
+      case SMALL:
+        return `150px`
+    }
+  }};
+  border-radius: ${RADII.wrapper_lg}px;
+  overflow: hidden;
+  transform: ${({ $rotation }) =>
+    $rotation ? `rotate(${$rotation}deg)` : 'none'};
+  ${MEDIA_QUERIES.tabletUp} {
+    max-width: ${({ $size }) => {
+      switch ($size) {
+        case LARGE:
+          return '550px'
+        case MEDIUM:
+          return '400px'
+        case SMALL:
+          return `300px`
+      }
+    }};
+  }
+`
+
+const ImageContainer = styled.div`
+  margin: 0 ${PADDING.m / 2}px;
+  padding: ${({ $paddingX, $paddingY }) => `${$paddingX}px ${$paddingY}px`};
+`
 
 ImageStripImage.propTypes = {
   size: PropTypes.string,
@@ -48,7 +92,7 @@ ImageStripImage.propTypes = {
 const ImageStrip = ({}) => {
   return (
     <ImageStripContainer>
-      <Marquee gradient={false} style={{ padding: `50px` }}>
+      <Marquee gradient={false}>
         {images.map(({ src, alt, width, height, size, rotation }, index) => (
           <ImageStripImage
             key={index}
@@ -70,28 +114,6 @@ ImageStrip.propTypes = {}
 export default ImageStrip
 
 const ImageStripContainer = styled.div``
-
-const ImageWrapper = styled.div`
-  max-width: ${({ $size }) => {
-    switch ($size) {
-      case LARGE:
-        return '550px'
-      case MEDIUM:
-        return '400px'
-      case SMALL:
-        return `300px`
-    }
-  }};
-  border-radius: ${RADII.wrapper_lg}px;
-  overflow: hidden;
-  transform: ${({ $rotation }) =>
-    $rotation ? `rotate(${$rotation}deg)` : 'none'};
-`
-
-const ImageContainer = styled.div`
-  margin: ${PADDING.m}px;
-  padding: ${({ $paddingX }) => `0 ${$paddingX}px`};
-`
 
 const images = [
   {
