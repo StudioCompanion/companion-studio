@@ -15,6 +15,9 @@ import {
 } from 'styles/fonts'
 
 const Callout = () => {
+  const tabletUp = useMediaQuery({
+    query: `(min-width: ${WIDTHS.smallTablet}px)`,
+  })
   const smallTabletUp = useMediaQuery({
     query: `(min-width: ${WIDTHS.smallTablet}px)`,
   })
