@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 
 import Button from 'components/Button/Button'
 
-import { COLORS, RADII, PADDING, DARK } from 'styles/constants'
+import { COLORS, RADII, PADDING, THEME_TYPES } from 'styles/constants'
 import { WIDTHS } from '../../styles/dimensions'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
@@ -25,7 +25,7 @@ const Callout = () => {
           Have a project you’d like to work on with us? Interested in joining
           the team? Need a shoulder to cry on?
         </CalloutText>
-        <Button text={'Message us'} theme={DARK} />
+        <Button text={'Message us'} theme={THEME_TYPES.DARK} />
       </div>
       {smallTabletUp && (
         <CalloutImageWrapper>

@@ -43,7 +43,6 @@ export const CSS_GLOBAL = `
   body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     color: ${COLORS.darkblue} 
   }
 
