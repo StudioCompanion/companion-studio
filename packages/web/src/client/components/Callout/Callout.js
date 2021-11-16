@@ -15,9 +15,6 @@ import {
 } from 'styles/fonts'
 
 const Callout = () => {
-  const smallTabletUp = useMediaQuery({
-    query: `(min-width: ${WIDTHS.smallTablet}px)`,
-  })
   return (
     <CalloutContainer href="mailto:hello@companion.studio">
       <div>
@@ -27,15 +24,13 @@ const Callout = () => {
         </CalloutText>
         <Button text={'Message us'} theme={THEME_TYPES.DARK} />
       </div>
-      {smallTabletUp && (
-        <CalloutImageWrapper>
-          <Image
-            src={'/images/graphics/callout_image.png'}
-            width={176}
-            height={174}
-          />
-        </CalloutImageWrapper>
-      )}
+      <CalloutImageWrapper>
+        <Image
+          src={'/images/graphics/callout_image.png'}
+          width={176}
+          height={174}
+        />
+      </CalloutImageWrapper>
     </CalloutContainer>
   )
 }

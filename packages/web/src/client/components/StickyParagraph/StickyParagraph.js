@@ -7,7 +7,7 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
   FONT_STYLE_RECKLESS_20_400,
-  FONT_STYLE_RECKLESS_12_400,
+  FONT_STYLE_RECKLESS_32_400,
 } from 'styles/fonts'
 
 const StickyParagraph = ({ text, image }) => {
@@ -47,6 +47,7 @@ const StickyText = styled.p`
   padding-top: ${PADDING.xl}px;
   position: sticky;
   top: 0;
+  ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
 `
 const ImageContainer = styled.div`
   padding-top: ${PADDING.xl}px;
