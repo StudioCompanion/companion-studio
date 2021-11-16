@@ -2,13 +2,10 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 
-import { COLORS, RADII, PADDING } from 'styles/constants'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { PADDING } from 'styles/constants'
+
 import { getFontStyles } from 'styles/getFontStyles'
-import {
-  FONT_STYLE_RECKLESS_20_400,
-  FONT_STYLE_RECKLESS_32_400,
-} from 'styles/fonts'
+import { FONT_STYLE_RECKLESS_32_400 } from 'styles/fonts'
 
 const StickyParagraph = ({ text, image }) => {
   return (
