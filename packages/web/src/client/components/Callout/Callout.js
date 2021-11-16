@@ -15,9 +15,6 @@ import {
 } from 'styles/fonts'
 
 const Callout = () => {
-  const tabletUp = useMediaQuery({
-    query: `(min-width: ${WIDTHS.smallTablet}px)`,
-  })
   const smallTabletUp = useMediaQuery({
     query: `(min-width: ${WIDTHS.smallTablet}px)`,
   })
@@ -56,6 +53,7 @@ const CalloutContainer = styled.a`
   justify-content: space-between;
   text-decoration: none;
   color: inherit;
+
   ${MEDIA_QUERIES.tabletUp} {
     padding: ${PADDING.m}px;
   }
@@ -74,7 +72,10 @@ const CalloutText = styled.p`
 `
 
 const CalloutImageWrapper = styled.div`
+  display: none;
+
   ${MEDIA_QUERIES.smallTabletUp} {
+    display: block;
     margin-left: 50px;
     max-width: 125px;
   }
