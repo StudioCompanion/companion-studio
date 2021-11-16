@@ -4,6 +4,7 @@ import {
   FONT_STYLE_RECKLESS_12_400,
   FONT_STYLE_RECKLESS_17_400,
   FONT_STYLE_RECKLESS_20_400,
+  FONT_STYLE_RECKLESS_26_400,
   FONT_STYLE_RECKLESS_58_400,
   FONT_STYLE_RECKLESS_32_400,
 } from './fonts'
@@ -114,6 +115,17 @@ export const getFontStyles = (type) => {
             ${MEDIA_QUERIES.tabletUp}{
               font-size: 3.2rem;
               line-height: 3.84rem;
+            }
+          `
+      break
+    case FONT_STYLE_RECKLESS_26_400:
+      fontProps += `
+            font-size: 2rem;
+            line-height: 1.3;
+
+            ${MEDIA_QUERIES.tabletUp}{
+              font-size: 2.6rem;
+              line-height: 1.3;
             }
           `
       break
