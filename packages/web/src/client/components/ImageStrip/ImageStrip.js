@@ -1,8 +1,9 @@
+import { useState, useEffect } from 'react'
 import useMeasure from 'react-use-measure'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
-import Marquee from 'react-fast-marquee'
+import Ticker from 'react-ticker'
 
 import { RADII, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
@@ -46,6 +47,45 @@ const ImageStripImage = ({ size, rotation, src, alt, width, height }) => {
   )
 }
 
+ImageStripImage.propTypes = {
+  size: PropTypes.string,
+  rotation: PropTypes.number,
+  src: PropTypes.string,
+  alt: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
+}
+
+const ImageStrip = ({}) => {
+  return (
+    <ImageStripContainer>
+      <Ticker offset={300}>
+        {() => (
+          <ImageStripWrapper>
+            {images.map(
+              ({ src, alt, width, height, size, rotation }, index) => (
+                <ImageStripImage
+                  key={index}
+                  src={src}
+                  alt={alt}
+                  width={width}
+                  height={height}
+                  size={size}
+                  rotation={rotation}
+                />
+              )
+            )}
+          </ImageStripWrapper>
+        )}
+      </Ticker>
+    </ImageStripContainer>
+  )
+}
+
+ImageStrip.propTypes = {}
+
+export default ImageStrip
+
 const ImageWrapper = styled.div`
   max-width: ${({ $size }) => {
     switch ($size) {
@@ -78,42 +118,16 @@ const ImageWrapper = styled.div`
 const ImageContainer = styled.div`
   margin: 0 ${PADDING.m / 2}px;
   padding: ${({ $paddingX, $paddingY }) => `${$paddingX}px ${$paddingY}px`};
+  flex-shrink: 0;
 `
 
-ImageStripImage.propTypes = {
-  size: PropTypes.string,
-  rotation: PropTypes.number,
-  src: PropTypes.string,
-  alt: PropTypes.string,
-  width: PropTypes.number,
-  height: PropTypes.number,
-}
-
-const ImageStrip = ({}) => {
-  return (
-    <ImageStripContainer>
-      <Marquee gradient={false}>
-        {images.map(({ src, alt, width, height, size, rotation }, index) => (
-          <ImageStripImage
-            key={index}
-            src={src}
-            alt={alt}
-            width={width}
-            height={height}
-            size={size}
-            rotation={rotation}
-          />
-        ))}
-      </Marquee>
-    </ImageStripContainer>
-  )
-}
-
-ImageStrip.propTypes = {}
-
-export default ImageStrip
-
 const ImageStripContainer = styled.div``
+
+const ImageStripWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+`
 
 const images = [
   {
