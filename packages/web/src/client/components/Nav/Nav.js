@@ -9,7 +9,7 @@ import { COLORS, PADDING } from '../../styles/constants'
 
 const Nav = () => {
   const navItems = [
-    { title: 'Work', url: '/work' },
+    { title: 'Work', url: '/' },
     { title: 'Approach', url: '/approach' },
     { title: 'Team', url: '/team' },
   ]

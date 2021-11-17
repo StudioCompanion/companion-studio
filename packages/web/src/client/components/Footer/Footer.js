@@ -74,7 +74,7 @@ const SignUpForm = () => {
 
 const Footer = () => {
   const dateFounded = new Date('2020-11-30').getTime()
-  const [currentTime, setCurrentTime] = useState(Date.now())
+  const [currentTime, setCurrentTime] = useState()
   const timeActive = currentTime - dateFounded
   const seconds = Math.floor((timeActive / 1000) % 60)
   const minutes = Math.floor((timeActive / 1000 / 60) % 60)
