@@ -12,12 +12,13 @@ import {
   THEME_TYPES,
   COLOR,
   BACKGROUND,
+  HOVER_BACKGROUND,
 } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { WIDTHS } from '../../styles/dimensions'
 import { getAspectRatio } from 'helpers/media'
 import { getThemeValue } from 'helpers/theme'
-import Button from 'components/Button/Button'
+import Button, { ButtonContainer } from 'components/Button/Button'
 
 const { STUDIO } = LAYOUTS.card
 
@@ -35,7 +36,7 @@ const HomePageCard = ({
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   return (
     <Link href={link} passHref>
-      <CardWrapper>
+      <CardWrapper $theme={THEME_TYPES.LIGHT}>
         <CardContainer
           $theme={theme}
           $type={type}
@@ -88,11 +89,17 @@ export default HomePageCard
 const CardWrapper = styled.a`
   display: block;
   position: relative;
-  margin-bottom: ${PADDING.s}px;
+  margin: ${PADDING.s}px 0;
   ${MEDIA_QUERIES.tabletUp} {
-    margin-bottom: ${PADDING.m}px;
+    margin: ${PADDING.m}px 0;
   }
   color: inherit;
+
+  &:hover {
+    & ${ButtonContainer} {
+      background-color: ${(p) => getThemeValue(p.$theme, HOVER_BACKGROUND)};
+    }
+  }
 `
 const CardContainer = styled.div`
   background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
