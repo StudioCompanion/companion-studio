@@ -2,18 +2,18 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { WIDTHS } from 'styles/constants'
+import { WIDTHS, PADDING } from 'styles/constants'
 import {
   FONT_STYLE_RECKLESS_12_400,
   FONT_STYLE_RECKLESS_32_400,
 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
 
-const ProjectInfoCard = ({ text, byLine }) => {
+const ProjectInfoCard = ({ children, byLine }) => {
   return (
     <Container>
       <Wrapper>
-        <Text>&quot;{text}&quot;</Text>
+        <Text>&quot;{children}&quot;</Text>
         <ByLine>{byLine}</ByLine>
       </Wrapper>
     </Container>
@@ -21,15 +21,20 @@ const ProjectInfoCard = ({ text, byLine }) => {
 }
 
 ProjectInfoCard.propTypes = {
-  text: PropTypes.string,
+  children: PropTypes.node.isRequired,
   byLine: PropTypes.string,
 }
 
 export default ProjectInfoCard
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
+  margin: ${PADDING.xxl}px 0;
+  ${MEDIA_QUERIES.tabletUp} {
+    margin: ${PADDING.xxl * 2}px 0;
+  }
 `
 const Wrapper = styled.div`
   text-align: center;
