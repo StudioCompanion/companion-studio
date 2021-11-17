@@ -59,23 +59,18 @@ ImageStripImage.propTypes = {
 const ImageStrip = ({}) => {
   return (
     <ImageStripContainer>
-      <Ticker offset={300}>
-        {() => (
-          <ImageStripWrapper>
-            {images.map(
-              ({ src, alt, width, height, size, rotation }, index) => (
-                <ImageStripImage
-                  key={index}
-                  src={src}
-                  alt={alt}
-                  width={width}
-                  height={height}
-                  size={size}
-                  rotation={rotation}
-                />
-              )
-            )}
-          </ImageStripWrapper>
+      <Ticker style={{}}>
+        {({ index }) => (
+          <>
+            <ImageStripImage
+              src={images[index % images.length].src}
+              alt={images[index % images.length].alt}
+              width={images[index % images.length].width}
+              height={images[index % images.length].height}
+              size={images[index % images.length].size}
+              rotation={images[index % images.length].rotation}
+            />
+          </>
         )}
       </Ticker>
     </ImageStripContainer>
@@ -121,7 +116,10 @@ const ImageContainer = styled.div`
   flex-shrink: 0;
 `
 
-const ImageStripContainer = styled.div``
+const ImageStripContainer = styled.div`
+  position: relative;
+  width: 100%;
+`
 
 const ImageStripWrapper = styled.div`
   display: inline-flex;
