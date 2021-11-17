@@ -88,9 +88,9 @@ export default HomePageCard
 const CardWrapper = styled.a`
   display: block;
   position: relative;
-  margin-bottom: ${PADDING.s}px;
+  margin: ${PADDING.s}px 0;
   ${MEDIA_QUERIES.tabletUp} {
-    margin-bottom: ${PADDING.m}px;
+    margin: ${PADDING.m}px 0;
   }
   color: inherit;
 `
