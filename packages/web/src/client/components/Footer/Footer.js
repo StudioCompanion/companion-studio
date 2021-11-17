@@ -214,6 +214,7 @@ const FooterPartnerLogos = styled.div`
   align-items: center;
   margin-right: -45px;
   margin-bottom: -45px;
+  max-width: 100%;
   ${MEDIA_QUERIES.tabletUp} {
     flex-wrap: wrap;
   }
