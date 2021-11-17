@@ -21,11 +21,11 @@ CenteredParagraph.propTypes = {
 export default CenteredParagraph
 
 const CenteredParagraphContainer = styled.div`
-  margin: 40px 0;
+  margin: ${PADDING.xl}px 0;
   display: flex;
   justify-content: center;
   ${MEDIA_QUERIES.tabletUp} {
-    margin: ${PADDING.xl}px 0;
+    margin: ${PADDING.xxl}px 0;
   }
 `
 const CenteredParagraphBody = styled.p`

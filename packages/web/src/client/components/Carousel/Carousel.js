@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
 
-import { RADII, LAYOUTS, DESKTOP, MOBILE } from 'styles/constants'
+import { RADII, LAYOUTS, DESKTOP, MOBILE, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
@@ -28,6 +28,7 @@ const Carousel = ({
   layout = FULL,
   desktopAspect,
   mobileAspect,
+  hero,
 }) => {
   const itemCount = items.length
 
@@ -67,7 +68,7 @@ const Carousel = ({
   }
 
   return (
-    <Wrapper layout={layout}>
+    <Wrapper $hero={hero} layout={layout}>
       <Container
         ref={containerEl}
         onMouseMove={handleMouseMove}
@@ -115,13 +116,16 @@ Carousel.propTypes = {
   layout: PropTypes.string,
   desktopAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   mobileAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  hero: PropTypes.bool,
 }
 
 export default Carousel
 
 const Wrapper = styled.div`
   width: 100%;
+  margin-bottom: ${(p) => (p.$hero ? `${PADDING.xl}px` : `${PADDING.s}px`)};
   ${MEDIA_QUERIES.tabletUp} {
+    margin-bottom: ${(p) => (p.$hero ? `${PADDING.xxl}px` : `${PADDING.m}px`)};
     width: ${({ layout }) => {
       switch (layout) {
         case FULL:
@@ -170,6 +174,7 @@ const Inner = styled.div`
 `
 
 const Dots = styled.div`
+  margin-top: 12px;
   display: flex;
 `
 
@@ -184,9 +189,9 @@ const Dot = styled.div`
 const Caption = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 12px;
 `
 
 const CaptionText = styled.span`
+  margin-top: 12px;
   ${getFontStyles(FONT_STYLE_APFEL_12_400)}
 `

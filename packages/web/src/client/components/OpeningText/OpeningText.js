@@ -36,7 +36,7 @@ const OpeningTextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 24px 0 40px 0;
+  margin: 24px 0 ${PADDING.xl}px 0;
   width: 100%;
   ${MEDIA_QUERIES.tabletUp} {
     position: sticky;

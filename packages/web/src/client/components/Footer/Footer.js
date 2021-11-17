@@ -8,7 +8,7 @@ import isEmail from 'validator/lib/isEmail'
 
 import Input from '../Inputs/Input'
 
-import { COLORS } from 'styles/constants'
+import { COLORS, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
@@ -203,7 +203,7 @@ const FooterLeft = styled.div`
 `
 const FooterRight = styled.div`
   width: 100%;
-  margin-top: 40px;
+  margin-top: ${PADDING.xl}px;
   ${MEDIA_QUERIES.tabletUp} {
     max-width: 450px;
     margin-top: 0;

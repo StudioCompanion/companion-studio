@@ -19,14 +19,15 @@ const TextSection = ({ children }) => {
 
 TextSection.propTypes = {
   children: PropTypes.node.isRequired,
-  heading: PropTypes.string,
 }
 
 export default TextSection
 
 const Container = styled.div`
+  margin-bottom: ${PADDING.xl}px;
   ${MEDIA_QUERIES.tabletUp} {
-    width: 50%;
+    margin-bottom: ${PADDING.xxl}px;
+    width: 47%;
   }
   h3 {
     ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}

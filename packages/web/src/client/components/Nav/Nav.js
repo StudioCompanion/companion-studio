@@ -57,9 +57,9 @@ const LogoWrapper = styled.div`
 const NavContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${PADDING.s}px;
+  margin: ${PADDING.s}px 0 ${PADDING.xl}px;
   ${MEDIA_QUERIES.tabletUp} {
-    margin-top: ${PADDING.m}px;
+    margin: ${PADDING.m}px 0 ${PADDING.xxl}px;
   }
 `
 const NavWrapper = styled.nav`

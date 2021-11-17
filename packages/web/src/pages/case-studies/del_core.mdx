@@ -1,0 +1,64 @@
+import { NextSeo } from 'next-seo'
+
+import TextSection from '../../client/components/TextSection/TextSection.js'
+import Carousel from '../../client/components/Carousel/Carousel.js'
+import ProjectInfoCard from '../../client/components/ProjectInfoCard/ProjectInfoCard.js'
+
+<NextSeo title="Del Core" description="A short description goes here." />
+
+# Del Core
+
+export const hero = {
+  url: {
+    desktop: '/testHero.png',
+    mobile: '/testHero_m.png',
+  },
+  alt: 'Runway from Del Core’s latest show',
+}
+
+<Carousel items={[hero]} hero />
+
+<TextSection>
+
+### Introduction
+
+We were asked by Lane & Associates to partner with them and help to launch a new site for fashion designer Daniel Del Core. Before founding his own fashion label, Daniel worked for Gucci designing bespoke dresses and outfits for people like Bjork, Lana Del Rey and Florence Welch.
+
+Now with a new challenge ahead of him, Daniel was in need of a site that would showcase his collections, give buyers the opportunity to request viewings and highlight his unique offering of 'Made to Measure', bespoke pieces hand made by Daniel himself.
+
+</TextSection>
+
+export const ProjectInfo = {
+  deliverables: 'UX, UI, Development',
+  collaborators: 'Lane & Associates, Ezekiel Aquino',
+  team: 'Myles Palmer, Alexandra Vojktu',
+  duration: '10 Weeks',
+}
+
+<ProjectInfoCard {...ProjectInfo} />
+
+export const video = {
+  url: {
+    desktop: '/testvid_2.mp4',
+    mobile: '/testvid_2.mp4',
+  },
+  caption: 'Placeholder video',
+}
+
+<Carousel items={[video]} />
+
+export const halfItem1 = {
+  url: {
+    desktop: '/testhalf2.png',
+    mobile: '/testhalf2_m.png',
+  },
+  alt: 'Runway from Del Core’s latest show',
+}
+
+export const halfItem2 = {
+  url: { desktop: '/testhalf.png', mobile: '/testhalf_m.png' },
+  alt: 'Runway from Del Core’s latest show',
+}
+
+<Carousel items={[halfItem1]} layout={'half'} />
+<Carousel items={[halfItem2]} layout={'half'} bgColor={'#151915'} />
