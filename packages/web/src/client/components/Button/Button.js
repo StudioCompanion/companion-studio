@@ -46,7 +46,7 @@ Button.propTypes = {
 
 export default Button
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: inline-block;
   border-radius: 500px;
   padding: 8px;
@@ -56,9 +56,6 @@ const ButtonContainer = styled.div`
   z-index: 1;
   text-decoration: none;
   cursor: pointer;
-  a:hover & {
-    background-color: ${(p) => getThemeValue(p.$theme, HOVER_BACKGROUND)};
-  }
 `
 const ButtonAnchor = styled.a`
   display: inline-block;
