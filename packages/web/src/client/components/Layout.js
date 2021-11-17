@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { useRouter } from 'next/router'
 
 import { PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
@@ -9,17 +10,22 @@ import Callout from './Callout/Callout'
 import Footer from './Footer/Footer'
 
 const Layout = ({ children }) => {
+  const router = useRouter()
+  const currentPath = router.pathname
+
   return (
-    <Outer>
+    <>
       <Nav />
-      <main>{children}</main>
-      <Section>
-        <Callout />
-      </Section>
-      <footer>
-        <Footer />
-      </footer>
-    </Outer>
+      <Main $currentPath={currentPath}>{children}</Main>
+      <PaddingContainer>
+        <Section>
+          <Callout />
+        </Section>
+        <footer>
+          <Footer />
+        </footer>
+      </PaddingContainer>
+    </>
   )
 }
 
@@ -29,15 +35,24 @@ Layout.propTypes = {
 
 export default Layout
 
-const Outer = styled.div`
-  padding: ${PADDING.s}px;
+const Main = styled.main`
+  padding: ${({ $currentPath }) =>
+    $currentPath === '/team' ? `0px` : `0px ${PADDING.s}px`};
   ${MEDIA_QUERIES.tabletUp} {
-    padding: ${PADDING.m}px;
+    padding: ${({ $currentPath }) =>
+      $currentPath === '/team' ? `0px` : `0px ${PADDING.m}px`};
   }
 `
 const Section = styled.section`
   margin-bottom: ${PADDING.s}px;
   ${MEDIA_QUERIES.tabletUp} {
     margin-bottom: ${PADDING.m}px;
+  }
+`
+
+const PaddingContainer = styled.div`
+  padding: 0 ${PADDING.s}px ${PADDING.s}px;
+  ${MEDIA_QUERIES.tabletUp} {
+    padding: 0 ${PADDING.m}px ${PADDING.s}px;
   }
 `

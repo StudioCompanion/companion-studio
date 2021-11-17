@@ -45,10 +45,11 @@ const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: ${PADDING.s}px 8px;
-
+  margin: 40px 0;
   ${MEDIA_QUERIES.tabletUp} {
     grid-template-columns: 1fr 1fr 1fr;
     gap: ${PADDING.m}px;
+    margin: ${PADDING.xl}px 0;
   }
 `
 

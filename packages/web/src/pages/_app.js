@@ -1,5 +1,6 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
+import Head from 'next/head'
 import { createGlobalStyle } from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
@@ -18,6 +19,9 @@ const components = {}
 function App({ Component, pageProps }) {
   return (
     <>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <DefaultSeo {...SEO} />
       <Layout>
         <MDXProvider components={components}>

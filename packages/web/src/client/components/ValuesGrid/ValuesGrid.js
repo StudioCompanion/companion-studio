@@ -117,6 +117,10 @@ const GridContainer = styled.div`
 const GridWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
+  ${MEDIA_QUERIES.tabletUp} {
+    margin-top: ${PADDING.xl}px;
+  }
 `
 const GridItemHeading = styled.h2`
   ${getFontStyles(FONT_STYLE_RECKLESS_26_400)}
@@ -170,5 +174,8 @@ const GridItemContainer = styled.div`
 `
 const ButtonWrapper = styled.div`
   align-self: center;
-  margin: 60px 0;
+  margin: 40px 0;
+  ${MEDIA_QUERIES.tabletUp} {
+    margin: ${PADDING.xl}px 0;
+  }
 `

@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
+import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { COLORS, PADDING } from '../../styles/constants'
 
 const Nav = () => {
@@ -56,7 +57,10 @@ const LogoWrapper = styled.div`
 const NavContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${PADDING.m}px;
+  margin-top: ${PADDING.s}px;
+  ${MEDIA_QUERIES.tabletUp} {
+    margin-top: ${PADDING.m}px;
+  }
 `
 const NavWrapper = styled.nav`
   width: fit-content;
