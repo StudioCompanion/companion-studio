@@ -79,7 +79,7 @@ const homePageCardData = [
     },
     heading: 'Our Approach',
     subheading: 'How and why we work the way we do',
-    link: '#',
+    link: '/approach',
     theme: THEME_TYPES.GREY,
   },
   {
@@ -123,7 +123,7 @@ const homePageCardData = [
     },
     heading: 'Our team',
     subheading: 'We’re a small passionate group',
-    link: '#',
+    link: '/team',
     theme: THEME_TYPES.GREY,
   },
   {
