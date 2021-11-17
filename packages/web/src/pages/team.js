@@ -14,17 +14,17 @@ const team = () => {
       <NextSeo title="Team" />
       <ImageStripContainer>Image strip will go here</ImageStripContainer>
       <PaddingContainer>
-        <CenteredParagraph
-          text={
-            'We’re a small and passionate team of designers, engineers and strategists working from London. We’re trying our hardest, despite what Myles might tell you.'
-          }
-        />
+        <CenteredParagraph>
+          We’re a small and passionate team of designers, engineers and
+          strategists working from London. We’re trying our hardest, despite
+          what Myles might tell you.
+        </CenteredParagraph>
         <TeamGrid />
-        <CenteredParagraph
-          text={
-            'We’re always on the lookout for like-minded people to join our team either fulltime or on a freelance basis. Check out some of our key values below and get in touch for a chat.'
-          }
-        />
+        <CenteredParagraph>
+          We’re always on the lookout for like-minded people to join our team
+          either fulltime or on a freelance basis. Check out some of our key
+          values below and get in touch for a chat.
+        </CenteredParagraph>
         <ValuesGrid />
       </PaddingContainer>
     </>

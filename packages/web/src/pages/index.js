@@ -4,7 +4,7 @@ import HomePageCard from 'components/HomePageCard/HomePageCard'
 import OpeningText from 'components/OpeningText/OpeningText'
 
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { LAYOUTS, THEME_TYPES, THEMES } from 'styles/constants'
+import { LAYOUTS, THEME_TYPES } from 'styles/constants'
 
 const { STUDIO, CASE_STUDY } = LAYOUTS.card
 

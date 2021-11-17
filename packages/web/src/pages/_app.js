@@ -1,6 +1,5 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import Head from 'next/head'
 import { createGlobalStyle } from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'

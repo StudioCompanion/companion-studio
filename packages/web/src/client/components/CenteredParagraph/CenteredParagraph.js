@@ -6,16 +6,16 @@ import { WIDTHS, PADDING } from 'styles/constants'
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_32_400 } from 'styles/fonts'
 
-const CenteredParagraph = ({ text }) => {
+const CenteredParagraph = ({ children }) => {
   return (
     <CenteredParagraphContainer>
-      <CenteredParagraphBody>{text}</CenteredParagraphBody>
+      <CenteredParagraphBody>{children}</CenteredParagraphBody>
     </CenteredParagraphContainer>
   )
 }
 
 CenteredParagraph.propTypes = {
-  text: PropTypes.string,
+  children: PropTypes.node.isRequired,
 }
 
 export default CenteredParagraph
