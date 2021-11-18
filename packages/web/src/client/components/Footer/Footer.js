@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Formik, Form, ErrorMessage } from 'formik'
 import isEmail from 'validator/lib/isEmail'
 
 import Input from '../Inputs/Input'
@@ -17,66 +16,57 @@ import {
 } from 'styles/fonts'
 
 const SignUpForm = () => {
-  const [showSuccess, setShowSuccess] = useState(false)
+  // const [showSuccess, setShowSuccess] = useState(false)
+  const [value, setValue] = useState('')
 
-  const handleSuccess = () => {
-    setShowSuccess(true)
-  }
+  // const handleSuccess = () => {
+  //   setShowSuccess(true)
+  // }
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    // await new Promise((r) => setTimeout(r, 500))
-    setSubmitting(false)
-    // handleSuccess()
-    fetch('https://companionstudio.substack.com/api/v1/free?nojs=true', {
-      method: 'POST',
-      // mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values),
-    }).then((res) => {
-      return res.json()
-    })
-    // .then((data) => console.log(data))
-  }
+  // const validateForm = (values) => {
+  //   const errors = {}
+  //   if (!values.email) {
+  //     errors.email = 'Please enter an email address'
+  //   } else if (!isEmail(values.email)) {
+  //     errors.email = 'That didn’t work! Please enter a valid email address'
+  //   }
+  //   return errors
+  // }
 
-  const validateForm = (values) => {
-    const errors = {}
-    if (!values.email) {
-      errors.email = 'Please enter an email address'
-    } else if (!isEmail(values.email)) {
-      errors.email = 'That didn’t work! Please enter a valid email address'
-    }
-    return errors
+  const handleChange = (e) => {
+    setValue(e.target.value)
   }
 
   return (
     <SignUp>
-      <Formik
-        initialValues={{ email: '' }}
-        validate={(values) => validateForm(values)}
-        onSubmit={handleSubmit}
+      <iframe
+        name="dummyframe"
+        id="dummyframe"
+        style={{ display: 'none' }}
+      ></iframe>
+      <Form
+        action="https://companionstudio.substack.com/api/v1/free?nojs=true"
+        target="dummyframe"
+        method="post"
       >
-        {({ isSubmitting }) => (
-          <FormContainer>
-            <InputWrapper>
-              <Input
-                name={'email'}
-                placeholder={'Subscribe for occasional ramblings'}
-                type={'email'}
-                showSuccess={showSuccess}
-              />
-              <FormFeedback>
-                {!showSuccess && <Error name={'email'} component="div" />}
-                {showSuccess && (
-                  <span>Success! Keep an eye out for our ramblings</span>
-                )}
-              </FormFeedback>
-            </InputWrapper>
-            <FormButton type={'submit'} disabled={isSubmitting}>
-              Submit
-            </FormButton>
-          </FormContainer>
-        )}
-      </Formik>
+        <InputWrapper>
+          <Input
+            name={'email'}
+            placeholder={'Subscribe for occasional ramblings'}
+            type={'email'}
+            value={value}
+            handleChange={handleChange}
+          />
+          {/* <FormFeedback>
+            {showSuccess && (
+              <span>Success! Keep an eye out for our ramblings</span>
+            )}
+          </FormFeedback> */}
+        </InputWrapper>
+        <FormButton type={'submit'} value="Submit">
+          Submit
+        </FormButton>
+      </Form>
     </SignUp>
   )
 }
@@ -264,7 +254,7 @@ const ImprintLine = styled.span`
   opacity: 0.5;
 `
 const SignUp = styled.div``
-const FormContainer = styled(Form)`
+const Form = styled.form`
   display: flex;
   align-items: flex-start;
 `
@@ -276,7 +266,6 @@ const FormFeedback = styled.div`
   margin-top: 8px;
   ${getFontStyles(FONT_STYLE_APFEL_12_400)}
 `
-const Error = styled(ErrorMessage)``
 
 const FormButton = styled.button`
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};
