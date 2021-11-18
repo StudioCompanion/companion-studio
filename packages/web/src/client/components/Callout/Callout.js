@@ -11,6 +11,8 @@ import {
   THEME_TYPES,
   HOVER_BACKGROUND,
 } from 'styles/constants'
+
+import { WIDTHS } from '../../styles/dimensions'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
