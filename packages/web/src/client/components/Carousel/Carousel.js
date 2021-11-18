@@ -124,6 +124,7 @@ export default Carousel
 const Wrapper = styled.div`
   width: 100%;
   margin-bottom: ${(p) => (p.$hero ? `${PADDING.xl}px` : `${PADDING.s}px`)};
+
   ${MEDIA_QUERIES.tabletUp} {
     margin-bottom: ${(p) => (p.$hero ? `${PADDING.xxl}px` : `${PADDING.m}px`)};
     width: ${({ layout }) => {
@@ -131,7 +132,7 @@ const Wrapper = styled.div`
         case FULL:
           return '100%'
         case HALF:
-          return '50%'
+          return `calc(50% - ${PADDING.m / 2}px)`
         case TWO_THIRDS:
           return `${(2 / 3) * 100}%`
       }
