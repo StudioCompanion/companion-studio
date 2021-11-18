@@ -146,22 +146,22 @@ const GridItemHeading = styled.h2`
   }
 
   .underline--a::after {
-    background-image: url('/graphics/underline_a.png');
+    background-image: url('/images/graphics/team/underline_a.png');
   }
   .underline--b::after {
-    background-image: url('/graphics/underline_b.png');
+    background-image: url('/images/graphics/team/underline_b.png');
   }
   .underline--c::after {
-    background-image: url('/graphics/underline_c.png');
+    background-image: url('/images/graphics/team/underline_c.png');
   }
   .underline--d::after {
-    background-image: url('/graphics/underline_d.png');
+    background-image: url('/images/graphics/team/underline_d.png');
   }
   .underline--e::after {
-    background-image: url('/graphics/underline_e.png');
+    background-image: url('/images/graphics/team/underline_e.png');
   }
   .underline--f::after {
-    background-image: url('/graphics/underline_f.png');
+    background-image: url('/images/graphics/team/underline_f.png');
   }
 `
 const GridItemBody = styled.p`

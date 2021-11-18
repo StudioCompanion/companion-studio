@@ -41,6 +41,7 @@ const Main = styled.main`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
+
   padding: ${({ $currentPath }) =>
     $currentPath === '/team' ? `0px` : `0px ${PADDING.s}px`};
   ${MEDIA_QUERIES.tabletUp} {

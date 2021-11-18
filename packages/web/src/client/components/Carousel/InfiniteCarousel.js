@@ -12,7 +12,7 @@ import { useSprings, animated } from '@react-spring/web'
 import styled from 'styled-components'
 
 export const InfiniteSlider = forwardRef(
-  ({ items, className, children }, ref) => {
+  ({ items, className, children, onDragEnd }, ref) => {
     const [measureRef, { width }] = useMeasure()
     const prev = useRef([0, 1])
     const index = useRef(0)
@@ -42,6 +42,10 @@ export const InfiniteSlider = forwardRef(
         // This decides if we move over to the next slide or back to the initial
         if (down && (distance > width / 2 || Math.abs(vx) > 1)) {
           cancel((index.current = index.current + (xDir > 0 ? -1 : 1)))
+
+          if (onDragEnd) {
+            onDragEnd(getIndex(index.current))
+          }
         }
         // The actual scrolling value
         const finalY = index.current * width
@@ -72,6 +76,7 @@ export const InfiniteSlider = forwardRef(
               vx < 0 ? prevPosition > position : prevPosition < position,
           }
         })
+
         prev.current = [firstVis, firstVisIdx]
       },
       [width, getIndex, items.length, api, getPos]
@@ -137,6 +142,7 @@ InfiniteSlider.propTypes = {
   items: PropTypes.array.isRequired,
   children: PropTypes.func.isRequired,
   className: PropTypes.string,
+  onDragEnd: PropTypes.func,
 }
 
 const InfiniteContainer = styled.div`
