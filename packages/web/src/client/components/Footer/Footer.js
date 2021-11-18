@@ -23,10 +23,19 @@ const SignUpForm = () => {
     setShowSuccess(true)
   }
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    await new Promise((r) => setTimeout(r, 500))
+  const handleSubmit = (values, { setSubmitting }) => {
+    // await new Promise((r) => setTimeout(r, 500))
     setSubmitting(false)
-    handleSuccess()
+    // handleSuccess()
+    fetch('https://companionstudio.substack.com/api/v1/free?nojs=true', {
+      method: 'POST',
+      // mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(values),
+    }).then((res) => {
+      return res.json()
+    })
+    // .then((data) => console.log(data))
   }
 
   const validateForm = (values) => {
