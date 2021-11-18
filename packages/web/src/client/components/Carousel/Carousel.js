@@ -66,6 +66,10 @@ const Carousel = ({
     }
   }
 
+  const handleDragEnd = (index) => {
+    setActiveIndex(index)
+  }
+
   return (
     <Wrapper layout={layout}>
       <Container
@@ -83,7 +87,11 @@ const Carousel = ({
           {video ? (
             <Video video={video} />
           ) : (
-            <InfiniteSlider ref={sliderApi} items={items}>
+            <InfiniteSlider
+              ref={sliderApi}
+              items={items}
+              onDragEnd={handleDragEnd}
+            >
               {(item) => <Slide key={item.url} url={item.url} alt={item.alt} />}
             </InfiniteSlider>
           )}
