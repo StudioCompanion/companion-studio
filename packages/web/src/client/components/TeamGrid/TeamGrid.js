@@ -50,7 +50,6 @@ const GridWrapper = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     gap: ${PADDING.m}px;
     margin: ${PADDING.xxl}px 0;
-
   }
 `
 
@@ -61,7 +60,6 @@ const GridItemContainer = styled.div`
   padding: 8px;
   ${MEDIA_QUERIES.tabletUp} {
     padding: ${PADDING.xl}px;
-
   }
 `
 
