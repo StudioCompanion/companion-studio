@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 import Ticker from 'react-ticker'
 import PageVisibility from 'react-page-visibility'
-import { useMediaQuery } from 'react-responsive'
 
 import { RADII, PADDING } from 'styles/constants'
 import { WIDTHS } from '../../styles/dimensions'
@@ -13,8 +12,15 @@ const SMALL = 'small'
 const MEDIUM = 'meidum'
 const LARGE = 'large'
 
-const ImageStripImage = ({ size, rotation, src, alt, width, height }) => {
-  const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
+const ImageStripImage = ({
+  size,
+  rotation,
+  src,
+  alt,
+  width,
+  height,
+  tabletUp,
+}) => {
   function toRadians(angle) {
     return angle * (Math.PI / 180)
   }
@@ -85,8 +91,7 @@ ImageStripImage.propTypes = {
   alt: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number,
-  i: PropTypes.number,
-  setImagesLoaded: PropTypes.func,
+  tabletUp: PropTypes.bool,
 }
 
 const ImageStrip = ({}) => {
@@ -94,6 +99,32 @@ const ImageStrip = ({}) => {
   const handleVisibilityChange = (isVisible) => {
     setPageIsVisible(isVisible)
   }
+
+  const getWidth = () =>
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth
+
+  const [tabletUp, setTabletUp] = useState(null)
+
+  useEffect(() => {
+    setTabletUp(getWidth() >= WIDTHS.tablet)
+  }, [])
+
+  useEffect(() => {
+    const handleResize = () => {
+      const breakPoint = getWidth() >= WIDTHS.tablet
+      if (breakPoint !== tabletUp) {
+        setTabletUp(breakPoint)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [tabletUp])
 
   return (
     <PageVisibility onChange={handleVisibilityChange}>
@@ -111,6 +142,7 @@ const ImageStrip = ({}) => {
                     height={image.height}
                     size={image.size}
                     rotation={image.rotation}
+                    tabletUp={tabletUp}
                   />
                 ))}
               </ImageStripWrapper>
