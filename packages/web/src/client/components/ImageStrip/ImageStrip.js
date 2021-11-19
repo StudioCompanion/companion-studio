@@ -1,46 +1,77 @@
-import { useState, useEffect } from 'react'
-import useMeasure from 'react-use-measure'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 import Ticker from 'react-ticker'
+import PageVisibility from 'react-page-visibility'
+import { useMediaQuery } from 'react-responsive'
 
 import { RADII, PADDING } from 'styles/constants'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { WIDTHS } from '../../styles/dimensions'
 
 const SMALL = 'small'
 const MEDIUM = 'meidum'
 const LARGE = 'large'
 
 const ImageStripImage = ({ size, rotation, src, alt, width, height }) => {
-  const [imageRef, bounds] = useMeasure()
-
+  const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   function toRadians(angle) {
     return angle * (Math.PI / 180)
   }
-  const calcNewDimensions = (w, h, rotation) => {
+  const calcNewDimensions = (resizedWidth, resizedHeight, rotation) => {
     if (!rotation || rotation === 0) {
-      return { x: w, y: h }
+      return { x: resizedWidth, y: resizedHeight }
     } else
       return {
         x:
-          Math.abs(w * Math.cos(toRadians(90 - rotation))) +
-          Math.abs(h * Math.cos(toRadians(rotation))),
+          Math.abs(resizedHeight * Math.cos(toRadians(90 - rotation))) +
+          Math.abs(resizedWidth * Math.cos(toRadians(rotation))),
         y:
-          Math.abs(w * Math.sin(toRadians(rotation))) +
-          Math.abs(h * Math.sin(toRadians(90 - rotation))),
+          Math.abs(resizedWidth * Math.sin(toRadians(rotation))) +
+          Math.abs(resizedHeight * Math.sin(toRadians(90 - rotation))),
       }
   }
-  const w = bounds.width
-  const h = bounds.height
-  const newWidth = calcNewDimensions(w, h, rotation).x
-  const newHeight = calcNewDimensions(w, h, rotation).y
-  const paddingX = (newWidth - w) / 2
-  const paddingY = (newHeight - h) / 2
+  const getMaxWidth = () => {
+    switch (size) {
+      case LARGE:
+        if (tabletUp) return 550
+        else return 275
+      case MEDIUM:
+        if (tabletUp) return 400
+        else return 200
+      case SMALL:
+        if (tabletUp) return 300
+        else return 150
+    }
+  }
+
+  const maxWidth = getMaxWidth()
+
+  const resizedWidth = Math.min(maxWidth, width)
+  const resizedHeight = (height * resizedWidth) / width
+
+  const rotatedWidth = calcNewDimensions(
+    resizedWidth,
+    resizedHeight,
+    rotation
+  ).x
+  const rotatedHeight = calcNewDimensions(
+    resizedWidth,
+    resizedHeight,
+    rotation
+  ).y
+  const paddingX = Math.round(rotatedWidth - resizedWidth) / 2
+  const paddingY = Math.round(rotatedHeight - resizedHeight) / 2
 
   return (
-    <ImageContainer $paddingX={paddingX} $paddingY={paddingY}>
-      <ImageWrapper ref={imageRef} $size={size} $rotation={rotation}>
+    <ImageContainer
+      style={{
+        width: `${rotatedWidth}px`,
+        height: `${rotatedHeight}px`,
+        padding: `${paddingY}px ${paddingX}px`,
+      }}
+    >
+      <ImageWrapper $size={size} $rotation={rotation}>
         <Image src={src} alt={alt} width={width} height={height} />
       </ImageWrapper>
     </ImageContainer>
@@ -54,26 +85,40 @@ ImageStripImage.propTypes = {
   alt: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number,
+  i: PropTypes.number,
+  setImagesLoaded: PropTypes.func,
 }
 
 const ImageStrip = ({}) => {
+  const [pageIsVisible, setPageIsVisible] = useState(true)
+  const handleVisibilityChange = (isVisible) => {
+    setPageIsVisible(isVisible)
+  }
+
   return (
-    <ImageStripContainer>
-      <Ticker style={{}}>
-        {({ index }) => (
-          <>
-            <ImageStripImage
-              src={images[index % images.length].src}
-              alt={images[index % images.length].alt}
-              width={images[index % images.length].width}
-              height={images[index % images.length].height}
-              size={images[index % images.length].size}
-              rotation={images[index % images.length].rotation}
-            />
-          </>
+    <PageVisibility onChange={handleVisibilityChange}>
+      <ImageStripContainer>
+        {pageIsVisible && (
+          <Ticker>
+            {() => (
+              <ImageStripWrapper>
+                {images.map((image, i) => (
+                  <ImageStripImage
+                    key={i}
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    size={image.size}
+                    rotation={image.rotation}
+                  />
+                ))}
+              </ImageStripWrapper>
+            )}
+          </Ticker>
         )}
-      </Ticker>
-    </ImageStripContainer>
+      </ImageStripContainer>
+    </PageVisibility>
   )
 }
 
@@ -82,37 +127,14 @@ ImageStrip.propTypes = {}
 export default ImageStrip
 
 const ImageWrapper = styled.div`
-  max-width: ${({ $size }) => {
-    switch ($size) {
-      case LARGE:
-        return '275px'
-      case MEDIUM:
-        return '200px'
-      case SMALL:
-        return `150px`
-    }
-  }};
   border-radius: ${RADII.wrapper_lg}px;
   overflow: hidden;
   transform: ${({ $rotation }) =>
     $rotation ? `rotate(${$rotation}deg)` : 'none'};
-  ${MEDIA_QUERIES.tabletUp} {
-    max-width: ${({ $size }) => {
-      switch ($size) {
-        case LARGE:
-          return '550px'
-        case MEDIUM:
-          return '400px'
-        case SMALL:
-          return `300px`
-      }
-    }};
-  }
 `
 
 const ImageContainer = styled.div`
   margin: 0 ${PADDING.m / 2}px;
-  padding: ${({ $paddingX, $paddingY }) => `${$paddingX}px ${$paddingY}px`};
   flex-shrink: 0;
 `
 
