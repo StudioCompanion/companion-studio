@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import Image from 'next/image'
@@ -16,25 +16,47 @@ import {
 } from 'styles/fonts'
 
 const SignUpForm = () => {
-  // const [showSuccess, setShowSuccess] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
   const [value, setValue] = useState('')
 
-  // const handleSuccess = () => {
-  //   setShowSuccess(true)
-  // }
+  const [touched, setTouched] = useState(false)
 
-  // const validateForm = (values) => {
-  //   const errors = {}
-  //   if (!values.email) {
-  //     errors.email = 'Please enter an email address'
-  //   } else if (!isEmail(values.email)) {
-  //     errors.email = 'That didn’t work! Please enter a valid email address'
-  //   }
-  //   return errors
-  // }
+  const [errorMessage, setErrorMessage] = useState()
+
+  const handleBlur = (e) => {
+    setTouched(true)
+    setErrorMessage(validateForm(value))
+  }
+
+  const handleSubmit = () => {
+    if (validateForm(value)) {
+      preventDefault()
+      setErrorMessage(validateForm(value))
+    } else {
+      setShowSuccess(true)
+      setValue('')
+      setTouched(false)
+    }
+  }
+
+  const validateForm = (value) => {
+    let error
+    if (value === '' || value === null) {
+      error = 'Please enter an email address'
+    } else if (!isEmail(value)) {
+      error = 'That didn’t work! Please enter a valid email address'
+    }
+    return error
+  }
 
   const handleChange = (e) => {
     setValue(e.target.value)
+    if ((errorMessage && errorMessage !== '') || touched) {
+      setErrorMessage(validateForm(value) || null)
+    }
+    if (showSuccess) {
+      setShowSuccess(false)
+    }
   }
 
   return (
@@ -48,6 +70,7 @@ const SignUpForm = () => {
         action="https://companionstudio.substack.com/api/v1/free?nojs=true"
         target="dummyframe"
         method="post"
+        onSubmit={handleSubmit}
       >
         <InputWrapper>
           <Input
@@ -56,14 +79,20 @@ const SignUpForm = () => {
             type={'email'}
             value={value}
             handleChange={handleChange}
+            handleBlur={handleBlur}
           />
-          {/* <FormFeedback>
-            {showSuccess && (
+          <FormFeedback>
+            {errorMessage && errorMessage !== '' && <span>{errorMessage}</span>}
+            {!(errorMessage && errorMessage !== '') && showSuccess && (
               <span>Success! Keep an eye out for our ramblings</span>
             )}
-          </FormFeedback> */}
+          </FormFeedback>
         </InputWrapper>
-        <FormButton type={'submit'} value="Submit">
+        <FormButton
+          type={'submit'}
+          value="Submit"
+          disabled={!value || (errorMessage && errorMessage !== '')}
+        >
           Submit
         </FormButton>
       </Form>

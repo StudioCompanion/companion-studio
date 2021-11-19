@@ -5,7 +5,14 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { COLORS, HIDDEN } from 'styles/constants'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 
-const Input = ({ value, name, placeholder, type, handleChange }) => {
+const Input = ({
+  value,
+  name,
+  placeholder,
+  type,
+  handleChange,
+  handleBlur,
+}) => {
   return (
     <>
       <Label htmlFor={name}>Email</Label>
@@ -15,6 +22,7 @@ const Input = ({ value, name, placeholder, type, handleChange }) => {
         name={name}
         value={value}
         onChange={handleChange}
+        onBlur={handleBlur}
       />
     </>
   )
@@ -26,6 +34,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.string,
   handleChange: PropTypes.func,
+  handleBlur: PropTypes.func,
 }
 
 export default Input
