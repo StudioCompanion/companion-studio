@@ -5,11 +5,12 @@ import Link from 'next/link'
 
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
+import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { COLORS, PADDING } from '../../styles/constants'
 
 const Nav = () => {
   const navItems = [
-    { title: 'Work', url: '/work' },
+    { title: 'Work', url: '/' },
     { title: 'Approach', url: '/approach' },
     { title: 'Team', url: '/team' },
   ]
@@ -56,7 +57,10 @@ const LogoWrapper = styled.div`
 const NavContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${PADDING.m}px;
+  margin: ${PADDING.s}px 0 ${PADDING.xl}px;
+  ${MEDIA_QUERIES.tabletUp} {
+    margin: ${PADDING.m}px 0 ${PADDING.xxl}px;
+  }
 `
 const NavWrapper = styled.nav`
   width: fit-content;

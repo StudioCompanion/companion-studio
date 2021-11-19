@@ -1,11 +1,17 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
-import { useMediaQuery } from 'react-responsive'
 
-import Button from 'components/Button/Button'
+import { getThemeValue } from 'helpers/theme'
+import Button, { ButtonContainer } from 'components/Button/Button'
 
-import { COLORS, RADII, PADDING, DARK } from 'styles/constants'
+import {
+  COLORS,
+  RADII,
+  PADDING,
+  THEME_TYPES,
+  HOVER_BACKGROUND,
+} from 'styles/constants'
+
 import { WIDTHS } from '../../styles/dimensions'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
@@ -15,32 +21,28 @@ import {
 } from 'styles/fonts'
 
 const Callout = () => {
-  const smallTabletUp = useMediaQuery({
-    query: `(min-width: ${WIDTHS.smallTablet}px)`,
-  })
   return (
-    <CalloutContainer href="mailto:hello@companion.studio">
+    <CalloutContainer
+      $theme={THEME_TYPES.DARK}
+      href="mailto:hello@companion.studio"
+    >
       <div>
         <CalloutText>
           Have a project you’d like to work on with us? Interested in joining
           the team? Need a shoulder to cry on?
         </CalloutText>
-        <Button text={'Message us'} theme={DARK} />
+        <Button text={'Message us'} theme={THEME_TYPES.DARK} />
       </div>
-      {smallTabletUp && (
-        <CalloutImageWrapper>
-          <Image
-            src={'/images/graphics/callout_image.png'}
-            width={176}
-            height={174}
-          />
-        </CalloutImageWrapper>
-      )}
+      <CalloutImageWrapper>
+        <Image
+          src={'/images/graphics/callout_image.png'}
+          width={176}
+          height={174}
+        />
+      </CalloutImageWrapper>
     </CalloutContainer>
   )
 }
-
-Callout.propTypes = {}
 
 export default Callout
 
@@ -53,8 +55,15 @@ const CalloutContainer = styled.a`
   justify-content: space-between;
   text-decoration: none;
   color: inherit;
+
   ${MEDIA_QUERIES.tabletUp} {
     padding: ${PADDING.m}px;
+  }
+
+  &:hover {
+    ${ButtonContainer} {
+      background-color: ${(p) => getThemeValue(p.$theme, HOVER_BACKGROUND)};
+    }
   }
 `
 
@@ -71,7 +80,10 @@ const CalloutText = styled.p`
 `
 
 const CalloutImageWrapper = styled.div`
+  display: none;
+
   ${MEDIA_QUERIES.smallTabletUp} {
+    display: block;
     margin-left: 50px;
     max-width: 125px;
   }

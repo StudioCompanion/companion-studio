@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { COLORS, RADII } from 'styles/constants'
+import { COLORS, RADII, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
@@ -34,13 +34,16 @@ ProjectInfoCard.propTypes = {
 export default ProjectInfoCard
 
 const Container = styled.dl`
+  margin-bottom: ${PADDING.xl}px;
   width: 100%;
   background-color: ${COLORS.lightgrey};
-  border-radius: ${RADII.wrapper_lg};
+  border-radius: ${RADII.wrapper_lg}px;
   padding: 16px;
   overflow-wrap: break-word;
   ${MEDIA_QUERIES.tabletUp} {
+    width: 40%;
     max-width: 540px;
+    margin-bottom: ${PADDING.xxl}px;
   }
 `
 

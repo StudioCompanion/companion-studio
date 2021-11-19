@@ -7,20 +7,27 @@ import { DefaultSeo } from 'next-seo'
 import SEO from '../../next-seo.config'
 import { CSS_GLOBAL } from 'styles/global'
 
+import Layout from '../client/components/Layout'
+import Testimonial from 'components/Testimonial/Testimonial'
+
 const GlobalStyle = createGlobalStyle`
   ${CSS_GLOBAL}
 `
 
-const components = {}
+const components = {
+  blockquote: ({ children }) => <Testimonial>{children}</Testimonial>,
+}
 
 function App({ Component, pageProps }) {
   return (
     <>
       <DefaultSeo {...SEO} />
-      <MDXProvider components={components}>
-        <Component {...pageProps} />
-        <GlobalStyle />
-      </MDXProvider>
+      <Layout>
+        <MDXProvider components={components}>
+          <Component {...pageProps} />
+          <GlobalStyle />
+        </MDXProvider>
+      </Layout>
     </>
   )
 }

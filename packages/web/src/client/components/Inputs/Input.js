@@ -38,4 +38,5 @@ const FormInput = styled(Field)`
   &::placeholder {
     color: rgba(255, 255, 255, 57%);
   }
+  min-height: 30px;
 `

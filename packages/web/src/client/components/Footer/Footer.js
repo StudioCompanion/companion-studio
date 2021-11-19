@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Formik, Form, ErrorMessage } from 'formik'
-import isEmail from 'validator/es/lib/isEmail'
+import isEmail from 'validator/lib/isEmail'
 
 import Input from '../Inputs/Input'
 
-import { COLORS } from 'styles/constants'
+import { COLORS, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
@@ -74,7 +74,7 @@ const SignUpForm = () => {
 
 const Footer = () => {
   const dateFounded = new Date('2020-11-30').getTime()
-  const [currentTime, setCurrentTime] = useState(Date.now())
+  const [currentTime, setCurrentTime] = useState()
   const timeActive = currentTime - dateFounded
   const seconds = Math.floor((timeActive / 1000) % 60)
   const minutes = Math.floor((timeActive / 1000 / 60) % 60)
@@ -203,7 +203,7 @@ const FooterLeft = styled.div`
 `
 const FooterRight = styled.div`
   width: 100%;
-  margin-top: 40px;
+  margin-top: ${PADDING.xl}px;
   ${MEDIA_QUERIES.tabletUp} {
     max-width: 450px;
     margin-top: 0;
@@ -214,6 +214,7 @@ const FooterPartnerLogos = styled.div`
   align-items: center;
   margin-right: -45px;
   margin-bottom: -45px;
+  max-width: 100%;
   ${MEDIA_QUERIES.tabletUp} {
     flex-wrap: wrap;
   }
@@ -276,6 +277,7 @@ const FormButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 6px;
+  min-height: 30px;
 
   &:hover {
     opacity: 0.8;

@@ -1,50 +1,56 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { WIDTHS } from 'styles/constants'
-import {
-  FONT_STYLE_RECKLESS_12_400,
-  FONT_STYLE_RECKLESS_32_400,
-} from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
+import {
+  FONT_STYLE_RECKLESS_32_400,
+  FONT_STYLE_RECKLESS_12_400,
+} from 'styles/fonts'
+import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { PADDING, WIDTHS } from 'styles/constants'
 
-const ProjectInfoCard = ({ text, byLine }) => {
+const Testimonial = ({ children }) => {
   return (
-    <Container>
-      <Wrapper>
-        <Text>&quot;{text}&quot;</Text>
-        <ByLine>{byLine}</ByLine>
-      </Wrapper>
-    </Container>
+    <TestimonialContainer>
+      <TestimonialWrapper>
+        <TestimonialText>{children}</TestimonialText>
+      </TestimonialWrapper>
+    </TestimonialContainer>
   )
 }
 
-ProjectInfoCard.propTypes = {
-  text: PropTypes.string,
+export default Testimonial
+
+Testimonial.propTypes = {
+  children: PropTypes.node.isRequired,
   byLine: PropTypes.string,
 }
 
-export default ProjectInfoCard
-
-const Container = styled.div`
+const TestimonialContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
+  margin: ${PADDING.xxl}px 0;
+  ${MEDIA_QUERIES.tabletUp} {
+    margin: ${PADDING.xxl * 2}px 0;
+  }
 `
-const Wrapper = styled.div`
+const TestimonialWrapper = styled.div`
   text-align: center;
   ${MEDIA_QUERIES.tabletUp} {
     max-width: ${WIDTHS.centeredP}px;
   }
 `
-const Text = styled.h2`
-  ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
-  margin-bottom: 16px;
-`
-const ByLine = styled.h3`
-  ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
-  ${MEDIA_QUERIES.tabletUp} {
-    font-size: 2rem;
-    line-height: 2.6rem;
+const TestimonialText = styled.div`
+  p {
+    ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
+    margin-bottom: 16px;
+  }
+  h3 {
+    ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
+    ${MEDIA_QUERIES.tabletUp} {
+      font-size: 2rem;
+      line-height: 2.6rem;
+    }
   }
 `

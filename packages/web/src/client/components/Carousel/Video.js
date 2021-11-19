@@ -20,6 +20,11 @@ const Video = ({ video }) => {
     if (firstUpdate.current) {
       firstUpdate.current = false
       videoRef.current.defaultMuted = true
+      if (video.poster) {
+        videoRef.current.poster = tabletUp
+          ? video.poster.desktop
+          : video.poster.mobile
+      }
       return
     }
   })
@@ -63,7 +68,6 @@ const Video = ({ video }) => {
         ref={videoRef}
         onClick={handleVideoClick}
         muted
-        poster={tabletUp ? video.poster.desktop : video.poster.mobile}
       >
         {isLoaded && (
           <source
