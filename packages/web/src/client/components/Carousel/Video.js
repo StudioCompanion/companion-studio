@@ -6,6 +6,8 @@ import { useMediaQuery } from 'react-responsive'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
 import { WIDTHS } from '../../styles/dimensions'
+import { RADII } from 'styles/constants'
+import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
 const Video = ({ video }) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
@@ -60,22 +62,19 @@ const Video = ({ video }) => {
   }
 
   return (
-    <VideoContainer $playing={playing}>
-      <VideoItem
-        autoPlay
-        loop
-        playsinline
-        ref={videoRef}
-        onClick={handleVideoClick}
-        muted
-      >
-        {isLoaded && (
-          <source
-            src={tabletUp ? video.url.desktop : video.url.mobile}
-            type="video/mp4"
-          ></source>
-        )}
-      </VideoItem>
+    <VideoContainer $playing={playing} onClick={handleVideoClick}>
+      <VideoWrapper>
+        <VideoInner>
+          <VideoItem autoPlay loop playsinline ref={videoRef} muted>
+            {isLoaded && (
+              <source
+                src={tabletUp ? video.url.desktop : video.url.mobile}
+                type="video/mp4"
+              ></source>
+            )}
+          </VideoItem>
+        </VideoInner>
+      </VideoWrapper>
     </VideoContainer>
   )
 }
@@ -92,10 +91,34 @@ const VideoContainer = styled.div`
       ? `url(/icons/cursor_pause.svg), auto;`
       : `url(/icons/cursor_play.svg), auto;`};
   height: 100%;
+  display: flex;
+  justify-content: center;
 `
 
 const VideoItem = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: ${RADII.video_mobile}px;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.08);
+  ${MEDIA_QUERIES.tabletUp} {
+    border-radius: ${RADII.video_desktop}px;
+  }
+`
+
+const VideoWrapper = styled.div`
+  width: 88%;
+  position: relative;
+  height: 100%;
+`
+const VideoInner = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  padding-top: 56.25%;
 `
