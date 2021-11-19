@@ -36,7 +36,7 @@ export default team
 const ImageStripContainer = styled.div`
   background-color: lightgrey;
   height: 293px;
-  margin: 40px 0;
+  margin: ${PADDING.xl}px 0;
   ${MEDIA_QUERIES.tabletUp} {
     height: 635px;
     margin: ${PADDING.l} 0;

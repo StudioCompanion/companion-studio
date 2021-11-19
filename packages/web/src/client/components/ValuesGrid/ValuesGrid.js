@@ -103,10 +103,10 @@ export default ValuesGrid
 
 const GridContainer = styled.div`
   display: grid;
-  gap: 40px;
+  gap: ${PADDING.xl}px;
   grid-template-columns: 1fr;
   ${MEDIA_QUERIES.tabletUp} {
-    gap: ${PADDING.xl}px ${PADDING.m}px;
+    gap: ${PADDING.xxl}px ${PADDING.m}px;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   }
 
@@ -117,9 +117,9 @@ const GridContainer = styled.div`
 const GridWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: ${PADDING.xl}px;
   ${MEDIA_QUERIES.tabletUp} {
-    margin-top: ${PADDING.xl}px;
+    margin-top: ${PADDING.xxl}px;
   }
 `
 const GridItemHeading = styled.h2`
@@ -174,8 +174,8 @@ const GridItemContainer = styled.div`
 `
 const ButtonWrapper = styled.div`
   align-self: center;
-  margin: 40px 0;
+  margin: ${PADDING.xl}px 0;
   ${MEDIA_QUERIES.tabletUp} {
-    margin: ${PADDING.xl}px 0;
+    margin: ${PADDING.xxl}px 0;
   }
 `

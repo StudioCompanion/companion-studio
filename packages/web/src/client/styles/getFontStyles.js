@@ -131,8 +131,12 @@ export const getFontStyles = (type) => {
       break
     case FONT_STYLE_RECKLESS_58_400:
       fontProps += `
-            font-size: 5.8rem;
+            font-size: 4.4rem;
             line-height: 1.2;
+
+          ${MEDIA_QUERIES.tabletUp} {
+            font-size: 5.8rem;
+            }
           `
       break
   }

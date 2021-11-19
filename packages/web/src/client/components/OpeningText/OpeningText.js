@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 
+import { PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
@@ -36,7 +37,7 @@ const OpeningTextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 24px 0 40px 0;
+  margin: 24px 0 ${PADDING.xl}px 0;
   width: 100%;
   ${MEDIA_QUERIES.tabletUp} {
     position: sticky;

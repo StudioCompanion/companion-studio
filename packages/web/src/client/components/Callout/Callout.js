@@ -1,7 +1,5 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
-import { useMediaQuery } from 'react-responsive'
 
 import { getThemeValue } from 'helpers/theme'
 import Button, { ButtonContainer } from 'components/Button/Button'
@@ -13,6 +11,7 @@ import {
   THEME_TYPES,
   HOVER_BACKGROUND,
 } from 'styles/constants'
+
 import { WIDTHS } from '../../styles/dimensions'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
@@ -44,8 +43,6 @@ const Callout = () => {
     </CalloutContainer>
   )
 }
-
-Callout.propTypes = {}
 
 export default Callout
 

@@ -41,13 +41,13 @@ const StickyContainer = styled.div`
 `
 const StickyText = styled.p`
   text-align: center;
-  padding-top: ${PADDING.xl}px;
+  padding-top: ${PADDING.xxl}px;
   position: sticky;
   top: 0;
   ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
 `
 const ImageContainer = styled.div`
-  padding-top: ${PADDING.xl}px;
+  padding-top: ${PADDING.xxl}px;
   min-height: 400px;
   display: flex;
   align-items: center;

@@ -20,7 +20,7 @@ const ApproachContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: ${PADDING.xl}px;
+  padding-bottom: ${PADDING.xxl}px;
 `
 
 const paragraphs = [

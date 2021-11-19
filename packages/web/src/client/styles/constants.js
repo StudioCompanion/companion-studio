@@ -50,7 +50,8 @@ export const PADDING = {
   s: 16,
   m: 20,
   l: 24,
-  xl: 60,
+  xl: 40,
+  xxl: 60,
 }
 
 export const COLORS = {
