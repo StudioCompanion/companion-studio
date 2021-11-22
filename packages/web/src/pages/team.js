@@ -7,12 +7,15 @@ import { PADDING } from 'styles/constants'
 import TeamGrid from 'components/TeamGrid/TeamGrid'
 import ValuesGrid from 'components/ValuesGrid/ValuesGrid'
 import CenteredParagraph from 'components/CenteredParagraph/CenteredParagraph'
+import ImageStrip from 'components/ImageStrip/ImageStrip'
 
 const team = () => {
   return (
     <>
       <NextSeo title="Team" />
-      <ImageStripContainer>Image strip will go here</ImageStripContainer>
+      <ImageStripContainer>
+        <ImageStrip />
+      </ImageStripContainer>
       <PaddingContainer>
         <CenteredParagraph>
           We’re a small and passionate team of designers, engineers and
@@ -34,11 +37,8 @@ const team = () => {
 export default team
 
 const ImageStripContainer = styled.div`
-  background-color: lightgrey;
-  height: 293px;
   margin: ${PADDING.xl}px 0;
   ${MEDIA_QUERIES.tabletUp} {
-    height: 635px;
     margin: ${PADDING.l} 0;
   }
 `

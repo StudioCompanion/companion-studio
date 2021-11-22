@@ -9394,6 +9394,13 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-page-visibility@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/react-page-visibility/-/react-page-visibility-6.4.0.tgz#0684fe80338e716c9ed2d34169fa3cbb3882096b"
+  integrity sha512-5vQ0zQU2DvKCQAxle9l5V6uxw2m180Lk7Jem+obmTeQ503fvMJLSUzFgWtTEgUVynhUx2pd+RzafnuMAG8uD6A==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-popper-tooltip@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/react-popper-tooltip/-/react-popper-tooltip-3.1.1.tgz#329569eb7b287008f04fcbddb6370452ad3f9eac"
@@ -9455,6 +9462,11 @@ react-textarea-autosize@^8.3.0:
     "@babel/runtime" "^7.10.2"
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
+
+react-ticker@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-ticker/-/react-ticker-1.2.2.tgz#12cda5ff8266c6fe90ffcd8c58e12ba1596ddf24"
+  integrity sha512-PXUujoPJvajxwOfosuuujlrBUrjgGp4FB4haWFOI25ujhMppW4SuLkiOdQ9AylrWN3yTHWdk2kbQWe3n9SjFGA==
 
 react-use-gesture@6:
   version "6.0.14"
