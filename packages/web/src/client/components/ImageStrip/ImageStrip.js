@@ -100,31 +100,24 @@ const ImageStrip = ({}) => {
     setPageIsVisible(isVisible)
   }
 
-  const getWidth = () =>
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth
-
-  const [tabletUp, setTabletUp] = useState(null)
-
-  useEffect(() => {
-    setTabletUp(getWidth() >= WIDTHS.tablet)
-  }, [])
+  const [isTabletUp, setIsTabletUp] = useState(null)
 
   useEffect(() => {
     const handleResize = () => {
-      const breakPoint = getWidth() >= WIDTHS.tablet
-      if (breakPoint !== tabletUp) {
-        setTabletUp(breakPoint)
+      const isNowTabletUp = window.innerWidth >= WIDTHS.tablet
+      if (isNowTabletUp !== isTabletUp) {
+        setIsTabletUp(breakPoint)
       }
     }
+
+    handleResize()
 
     window.addEventListener('resize', handleResize)
 
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [tabletUp])
+  }, [isTabletUp])
 
   return (
     <PageVisibility onChange={handleVisibilityChange}>
@@ -142,7 +135,7 @@ const ImageStrip = ({}) => {
                     height={image.height}
                     size={image.size}
                     rotation={image.rotation}
-                    tabletUp={tabletUp}
+                    tabletUp={isTabletUp}
                   />
                 ))}
               </ImageStripWrapper>
