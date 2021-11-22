@@ -17,6 +17,7 @@ import testHalf2_m from '../../../../public/testhalf2_m.png'
 import testTwoThirds2 from '../../../../public/test2-3_2.png'
 import testTwoThirds2_m from '../../../../public/test2-3_2_m.png'
 import testVid from '../../../../public/testvid.mp4'
+import testPhoneVid from '../../../../public/testvid_phone.mp4'
 import testVid_poster from '../../../../public/testvid_placeholder.png'
 import testBg from '../../../../public/testbg_1.png'
 
@@ -94,6 +95,14 @@ const videoItem = {
   caption: 'lovely video',
 }
 
+const phone_videoItem = {
+  poster: { desktop: testVid_poster, mobile: testVid_poster },
+  url: { desktop: testPhoneVid, mobile: testPhoneVid },
+  caption: 'lovely phone video',
+  width: 534,
+  height: 1080,
+}
+
 export default {
   title: 'Components/Carousel',
   component: Carousel,
@@ -141,6 +150,10 @@ FullW_BgImage.args = { items: items, bgImage: `${testBg}` }
 export const FullW_Video = Template.bind({})
 
 FullW_Video.args = { items: [videoItem, ...items], bgColor: '#E6EEEC' }
+
+export const Phone_Video = Template.bind({})
+
+Phone_Video.args = { items: [phone_videoItem], bgColor: '#E6EEEC' }
 
 export const HalfW = Template.bind({})
 

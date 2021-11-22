@@ -7,7 +7,6 @@ import { RADII, LAYOUTS, DESKTOP, MOBILE, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
-
 import { getAspectRatio } from 'helpers/media'
 
 import Slide from './Slide'
@@ -86,7 +85,12 @@ const Carousel = ({
       >
         <Inner>
           {video ? (
-            <Video video={video} />
+            <Video
+              video={video}
+              layout={layout}
+              desktopAspect={desktopAspect}
+              mobileAspect={mobileAspect}
+            />
           ) : (
             <InfiniteSlider
               ref={sliderApi}

@@ -6,10 +6,11 @@ import { useMediaQuery } from 'react-responsive'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
 import { WIDTHS } from '../../styles/dimensions'
-import { RADII, ASPECT_RATIOS } from 'styles/constants'
+import { RADII, DESKTOP, MOBILE } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { getAspectRatio } from 'helpers/media'
 
-const Video = ({ video }) => {
+const Video = ({ video, layout, desktopAspect, mobileAspect }) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   const videoRef = useRef()
   const firstUpdate = useRef(true)
@@ -63,8 +64,20 @@ const Video = ({ video }) => {
 
   return (
     <VideoContainer $playing={playing} onClick={handleVideoClick}>
-      <VideoWrapper>
-        <VideoInner>
+      <VideoWrapper
+        $width={video.width}
+        $height={video.height}
+        $layout={layout}
+        $desktopAspect={desktopAspect}
+        $mobileAspect={mobileAspect}
+      >
+        <VideoInner
+          $width={video.width}
+          $height={video.height}
+          $layout={layout}
+          $desktopAspect={desktopAspect}
+          $mobileAspect={mobileAspect}
+        >
           <VideoItem autoPlay loop playsinline ref={videoRef} muted>
             {isLoaded && (
               <source
@@ -81,6 +94,9 @@ const Video = ({ video }) => {
 
 Video.propTypes = {
   video: PropTypes.object,
+  layout: PropTypes.string,
+  desktopAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  mobileAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default Video
@@ -110,7 +126,24 @@ const VideoItem = styled.video`
 `
 
 const VideoWrapper = styled.div`
-  width: 88%;
+  width: ${(p) =>
+    p.$height / p.$width > 1
+      ? `calc(${p.$width / p.$height} * ${getAspectRatio(
+          p.$layout,
+          MOBILE,
+          p.$mobileAspect
+        )} * .88)`
+      : `88%`};
+  ${MEDIA_QUERIES.tabletUp} {
+    width: ${(p) =>
+      p.$height / p.$width > 1
+        ? `calc(${p.$width / p.$height} * ${getAspectRatio(
+            p.$layout,
+            DESKTOP,
+            p.$desktopAspect
+          )} * .88)`
+        : `88%`};
+  }
   position: relative;
   height: 100%;
 `
@@ -120,5 +153,14 @@ const VideoInner = styled.div`
   top: 50%;
   left: 0;
   transform: translate(0, -50%);
-  padding-top: ${ASPECT_RATIOS.carousel.full.desktop};
+  padding-top: ${(p) =>
+    p.$width && p.$height
+      ? `${Math.round((p.$height / p.$width) * 100)}%`
+      : getAspectRatio(p.$layout, MOBILE, p.$mobileAspect)};
+  ${MEDIA_QUERIES.tabletUp} {
+    padding-top: ${(p) =>
+      p.$width && p.$height
+        ? `${Math.round((p.$height / p.$width) * 100)}%`
+        : getAspectRatio(p.$layout, DESKTOP, p.$desktopAspect)};
+  }
 `
