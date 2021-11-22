@@ -41,10 +41,10 @@
     "chromatic": "npx chromatic --project-token=1a465065bcd3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.2.1",
+    "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "@mdx-js/loader": "^1.6.22",
-    "@next/mdx": "^12.0.2",
+    "@next/mdx": "^12.0.4",
     "@storybook/addon-actions": "6.3.12",
     "@storybook/addon-essentials": "6.3.12",
     "@storybook/react": "6.3.12",
@@ -54,7 +54,7 @@
     "@types/styled-components": "^5.1.15",
     "babel-plugin-styled-components": "^1.13.3",
     "@babel/preset-react": "^7.16.0",
-    "chromatic": "^6.0.5",
+    "chromatic": "^6.0.6",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.2",
     "lint-staged": "^11.2.3",
