@@ -24,14 +24,14 @@ TextSection.propTypes = {
 export default TextSection
 
 const Container = styled.div`
-  margin-bottom: ${PADDING.xl}px;
+  margin: ${PADDING.xl - PADDING.s}px 0 ${PADDING.xl}px;
   ${MEDIA_QUERIES.tabletUp} {
-    margin-bottom: ${PADDING.xxl}px;
+    margin: ${PADDING.xxl - PADDING.m}px 0 ${PADDING.xxl}px;
     width: 47%;
   }
   h3 {
     ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
-    margin-bottom: ${PADDING[0]}px;
+    margin-bottom: ${PADDING.s}px;
   }
 `
 const BodyContainer = styled.div`
