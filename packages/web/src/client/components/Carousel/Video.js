@@ -17,6 +17,7 @@ const Video = ({ video, layout, desktopAspect, mobileAspect }) => {
   const { isIntersecting } = useIntersectionObserver(videoRef)
   const [playing, setPlaying] = useState()
   const [isLoaded, setLoaded] = useState(false)
+  const [xy, setXY] = useState(0, 0)
   const autoPause = useRef(false)
 
   useEffect(() => {
@@ -63,7 +64,15 @@ const Video = ({ video, layout, desktopAspect, mobileAspect }) => {
   }
 
   return (
-    <VideoContainer $playing={playing} onClick={handleVideoClick}>
+    <VideoContainer
+      $playing={playing}
+      onClick={handleVideoClick}
+      onMouseMove={({ clientX, clientY }) => setXY([clientX, clientY])}
+    >
+      <Cursor
+        style={{ left: `${xy[0]}px`, top: `${xy[1]}px` }}
+        $playing={playing}
+      />
       <VideoWrapper
         $width={video.width}
         $height={video.height}
@@ -102,10 +111,7 @@ Video.propTypes = {
 export default Video
 
 const VideoContainer = styled.div`
-  cursor: ${(p) =>
-    p.$playing
-      ? `url(/icons/cursor_pause.svg), auto;`
-      : `url(/icons/cursor_play.svg), auto;`};
+  cursor: none;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -163,4 +169,20 @@ const VideoInner = styled.div`
         ? `${Math.round((p.$height / p.$width) * 100)}%`
         : getAspectRatio(p.$layout, DESKTOP, p.$desktopAspect)};
   }
+`
+const Cursor = styled.div`
+  width: 24px;
+  height: 24px;
+  position: fixed;
+  z-index: 1;
+  top: -24px;
+  left: -24px;
+  background: center / contain no-repeat
+    ${(p) =>
+      p.$playing
+        ? `url('/icons/cursor_pause.svg')`
+        : `url('/icons/cursor_play.svg')`};
+  filter: invert(0.5);
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
 `
