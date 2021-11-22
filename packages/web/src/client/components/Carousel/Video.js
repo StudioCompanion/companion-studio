@@ -6,7 +6,7 @@ import { useMediaQuery } from 'react-responsive'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
 import { WIDTHS } from '../../styles/dimensions'
-import { RADII } from 'styles/constants'
+import { RADII, ASPECT_RATIOS } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
 const Video = ({ video }) => {
@@ -120,5 +120,5 @@ const VideoInner = styled.div`
   top: 50%;
   left: 0;
   transform: translate(0, -50%);
-  padding-top: 56.25%;
+  padding-top: ${ASPECT_RATIOS.carousel.full.desktop};
 `
