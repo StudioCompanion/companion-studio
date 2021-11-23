@@ -106,7 +106,7 @@ const ImageStrip = ({}) => {
     const handleResize = () => {
       const isNowTabletUp = window.innerWidth >= WIDTHS.tablet
       if (isNowTabletUp !== isTabletUp) {
-        setIsTabletUp(breakPoint)
+        setIsTabletUp(isNowTabletUp)
       }
     }
 
