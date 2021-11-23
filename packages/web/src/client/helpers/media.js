@@ -4,7 +4,7 @@ const { carousel, card } = LAYOUTS
 
 export const getAspectRatio = (layout, size, suppliedVal) => {
   if (suppliedVal) {
-    return evalAspect(suppliedVal)
+    return evalAspect(suppliedVal[size])
   }
   switch (layout) {
     case carousel.FULL:

@@ -24,8 +24,7 @@ const { STUDIO } = LAYOUTS.card
 
 const HomePageCard = ({
   type,
-  desktopAspect,
-  mobileAspect,
+  aspect,
   image,
   heading,
   subheading,
@@ -37,12 +36,7 @@ const HomePageCard = ({
   return (
     <Link href={link} passHref>
       <CardWrapper $theme={THEME_TYPES.LIGHT}>
-        <CardContainer
-          $theme={theme}
-          $type={type}
-          $mobileAspect={mobileAspect}
-          $desktopAspect={desktopAspect}
-        >
+        <CardContainer $theme={theme} $type={type} $aspect={aspect}>
           <CardInner>
             <ImageContainer>
               <ImageWrapper>
@@ -79,8 +73,7 @@ HomePageCard.propTypes = {
   button: PropTypes.string,
   link: PropTypes.string,
   type: PropTypes.string,
-  desktopAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  mobileAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  aspect: PropTypes.object,
   theme: PropTypes.string,
 }
 
@@ -103,13 +96,13 @@ const CardWrapper = styled.a`
 `
 const CardContainer = styled.div`
   background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
-  padding-top: ${({ $type, $mobileAspect }) =>
-    getAspectRatio($type, MOBILE, $mobileAspect)};
+  padding-top: ${({ $type, $aspect }) =>
+    getAspectRatio($type, MOBILE, $aspect)};
   border-radius: 12px;
 
   ${MEDIA_QUERIES.tabletUp} {
-    padding-top: ${({ $type, $desktopAspect }) =>
-      getAspectRatio($type, DESKTOP, $desktopAspect)};
+    padding-top: ${({ $type, $aspect }) =>
+      getAspectRatio($type, DESKTOP, $aspect)};
   }
 `
 const CardInner = styled.div`
