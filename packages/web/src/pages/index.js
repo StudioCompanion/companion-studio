@@ -112,7 +112,7 @@ const homePageCardData = [
     },
     heading: 'Del Core',
     subheading: 'Presenting mutant glamour with precision',
-    link: '#',
+    link: '/case-studies/del_core',
     theme: THEME_TYPES.DARK,
   },
   {

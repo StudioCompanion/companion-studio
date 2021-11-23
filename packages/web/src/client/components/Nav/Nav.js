@@ -23,14 +23,16 @@ const Nav = () => {
     <>
       {currentPath !== '/' && (
         <NavContainer>
-          <LogoWrapper>
-            <Image
-              src={'/images/graphics/logo_placeholder.png'}
-              width={45}
-              height={45}
-              alt="Companion"
-            />
-          </LogoWrapper>
+          <Link href={'/'} passHref>
+            <LogoWrapper>
+              <Image
+                src={'/images/graphics/logo_placeholder.png'}
+                width={45}
+                height={45}
+                alt="Companion"
+              />
+            </LogoWrapper>
+          </Link>
           <NavWrapper>
             <NavList>
               {navItems.map((item, index) => (
@@ -51,7 +53,8 @@ const Nav = () => {
 }
 
 export default Nav
-const LogoWrapper = styled.div`
+const LogoWrapper = styled.a`
+  display: block;
   margin-right: 10px;
 `
 const NavContainer = styled.div`
