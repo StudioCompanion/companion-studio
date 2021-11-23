@@ -153,7 +153,11 @@ FullW_Video.args = { items: [videoItem, ...items], bgColor: '#E6EEEC' }
 
 export const Phone_Video = Template.bind({})
 
-Phone_Video.args = { items: [phone_videoItem], bgColor: '#E6EEEC' }
+Phone_Video.args = {
+  items: [phone_videoItem],
+  bgColor: '#E6EEEC',
+  aspect: { desktop: '16/9', mobile: '103%' },
+}
 
 export const HalfW = Template.bind({})
 

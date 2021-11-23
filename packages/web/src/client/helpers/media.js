@@ -22,8 +22,14 @@ export const getAspectRatio = (layout, size, suppliedVal) => {
 
 const evalAspect = (aspect) => {
   if (typeof aspect === 'string') {
-    const x = aspect.split('/')
-    return `${(x[1] / x[0]) * 100}%`
+    if (aspect.includes('/')) {
+      const x = aspect.split('/')
+      return `${(x[1] / x[0]) * 100}%`
+    }
+    if (aspect.includes('%')) {
+      return aspect
+    }
+    return
   }
   if (typeof aspect === 'number') {
     return `${(1 / aspect) * 100}%`
