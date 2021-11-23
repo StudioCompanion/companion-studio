@@ -23,14 +23,16 @@ const Nav = () => {
     <>
       {currentPath !== '/' && (
         <NavContainer>
-          <LogoWrapper>
-            <Image
-              src={'/images/graphics/logo_placeholder.png'}
-              width={45}
-              height={45}
-              alt="Companion"
-            />
-          </LogoWrapper>
+          <Link href={'/'} passHref>
+            <LogoWrapper>
+              <Image
+                src={'/images/graphics/logo_placeholder.png'}
+                width={45}
+                height={45}
+                alt="Companion"
+              />
+            </LogoWrapper>
+          </Link>
           <NavWrapper>
             <NavList>
               {navItems.map((item, index) => (
@@ -51,18 +53,25 @@ const Nav = () => {
 }
 
 export default Nav
-const LogoWrapper = styled.div`
+const LogoWrapper = styled.a`
+  display: block;
   margin-right: 10px;
 `
 const NavContainer = styled.div`
+  position: sticky;
+  z-index: 1;
+  top: 0;
   display: flex;
   justify-content: center;
-  margin: ${PADDING.s}px 0 ${PADDING.xl}px;
+  padding-top: ${PADDING.s}px;
+  margin: 0 0 ${PADDING.xl}px;
   ${MEDIA_QUERIES.tabletUp} {
-    margin: ${PADDING.m}px 0 ${PADDING.xxl}px;
+    margin: 0 0 ${PADDING.xxl}px;
+    padding-top: ${PADDING.m}px;
   }
 `
 const NavWrapper = styled.nav`
+  background-color: white;
   width: fit-content;
   padding: 6px;
   border-radius: 500px;
@@ -71,10 +80,10 @@ const NavWrapper = styled.nav`
 `
 const NavList = styled.ul`
   display: flex;
-  margin-right: -20px;
+  margin-right: -6px;
 `
 const NavItem = styled.li`
-  margin-right: 20px;
+  margin-right: 6px;
 `
 const NavLink = styled.a`
   text-decoration: none;

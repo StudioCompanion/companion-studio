@@ -17,13 +17,13 @@ export const CSS_GLOBAL = `
   @font-face {
     font-family: 'Reckless Neue';
     src: url('/fonts/RecklessNeue-Book.woff') format('woff');
-    font-weight: 300;
+    font-weight: 400;
   }
 
   @font-face {
     font-family: 'Reckless Neue';
     src: url('/fonts/RecklessNeue-Regular.woff') format('woff');
-    font-weight: 400;
+    font-weight: 500;
   }
 
   *,
