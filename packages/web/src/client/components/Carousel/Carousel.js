@@ -20,15 +20,7 @@ const { FULL, HALF, TWO_THIRDS } = LAYOUTS.carousel
 
 const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
 
-const Carousel = ({
-  bgColor,
-  bgImage,
-  items,
-  layout = FULL,
-  desktopAspect,
-  mobileAspect,
-  hero,
-}) => {
+const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
   const itemCount = items.length
 
   const video = items.find(
@@ -80,17 +72,11 @@ const Carousel = ({
         $bgColor={bgColor}
         $bgImage={bgImage}
         $direction={direction}
-        $desktopAspect={desktopAspect}
-        $mobileAspect={mobileAspect}
+        $aspect={aspect}
       >
         <Inner>
           {video ? (
-            <Video
-              video={video}
-              layout={layout}
-              desktopAspect={desktopAspect}
-              mobileAspect={mobileAspect}
-            />
+            <Video video={video} layout={layout} aspect={aspect} />
           ) : (
             <InfiniteSlider
               ref={sliderApi}
@@ -126,8 +112,7 @@ Carousel.propTypes = {
   bgImage: PropTypes.string,
   items: PropTypes.array,
   layout: PropTypes.string,
-  desktopAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  mobileAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  aspect: PropTypes.object,
   hero: PropTypes.bool,
 }
 
@@ -155,8 +140,8 @@ const Wrapper = styled.div`
 const Container = styled.div`
   width: 100%;
   position: relative;
-  padding-top: ${({ layout, $mobileAspect }) =>
-    getAspectRatio(layout, MOBILE, $mobileAspect)};
+  padding-top: ${({ layout, $aspect }) =>
+    getAspectRatio(layout, MOBILE, $aspect)};
   background-color: ${(p) => (p.$bgColor ? p.$bgColor : 'transparent')};
   background-image: ${(p) => (p.$bgImage ? `url(${p.$bgImage})` : 'none')};
   background-size: cover;
@@ -173,8 +158,8 @@ const Container = styled.div`
 
   ${MEDIA_QUERIES.tabletUp} {
     border-radius: ${RADII.wrapper}px;
-    padding-top: ${({ layout, $desktopAspect }) =>
-      getAspectRatio(layout, DESKTOP, $desktopAspect)};
+    padding-top: ${({ layout, $aspect }) =>
+      getAspectRatio(layout, DESKTOP, $aspect)};
   }
 `
 

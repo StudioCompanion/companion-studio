@@ -6,11 +6,11 @@ import { useMediaQuery } from 'react-responsive'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
 import { WIDTHS } from '../../styles/dimensions'
-import { RADII, DESKTOP, MOBILE } from 'styles/constants'
+import { RADII, DESKTOP, MOBILE, ASPECT_RATIOS } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getAspectRatio } from 'helpers/media'
 
-const Video = ({ video, layout, desktopAspect, mobileAspect }) => {
+const Video = ({ video, layout, aspect }) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   const videoRef = useRef()
   const firstUpdate = useRef(true)
@@ -18,6 +18,34 @@ const Video = ({ video, layout, desktopAspect, mobileAspect }) => {
   const [playing, setPlaying] = useState()
   const [isLoaded, setLoaded] = useState(false)
   const autoPause = useRef(false)
+
+  const widthFactor = 88
+  const videoAspectRatio = Math.round(video.height / video.width)
+  const calcWidth = (size) =>
+    //Is the video portrait (height > width)?
+    videoAspectRatio > 1
+      ? //If it is portrait, use the video's aspect ratio calculate the width at which the height of the video will be [widthFactor]% of the height of the container
+        `${
+          (((1 / videoAspectRatio) *
+            parseFloat(getAspectRatio(layout, size, aspect))) /
+            100) *
+          widthFactor
+        }%`
+      : //If it is landscape, set the width of the video to [widthFactor]% of the container
+        `${widthFactor}%`
+
+  const mobileWidth = calcWidth(MOBILE)
+  const desktopWidth = calcWidth(DESKTOP)
+
+  const calcPadding = () =>
+    //If a with and height are provided for the video
+    video.width && video.height
+      ? //Set the padding to the aspect ratio
+        `${videoAspectRatio * 100}%`
+      : //Otherwise set the padding to 16/9
+        ASPECT_RATIOS.video.widescreen
+
+  const videoPadding = calcPadding()
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -64,20 +92,8 @@ const Video = ({ video, layout, desktopAspect, mobileAspect }) => {
 
   return (
     <VideoContainer $playing={playing} onClick={handleVideoClick}>
-      <VideoWrapper
-        $width={video.width}
-        $height={video.height}
-        $layout={layout}
-        $desktopAspect={desktopAspect}
-        $mobileAspect={mobileAspect}
-      >
-        <VideoInner
-          $width={video.width}
-          $height={video.height}
-          $layout={layout}
-          $desktopAspect={desktopAspect}
-          $mobileAspect={mobileAspect}
-        >
+      <VideoWrapper $mobileWidth={mobileWidth} $desktopWidth={desktopWidth}>
+        <VideoInner $videoPadding={videoPadding}>
           <VideoItem autoPlay loop playsinline ref={videoRef} muted>
             {isLoaded && (
               <source
@@ -95,8 +111,7 @@ const Video = ({ video, layout, desktopAspect, mobileAspect }) => {
 Video.propTypes = {
   video: PropTypes.object,
   layout: PropTypes.string,
-  desktopAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  mobileAspect: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  aspect: PropTypes.object,
 }
 
 export default Video
@@ -126,23 +141,9 @@ const VideoItem = styled.video`
 `
 
 const VideoWrapper = styled.div`
-  width: ${(p) =>
-    p.$height / p.$width > 1
-      ? `calc(${p.$width / p.$height} * ${getAspectRatio(
-          p.$layout,
-          MOBILE,
-          p.$mobileAspect
-        )} * .88)`
-      : `88%`};
+  width: ${(p) => p.$mobileWidth};
   ${MEDIA_QUERIES.tabletUp} {
-    width: ${(p) =>
-      p.$height / p.$width > 1
-        ? `calc(${p.$width / p.$height} * ${getAspectRatio(
-            p.$layout,
-            DESKTOP,
-            p.$desktopAspect
-          )} * .88)`
-        : `88%`};
+    width: ${(p) => p.$desktopWidth};
   }
   position: relative;
   height: 100%;
@@ -153,14 +154,5 @@ const VideoInner = styled.div`
   top: 50%;
   left: 0;
   transform: translate(0, -50%);
-  padding-top: ${(p) =>
-    p.$width && p.$height
-      ? `${Math.round((p.$height / p.$width) * 100)}%`
-      : getAspectRatio(p.$layout, MOBILE, p.$mobileAspect)};
-  ${MEDIA_QUERIES.tabletUp} {
-    padding-top: ${(p) =>
-      p.$width && p.$height
-        ? `${Math.round((p.$height / p.$width) * 100)}%`
-        : getAspectRatio(p.$layout, DESKTOP, p.$desktopAspect)};
-  }
+  padding-top: ${(p) => p.$videoPadding};
 `
