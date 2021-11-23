@@ -10,14 +10,15 @@ import { RADII, DESKTOP, MOBILE, ASPECT_RATIOS } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getAspectRatio } from 'helpers/media'
 
-const Video = ({ video, layout, aspect }) => {
+import Cursor from './Cursor'
+
+const Video = ({ video, layout, aspect, xy, showCursor }) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   const videoRef = useRef()
   const firstUpdate = useRef(true)
   const { isIntersecting } = useIntersectionObserver(videoRef)
   const [playing, setPlaying] = useState()
   const [isLoaded, setLoaded] = useState(false)
-  const [xy, setXY] = useState(0, 0)
   const autoPause = useRef(false)
 
   const widthFactor = 88
@@ -92,20 +93,27 @@ const Video = ({ video, layout, aspect }) => {
   }
 
   return (
-    <VideoContainer $playing={playing} onClick={handleVideoClick}>
-      <VideoWrapper $mobileWidth={mobileWidth} $desktopWidth={desktopWidth}>
-        <VideoInner $videoPadding={videoPadding}>
-          <VideoItem autoPlay loop playsinline ref={videoRef} muted>
-            {isLoaded && (
-              <source
-                src={tabletUp ? video.url.desktop : video.url.mobile}
-                type="video/mp4"
-              ></source>
-            )}
-          </VideoItem>
-        </VideoInner>
-      </VideoWrapper>
-    </VideoContainer>
+    <>
+      <Cursor
+        showCursor={showCursor}
+        xy={xy}
+        icon={playing ? '/icons/cursor_pause.svg' : '/icons/cursor_play.svg'}
+      />
+      <VideoContainer $playing={playing} onClick={handleVideoClick}>
+        <VideoWrapper $mobileWidth={mobileWidth} $desktopWidth={desktopWidth}>
+          <VideoInner $videoPadding={videoPadding}>
+            <VideoItem autoPlay loop playsinline ref={videoRef} muted>
+              {isLoaded && (
+                <source
+                  src={tabletUp ? video.url.desktop : video.url.mobile}
+                  type="video/mp4"
+                ></source>
+              )}
+            </VideoItem>
+          </VideoInner>
+        </VideoWrapper>
+      </VideoContainer>
+    </>
   )
 }
 
@@ -113,6 +121,8 @@ Video.propTypes = {
   video: PropTypes.object,
   layout: PropTypes.string,
   aspect: PropTypes.object,
+  xy: PropTypes.array,
+  showCursor: PropTypes.bool,
 }
 
 export default Video
@@ -153,20 +163,4 @@ const VideoInner = styled.div`
   left: 0;
   transform: translate(0, -50%);
   padding-top: ${(p) => p.$videoPadding};
-`
-const Cursor = styled.div`
-  width: 24px;
-  height: 24px;
-  position: fixed;
-  z-index: 1;
-  top: -24px;
-  left: -24px;
-  background: center / contain no-repeat
-    ${(p) =>
-      p.$playing
-        ? `url('/icons/cursor_pause.svg')`
-        : `url('/icons/cursor_play.svg')`};
-  filter: invert(0.5);
-  mix-blend-mode: difference;
-  transform: translate(-50%, -50%);
 `

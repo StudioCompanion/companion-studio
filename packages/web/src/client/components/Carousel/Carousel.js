@@ -12,6 +12,7 @@ import { getAspectRatio } from 'helpers/media'
 import Slide from './Slide'
 import Video from './Video'
 import { InfiniteSlider } from './InfiniteCarousel'
+import Cursor from './Cursor'
 
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
@@ -21,6 +22,9 @@ const { FULL, HALF, TWO_THIRDS } = LAYOUTS.carousel
 const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
 
 const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
+  const [xy, setXY] = useState([0, 0])
+  const [showCursor, setShowCursor] = useState(false)
+
   const itemCount = items.length
 
   const video = items.find(
@@ -33,13 +37,14 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
 
   const [direction, setDirection] = useState(null)
 
-  const handleMouseMove = ({ clientX }) => {
+  const handleMouseMove = ({ clientX, clientY }) => {
+    setXY([clientX, clientY])
     const x = clientX - left
     if (itemCount > 1 && !video) {
       if (x >= Math.round(width / 2) && direction !== FORWARD) {
         setDirection(FORWARD)
       }
-      if (x < Math.round(width / 2) && direction !== BACKWARD) {
+      if (x < Math.round(width / 2) && direction !== BACKWARD && !video) {
         setDirection(BACKWARD)
       }
     }
@@ -62,48 +67,78 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
     setActiveIndex(index)
   }
 
+  const handleMouseEnter = () => {
+    setShowCursor(true)
+  }
+  const handleMouseLeave = () => {
+    setShowCursor(false)
+  }
+
   return (
-    <Wrapper $hero={hero} layout={layout}>
-      <Container
-        ref={containerEl}
-        onMouseMove={handleMouseMove}
-        onClick={handleClick}
-        layout={layout}
-        $bgColor={bgColor}
-        $bgImage={bgImage}
-        $direction={direction}
-        $aspect={aspect}
-      >
-        <Inner>
-          {video ? (
-            <Video video={video} layout={layout} aspect={aspect} />
-          ) : (
-            <InfiniteSlider
-              ref={sliderApi}
-              items={items}
-              onDragEnd={handleDragEnd}
-            >
-              {(item) => <Slide key={item.url} url={item.url} alt={item.alt} />}
-            </InfiniteSlider>
-          )}
-        </Inner>
-      </Container>
-      <Caption>
-        {items[activeIndex].caption ? (
-          <CaptionText>{items[activeIndex].caption}</CaptionText>
-        ) : null}
-        {!video && itemCount > 1 && (
-          <Dots>
-            {items.map((_, index) => (
-              <Dot
-                key={index}
-                style={{ opacity: activeIndex === index ? 1 : 0.2 }}
+    <>
+      {!video && (
+        <Cursor
+          xy={xy}
+          showCursor={showCursor}
+          icon={
+            direction === FORWARD
+              ? '/icons/cursor_right_arrow.svg'
+              : '/icons/cursor_left_arrow.svg'
+          }
+        />
+      )}
+      <Wrapper $hero={hero} layout={layout}>
+        <Container
+          ref={containerEl}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onMouseMove={handleMouseMove}
+          onClick={handleClick}
+          layout={layout}
+          $bgColor={bgColor}
+          $bgImage={bgImage}
+          $direction={direction}
+          $aspect={aspect}
+        >
+          <Inner>
+            {video ? (
+              <Video
+                video={video}
+                layout={layout}
+                aspect={aspect}
+                xy={xy}
+                showCursor={showCursor}
               />
-            ))}
-          </Dots>
-        )}
-      </Caption>
-    </Wrapper>
+            ) : (
+              <InfiniteSlider
+                ref={sliderApi}
+                items={items}
+                onDragEnd={handleDragEnd}
+              >
+                {(item) => (
+                  <Slide key={item.url} url={item.url} alt={item.alt} />
+                )}
+              </InfiniteSlider>
+            )}
+          </Inner>
+        </Container>
+        <Caption>
+          {items[activeIndex].caption ? (
+            <CaptionText>{items[activeIndex].caption}</CaptionText>
+          ) : null}
+          {!video && itemCount > 1 && (
+            <Dots>
+              {items.map((_, index) => (
+                <Dot
+                  key={index}
+                  style={{ opacity: activeIndex === index ? 1 : 0.2 }}
+                />
+              ))}
+            </Dots>
+          )}
+        </Caption>
+      </Wrapper>
+    </>
   )
 }
 
@@ -121,6 +156,7 @@ export default Carousel
 const Wrapper = styled.div`
   width: 100%;
   margin-bottom: ${(p) => (p.$hero ? `${PADDING.xl}px` : `${PADDING.s}px`)};
+  cursor: none;
 
   ${MEDIA_QUERIES.tabletUp} {
     margin-bottom: ${(p) => (p.$hero ? `${PADDING.xxl}px` : `${PADDING.m}px`)};
@@ -147,13 +183,13 @@ const Container = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: ${RADII.wrapper_mobile}px;
-  cursor: ${(p) => {
+  /* cursor: ${(p) => {
     if (p.$direction === FORWARD) {
       return `url(/icons/cursor_right_arrow.svg), auto;`
     } else if (p.$direction === BACKWARD) {
       return `url(/icons/cursor_left_arrow.svg), auto;`
     } else return 'default'
-  }};
+  }}; */
   overflow: hidden;
 
   ${MEDIA_QUERIES.tabletUp} {
