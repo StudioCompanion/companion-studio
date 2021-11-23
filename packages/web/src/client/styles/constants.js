@@ -7,6 +7,9 @@ export const LAYOUTS = {
 }
 
 export const ASPECT_RATIOS = {
+  video: {
+    widescreen: '56.25%',
+  },
   carousel: {
     full: {
       desktop: '56.25%',
