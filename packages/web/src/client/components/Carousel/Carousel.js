@@ -25,6 +25,7 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
   const [xy, setXY] = useState([0, 0])
   const [showCursor, setShowCursor] = useState(false)
 
+
   const itemCount = items.length
 
   const video = items.find(

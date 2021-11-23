@@ -10,6 +10,7 @@ import { RADII, DESKTOP, MOBILE, ASPECT_RATIOS } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getAspectRatio } from 'helpers/media'
 
+
 import Cursor from './Cursor'
 
 const Video = ({ video, layout, aspect, xy, showCursor }) => {
@@ -93,6 +94,7 @@ const Video = ({ video, layout, aspect, xy, showCursor }) => {
   }
 
   return (
+
     <>
       <Cursor
         showCursor={showCursor}
@@ -123,6 +125,7 @@ Video.propTypes = {
   aspect: PropTypes.object,
   xy: PropTypes.array,
   showCursor: PropTypes.bool,
+
 }
 
 export default Video
