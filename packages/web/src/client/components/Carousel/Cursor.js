@@ -1,18 +1,31 @@
+import React, { useEffect } from 'react'
+
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-const Cursor = ({ xy, showCursor, icon }) => {
+const Cursor = React.forwardRef(({ showCursor, icon }, cursorRef) => {
+  // useEffect(() => {
+  //   const mouseMoveHandler = (event) => {
+  //     const { clientX, clientY } = event
+  //     cursorRef.current.style.left = `${clientX}px`
+  //     cursorRef.current.style.top = `${clientY}px`
+  //   }
+  //   document.addEventListener('mousemove', mouseMoveHandler)
+
+  //   return () => {
+  //     document.removeEventListener('mousemove', mouseMoveHandler)
+  //   }
+  // }, [])
   return (
     <CursorEl
+      ref={cursorRef}
       style={{
-        left: `${xy[0]}px`,
-        top: `${xy[1]}px`,
         display: `${showCursor ? `block` : `none`}`,
       }}
       $icon={icon}
     />
   )
-}
+})
 
 Cursor.propTypes = {
   showCursor: PropTypes.bool,

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
@@ -22,24 +22,39 @@ const { FULL, HALF, TWO_THIRDS } = LAYOUTS.carousel
 const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
 
 const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
-  const [xy, setXY] = useState([0, 0])
-  const [showCursor, setShowCursor] = useState(false)
-
-
+  //Carousel
   const itemCount = items.length
+  const [containerEl, { width, left }] = useMeasure()
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [direction, setDirection] = useState(null)
 
+  //Video
+  const [paused, setPaused] = useState()
   const video = items.find(
     (item) => regex.test(item.url.desktop) || regex.test(item.url.desktop)
   )
+  const videoRef = useRef()
 
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  const [containerEl, { width, left }] = useMeasure()
-
-  const [direction, setDirection] = useState(null)
-
+  //Cursor
+  const [showCursor, setShowCursor] = useState(false)
+  const cursorRef = useRef()
+  useEffect(() => {
+    if (videoRef.current && videoRef.current.paused !== paused)
+      setPaused(videoRef.current.paused)
+  }, [paused])
+  const cursorIcon = () => {
+    if (video) {
+      return paused ? '/icons/cursor_play.svg' : '/icons/cursor_pause.svg'
+    }
+    if (itemCount > 1) {
+      return direction === FORWARD
+        ? '/icons/cursor_right_arrow.svg'
+        : '/icons/cursor_left_arrow.svg'
+    }
+  }
   const handleMouseMove = ({ clientX, clientY }) => {
-    setXY([clientX, clientY])
+    cursorRef.current.style.left = `${clientX}px`
+    cursorRef.current.style.top = `${clientY}px`
     const x = clientX - left
     if (itemCount > 1 && !video) {
       if (x >= Math.round(width / 2) && direction !== FORWARD) {
@@ -77,17 +92,8 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
 
   return (
     <>
-      {!video && (
-        <Cursor
-          xy={xy}
-          showCursor={showCursor}
-          icon={
-            direction === FORWARD
-              ? '/icons/cursor_right_arrow.svg'
-              : '/icons/cursor_left_arrow.svg'
-          }
-        />
-      )}
+      <Cursor showCursor={showCursor} icon={cursorIcon()} ref={cursorRef} />
+
       <Wrapper $hero={hero} layout={layout}>
         <Container
           ref={containerEl}
@@ -107,8 +113,8 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
                 video={video}
                 layout={layout}
                 aspect={aspect}
-                xy={xy}
-                showCursor={showCursor}
+                ref={videoRef}
+                setPaused={setPaused}
               />
             ) : (
               <InfiniteSlider
@@ -184,13 +190,6 @@ const Container = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: ${RADII.wrapper_mobile}px;
-  /* cursor: ${(p) => {
-    if (p.$direction === FORWARD) {
-      return `url(/icons/cursor_right_arrow.svg), auto;`
-    } else if (p.$direction === BACKWARD) {
-      return `url(/icons/cursor_left_arrow.svg), auto;`
-    } else return 'default'
-  }}; */
   overflow: hidden;
 
   ${MEDIA_QUERIES.tabletUp} {
