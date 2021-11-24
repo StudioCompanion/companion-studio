@@ -105,6 +105,7 @@ const GridContainer = styled.div`
   display: grid;
   gap: ${PADDING.xl}px;
   grid-template-columns: 1fr;
+  justify-items: center;
   ${MEDIA_QUERIES.tabletUp} {
     gap: ${PADDING.xxl}px ${PADDING.m}px;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -168,6 +169,7 @@ const GridItemBody = styled.p`
   ${getFontStyles(FONT_STYLE_RECKLESS_17_400)}
 `
 const GridItemContainer = styled.div`
+  text-align: center;
   ${MEDIA_QUERIES.tabletUp} {
     max-width: 425px;
   }

@@ -67,7 +67,7 @@ const GridImageWrapper = styled.div`
   max-width: 90px;
   margin-bottom: 8px;
   ${MEDIA_QUERIES.tabletUp} {
-    max-width: 200px;
+    max-width: 300px;
   }
 `
 
