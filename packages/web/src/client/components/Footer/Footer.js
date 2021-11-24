@@ -276,6 +276,10 @@ const FooterPartnerLogo = styled.a`
   display: block;
   margin-right: 45px;
   margin-bottom: 45px;
+
+  &:hover {
+    opacity: 0.5;
+  }
 `
 const Imprint = styled.div`
   display: flex;
