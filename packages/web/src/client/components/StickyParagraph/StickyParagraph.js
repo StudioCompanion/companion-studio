@@ -8,13 +8,13 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_32_400 } from 'styles/fonts'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
-const StickyParagraph = ({ text, image }) => {
+const StickyParagraph = ({ text, image, maxWidth }) => {
   return (
     <StickyParagraphContainer>
       <StickyContainer>
         <StickyText>{text}</StickyText>
       </StickyContainer>
-      <ImageContainer>
+      <ImageContainer $maxWidth={maxWidth}>
         <Image src={image.src} width={image.width} height={image.height} />
       </ImageContainer>
     </StickyParagraphContainer>
@@ -24,6 +24,7 @@ const StickyParagraph = ({ text, image }) => {
 StickyParagraph.propTypes = {
   text: PropTypes.string,
   image: PropTypes.object,
+  maxWidth: PropTypes.number,
 }
 
 export default StickyParagraph
@@ -33,7 +34,6 @@ const StickyParagraphContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  max-width: 653px;
   height: 770px;
   ${MEDIA_QUERIES.tabletUp} {
     height: 1000px;
@@ -42,6 +42,7 @@ const StickyParagraphContainer = styled.div`
 const StickyContainer = styled.div`
   flex-grow: 1;
   position: relative;
+  max-width: 825px;
 `
 const StickyText = styled.p`
   text-align: center;
@@ -55,4 +56,5 @@ const ImageContainer = styled.div`
   min-height: 400px;
   display: flex;
   align-items: center;
+  max-width: ${(p) => (p.$maxWidth ? `${p.$maxWidth}px` : '825px')};
 `
