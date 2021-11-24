@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -10,117 +10,121 @@ import { RADII, DESKTOP, MOBILE, ASPECT_RATIOS } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getAspectRatio } from 'helpers/media'
 
-const Video = ({ video, layout, aspect }) => {
-  const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
-  const videoRef = useRef()
-  const firstUpdate = useRef(true)
-  const { isIntersecting } = useIntersectionObserver(videoRef)
-  const [playing, setPlaying] = useState()
-  const [isLoaded, setLoaded] = useState(false)
-  const autoPause = useRef(false)
+const Video = React.forwardRef(
+  ({ video, layout, aspect, setPaused }, videoRef) => {
+    const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
+    const firstUpdate = useRef(true)
+    const { isIntersecting } = useIntersectionObserver(videoRef)
+    const autoPause = useRef(false)
+    const srcRef = useRef()
 
-  const widthFactor = 88
-  const videoAspectRatio = Math.round(video.height / video.width)
-  const calcWidth = (size) =>
-    //Is the video portrait (height > width)?
-    videoAspectRatio > 1
-      ? //If it is portrait, use the video's aspect ratio calculate the width at which the height of the video will be [widthFactor]% of the height of the container
-        `${
-          (((1 / videoAspectRatio) *
-            parseFloat(getAspectRatio(layout, size, aspect))) /
-            100) *
-          widthFactor
-        }%`
-      : //If it is landscape, set the width of the video to [widthFactor]% of the container
-        `${widthFactor}%`
+    const widthFactor = 88
+    const videoAspectRatio = Math.round(video.height / video.width)
+    const calcWidth = (size) =>
+      //Is the video portrait (height > width)?
+      videoAspectRatio > 1
+        ? //If it is portrait, use the video's aspect ratio calculate the width at which the height of the video will be [widthFactor]% of the height of the container
+          `${
+            (((1 / videoAspectRatio) *
+              parseFloat(getAspectRatio(layout, size, aspect))) /
+              100) *
+            widthFactor
+          }%`
+        : //If it is landscape, set the width of the video to [widthFactor]% of the container
+          `${widthFactor}%`
 
-  const mobileWidth = calcWidth(MOBILE)
-  const desktopWidth = calcWidth(DESKTOP)
+    const mobileWidth = calcWidth(MOBILE)
+    const desktopWidth = calcWidth(DESKTOP)
 
-  const calcPadding = () =>
-    //If a with and height are provided for the video
-    video.width && video.height
-      ? //Set the padding to the aspect ratio
-        `${videoAspectRatio * 100}%`
-      : //Otherwise set the padding to 16/9
-        ASPECT_RATIOS.video.widescreen
+    const calcPadding = () =>
+      //If a with and height are provided for the video
+      video.width && video.height
+        ? //Set the padding to the aspect ratio
+          `${videoAspectRatio * 100}%`
+        : //Otherwise set the padding to 16/9
+          ASPECT_RATIOS.video.widescreen
 
-  const videoPadding = calcPadding()
+    const videoPadding = calcPadding()
 
-  useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false
-      videoRef.current.defaultMuted = true
-      if (video.poster) {
-        videoRef.current.poster = tabletUp
-          ? video.poster.desktop
-          : video.poster.mobile
+    useEffect(() => {
+      if (firstUpdate.current) {
+        firstUpdate.current = false
+        videoRef.current.defaultMuted = true
+        if (video.poster) {
+          videoRef.current.poster = tabletUp
+            ? video.poster.desktop
+            : video.poster.mobile
+        }
+        return
       }
-      return
-    }
-  })
-  useEffect(() => {
-    if (firstUpdate.current) return
-    playing && videoRef.current.play()
-    !playing && videoRef.current.pause()
-  }, [playing])
+    })
 
-  useEffect(() => {
-    if (isIntersecting && !isLoaded) {
-      setLoaded(true)
-    }
-  }, [isLoaded, isIntersecting])
+    useEffect(() => {
+      if (!isIntersecting) {
+        autoPause.current = true
+        if (firstUpdate.current) return
+        if (!videoRef.current.paused) {
+          videoRef.current.pause()
+        }
+      }
+      // check for autoPause variable to play only if the video has been automatically paused, not if the user has manually paused it
+      if (autoPause.current && isIntersecting && videoRef.current.paused) {
+        videoRef.current.play()
+        autoPause.current = false
+      }
+    }, [videoRef, isIntersecting])
 
-  useEffect(() => {
-    if (!isIntersecting) {
-      autoPause.current = true
-      if (firstUpdate.current) return
-      if (playing) {
-        setPlaying(false)
+    const handleVideoClick = () => {
+      if (videoRef.current.paused) {
+        videoRef.current.play()
+      } else {
+        videoRef.current.pause()
       }
     }
-    // check for autoPause variable to play only if the video has been automatically paused, not if the user has manually paused it
-    if (autoPause.current && isIntersecting && !playing) {
-      setPlaying(true)
-      autoPause.current = false
-    }
-  }, [playing, isIntersecting])
 
-  const handleVideoClick = () => {
-    setPlaying(!playing)
+    useEffect(() => {
+      if (
+        isIntersecting &&
+        srcRef.current &&
+        videoRef.current.readyState == 0
+      ) {
+        srcRef.current.src = tabletUp ? video.url.desktop : video.url.mobile
+        videoRef.current.load()
+      }
+    })
+
+    return (
+      <VideoContainer onClick={handleVideoClick}>
+        <VideoWrapper $mobileWidth={mobileWidth} $desktopWidth={desktopWidth}>
+          <VideoInner $videoPadding={videoPadding}>
+            <VideoItem
+              autoPlay
+              loop
+              playsinline
+              ref={videoRef}
+              muted
+              onPause={() => setPaused(true)}
+              onPlay={() => setPaused(false)}
+            >
+              <source ref={srcRef} src="" type="video/mp4"></source>
+            </VideoItem>
+          </VideoInner>
+        </VideoWrapper>
+      </VideoContainer>
+    )
   }
-
-  return (
-    <VideoContainer $playing={playing} onClick={handleVideoClick}>
-      <VideoWrapper $mobileWidth={mobileWidth} $desktopWidth={desktopWidth}>
-        <VideoInner $videoPadding={videoPadding}>
-          <VideoItem autoPlay loop playsinline ref={videoRef} muted>
-            {isLoaded && (
-              <source
-                src={tabletUp ? video.url.desktop : video.url.mobile}
-                type="video/mp4"
-              ></source>
-            )}
-          </VideoItem>
-        </VideoInner>
-      </VideoWrapper>
-    </VideoContainer>
-  )
-}
+)
 
 Video.propTypes = {
   video: PropTypes.object,
   layout: PropTypes.string,
   aspect: PropTypes.object,
+  setPaused: PropTypes.func,
 }
 
 export default Video
 
 const VideoContainer = styled.div`
-  cursor: ${(p) =>
-    p.$playing
-      ? `url(/icons/cursor_pause.svg), auto;`
-      : `url(/icons/cursor_play.svg), auto;`};
   height: 100%;
   display: flex;
   justify-content: center;
