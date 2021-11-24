@@ -29,7 +29,7 @@ export const CSS_GLOBAL = `
   *:before,
   *:after {
     box-sizing: border-box;
-    transition: background-color 250ms ease-in-out; 
+    transition: background-color 250ms ease-in-out, opacity 250ms ease-in-out; 
   }
 
   html {
