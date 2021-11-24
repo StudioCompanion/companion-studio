@@ -45,6 +45,7 @@ const Label = styled.label`
 const FormInput = styled.input`
   width: 100%;
   padding: 6px 12px;
+  padding-bottom: 8px;
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};
   background-color: transparent;
   border: 1px solid ${COLORS.white};
