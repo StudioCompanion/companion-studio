@@ -117,7 +117,7 @@ const Footer = () => {
   }, [])
 
   const footerLinks = [
-    { title: 'Work', url: '/work' },
+    { title: 'Work', url: '/' },
     { title: 'Approach', url: '/approach' },
     { title: 'Team', url: '/team' },
     { title: 'Privacy', url: '/privacy' },
