@@ -168,7 +168,7 @@ const Footer = () => {
       <FooterContent>
         <FooterLeft>
           <FooterText>
-            Companion is based in London and has been operating globally for
+            Companion is based in London and has been operating globally for{' '}
             {days}d {hours}h {minutes}m {seconds}s. We are proud to contribute
             5% of our annual revenue to organisations that create a better
             future for earth.
