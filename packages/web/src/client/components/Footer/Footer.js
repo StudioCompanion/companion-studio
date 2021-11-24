@@ -23,7 +23,7 @@ const SignUpForm = () => {
 
   const [errorMessage, setErrorMessage] = useState()
 
-  const handleBlur = (e) => {
+  const handleBlur = () => {
     setTouched(true)
     setErrorMessage(validateForm(value))
   }
