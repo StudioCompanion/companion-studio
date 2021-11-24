@@ -3,16 +3,8 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-const Cursor = React.forwardRef(({ showCursor, icon }, cursorRef) => {
-  return (
-    <CursorEl
-      ref={cursorRef}
-      style={{
-        display: `${showCursor ? `block` : `none`}`,
-      }}
-      $icon={icon}
-    />
-  )
+const Cursor = React.forwardRef(({ icon }, cursorRef) => {
+  return <CursorEl ref={cursorRef} $icon={icon} />
 })
 
 Cursor.propTypes = {

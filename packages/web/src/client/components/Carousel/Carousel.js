@@ -51,8 +51,11 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
   }
 
   const handleMouseMove = ({ clientX, clientY }) => {
-    cursorRef.current.style.left = `${clientX}px`
-    cursorRef.current.style.top = `${clientY}px`
+    if (cursorRef.current) {
+      cursorRef.current.style.left = `${clientX}px`
+      cursorRef.current.style.top = `${clientY}px`
+    }
+
     const x = clientX - left
     if (itemCount > 1 && !video) {
       if (x >= Math.round(width / 2) && direction !== FORWARD) {
@@ -82,22 +85,20 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
   }
 
   const handleMouseEnter = () => {
-    setShowCursor(true)
+    if (itemCount > 1 || video) setShowCursor(true)
   }
   const handleMouseLeave = () => {
-    setShowCursor(false)
+    if (showCursor) {
+      setShowCursor(false)
+    }
   }
 
   return (
     <>
-      <Cursor showCursor={showCursor} icon={cursorIcon()} ref={cursorRef} />
-
-      <Wrapper
-        $hero={hero}
-        layout={layout}
-        $video={video}
-        $itemCount={itemCount}
-      >
+      {showCursor && (
+        <Cursor showCursor={showCursor} icon={cursorIcon()} ref={cursorRef} />
+      )}
+      <Wrapper $hero={hero} layout={layout}>
         <Container
           ref={containerEl}
           onMouseEnter={handleMouseEnter}
@@ -109,6 +110,7 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
           $bgImage={bgImage}
           $direction={direction}
           $aspect={aspect}
+          $showCursor={showCursor}
         >
           <Inner>
             {video ? (
@@ -166,7 +168,6 @@ export default Carousel
 const Wrapper = styled.div`
   width: 100%;
   margin-bottom: ${(p) => (p.$hero ? `${PADDING.xl}px` : `${PADDING.s}px`)};
-  cursor: ${(p) => (p.$video || p.$itemCount > 1 ? 'none' : 'auto')};
 
   ${MEDIA_QUERIES.tabletUp} {
     margin-bottom: ${(p) => (p.$hero ? `${PADDING.xxl}px` : `${PADDING.m}px`)};
@@ -194,6 +195,7 @@ const Container = styled.div`
   background-position: center;
   border-radius: ${RADII.wrapper_mobile}px;
   overflow: hidden;
+  cursor: ${(p) => (p.$showCursor ? 'none' : 'auto')};
 
   ${MEDIA_QUERIES.tabletUp} {
     border-radius: ${RADII.wrapper}px;
