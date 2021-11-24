@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -15,9 +15,8 @@ const Video = React.forwardRef(
     const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
     const firstUpdate = useRef(true)
     const { isIntersecting } = useIntersectionObserver(videoRef)
-    const [playing, setPlaying] = useState()
-    const [isLoaded, setLoaded] = useState(false)
     const autoPause = useRef(false)
+    const srcRef = useRef()
 
     const widthFactor = 88
     const videoAspectRatio = Math.round(video.height / video.width)
@@ -59,39 +58,43 @@ const Video = React.forwardRef(
         return
       }
     })
-    useEffect(() => {
-      if (firstUpdate.current) return
-      playing && videoRef.current.play()
-      !playing && videoRef.current.pause()
-    }, [playing])
-
-    useEffect(() => {
-      if (isIntersecting && !isLoaded) {
-        setLoaded(true)
-      }
-    }, [isLoaded, isIntersecting])
 
     useEffect(() => {
       if (!isIntersecting) {
         autoPause.current = true
         if (firstUpdate.current) return
-        if (playing) {
-          setPlaying(false)
+        if (!videoRef.current.paused) {
+          videoRef.current.pause()
         }
       }
       // check for autoPause variable to play only if the video has been automatically paused, not if the user has manually paused it
-      if (autoPause.current && isIntersecting && !playing) {
-        setPlaying(true)
+      if (autoPause.current && isIntersecting && videoRef.current.paused) {
+        videoRef.current.play()
         autoPause.current = false
       }
-    }, [playing, isIntersecting])
+    }, [videoRef, isIntersecting])
 
     const handleVideoClick = () => {
-      setPlaying(!playing)
+      if (videoRef.current.paused) {
+        videoRef.current.play()
+      } else {
+        videoRef.current.pause()
+      }
     }
 
+    useEffect(() => {
+      if (
+        isIntersecting &&
+        srcRef.current &&
+        videoRef.current.readyState == 0
+      ) {
+        srcRef.current.src = tabletUp ? video.url.desktop : video.url.mobile
+        videoRef.current.load()
+      }
+    })
+
     return (
-      <VideoContainer $playing={playing} onClick={handleVideoClick}>
+      <VideoContainer onClick={handleVideoClick}>
         <VideoWrapper $mobileWidth={mobileWidth} $desktopWidth={desktopWidth}>
           <VideoInner $videoPadding={videoPadding}>
             <VideoItem
@@ -103,12 +106,7 @@ const Video = React.forwardRef(
               onPause={() => setPaused(true)}
               onPlay={() => setPaused(false)}
             >
-              {isLoaded && (
-                <source
-                  src={tabletUp ? video.url.desktop : video.url.mobile}
-                  type="video/mp4"
-                ></source>
-              )}
+              <source ref={srcRef} src="" type="video/mp4"></source>
             </VideoItem>
           </VideoInner>
         </VideoWrapper>

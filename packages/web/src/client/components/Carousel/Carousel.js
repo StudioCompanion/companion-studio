@@ -22,20 +22,17 @@ const { FULL, HALF, TWO_THIRDS } = LAYOUTS.carousel
 const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
 
 const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
-  //Carousel
   const itemCount = items.length
   const [containerEl, { width, left }] = useMeasure()
   const [activeIndex, setActiveIndex] = useState(0)
   const [direction, setDirection] = useState(null)
 
-  //Video
   const [paused, setPaused] = useState()
   const video = items.find(
     (item) => regex.test(item.url.desktop) || regex.test(item.url.desktop)
   )
   const videoRef = useRef()
 
-  //Cursor
   const [showCursor, setShowCursor] = useState(false)
   const cursorRef = useRef()
   useEffect(() => {
@@ -52,6 +49,7 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
         : '/icons/cursor_left_arrow.svg'
     }
   }
+
   const handleMouseMove = ({ clientX, clientY }) => {
     cursorRef.current.style.left = `${clientX}px`
     cursorRef.current.style.top = `${clientY}px`
@@ -94,7 +92,12 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
     <>
       <Cursor showCursor={showCursor} icon={cursorIcon()} ref={cursorRef} />
 
-      <Wrapper $hero={hero} layout={layout}>
+      <Wrapper
+        $hero={hero}
+        layout={layout}
+        $video={video}
+        $itemCount={itemCount}
+      >
         <Container
           ref={containerEl}
           onMouseEnter={handleMouseEnter}
@@ -163,7 +166,7 @@ export default Carousel
 const Wrapper = styled.div`
   width: 100%;
   margin-bottom: ${(p) => (p.$hero ? `${PADDING.xl}px` : `${PADDING.s}px`)};
-  cursor: none;
+  cursor: ${(p) => (p.$video || p.$itemCount > 1 ? 'none' : 'auto')};
 
   ${MEDIA_QUERIES.tabletUp} {
     margin-bottom: ${(p) => (p.$hero ? `${PADDING.xxl}px` : `${PADDING.m}px`)};
