@@ -132,47 +132,58 @@ const Footer = () => {
     },
   ]
 
+  const partnerLogos = [
+    {
+      title: '1% for the Planet',
+      url: 'https://www.onepercentfortheplanet.org/',
+      image: '/images/graphics/partner-logos/partnerlogo_1percent.svg',
+      width: 83,
+      height: 35,
+    },
+    {
+      title: 'Creative Lives in Progress',
+      url: 'https://www.creativelivesinprogress.com/',
+      image: '/images/graphics/partner-logos/partnerlogo_CLIP.svg',
+      width: 55,
+      height: 35,
+    },
+    {
+      title: 'New Futures',
+      url: 'https://newfutureshq.org.uk/',
+      image: '/images/graphics/partner-logos/partnerlogo_newfutures.svg',
+      width: 58,
+      height: 35,
+    },
+    {
+      title: 'ARTHOUSE Unlimited',
+      url: 'https://arthouseunlimited.org/',
+      image: '/images/graphics/partner-logos/partnerlogo_AHU.png',
+      width: 94,
+      height: 9,
+    },
+  ]
+
   return (
     <FooterContainer>
       <FooterContent>
         <FooterLeft>
           <FooterText>
-            Companion is based in London and has been operating globally for{' '}
+            Companion is based in London and has been operating globally for
             {days}d {hours}h {minutes}m {seconds}s. We are proud to contribute
             5% of our annual revenue to organisations that create a better
             future for earth.
           </FooterText>
           <FooterPartnerLogos>
-            <FooterPartnerLogo>
-              <Image
-                src={'/images/graphics/partner-logos/partnerlogo_1percent.svg'}
-                width={83}
-                height={35}
-              />
-            </FooterPartnerLogo>
-            <FooterPartnerLogo>
-              <Image
-                src={'/images/graphics/partner-logos/partnerlogo_CLIP.svg'}
-                width={55}
-                height={35}
-              />
-            </FooterPartnerLogo>
-            <FooterPartnerLogo>
-              <Image
-                src={
-                  '/images/graphics/partner-logos/partnerlogo_newfutures.svg'
-                }
-                width={58}
-                height={35}
-              />
-            </FooterPartnerLogo>
-            <FooterPartnerLogo>
-              <Image
-                src={'/images/graphics/partner-logos/partnerlogo_AHU.png'}
-                width={94}
-                height={9}
-              />
-            </FooterPartnerLogo>
+            {partnerLogos.map(({ title, url, image, width, height }, index) => (
+              <FooterPartnerLogo
+                key={index}
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Image src={image} width={width} height={height} alt={title} />
+              </FooterPartnerLogo>
+            ))}
           </FooterPartnerLogos>
         </FooterLeft>
         <FooterRight>
@@ -261,7 +272,8 @@ const FooterPartnerLogos = styled.div`
     flex-wrap: wrap;
   }
 `
-const FooterPartnerLogo = styled.div`
+const FooterPartnerLogo = styled.a`
+  display: block;
   margin-right: 45px;
   margin-bottom: 45px;
 `
