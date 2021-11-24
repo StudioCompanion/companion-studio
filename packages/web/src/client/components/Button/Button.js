@@ -2,12 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Link from 'next/link'
 
-import {
-  THEME_TYPES,
-  COLOR,
-  BACKGROUND,
-  HOVER_BACKGROUND,
-} from '../../styles/constants'
+import { THEME_TYPES, COLOR, BACKGROUND } from '../../styles/constants'
 import { getFontStyles } from '../../styles/getFontStyles'
 import { getThemeValue } from 'helpers/theme'
 import { FONT_STYLE_APFEL_12_400 } from '../../styles/fonts'

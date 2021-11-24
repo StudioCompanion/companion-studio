@@ -3,7 +3,6 @@ import { getFontStyles } from './getFontStyles'
 import {
   FONT_STYLE_APFEL_12_400,
   FONT_STYLE_RECKLESS_12_400,
-  FONT_STYLE_RECKLESS_17_400,
   FONT_STYLE_RECKLESS_20_400,
   FONT_STYLE_RECKLESS_58_400,
 } from './fonts'
@@ -29,7 +28,8 @@ export const CSS_GLOBAL = `
   *,
   *:before,
   *:after {
-    box-sizing: border-box; 
+    box-sizing: border-box;
+    transition: background-color 250ms ease-in-out; 
   }
 
   html {
