@@ -55,4 +55,9 @@ const FormInput = styled.input`
     color: rgba(255, 255, 255, 57%);
   }
   min-height: 30px;
+
+  &:focus {
+    background-color: hsla(0, 0%, 100%, 0.2);
+    outline: none;
+  }
 `
