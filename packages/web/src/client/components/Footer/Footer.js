@@ -194,11 +194,17 @@ const Footer = () => {
         </ImprintLeft>
         <ImprintRight>
           <FooterLinks>
-            {footerLinks.map((link, index) => (
-              <Link key={index} href={link.url} passHref>
-                <FooterLink>{link.title}</FooterLink>
-              </Link>
-            ))}
+            {footerLinks.map((link, index) =>
+              link.url.startsWith('/') ? (
+                <Link key={index} href={link.url} passHref>
+                  <FooterLink>{link.title}</FooterLink>
+                </Link>
+              ) : (
+                <FooterLink href={link.url} target="_blank" rel="noreferrer">
+                  {link.title}
+                </FooterLink>
+              )
+            )}
           </FooterLinks>
         </ImprintRight>
       </Imprint>
