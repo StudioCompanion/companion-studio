@@ -182,7 +182,15 @@ const Footer = () => {
       <Imprint>
         <ImprintLeft>
           <ImprintLine>Companion Studio Ltd. (No. 13051984)</ImprintLine>
-          <ImprintLine>32-38 Scrutton Street, London, EC2A 4RQ</ImprintLine>
+          <ImprintLine>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://goo.gl/maps/qhhF9sFMuWqYgPTw5"
+            >
+              32-38 Scrutton Street, London, EC2A 4RQ
+            </a>
+          </ImprintLine>
         </ImprintLeft>
         <ImprintRight>
           <FooterLinks>
@@ -281,6 +289,14 @@ const ImprintRight = styled.div`
 const ImprintLine = styled.span`
   display: block;
   opacity: 0.5;
+  a {
+    text-decoration: none;
+    color: ${COLORS.white};
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `
 const SignUp = styled.div``
 const Form = styled.form`
