@@ -21,9 +21,7 @@ const Layout = ({ children }) => {
         <Section>
           <Callout />
         </Section>
-        <footer>
-          <Footer />
-        </footer>
+        <Footer />
       </PaddingContainer>
     </>
   )
@@ -37,7 +35,7 @@ export default Layout
 
 const Main = styled.main`
   display: ${({ $currentPath }) =>
-    $currentPath.includes('case-studies') ? `flex` : `block`};
+    $currentPath.includes('projects') ? `flex` : `block`};
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;

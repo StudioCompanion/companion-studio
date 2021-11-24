@@ -26,24 +26,34 @@ const Nav = () => {
           <Link href={'/'} passHref>
             <LogoWrapper>
               <Image
-                src={'/images/graphics/logo_placeholder.png'}
-                width={45}
-                height={45}
+                src={'/images/graphics/logo.svg'}
+                width={255}
+                height={115}
                 alt="Companion"
               />
             </LogoWrapper>
           </Link>
           <NavWrapper>
             <NavList>
-              {navItems.map((item, index) => (
-                <NavItem key={index} active={item.url === currentPath}>
-                  <Link href={item.url} passHref>
-                    <NavLink active={item.url === currentPath}>
-                      {item.title}
-                    </NavLink>
-                  </Link>
-                </NavItem>
-              ))}
+              <NavItem>
+                <Link href={'/'} passHref>
+                  <NavLink active={currentPath.includes('projects')}>
+                    Work
+                  </NavLink>
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link href={'/approach'} passHref>
+                  <NavLink active={currentPath === '/approach'}>
+                    Approach
+                  </NavLink>
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link href={'/team'} passHref>
+                  <NavLink active={currentPath === '/team'}>Team</NavLink>
+                </Link>
+              </NavItem>
             </NavList>
           </NavWrapper>
         </NavContainer>
@@ -56,6 +66,7 @@ export default Nav
 const LogoWrapper = styled.a`
   display: block;
   margin-right: 10px;
+  max-width: 90px;
 `
 const NavContainer = styled.div`
   position: sticky;
@@ -63,6 +74,7 @@ const NavContainer = styled.div`
   top: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding-top: ${PADDING.s}px;
   margin: 0 0 ${PADDING.xl}px;
   ${MEDIA_QUERIES.tabletUp} {

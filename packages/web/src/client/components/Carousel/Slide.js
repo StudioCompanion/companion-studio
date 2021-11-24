@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 
 import { WIDTHS } from '../../styles/dimensions'
 
-const Slide = ({ url, alt }) => {
+const Slide = ({ url, alt, hero }) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   return (
     <ImageWrapper>
@@ -21,6 +21,7 @@ const Slide = ({ url, alt }) => {
 Slide.propTypes = {
   url: PropTypes.object,
   alt: PropTypes.string,
+  hero: PropTypes.bool,
 }
 
 export default Slide

@@ -211,7 +211,12 @@ const Footer = () => {
                   <FooterLink>{link.title}</FooterLink>
                 </Link>
               ) : (
-                <FooterLink href={link.url} target="_blank" rel="noreferrer">
+                <FooterLink
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   {link.title}
                 </FooterLink>
               )
@@ -227,7 +232,7 @@ Footer.propTypes = {}
 
 export default Footer
 
-const FooterContainer = styled.div`
+const FooterContainer = styled.footer`
   background-color: ${COLORS.darkblue};
   border-radius: 12px;
   color: ${COLORS.white};

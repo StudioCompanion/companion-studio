@@ -3,7 +3,14 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
 
-import { RADII, LAYOUTS, DESKTOP, MOBILE, PADDING } from 'styles/constants'
+import {
+  RADII,
+  LAYOUTS,
+  DESKTOP,
+  MOBILE,
+  PADDING,
+  COLORS,
+} from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
@@ -20,7 +27,14 @@ const { FULL, HALF, TWO_THIRDS } = LAYOUTS.carousel
 
 const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
 
-const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
+const Carousel = ({
+  bgColor = COLORS.lightgrey_2,
+  bgImage,
+  items,
+  layout = FULL,
+  aspect,
+  hero,
+}) => {
   const itemCount = items.length
 
   const video = items.find(
@@ -83,7 +97,14 @@ const Carousel = ({ bgColor, bgImage, items, layout = FULL, aspect, hero }) => {
               items={items}
               onDragEnd={handleDragEnd}
             >
-              {(item) => <Slide key={item.url} url={item.url} alt={item.alt} />}
+              {(item) => (
+                <Slide
+                  hero={hero}
+                  key={item.url}
+                  url={item.url}
+                  alt={item.alt}
+                />
+              )}
             </InfiniteSlider>
           )}
         </Inner>

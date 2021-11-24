@@ -13,14 +13,10 @@ import {
 const OpeningText = ({ text }) => {
   return (
     <OpeningTextContainer>
+      <LogoContainer>
+        <Image src={'/images/graphics/logo.svg'} width={255} height={115} />
+      </LogoContainer>
       <OpeningTextInner>
-        <LogoContainer>
-          <Image
-            src={'/images/graphics/logo_placeholder.png'}
-            width={50}
-            height={48}
-          />
-        </LogoContainer>
         <OpeningTextCopy>{text}</OpeningTextCopy>
       </OpeningTextInner>
     </OpeningTextContainer>
@@ -35,6 +31,7 @@ export default OpeningText
 
 const OpeningTextContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 24px 0 ${PADDING.xl}px 0;
@@ -55,6 +52,7 @@ const LogoContainer = styled.div`
   margin-bottom: 24px;
   display: flex;
   justify-content: center;
+  max-width: 90px;
 `
 const OpeningTextCopy = styled.h1`
   text-align: center;
