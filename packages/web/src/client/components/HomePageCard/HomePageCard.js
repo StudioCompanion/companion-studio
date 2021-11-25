@@ -19,6 +19,7 @@ import { WIDTHS } from '../../styles/dimensions'
 import { getAspectRatio } from 'helpers/media'
 import { getThemeValue } from 'helpers/theme'
 import Button, { ButtonContainer } from 'components/Button/Button'
+import CardVideo from './CardVideo'
 
 const { STUDIO } = LAYOUTS.card
 
@@ -26,6 +27,7 @@ const HomePageCard = ({
   type,
   aspect,
   image,
+  video,
   heading,
   subheading,
   button,
@@ -33,6 +35,7 @@ const HomePageCard = ({
   theme = THEME_TYPES.GREY,
 }) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
+
   return (
     <Link href={link} passHref>
       <CardWrapper $theme={THEME_TYPES.LIGHT}>
@@ -40,11 +43,16 @@ const HomePageCard = ({
           <CardInner>
             <ImageContainer>
               <ImageWrapper>
-                <Image
-                  src={tabletUp ? image.desktop : image.mobile}
-                  layout="fill"
-                  alt={heading}
-                />
+                {!video && (
+                  <Image
+                    src={tabletUp ? image.desktop : image.mobile}
+                    layout="fill"
+                    alt={heading}
+                  />
+                )}
+                {video && (
+                  <CardVideo tabletUp={tabletUp} video={video} image={image} />
+                )}
               </ImageWrapper>
             </ImageContainer>
             <CardText $theme={theme}>
@@ -68,6 +76,7 @@ const HomePageCard = ({
 
 HomePageCard.propTypes = {
   image: PropTypes.object,
+  video: PropTypes.object,
   heading: PropTypes.string,
   subheading: PropTypes.string,
   button: PropTypes.string,
