@@ -5,14 +5,26 @@ import { useMediaQuery } from 'react-responsive'
 
 import { WIDTHS } from '../../styles/dimensions'
 
-const Slide = ({ url, alt, hero }) => {
+const Slide = ({ url, alt }) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   return (
     <ImageWrapper>
       {tabletUp ? (
-        <Image draggable={false} src={url.desktop} alt={alt} layout="fill" />
+        <Image
+          draggable={false}
+          src={url.desktop}
+          alt={alt}
+          layout="fill"
+          placeholder="blur"
+        />
       ) : (
-        <Image draggable={false} src={url.mobile} alt={alt} layout="fill" />
+        <Image
+          draggable={false}
+          src={url.mobile}
+          alt={alt}
+          layout="fill"
+          placeholder="blur"
+        />
       )}
     </ImageWrapper>
   )
