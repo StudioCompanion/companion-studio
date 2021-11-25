@@ -5,6 +5,7 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_17_400 } from 'styles/fonts'
 
+import Layout from 'components/Layout'
 import Privacy from '../client/components/privacy.mdx'
 
 const privacy = () => {
@@ -18,6 +19,10 @@ const privacy = () => {
 }
 
 export default privacy
+
+privacy.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>
+}
 
 const PrivacyContainer = styled.div`
   ${MEDIA_QUERIES.tabletUp} {

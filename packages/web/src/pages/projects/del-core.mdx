@@ -1,5 +1,6 @@
 import { NextSeo } from 'next-seo'
 
+import Layout from 'components/Layout.js'
 import TextSection from 'components/TextSection/TextSection.js'
 import Carousel from 'components/Carousel/Carousel.js'
 import ProjectInfoCard from 'components/ProjectInfoCard/ProjectInfoCard.js'
@@ -182,3 +183,5 @@ As well as showing off the latest collection, the site had to display another of
 > and his team are also just really nice people and a pleasure to deal with."
 >
 > ### David Lane, Creative Director of Lane & Associates
+
+export default ({ children }) => <Layout>{children}</Layout>

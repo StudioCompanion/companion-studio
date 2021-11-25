@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import Layout from 'components/Layout'
 import HomePageCard from 'components/HomePageCard/HomePageCard'
 import OpeningText from 'components/OpeningText/OpeningText'
 
@@ -28,6 +29,10 @@ const index = () => {
 }
 
 export default index
+
+index.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>
+}
 
 const HomeContainer = styled.div`
   display: flex;

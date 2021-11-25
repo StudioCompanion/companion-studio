@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import { PADDING } from 'styles/constants'
 
+import Layout from 'components/Layout'
 import StickyParagraph from 'components/StickyParagraph/StickyParagraph'
 
 const approach = () => {
@@ -20,6 +21,10 @@ const approach = () => {
 }
 
 export default approach
+
+approach.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>
+}
 
 const ApproachContainer = styled.div`
   display: flex;
