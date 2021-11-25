@@ -20,7 +20,7 @@ const CardVideo = ({ video, image, tabletUp }) => {
       }
       return
     }
-  })
+  }, [image, tabletUp])
 
   useEffect(() => {
     if (!isIntersecting) {
@@ -42,18 +42,10 @@ const CardVideo = ({ video, image, tabletUp }) => {
       srcRef.current.src = tabletUp ? video.desktop : video.mobile
       videoRef.current.load()
     }
-  })
+  }, [isIntersecting, tabletUp, video.desktop, video.mobile])
 
   return (
-    <Video
-      autoPlay
-      loop
-      playsinline
-      ref={videoRef}
-      muted
-      onPause={() => setPaused(true)}
-      onPlay={() => setPaused(false)}
-    >
+    <Video autoPlay loop playsinline ref={videoRef} muted>
       <source ref={srcRef} src="" type="video/mp4"></source>
     </Video>
   )
