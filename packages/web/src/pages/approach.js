@@ -3,17 +3,15 @@ import styled from 'styled-components'
 import { PADDING } from 'styles/constants'
 
 import StickyParagraph from 'components/StickyParagraph/StickyParagraph'
+import FadeUp from 'components/Transitions/FadeUp'
 
 const approach = () => {
   return (
     <ApproachContainer>
       {paragraphs.map(({ image, text, maxWidth }, index) => (
-        <StickyParagraph
-          text={text}
-          image={image}
-          key={index}
-          maxWidth={maxWidth}
-        />
+        <FadeUp key={index}>
+          <StickyParagraph text={text} image={image} maxWidth={maxWidth} />
+        </FadeUp>
       ))}
     </ApproachContainer>
   )

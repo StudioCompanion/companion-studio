@@ -18,7 +18,9 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { WIDTHS } from '../../styles/dimensions'
 import { getAspectRatio } from 'helpers/media'
 import { getThemeValue } from 'helpers/theme'
+
 import Button, { ButtonContainer } from 'components/Button/Button'
+import FadeUp from 'components/Transitions/FadeUp'
 
 const { STUDIO } = LAYOUTS.card
 
@@ -34,35 +36,37 @@ const HomePageCard = ({
 }) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
   return (
-    <Link href={link} passHref>
-      <CardWrapper $theme={THEME_TYPES.LIGHT}>
-        <CardContainer $theme={theme} $type={type} $aspect={aspect}>
-          <CardInner>
-            <ImageContainer>
-              <ImageWrapper>
-                <Image
-                  src={tabletUp ? image.desktop : image.mobile}
-                  layout="fill"
-                  alt={heading}
+    <FadeUp>
+      <Link href={link} passHref>
+        <CardWrapper $theme={THEME_TYPES.LIGHT}>
+          <CardContainer $theme={theme} $type={type} $aspect={aspect}>
+            <CardInner>
+              <ImageContainer>
+                <ImageWrapper>
+                  <Image
+                    src={tabletUp ? image.desktop : image.mobile}
+                    layout="fill"
+                    alt={heading}
+                  />
+                </ImageWrapper>
+              </ImageContainer>
+              <CardText $theme={theme}>
+                <div>
+                  <h2>{heading}</h2>
+                  <h3>{subheading}</h3>
+                </div>
+                <Button
+                  text={
+                    (button && button) || (type == STUDIO && 'View') || 'Read'
+                  }
+                  theme={THEME_TYPES.LIGHT}
                 />
-              </ImageWrapper>
-            </ImageContainer>
-            <CardText $theme={theme}>
-              <div>
-                <h2>{heading}</h2>
-                <h3>{subheading}</h3>
-              </div>
-              <Button
-                text={
-                  (button && button) || (type == STUDIO && 'View') || 'Read'
-                }
-                theme={THEME_TYPES.LIGHT}
-              />
-            </CardText>
-          </CardInner>
-        </CardContainer>
-      </CardWrapper>
-    </Link>
+              </CardText>
+            </CardInner>
+          </CardContainer>
+        </CardWrapper>
+      </Link>
+    </FadeUp>
   )
 }
 

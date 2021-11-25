@@ -7,6 +7,8 @@ import PageVisibility from 'react-page-visibility'
 
 import { RADII, PADDING } from 'styles/constants'
 import { WIDTHS } from '../../styles/dimensions'
+import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import FadeUp from 'components/Transitions/FadeUp'
 
 const SMALL = 'small'
 const MEDIUM = 'meidum'
@@ -120,30 +122,32 @@ const ImageStrip = ({}) => {
   }, [isTabletUp])
 
   return (
-    <PageVisibility onChange={handleVisibilityChange}>
-      <ImageStripContainer>
-        {pageIsVisible && (
-          <Ticker>
-            {() => (
-              <ImageStripWrapper>
-                {images.map((image, i) => (
-                  <ImageStripImage
-                    key={i}
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    size={image.size}
-                    rotation={image.rotation}
-                    tabletUp={isTabletUp}
-                  />
-                ))}
-              </ImageStripWrapper>
-            )}
-          </Ticker>
-        )}
-      </ImageStripContainer>
-    </PageVisibility>
+    <FadeUp>
+      <PageVisibility onChange={handleVisibilityChange}>
+        <ImageStripContainer>
+          {pageIsVisible && (
+            <Ticker>
+              {() => (
+                <ImageStripWrapper>
+                  {images.map((image, i) => (
+                    <ImageStripImage
+                      key={i}
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.width}
+                      height={image.height}
+                      size={image.size}
+                      rotation={image.rotation}
+                      tabletUp={isTabletUp}
+                    />
+                  ))}
+                </ImageStripWrapper>
+              )}
+            </Ticker>
+          )}
+        </ImageStripContainer>
+      </PageVisibility>
+    </FadeUp>
   )
 }
 
@@ -166,6 +170,10 @@ const ImageContainer = styled.div`
 const ImageStripContainer = styled.div`
   position: relative;
   width: 100%;
+  margin: ${PADDING.xl}px 0;
+  ${MEDIA_QUERIES.tabletUp} {
+    margin: ${PADDING.l} 0;
+  }
 `
 
 const ImageStripWrapper = styled.div`

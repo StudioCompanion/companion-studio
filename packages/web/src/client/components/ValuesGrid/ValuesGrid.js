@@ -9,6 +9,7 @@ import {
   FONT_STYLE_RECKLESS_17_400,
 } from 'styles/fonts'
 import Button from 'components/Button/Button'
+import FadeUp from 'components/Transitions/FadeUp'
 
 const gridItems = [
   {
@@ -80,20 +81,22 @@ GridItem.propTypes = {
 
 const ValuesGrid = ({}) => {
   return (
-    <GridWrapper>
-      <GridContainer>
-        {gridItems.map((item, index) => (
-          <GridItem key={index} heading={item.heading} body={item.body} />
-        ))}
-      </GridContainer>
-      <ButtonWrapper>
-        <Button
-          text={'View our open positions'}
-          theme={THEME_TYPES.DARK}
-          link={'#'}
-        />
-      </ButtonWrapper>
-    </GridWrapper>
+    <FadeUp>
+      <GridWrapper>
+        <GridContainer>
+          {gridItems.map((item, index) => (
+            <GridItem key={index} heading={item.heading} body={item.body} />
+          ))}
+        </GridContainer>
+        <ButtonWrapper>
+          <Button
+            text={'View our open positions'}
+            theme={THEME_TYPES.DARK}
+            link={'#'}
+          />
+        </ButtonWrapper>
+      </GridWrapper>
+    </FadeUp>
   )
 }
 

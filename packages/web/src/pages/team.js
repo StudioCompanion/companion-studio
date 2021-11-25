@@ -8,14 +8,13 @@ import TeamGrid from 'components/TeamGrid/TeamGrid'
 import ValuesGrid from 'components/ValuesGrid/ValuesGrid'
 import CenteredParagraph from 'components/CenteredParagraph/CenteredParagraph'
 import ImageStrip from 'components/ImageStrip/ImageStrip'
+import FadeUp from 'components/Transitions/FadeUp'
 
 const team = () => {
   return (
     <>
       <NextSeo title="Team" />
-      <ImageStripContainer>
-        <ImageStrip />
-      </ImageStripContainer>
+      <ImageStrip />
       <PaddingContainer>
         <CenteredParagraph>
           We’re a small and passionate team of designers, engineers and
@@ -35,13 +34,6 @@ const team = () => {
 }
 
 export default team
-
-const ImageStripContainer = styled.div`
-  margin: ${PADDING.xl}px 0;
-  ${MEDIA_QUERIES.tabletUp} {
-    margin: ${PADDING.l} 0;
-  }
-`
 
 const PaddingContainer = styled.div`
   padding: 0 ${PADDING.s}px;

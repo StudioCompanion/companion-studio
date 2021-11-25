@@ -8,12 +8,15 @@ import {
 } from 'styles/fonts'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { PADDING, WIDTHS } from 'styles/constants'
+import FadeUp from 'components/Transitions/FadeUp'
 
 const Testimonial = ({ children }) => {
   return (
     <TestimonialContainer>
       <TestimonialWrapper>
-        <TestimonialText>{children}</TestimonialText>
+        <FadeUp>
+          <TestimonialText>{children}</TestimonialText>
+        </FadeUp>
       </TestimonialWrapper>
     </TestimonialContainer>
   )

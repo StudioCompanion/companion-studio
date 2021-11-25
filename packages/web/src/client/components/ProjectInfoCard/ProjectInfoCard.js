@@ -8,18 +8,23 @@ import {
   FONT_STYLE_RECKLESS_20_400,
   FONT_STYLE_RECKLESS_12_400,
 } from 'styles/fonts'
+import FadeUp from 'components/Transitions/FadeUp'
 
 const ProjectInfoCard = ({ deliverables, collaborators, team, duration }) => {
   return (
     <Container>
-      <Heading>Deliverables:</Heading>
-      <Field>{deliverables}</Field>
-      <Heading>Collaborators:</Heading>
-      <Field>{collaborators}</Field>
-      <Heading>Team:</Heading>
-      <Field>{team}</Field>
-      <Heading>Duration:</Heading>
-      <Field>{duration}</Field>
+      <FadeUp>
+        <Wrapper>
+          <Heading>Deliverables:</Heading>
+          <Field>{deliverables}</Field>
+          <Heading>Collaborators:</Heading>
+          <Field>{collaborators}</Field>
+          <Heading>Team:</Heading>
+          <Field>{team}</Field>
+          <Heading>Duration:</Heading>
+          <Field>{duration}</Field>
+        </Wrapper>
+      </FadeUp>
     </Container>
   )
 }
@@ -33,17 +38,19 @@ ProjectInfoCard.propTypes = {
 
 export default ProjectInfoCard
 
-const Container = styled.dl`
-  margin-bottom: ${PADDING.xl}px;
-  width: 100%;
+const Wrapper = styled.dl`
   background-color: ${COLORS.lightgrey};
   border-radius: ${RADII.wrapper_lg}px;
   padding: 16px;
   overflow-wrap: break-word;
+`
+const Container = styled.div`
+  margin: ${PADDING.xxl}px 0 ${PADDING.xl}px;
+  width: 100%;
   ${MEDIA_QUERIES.tabletUp} {
     width: 40%;
     max-width: 540px;
-    margin-bottom: ${PADDING.xxl}px;
+    margin: ${PADDING.xxl}px 0;
   }
 `
 

@@ -14,6 +14,7 @@ import {
   FONT_STYLE_RECKLESS_17_400,
   FONT_STYLE_APFEL_12_400,
 } from 'styles/fonts'
+import FadeUp from 'components/Transitions/FadeUp'
 
 const SignUpForm = () => {
   const [showSuccess, setShowSuccess] = useState(false)
@@ -164,67 +165,76 @@ const Footer = () => {
   ]
 
   return (
-    <FooterContainer>
-      <FooterContent>
-        <FooterLeft>
-          <FooterText>
-            Companion is based in London and has been operating globally for{' '}
-            {days}d {hours}h {minutes}m {seconds}s. We are proud to contribute
-            5% of our annual revenue to organisations that create a better
-            future for earth.
-          </FooterText>
-          <FooterPartnerLogos>
-            {partnerLogos.map(({ title, url, image, width, height }, index) => (
-              <FooterPartnerLogo
-                key={index}
-                href={url}
+    <FadeUp>
+      <FooterContainer>
+        <FooterContent>
+          <FooterLeft>
+            <FooterText>
+              Companion is based in London and has been operating globally for{' '}
+              {days}d {hours}h {minutes}m {seconds}s. We are proud to contribute
+              5% of our annual revenue to organisations that create a better
+              future for earth.
+            </FooterText>
+            <FooterPartnerLogos>
+              {partnerLogos.map(
+                ({ title, url, image, width, height }, index) => (
+                  <FooterPartnerLogo
+                    key={index}
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Image
+                      src={image}
+                      width={width}
+                      height={height}
+                      alt={title}
+                    />
+                  </FooterPartnerLogo>
+                )
+              )}
+            </FooterPartnerLogos>
+          </FooterLeft>
+          <FooterRight>
+            <SignUpForm />
+          </FooterRight>
+        </FooterContent>
+        <Imprint>
+          <ImprintLeft>
+            <ImprintLine>Companion Studio Ltd. (No. 13051984)</ImprintLine>
+            <ImprintLine>
+              <a
                 target="_blank"
                 rel="noreferrer"
+                href="https://goo.gl/maps/qhhF9sFMuWqYgPTw5"
               >
-                <Image src={image} width={width} height={height} alt={title} />
-              </FooterPartnerLogo>
-            ))}
-          </FooterPartnerLogos>
-        </FooterLeft>
-        <FooterRight>
-          <SignUpForm />
-        </FooterRight>
-      </FooterContent>
-      <Imprint>
-        <ImprintLeft>
-          <ImprintLine>Companion Studio Ltd. (No. 13051984)</ImprintLine>
-          <ImprintLine>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://goo.gl/maps/qhhF9sFMuWqYgPTw5"
-            >
-              32-38 Scrutton Street, London, EC2A 4RQ
-            </a>
-          </ImprintLine>
-        </ImprintLeft>
-        <ImprintRight>
-          <FooterLinks>
-            {footerLinks.map((link, index) =>
-              link.url.startsWith('/') ? (
-                <Link key={index} href={link.url} passHref>
-                  <FooterLink>{link.title}</FooterLink>
-                </Link>
-              ) : (
-                <FooterLink
-                  key={index}
-                  href={link.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {link.title}
-                </FooterLink>
-              )
-            )}
-          </FooterLinks>
-        </ImprintRight>
-      </Imprint>
-    </FooterContainer>
+                32-38 Scrutton Street, London, EC2A 4RQ
+              </a>
+            </ImprintLine>
+          </ImprintLeft>
+          <ImprintRight>
+            <FooterLinks>
+              {footerLinks.map((link, index) =>
+                link.url.startsWith('/') ? (
+                  <Link key={index} href={link.url} passHref>
+                    <FooterLink>{link.title}</FooterLink>
+                  </Link>
+                ) : (
+                  <FooterLink
+                    key={index}
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {link.title}
+                  </FooterLink>
+                )
+              )}
+            </FooterLinks>
+          </ImprintRight>
+        </Imprint>
+      </FooterContainer>
+    </FadeUp>
   )
 }
 
