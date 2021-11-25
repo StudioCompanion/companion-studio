@@ -24,6 +24,12 @@ const PrivacyContainer = styled.div`
     max-width: 653px;
   }
 
+  a {
+    font-size: inherit;
+    font-family: inherit;
+    text-decoration: inherit;
+  }
+
   margin-bottom: ${PADDING.xxl}px;
   h2 {
     margin-bottom: ${PADDING.m}px;
