@@ -6,14 +6,18 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_17_400 } from 'styles/fonts'
 
 import Privacy from '../client/components/privacy.mdx'
+import { NextSeo } from 'next-seo'
 
 const privacy = () => {
   return (
-    <PrivacyWrapper>
-      <PrivacyContainer>
-        <Privacy />
-      </PrivacyContainer>
-    </PrivacyWrapper>
+    <>
+      <NextSeo title="Privacy" />
+      <PrivacyWrapper>
+        <PrivacyContainer>
+          <Privacy />
+        </PrivacyContainer>
+      </PrivacyWrapper>
+    </>
   )
 }
 
