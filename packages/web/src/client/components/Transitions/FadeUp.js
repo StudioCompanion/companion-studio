@@ -9,7 +9,7 @@ const FadeUp = ({ children }) => {
     ref: api,
     opacity: 0,
     y: 200,
-    config: config.molasses,
+    config: config.slow,
   })
 
   useEffect(() => {
