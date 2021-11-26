@@ -35,7 +35,12 @@ const team = () => {
 export default team
 
 const PaddingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0 ${PADDING.s}px;
+  max-width: 1200px;
+  margin: auto;
   ${MEDIA_QUERIES.tabletUp} {
     padding: 0 ${PADDING.m}px;
   }

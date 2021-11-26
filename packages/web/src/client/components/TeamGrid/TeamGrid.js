@@ -54,6 +54,7 @@ const GridWrapper = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     gap: ${PADDING.m}px;
     margin: ${PADDING.xxl}px 0;
+    /* max-width: 1200px; */
   }
 `
 
