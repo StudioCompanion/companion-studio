@@ -18,8 +18,11 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { WIDTHS } from '../../styles/dimensions'
 import { getAspectRatio } from 'helpers/media'
 import { getThemeValue } from 'helpers/theme'
+
 import Button, { ButtonContainer } from 'components/Button/Button'
+import FadeUp from 'components/Transitions/FadeUp'
 import CardVideo from './CardVideo'
+
 
 const { STUDIO } = LAYOUTS.card
 
@@ -37,6 +40,10 @@ const HomePageCard = ({
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
 
   return (
+
+    <FadeUp>
+
+
     <Link href={link} passHref>
       <CardWrapper $theme={THEME_TYPES.LIGHT}>
         <CardContainer $theme={theme} $type={type} $aspect={aspect}>
@@ -49,6 +56,7 @@ const HomePageCard = ({
                     layout="fill"
                     alt={heading}
                   />
+
                 )}
                 {video && (
                   <CardVideo tabletUp={tabletUp} video={video} image={image} />
@@ -71,6 +79,7 @@ const HomePageCard = ({
         </CardContainer>
       </CardWrapper>
     </Link>
+    </FadeUp>
   )
 }
 

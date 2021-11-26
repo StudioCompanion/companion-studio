@@ -20,6 +20,7 @@ import Slide from './Slide'
 import Video from './Video'
 import { InfiniteSlider } from './InfiniteCarousel'
 import Cursor from './Cursor'
+import FadeUp from 'components/Transitions/FadeUp'
 
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
@@ -111,57 +112,60 @@ const Carousel = ({
       {showCursor && (
         <Cursor showCursor={showCursor} icon={cursorIcon()} ref={cursorRef} />
       )}
-      <Wrapper $hero={hero} layout={layout}>
-        <Container
-          ref={containerEl}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onMouseMove={handleMouseMove}
-          onClick={handleClick}
-          layout={layout}
-          $bgColor={bgColor}
-          $bgImage={bgImage}
-          $direction={direction}
-          $aspect={aspect}
-          $showCursor={showCursor}
-        >
-          <Inner>
-            {video ? (
-              <Video
-                video={video}
-                layout={layout}
-                aspect={aspect}
-                ref={videoRef}
-                setPaused={setPaused}
-              />
-            ) : (
-              <InfiniteSlider
-                ref={sliderApi}
-                items={items}
-                onDragEnd={handleDragEnd}
-              >
-                {(item) => (
-                  <Slide key={item.url} url={item.url} alt={item.alt} />
-                )}
-              </InfiniteSlider>
-            )}
-          </Inner>
-        </Container>
-        <Caption>
-          {items[activeIndex].caption ? (
-            <CaptionText>{items[activeIndex].caption}</CaptionText>
-          ) : null}
-          {!video && itemCount > 1 && (
-            <Dots>
-              {items.map((_, index) => (
-                <Dot
-                  key={index}
-                  style={{ opacity: activeIndex === index ? 1 : 0.2 }}
+
+      <Wrapper $hero={hero} className={hero && 'hero'} layout={layout}>
+        <FadeUp>
+          <Container
+            ref={containerEl}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onMouseMove={handleMouseMove}
+            onClick={handleClick}
+            layout={layout}
+            $bgColor={bgColor}
+            $bgImage={bgImage}
+            $direction={direction}
+            $aspect={aspect}
+            $showCursor={showCursor}
+          >
+            <Inner>
+              {video ? (
+                <Video
+                  video={video}
+                  layout={layout}
+                  aspect={aspect}
+                  ref={videoRef}
+                  setPaused={setPaused}
                 />
-              ))}
-            </Dots>
-          )}
-        </Caption>
+              ) : (
+                <InfiniteSlider
+                  ref={sliderApi}
+                  items={items}
+                  onDragEnd={handleDragEnd}
+                >
+                  {(item) => (
+                    <Slide key={item.url} url={item.url} alt={item.alt} />
+                  )}
+                </InfiniteSlider>
+              )}
+            </Inner>
+          </Container>
+          <Caption>
+            {items[activeIndex].caption ? (
+              <CaptionText>{items[activeIndex].caption}</CaptionText>
+            ) : null}
+            {!video && itemCount > 1 && (
+              <Dots>
+                {items.map((_, index) => (
+                  <Dot
+                    key={index}
+                    style={{ opacity: activeIndex === index ? 1 : 0.2 }}
+                  />
+                ))}
+              </Dots>
+            )}
+          </Caption>
+        </FadeUp>
       </Wrapper>
     </>
   )
@@ -183,7 +187,7 @@ const Wrapper = styled.div`
   margin-bottom: ${(p) => (p.$hero ? `${PADDING.xl}px` : `${PADDING.s}px`)};
 
   ${MEDIA_QUERIES.tabletUp} {
-    margin-bottom: ${(p) => (p.$hero ? `${PADDING.xxl}px` : `${PADDING.m}px`)};
+    margin-bottom: ${(p) => (p.$hero ? 0 : `${PADDING.m}px`)};
     width: ${({ layout }) => {
       switch (layout) {
         case FULL:

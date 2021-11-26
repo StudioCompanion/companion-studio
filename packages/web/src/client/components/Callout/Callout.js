@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 
-import { getThemeValue } from 'helpers/theme'
 import Button, { ButtonContainer } from 'components/Button/Button'
+import FadeUp from 'components/Transitions/FadeUp'
 
 import {
   COLORS,
@@ -11,9 +11,9 @@ import {
   THEME_TYPES,
   HOVER_BACKGROUND,
 } from 'styles/constants'
-
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
+import { getThemeValue } from 'helpers/theme'
 import {
   FONT_STYLE_RECKLESS_32_400,
   FONT_STYLE_RECKLESS_17_400,
@@ -21,25 +21,27 @@ import {
 
 const Callout = () => {
   return (
-    <CalloutContainer
-      $theme={THEME_TYPES.DARK}
-      href="mailto:hello@companion.studio"
-    >
-      <div>
-        <CalloutText>
-          Have a project you’d like to work on with us? Interested in joining
-          the team? Need a shoulder to cry on?
-        </CalloutText>
-        <Button text={'Message us'} theme={THEME_TYPES.DARK} />
-      </div>
-      <CalloutImageWrapper>
-        <Image
-          src={'/images/graphics/callout_image.png'}
-          width={176}
-          height={174}
-        />
-      </CalloutImageWrapper>
-    </CalloutContainer>
+    <FadeUp>
+      <CalloutContainer
+        $theme={THEME_TYPES.DARK}
+        href="mailto:hello@companion.studio"
+      >
+        <div>
+          <CalloutText>
+            Have a project you’d like to work on with us? Interested in joining
+            the team? Need a shoulder to cry on?
+          </CalloutText>
+          <Button text={'Message us'} theme={THEME_TYPES.DARK} />
+        </div>
+        <CalloutImageWrapper>
+          <Image
+            src={'/images/graphics/callout_image.png'}
+            width={176}
+            height={174}
+          />
+        </CalloutImageWrapper>
+      </CalloutContainer>
+    </FadeUp>
   )
 }
 

@@ -9,10 +9,15 @@ import {
   FONT_STYLE_RECKLESS_20_400,
 } from '../../styles/fonts'
 
+import { Wrapper } from 'components/Carousel/Carousel'
+import FadeUp from 'components/Transitions/FadeUp'
+
 const TextSection = ({ children }) => {
   return (
     <Container>
-      <BodyContainer>{children}</BodyContainer>
+      <FadeUp>
+        <BodyContainer>{children}</BodyContainer>
+      </FadeUp>
     </Container>
   )
 }
@@ -32,6 +37,10 @@ const Container = styled.div`
   h3 {
     ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
     margin-bottom: ${PADDING.s}px;
+  }
+
+  .hero + & {
+    margin-top: ${PADDING.xxl}px;
   }
 `
 const BodyContainer = styled.div`

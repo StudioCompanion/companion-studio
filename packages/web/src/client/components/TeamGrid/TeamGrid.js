@@ -10,15 +10,19 @@ import {
   FONT_STYLE_RECKLESS_17_400,
 } from 'styles/fonts'
 
+import FadeUp from 'components/Transitions/FadeUp'
+
 const GridItem = ({ image, name, role }) => {
   return (
-    <GridItemContainer>
-      <GridImageWrapper>
-        <Image src={image} width={561} height={561} alt={name} />
-      </GridImageWrapper>
-      <TeamMemberName>{name}</TeamMemberName>
-      <TeamMemberRole>{role}</TeamMemberRole>
-    </GridItemContainer>
+    <FadeUp>
+      <GridItemContainer>
+        <GridImageWrapper>
+          <Image src={image} width={561} height={561} alt={name} />
+        </GridImageWrapper>
+        <TeamMemberName>{name}</TeamMemberName>
+        <TeamMemberRole>{role}</TeamMemberRole>
+      </GridItemContainer>
+    </FadeUp>
   )
 }
 GridItem.propTypes = {
