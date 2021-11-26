@@ -5,12 +5,15 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { WIDTHS, PADDING } from 'styles/constants'
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_32_400 } from 'styles/fonts'
+import FadeUp from 'components/Transitions/FadeUp'
 
 const CenteredParagraph = ({ children }) => {
   return (
-    <CenteredParagraphContainer>
-      <CenteredParagraphBody>{children}</CenteredParagraphBody>
-    </CenteredParagraphContainer>
+    <FadeUp>
+      <CenteredParagraphContainer>
+        <CenteredParagraphBody>{children}</CenteredParagraphBody>
+      </CenteredParagraphContainer>
+    </FadeUp>
   )
 }
 

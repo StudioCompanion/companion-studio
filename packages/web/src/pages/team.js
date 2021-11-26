@@ -14,9 +14,7 @@ const team = () => {
   return (
     <>
       <NextSeo title="Team" />
-      <ImageStripContainer>
-        <ImageStrip />
-      </ImageStripContainer>
+      <ImageStrip />
       <PaddingContainer>
         <CenteredParagraph>
           We’re a small and passionate team of designers, engineers and
@@ -37,6 +35,7 @@ const team = () => {
 
 export default team
 
+
 team.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>
 }
@@ -48,8 +47,14 @@ const ImageStripContainer = styled.div`
   }
 `
 
+
 const PaddingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0 ${PADDING.s}px;
+  max-width: 1200px;
+  margin: auto;
   ${MEDIA_QUERIES.tabletUp} {
     padding: 0 ${PADDING.m}px;
   }

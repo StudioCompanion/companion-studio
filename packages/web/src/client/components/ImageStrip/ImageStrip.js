@@ -7,6 +7,8 @@ import PageVisibility from 'react-page-visibility'
 
 import { RADII, PADDING } from 'styles/constants'
 import { WIDTHS } from '../../styles/dimensions'
+import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import FadeUp from 'components/Transitions/FadeUp'
 
 const SMALL = 'small'
 const MEDIUM = 'meidum'
@@ -78,7 +80,13 @@ const ImageStripImage = ({
       }}
     >
       <ImageWrapper $size={size} $rotation={rotation}>
-        <Image src={src} alt={alt} width={width} height={height} />
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          placeholder="blur"
+        />
       </ImageWrapper>
     </ImageContainer>
   )
@@ -120,30 +128,32 @@ const ImageStrip = ({}) => {
   }, [isTabletUp])
 
   return (
-    <PageVisibility onChange={handleVisibilityChange}>
-      <ImageStripContainer>
-        {pageIsVisible && (
-          <Ticker>
-            {() => (
-              <ImageStripWrapper>
-                {images.map((image, i) => (
-                  <ImageStripImage
-                    key={i}
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    size={image.size}
-                    rotation={image.rotation}
-                    tabletUp={isTabletUp}
-                  />
-                ))}
-              </ImageStripWrapper>
-            )}
-          </Ticker>
-        )}
-      </ImageStripContainer>
-    </PageVisibility>
+    <FadeUp>
+      <PageVisibility onChange={handleVisibilityChange}>
+        <ImageStripContainer>
+          {pageIsVisible && (
+            <Ticker>
+              {() => (
+                <ImageStripWrapper>
+                  {images.map((image, i) => (
+                    <ImageStripImage
+                      key={i}
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.width}
+                      height={image.height}
+                      size={image.size}
+                      rotation={image.rotation}
+                      tabletUp={isTabletUp}
+                    />
+                  ))}
+                </ImageStripWrapper>
+              )}
+            </Ticker>
+          )}
+        </ImageStripContainer>
+      </PageVisibility>
+    </FadeUp>
   )
 }
 
@@ -166,6 +176,10 @@ const ImageContainer = styled.div`
 const ImageStripContainer = styled.div`
   position: relative;
   width: 100%;
+  margin: ${PADDING.xl}px 0;
+  ${MEDIA_QUERIES.tabletUp} {
+    margin: ${PADDING.l} 0;
+  }
 `
 
 const ImageStripWrapper = styled.div`
@@ -174,9 +188,14 @@ const ImageStripWrapper = styled.div`
   width: max-content;
 `
 
+import largeImage from '../../../../public/images/image-strip/large-image.jpg'
+import scooby from '../../../../public/images/image-strip/scooby.jpg'
+import mediumImage from '../../../../public/images/image-strip/medium-image.jpg'
+import smallImage from '../../../../public/images/image-strip/small-image.jpg'
+
 const images = [
   {
-    src: '/images/image-strip/large-image.jpg',
+    src: largeImage,
     alt: 'Large Image',
     width: 531,
     height: 549,
@@ -184,14 +203,14 @@ const images = [
     rotation: 10,
   },
   {
-    src: '/images/image-strip/scooby.jpg',
+    src: scooby,
     alt: 'Scooby',
     width: 3024,
     height: 4032,
     size: SMALL,
   },
   {
-    src: '/images/image-strip/medium-image.jpg',
+    src: mediumImage,
     alt: 'Medium Image',
     width: 333,
     height: 444,
@@ -199,7 +218,7 @@ const images = [
     rotation: -5,
   },
   {
-    src: '/images/image-strip/small-image.jpg',
+    src: smallImage,
     alt: 'Small Image',
     width: 294,
     height: 256,
