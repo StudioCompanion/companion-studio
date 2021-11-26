@@ -356,7 +356,8 @@ const FormButton = styled.button`
   border-radius: 500px;
   border: none;
   cursor: pointer;
-  padding: 6px;
+  padding: 8px;
+  padding-bottom: 9px;
   min-height: 30px;
 
   &:hover {

@@ -6,6 +6,8 @@ import OpeningText from 'components/OpeningText/OpeningText'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { LAYOUTS, THEME_TYPES } from 'styles/constants'
 
+import testVideoCaseStudyPoster from '../../public/testvid_placeholder.png'
+
 const { STUDIO, CASE_STUDY } = LAYOUTS.card
 
 const index = () => {
@@ -106,9 +108,13 @@ const homePageCardData = [
   },
   {
     type: CASE_STUDY,
+    video: {
+      desktop: '/testvid.mp4',
+      mobile: '/testvid.mp4',
+    },
     image: {
-      desktop: '/home/CASE_del_core.png',
-      mobile: '/home/CASE_del_core_m.png',
+      desktop: testVideoCaseStudyPoster,
+      mobile: testVideoCaseStudyPoster,
     },
     heading: 'Del Core',
     subheading: 'Presenting mutant glamour with precision',

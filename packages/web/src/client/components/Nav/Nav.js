@@ -103,6 +103,7 @@ const NavLink = styled.a`
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};
   background-color: ${(p) => (p.active ? COLORS.darkblue : 'transparent')};
   padding: 8px;
+  padding-bottom: 10px;
   border-radius: 500px;
   color: ${(p) => (p.active ? COLORS.white : 'rgba(8, 11, 55, 0.57)')};
   width: 100%;
