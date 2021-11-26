@@ -11,6 +11,8 @@
     "@react-hook/intersection-observer": "^3.1.1",
     "@react-spring/web": "^9.3.0",
     "formik": "^2.2.9",
+    "lottie-colorify": "^0.8.0",
+    "lottie-web": "^5.8.1",
     "moment": "^2.29.1",
     "next": "^12.0.4",
     "next-seo": "^4.28.1",

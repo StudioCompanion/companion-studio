@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
@@ -8,14 +9,27 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import Nav from './Nav/Nav'
 import Callout from './Callout/Callout'
 import Footer from './Footer/Footer'
+import Splash from './Splash/Splash'
 
 const Layout = ({ children }) => {
   const router = useRouter()
   const currentPath = router.pathname
 
+  const [newSession, setNewSession] = useState(true)
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem('session')
+    if (stored) {
+      setNewSession(false)
+    } else {
+      sessionStorage.setItem('session', true)
+    }
+  }, [])
+
   return (
     <>
       <Nav />
+      {newSession && <Splash />}
       <Main $currentPath={currentPath}>{children}</Main>
       <PaddingContainer>
         <Section>
