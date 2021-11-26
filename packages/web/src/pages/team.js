@@ -8,7 +8,6 @@ import TeamGrid from 'components/TeamGrid/TeamGrid'
 import ValuesGrid from 'components/ValuesGrid/ValuesGrid'
 import CenteredParagraph from 'components/CenteredParagraph/CenteredParagraph'
 import ImageStrip from 'components/ImageStrip/ImageStrip'
-import FadeUp from 'components/Transitions/FadeUp'
 
 const team = () => {
   return (

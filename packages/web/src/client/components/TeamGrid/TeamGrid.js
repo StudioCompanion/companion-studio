@@ -17,7 +17,7 @@ const GridItem = ({ image, name, role }) => {
     <FadeUp>
       <GridItemContainer>
         <GridImageWrapper>
-          <Image src={image} width={561} height={561} alt={name} />
+          <Image src={image} placeholder="blur" alt={name} />
         </GridImageWrapper>
         <TeamMemberName>{name}</TeamMemberName>
         <TeamMemberRole>{role}</TeamMemberRole>
@@ -84,35 +84,42 @@ const TeamMemberRole = styled.h3`
   ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
 `
 
+import myles from '../../../../public/images/team/myles.png'
+import elena from '../../../../public/images/team/elena.png'
+import alexandra from '../../../../public/images/team/alexandra.png'
+import axelle from '../../../../public/images/team/axelle.png'
+import josh from '../../../../public/images/team/josh.png'
+import willem from '../../../../public/images/team/willem.png'
+
 const team = [
   {
     name: 'Myles Palmer',
     role: 'Founder & Creative Director',
-    image: '/images/team/myles.png',
+    image: myles,
   },
   {
     name: 'Elena Maranaki',
     role: 'Developer Apprentice',
-    image: '/images/team/elena.png',
+    image: elena,
   },
   {
     name: 'Alexandra Votjku',
     role: 'Digital Designer',
-    image: '/images/team/alexandra.png',
+    image: alexandra,
   },
   {
     name: 'Axelle Van de Goor',
     role: 'Producer',
-    image: '/images/team/axelle.png',
+    image: axelle,
   },
   {
     name: 'Josh Ellis',
     role: 'Fullstack Developer',
-    image: '/images/team/josh.png',
+    image: josh,
   },
   {
     name: 'Willem Purdy',
     role: 'Digital Designer',
-    image: '/images/team/willem.png',
+    image: willem,
   },
 ]

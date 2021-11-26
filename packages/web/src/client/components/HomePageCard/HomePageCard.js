@@ -23,7 +23,6 @@ import Button, { ButtonContainer } from 'components/Button/Button'
 import FadeUp from 'components/Transitions/FadeUp'
 import CardVideo from './CardVideo'
 
-
 const { STUDIO } = LAYOUTS.card
 
 const HomePageCard = ({
@@ -40,45 +39,46 @@ const HomePageCard = ({
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
 
   return (
-
     <FadeUp>
-
-
-    <Link href={link} passHref>
-      <CardWrapper $theme={THEME_TYPES.LIGHT}>
-        <CardContainer $theme={theme} $type={type} $aspect={aspect}>
-          <CardInner>
-            <ImageContainer>
-              <ImageWrapper>
-                {!video && (
-                  <Image
-                    src={tabletUp ? image.desktop : image.mobile}
-                    layout="fill"
-                    alt={heading}
-                  />
-
-                )}
-                {video && (
-                  <CardVideo tabletUp={tabletUp} video={video} image={image} />
-                )}
-              </ImageWrapper>
-            </ImageContainer>
-            <CardText $theme={theme}>
-              <div>
-                <h2>{heading}</h2>
-                <h3>{subheading}</h3>
-              </div>
-              <Button
-                text={
-                  (button && button) || (type == STUDIO && 'View') || 'Read'
-                }
-                theme={THEME_TYPES.LIGHT}
-              />
-            </CardText>
-          </CardInner>
-        </CardContainer>
-      </CardWrapper>
-    </Link>
+      <Link href={link} passHref>
+        <CardWrapper $theme={THEME_TYPES.LIGHT}>
+          <CardContainer $theme={theme} $type={type} $aspect={aspect}>
+            <CardInner>
+              <ImageContainer>
+                <ImageWrapper>
+                  {!video && (
+                    <Image
+                      src={tabletUp ? image.desktop : image.mobile}
+                      layout="fill"
+                      alt={heading}
+                      placeholder="blur"
+                    />
+                  )}
+                  {video && (
+                    <CardVideo
+                      tabletUp={tabletUp}
+                      video={video}
+                      image={image}
+                    />
+                  )}
+                </ImageWrapper>
+              </ImageContainer>
+              <CardText $theme={theme}>
+                <div>
+                  <h2>{heading}</h2>
+                  <h3>{subheading}</h3>
+                </div>
+                <Button
+                  text={
+                    (button && button) || (type == STUDIO && 'View') || 'Read'
+                  }
+                  theme={THEME_TYPES.LIGHT}
+                />
+              </CardText>
+            </CardInner>
+          </CardContainer>
+        </CardWrapper>
+      </Link>
     </FadeUp>
   )
 }

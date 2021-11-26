@@ -15,7 +15,7 @@ const StickyParagraph = ({ text, image, maxWidth }) => {
         <StickyText>{text}</StickyText>
       </StickyContainer>
       <ImageContainer $maxWidth={maxWidth}>
-        <Image src={image.src} width={image.width} height={image.height} />
+        <Image src={image.src} placeholder="blur" />
       </ImageContainer>
     </StickyParagraphContainer>
   )
