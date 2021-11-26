@@ -18,6 +18,14 @@ const Video = React.forwardRef(
     const autoPause = useRef(false)
     const srcRef = useRef()
 
+    const handlePlay = () => {
+      setPaused(false)
+    }
+
+    const handlePause = () => {
+      setPaused(true)
+    }
+
     const widthFactor = 88
     const videoAspectRatio = Math.round(video.height / video.width)
     const calcWidth = (size) =>
@@ -57,7 +65,7 @@ const Video = React.forwardRef(
         }
         return
       }
-    })
+    }, [tabletUp, video.poster])
 
     useEffect(() => {
       if (!isIntersecting) {
@@ -91,7 +99,7 @@ const Video = React.forwardRef(
         srcRef.current.src = tabletUp ? video.url.desktop : video.url.mobile
         videoRef.current.load()
       }
-    })
+    }, [isIntersecting, tabletUp, video.url.desktop, video.url.mobile])
 
     return (
       <VideoContainer onClick={handleVideoClick}>
@@ -103,8 +111,8 @@ const Video = React.forwardRef(
               playsinline
               ref={videoRef}
               muted
-              onPause={() => setPaused(true)}
-              onPlay={() => setPaused(false)}
+              onPause={handlePause}
+              onPlay={handlePlay}
             >
               <source ref={srcRef} src="" type="video/mp4"></source>
             </VideoItem>

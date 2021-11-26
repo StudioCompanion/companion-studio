@@ -3,17 +3,29 @@ import styled from 'styled-components'
 import { PADDING } from 'styles/constants'
 
 import StickyParagraph from 'components/StickyParagraph/StickyParagraph'
+
 import FadeUp from 'components/Transitions/FadeUp'
+
+
+import { NextSeo } from 'next-seo'
 
 const approach = () => {
   return (
-    <ApproachContainer>
-      {paragraphs.map(({ image, text, maxWidth }, index) => (
-        <FadeUp key={index}>
-          <StickyParagraph text={text} image={image} maxWidth={maxWidth} />
-        </FadeUp>
-      ))}
-    </ApproachContainer>
+    <>
+      <NextSeo title="Approach" />
+      <ApproachContainer>
+        {paragraphs.map(({ image, text, maxWidth }, index) => (
+            <FadeUp key={index}>
+          <StickyParagraph
+            text={text}
+            image={image}
+            maxWidth={maxWidth}
+          />
+              </FadeUp>
+        ))}
+      </ApproachContainer>
+    </>
+
   )
 }
 

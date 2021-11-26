@@ -26,7 +26,6 @@ const FORWARD = 'forward'
 const BACKWARD = 'backward'
 
 const { FULL, HALF, TWO_THIRDS } = LAYOUTS.carousel
-
 const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
 
 const Carousel = ({
@@ -44,7 +43,7 @@ const Carousel = ({
 
   const [paused, setPaused] = useState()
   const video = items.find(
-    (item) => regex.test(item.url.desktop) || regex.test(item.url.desktop)
+    (item) => regex.test(item.url.desktop) || regex.test(item.url.mobile)
   )
   const videoRef = useRef()
 
