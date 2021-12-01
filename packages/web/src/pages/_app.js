@@ -21,13 +21,14 @@ const components = {
 }
 
 function App({ Component, pageProps }) {
-  const getLayout = Component.getLayout || ((page) => page)
   return (
     <>
       <DefaultSeo {...SEO} />
       <MDXProvider components={components}>
-        {getLayout(<Component {...pageProps} />)}
-        <GlobalStyle />
+        <Layout>
+          <Component {...pageProps} />
+          <GlobalStyle />
+        </Layout>
       </MDXProvider>
     </>
   )

@@ -1,0 +1,30 @@
+import { LinktreeLayout } from 'components/LinkTree/Layout'
+import LinkTreeItem from 'components/LinkTree/LinkTree'
+
+import cookie from '../../public/images/link-tree/cookie.gif'
+import clip from '../../public/images/link-tree/clip.png'
+import vcpu from '../../public/images/link-tree/vcpu.png'
+
+export const INSTAGRAM_ITEMS = [
+  {
+    image: cookie,
+    text: 'Partnership with Creative Lives in Progress',
+    url: '#',
+  },
+  {
+    image: clip,
+    text: 'Item',
+    url: '#',
+  },
+  {
+    image: vcpu,
+    text: 'Item',
+    url: '#',
+  },
+]
+
+<LinkTreeItem items={INSTAGRAM_ITEMS} />
+
+export default function InstagramLayout({ children }) {
+  return <LinktreeLayout>{children}</LinktreeLayout>
+}

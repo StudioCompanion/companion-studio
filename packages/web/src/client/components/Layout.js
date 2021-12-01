@@ -15,14 +15,16 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Nav />
+      <Nav currentPath={currentPath} />
       <Main $currentPath={currentPath}>{children}</Main>
-      <PaddingContainer>
-        <Section>
-          <Callout />
-        </Section>
-        <Footer />
-      </PaddingContainer>
+      {currentPath !== '/instagram' && (
+        <PaddingContainer>
+          <Section>
+            <Callout />
+          </Section>
+          <Footer />
+        </PaddingContainer>
+      )}
     </>
   )
 }

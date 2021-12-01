@@ -1,13 +1,14 @@
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import Image from 'next/image'
 
-import Logo from '../../public/images/graphics/logo.svg'
-import LinkTree from 'components/LinkTree/LinkTree'
 import SquiggleBackground from 'components/LinkTree/SquiggleBackground'
 
 import { PADDING } from 'styles/constants'
 
-const linkTree = () => {
+import Logo from '../../../../public/images/graphics/logo.svg'
+
+export const LinktreeLayout = ({ children }) => {
   return (
     <>
       <SquiggleBackground />
@@ -16,36 +17,16 @@ const linkTree = () => {
           <LogoContainer>
             <Image src={Logo} />
           </LogoContainer>
-          <LinkTree items={items} />
+          {children}
         </LinkTreeWrapper>
       </LinkTreeContainer>
     </>
   )
 }
 
-export default linkTree
-
-import cookie from '../../public/images/link-tree/cookie.gif'
-import clip from '../../public/images/link-tree/clip.png'
-import vcpu from '../../public/images/link-tree/vcpu.png'
-
-const items = [
-  {
-    image: cookie,
-    text: 'Partnership with Creative Lives in Progress',
-    url: '#',
-  },
-  {
-    image: clip,
-    text: 'Item',
-    url: '#',
-  },
-  {
-    image: vcpu,
-    text: 'Item',
-    url: '#',
-  },
-]
+LinktreeLayout.propTypes = {
+  children: PropTypes.any,
+}
 
 const LinkTreeContainer = styled.div`
   position: relative;

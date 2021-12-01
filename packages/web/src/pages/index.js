@@ -1,57 +1,10 @@
 import styled from 'styled-components'
 
-import Layout from 'components/Layout'
 import HomePageCard from 'components/HomePageCard/HomePageCard'
 import OpeningText from 'components/OpeningText/OpeningText'
 
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { LAYOUTS, THEME_TYPES } from 'styles/constants'
-
-const { STUDIO, CASE_STUDY } = LAYOUTS.card
-
-const index = () => {
-  return (
-    <HomeContainer>
-      <RightContainer>
-        <OpeningText
-          text={
-            'Companion is a design studio that partners with you to design and build digital products that inspire, disrupt, entertain and create a better future for people and planet.'
-          }
-        />
-      </RightContainer>
-      <CardsContainer>
-        {homePageCardData.map((item, index) => (
-          <HomePageCard key={index} {...item} />
-        ))}
-      </CardsContainer>
-    </HomeContainer>
-  )
-}
-
-export default index
-
-index.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>
-}
-
-const HomeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  ${MEDIA_QUERIES.tabletUp} {
-    flex-direction: row;
-  }
-`
-const CardsContainer = styled.div`
-  width: 100%;
-  position: relative;
-`
-
-const RightContainer = styled.div`
-  width: 100%;
-  ${MEDIA_QUERIES.tabletUp} {
-    order: 1;
-  }
-`
 
 import CASE_limna from '../../public/home/CASE_limna.png'
 import CASE_limna_m from '../../public/home/CASE_limna_m.png'
@@ -75,7 +28,49 @@ import CASE_new_futures_m from '../../public/home/CASE_new_futures_m.png'
 import STUDIO_news from '../../public/home/STUDIO_news.png'
 import STUDIO_news_m from '../../public/home/STUDIO_news_m.png'
 
-const homePageCardData = [
+const { STUDIO, CASE_STUDY } = LAYOUTS.card
+
+const Index = () => {
+  return (
+    <HomeContainer>
+      <RightContainer>
+        <OpeningText
+          text={
+            'Companion is a design studio that partners with you to design and build digital products that inspire, disrupt, entertain and create a better future for people and planet.'
+          }
+        />
+      </RightContainer>
+      <CardsContainer>
+        {HOMEPAGE_DATA.map((item, index) => (
+          <HomePageCard key={index} {...item} />
+        ))}
+      </CardsContainer>
+    </HomeContainer>
+  )
+}
+
+export default Index
+
+const HomeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${MEDIA_QUERIES.tabletUp} {
+    flex-direction: row;
+  }
+`
+const CardsContainer = styled.div`
+  width: 100%;
+  position: relative;
+`
+
+const RightContainer = styled.div`
+  width: 100%;
+  ${MEDIA_QUERIES.tabletUp} {
+    order: 1;
+  }
+`
+
+const HOMEPAGE_DATA = [
   {
     type: CASE_STUDY,
     image: {

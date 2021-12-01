@@ -4,13 +4,12 @@ import { NextSeo } from 'next-seo'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { PADDING } from 'styles/constants'
 
-import Layout from 'components/Layout'
 import TeamGrid from 'components/TeamGrid/TeamGrid'
 import ValuesGrid from 'components/ValuesGrid/ValuesGrid'
 import CenteredParagraph from 'components/CenteredParagraph/CenteredParagraph'
 import ImageStrip from 'components/ImageStrip/ImageStrip'
 
-const team = () => {
+const Team = () => {
   return (
     <>
       <NextSeo title="Team" />
@@ -33,20 +32,7 @@ const team = () => {
   )
 }
 
-export default team
-
-
-team.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>
-}
-
-const ImageStripContainer = styled.div`
-  margin: ${PADDING.xl}px 0;
-  ${MEDIA_QUERIES.tabletUp} {
-    margin: ${PADDING.l} 0;
-  }
-`
-
+export default Team
 
 const PaddingContainer = styled.div`
   display: flex;
