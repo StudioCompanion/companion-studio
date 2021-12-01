@@ -1,3 +1,8 @@
+import { NextSeo } from 'next-seo'
+import { PrivacyWrapper, PrivacyContainer } from 'components/Privacy'
+
+<NextSeo title="Privacy" />
+
 ## How We Use Your Information
 
 When you contact us to work on your project, we ask you to give us some of your personal
@@ -132,3 +137,11 @@ Myles Palmer is the data controller of the information we hold about you. If you
 ## Want To Find Out More?
 
 You can find out more about data protection and the rights you have by contacting the independent Information Commissioner's Office: ico.org.uk
+
+export default function PrivacyLayout({ children }) {
+  return (
+    <PrivacyWrapper>
+      <PrivacyContainer>{children}</PrivacyContainer>
+    </PrivacyWrapper>
+  )
+}

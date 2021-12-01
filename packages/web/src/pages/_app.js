@@ -24,12 +24,12 @@ function App({ Component, pageProps }) {
   return (
     <>
       <DefaultSeo {...SEO} />
-      <Layout>
-        <MDXProvider components={components}>
+      <MDXProvider components={components}>
+        <Layout>
           <Component {...pageProps} />
           <GlobalStyle />
-        </MDXProvider>
-      </Layout>
+        </Layout>
+      </MDXProvider>
     </>
   )
 }

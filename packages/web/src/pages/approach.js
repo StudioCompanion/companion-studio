@@ -1,19 +1,24 @@
 import styled from 'styled-components'
+import { NextSeo } from 'next-seo'
 
 import { PADDING } from 'styles/constants'
 
 import StickyParagraph from 'components/StickyParagraph/StickyParagraph'
-
 import FadeUp from 'components/Transitions/FadeUp'
 
-import { NextSeo } from 'next-seo'
+import approach_create_change from '../../public/images/graphics/approach/approach_create_change.png'
+import approach_extension_or_outside from '../../public/images/graphics/approach/approach_extension_or_outside.png'
+import approach_flexible_and_strong from '../../public/images/graphics/approach/approach_flexible_and_strong.png'
+import approach_dive_deep from '../../public/images/graphics/approach/approach_dive_deep.png'
+import approach_trampoline from '../../public/images/graphics/approach/approach_trampoline.png'
+import approach_pull_together from '../../public/images/graphics/approach/approach_pull_together.png'
 
-const approach = () => {
+const Approach = () => {
   return (
     <>
       <NextSeo title="Approach" />
       <ApproachContainer>
-        {paragraphs.map(({ image, text, maxWidth }, index) => (
+        {ABOUT_DATA.map(({ image, text, maxWidth }, index) => (
           <FadeUp key={index}>
             <StickyParagraph text={text} image={image} maxWidth={maxWidth} />
           </FadeUp>
@@ -23,7 +28,7 @@ const approach = () => {
   )
 }
 
-export default approach
+export default Approach
 
 const ApproachContainer = styled.div`
   display: flex;
@@ -31,14 +36,8 @@ const ApproachContainer = styled.div`
   align-items: center;
   padding-bottom: ${PADDING.xxl}px;
 `
-import approach_create_change from '../../public/images/graphics/approach/approach_create_change.png'
-import approach_extension_or_outside from '../../public/images/graphics/approach/approach_extension_or_outside.png'
-import approach_flexible_and_strong from '../../public/images/graphics/approach/approach_flexible_and_strong.png'
-import approach_dive_deep from '../../public/images/graphics/approach/approach_dive_deep.png'
-import approach_trampoline from '../../public/images/graphics/approach/approach_trampoline.png'
-import approach_pull_together from '../../public/images/graphics/approach/approach_pull_together.png'
 
-const paragraphs = [
+const ABOUT_DATA = [
   {
     text: 'We aim to enhance the lives of everyone around us by designing tools, services and products that inspire, entertain and create a better future for planet and people.',
     image: {

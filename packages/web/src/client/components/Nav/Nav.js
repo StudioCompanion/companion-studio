@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useRouter } from 'next/router'
+import PropTypes from 'prop-types'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -8,20 +8,10 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { COLORS, PADDING } from '../../styles/constants'
 
-const Nav = () => {
-  const navItems = [
-    { title: 'Work', url: '/' },
-    { title: 'Approach', url: '/approach' },
-    { title: 'Team', url: '/team' },
-  ]
-
-  const router = useRouter()
-
-  const currentPath = router.pathname
-
+const Nav = ({ currentPath }) => {
   return (
     <>
-      {currentPath !== '/' && (
+      {currentPath !== '/' && currentPath !== '/instagram' && (
         <NavContainer>
           <Link href={'/'} passHref>
             <LogoWrapper>
@@ -62,7 +52,12 @@ const Nav = () => {
   )
 }
 
+Nav.propTypes = {
+  currentPath: PropTypes.string,
+}
+
 export default Nav
+
 const LogoWrapper = styled.a`
   display: block;
   margin-right: 10px;
