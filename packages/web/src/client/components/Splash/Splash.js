@@ -25,11 +25,13 @@ const Splash = () => {
 
   useEffect(() => {
     const handleLoopComplete = () => {
-      if (colors === colorways.length - 1) {
-        setColors(0)
-      } else {
-        setColors(colors + 1)
-      }
+      setColors((i) => {
+        if (i === colorways.length - 1) {
+          return 0
+        } else {
+          return i + 1
+        }
+      })
     }
     const animation = lottie.loadAnimation({
       container: lottieRef.current,
@@ -38,7 +40,13 @@ const Splash = () => {
     })
     animation.onLoopComplete = handleLoopComplete
   }, [])
-  return <SplashContainer ref={lottieRef} $colors={colors}></SplashContainer>
+  return (
+    <SplashContainer
+      ref={lottieRef}
+      $colors={colors}
+      style={{ background: colorways[colors].background }}
+    ></SplashContainer>
+  )
 }
 
 export default Splash
@@ -50,7 +58,6 @@ const SplashContainer = styled.div`
   z-index: 2;
   top: 0;
   left: 0;
-  background-color: white;
 
   //I renamed the lottie layers with classes so text can be selected with .text and background with .background
   .text path {
