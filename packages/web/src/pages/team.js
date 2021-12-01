@@ -9,7 +9,7 @@ import ValuesGrid from 'components/ValuesGrid/ValuesGrid'
 import CenteredParagraph from 'components/CenteredParagraph/CenteredParagraph'
 import ImageStrip from 'components/ImageStrip/ImageStrip'
 
-const team = () => {
+const Team = () => {
   return (
     <>
       <NextSeo title="Team" />
@@ -32,7 +32,7 @@ const team = () => {
   )
 }
 
-export default team
+export default Team
 
 const PaddingContainer = styled.div`
   display: flex;

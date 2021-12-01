@@ -1,29 +1,10 @@
 import styled from 'styled-components'
-
-import { PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_17_400 } from 'styles/fonts'
+import { PADDING } from 'styles/constants'
+import { getFontStyles } from 'styles/getFontStyles'
 
-import Privacy from '../client/components/privacy.mdx'
-import { NextSeo } from 'next-seo'
-
-const privacy = () => {
-  return (
-    <>
-      <NextSeo title="Privacy" />
-      <PrivacyWrapper>
-        <PrivacyContainer>
-          <Privacy />
-        </PrivacyContainer>
-      </PrivacyWrapper>
-    </>
-  )
-}
-
-export default privacy
-
-const PrivacyContainer = styled.div`
+export const PrivacyContainer = styled.div`
   ${MEDIA_QUERIES.tabletUp} {
     max-width: 653px;
   }
@@ -72,7 +53,7 @@ const PrivacyContainer = styled.div`
     margin-top: ${PADDING.xs}px;
   }
 `
-const PrivacyWrapper = styled.div`
+export const PrivacyWrapper = styled.div`
   display: flex;
   justify-content: center;
 `

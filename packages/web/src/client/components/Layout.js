@@ -15,28 +15,31 @@ const Layout = ({ children }) => {
   const router = useRouter()
   const currentPath = router.pathname
 
-  const [newSession, setNewSession] = useState(true)
+  const [showSplash, setShowSplash] = useState(true)
 
   useEffect(() => {
-    const stored = sessionStorage.getItem('session')
-    if (stored) {
-      setNewSession(false)
+    const shown = sessionStorage.getItem('splash_shown')
+    if (Boolean(shown)) {
+      setShowSplash(false)
     } else {
-      sessionStorage.setItem('session', true)
+      sessionStorage.setItem('splash_shown', true)
     }
   }, [])
 
   return (
     <>
-      <Nav />
-      {newSession && <Splash />}
+      {/* {showSplash && <Splash />} */}
+      <Splash />
+      <Nav currentPath={currentPath} />
       <Main $currentPath={currentPath}>{children}</Main>
-      <PaddingContainer>
-        <Section>
-          <Callout />
-        </Section>
-        <Footer />
-      </PaddingContainer>
+      {currentPath !== '/instagram' && (
+        <PaddingContainer>
+          <Section>
+            <Callout />
+          </Section>
+          <Footer />
+        </PaddingContainer>
+      )}
     </>
   )
 }

@@ -16,7 +16,9 @@ const CardVideo = ({ video, image, tabletUp }) => {
       firstUpdate.current = false
       videoRef.current.defaultMuted = true
       if (image) {
-        videoRef.current.poster = tabletUp ? image.desktop : image.mobile
+        videoRef.current.poster = tabletUp
+          ? image.desktop.src
+          : image.mobile.src
       }
       return
     }
