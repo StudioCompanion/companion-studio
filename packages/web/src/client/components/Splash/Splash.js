@@ -1,10 +1,11 @@
 import { useRef, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import lottie from 'lottie-web'
+import { useSpring, animated } from '@react-spring/web'
 
 import splashAnimation from '../../../../public/lottie/splashAnimation.json'
 
-const colorways = [
+const COLOR_SETS = [
   {
     background: '#f5ebdf',
     text: '#3ca464',
@@ -20,52 +21,58 @@ const colorways = [
 ]
 
 const Splash = () => {
-  const [colors, setColors] = useState(0)
+  const [colorSetIndex] = useState(() =>
+    Math.floor(Math.random() * COLOR_SETS.length)
+  )
+
   const lottieRef = useRef()
 
   useEffect(() => {
-    const handleLoopComplete = () => {
-      setColors((i) => {
-        if (i === colorways.length - 1) {
-          return 0
-        } else {
-          return i + 1
-        }
-      })
-    }
     const animation = lottie.loadAnimation({
       container: lottieRef.current,
       animationData: splashAnimation,
-      loop: true,
+      loop: false,
+      autoplay: true,
     })
-    animation.onLoopComplete = handleLoopComplete
+
+    animation.addEventListener('complete', () => {
+      lottieRef.current.style.opacity = 0
+    })
+
+    return () => {
+      animation.destroy()
+    }
   }, [])
+
   return (
     <SplashContainer
       ref={lottieRef}
-      $colors={colors}
-      style={{ background: colorways[colors].background }}
+      $colorSetIndex={colorSetIndex}
     ></SplashContainer>
   )
 }
 
 export default Splash
 
-const SplashContainer = styled.div`
+const SplashContainer = styled(animated.div)`
   width: 100%;
   height: 100%;
   position: fixed;
   z-index: 2;
   top: 0;
   left: 0;
-
+  opacity: 1;
+  background: ${(props) => COLOR_SETS[props.$colorSetIndex].background};
+  transition: opacity 600ms ease-out;
+  will-change: opacity;
+  pointer-events: none;
   /*
   * Renamed the lottie layers with classes 
   * so text can be selected with .text and 
   * background with .background
   */
   .text path {
-    fill: ${(p) => colorways[p.$colors].text};
+    fill: ${(p) => COLOR_SETS[p.$colorSetIndex].text};
   }
   .background path {
     fill: none;

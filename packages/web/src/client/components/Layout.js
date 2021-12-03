@@ -28,8 +28,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {/* {showSplash && <Splash />} */}
-      <Splash />
+      {showSplash && <Splash />}
       <Nav currentPath={currentPath} />
       <Main $currentPath={currentPath}>{children}</Main>
       {currentPath !== '/instagram' && (
