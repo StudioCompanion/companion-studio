@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
@@ -8,13 +9,26 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import Nav from './Nav/Nav'
 import Callout from './Callout/Callout'
 import Footer from './Footer/Footer'
+import Splash from './Splash/Splash'
 
 const Layout = ({ children }) => {
   const router = useRouter()
   const currentPath = router.pathname
 
+  const [showSplash, setShowSplash] = useState(true)
+
+  useEffect(() => {
+    const shown = sessionStorage.getItem('splash_shown')
+    if (Boolean(shown)) {
+      setShowSplash(false)
+    } else {
+      sessionStorage.setItem('splash_shown', true)
+    }
+  }, [])
+
   return (
     <>
+      {showSplash && <Splash />}
       <Nav currentPath={currentPath} />
       <Main $currentPath={currentPath}>{children}</Main>
       {currentPath !== '/instagram' && (
