@@ -59,11 +59,15 @@ const SplashContainer = styled.div`
   top: 0;
   left: 0;
 
-  //I renamed the lottie layers with classes so text can be selected with .text and background with .background
+  /*
+  * Renamed the lottie layers with classes 
+  * so text can be selected with .text and 
+  * background with .background
+  */
   .text path {
     fill: ${(p) => colorways[p.$colors].text};
   }
   .background path {
-    fill: ${(p) => colorways[p.$colors].background};
+    fill: none;
   }
 `
