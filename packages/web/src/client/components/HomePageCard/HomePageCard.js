@@ -97,6 +97,16 @@ HomePageCard.propTypes = {
 
 export default HomePageCard
 
+const ImageContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: scale(1);
+  transition: all 250ms;
+  border-radius: 0%;
+  overflow: hidden;
+`
+
 const CardWrapper = styled.a`
   display: block;
   position: relative;
@@ -107,6 +117,12 @@ const CardWrapper = styled.a`
   color: inherit;
 
   &:hover {
+    & ${ImageContainer} {
+      transform: scale(0.75, 0.75) translateY(-5%);
+      transition: all 250ms;
+      border-radius: 1000px;
+      overflow: hidden;
+    }
     & ${ButtonContainer} {
       background-color: ${(p) => getThemeValue(p.$theme, HOVER_BACKGROUND)};
     }
@@ -131,6 +147,8 @@ const CardInner = styled.div`
   left: 0;
   display: flex;
   padding: 20px;
+  align-items: center;
+  justify-content: center;
 `
 
 const CardText = styled.div`
@@ -142,13 +160,6 @@ const CardText = styled.div`
   align-self: flex-end;
   align-items: flex-end;
   color: ${(p) => getThemeValue(p.$theme, COLOR)};
-`
-const ImageContainer = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
 `
 const ImageWrapper = styled.div`
   position: relative;

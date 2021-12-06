@@ -16,7 +16,7 @@ import CASE_alexander from '../../public/home/CASE_alexander.png'
 import CASE_alexander_m from '../../public/home/CASE_alexander_m.png'
 import CASE_vanmoof from '../../public/home/CASE_vanmoof.png'
 import CASE_vanmoof_m from '../../public/home/CASE_vanmoof_m.png'
-import testVideoCaseStudyPoster from '../../public/testvid_placeholder.png'
+import CASE_do_lectures_thumbnail from '../../public/home/CASE_do_lectures_thumbnail.jpg'
 import STUDIO_team from '../../public/home/STUDIO_team.png'
 import STUDIO_team_m from '../../public/home/STUDIO_team_m.png'
 import CASE_pair_up from '../../public/home/CASE_pair_up.png'
@@ -35,9 +35,7 @@ const Index = () => {
     <HomeContainer>
       <RightContainer>
         <OpeningText
-          text={
-            'Companion is a design studio that partners with you to design and build digital products that inspire, disrupt, entertain and create a better future for people and planet.'
-          }
+          text={`We're a design studio that partners with you to design and build digital products that inspire, disrupt, entertain and create a better future for people and planet.`}
         />
       </RightContainer>
       <CardsContainer>
@@ -84,9 +82,13 @@ const HOMEPAGE_DATA = [
   },
   {
     type: CASE_STUDY,
+    video: {
+      desktop: '/home/CASE_do_lectures.mp4',
+      mobile: '/home/CASE_do_lectures.mp4',
+    },
     image: {
-      desktop: CASE_do_lectures,
-      mobile: CASE_do_lectures_m,
+      desktop: CASE_do_lectures_thumbnail,
+      mobile: CASE_do_lectures_thumbnail,
     },
     heading: 'The DO Lectures',
     subheading: 'A new look for the encouragement network',
@@ -133,8 +135,8 @@ const HOMEPAGE_DATA = [
       mobile: '/testvid.mp4',
     },
     image: {
-      desktop: testVideoCaseStudyPoster,
-      mobile: testVideoCaseStudyPoster,
+      desktop: CASE_do_lectures_thumbnail,
+      mobile: CASE_do_lectures_thumbnail,
     },
     heading: 'Del Core',
     subheading: 'Presenting mutant glamour with precision',
