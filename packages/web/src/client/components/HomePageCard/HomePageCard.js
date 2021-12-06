@@ -103,7 +103,6 @@ const ImageContainer = styled.div`
   height: 100%;
   transform: scale(1);
   transition: all 250ms;
-  border-radius: 0%;
   overflow: hidden;
 `
 
@@ -120,7 +119,6 @@ const CardWrapper = styled.a`
     & ${ImageContainer} {
       transform: scale(0.75, 0.75) translateY(-5%);
       transition: all 250ms;
-      border-radius: 1000px;
       overflow: hidden;
     }
     & ${ButtonContainer} {
