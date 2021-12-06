@@ -35,7 +35,7 @@ const Index = () => {
     <HomeContainer>
       <RightContainer>
         <OpeningText
-          text={`We're a design studio that partners with you to design and build digital products that inspire, disrupt, entertain and create a better future for people and planet.`}
+          text={`We're a design studio that partners with you to create digital products that inspire, disrupt, entertain and create a better future for people and planet.`}
         />
       </RightContainer>
       <CardsContainer>

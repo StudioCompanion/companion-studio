@@ -117,7 +117,7 @@ const CardWrapper = styled.a`
 
   &:hover {
     & ${ImageContainer} {
-      transform: scale(0.75, 0.75) translateY(-5%);
+      transform: scale(0.85, 0.85) translateY(-4%);
       transition: all 250ms;
       overflow: hidden;
     }
