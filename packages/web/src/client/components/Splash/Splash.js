@@ -73,7 +73,4 @@ const SplashContainer = styled.div`
   .text path {
     fill: ${(p) => COLOR_SETS[p.$colorSetIndex].text};
   }
-  .background path {
-    fill: none;
-  }
 `

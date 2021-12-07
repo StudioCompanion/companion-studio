@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Image from 'next/image'
 
 import { PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
@@ -9,12 +8,13 @@ import {
   FONT_STYLE_RECKLESS_20_400,
   FONT_STYLE_RECKLESS_32_400,
 } from 'styles/fonts'
+import { Logo } from 'components/Logo/Logo'
 
 const OpeningText = ({ text }) => {
   return (
     <OpeningTextContainer>
       <LogoContainer>
-        <Image src={'/images/graphics/logo.svg'} width={255} height={115} />
+        <Logo />
       </LogoContainer>
       <OpeningTextInner>
         <OpeningTextCopy>{text}</OpeningTextCopy>
@@ -49,11 +49,12 @@ const OpeningTextInner = styled.div`
   }
 `
 const LogoContainer = styled.div`
-  margin-bottom: 24px;
   display: flex;
   justify-content: center;
   max-width: 90px;
+  margin-bottom: -21px;
 `
+
 const OpeningTextCopy = styled.h1`
   text-align: center;
   ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
