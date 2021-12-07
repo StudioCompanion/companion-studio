@@ -74,6 +74,10 @@ const GridImageWrapper = styled.div`
   ${MEDIA_QUERIES.tabletUp} {
     max-width: 300px;
   }
+
+  & img {
+    transition: 0.4s ease-out;
+  }
 `
 
 const TeamMemberName = styled.h2`

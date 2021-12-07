@@ -166,6 +166,10 @@ const ImageWrapper = styled.div`
   overflow: hidden;
   transform: ${({ $rotation }) =>
     $rotation ? `rotate(${$rotation}deg)` : 'none'};
+
+  & img {
+    transition: 0.4s ease-out;
+  }
 `
 
 const ImageContainer = styled.div`

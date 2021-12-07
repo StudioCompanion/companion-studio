@@ -52,9 +52,12 @@ const StickyText = styled.p`
   ${getFontStyles(FONT_STYLE_RECKLESS_32_400)};
 `
 const ImageContainer = styled.div`
-  /* padding-top: ${PADDING.xxl}px; */
   min-height: 400px;
   display: flex;
   align-items: center;
   max-width: ${(p) => (p.$maxWidth ? `${p.$maxWidth}px` : '825px')};
+
+  & img {
+    transition: 0.4s ease-out;
+  }
 `

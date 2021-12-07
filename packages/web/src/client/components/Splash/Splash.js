@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import lottie from 'lottie-web'
-import { useSpring, animated } from '@react-spring/web'
 
 import splashAnimation from '../../../../public/lottie/splashAnimation.json'
 
@@ -54,7 +53,7 @@ const Splash = () => {
 
 export default Splash
 
-const SplashContainer = styled(animated.div)`
+const SplashContainer = styled.div`
   width: 100%;
   height: 100%;
   position: fixed;

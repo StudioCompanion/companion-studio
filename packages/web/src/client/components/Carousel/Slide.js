@@ -42,4 +42,8 @@ export const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+
+  & img {
+    transition: 0.4s ease-out;
+  }
 `
