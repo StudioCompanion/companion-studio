@@ -165,4 +165,8 @@ const ImageWrapper = styled.div`
   height: 100%;
   border-radius: 12px;
   overflow: hidden;
+
+  & img {
+    transition: 0.4s ease-out;
+  }
 `

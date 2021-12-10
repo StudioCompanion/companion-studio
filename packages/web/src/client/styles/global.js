@@ -93,4 +93,9 @@ export const CSS_GLOBAL = `
   p a:hover {
     opacity: .5;
   }
+
+  // this is for lottie to stop the background showing
+  .background path {
+    fill: none;
+  }
 `

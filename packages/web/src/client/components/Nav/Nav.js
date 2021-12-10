@@ -7,6 +7,7 @@ import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { COLORS, PADDING } from '../../styles/constants'
+import { Logo } from 'components/Logo/Logo'
 
 const Nav = ({ currentPath }) => {
   return (
@@ -15,12 +16,7 @@ const Nav = ({ currentPath }) => {
         <NavContainer>
           <Link href={'/'} passHref>
             <LogoWrapper>
-              <Image
-                src={'/images/graphics/logo.svg'}
-                width={255}
-                height={115}
-                alt="Companion"
-              />
+              <Logo />
             </LogoWrapper>
           </Link>
           <NavWrapper>
@@ -61,7 +57,6 @@ export default Nav
 const LogoWrapper = styled.a`
   display: block;
   margin-right: 10px;
-  max-width: 90px;
 `
 const NavContainer = styled.div`
   position: sticky;
