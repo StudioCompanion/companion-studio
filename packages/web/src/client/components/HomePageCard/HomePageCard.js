@@ -102,7 +102,7 @@ const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
   transform: scale(1);
-  transition: all 250ms;
+  transition: all 350ms cubic-bezier(0.76, 0, 0.24, 1);
   overflow: hidden;
 `
 
@@ -118,7 +118,7 @@ const CardWrapper = styled.a`
   &:hover {
     & ${ImageContainer} {
       transform: scale(0.85, 0.85) translateY(-4%);
-      transition: all 250ms;
+      transition: all 350ms cubic-bezier(0.76, 0, 0.24, 1);
       overflow: hidden;
     }
     & ${ButtonContainer} {
