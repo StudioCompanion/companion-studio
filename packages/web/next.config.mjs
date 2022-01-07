@@ -9,4 +9,7 @@ const withMDX = MDX({
 
 export default withMDX({
   pageExtensions: ['mdx', 'tsx', 'js'],
+  experimental: {
+    styledComponents: true,
+  },
 })
