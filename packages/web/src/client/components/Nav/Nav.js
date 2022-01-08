@@ -65,11 +65,9 @@ const NavContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: ${PADDING.s}px;
   margin: 0 0 ${PADDING.xl}px;
   ${MEDIA_QUERIES.tabletUp} {
     margin: 0 0 ${PADDING.xxl}px;
-    padding-top: ${PADDING.m}px;
   }
 `
 const NavWrapper = styled.nav`

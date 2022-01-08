@@ -92,7 +92,7 @@ const HOMEPAGE_DATA = [
     },
     heading: 'The DO Lectures',
     subheading: 'A new look for the encouragement network',
-    link: '#',
+    link: '/projects/do-lectures',
     theme: THEME_TYPES.DARK,
   },
   {
