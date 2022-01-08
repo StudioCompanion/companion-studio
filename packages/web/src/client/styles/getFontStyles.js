@@ -1,6 +1,7 @@
 import {
   FONT_FAMILIES,
   FONT_STYLE_APFEL_12_400,
+  FONT_STYLE_APFEL_58_500,
   FONT_STYLE_RECKLESS_12_400,
   FONT_STYLE_RECKLESS_17_400,
   FONT_STYLE_RECKLESS_20_400,
@@ -76,6 +77,17 @@ export const getFontStyles = (type) => {
             font-size: 1.2rem;
             line-height: 1.44rem;
           `
+      break
+
+    case FONT_STYLE_APFEL_58_500:
+      fontProps += `
+        font-size: 4.4rem;
+        line-height: 1.2;
+
+      ${MEDIA_QUERIES.tabletUp} {
+        font-size: 5.8rem;
+        }
+            `
       break
 
     case FONT_STYLE_RECKLESS_17_400:

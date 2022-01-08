@@ -1,8 +1,10 @@
 import { useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import lottie from 'lottie-web'
+import Image from 'next/image'
 
 import logo from '../../../../public/lottie/splashAnimation.json'
+import staticLogo from '../../../../public/images/graphics/with-background.svg'
 
 export const Logo = () => {
   const logoAnimationRef = useRef(null)
@@ -38,14 +40,12 @@ export const Logo = () => {
   }
 
   return (
-    <LogoAnimation
-      onPointerEnter={handlePointerEnter}
-      onPointerLeave={handlePointerLeave}
-      ref={logoAnimationRef}
-    />
+    <LogoContainer>
+      <Image src={staticLogo} />
+    </LogoContainer>
   )
 }
 
-const LogoAnimation = styled.div`
+const LogoContainer = styled.div`
   width: 100px;
 `

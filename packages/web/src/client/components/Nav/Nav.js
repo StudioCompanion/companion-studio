@@ -69,10 +69,10 @@ const NavContainer = styled.div`
 
   ${MEDIA_QUERIES.tabletUp} {
     margin: 0 0 ${PADDING.l}px;
-    padding: 0px ${PADDING.m}px;
+    padding: ${PADDING.m}px;
   }
 
-  padding: 0px ${PADDING.s}px;
+  padding: ${PADDING.s}px;
 `
 const NavWrapper = styled.nav`
   background-color: white;
