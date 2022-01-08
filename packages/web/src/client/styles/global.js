@@ -29,7 +29,7 @@ export const CSS_GLOBAL = `
   *:before,
   *:after {
     box-sizing: border-box;
-    transition: background-color 250ms ease-in-out, opacity 250ms ease-in-out; 
+    transition: background-color 250ms ease-in-out, opacity 250ms ease-in-out;
   }
 
   html {
@@ -43,7 +43,7 @@ export const CSS_GLOBAL = `
   body {
     margin: 0;
     padding: 0;
-    color: ${COLORS.darkblue} 
+    color: ${COLORS.darkblue}
   }
 
   h1,
