@@ -6,6 +6,7 @@ import { getFontStyles } from '../../styles/getFontStyles'
 import { MEDIA_QUERIES } from '../../styles/mediaQueries'
 import {
   FONT_STYLE_RECKLESS_12_400,
+  FONT_STYLE_APFEL_12_400,
   FONT_STYLE_RECKLESS_20_400,
 } from '../../styles/fonts'
 
@@ -32,7 +33,11 @@ const Container = styled.div`
   margin: 0 0;
   h3 {
     ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
-    margin-bottom: ${PADDING.s}px;
+    margin-bottom: ${PADDING.xs}px;
+  }
+
+  p {
+    ${getFontStyles(FONT_STYLE_APFEL_12_400)}
   }
 
   .hero + & {
@@ -41,6 +46,6 @@ const Container = styled.div`
 `
 const BodyContainer = styled.div`
   h1 {
-    margin-bottom: ${PADDING.s}px;
+    margin-bottom: ${PADDING.xs}px;
   }
 `
