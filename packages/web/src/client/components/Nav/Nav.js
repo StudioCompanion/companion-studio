@@ -65,10 +65,10 @@ const NavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 0 ${PADDING.l}px;
+  margin: 0 0 ${PADDING.xl}px;
 
   ${MEDIA_QUERIES.tabletUp} {
-    margin: 0 0 ${PADDING.l}px;
+    margin: 0 0 ${PADDING.xl}px;
     padding: ${PADDING.m}px;
   }
 

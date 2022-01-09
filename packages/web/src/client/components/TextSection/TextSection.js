@@ -41,7 +41,11 @@ const Container = styled.div`
   }
 
   .hero + & {
-    margin-top: ${PADDING.xxl}px;
+    margin: 0px 0px ${PADDING.xl}px;
+
+    ${MEDIA_QUERIES.tabletUp} {
+      margin: ${PADDING.l}px 0px ${PADDING.xl}px;
+    }
   }
 `
 const BodyContainer = styled.div`
