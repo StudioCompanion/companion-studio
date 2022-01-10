@@ -6,16 +6,28 @@ import splashAnimation from '../../../../public/lottie/splashAnimation.json'
 
 const COLOR_SETS = [
   {
-    background: '#f5ebdf',
-    text: '#3ca464',
+    background: '#EF7E38',
+    text: '#F7EDE1',
   },
   {
-    background: '#e27940',
-    text: '#efe9de',
+    background: '#0036AF',
+    text: '#F7EDE1',
   },
   {
-    background: '#f5ebdf',
-    text: '#0535a4',
+    background: '#00B56A',
+    text: '#F7EDE1',
+  },
+  {
+    background: '#F7EDE1',
+    text: '#1A1C1C',
+  },
+  {
+    background: '#F7EDE1',
+    text: '#EF7E38',
+  },
+  {
+    background: '#F7EDE1',
+    text: '#0036AF',
   },
 ]
 
@@ -66,8 +78,8 @@ const SplashContainer = styled.div`
   will-change: opacity;
   pointer-events: none;
   /*
-  * Renamed the lottie layers with classes 
-  * so text can be selected with .text and 
+  * Renamed the lottie layers with classes
+  * so text can be selected with .text and
   * background with .background
   */
   .text path {

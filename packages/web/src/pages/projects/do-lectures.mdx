@@ -2,23 +2,32 @@ import { NextSeo } from 'next-seo'
 
 import Layout from 'components/Layout.js'
 import TextSection from 'components/TextSection/TextSection.js'
+import Heading from 'components/Heading/Heading.js'
 import Carousel from 'components/Carousel/Carousel.js'
 import ProjectInfoCard from 'components/ProjectInfoCard/ProjectInfoCard.js'
 import Testimonial from 'components/Testimonial/Testimonial.js'
+import Avatars from 'components/Avatars/Avatars.js'
 
-<NextSeo title="Del Core" description="A short description goes here." />
+<NextSeo title="The DO Lectures" description="A short description goes here." />
 
-# Del Core
+<Heading>
+  UX & UI, Brand, Motion & Development in 2021
 
-import del_core_hero from '../../../public/images/case-studies/del_core/del_core_hero.png'
-import del_core_hero_m from '../../../public/images/case-studies/del_core/del_core_hero_m.png'
+# The DO Lectures
+
+</Heading>
+
+<Avatars />
+
+import do_hero from '../../../public/images/case-studies/do_lectures/hero_image.webp'
+import do_hero_m from '../../../public/images/case-studies/do_lectures/hero_image.webp'
 
 export const hero = {
   url: {
-    desktop: del_core_hero,
-    mobile: del_core_hero_m,
+    desktop: do_hero,
+    mobile: do_hero_m,
   },
-  alt: 'Runway from Del Core’s latest show',
+  alt: 'A DO Lectures character blinking happily',
 }
 
 <Carousel items={[hero]} hero />
@@ -27,60 +36,50 @@ export const hero = {
 
 ### Introduction
 
-We were asked by Lane & Associates to partner with them and help to launch a new site for fashion designer Daniel Del Core. Before founding his own fashion label, Daniel worked for Gucci designing bespoke dresses and outfits for people like Bjork, Lana Del Rey and Florence Welch.
+After spending a decade sharing the ideas, strategies and creative thinking to help others to achieve their dreams, The DO Lectures lacked a brand and website that echoed this thinking.
 
-Now with a new challenge ahead of him, Daniel was in need of a site that would showcase his collections, give buyers the opportunity to request viewings and highlight his unique offering of 'Made to Measure', bespoke pieces hand made by Daniel himself.
+We collaborated with their team to help bring about a new era for the Welsh based company by creating a digital hub for all things DO. This meant bringing together their wealth of creative content including 400+ talks, 300+ articles, speaker bios, reading lists, courses and events.
 
 </TextSection>
 
-export const ProjectInfo = {
-  deliverables: 'UX, UI, Development',
-  collaborators: 'Lane & Associates, Ezekiel Aquino',
-  team: 'Myles Palmer, Alexandra Vojktu',
-  duration: '10 Weeks',
-}
+import do_logo from '../../../public/images/case-studies/do_lectures/Logo_variants.webp'
+import do_logo_m from '../../../public/images/case-studies/do_lectures/Logo_variants.webp'
 
-<ProjectInfoCard {...ProjectInfo} />
-
-export const video = {
+export const item0 = {
   url: {
-    desktop: '/testvid_2.mp4',
-    mobile: '/testvid_2.mp4',
+    desktop: do_logo,
+    mobile: do_logo_m,
   },
-  caption: 'Placeholder video',
+  alt: 'Placeholder',
 }
 
-<Carousel items={[video]} bgColor={'#F1F1F4'} />
+<Carousel items={[item0]} />
 
-import del_core_8 from '../../../public/images/case-studies/del_core/del_core_8.png'
-import del_core_8_m from '../../../public/images/case-studies/del_core/del_core_8_m.png'
+import do_characters from '../../../public/images/case-studies/do_lectures/DO_Characters.jpg'
+import do_characters_m from '../../../public/images/case-studies/do_lectures/DO_Characters.jpg'
 
 export const item1 = {
   url: {
-    desktop: del_core_8,
-    mobile: del_core_8_m,
+    desktop: do_characters,
+    mobile: do_characters_m,
   },
   alt: 'Runway from Del Core’s latest show',
 }
 
-<Carousel
-  items={[item1]}
-  layout={'half'}
-  bgImage={'/images/case-studies/del_core/del_core_bg_1.jpg'}
-/>
+<Carousel items={[item1]} layout={'half'} />
 
-import del_core_1 from '../../../public/images/case-studies/del_core/del_core_1.png'
-import del_core_1_m from '../../../public/images/case-studies/del_core/del_core_1_m.png'
+import do_type from '../../../public/images/case-studies/do_lectures/DO_Typography.webp'
+import do_type_m from '../../../public/images/case-studies/do_lectures/DO_Typography.webp'
 
 export const item2 = {
   url: {
-    desktop: del_core_1,
-    mobile: del_core_1_m,
+    desktop: do_type,
+    mobile: do_type_m,
   },
   alt: 'Runway from Del Core’s latest show',
 }
 
-<Carousel items={[item2]} layout={'half'} bgColor={'#151915'} />
+<Carousel items={[item2]} layout={'half'} />
 
 <TextSection>
 
@@ -176,10 +175,9 @@ As well as showing off the latest collection, the site had to display another of
 
 </TextSection>
 
-<Carousel items={[video]} bgColor={'#F1F1F4'} />
-
-> "Companion Studio have been our go to digital partner for over a year. They
-> work to a consistently high standard, both creatively and strategically. Myles
-> and his team are also just really nice people and a pleasure to deal with."
->
-> ### David Lane, Creative Director of Lane & Associates
+<Testimonial>
+  "Companion Studio have been our go to digital partner for over a year. They
+  work to a consistently high standard, both creatively and strategically. Myles
+  and his team are also just really nice people and a pleasure to deal with."
+  ### David Lane, Creative Director of Lane & Associates
+</Testimonial>

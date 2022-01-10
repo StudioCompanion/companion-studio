@@ -52,7 +52,7 @@ const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   max-width: 90px;
-  margin-bottom: -21px;
+  margin-bottom: 8px;
 `
 
 const OpeningTextCopy = styled.h1`

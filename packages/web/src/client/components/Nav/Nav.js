@@ -63,14 +63,16 @@ const NavContainer = styled.div`
   z-index: 1;
   top: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding-top: ${PADDING.s}px;
   margin: 0 0 ${PADDING.xl}px;
+
   ${MEDIA_QUERIES.tabletUp} {
-    margin: 0 0 ${PADDING.xxl}px;
-    padding-top: ${PADDING.m}px;
+    margin: 0 0 ${PADDING.xl}px;
+    padding: ${PADDING.m}px;
   }
+
+  padding: ${PADDING.s}px;
 `
 const NavWrapper = styled.nav`
   background-color: white;

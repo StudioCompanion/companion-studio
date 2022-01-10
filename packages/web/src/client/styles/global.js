@@ -5,12 +5,20 @@ import {
   FONT_STYLE_RECKLESS_12_400,
   FONT_STYLE_RECKLESS_20_400,
   FONT_STYLE_RECKLESS_58_400,
+  FONT_STYLE_APFEL_58_500,
 } from './fonts'
 
 export const CSS_GLOBAL = `
   @font-face {
     font-family: 'Apfel Groteszk';
     src: url('/fonts/ApfelGrotezk-Regular.woff') format('woff');
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'Apfel Groteszk';
+    src: url('/fonts/ApfelGrotezk-Fett.woff') format('woff');
+    font-weight: 500;
   }
 
   @font-face {
@@ -29,7 +37,7 @@ export const CSS_GLOBAL = `
   *:before,
   *:after {
     box-sizing: border-box;
-    transition: background-color 250ms ease-in-out, opacity 250ms ease-in-out; 
+    transition: background-color 250ms ease-in-out, opacity 250ms ease-in-out;
   }
 
   html {
@@ -43,7 +51,7 @@ export const CSS_GLOBAL = `
   body {
     margin: 0;
     padding: 0;
-    color: ${COLORS.darkblue} 
+    color: ${COLORS.darkblue}
   }
 
   h1,
@@ -75,7 +83,7 @@ export const CSS_GLOBAL = `
   }
 
   h1 {
-    ${getFontStyles(FONT_STYLE_RECKLESS_58_400)}
+    ${getFontStyles(FONT_STYLE_APFEL_58_500)}
   }
   h2 {
     ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
