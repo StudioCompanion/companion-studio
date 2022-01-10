@@ -45,12 +45,12 @@ const Wrapper = styled.dl`
   overflow-wrap: break-word;
 `
 const Container = styled.div`
-  margin: ${PADDING.xxl}px 0 ${PADDING.xl}px;
+  margin: 0 0 ${PADDING.xl}px;
   width: 100%;
   ${MEDIA_QUERIES.tabletUp} {
     width: 40%;
     max-width: 540px;
-    margin: ${PADDING.xxl}px 0;
+    margin: ${PADDING.l}px 0;
   }
 `
 

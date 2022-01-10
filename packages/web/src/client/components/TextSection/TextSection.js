@@ -5,11 +5,10 @@ import { PADDING } from '../../styles/constants'
 import { getFontStyles } from '../../styles/getFontStyles'
 import { MEDIA_QUERIES } from '../../styles/mediaQueries'
 import {
-  FONT_STYLE_RECKLESS_12_400,
+  FONT_STYLE_APFEL_12_400,
   FONT_STYLE_RECKLESS_20_400,
 } from '../../styles/fonts'
 
-import { Wrapper } from 'components/Carousel/Carousel'
 import FadeUp from 'components/Transitions/FadeUp'
 
 const TextSection = ({ children }) => {
@@ -35,12 +34,16 @@ const Container = styled.div`
     width: 47%;
   }
   h3 {
-    ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
-    margin-bottom: ${PADDING.s}px;
+    ${getFontStyles(FONT_STYLE_APFEL_12_400)}
+    margin-bottom: ${PADDING.xs}px;
   }
 
   .hero + & {
-    margin-top: ${PADDING.xxl}px;
+    margin: 0px 0px ${PADDING.xl}px;
+
+    ${MEDIA_QUERIES.tabletUp} {
+      margin: ${PADDING.l}px 0px ${PADDING.xl}px;
+    }
   }
 `
 const BodyContainer = styled.div`
@@ -54,9 +57,9 @@ const BodyContainer = styled.div`
   }
   ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
   p + p {
-    margin-top: 40px;
+    margin-top: ${PADDING.m}px;
     ${MEDIA_QUERIES.tabletUp} {
-      margin-top: 46px;
+      margin-top: ${PADDING.m}px;
     }
   }
 `

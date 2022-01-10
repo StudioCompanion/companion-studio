@@ -7,9 +7,12 @@ const withMDX = MDX({
   },
 })
 
-export default withMDX({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   pageExtensions: ['mdx', 'tsx', 'js'],
   experimental: {
     styledComponents: true,
   },
-})
+}
+
+export default withMDX(nextConfig)

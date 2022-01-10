@@ -8,8 +8,11 @@ const FadeUp = ({ children }) => {
   const fade = useSpring({
     ref: api,
     opacity: 0,
-    y: 200,
-    config: config.slow,
+    y: 100,
+    config: {
+      ...config.slow,
+      precision: 0.0001,
+    },
   })
 
   useEffect(() => {

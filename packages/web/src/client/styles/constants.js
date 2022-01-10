@@ -59,11 +59,10 @@ export const PADDING = {
 
 export const COLORS = {
   white: '#FFFFFF',
-  lightgrey: '#F6F6F8',
-  lightgrey_2: '#E8E8EE',
-  darkblue: '#080B37',
-  darkblue_light: 'rgba(8, 11, 55, .7)',
-  white: '#FFFFFF',
+  lightgrey: '#F1F1F4',
+  lightgrey_2: '#E5E5EB',
+  darkblue: '#1E1C1C',
+  darkblue_light: 'rgba(30, 28, 28, .7)',
 }
 
 export const HIDDEN = `
