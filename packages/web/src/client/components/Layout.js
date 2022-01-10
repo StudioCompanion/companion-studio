@@ -70,9 +70,4 @@ const Section = styled.section`
   }
 `
 
-const PaddingContainer = styled.div`
-  /* padding: 0 ${PADDING.s}px ${PADDING.s}px;
-  ${MEDIA_QUERIES.tabletUp} {
-    padding: 0 ${PADDING.m}px ${PADDING.s}px;
-  } */
-`
+const PaddingContainer = styled.div``

@@ -5,12 +5,10 @@ import { PADDING } from '../../styles/constants'
 import { getFontStyles } from '../../styles/getFontStyles'
 import { MEDIA_QUERIES } from '../../styles/mediaQueries'
 import {
-  FONT_STYLE_RECKLESS_12_400,
   FONT_STYLE_APFEL_12_400,
   FONT_STYLE_RECKLESS_20_400,
 } from '../../styles/fonts'
 
-import { Wrapper } from 'components/Carousel/Carousel'
 import FadeUp from 'components/Transitions/FadeUp'
 
 const TextSection = ({ children }) => {
