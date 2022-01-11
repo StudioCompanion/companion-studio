@@ -1,10 +1,10 @@
 import { NextSeo } from 'next-seo'
 
-import Layout from 'components/Layout.js'
-import TextSection from 'components/TextSection/TextSection.js'
-import Carousel from 'components/Carousel/Carousel.js'
-import ProjectInfoCard from 'components/ProjectInfoCard/ProjectInfoCard.js'
-import Testimonial from 'components/Testimonial/Testimonial.js'
+import Layout from 'components/Layout'
+import TextSection from 'components/TextSection/TextSection'
+import Carousel from 'components/Carousel/Carousel'
+import ProjectInfoCard from 'components/ProjectInfoCard/ProjectInfoCard'
+import Testimonial from 'components/Testimonial/Testimonial'
 
 <NextSeo title="Del Core" description="A short description goes here." />
 
@@ -48,6 +48,8 @@ export const video = {
     mobile: '/testvid_2.mp4',
   },
   caption: 'Placeholder video',
+  width: 1366,
+  height: 766,
 }
 
 <Carousel items={[video]} bgColor={'#F1F1F4'} />
@@ -135,11 +137,7 @@ export const phone_videoItem = {
   height: 1080,
 }
 
-<Carousel
-  items={[phone_videoItem]}
-  bgColor={'#F1F1F4'}
-  aspect={{ desktop: '16/9', mobile: '103%' }}
-/>
+<Carousel items={[phone_videoItem]} bgColor={'#F1F1F4'} />
 
 import del_core_5 from '../../../public/images/case-studies/del_core/del_core_5.png'
 import del_core_5_m from '../../../public/images/case-studies/del_core/del_core_5_m.png'
