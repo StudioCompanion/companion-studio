@@ -8,8 +8,7 @@ import testCaseStudyCard_mobile from '../../../../public/testcasestudy_card_m.pn
 import testVideoCaseStudyCard from '../../../../public/testvid.mp4'
 import testVideoCaseStudyPoster from '../../../../public/testvid_placeholder.png'
 
-import { LAYOUTS, THEME_TYPES } from '../../styles/constants'
-const { STUDIO, CASE_STUDY } = LAYOUTS.card
+import { CARD_LAYOUTS, THEME_TYPES } from '../../styles/constants'
 
 const Template = (args) => (
   <Half>
@@ -24,7 +23,7 @@ export default {
 export const StudioCard = Template.bind({})
 
 StudioCard.args = {
-  type: STUDIO,
+  type: CARD_LAYOUTS.STUDIO,
   image: { desktop: testStudioCard, mobile: testStudioCard_mobile },
   heading: 'Our Approach',
   subheading: 'How and why we work the way we do',
@@ -35,7 +34,7 @@ StudioCard.args = {
 export const CaseStudyCard = Template.bind({})
 
 CaseStudyCard.args = {
-  type: CASE_STUDY,
+  type: CARD_LAYOUTS.CASE_STUDY,
   image: { desktop: testCaseStudyCard, mobile: testCaseStudyCard_mobile },
   heading: 'The DO Lectures',
   subheading: 'A new look for the encouragement network',

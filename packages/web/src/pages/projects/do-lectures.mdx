@@ -1,12 +1,12 @@
 import { NextSeo } from 'next-seo'
 
-import Layout from 'components/Layout.js'
-import TextSection from 'components/TextSection/TextSection.js'
-import Heading from 'components/Heading/Heading.js'
-import Carousel from 'components/Carousel/Carousel.js'
-import ProjectInfoCard from 'components/ProjectInfoCard/ProjectInfoCard.js'
-import Testimonial from 'components/Testimonial/Testimonial.js'
-import Avatars from 'components/Avatars/Avatars.js'
+import Layout from 'components/Layout'
+import TextSection from 'components/TextSection/TextSection'
+import Heading from 'components/Heading/Heading'
+import Carousel from 'components/Carousel/Carousel'
+import ProjectInfoCard from 'components/ProjectInfoCard/ProjectInfoCard'
+import Testimonial from 'components/Testimonial/Testimonial'
+import Avatars from 'components/Avatars/Avatars'
 
 <NextSeo title="The DO Lectures" description="A short description goes here." />
 
@@ -127,18 +127,13 @@ We introduced a simplified navigation system for each collection which brought t
 </TextSection>
 
 export const phone_videoItem = {
-  poster: { desktop: '', mobile: '' },
   url: { desktop: '/testvid_phone.mp4', mobile: '/testvid_phone.mp4' },
   caption: 'lovely phone video',
   width: 534,
   height: 1080,
 }
 
-<Carousel
-  items={[phone_videoItem]}
-  bgColor={'#F1F1F4'}
-  aspect={{ desktop: '16/9', mobile: '103%' }}
-/>
+<Carousel items={[phone_videoItem]} bgColor={'#F1F1F4'} />
 
 import del_core_5 from '../../../public/images/case-studies/del_core/del_core_5.png'
 import del_core_5_m from '../../../public/images/case-studies/del_core/del_core_5_m.png'

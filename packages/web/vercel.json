@@ -19,8 +19,5 @@
     }
   ],
   "redirects": [],
-  "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/_next/static/sitemap.xml" }
-  ],
   "version": 2
 }
