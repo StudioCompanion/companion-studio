@@ -139,6 +139,7 @@ const GridImageWrapper = styled.div`
   padding: 4px;
   width: 40px;
   background: ${COLORS.lightgrey_2};
+  position: relative;
 
   & img {
     top: 3px !important;
