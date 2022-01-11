@@ -21,8 +21,7 @@ import testPhoneVid from '../../../../public/testvid_phone.mp4'
 import testVid_poster from '../../../../public/testvid_placeholder.png'
 import testBg from '../../../../public/testbg_1.png'
 
-import { LAYOUTS } from '../../styles/constants'
-const { FULL, HALF, TWO_THIRDS } = LAYOUTS.carousel
+import { CAROUSEL_LAYOUTS } from '../../styles/constants'
 
 const heroItem = {
   url: {
@@ -112,18 +111,6 @@ export default {
         type: 'color',
       },
     },
-    layout: {
-      options: Object.keys(LAYOUTS.carousel),
-      mapping: LAYOUTS.carousel,
-      control: {
-        type: 'select',
-        labels: {
-          FULL: 'Full',
-          HALF: 'Half',
-          TWO_THIRDS: 'Two Thirds',
-        },
-      },
-    },
     bgImage: {
       options: [testBg],
       control: {
@@ -161,12 +148,16 @@ Phone_Video.args = {
 
 export const HalfW = Template.bind({})
 
-HalfW.args = { layout: HALF, items: halfItems, bgColor: '#E6EEEC' }
+HalfW.args = {
+  layout: CAROUSEL_LAYOUTS.HALF,
+  items: halfItems,
+  bgColor: '#E6EEEC',
+}
 
 export const TwoThirdsW = Template.bind({})
 
 TwoThirdsW.args = {
-  layout: TWO_THIRDS,
+  layout: CAROUSEL_LAYOUTS.TWO_THIRDS,
   items: [TwoThirdsItem],
   bgColor: '#E6EEEC',
 }

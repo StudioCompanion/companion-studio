@@ -4,12 +4,10 @@ import HomePageCard from 'components/HomePageCard/HomePageCard'
 import OpeningText from 'components/OpeningText/OpeningText'
 
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { LAYOUTS, THEME_TYPES } from 'styles/constants'
+import { CARD_LAYOUTS, THEME_TYPES } from 'styles/constants'
 
 import CASE_limna from '../../public/home/CASE_limna.png'
 import CASE_limna_m from '../../public/home/CASE_limna_m.png'
-import CASE_do_lectures from '../../public/home/CASE_do_lectures.png'
-import CASE_do_lectures_m from '../../public/home/CASE_do_lectures_m.png'
 import STUDIO_approach from '../../public/home/STUDIO_approach.png'
 import STUDIO_approach_m from '../../public/home/STUDIO_approach_m.png'
 import CASE_alexander from '../../public/home/CASE_alexander.png'
@@ -27,8 +25,6 @@ import CASE_new_futures from '../../public/home/CASE_new_futures.png'
 import CASE_new_futures_m from '../../public/home/CASE_new_futures_m.png'
 import STUDIO_news from '../../public/home/STUDIO_news.png'
 import STUDIO_news_m from '../../public/home/STUDIO_news_m.png'
-
-const { STUDIO, CASE_STUDY } = LAYOUTS.card
 
 const Index = () => {
   return (
@@ -70,7 +66,7 @@ const RightContainer = styled.div`
 
 const HOMEPAGE_DATA = [
   {
-    type: CASE_STUDY,
+    type: CARD_LAYOUTS.CASE_STUDY,
     image: {
       desktop: CASE_limna,
       mobile: CASE_limna_m,
@@ -81,7 +77,7 @@ const HOMEPAGE_DATA = [
     theme: THEME_TYPES.DARK,
   },
   {
-    type: CASE_STUDY,
+    type: CARD_LAYOUTS.CASE_STUDY,
     video: {
       desktop: '/home/CASE_do_lectures.mp4',
       mobile: '/home/CASE_do_lectures.mp4',
@@ -96,7 +92,7 @@ const HOMEPAGE_DATA = [
     theme: THEME_TYPES.DARK,
   },
   {
-    type: STUDIO,
+    type: CARD_LAYOUTS.STUDIO,
     image: {
       desktop: STUDIO_approach,
       mobile: STUDIO_approach_m,
@@ -107,7 +103,7 @@ const HOMEPAGE_DATA = [
     theme: THEME_TYPES.GREY,
   },
   {
-    type: CASE_STUDY,
+    type: CARD_LAYOUTS.CASE_STUDY,
     image: {
       desktop: CASE_alexander,
       mobile: CASE_alexander_m,
@@ -118,7 +114,7 @@ const HOMEPAGE_DATA = [
     theme: THEME_TYPES.DARK,
   },
   {
-    type: CASE_STUDY,
+    type: CARD_LAYOUTS.CASE_STUDY,
     image: {
       desktop: CASE_vanmoof,
       mobile: CASE_vanmoof_m,
@@ -129,7 +125,7 @@ const HOMEPAGE_DATA = [
     theme: THEME_TYPES.DARK,
   },
   {
-    type: CASE_STUDY,
+    type: CARD_LAYOUTS.CASE_STUDY,
     video: {
       desktop: '/testvid.mp4',
       mobile: '/testvid.mp4',
@@ -144,7 +140,7 @@ const HOMEPAGE_DATA = [
     theme: THEME_TYPES.DARK,
   },
   {
-    type: STUDIO,
+    type: CARD_LAYOUTS.STUDIO,
     image: {
       desktop: STUDIO_team,
       mobile: STUDIO_team_m,
@@ -155,7 +151,7 @@ const HOMEPAGE_DATA = [
     theme: THEME_TYPES.GREY,
   },
   {
-    type: CASE_STUDY,
+    type: CARD_LAYOUTS.CASE_STUDY,
     image: {
       desktop: CASE_pair_up,
       mobile: CASE_pair_up_m,
@@ -166,7 +162,7 @@ const HOMEPAGE_DATA = [
     theme: THEME_TYPES.DARK,
   },
   {
-    type: CASE_STUDY,
+    type: CARD_LAYOUTS.CASE_STUDY,
     image: {
       desktop: CASE_cellular_goods,
       mobile: CASE_cellular_goods_m,
@@ -177,7 +173,7 @@ const HOMEPAGE_DATA = [
     theme: THEME_TYPES.DARK,
   },
   {
-    type: CASE_STUDY,
+    type: CARD_LAYOUTS.CASE_STUDY,
     image: {
       desktop: CASE_new_futures,
       mobile: CASE_new_futures_m,
@@ -188,13 +184,13 @@ const HOMEPAGE_DATA = [
     theme: THEME_TYPES.DARK,
   },
   {
-    type: STUDIO,
+    type: CARD_LAYOUTS.STUDIO,
     image: {
       desktop: STUDIO_news,
       mobile: STUDIO_news_m,
     },
     heading: 'Latest news',
-    subheading: 'See whats been going on inside the studio',
+    subheading: 'See whats been going on inside the CARD_LAYOUTS.STUDIO',
     link: '#',
     theme: THEME_TYPES.GREY,
   },

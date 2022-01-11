@@ -8,11 +8,11 @@ import {
   PADDING,
   DESKTOP,
   MOBILE,
-  LAYOUTS,
   THEME_TYPES,
   COLOR,
   BACKGROUND,
   HOVER_BACKGROUND,
+  CARD_LAYOUTS,
 } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { WIDTHS } from '../../styles/dimensions'
@@ -22,8 +22,6 @@ import { getThemeValue } from 'helpers/theme'
 import Button, { ButtonContainer } from 'components/Button/Button'
 import FadeUp from 'components/Transitions/FadeUp'
 import CardVideo from './CardVideo'
-
-const { STUDIO } = LAYOUTS.card
 
 const HomePageCard = ({
   type,
@@ -70,7 +68,9 @@ const HomePageCard = ({
                 </div>
                 <Button
                   text={
-                    (button && button) || (type == STUDIO && 'View') || 'Read'
+                    (button && button) ||
+                    (type == CARD_LAYOUTS.STUDIO && 'View') ||
+                    'Read'
                   }
                   theme={THEME_TYPES.LIGHT}
                 />
