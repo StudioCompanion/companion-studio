@@ -2482,7 +2482,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-spring/web@npm:latest":
+"@react-spring/web@npm:^9.4.1":
   version: 9.4.1
   resolution: "@react-spring/web@npm:9.4.1"
   dependencies:
@@ -3518,7 +3518,7 @@ __metadata:
   resolution: "@studiocompanion/web@workspace:packages/web"
   dependencies:
     "@react-hook/intersection-observer": ^3.1.1
-    "@react-spring/web": latest
+    "@react-spring/web": ^9.4.1
     formik: ^2.2.9
     lottie-web: ^5.8.1
     moment: ^2.29.1
