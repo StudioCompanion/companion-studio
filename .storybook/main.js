@@ -1,11 +1,10 @@
 const path = require('path')
 
-const jsConfig = require('../packages/web/jsconfig.json')
+const jsConfig = require('../tsconfig.json')
 
 const createAliasesFromPaths = () => {
   const prefixRegExp = new RegExp('src/.*')
   const aliases = {}
-  console.log(jsConfig.compilerOptions.paths)
   Object.entries(jsConfig.compilerOptions.paths).forEach(([key, entry]) => {
     const [value] = entry
     const [newKey] = key.split('/')
