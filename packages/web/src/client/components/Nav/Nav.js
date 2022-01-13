@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
@@ -9,7 +8,7 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { COLORS, PADDING } from '../../styles/constants'
 import { Logo } from 'components/Logo/Logo'
 
-const Nav = ({ currentPath }) => {
+const Nav = ({ currentPath = '/' }) => {
   return (
     <>
       {currentPath !== '/' && currentPath !== '/instagram' && (

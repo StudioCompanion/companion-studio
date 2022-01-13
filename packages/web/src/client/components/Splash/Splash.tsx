@@ -1,8 +1,9 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useState } from 'react'
 import styled from 'styled-components'
 import lottie from 'lottie-web'
 
 import splashAnimation from '../../../../public/lottie/splashAnimation.json'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
 
 const COLOR_SETS = [
   {
@@ -32,13 +33,19 @@ const COLOR_SETS = [
 ]
 
 const Splash = () => {
-  const [colorSetIndex] = useState(() =>
-    Math.floor(Math.random() * COLOR_SETS.length)
-  )
+  const [colorSetIndex, setColorIndex] = useState(0)
 
-  const lottieRef = useRef()
+  const lottieRef = useRef<HTMLDivElement>(null!)
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
+    /**
+     * Set in the effect so we get a
+     * new value per session otherwise
+     * the app builds once and thats it,
+     * thats the color.
+     */
+    setColorIndex(Math.floor(Math.random() * COLOR_SETS.length))
+
     const animation = lottie.loadAnimation({
       container: lottieRef.current,
       animationData: splashAnimation,
@@ -47,8 +54,10 @@ const Splash = () => {
     })
 
     animation.addEventListener('complete', () => {
-      lottieRef.current.style.opacity = 0
+      lottieRef.current.style.opacity = '0'
     })
+
+    lottieRef.current.style.display = 'block'
 
     return () => {
       animation.destroy()
@@ -65,7 +74,7 @@ const Splash = () => {
 
 export default Splash
 
-const SplashContainer = styled.div`
+const SplashContainer = styled.div<{ $colorSetIndex: number }>`
   width: 100%;
   height: 100%;
   position: fixed;
@@ -77,6 +86,7 @@ const SplashContainer = styled.div`
   transition: opacity 600ms ease-out;
   will-change: opacity;
   pointer-events: none;
+  display: none;
   /*
   * Renamed the lottie layers with classes
   * so text can be selected with .text and
