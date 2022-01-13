@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react'
+import { useRef } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 import { useSprings, animated } from '@react-spring/web'
@@ -9,61 +9,14 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 
 import FadeUp from 'components/Transitions/FadeUp'
-
-import myles from '../../../../public/images/team/myles.png'
-import elena from '../../../../public/images/team/elena.png'
-import alexandra from '../../../../public/images/team/alexandra.png'
-import axelle from '../../../../public/images/team/axelle.png'
-import josh from '../../../../public/images/team/josh.png'
-import willem from '../../../../public/images/team/willem.png'
-
-const TEAM = [
-  {
-    name: 'Myles Palmer',
-    role: 'Founder & Creative Director',
-    image: myles,
-  },
-  {
-    name: 'Alexandra Votjku',
-    role: 'Digital Designer',
-    image: alexandra,
-  },
-  {
-    name: 'Axelle Van de Goor',
-    role: 'Producer',
-    image: axelle,
-  },
-  {
-    name: 'Josh Ellis',
-    role: 'Fullstack Developer',
-    image: josh,
-  },
-  {
-    name: 'Willem Purdy',
-    role: 'Digital Designer',
-    image: willem,
-  },
-  {
-    name: 'Elena Marinaki',
-    role: 'Developer',
-    image: elena,
-  },
-]
+import { TeamMember, TEAM } from 'references/team'
 
 interface AvatarsProps {
-  names: string[]
+  members?: TeamMember[]
 }
 
-const Avatars = ({ names = [] }: AvatarsProps) => {
+const Avatars = ({ members = TEAM }: AvatarsProps) => {
   const textRefs = useRef<HTMLDivElement[]>([])
-
-  const members = useMemo(
-    () =>
-      names.length > 0
-        ? TEAM.filter((member) => names.includes(member.name))
-        : TEAM,
-    [names]
-  )
 
   const [springs, api] = useSprings(
     members.length,
