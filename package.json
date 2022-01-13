@@ -42,7 +42,7 @@
     "chromatic": "npx chromatic --project-token=1a465065bcd3"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-react": "^7.16.7",
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "@mdx-js/loader": "^2.0.0-rc.2",
