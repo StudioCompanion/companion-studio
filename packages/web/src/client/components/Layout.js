@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 
 import { PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
+
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
 
 import Nav from './Nav/Nav'
 import Callout from './Callout/Callout'
@@ -17,7 +19,7 @@ const Layout = ({ children }) => {
 
   const [showSplash, setShowSplash] = useState(true)
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const shown = sessionStorage.getItem('splash_shown')
     if (Boolean(shown)) {
       setShowSplash(false)
