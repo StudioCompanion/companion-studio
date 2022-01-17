@@ -11,11 +11,11 @@ import {
 
 import FadeUp from 'components/Transitions/FadeUp'
 
-type Props = {
+type HeadingProps = {
   children: React.ReactNode
 }
 
-const Heading = ({ children }: Props) => {
+export const Heading = ({ children }: HeadingProps) => {
   return (
     <Container>
       <FadeUp>
@@ -29,7 +29,7 @@ const Heading = ({ children }: Props) => {
 //   children: PropTypes.node.isRequired,
 // }
 
-export default Heading
+// export default Heading
 
 const Container = styled.div`
   margin: 0 0;
