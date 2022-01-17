@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { PADDING } from '../../styles/constants'
@@ -7,10 +7,15 @@ import {
   FONT_STYLE_RECKLESS_12_400,
   FONT_STYLE_APFEL_12_400,
 } from '../../styles/fonts'
+// import React from 'react'
 
 import FadeUp from 'components/Transitions/FadeUp'
 
-const Heading = ({ children }) => {
+type Props = {
+  children: React.ReactNode
+}
+
+const Heading = ({ children }: Props) => {
   return (
     <Container>
       <FadeUp>
@@ -20,9 +25,9 @@ const Heading = ({ children }) => {
   )
 }
 
-Heading.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+// Heading.propTypes = {
+//   children: PropTypes.node.isRequired,
+// }
 
 export default Heading
 
