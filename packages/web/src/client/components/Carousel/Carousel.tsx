@@ -138,7 +138,12 @@ const Carousel = ({
           >
             <Inner>
               {video ? (
-                <Video video={video} ref={videoRef} setPaused={setPaused} />
+                <Video
+                  video={video}
+                  ref={videoRef}
+                  setPaused={setPaused}
+                  layout={layout}
+                />
               ) : (
                 <InfiniteSlider
                   ref={sliderApi}

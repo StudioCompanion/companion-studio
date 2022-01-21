@@ -19,6 +19,7 @@ export interface IVideo {
   width: number
   height: number
   caption?: string
+  layout?: keyof typeof ASPECT_RATIOS['carousel']
   url: {
     mobile: string
     desktop: string
@@ -35,7 +36,7 @@ interface VideoProps {
 }
 
 export const Video = forwardRef<HTMLVideoElement, VideoProps>(
-  ({ video, setPaused }, videoRef) => {
+  ({ video, setPaused, layout = 'full' }, videoRef) => {
     const isTabletUp = useMediaQuery({
       query: `(min-width: ${WIDTHS.tablet}px)`,
     })
@@ -109,8 +110,8 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
     return (
       <VideoFlex onClick={handleVideoClick}>
         <VideoWrapper
-          $mobileWidth={calcWidth(MOBILE, video)}
-          $desktopWidth={calcWidth(DESKTOP, video)}
+          $mobileWidth={calcWidth(MOBILE, layout, video)}
+          $desktopWidth={calcWidth(DESKTOP, layout, video)}
         >
           <VideoAspect $aspectRatio={video.height / video.width}>
             <VideoItem
@@ -133,6 +134,7 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
 
 const calcWidth = (
   size: keyof typeof ASPECT_RATIOS['carousel']['full'],
+  type: keyof typeof ASPECT_RATIOS['carousel'],
   video: IVideo
 ) => {
   const aspect = video.height / video.width
@@ -146,7 +148,7 @@ const calcWidth = (
      * the container
      */
     const invertedAspect = 1 / aspect
-    const aspectSize = parseFloat(ASPECT_RATIOS.carousel.full[size])
+    const aspectSize = parseFloat(ASPECT_RATIOS.carousel[type][size])
     return `${((invertedAspect * aspectSize) / 100) * 88}%`
   } else {
     /**
