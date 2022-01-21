@@ -11,7 +11,13 @@ import { useMediaQuery } from 'react-responsive'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
 import { WIDTHS } from 'styles/dimensions'
-import { RADII, DESKTOP, MOBILE, ASPECT_RATIOS } from 'styles/constants'
+import {
+  RADII,
+  DESKTOP,
+  MOBILE,
+  ASPECT_RATIOS,
+  CAROUSEL_LAYOUTS,
+} from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
 export interface IVideo {
@@ -19,7 +25,6 @@ export interface IVideo {
   width: number
   height: number
   caption?: string
-  layout?: keyof typeof ASPECT_RATIOS['carousel']
   url: {
     mobile: string
     desktop: string
@@ -32,11 +37,12 @@ export interface IVideo {
 
 interface VideoProps {
   video: IVideo
+  layout?: CAROUSEL_LAYOUTS
   setPaused: Dispatch<SetStateAction<boolean>>
 }
 
 export const Video = forwardRef<HTMLVideoElement, VideoProps>(
-  ({ video, setPaused, layout = 'full' }, videoRef) => {
+  ({ video, setPaused, layout = CAROUSEL_LAYOUTS.FULL }, videoRef) => {
     const isTabletUp = useMediaQuery({
       query: `(min-width: ${WIDTHS.tablet}px)`,
     })
@@ -134,7 +140,7 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
 
 const calcWidth = (
   size: keyof typeof ASPECT_RATIOS['carousel']['full'],
-  type: keyof typeof ASPECT_RATIOS['carousel'],
+  type: CAROUSEL_LAYOUTS,
   video: IVideo
 ) => {
   const aspect = video.height / video.width
@@ -148,6 +154,7 @@ const calcWidth = (
      * the container
      */
     const invertedAspect = 1 / aspect
+    // @ts-expect-error
     const aspectSize = parseFloat(ASPECT_RATIOS.carousel[type][size])
     return `${((invertedAspect * aspectSize) / 100) * 88}%`
   } else {
