@@ -1,13 +1,12 @@
 import styled from 'styled-components'
 import Link from 'next/link'
-import { HTMLAttributes } from 'react'
 
 import { THEME_TYPES, COLOR, BACKGROUND } from '../../styles/constants'
 import { getFontStyles } from '../../styles/getFontStyles'
 import { getThemeValue } from 'helpers/theme'
 import { FONT_STYLE_APFEL_12_400 } from '../../styles/fonts'
 
-export interface ButtonInnerProps extends HTMLAttributes<HTMLButtonElement> {
+export interface ButtonInnerProps {
   text: string
   theme: string
 }
@@ -16,7 +15,7 @@ export const ButtonInner = ({ text, theme }: ButtonInnerProps) => {
   return <ButtonContainer theme={theme}>{text}</ButtonContainer>
 }
 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps {
   text: string
   link?: string
   theme: string

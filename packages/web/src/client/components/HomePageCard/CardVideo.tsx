@@ -1,15 +1,16 @@
 import { useRef, useEffect } from 'react'
 
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
-// interface CardVideoProps = {
-
-// }
-const CardVideo = ({ video, image, tabletUp }) => {
-  const srcRef = useRef()
-  const videoRef = useRef()
+interface CardVideoProps {
+  image: Record<string, Record<string, string>>
+  video: Record<string, string>
+  tabletUp: boolean
+}
+const CardVideo = ({ video, image, tabletUp }: CardVideoProps) => {
+  const srcRef = useRef<HTMLSourceElement>(null!)
+  const videoRef = useRef<HTMLVideoElement>(null!)
   const firstUpdate = useRef(true)
   const autoPause = useRef(false)
   const { isIntersecting } = useIntersectionObserver(videoRef)
@@ -17,7 +18,9 @@ const CardVideo = ({ video, image, tabletUp }) => {
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false
+
       videoRef.current.defaultMuted = true
+
       if (image) {
         videoRef.current.poster = tabletUp
           ? image.desktop.src
@@ -50,16 +53,10 @@ const CardVideo = ({ video, image, tabletUp }) => {
   }, [isIntersecting, tabletUp, video.desktop, video.mobile])
 
   return (
-    <Video autoPlay loop playsinline ref={videoRef} muted>
+    <Video autoPlay loop playsInline ref={videoRef} muted>
       <source ref={srcRef} src="" type="video/mp4"></source>
     </Video>
   )
-}
-
-CardVideo.propTypes = {
-  image: PropTypes.object,
-  video: PropTypes.object,
-  tabletUp: PropTypes.bool,
 }
 
 export default CardVideo
