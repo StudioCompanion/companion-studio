@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { PADDING } from '../../styles/constants'
@@ -7,7 +6,6 @@ import {
   FONT_STYLE_RECKLESS_12_400,
   FONT_STYLE_APFEL_12_400,
 } from '../../styles/fonts'
-// import React from 'react'
 
 import FadeUp from 'components/Transitions/FadeUp'
 
@@ -24,12 +22,6 @@ export const Heading = ({ children }: HeadingProps) => {
     </Container>
   )
 }
-
-// Heading.propTypes = {
-//   children: PropTypes.node.isRequired,
-// }
-
-// export default Heading
 
 const Container = styled.div`
   margin: 0 0;

@@ -18,7 +18,7 @@ export const ButtonInner = ({ text, theme }: ButtonInnerProps) => {
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   text: string
-  link: string
+  link?: string
   theme: string
 }
 

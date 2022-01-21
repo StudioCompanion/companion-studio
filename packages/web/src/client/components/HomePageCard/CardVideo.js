@@ -4,6 +4,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
+// interface CardVideoProps = {
+
+// }
 const CardVideo = ({ video, image, tabletUp }) => {
   const srcRef = useRef()
   const videoRef = useRef()

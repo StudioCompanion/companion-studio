@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 
-import { ButtonContainer, ButtonInner } from 'components/Button/Button'
+import Button, { ButtonContainer } from 'components/Button/Button'
 import FadeUp from 'components/Transitions/FadeUp'
 
 import {
@@ -31,7 +31,7 @@ const Callout = () => {
             Have a project you’d like to work on with us? Interested in joining
             the team? Need a shoulder to cry on?
           </CalloutText>
-          <ButtonInner text={'Message us'} theme={THEME_TYPES.DARK} />
+          <Button text={'Message us'} theme={THEME_TYPES.DARK} />
         </div>
         <CalloutImageWrapper>
           <Image
