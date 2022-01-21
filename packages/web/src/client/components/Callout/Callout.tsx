@@ -61,9 +61,11 @@ const CalloutContainer = styled.a<{ theme: string }>`
     padding: ${PADDING.m}px;
   }
 
-  &:hover {
-    ${ButtonContainer} {
-      background-color: ${(p) => getThemeValue(p.theme, HOVER_BACKGROUND)};
+  @media (hover: hover) {
+    &:hover {
+      ${ButtonContainer} {
+        background-color: ${(p) => getThemeValue(p.theme, HOVER_BACKGROUND)};
+      }
     }
   }
 `
