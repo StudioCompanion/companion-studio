@@ -12,7 +12,7 @@ import {
 import FadeUp from 'components/Transitions/FadeUp'
 
 type HeadingProps = {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export const Heading = ({ children }: HeadingProps) => {
