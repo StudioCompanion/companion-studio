@@ -31,7 +31,7 @@ const Callout = () => {
             Have a project you’d like to work on with us? Interested in joining
             the team? Need a shoulder to cry on?
           </CalloutText>
-          <Button text='Message us' $theme={THEME_TYPES.DARK} />
+          <Button text="Message us" theme={THEME_TYPES.DARK} />
         </div>
         <CalloutImageWrapper>
           <Image
