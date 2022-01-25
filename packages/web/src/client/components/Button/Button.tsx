@@ -44,7 +44,7 @@ export const ButtonContainer = styled.div<{ $theme: string }>`
   border-radius: 500px;
   padding: 8px;
   padding-bottom: 9px;
-  color: ${(p) => getThemeValue(p.theme, COLOR)};
+  color: ${(p) => getThemeValue(p.$theme, COLOR)};
   background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
   ${getFontStyles(FONT_STYLE_APFEL_12_400)}
   z-index: 1;
