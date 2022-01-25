@@ -27,7 +27,6 @@ const Callout = () => {
         href="mailto:hello@companion.studio"
       >
         <div>
-          <Button text={'This is a test button'} theme={THEME_TYPES.DARK} />
           <CalloutText>
             Have a project you’d like to work on with us? Interested in joining
             the team? Need a shoulder to cry on?
