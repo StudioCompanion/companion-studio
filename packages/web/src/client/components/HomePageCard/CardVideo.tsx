@@ -3,9 +3,22 @@ import { useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
+interface Image {
+  desktop: {
+    src: string
+  }
+  mobile: {
+    src: string
+  }
+}
+
+interface Video {
+  desktop: string
+  mobile: string
+}
 interface CardVideoProps {
-  image: Record<string, Record<string, string>>
-  video: Record<string, string>
+  image: Image
+  video: Video
   tabletUp: boolean
 }
 const CardVideo = ({ video, image, tabletUp }: CardVideoProps) => {

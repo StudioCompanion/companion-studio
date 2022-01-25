@@ -23,7 +23,7 @@ const Callout = () => {
   return (
     <FadeUp>
       <CalloutContainer
-        theme={THEME_TYPES.DARK}
+        $theme={THEME_TYPES.DARK}
         href="mailto:hello@companion.studio"
       >
         <div>
@@ -31,7 +31,7 @@ const Callout = () => {
             Have a project you’d like to work on with us? Interested in joining
             the team? Need a shoulder to cry on?
           </CalloutText>
-          <Button text={'Message us'} theme={THEME_TYPES.DARK} />
+          <Button text='Message us' $theme={THEME_TYPES.DARK} />
         </div>
         <CalloutImageWrapper>
           <Image
@@ -47,7 +47,7 @@ const Callout = () => {
 
 export default Callout
 
-const CalloutContainer = styled.a<{ theme: string }>`
+const CalloutContainer = styled.a<{ $theme: string }>`
   display: block;
   background-color: ${COLORS.lightgrey_2};
   border-radius: ${RADII.wrapper_lg}px;
@@ -64,7 +64,7 @@ const CalloutContainer = styled.a<{ theme: string }>`
   @media (hover: hover) {
     &:hover {
       ${ButtonContainer} {
-        background-color: ${(p) => getThemeValue(p.theme, HOVER_BACKGROUND)};
+        background-color: ${(p) => getThemeValue(p.$theme, HOVER_BACKGROUND)};
       }
     }
   }

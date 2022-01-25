@@ -12,7 +12,7 @@ export interface ButtonInnerProps {
 }
 
 export const ButtonInner = ({ text, theme }: ButtonInnerProps) => {
-  return <ButtonContainer theme={theme}>{text}</ButtonContainer>
+  return <ButtonContainer $theme={theme}>{text}</ButtonContainer>
 }
 
 export interface ButtonProps {
@@ -39,13 +39,13 @@ const Button = ({ text, link, theme = THEME_TYPES.LIGHT }: ButtonProps) => {
 
 export default Button
 
-export const ButtonContainer = styled.div<{ theme: string }>`
+export const ButtonContainer = styled.div<{ $theme: string }>`
   display: inline-block;
   border-radius: 500px;
   padding: 8px;
   padding-bottom: 9px;
   color: ${(p) => getThemeValue(p.theme, COLOR)};
-  background-color: ${(p) => getThemeValue(p.theme, BACKGROUND)};
+  background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
   ${getFontStyles(FONT_STYLE_APFEL_12_400)}
   z-index: 1;
   text-decoration: none;
