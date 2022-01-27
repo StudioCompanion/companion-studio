@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import isEmail from 'validator/lib/isEmail.js'
+import isEmail from 'validator/lib/isEmail'
 
 import Input from '../Inputs/Input'
 
@@ -103,7 +103,7 @@ const SignUpForm = () => {
   )
 }
 
-const Footer = () => {
+export const Footer = () => {
   const dateFounded = new Date('2020-11-30').getTime()
   const [currentTime, setCurrentTime] = useState<number>(0)
   const timeActive = currentTime - dateFounded
@@ -239,8 +239,6 @@ const Footer = () => {
     </FadeUp>
   )
 }
-
-export default Footer
 
 const FooterContainer = styled.footer`
   background-color: ${COLORS.darkblue};

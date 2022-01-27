@@ -20,8 +20,6 @@ export const CenteredParagraph = ({ children }: CenteredParagraphProps) => {
   )
 }
 
-// export default CenteredParagraph
-
 const CenteredParagraphContainer = styled.div`
   margin: ${PADDING.xl}px 0;
   display: flex;

@@ -1,4 +1,4 @@
-import Footer from './Footer'
+import { Footer } from './Footer'
 import { Story, Meta } from '@storybook/react'
 
 const Template: Story = (args) => <Footer {...args} />

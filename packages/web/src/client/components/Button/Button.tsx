@@ -21,7 +21,11 @@ export interface ButtonProps {
   theme: string
 }
 
-const Button = ({ text, link, theme = THEME_TYPES.LIGHT }: ButtonProps) => {
+export const Button = ({
+  text,
+  link,
+  theme = THEME_TYPES.LIGHT,
+}: ButtonProps) => {
   return (
     <>
       {link ? (
@@ -36,8 +40,6 @@ const Button = ({ text, link, theme = THEME_TYPES.LIGHT }: ButtonProps) => {
     </>
   )
 }
-
-export default Button
 
 export const ButtonContainer = styled.div<{ $theme: string }>`
   display: inline-block;
