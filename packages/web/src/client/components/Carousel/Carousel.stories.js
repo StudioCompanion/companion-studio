@@ -1,4 +1,4 @@
-import Carousel from './Carousel'
+import { Carousel } from './Carousel'
 
 import testVid from '../../../../public/testvid.mp4'
 import testPhoneVid from '../../../../public/testvid_phone.mp4'
