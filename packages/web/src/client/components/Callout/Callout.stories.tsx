@@ -1,4 +1,4 @@
-import Callout from './Callout'
+import { Callout } from './Callout'
 import { Story, Meta } from '@storybook/react'
 
 const Template: Story = (args) => <Callout {...args} />
