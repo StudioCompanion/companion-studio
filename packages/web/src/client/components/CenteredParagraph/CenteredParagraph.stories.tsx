@@ -1,4 +1,4 @@
-import CenteredParagraph from './CenteredParagraph'
+import { CenteredParagraph } from './CenteredParagraph'
 import { Story, Meta } from '@storybook/react'
 
 const Template: Story<React.ReactNode> = (args) => (

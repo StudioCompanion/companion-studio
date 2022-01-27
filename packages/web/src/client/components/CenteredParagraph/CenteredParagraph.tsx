@@ -10,7 +10,7 @@ type CenteredParagraphProps = {
   children: React.ReactNode
 }
 
-const CenteredParagraph = ({ children }: CenteredParagraphProps) => {
+export const CenteredParagraph = ({ children }: CenteredParagraphProps) => {
   return (
     <FadeUp>
       <CenteredParagraphContainer>
@@ -20,7 +20,7 @@ const CenteredParagraph = ({ children }: CenteredParagraphProps) => {
   )
 }
 
-export default CenteredParagraph
+// export default CenteredParagraph
 
 const CenteredParagraphContainer = styled.div`
   margin: ${PADDING.xl}px 0;

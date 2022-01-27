@@ -22,7 +22,9 @@ const SignUpForm = () => {
 
   const [touched, setTouched] = useState(false)
 
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(null!)
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined
+  )
 
   const handleBlur = () => {
     setTouched(true)
@@ -41,7 +43,7 @@ const SignUpForm = () => {
   }
 
   const validateForm = (value: string) => {
-    let error
+    let error = undefined
     if (value === '' || value === null) {
       error = 'Please enter an email address'
     } else if (!isEmail(value)) {
@@ -53,7 +55,7 @@ const SignUpForm = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
     if ((errorMessage && errorMessage !== '') || touched) {
-      setErrorMessage(validateForm(value) || '')
+      setErrorMessage(validateForm(value))
     }
     if (showSuccess) {
       setShowSuccess(false)
@@ -103,7 +105,7 @@ const SignUpForm = () => {
 
 const Footer = () => {
   const dateFounded = new Date('2020-11-30').getTime()
-  const [currentTime, setCurrentTime] = useState<number>(null!)
+  const [currentTime, setCurrentTime] = useState<number>(0)
   const timeActive = currentTime - dateFounded
   const seconds = Math.floor((timeActive / 1000) % 60)
   const minutes = Math.floor((timeActive / 1000 / 60) % 60)
