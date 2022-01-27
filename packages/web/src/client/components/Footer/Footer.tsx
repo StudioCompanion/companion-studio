@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import isEmail from 'validator/lib/isEmail'
+import isEmail from 'validator/lib/isEmail.js'
 
 import Input from '../Inputs/Input'
 
@@ -18,20 +18,20 @@ import FadeUp from 'components/Transitions/FadeUp'
 
 const SignUpForm = () => {
   const [showSuccess, setShowSuccess] = useState(false)
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState<string>('')
 
   const [touched, setTouched] = useState(false)
 
-  const [errorMessage, setErrorMessage] = useState()
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(null!)
 
   const handleBlur = () => {
     setTouched(true)
     setErrorMessage(validateForm(value))
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (validateForm(value)) {
-      preventDefault()
+      e.preventDefault()
       setErrorMessage(validateForm(value))
     } else {
       setShowSuccess(true)
@@ -40,7 +40,7 @@ const SignUpForm = () => {
     }
   }
 
-  const validateForm = (value) => {
+  const validateForm = (value: string) => {
     let error
     if (value === '' || value === null) {
       error = 'Please enter an email address'
@@ -50,10 +50,10 @@ const SignUpForm = () => {
     return error
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
     if ((errorMessage && errorMessage !== '') || touched) {
-      setErrorMessage(validateForm(value) || null)
+      setErrorMessage(validateForm(value) || '')
     }
     if (showSuccess) {
       setShowSuccess(false)
@@ -92,7 +92,7 @@ const SignUpForm = () => {
         <FormButton
           type={'submit'}
           value="Submit"
-          disabled={!value || (errorMessage && errorMessage !== '')}
+          disabled={Boolean(!value || (errorMessage && errorMessage !== ''))}
         >
           Submit
         </FormButton>
@@ -103,7 +103,7 @@ const SignUpForm = () => {
 
 const Footer = () => {
   const dateFounded = new Date('2020-11-30').getTime()
-  const [currentTime, setCurrentTime] = useState()
+  const [currentTime, setCurrentTime] = useState<number>(null!)
   const timeActive = currentTime - dateFounded
   const seconds = Math.floor((timeActive / 1000) % 60)
   const minutes = Math.floor((timeActive / 1000 / 60) % 60)
@@ -237,8 +237,6 @@ const Footer = () => {
     </FadeUp>
   )
 }
-
-Footer.propTypes = {}
 
 export default Footer
 

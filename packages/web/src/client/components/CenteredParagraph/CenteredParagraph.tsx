@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
@@ -7,7 +6,11 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_32_400 } from 'styles/fonts'
 import FadeUp from 'components/Transitions/FadeUp'
 
-const CenteredParagraph = ({ children }) => {
+type CenteredParagraphProps = {
+  children: React.ReactNode
+}
+
+const CenteredParagraph = ({ children }: CenteredParagraphProps) => {
   return (
     <FadeUp>
       <CenteredParagraphContainer>
@@ -15,10 +18,6 @@ const CenteredParagraph = ({ children }) => {
       </CenteredParagraphContainer>
     </FadeUp>
   )
-}
-
-CenteredParagraph.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export default CenteredParagraph
