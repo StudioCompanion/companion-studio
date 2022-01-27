@@ -8,7 +8,7 @@ import {
   FONT_STYLE_RECKLESS_26_400,
   FONT_STYLE_RECKLESS_17_400,
 } from 'styles/fonts'
-import Button from 'components/Button/Button'
+import { Button } from 'components/Button/Button'
 import FadeUp from 'components/Transitions/FadeUp'
 
 const gridItems = [

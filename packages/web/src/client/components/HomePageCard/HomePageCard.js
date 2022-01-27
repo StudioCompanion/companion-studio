@@ -19,7 +19,7 @@ import { WIDTHS } from '../../styles/dimensions'
 import { getAspectRatio } from 'helpers/media'
 import { getThemeValue } from 'helpers/theme'
 
-import Button, { ButtonContainer } from 'components/Button/Button'
+import { Button, ButtonContainer } from 'components/Button/Button'
 import FadeUp from 'components/Transitions/FadeUp'
 import CardVideo from './CardVideo'
 

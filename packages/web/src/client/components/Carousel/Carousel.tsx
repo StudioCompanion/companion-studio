@@ -36,7 +36,7 @@ interface CarouselProps {
   hero?: boolean
 }
 
-const Carousel = ({
+export const Carousel = ({
   bgColor = COLORS.lightgrey_2,
   bgImage,
   items,
@@ -183,8 +183,6 @@ const Carousel = ({
     </>
   )
 }
-
-export default Carousel
 
 const Wrapper = styled.div<{ $hero?: boolean; $layout: CAROUSEL_LAYOUTS }>`
   width: 100%;

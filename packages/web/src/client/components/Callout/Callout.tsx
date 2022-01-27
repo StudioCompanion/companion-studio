@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 
-import Button, { ButtonContainer } from 'components/Button/Button'
+import { Button, ButtonContainer } from 'components/Button/Button'
 import FadeUp from 'components/Transitions/FadeUp'
 
 import {
@@ -19,7 +19,7 @@ import {
   FONT_STYLE_RECKLESS_17_400,
 } from 'styles/fonts'
 
-const Callout = () => {
+export const Callout = () => {
   return (
     <FadeUp>
       <CalloutContainer
@@ -44,8 +44,6 @@ const Callout = () => {
     </FadeUp>
   )
 }
-
-export default Callout
 
 const CalloutContainer = styled.a<{ $theme: string }>`
   display: block;

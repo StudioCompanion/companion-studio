@@ -1,4 +1,4 @@
-import Button, { ButtonProps } from './Button'
+import { Button, ButtonProps } from './Button'
 import { Story, Meta } from '@storybook/react'
 
 import { THEME_TYPES } from '../../styles/constants'

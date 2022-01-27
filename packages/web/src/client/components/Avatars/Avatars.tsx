@@ -15,7 +15,7 @@ interface AvatarsProps {
   members?: TeamMember[]
 }
 
-const Avatars = ({ members = TEAM }: AvatarsProps) => {
+export const Avatars = ({ members = TEAM }: AvatarsProps) => {
   const textRefs = useRef<HTMLDivElement[]>([])
 
   const [springs, api] = useSprings(
@@ -63,8 +63,6 @@ const Avatars = ({ members = TEAM }: AvatarsProps) => {
     </GridWrapper>
   )
 }
-
-export default Avatars
 
 const GridWrapper = styled.div`
   width: 100%;
