@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import isEmail from 'validator/lib/isEmail'
 
-import Input from '../Inputs/Input'
+import { Input } from '../Inputs/Input'
 
 import { COLORS, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
