@@ -25,8 +25,5 @@
     "storybook-addon-next-router": "^3.1.1",
     "styled-components": "^5.3.3",
     "validator": "^13.7.0"
-  },
-  "devDependencies": {
-    "@types/react-page-visibility": "^6.4.1"
   }
 }
