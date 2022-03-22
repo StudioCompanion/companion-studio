@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,6 +12,7 @@ import {
   BACKGROUND,
   HOVER_BACKGROUND,
   CARD_LAYOUTS,
+  LAYOUTS,
 } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { WIDTHS } from '../../styles/dimensions'
@@ -23,7 +23,41 @@ import { Button, ButtonContainer } from 'components/Button/Button'
 import FadeUp from 'components/Transitions/FadeUp'
 import CardVideo from './CardVideo'
 
-const HomePageCard = ({
+interface Image {
+  desktop: {
+    src: string
+    height: number
+    width: number
+  }
+  mobile: {
+    src: string
+    height: number
+    width: number
+  }
+}
+interface Video {
+  desktop: string
+  mobile: string
+}
+
+interface Aspect {
+  desktop: string | number
+  mobile: string | number
+}
+
+export interface HomePageCardProps {
+  image: Image
+  video: Video
+  heading: string
+  subheading: string
+  button: string
+  link: string
+  type: LAYOUTS
+  aspect: Aspect
+  theme: string
+}
+
+export const HomePageCard = ({
   type,
   aspect,
   image,
@@ -33,7 +67,7 @@ const HomePageCard = ({
   button,
   link,
   theme = THEME_TYPES.GREY,
-}) => {
+}: HomePageCardProps) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
 
   return (
@@ -83,20 +117,6 @@ const HomePageCard = ({
   )
 }
 
-HomePageCard.propTypes = {
-  image: PropTypes.object,
-  video: PropTypes.object,
-  heading: PropTypes.string,
-  subheading: PropTypes.string,
-  button: PropTypes.string,
-  link: PropTypes.string,
-  type: PropTypes.string,
-  aspect: PropTypes.object,
-  theme: PropTypes.string,
-}
-
-export default HomePageCard
-
 const ImageContainer = styled.div`
   position: absolute;
   width: 100%;
@@ -106,7 +126,7 @@ const ImageContainer = styled.div`
   overflow: hidden;
 `
 
-const CardWrapper = styled.a`
+const CardWrapper = styled.a<{ $theme: string }>`
   display: block;
   position: relative;
   margin: ${PADDING.s}px 0;
@@ -126,7 +146,11 @@ const CardWrapper = styled.a`
     }
   }
 `
-const CardContainer = styled.div`
+const CardContainer = styled.div<{
+  $theme: string
+  $type: LAYOUTS
+  $aspect: Aspect
+}>`
   background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
   padding-top: ${({ $type, $aspect }) =>
     getAspectRatio($type, MOBILE, $aspect)};
@@ -149,7 +173,7 @@ const CardInner = styled.div`
   justify-content: center;
 `
 
-const CardText = styled.div`
+const CardText = styled.div<{ $theme: string }>`
   position: relative;
   z-index: 1;
   width: 100%;
