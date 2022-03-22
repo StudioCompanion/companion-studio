@@ -23,7 +23,7 @@ Make a list of the ENVs we have
 
 ### Prerequisites
 
-- Node 17.0.1 (theres an nvm file)
+- Node 16.13.0 (theres an nvm file)
 - Yarn >=3
 
 ### Setting up Dev
