@@ -217,8 +217,8 @@ export const Footer = () => {
           <ImprintRight>
             <FooterLinks>
               {footerLinks.map((link, index) =>
-                link.url.startsWith('/') ? (
-                  <Link key={index} href={link?.url} passHref>
+                link?.url && link.url.startsWith('/') ? (
+                  <Link key={index} href={link.url} passHref>
                     <FooterLink>{link.title}</FooterLink>
                   </Link>
                 ) : (

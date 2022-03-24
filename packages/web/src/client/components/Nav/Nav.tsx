@@ -8,7 +8,7 @@ import { COLORS, PADDING } from '../../styles/constants'
 import { Logo } from 'components/Logo/Logo'
 
 export interface NavProps {
-  currentPath: string
+  currentPath?: string
 }
 
 export const Nav = ({ currentPath = '/' }: NavProps) => {
