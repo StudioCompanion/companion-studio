@@ -3,16 +3,9 @@ import { useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
-interface Image {
-  desktop: {
-    src: string
-  }
-  mobile: {
-    src: string
-  }
-}
+import { Image } from './HomePageCard'
 
-interface Video {
+export interface Video {
   desktop: string
   mobile: string
 }
@@ -21,7 +14,7 @@ interface CardVideoProps {
   video: Video
   tabletUp: boolean
 }
-const CardVideo = ({ video, image, tabletUp }: CardVideoProps) => {
+export const CardVideo = ({ video, image, tabletUp }: CardVideoProps) => {
   const srcRef = useRef<HTMLSourceElement>(null!)
   const videoRef = useRef<HTMLVideoElement>(null!)
   const firstUpdate = useRef(true)
@@ -71,8 +64,6 @@ const CardVideo = ({ video, image, tabletUp }: CardVideoProps) => {
     </Video>
   )
 }
-
-export default CardVideo
 
 const Video = styled.video`
   position: absolute;
