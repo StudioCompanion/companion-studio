@@ -14,7 +14,7 @@ import {
   FONT_STYLE_RECKLESS_17_400,
   FONT_STYLE_APFEL_12_400,
 } from 'styles/fonts'
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
 const SignUpForm = () => {
   const [showSuccess, setShowSuccess] = useState(false)

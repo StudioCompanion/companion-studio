@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { PADDING, THEME_TYPES } from 'styles/constants'
@@ -9,7 +8,7 @@ import {
   FONT_STYLE_RECKLESS_17_400,
 } from 'styles/fonts'
 import { Button } from 'components/Button/Button'
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
 const gridItems = [
   {
@@ -66,7 +65,12 @@ const gridItems = [
   },
 ]
 
-export const GridItem = ({ heading, body }) => {
+interface GridItemProps {
+  heading: (string | JSX.Element)[]
+  body: string
+}
+
+export const GridItem = ({ heading, body }: GridItemProps) => {
   return (
     <GridItemContainer>
       <GridItemHeading>{heading}</GridItemHeading>
@@ -74,12 +78,8 @@ export const GridItem = ({ heading, body }) => {
     </GridItemContainer>
   )
 }
-GridItem.propTypes = {
-  heading: PropTypes.array,
-  body: PropTypes.string,
-}
 
-const ValuesGrid = ({}) => {
+export const ValuesGrid = () => {
   return (
     <FadeUp>
       <GridWrapper>
@@ -99,10 +99,6 @@ const ValuesGrid = ({}) => {
     </FadeUp>
   )
 }
-
-ValuesGrid.propTypes = {}
-
-export default ValuesGrid
 
 const GridContainer = styled.div`
   display: grid;

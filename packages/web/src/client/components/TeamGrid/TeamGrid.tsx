@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 
@@ -10,9 +9,15 @@ import {
   FONT_STYLE_RECKLESS_17_400,
 } from 'styles/fonts'
 
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
-const GridItem = ({ image, name, role }) => {
+interface GridItemProps {
+  image: StaticImageData
+  name: string
+  role: string
+}
+
+const GridItem = ({ image, name, role }: GridItemProps) => {
   return (
     <FadeUp>
       <GridItemContainer>
@@ -25,25 +30,16 @@ const GridItem = ({ image, name, role }) => {
     </FadeUp>
   )
 }
-GridItem.propTypes = {
-  image: PropTypes.string,
-  name: PropTypes.string,
-  role: PropTypes.string,
-}
 
-const TeamGrid = ({}) => {
+export const TeamGrid = () => {
   return (
     <GridWrapper>
-      {team.map(({ image, name, role }, index) => (
-        <GridItem key={index} image={image} name={name} role={role} />
+      {team.map(({ image, name, role }) => (
+        <GridItem key={name} image={image} name={name} role={role} />
       ))}
     </GridWrapper>
   )
 }
-
-TeamGrid.propTypes = {}
-
-export default TeamGrid
 
 const GridWrapper = styled.div`
   display: grid;

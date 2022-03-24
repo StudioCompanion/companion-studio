@@ -1,11 +1,9 @@
-import StickyParagraph from './StickyParagraph'
+import { StickyParagraph, StickyParagraphProps } from './StickyParagraph'
+import { Story, Meta } from '@storybook/react'
 
-const Template = (args) => <StickyParagraph {...args} />
-
-export default {
-  title: 'Components/Sticky Paragraph',
-  component: StickyParagraph,
-}
+const Template: Story<StickyParagraphProps> = (args) => (
+  <StickyParagraph {...args} />
+)
 
 export const Primary = Template.bind({})
 
@@ -19,3 +17,8 @@ const paragraph = {
 }
 
 Primary.args = { ...paragraph }
+
+export default {
+  title: 'Components/Sticky Paragraph',
+  component: StickyParagraph,
+} as Meta

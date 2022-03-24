@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 
 import { getFontStyles } from 'styles/getFontStyles'
 import {
@@ -8,9 +7,14 @@ import {
 } from 'styles/fonts'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { PADDING, WIDTHS } from 'styles/constants'
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
-const Testimonial = ({ children }) => {
+export interface TestimonialProps {
+  children: React.ReactNode
+  byLine: string
+}
+
+export const Testimonial = ({ children }: TestimonialProps) => {
   return (
     <TestimonialContainer>
       <TestimonialWrapper>
@@ -20,13 +24,6 @@ const Testimonial = ({ children }) => {
       </TestimonialWrapper>
     </TestimonialContainer>
   )
-}
-
-export default Testimonial
-
-Testimonial.propTypes = {
-  children: PropTypes.node.isRequired,
-  byLine: PropTypes.string,
 }
 
 const TestimonialContainer = styled.div`

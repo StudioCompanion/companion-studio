@@ -8,8 +8,8 @@ import SEO from '../../next-seo.config'
 import { CSS_GLOBAL } from 'styles/global'
 import { PADDING } from 'styles/constants'
 
-import Layout from '../client/components/Layout'
-import Testimonial from 'components/Testimonial/Testimonial'
+import { Layout } from '../client/components/Layout'
+import { Testimonial } from 'components/Testimonial/Testimonial'
 
 const GlobalStyle = createGlobalStyle`
   ${CSS_GLOBAL}

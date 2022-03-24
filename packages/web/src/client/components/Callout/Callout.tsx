@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Image from 'next/image'
 
 import { Button, ButtonContainer } from 'components/Button/Button'
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
 import {
   COLORS,

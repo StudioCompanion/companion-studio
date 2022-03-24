@@ -1,9 +1,9 @@
 import { Meta, Story } from '@storybook/addon-docs'
-import TextSection from './TextSection'
+import { TextSection, TextSectionProps } from './TextSection'
 
 <Meta title="Components/TextSection" component={TextSection} />
 
-export const Template = (args) => (
+export const Template: Story<TextSectionProps> = (args) => (
   <TextSection {...args}>
     <h3>Introduction</h3>
     <p>

@@ -20,7 +20,7 @@ import { getAspectRatio } from 'helpers/media'
 import { getThemeValue } from 'helpers/theme'
 
 import { Button, ButtonContainer } from 'components/Button/Button'
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 import { CardVideo, Video } from './CardVideo'
 
 export interface Image {

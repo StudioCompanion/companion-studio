@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 
@@ -8,7 +7,17 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_32_400 } from 'styles/fonts'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
-const StickyParagraph = ({ text, image, maxWidth }) => {
+export interface StickyParagraphProps {
+  text: string
+  image: StaticImageData
+  maxWidth: number
+}
+
+export const StickyParagraph = ({
+  text,
+  image,
+  maxWidth,
+}: StickyParagraphProps) => {
   return (
     <StickyParagraphContainer>
       <StickyContainer>
@@ -20,14 +29,6 @@ const StickyParagraph = ({ text, image, maxWidth }) => {
     </StickyParagraphContainer>
   )
 }
-
-StickyParagraph.propTypes = {
-  text: PropTypes.string,
-  image: PropTypes.object,
-  maxWidth: PropTypes.number,
-}
-
-export default StickyParagraph
 
 const StickyParagraphContainer = styled.div`
   display: flex;
@@ -51,7 +52,7 @@ const StickyText = styled.p`
   top: calc(40vh - 60px);
   ${getFontStyles(FONT_STYLE_RECKLESS_32_400)};
 `
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{ $maxWidth: number }>`
   min-height: 400px;
   display: flex;
   align-items: center;

@@ -8,7 +8,7 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 import { TeamMember, TEAM } from 'references/team'
 
 interface AvatarsProps {

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 
 import { PADDING } from 'styles/constants'
@@ -11,9 +10,13 @@ import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
 import Nav from './Nav/Nav'
 import { Callout } from './Callout/Callout'
 import { Footer } from './Footer/Footer'
-import Splash from './Splash/Splash'
+import { Splash } from './Splash/Splash'
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children: React.ReactNode
+}
+
+export const Layout = ({ children }: LayoutProps) => {
   const router = useRouter()
   const currentPath = router.pathname
 
@@ -24,7 +27,7 @@ const Layout = ({ children }) => {
     if (Boolean(shown)) {
       setShowSplash(false)
     } else {
-      sessionStorage.setItem('splash_shown', true)
+      sessionStorage.setItem('splash_shown', 'true')
     }
   }, [])
 
@@ -45,13 +48,7 @@ const Layout = ({ children }) => {
   )
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
-export default Layout
-
-const Main = styled.main`
+const Main = styled.main<{ $currentPath: string }>`
   display: ${({ $currentPath }) =>
     $currentPath.includes('projects') ? `flex` : `block`};
   flex-wrap: wrap;

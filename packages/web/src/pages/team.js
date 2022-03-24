@@ -4,8 +4,8 @@ import { NextSeo } from 'next-seo'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { PADDING } from 'styles/constants'
 
-import TeamGrid from 'components/TeamGrid/TeamGrid'
-import ValuesGrid from 'components/ValuesGrid/ValuesGrid'
+import { TeamGrid } from 'components/TeamGrid/TeamGrid'
+import { ValuesGrid } from 'components/ValuesGrid/ValuesGrid'
 import { CenteredParagraph } from 'components/CenteredParagraph/CenteredParagraph'
 import { ImageStrip } from 'components/ImageStrip/ImageStrip'
 
