@@ -64,7 +64,7 @@ const ImageStripImage = ({
         if (tabletUp) return 300
         else return 150
       default:
-        return 200
+        return 0
     }
   }
 
@@ -108,16 +108,16 @@ const ImageStripImage = ({
 }
 
 export const ImageStrip = ({}) => {
-  const [pageIsVisible, setPageIsVisible] = useState<boolean>(true)
+  const [pageIsVisible, setPageIsVisible] = useState(true)
   const handleVisibilityChange = (isVisible: boolean) => {
     setPageIsVisible(isVisible)
   }
 
-  const [isTabletUp, setIsTabletUp] = useState<boolean>(false)
+  const [isTabletUp, setIsTabletUp] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
-      const isNowTabletUp: boolean | null = window.innerWidth >= WIDTHS.tablet
+      const isNowTabletUp: boolean = window.innerWidth >= WIDTHS.tablet
       if (isNowTabletUp !== isTabletUp) {
         setIsTabletUp(isNowTabletUp)
       }

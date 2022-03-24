@@ -21,9 +21,9 @@ import { getThemeValue } from 'helpers/theme'
 
 import { Button, ButtonContainer } from 'components/Button/Button'
 import FadeUp from 'components/Transitions/FadeUp'
-import CardVideo from './CardVideo'
+import { CardVideo, Video } from './CardVideo'
 
-interface Image {
+export interface Image {
   desktop: {
     src: string
     height: number
@@ -34,10 +34,6 @@ interface Image {
     height: number
     width: number
   }
-}
-interface Video {
-  desktop: string
-  mobile: string
 }
 
 interface Aspect {

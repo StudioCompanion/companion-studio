@@ -1,4 +1,3 @@
-// import React from 'react'
 import { ImageStrip } from './ImageStrip'
 import { Story, Meta } from '@storybook/react'
 
