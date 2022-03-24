@@ -11,7 +11,7 @@ import { FadeUp } from 'components/Transitions/FadeUp'
 
 export interface TestimonialProps {
   children: React.ReactNode
-  byLine: string
+  byLine?: string
 }
 
 export const Testimonial = ({ children }: TestimonialProps) => {

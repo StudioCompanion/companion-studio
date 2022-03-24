@@ -1,10 +1,10 @@
 import * as React from 'react'
-import PropTypes from 'prop-types'
 import styled, { createGlobalStyle } from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
 
-import SEO from '../../next-seo.config'
+// import SEO from '../../next-seo.config'
+import SEO from '.'
 import { CSS_GLOBAL } from 'styles/global'
 import { PADDING } from 'styles/constants'
 
@@ -16,11 +16,16 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const components = {
-  blockquote: ({ children }) => <Testimonial>{children}</Testimonial>,
-  h1: ({ children }) => <H1>{children}</H1>,
+  blockquote: ({ children }: any) => <Testimonial>{children}</Testimonial>,
+  h1: ({ children }: any) => <H1>{children}</H1>,
 }
 
-function App({ Component, pageProps }) {
+interface AppProps {
+  Component: () => JSX.Element
+  pageProps: object
+}
+
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <DefaultSeo {...SEO} />
@@ -32,11 +37,6 @@ function App({ Component, pageProps }) {
       </MDXProvider>
     </>
   )
-}
-
-App.propTypes = {
-  Component: PropTypes.func,
-  pageProps: PropTypes.object,
 }
 
 export default App

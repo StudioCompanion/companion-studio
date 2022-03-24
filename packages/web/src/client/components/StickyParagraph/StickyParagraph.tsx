@@ -7,10 +7,13 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_32_400 } from 'styles/fonts'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
+interface ImageType {
+  src: StaticImageData
+}
 export interface StickyParagraphProps {
   text: string
-  image: StaticImageData
-  maxWidth: number
+  image: ImageType
+  maxWidth?: number
 }
 
 export const StickyParagraph = ({
@@ -52,7 +55,7 @@ const StickyText = styled.p`
   top: calc(40vh - 60px);
   ${getFontStyles(FONT_STYLE_RECKLESS_32_400)};
 `
-const ImageContainer = styled.div<{ $maxWidth: number }>`
+const ImageContainer = styled.div<{ $maxWidth?: number }>`
   min-height: 400px;
   display: flex;
   align-items: center;

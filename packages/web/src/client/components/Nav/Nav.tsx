@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 import Link from 'next/link'
 
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
@@ -8,7 +7,11 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { COLORS, PADDING } from '../../styles/constants'
 import { Logo } from 'components/Logo/Logo'
 
-const Nav = ({ currentPath = '/' }) => {
+export interface NavProps {
+  currentPath?: string
+}
+
+export const Nav = ({ currentPath = '/' }: NavProps) => {
   return (
     <>
       {currentPath !== '/' && currentPath !== '/instagram' && (
@@ -47,12 +50,6 @@ const Nav = ({ currentPath = '/' }) => {
   )
 }
 
-Nav.propTypes = {
-  currentPath: PropTypes.string,
-}
-
-export default Nav
-
 const LogoWrapper = styled.a`
   display: block;
   margin-right: 10px;
@@ -88,7 +85,7 @@ const NavList = styled.ul`
 const NavItem = styled.li`
   margin-right: 6px;
 `
-const NavLink = styled.a`
+const NavLink = styled.a<{ active: boolean }>`
   text-decoration: none;
   display: block;
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};

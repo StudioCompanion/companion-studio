@@ -43,14 +43,15 @@ interface Aspect {
 
 export interface HomePageCardProps {
   image: Image
-  video: Video
+  video?: Video
   heading: string
   subheading: string
-  button: string
+  button?: string
   link: string
   type: LAYOUTS
-  aspect: Aspect
+  aspect?: Aspect
   theme: string
+  key?: number
 }
 
 export const HomePageCard = ({
@@ -145,7 +146,7 @@ const CardWrapper = styled.a<{ $theme: string }>`
 const CardContainer = styled.div<{
   $theme: string
   $type: LAYOUTS
-  $aspect: Aspect
+  $aspect?: Aspect
 }>`
   background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
   padding-top: ${({ $type, $aspect }) =>

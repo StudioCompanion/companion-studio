@@ -13,7 +13,7 @@ import approach_dive_deep from '../../public/images/graphics/approach/approach_d
 import approach_trampoline from '../../public/images/graphics/approach/approach_trampoline.png'
 import approach_pull_together from '../../public/images/graphics/approach/approach_pull_together.png'
 
-const Approach = () => {
+export const Approach = () => {
   return (
     <>
       <NextSeo title="Approach" />
@@ -27,8 +27,6 @@ const Approach = () => {
     </>
   )
 }
-
-export default Approach
 
 const ApproachContainer = styled.div`
   display: flex;

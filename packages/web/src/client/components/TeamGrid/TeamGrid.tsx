@@ -99,7 +99,7 @@ const team = [
     image: myles,
   },
   {
-    name: 'Elena Maranaki',
+    name: 'Elena Marinaki',
     role: 'Developer Apprentice',
     image: elena,
   },

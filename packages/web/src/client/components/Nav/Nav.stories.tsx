@@ -1,11 +1,7 @@
-import Nav from './Nav'
+import { Nav, NavProps } from './Nav'
+import { Story, Meta } from '@storybook/react'
 
-const Template = (args) => <Nav {...args} />
-
-export default {
-  title: 'Components/Nav',
-  component: Nav,
-}
+const Template: Story<NavProps> = (args) => <Nav {...args} />
 
 export const WorkPage = Template.bind({})
 
@@ -30,3 +26,8 @@ export const HomePage = Template.bind({})
 HomePage.args = {
   currentPath: '/',
 }
+
+export default {
+  title: 'Components/Nav',
+  component: Nav,
+} as Meta

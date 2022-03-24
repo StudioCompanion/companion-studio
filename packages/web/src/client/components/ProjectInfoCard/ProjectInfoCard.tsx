@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { COLORS, RADII, PADDING } from 'styles/constants'
@@ -10,7 +9,19 @@ import {
 } from 'styles/fonts'
 import { FadeUp } from 'components/Transitions/FadeUp'
 
-const ProjectInfoCard = ({ deliverables, collaborators, team, duration }) => {
+export interface ProjectInfoCardProps {
+  deliverables: string
+  collaborators: string
+  team: string
+  duration: string
+}
+
+export const ProjectInfoCard = ({
+  deliverables,
+  collaborators,
+  team,
+  duration,
+}: ProjectInfoCardProps) => {
   return (
     <Container>
       <FadeUp>
@@ -28,15 +39,6 @@ const ProjectInfoCard = ({ deliverables, collaborators, team, duration }) => {
     </Container>
   )
 }
-
-ProjectInfoCard.propTypes = {
-  deliverables: PropTypes.string,
-  collaborators: PropTypes.string,
-  team: PropTypes.string,
-  duration: PropTypes.string,
-}
-
-export default ProjectInfoCard
 
 const Wrapper = styled.dl`
   background-color: ${COLORS.lightgrey};
