@@ -1,5 +1,5 @@
 import { LinkTreeLayout } from 'components/LinkTree/Layout'
-import { LinkTreeItem } from 'components/LinkTree/LinkTree'
+import { LinkTree } from 'components/LinkTree/LinkTree'
 
 import cookie from '../../public/images/link-tree/cookie.gif'
 import clip from '../../public/images/link-tree/clip.png'
@@ -23,7 +23,7 @@ export const INSTAGRAM_ITEMS = [
   },
 ]
 
-<LinkTreeItem items={INSTAGRAM_ITEMS} />
+<LinkTree items={INSTAGRAM_ITEMS} />
 
 export default function InstagramLayout({ children }) {
   return <LinkTreeLayout>{children}</LinkTreeLayout>
