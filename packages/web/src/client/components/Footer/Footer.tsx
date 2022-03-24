@@ -218,7 +218,7 @@ export const Footer = () => {
             <FooterLinks>
               {footerLinks.map((link, index) =>
                 link.url.startsWith('/') ? (
-                  <Link key={index} href={link.url} passHref>
+                  <Link key={index} href={link?.url} passHref>
                     <FooterLink>{link.title}</FooterLink>
                   </Link>
                 ) : (
