@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import HomePageCard from 'components/HomePageCard/HomePageCard'
-import OpeningText from 'components/OpeningText/OpeningText'
+import { OpeningText } from 'components/OpeningText/OpeningText'
 
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { CARD_LAYOUTS, THEME_TYPES } from 'styles/constants'
