@@ -7,7 +7,7 @@ import { PADDING } from 'styles/constants'
 import TeamGrid from 'components/TeamGrid/TeamGrid'
 import ValuesGrid from 'components/ValuesGrid/ValuesGrid'
 import { CenteredParagraph } from 'components/CenteredParagraph/CenteredParagraph'
-import ImageStrip from 'components/ImageStrip/ImageStrip'
+import { ImageStrip } from 'components/ImageStrip/ImageStrip'
 
 const Team = () => {
   return (
