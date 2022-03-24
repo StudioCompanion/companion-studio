@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { PADDING } from 'styles/constants'
@@ -10,7 +9,11 @@ import {
 } from 'styles/fonts'
 import { Logo } from 'components/Logo/Logo'
 
-const OpeningText = ({ text }) => {
+export interface OpeningTextProps {
+  text: string
+}
+
+export const OpeningText = ({ text }: OpeningTextProps) => {
   return (
     <OpeningTextContainer>
       <LogoContainer>
@@ -22,12 +25,6 @@ const OpeningText = ({ text }) => {
     </OpeningTextContainer>
   )
 }
-
-OpeningText.propTypes = {
-  text: PropTypes.string,
-}
-
-export default OpeningText
 
 const OpeningTextContainer = styled.div`
   display: flex;
