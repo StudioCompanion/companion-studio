@@ -1,14 +1,17 @@
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 import Image from 'next/image'
 
-import SquiggleBackground from 'components/LinkTree/SquiggleBackground'
+import { SquiggleBackground } from 'components/LinkTree/SquiggleBackground'
 
 import { PADDING } from 'styles/constants'
 
 import Logo from '../../../../public/images/graphics/logo.svg'
 
-export const LinktreeLayout = ({ children }) => {
+interface LinkTreeLayoutProps {
+  children: React.ReactNode
+}
+
+export const LinkTreeLayout = ({ children }: LinkTreeLayoutProps) => {
   return (
     <>
       <SquiggleBackground />
@@ -22,10 +25,6 @@ export const LinktreeLayout = ({ children }) => {
       </LinkTreeContainer>
     </>
   )
-}
-
-LinktreeLayout.propTypes = {
-  children: PropTypes.any,
 }
 
 const LinkTreeContainer = styled.div`

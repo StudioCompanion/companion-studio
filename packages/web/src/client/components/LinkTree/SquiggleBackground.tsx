@@ -1,10 +1,13 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 
 import React from 'react'
 
-export const Squiggle = ({ src }) => {
+interface SquiggleProps {
+  src: StaticImageData
+}
+
+export const Squiggle = ({ src }: SquiggleProps) => {
   const x = Math.floor(Math.random() * 100)
   const y = Math.floor(Math.random() * 100)
   const rotation = Math.floor(Math.random() * 360)
@@ -22,11 +25,7 @@ export const Squiggle = ({ src }) => {
   )
 }
 
-Squiggle.propTypes = {
-  src: PropTypes.object,
-}
-
-const SquiggleBackground = () => {
+export const SquiggleBackground = () => {
   return (
     <SquiggleBackgroundContainer>
       {squiggles.map((squiggle, index) => (
@@ -35,8 +34,6 @@ const SquiggleBackground = () => {
     </SquiggleBackgroundContainer>
   )
 }
-
-export default SquiggleBackground
 
 import s01 from '../../../../public/images/graphics/squiggles/01.png'
 import s02 from '../../../../public/images/graphics/squiggles/02.png'

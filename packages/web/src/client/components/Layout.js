@@ -8,7 +8,7 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
 
-import Nav from './Nav/Nav'
+import { Nav } from './Nav/Nav'
 import { Callout } from './Callout/Callout'
 import { Footer } from './Footer/Footer'
 import Splash from './Splash/Splash'

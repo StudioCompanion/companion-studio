@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,7 +6,13 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_17_400 } from 'styles/fonts'
 import { COLORS, PADDING, RADII } from 'styles/constants'
 
-export const LinkTreeItem = ({ image, text, url }) => {
+interface LinkTreeItemProps {
+  image: StaticImageData
+  text: string
+  url: string
+}
+
+export const LinkTreeItem = ({ image, text, url }: LinkTreeItemProps) => {
   return (
     <Link href={url} passHref>
       <LinkTreeItemContainer>
@@ -20,13 +25,11 @@ export const LinkTreeItem = ({ image, text, url }) => {
   )
 }
 
-LinkTreeItem.propTypes = {
-  image: PropTypes.object,
-  text: PropTypes.string,
-  url: PropTypes.string,
+interface LinkTreeProps {
+  items: LinkTreeItemProps[]
 }
 
-const LinkTree = ({ items }) => {
+export const LinkTree = ({ items }: LinkTreeProps) => {
   return (
     <>
       {items.map((item, index) => (
@@ -40,12 +43,6 @@ const LinkTree = ({ items }) => {
     </>
   )
 }
-
-LinkTree.propTypes = {
-  items: PropTypes.array,
-}
-
-export default LinkTree
 
 const LinkTreeItemContainer = styled.a`
   display: flex;

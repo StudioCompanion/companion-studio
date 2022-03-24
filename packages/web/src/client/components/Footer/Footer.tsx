@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import isEmail from 'validator/lib/isEmail'
 
-import Input from '../Inputs/Input'
+import { Input } from '../Inputs/Input'
 
 import { COLORS, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
@@ -217,7 +217,7 @@ export const Footer = () => {
           <ImprintRight>
             <FooterLinks>
               {footerLinks.map((link, index) =>
-                link.url.startsWith('/') ? (
+                link?.url && link.url.startsWith('/') ? (
                   <Link key={index} href={link.url} passHref>
                     <FooterLink>{link.title}</FooterLink>
                   </Link>
