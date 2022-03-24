@@ -7,8 +7,8 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_32_400 } from 'styles/fonts'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
-interface ImageType {
-  src: StaticImageData
+export interface ImageType {
+  src: StaticImageData | string
 }
 export interface StickyParagraphProps {
   text: string
