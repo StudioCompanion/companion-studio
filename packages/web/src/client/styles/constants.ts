@@ -82,32 +82,43 @@ export const HIDDEN = `
   white-space: nowrap;
   width: 1px;`
 
-export enum THEME_TYPES {
-  LIGHT = 'light',
-  DARK = 'dark',
-  GREY = 'grey',
+const LIGHT = 'light'
+const DARK = 'dark'
+const GREY = 'grey'
+
+export const THEME_TYPES = {
+  LIGHT,
+  DARK,
+  GREY,
 }
 
 export const THEMES = {
-  [THEME_TYPES.LIGHT]: {
+  [LIGHT]: {
     background: COLORS.white,
     color: COLORS.darkblue,
     hover_background: COLORS.lightgrey_2,
     hover_color: COLORS.darkblue,
   },
-  [THEME_TYPES.DARK]: {
+  [DARK]: {
     background: COLORS.darkblue,
     color: COLORS.white,
     hover_background: COLORS.darkblue_light,
     hover_color: COLORS.white,
   },
-  [THEME_TYPES.GREY]: {
+  [GREY]: {
     background: COLORS.lightgrey_2,
     color: COLORS.darkblue,
   },
 }
 
-export const COLOR = 'color'
-export const HOVER_COLOR = 'hover_color'
-export const BACKGROUND = 'background'
-export const HOVER_BACKGROUND = 'hover_background'
+// export const COLOR = 'color'
+// export const HOVER_COLOR = 'hover_color'
+// export const BACKGROUND = 'background'
+// export const HOVER_BACKGROUND = 'hover_background'
+
+export enum VALUE_TYPES {
+  COLOR = 'color',
+  HOVER_COLOR = 'hover_color',
+  BACKGROUND = 'background',
+  HOVER_BACKGROUND = 'hover_background',
+}
