@@ -16,12 +16,17 @@ import { MEDIA_QUERIES } from './mediaQueries'
  * @param {string} type
  * @returns {string}
  */
-const getFontData = (type) => {
+
+interface DataType {
+  [index: string]: string
+}
+
+const getFontData = (type: string) => {
   const lowerCaseType = type.toLowerCase()
   const arrayType = lowerCaseType.split('_')
   const typeProps = arrayType.splice(2, arrayType.length - 1)
 
-  const data = {}
+  const data: DataType = {}
 
   typeProps.forEach((prop, i) => {
     switch (i) {
@@ -54,7 +59,7 @@ const getFontData = (type) => {
  * @param {string} type
  * @returns {string}
  */
-export const getFontStyles = (type) => {
+export const getFontStyles = (type: string) => {
   if (!type) {
     console.error('CANNOT RENDER FONT: MISSING TYPE VARIABLE')
     return ''
