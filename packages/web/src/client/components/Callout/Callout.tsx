@@ -45,7 +45,7 @@ export const Callout = () => {
   )
 }
 
-const CalloutContainer = styled.a<{ $theme: string }>`
+const CalloutContainer = styled.a<{ $theme: THEME_TYPES.DARK }>`
   display: block;
   background-color: ${COLORS.lightgrey_2};
   border-radius: ${RADII.wrapper_lg}px;

@@ -50,7 +50,7 @@ export interface HomePageCardProps {
   link: string
   type: LAYOUTS
   aspect?: Aspect
-  theme: string
+  theme: THEME_TYPES
   key?: number
 }
 
@@ -123,7 +123,7 @@ const ImageContainer = styled.div`
   overflow: hidden;
 `
 
-const CardWrapper = styled.a<{ $theme: string }>`
+const CardWrapper = styled.a<{ $theme: THEME_TYPES.LIGHT }>`
   display: block;
   position: relative;
   margin: ${PADDING.s}px 0;
@@ -144,7 +144,7 @@ const CardWrapper = styled.a<{ $theme: string }>`
   }
 `
 const CardContainer = styled.div<{
-  $theme: string
+  $theme: THEME_TYPES
   $type: LAYOUTS
   $aspect?: Aspect
 }>`
@@ -170,7 +170,7 @@ const CardInner = styled.div`
   justify-content: center;
 `
 
-const CardText = styled.div<{ $theme: string }>`
+const CardText = styled.div<{ $theme: THEME_TYPES }>`
   position: relative;
   z-index: 1;
   width: 100%;
