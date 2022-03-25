@@ -4,14 +4,14 @@ import { ServerStyleSheet } from 'styled-components'
 import { WidgetMarker } from 'components/Widgets/WidgetMarker'
 
 export default class Doc extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: any) {
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
 
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: (App) => (props) =>
+          enhanceApp: (App: any) => (props: any) =>
             sheet.collectStyles(<App {...props} />),
         })
 

@@ -3577,7 +3577,6 @@ __metadata:
     "@mdx-js/react": ^2.1.0
     "@react-hook/intersection-observer": ^3.1.1
     "@react-spring/web": ^9.4.2
-    "@types/next-seo": ^2.1.2
     formik: ^2.2.9
     lottie-web: ^5.8.1
     moment: ^2.29.1
@@ -3849,15 +3848,6 @@ __metadata:
   version: 0.7.31
   resolution: "@types/ms@npm:0.7.31"
   checksum: daadd354aedde024cce6f5aa873fefe7b71b22cd0e28632a69e8b677aeb48ae8caa1c60e5919bb781df040d116b01cb4316335167a3fc0ef6a63fa3614c0f6da
-  languageName: node
-  linkType: hard
-
-"@types/next-seo@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "@types/next-seo@npm:2.1.2"
-  dependencies:
-    next-seo: "*"
-  checksum: 85f444f9b2aa1c44ea7c6d2435b33ec4eb6025e0f494bf651f5352355f6d35a737964a5cd78c4ccc94a7131382b3e4e0f2377ca988ac7a6bb6fbfadb5455742f
   languageName: node
   linkType: hard
 
@@ -11709,17 +11699,6 @@ __metadata:
   version: 2.1.0
   resolution: "nested-error-stacks@npm:2.1.0"
   checksum: 206ee736f9eb83489cc093d43e7d3024255ec93c66a31eaee58ca14d5ad9d925d813494725dcf5dec264e70cd8430167b7f82a2d00b0dd099f83c78d9ca650fd
-  languageName: node
-  linkType: hard
-
-"next-seo@npm:*":
-  version: 5.2.0
-  resolution: "next-seo@npm:5.2.0"
-  peerDependencies:
-    next: ^8.1.1-canary.54 || >=9.0.0
-    react: ">=16.0.0"
-    react-dom: ">=16.0.0"
-  checksum: 392f0b4b9d2d2d6873c163c39ca470580ec0031c3941c8da5bdbce154368ceda10aee97a639d1e209318e4c878bafc9bf4a1600355205eac6ac9ca9102ad1801
   languageName: node
   linkType: hard
 

@@ -3,8 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
 
-// import SEO from '../../next-seo.config'
-import SEO from '.'
+import SEO from '../../next-seo.config'
 import { CSS_GLOBAL } from 'styles/global'
 import { PADDING } from 'styles/constants'
 
