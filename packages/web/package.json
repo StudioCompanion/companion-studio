@@ -10,7 +10,6 @@
   "dependencies": {
     "@react-hook/intersection-observer": "^3.1.1",
     "@react-spring/web": "^9.4.2",
-    "@types/mdx-js__react": "^1.5.5",
     "formik": "^2.2.9",
     "lottie-web": "^5.8.1",
     "moment": "^2.29.1",
@@ -26,5 +25,8 @@
     "storybook-addon-next-router": "^3.1.1",
     "styled-components": "^5.3.3",
     "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "@types/mdx-js__react": "^1.5.5"
   }
 }

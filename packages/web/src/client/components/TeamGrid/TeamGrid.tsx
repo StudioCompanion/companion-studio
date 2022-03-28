@@ -11,7 +11,7 @@ import {
 
 import { FadeUp } from 'components/Transitions/FadeUp'
 
-import { ALL_TEAM_MEMBERS } from '../constants'
+import { ALL_TEAM_MEMBERS } from '../../references/constants'
 
 interface GridItemProps {
   image: StaticImageData
