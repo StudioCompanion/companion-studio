@@ -1,4 +1,6 @@
 import * as React from 'react'
+import type { AppProps } from 'next/app'
+import { TestimonialProps } from '../client/components/Testimonial/Testimonial'
 import styled, { createGlobalStyle } from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
@@ -15,13 +17,10 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const components = {
-  blockquote: ({ children }: any) => <Testimonial>{children}</Testimonial>,
-  h1: ({ children }: any) => <H1>{children}</H1>,
-}
-
-interface AppProps {
-  Component: () => JSX.Element
-  pageProps: object
+  blockquote: ({ children }: TestimonialProps) => (
+    <Testimonial>{children}</Testimonial>
+  ),
+  h1: ({ children }: HTMLHeadingElement) => <H1>{children}</H1>,
 }
 
 const App = ({ Component, pageProps }: AppProps) => {

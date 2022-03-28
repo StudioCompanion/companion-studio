@@ -2116,18 +2116,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "@mdx-js/react@npm:2.1.0"
-  dependencies:
-    "@types/mdx": ^2.0.0
-    "@types/react": ">=16"
-  peerDependencies:
-    react: ">=16"
-  checksum: c62212851eef291c5687aada6db22583354a744149ff193773ce345244b978455ba98bbd91f8c431c49982176aef83f092fcdfae9cf94db36f33be7cf0b04154
-  languageName: node
-  linkType: hard
-
 "@mdx-js/util@npm:1.6.22":
   version: 1.6.22
   resolution: "@mdx-js/util@npm:1.6.22"
@@ -3574,7 +3562,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@studiocompanion/web@workspace:packages/web"
   dependencies:
-    "@mdx-js/react": ^2.1.0
     "@react-hook/intersection-observer": ^3.1.1
     "@react-spring/web": ^9.4.2
     formik: ^2.2.9
@@ -3973,17 +3960,6 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 1b086ec0ea5d666f05e19e0724e41278d27a2ca29a2cd71b9d9ab3fe27dba233806eb728d744e092c9fe9637ac738d8c5a05983cde84d215342949b47ecba2ef
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:>=16":
-  version: 17.0.42
-  resolution: "@types/react@npm:17.0.42"
-  dependencies:
-    "@types/prop-types": "*"
-    "@types/scheduler": "*"
-    csstype: ^3.0.2
-  checksum: 9a84374da1173901b5eba6b2dda9e70220842c8e70274628e5c93684fca59786b7f6215c93f492e34f8834983de096b2544f280c60da9b8fd4c3f20ffe7cc51e
   languageName: node
   linkType: hard
 
