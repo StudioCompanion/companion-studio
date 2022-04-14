@@ -6,6 +6,15 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 import homepage from './homepage'
 import homepageBlock from './homepageBlock'
+import work from './work'
+import project from './project'
+import approach from './approach'
+import team from './team'
+import teamMember from './teamMember'
+import settings from './settings'
+import navigation from './navigation'
+import footer from './footer'
+import error from './error'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -17,5 +26,14 @@ export default createSchema({
     /* Your types here! */
     homepage,
     homepageBlock,
+    work,
+    project,
+    approach,
+    team,
+    teamMember,
+    settings,
+    navigation,
+    footer,
+    error,
   ]),
 })
