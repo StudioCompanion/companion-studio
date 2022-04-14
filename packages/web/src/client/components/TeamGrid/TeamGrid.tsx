@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'next/image'
 
@@ -10,9 +9,17 @@ import {
   FONT_STYLE_RECKLESS_17_400,
 } from 'styles/fonts'
 
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
-const GridItem = ({ image, name, role }) => {
+import { ALL_TEAM_MEMBERS } from '../../references/constants'
+
+interface GridItemProps {
+  image: StaticImageData
+  name: string
+  role: string
+}
+
+const GridItem = ({ image, name, role }: GridItemProps) => {
   return (
     <FadeUp>
       <GridItemContainer>
@@ -25,25 +32,16 @@ const GridItem = ({ image, name, role }) => {
     </FadeUp>
   )
 }
-GridItem.propTypes = {
-  image: PropTypes.string,
-  name: PropTypes.string,
-  role: PropTypes.string,
-}
 
-const TeamGrid = ({}) => {
+export const TeamGrid = () => {
   return (
     <GridWrapper>
-      {team.map(({ image, name, role }, index) => (
-        <GridItem key={index} image={image} name={name} role={role} />
+      {ALL_TEAM_MEMBERS.map(({ image, name, role }) => (
+        <GridItem key={name} image={image} name={name} role={role} />
       ))}
     </GridWrapper>
   )
 }
-
-TeamGrid.propTypes = {}
-
-export default TeamGrid
 
 const GridWrapper = styled.div`
   display: grid;
@@ -89,42 +87,42 @@ const TeamMemberRole = styled.h3`
   ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
 `
 
-import myles from '../../../../public/images/team/myles.png'
-import elena from '../../../../public/images/team/elena.png'
-import alexandra from '../../../../public/images/team/alexandra.png'
-import axelle from '../../../../public/images/team/axelle.png'
-import josh from '../../../../public/images/team/josh.png'
-import willem from '../../../../public/images/team/willem.png'
+// import myles from '../../../../public/images/team/myles.png'
+// import elena from '../../../../public/images/team/elena.png'
+// import alexandra from '../../../../public/images/team/alexandra.png'
+// import axelle from '../../../../public/images/team/axelle.png'
+// import josh from '../../../../public/images/team/josh.png'
+// import willem from '../../../../public/images/team/willem.png'
 
-const team = [
-  {
-    name: 'Myles Palmer',
-    role: 'Founder & Creative Director',
-    image: myles,
-  },
-  {
-    name: 'Elena Marinaki',
-    role: 'Developer Apprentice',
-    image: elena,
-  },
-  {
-    name: 'Alexandra Votjku',
-    role: 'Digital Designer',
-    image: alexandra,
-  },
-  {
-    name: 'Axelle Van de Goor',
-    role: 'Producer',
-    image: axelle,
-  },
-  {
-    name: 'Josh Ellis',
-    role: 'Fullstack Developer',
-    image: josh,
-  },
-  {
-    name: 'Willem Purdy',
-    role: 'Digital Designer',
-    image: willem,
-  },
-]
+// const team = [
+//   {
+//     name: 'Myles Palmer',
+//     role: 'Founder & Creative Director',
+//     image: myles,
+//   },
+//   {
+//     name: 'Elena Marinaki',
+//     role: 'Developer Apprentice',
+//     image: elena,
+//   },
+//   {
+//     name: 'Alexandra Votjku',
+//     role: 'Digital Designer',
+//     image: alexandra,
+//   },
+//   {
+//     name: 'Axelle Van de Goor',
+//     role: 'Producer',
+//     image: axelle,
+//   },
+//   {
+//     name: 'Josh Ellis',
+//     role: 'Fullstack Developer',
+//     image: josh,
+//   },
+//   {
+//     name: 'Willem Purdy',
+//     role: 'Digital Designer',
+//     image: willem,
+//   },
+// ]

@@ -32,7 +32,7 @@ const COLOR_SETS = [
   },
 ]
 
-const Splash = () => {
+export const Splash = () => {
   const [colorSetIndex, setColorIndex] = useState(0)
 
   const lottieRef = useRef<HTMLDivElement>(null!)
@@ -71,8 +71,6 @@ const Splash = () => {
     ></SplashContainer>
   )
 }
-
-export default Splash
 
 const SplashContainer = styled.div<{ $colorSetIndex: number }>`
   width: 100%;

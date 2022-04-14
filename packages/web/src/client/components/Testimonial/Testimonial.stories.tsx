@@ -1,6 +1,7 @@
-import Testimonial from './Testimonial'
+import { Testimonial, TestimonialProps } from './Testimonial'
+import { Story, Meta } from '@storybook/react'
 
-const Template = (args) => (
+const Template: Story<TestimonialProps> = (args) => (
   <Testimonial {...args}>
     <blockquote>
       Companion Studio have been our go to digital partner for over a year. They
@@ -12,11 +13,11 @@ const Template = (args) => (
   </Testimonial>
 )
 
-export default {
-  title: 'Components/Testimonial',
-  component: Testimonial,
-}
-
 export const Primary = Template.bind({})
 
 Primary.args = {}
+
+export default {
+  title: 'Components/Testimonial',
+  component: Testimonial,
+} as Meta

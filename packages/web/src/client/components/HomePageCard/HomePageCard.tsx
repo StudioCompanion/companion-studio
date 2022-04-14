@@ -20,7 +20,7 @@ import { getAspectRatio } from 'helpers/media'
 import { getThemeValue } from 'helpers/theme'
 
 import { Button, ButtonContainer } from 'components/Button/Button'
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 import { CardVideo, Video } from './CardVideo'
 
 export interface Image {
@@ -43,14 +43,15 @@ interface Aspect {
 
 export interface HomePageCardProps {
   image: Image
-  video: Video
+  video?: Video
   heading: string
   subheading: string
-  button: string
+  button?: string
   link: string
   type: LAYOUTS
-  aspect: Aspect
-  theme: string
+  aspect?: Aspect
+  theme: THEME_TYPES
+  key?: number
 }
 
 export const HomePageCard = ({
@@ -122,7 +123,7 @@ const ImageContainer = styled.div`
   overflow: hidden;
 `
 
-const CardWrapper = styled.a<{ $theme: string }>`
+const CardWrapper = styled.a<{ $theme: THEME_TYPES.LIGHT }>`
   display: block;
   position: relative;
   margin: ${PADDING.s}px 0;
@@ -143,9 +144,9 @@ const CardWrapper = styled.a<{ $theme: string }>`
   }
 `
 const CardContainer = styled.div<{
-  $theme: string
+  $theme: THEME_TYPES
   $type: LAYOUTS
-  $aspect: Aspect
+  $aspect?: Aspect
 }>`
   background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
   padding-top: ${({ $type, $aspect }) =>
@@ -169,7 +170,7 @@ const CardInner = styled.div`
   justify-content: center;
 `
 
-const CardText = styled.div<{ $theme: string }>`
+const CardText = styled.div<{ $theme: THEME_TYPES }>`
   position: relative;
   z-index: 1;
   width: 100%;

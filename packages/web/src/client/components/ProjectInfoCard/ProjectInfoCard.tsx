@@ -7,7 +7,7 @@ import {
   FONT_STYLE_RECKLESS_20_400,
   FONT_STYLE_RECKLESS_12_400,
 } from 'styles/fonts'
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
 export interface ProjectInfoCardProps {
   deliverables: string

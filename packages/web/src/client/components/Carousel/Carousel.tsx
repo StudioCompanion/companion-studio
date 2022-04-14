@@ -16,7 +16,7 @@ import { getFontStyles } from 'styles/getFontStyles'
 
 import { getAspectRatio } from 'helpers/media'
 
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
 import { Slide } from './Slide'
 import { IVideo, Video } from './Video'

@@ -8,14 +8,14 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 
-import FadeUp from 'components/Transitions/FadeUp'
-import { TeamMember, TEAM } from 'references/team'
+import { FadeUp } from 'components/Transitions/FadeUp'
+import { Member, ALL_TEAM_MEMBERS } from 'references/constants'
 
 interface AvatarsProps {
-  members?: TeamMember[]
+  members?: Member[]
 }
 
-export const Avatars = ({ members = TEAM }: AvatarsProps) => {
+export const Avatars = ({ members = ALL_TEAM_MEMBERS }: AvatarsProps) => {
   const textRefs = useRef<HTMLDivElement[]>([])
 
   const [springs, api] = useSprings(

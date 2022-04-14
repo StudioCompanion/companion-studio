@@ -3,8 +3,8 @@ import { NextSeo } from 'next-seo'
 
 import { PADDING } from 'styles/constants'
 
-import StickyParagraph from 'components/StickyParagraph/StickyParagraph'
-import FadeUp from 'components/Transitions/FadeUp'
+import { StickyParagraph } from 'components/StickyParagraph/StickyParagraph'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
 import approach_create_change from '../../public/images/graphics/approach/approach_create_change.png'
 import approach_extension_or_outside from '../../public/images/graphics/approach/approach_extension_or_outside.png'

@@ -1,5 +1,6 @@
 import * as React from 'react'
-import PropTypes from 'prop-types'
+import type { AppProps } from 'next/app'
+import { TestimonialProps } from '../client/components/Testimonial/Testimonial'
 import styled, { createGlobalStyle } from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
@@ -8,19 +9,21 @@ import SEO from '../../next-seo.config'
 import { CSS_GLOBAL } from 'styles/global'
 import { PADDING } from 'styles/constants'
 
-import Layout from '../client/components/Layout'
-import Testimonial from 'components/Testimonial/Testimonial'
+import { Layout } from '../client/components/Layout'
+import { Testimonial } from 'components/Testimonial/Testimonial'
 
 const GlobalStyle = createGlobalStyle`
   ${CSS_GLOBAL}
 `
 
 const components = {
-  blockquote: ({ children }) => <Testimonial>{children}</Testimonial>,
-  h1: ({ children }) => <H1>{children}</H1>,
+  blockquote: ({ children }: TestimonialProps) => (
+    <Testimonial>{children}</Testimonial>
+  ),
+  h1: ({ children }: HTMLHeadingElement) => <H1>{children}</H1>,
 }
 
-function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <DefaultSeo {...SEO} />
@@ -32,11 +35,6 @@ function App({ Component, pageProps }) {
       </MDXProvider>
     </>
   )
-}
-
-App.propTypes = {
-  Component: PropTypes.func,
-  pageProps: PropTypes.object,
 }
 
 export default App

@@ -1,10 +1,14 @@
-import { useRef, useEffect, FC } from 'react'
+import { useRef, useEffect } from 'react'
 import { useSpring, animated, easings } from '@react-spring/web'
 import styled from 'styled-components'
 
 const DURATION = 1600
 
-const FadeUp: FC = ({ children }) => {
+interface FadeUpProps {
+  children: React.ReactNode
+}
+
+export const FadeUp = ({ children }: FadeUpProps) => {
   const ref = useRef<HTMLDivElement>(null!)
   const [styles, api] = useSpring(() => ({
     y: 100,
@@ -46,5 +50,3 @@ const FadeInComp = styled(animated.div)`
     opacity: 1;
   }
 `
-
-export default FadeUp

@@ -3564,6 +3564,7 @@ __metadata:
   dependencies:
     "@react-hook/intersection-observer": ^3.1.1
     "@react-spring/web": ^9.4.2
+    "@types/mdx-js__react": ^1.5.5
     formik: ^2.2.9
     lottie-web: ^5.8.1
     moment: ^2.29.1
@@ -3807,6 +3808,15 @@ __metadata:
   version: 1.0.2
   resolution: "@types/mdurl@npm:1.0.2"
   checksum: 79c7e523b377f53cf1f5a240fe23d0c6cae856667692bd21bf1d064eafe5ccc40ae39a2aa0a9a51e8c94d1307228c8f6b121e847124591a9a828c3baf65e86e2
+  languageName: node
+  linkType: hard
+
+"@types/mdx-js__react@npm:^1.5.5":
+  version: 1.5.5
+  resolution: "@types/mdx-js__react@npm:1.5.5"
+  dependencies:
+    "@types/react": "*"
+  checksum: 91229e9e4d129bed0cd457459970daf8e505de9932791915cb91ad82f033b85c921c773ad16b7de629a7fa3ba97c8301784aad3b9ab6e431c3e5fc521a16a0f2
   languageName: node
   linkType: hard
 

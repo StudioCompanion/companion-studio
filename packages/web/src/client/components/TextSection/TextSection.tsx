@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { PADDING } from '../../styles/constants'
@@ -9,9 +8,13 @@ import {
   FONT_STYLE_RECKLESS_20_400,
 } from '../../styles/fonts'
 
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
-const TextSection = ({ children }) => {
+export interface TextSectionProps {
+  children: React.ReactNode
+}
+
+export const TextSection = ({ children }: TextSectionProps) => {
   return (
     <Container>
       <FadeUp>
@@ -20,12 +23,6 @@ const TextSection = ({ children }) => {
     </Container>
   )
 }
-
-TextSection.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
-export default TextSection
 
 const Container = styled.div`
   margin: ${PADDING.xl - PADDING.s}px 0 ${PADDING.xl}px;

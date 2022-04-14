@@ -7,7 +7,7 @@ import PageVisibility from 'react-page-visibility'
 import { RADII, PADDING } from 'styles/constants'
 import { WIDTHS } from '../../styles/dimensions'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import FadeUp from 'components/Transitions/FadeUp'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
 const SMALL = 'small'
 const MEDIUM = 'medium'
