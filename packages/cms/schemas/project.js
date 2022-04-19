@@ -11,6 +11,14 @@ export default {
         collapsed: false,
       },
     },
+    {
+      name: 'modules',
+      title: 'Modules',
+      options: {
+        collapsible: true,
+        collapsed: false,
+      },
+    },
   ],
   fields: [
     {
@@ -51,6 +59,17 @@ export default {
           to: [{ type: 'teamMember' }],
         },
       ],
+    },
+    {
+      name: 'imageAssets',
+      title: 'Image Assets',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+        },
+      ],
+      fieldset: 'modules',
     },
   ],
   preview: {
