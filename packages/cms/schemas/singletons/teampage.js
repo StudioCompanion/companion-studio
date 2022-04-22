@@ -81,6 +81,13 @@ export default {
               type: 'richText',
             },
           ],
+          preview: {
+            prepare() {
+              return {
+                title: `Quality`,
+              }
+            },
+          },
         },
       ],
     },

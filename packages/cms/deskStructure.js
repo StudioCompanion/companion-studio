@@ -1,5 +1,5 @@
 import S from '@sanity/desk-tool/structure-builder'
-import { House, Wrench, UsersThree, UserList } from 'phosphor-react'
+import { House, Wrench, Handshake, UsersThree, UserList } from 'phosphor-react'
 
 export default () =>
   S.list()
@@ -24,6 +24,16 @@ export default () =>
             .id('teampage')
             .schemaType('teampage')
             .documentId('teampage')
+        ),
+      S.listItem()
+        .title('Approach')
+        .icon(Handshake)
+        .child(
+          S.editor()
+            .title('Approach')
+            .id('approachpage')
+            .schemaType('approachpage')
+            .documentId('approachpage')
         ),
       S.divider(),
       S.listItem()

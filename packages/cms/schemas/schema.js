@@ -9,6 +9,7 @@ import teamMember from './documents/teamMember'
 /**
  * Singletons
  */
+import approach from './singletons/approach'
 import homepage from './singletons/homepage'
 import settings from './singletons/settings'
 import teampage from './singletons/teampage'
@@ -35,6 +36,7 @@ export default createSchema({
     /**
      * Singletons
      */
+    approach,
     homepage,
     settings,
     teampage,
