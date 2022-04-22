@@ -14,7 +14,3 @@
 
   --main-navigation-color: var(--black);
 }
-
-*[data-testid='group-tab-all-fields'] {
-  display: none !important;
-}

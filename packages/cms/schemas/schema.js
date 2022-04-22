@@ -5,17 +5,19 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
  * Documents
  */
 import teamMember from './documents/teamMember'
+
 /**
  * Singletons
  */
 import homepage from './singletons/homepage'
 import settings from './singletons/settings'
+import teampage from './singletons/teampage'
 
 /**
  * Objects
  */
 import media from './objects/media'
-import richText from './objects/richText'
+import { basicRichText, squiggleRichText } from './objects/richText'
 import meta from './objects/meta'
 import redirects from './objects/redirects'
 
@@ -35,11 +37,13 @@ export default createSchema({
      */
     homepage,
     settings,
+    teampage,
     /**
      * Objects
      */
     media,
-    richText,
+    basicRichText,
+    squiggleRichText,
     meta,
     redirects,
   ]),

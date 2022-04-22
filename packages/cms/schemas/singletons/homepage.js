@@ -1,4 +1,6 @@
 import { House } from 'phosphor-react'
+import { REFERENCED_DOCUMENTS } from '../../constants'
+import { slug } from '../fields/slug'
 
 export default {
   name: 'homepage',
@@ -16,12 +18,24 @@ export default {
     },
   ],
   fields: [
+    slug(),
     {
-      title: 'Slug',
-      name: 'slug',
-      type: 'slug',
-      initialValue: `/`,
-      hidden: true,
+      name: 'standfirst',
+      type: 'richText',
+      title: 'Standfirst',
+      group: 'content',
+    },
+    {
+      name: 'cards',
+      title: 'Cards',
+      group: 'content',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: REFERENCED_DOCUMENTS,
+        },
+      ],
     },
     {
       name: 'meta',

@@ -2,7 +2,7 @@ import SlugInput from 'sanity-plugin-better-slug'
 import sanityClient from 'part:@sanity/base/client'
 import groq from 'groq'
 
-export const slug = ({ path, source = 'title', ...restOpts }) => {
+export const slug = ({ path, source = 'title', ...restOpts } = {}) => {
   return {
     ...restOpts,
     name: 'slug',
