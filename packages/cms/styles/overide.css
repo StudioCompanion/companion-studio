@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Manrope');
+
+:root {
+  --black: #191919;
+
+  --font-family-base: 'Manrope';
+  --brand-primary: #666666;
+  --brand-secondary: #f03e2f;
+
+  --state-success-color: #3ab667;
+  --state-info-color: #666666;
+  --state-warning-color: #ee744c;
+  --state-danger-color: #f03e2f;
+
+  --main-navigation-color: var(--black);
+}
+
+*[data-testid='group-tab-all-fields'] {
+  display: none !important;
+}

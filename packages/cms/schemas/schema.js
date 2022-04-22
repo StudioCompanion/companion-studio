@@ -1,20 +1,23 @@
-// First, we must import the schema creator
 import createSchema from 'part:@sanity/base/schema-creator'
-
-// Then import schema types from any plugins that might expose them
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
-import homepage from './homepage'
-import homepageBlock from './homepageBlock'
-import work from './work'
-import project from './project'
-import approach from './approach'
-import team from './team'
-import teamMember from './teamMember'
-import settings from './settings'
-import navigation from './navigation'
-import footer from './footer'
-import error from './error'
+/**
+ * Documents
+ */
+import teamMember from './documents/teamMember'
+/**
+ * Singletons
+ */
+import homepage from './singletons/homepage'
+import settings from './singletons/settings'
+
+/**
+ * Objects
+ */
+import media from './objects/media'
+import richText from './objects/richText'
+import meta from './objects/meta'
+import redirects from './objects/redirects'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -23,17 +26,21 @@ export default createSchema({
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
-    /* Your types here! */
-    homepage,
-    homepageBlock,
-    work,
-    project,
-    approach,
-    team,
+    /**
+     * Documents
+     */
     teamMember,
+    /**
+     * Singletons
+     */
+    homepage,
     settings,
-    navigation,
-    footer,
-    error,
+    /**
+     * Objects
+     */
+    media,
+    richText,
+    meta,
+    redirects,
   ]),
 })

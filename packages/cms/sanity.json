@@ -11,7 +11,12 @@
     "@sanity/base",
     "@sanity/default-layout",
     "@sanity/default-login",
-    "@sanity/desk-tool"
+    "@sanity/desk-tool",
+    "@sanity/dashboard",
+    "media",
+    "mux-input",
+    "dashboard-widget-vercel",
+    "seo-tools"
   ],
   "env": {
     "development": {
@@ -25,7 +30,27 @@
     },
     {
       "name": "part:@sanity/desk-tool/structure",
-      "path": "src/deskStructure.js"
+      "path": "./deskStructure.js"
+    },
+    {
+      "implements": "part:@sanity/dashboard/config",
+      "path": "./dashboardConfig.js"
+    },
+    {
+      "name": "part:@sanity/base/new-document-structure",
+      "path": "./newDocuments.js"
+    },
+    {
+      "implements": "part:@sanity/base/theme/variables/override-style",
+      "path": "./styles/overide.css"
+    },
+    {
+      "implements": "part:@sanity/base/document-actions/resolver",
+      "path": "./documentActions/resolveDocumentActions.js"
+    },
+    {
+      "implements": "part:sanity-plugin-seo-tools/schema-customizer",
+      "path": "./metaSchemaCustomizer.js"
     }
   ]
 }
