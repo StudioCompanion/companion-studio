@@ -196,10 +196,10 @@ const ImageStripWrapper = styled.div`
   width: max-content;
 `
 
-import largeImage from '../../../../public/images/image-strip/large-image.jpg'
-import scooby from '../../../../public/images/image-strip/scooby.jpg'
-import mediumImage from '../../../../public/images/image-strip/medium-image.jpg'
-import smallImage from '../../../../public/images/image-strip/small-image.jpg'
+import largeImage from '../../../../public/images/graphics/image-strip/large-image.jpg'
+import scooby from '../../../../public/images/graphics/image-strip/scooby.jpg'
+import mediumImage from '../../../../public/images/graphics/image-strip/medium-image.jpg'
+import smallImage from '../../../../public/images/graphics/image-strip/small-image.jpg'
 
 const images = [
   {
