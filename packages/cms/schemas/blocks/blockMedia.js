@@ -67,6 +67,16 @@ export default {
               type: 'string',
             },
           ],
+          preview: {
+            select: {
+              caption: 'caption',
+              desktop: 'desktop',
+            },
+            prepare: (selection) => ({
+              title: selection.desktop.assetType,
+              subtitle: selection.caption,
+            }),
+          },
         },
       ],
       validation: (rule) => rule.required().min(1),

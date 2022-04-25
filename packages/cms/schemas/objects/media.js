@@ -30,4 +30,12 @@ export default {
       hidden: ({ parent }) => parent?.assetType !== 'image',
     },
   ],
+  preview: {
+    select: {
+      assetType: 'assetType',
+    },
+    prepare: (selection) => ({
+      title: selection?.assetType,
+    }),
+  },
 }

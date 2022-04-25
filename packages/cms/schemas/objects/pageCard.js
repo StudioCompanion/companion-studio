@@ -33,5 +33,19 @@ export default {
       },
       initialValue: 'case',
     },
+    {
+      name: 'theme',
+      title: 'Theme',
+      type: 'string',
+      options: {
+        layout: 'dropdown',
+        list: [
+          { title: 'Light', value: 'light' },
+          { title: 'Grey', value: 'grey' },
+          { title: 'Dark', value: 'dark' },
+        ],
+      },
+      initialValue: 'dark',
+    },
   ],
 }
