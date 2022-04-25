@@ -1,5 +1,12 @@
 import S from '@sanity/desk-tool/structure-builder'
-import { House, Wrench, Handshake, UsersThree, UserList } from 'phosphor-react'
+import {
+  House,
+  Files,
+  Wrench,
+  Handshake,
+  UsersThree,
+  UserList,
+} from 'phosphor-react'
 
 export default () =>
   S.list()
@@ -35,6 +42,11 @@ export default () =>
             .schemaType('approachpage')
             .documentId('approachpage')
         ),
+      S.divider(),
+      S.listItem()
+        .title('Projects')
+        .icon(Files)
+        .child(S.documentTypeList('project')),
       S.divider(),
       S.listItem()
         .title('Team Members')

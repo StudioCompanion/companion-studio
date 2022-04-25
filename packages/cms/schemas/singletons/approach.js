@@ -16,6 +16,10 @@ export default {
       name: 'meta',
       title: 'Page meta',
     },
+    {
+      name: 'card',
+      title: 'Page Card',
+    },
   ],
   fields: [
     slug(),
@@ -56,6 +60,12 @@ export default {
       title: 'Page meta',
       type: 'meta',
       group: 'meta',
+    },
+    {
+      name: 'card',
+      title: 'Page Card',
+      type: 'pageCard',
+      group: 'card',
     },
   ],
   preview: {

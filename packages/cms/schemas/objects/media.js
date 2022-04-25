@@ -21,13 +21,34 @@ export default {
       title: 'Video file',
       name: 'video',
       type: 'mux.video',
-      hidden: ({ parent, value }) => parent?.assetType !== 'video',
+      hidden: ({ parent }) => parent?.assetType !== 'video',
     },
     {
       title: 'Image file',
       name: 'image',
       type: 'image',
-      hidden: ({ parent, value }) => parent?.assetType !== 'image',
+      hidden: ({ parent }) => parent?.assetType !== 'image',
+    },
+    {
+      name: 'caption',
+      title: 'Caption',
+      type: 'string',
+      hidden: ({ document, parent }) => {
+        /**
+         * Only show field if it's in a project
+         * and if the field is being used within
+         * a Media Block
+         */
+        return (
+          document._type !== 'project' ||
+          (document._type === 'project' &&
+            (document?.blocks ?? []).findIndex(
+              (block) =>
+                block?.items &&
+                block.items.some((item) => item._key === parent._key)
+            ))
+        )
+      },
     },
   ],
 }

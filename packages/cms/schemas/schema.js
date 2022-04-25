@@ -5,6 +5,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
  * Documents
  */
 import teamMember from './documents/teamMember'
+import project from './documents/project'
 
 /**
  * Singletons
@@ -21,6 +22,14 @@ import media from './objects/media'
 import { basicRichText, squiggleRichText } from './objects/richText'
 import meta from './objects/meta'
 import redirects from './objects/redirects'
+import pageCard from './objects/pageCard'
+
+/**
+ * Blocks
+ */
+import blockMedia from './blocks/blockMedia'
+import blockText from './blocks/blockText'
+import blockTestimonial from './blocks/blockTestimonial'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -32,6 +41,7 @@ export default createSchema({
     /**
      * Documents
      */
+    project,
     teamMember,
     /**
      * Singletons
@@ -48,5 +58,12 @@ export default createSchema({
     squiggleRichText,
     meta,
     redirects,
+    pageCard,
+    /**
+     * Blocks
+     */
+    blockMedia,
+    blockText,
+    blockTestimonial,
   ]),
 })
