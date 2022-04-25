@@ -1,9 +1,10 @@
-import { Sanity } from '@types'
 import groq from 'groq'
 
 import { createSanityClientRead } from './createSanityClientRead'
 
 import { LAYOUT } from './queries/layout'
+
+import { Sanity } from '../types'
 
 export type FetchDocumentParams = {
   filter?: string

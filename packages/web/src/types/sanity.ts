@@ -71,7 +71,12 @@ export interface Card extends Omit<SanityGenerated.PageCard, 'media'> {
   media?: Media
 }
 
-interface DocumentBase {
+export interface DocumentBase {
+  _id?: string
+  _createdAt?: string
+  _rev?: string
+  _updatedAt?: string
+  _type?: string
   card?: Card
   meta?: Meta
 }
@@ -79,6 +84,6 @@ interface DocumentBase {
 export interface ProjectPage extends DocumentBase {
   title?: string
   subtext?: string
-  blocks: Blocks
-  team: Team
+  blocks?: Blocks
+  team?: Team
 }

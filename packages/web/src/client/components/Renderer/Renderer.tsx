@@ -8,7 +8,7 @@ export const Renderer = ({ blocks }: RendererProps) => {
   return (
     <>
       {blocks.map((block) => {
-        const { _type, _key } = block
+        const { _type } = block
         switch (_type) {
           case 'blockText':
             return null

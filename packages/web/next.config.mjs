@@ -10,8 +10,11 @@ const withMDX = MDX({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['mdx', 'tsx', 'js', 'ts'],
-  experimental: {
+  compiler: {
     styledComponents: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 }
 

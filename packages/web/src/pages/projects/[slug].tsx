@@ -13,7 +13,7 @@ interface ProjectPageProps {
 }
 
 const ProjectPage = ({ document }: ProjectPageProps) => {
-  const { blocks } = document
+  const { blocks = [] } = document
   return <Renderer blocks={blocks} />
 }
 
@@ -56,6 +56,7 @@ export const getStaticProps: GetStaticProps<
   return {
     notFound: !sanityResult,
     props: {
+      document: {},
       ...sanityResult,
       preview: !!preview,
     },
