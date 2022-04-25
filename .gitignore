@@ -35,10 +35,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-**/*.generated.*
-**/*.graphql.d.ts
-**/*.graphqls.d.ts
-
 !.vscode
 
 # WebStorm

@@ -55,3 +55,5 @@ export const ALL_TEAM_MEMBERS: Member[] = [
   JOSH,
   WILLEM,
 ]
+
+export const REVALIDATE_TIME = 60

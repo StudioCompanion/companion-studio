@@ -8,7 +8,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
-    "build": "sanity build"
+    "build": "sanity build",
+    "deploy": "sanity deploy"
   },
   "keywords": [
     "sanity"
@@ -31,5 +32,8 @@
     "sanity-plugin-mux-input": "^1.1.0",
     "sanity-plugin-seo-tools": "^2.2.0",
     "styled-components": "^5.2.0"
+  },
+  "devDependencies": {
+    "sanity-codegen": "^0.9.8"
   }
 }
