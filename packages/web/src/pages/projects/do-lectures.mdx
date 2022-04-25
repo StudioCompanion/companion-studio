@@ -19,15 +19,15 @@ import { Avatars } from 'components/Avatars/Avatars'
 
 <Avatars />
 
-import do_hero from '../../../public/images/case-studies/do_lectures/hero_image.webp'
-import do_hero_m from '../../../public/images/case-studies/do_lectures/hero_image.webp'
+import logo_shapes from '../../../public/images/case-studies/do_lectures/Logo_&_Shapes.webp'
+import logo_shapes_m from '../../../public/images/case-studies/do_lectures/Logo_&_Shapes.webp'
 
 export const hero = {
   url: {
-    desktop: do_hero,
-    mobile: do_hero_m,
+    desktop: logo_shapes,
+    mobile: logo_shapes_m,
   },
-  alt: 'A DO Lectures character blinking happily',
+  alt: 'DO Lectures logo and shapes',
 }
 
 <Carousel items={[hero]} hero />
@@ -36,27 +36,20 @@ export const hero = {
 
 ### Introduction
 
-After spending a decade sharing the ideas, strategies and creative thinking to help others to achieve their dreams, The DO Lectures lacked a brand and website that echoed this thinking.
+The DO Lectures brings together the world’s disruptors, change–makers, experts and pioneers to share their stories and encourage others to go and DO.
 
-We collaborated with their team to help bring about a new era for the Welsh based company by creating a digital hub for all things DO. This meant bringing together their wealth of creative content including 400+ talks, 300+ articles, speaker bios, reading lists, courses and events.
+Since then, DO has evolved into an institution dedicated to bringing the creative underdog the best teachings, inspiration and thought around. Starting with an annual event on a farm in west Wales, it has grown into an event held across four countries, a sister book company, an educational platform, a whole host of workshops and other one-day events, and one of the largest resources of inspiration on the web.
 
 </TextSection>
 
-import do_logo from '../../../public/images/case-studies/do_lectures/Logo_variants.webp'
-import do_logo_m from '../../../public/images/case-studies/do_lectures/Logo_variants.webp'
+<TextSection>
 
-export const item0 = {
-  url: {
-    desktop: do_logo,
-    mobile: do_logo_m,
-  },
-  alt: 'Placeholder',
-}
+*How do I stopt the image below from automatically moving into this half*
 
-<Carousel items={[item0]} />
+</TextSection>
 
-import do_characters from '../../../public/images/case-studies/do_lectures/DO_Characters.jpg'
-import do_characters_m from '../../../public/images/case-studies/do_lectures/DO_Characters.jpg'
+import do_characters from '../../../public/images/case-studies/do_lectures/Shapes_&_Marks.jpg'
+import do_characters_m from '../../../public/images/case-studies/do_lectures/Shapes_&_Marks.jpg'
 
 export const item1 = {
   url: {
@@ -68,111 +61,375 @@ export const item1 = {
 
 <Carousel items={[item1]} layout={'half'} />
 
-import do_type from '../../../public/images/case-studies/do_lectures/DO_Typography.webp'
-import do_type_m from '../../../public/images/case-studies/do_lectures/DO_Typography.webp'
+import shapes_marks from '../../../public/images/case-studies/do_lectures/Shapes_&_Marks.webp'
+import shapes_marks_m from '../../../public/images/case-studies/do_lectures/Shapes_&_Marks.webp'
 
 export const item2 = {
   url: {
-    desktop: do_type,
-    mobile: do_type_m,
+    desktop: shapes_marks,
+    mobile: shapes_marks_m,
   },
-  alt: 'Runway from Del Core’s latest show',
+  alt: 'DO Lectures shapes and marks',
 }
 
 <Carousel items={[item2]} layout={'half'} />
 
-<TextSection>
-
-### Challenge
-
-With three different offerings and goals, we created three individual sites. One which would help to enhance the runway experience and allow for Daniel and his team to develop, mature and progress with each collection.
-
-Another which was an immersive 360 video experience of Del Core's latest show and the last being a private site for buyers and wholesalers to view the collection and set up meetings.These sites allowed for Daniel and his team to move forward with confidence and have dedicated spaces for each area of the business.
-
-</TextSection>
-
-import del_core_2 from '../../../public/images/case-studies/del_core/del_core_2.png'
-import del_core_2_m from '../../../public/images/case-studies/del_core/del_core_2_m.png'
+import change_makers from '../../../public/images/case-studies/do_lectures/Change_Makers.webp'
+import change_makers_m from '../../../public/images/case-studies/do_lectures/Change_Makers.webp'
 
 export const item3 = {
   url: {
-    desktop: del_core_2,
-    mobile: del_core_2_m,
+    desktop: change_makers,
+    mobile: change_makers_m,
   },
-  alt: 'Collection landing page',
+  alt: 'Change Makers',
+  caption: ' ',
+
 }
 
-<Carousel items={[item3]} bgColor={'#F1F1F4'} />
-
-import del_core_3 from '../../../public/images/case-studies/del_core/del_core_3.png'
-import del_core_3_m from '../../../public/images/case-studies/del_core/del_core_3_m.png'
+import typefaces from '../../../public/images/case-studies/do_lectures/typefaces.webp'
+import typefaces_m from '../../../public/images/case-studies/do_lectures/typefaces.webp'
 
 export const item4 = {
   url: {
-    desktop: del_core_3,
-    mobile: del_core_3_m,
+    desktop: typefaces,
+    mobile: typefaces_m,
   },
-  alt: 'Collection landing page',
-  caption: 'Collection landing page',
+  alt: 'DO Lectures typefaces',
+  caption: ' ',
+
 }
 
-<Carousel items={[item4, item4, item4]} bgColor={'#151915'} />
+<Carousel items={[item3, item4]} />
 
-<TextSection>
-
-### Navigation
-
-We introduced a simplified navigation system for each collection which brought the next look directly to the user. With buyers being our main target audience, we wanted them to have the ability to view a collection quickly and efficiently.
-
-</TextSection>
-
-export const phone_videoItem = {
-  url: { desktop: '/testvid_phone.mp4', mobile: '/testvid_phone.mp4' },
-  caption: 'lovely phone video',
+export const colour_palette = {
+  url: { 
+    desktop: '/images/case-studies/do_lectures/Colour_Palette.mp4', 
+    mobile: '/images/case-studies/do_lectures/Colour_Palette.mp4' 
+    },
   width: 534,
   height: 1080,
 }
 
-<Carousel items={[phone_videoItem]} bgColor={'#F1F1F4'} />
+<Carousel items={[colour_palette]} layout={'half'} />
 
-import del_core_5 from '../../../public/images/case-studies/del_core/del_core_5.png'
-import del_core_5_m from '../../../public/images/case-studies/del_core/del_core_5_m.png'
+import speaker from '../../../public/images/case-studies/do_lectures/Speaker.webp'
+import speaker_m from '../../../public/images/case-studies/do_lectures/Speaker.webp'
 
 export const item5 = {
   url: {
-    desktop: del_core_5,
-    mobile: del_core_5_m,
+    desktop: speaker,
+    mobile: speaker_m,
   },
-  alt: 'Collection landing page',
+  alt: 'DO Lectures speaker',
 }
 
-<Carousel items={[item5]} layout={'half'} bgColor={'#F1F1F4'} />
+<Carousel items={[item5]} layout={'half'} />
 
-import del_core_6 from '../../../public/images/case-studies/del_core/del_core_6.png'
-import del_core_6_m from '../../../public/images/case-studies/del_core/del_core_6_m.png'
-
-export const item6 = {
-  url: {
-    desktop: del_core_6,
-    mobile: del_core_6_m,
-  },
-  alt: 'Runway from Del Core’s latest show',
-  caption: 'Photos by Vogue',
-}
-
-<Carousel items={[item6]} layout={'half'} />
 
 <TextSection>
 
-### Made to Measure
+### The Brief
 
-As well as showing off the latest collection, the site had to display another of Del Core's unique offerings of Made to Measure. We wanted users to feel excited and inspired by the possibilities that Made to Measure offered them.
+DO came to us amidst the pandemic with a timely need to bring their digital touch–points together behind a more homogenous brand expressive of their open and encouraging personality, communication style and content. Central to this is was their website and supporting newsletter; as the engine that drives them forwards, enabling them to reach the widest audience possible with their online learning and courses.
 
 </TextSection>
 
-<Testimonial>
-  "Companion Studio have been our go to digital partner for over a year. They
-  work to a consistently high standard, both creatively and strategically. Myles
-  and his team are also just really nice people and a pleasure to deal with."
-  ### David Lane, Creative Director of Lane & Associates
-</Testimonial>
+export const video = {
+  url: {
+    desktop: '/images/case-studies/do_lectures/Playlist_Player.mp4', 
+    mobile: '/images/case-studies/do_lectures/Playlist_Player.mp4' 
+  },
+  width: 1366,
+  height: 766,
+}
+
+<Carousel items={[video]} bgColor={'#EBEBF0'} />
+
+<TextSection>
+
+### Approach
+
+Core to DO’s digital strategy was the aim of bringing that irresistible spirit and atmosphere of their in–person events, online. And so we started with the challenge of how to bring people into the world of DO through their site.
+
+It was important to us that newcomers to the site would not feel intimidated by the impressive breadth of DO's archive. The customer journey was therefore built around a crucial point of access, taking due consideration of how to educate users and showcase all of DO's themes, content pillars and background, without overwhelming them.
+
+</TextSection>
+
+import learn from '../../../public/images/case-studies/do_lectures/Learn.webp'
+import learn_m from '../../../public/images/case-studies/do_lectures/Learn.webp'
+
+export const item6 = {
+  url: {
+    desktop: learn,
+    mobile: learn_m,
+  },
+  alt: 'Landing Page',
+  caption: 'Landing pages',
+}
+
+import talks_playlists from '../../../public/images/case-studies/do_lectures/Talks_&_Playlists.webp'
+import talks_playlists_m from '../../../public/images/case-studies/do_lectures/Talks_&_Playlists.webp'
+
+export const item7 = {
+  url: {
+    desktop: talks_playlists,
+    mobile: talks_playlists_m,
+  },
+  alt: 'Landing Page',
+  caption: 'Landing pages',
+}
+
+import quiz from '../../../public/images/case-studies/do_lectures/Quiz.webp'
+import quiz_m from '../../../public/images/case-studies/do_lectures/Quiz.webp'
+
+export const item8 = {
+  url: {
+    desktop: quiz,
+    mobile: quiz_m,
+  },
+  alt: 'Landing Page',
+  caption: 'Landing pages',
+}
+
+<Carousel items={[item6, item7, item8]} bgColor={'#EBEBF0'} />
+
+import online_courses from '../../../public/images/case-studies/do_lectures/Online_Courses.webp'
+import online_courses_m from '../../../public/images/case-studies/do_lectures/Online_Courses.webp'
+
+export const item9 = {
+  url: {
+    desktop: online_courses,
+    mobile: online_courses_m,
+  },
+  alt: 'Online courses',
+}
+
+<Carousel items={[item9]} layout={'half'} bgColor={'#FFD9D6'} />
+
+import speakers_profile from '../../../public/images/case-studies/do_lectures/Speaker_Profile.webp'
+import speakers_profile_m from '../../../public/images/case-studies/do_lectures/Speaker_Profile.webp'
+
+export const item10 = {
+  url: {
+    desktop: speakers_profile,
+    mobile: speakers_profile_m,
+  },
+  alt: 'Speakers profile',
+}
+
+<Carousel items={[item10]} layout={'half'} bgColor={'#FF5A30'} />
+
+<TextSection>
+
+By reducing the amount of initial content shown to the user, we avoided any chance of choice paralysis whilst giving a bite–size flavour of what DO is about. Their talks were the ideal focal point, so we surfaced these and ensured they were easy to find, consume and share. A visitor could then make easier choices, with freedom to explore and digest content at a more manageable pace, with curated recommendations made along the way.
+
+We also focused on breaking content up, and making it delightful. With our digital attention spans ever in decline, the interface design needed to kindle people’s curiosity in the wonderfully inspiring advice The Do Lectures offer. The richness and quality of their content was given the presentation to match, and we introduced related features in the margins to make content 'visually snackable'. We sprinkled little moments of surprise throughout the site too, taking the form of hover animations and character pop ups to make sure DO’s conviviality wouldn’t go unnoticed.
+
+</TextSection>
+
+import onboarding from '../../../public/images/case-studies/do_lectures/Quiz.webp'
+import onboarding_m from '../../../public/images/case-studies/do_lectures/Quiz.webp'
+
+export const item11 = {
+  url: {
+    desktop: onboarding,
+    mobile: onboarding_m,
+  },
+  alt: 'Onboarding',
+}
+
+<Carousel items={[item11]} bgColor={'#EBEBF0'} />
+
+import fampany from '../../../public/images/case-studies/do_lectures/Online_Courses.webp'
+import fampany_m from '../../../public/images/case-studies/do_lectures/Online_Courses.webp'
+
+export const item12 = {
+  url: {
+    desktop: fampany,
+    mobile: fampany_m,
+  },
+  alt: 'Fampany',
+}
+
+<Carousel items={[item12]} layout={'half'} bgColor={'#FFD9D6'} />
+
+import our_events from '../../../public/images/case-studies/do_lectures/Our_Events.webp'
+import our_events_m from '../../../public/images/case-studies/do_lectures/Our_Events.webp'
+
+export const item13 = {
+  url: {
+    desktop: our_events,
+    mobile: our_events_m,
+  },
+  alt: 'Speakers profile',
+}
+
+<Carousel items={[item13]} layout={'half'} bgColor={'#F79621'} />
+
+import talks from '../../../public/images/case-studies/do_lectures/Talks.webp'
+import talks_m from '../../../public/images/case-studies/do_lectures/Talks.webp'
+
+export const item14  = {
+  url: {
+    desktop: talks,
+    mobile: talks_m,
+  },
+  alt: 'Talks',
+  caption: 'Caption goes here',
+}
+
+import chicken_shed from '../../../public/images/case-studies/do_lectures/Chicken_Shed.webp'
+import chicken_shed_m from '../../../public/images/case-studies/do_lectures/Chicken_Shed.webp'
+
+export const item15 = {
+  url: {
+    desktop: chicken_shed,
+    mobile: chicken_shed_m,
+  },
+  alt: 'Chicken_Shed',
+  caption: 'Caption goes here',
+}
+
+import article from '../../../public/images/case-studies/do_lectures/Article.webp'
+import article_m from '../../../public/images/case-studies/do_lectures/Article.webp'
+
+export const item16 = {
+  url: {
+    desktop: article,
+    mobile: article_m,
+  },
+  alt: 'Article',
+  caption: 'Caption goes here',
+}
+
+<Carousel items={[item14, item15, item16]} bgColor={'#EBEBF0'} />
+
+<TextSection>
+
+Once eased in through a world of curious content, we needed to next immerse people in the community. However, recreating this in the digital realm with forums, live chat rooms or complex platforms requiring community management and moderation felt a bit insincere. We wanted to give people on the site the sense that you there, in real–time, amongst others too. Introducing a simple set of questions at the end of each piece of content generates reflection, suggestion and commentary, giving people a tangible sense of their valuable place and participation in the DO community.
+
+</TextSection>
+
+import talks_mobile from '../../../public/images/case-studies/do_lectures/Talks_Mobile.webp'
+import talks_mobile_m from '../../../public/images/case-studies/do_lectures/Talks_Mobile.webp'
+
+export const item17 = {
+  url: {
+    desktop: talks_mobile,
+    mobile: talks_mobile_m,
+  },
+  alt: 'Onboarding',
+}
+
+<Carousel items={[item17]} bgColor={'#EBEBF0'} />
+
+export const item18 = {
+  url: {
+    desktop: '/images/case-studies/do_lectures/Playlist_Player.mp4', 
+    mobile: '/images/case-studies/do_lectures/Playlist_Player.mp4' 
+  },
+  width: 1366,
+  height: 766,
+}
+
+<Carousel items={[item18]} bgColor={'#EBEBF0'} />
+
+<TextSection>
+
+With their sprightly personality, renowned content and energetic community coming to life on the site; the final undertaking was a cohesive brand expression to unify and represent these pillars. We evolved this to encompass more visual language opportunities and to ensure consistency across DO’s digital properties. Elements were taken from around the DO Farm and its surroundings, where the Lectures take place, to create a colourful, textural identity that could flex to give the consistency needed across the different ‘worlds’ inspired by DO. The brand palette makes more generous use of their playful, illustrative characters, representing the community, the contributors, and the user–generated side of the platform. The new site combines this vibrant brand world with straight-forward UX to provide the best experience for the creative underdog.
+
+</TextSection>
+
+<TextSection>
+
+*How do I stopt the image below from automatically moving into this half*
+
+</TextSection>
+
+import scenes from '../../../public/images/case-studies/do_lectures/Scenes.webp'
+import scenes_m from '../../../public/images/case-studies/do_lectures/Scenes.webp'
+
+export const item19 = {
+  url: {
+    desktop: scenes,
+    mobile: scenes_m,
+  },
+  alt: 'Scenes',
+}
+
+<Carousel items={[item19]} layout={'half'} bgColor={'#FFD9D6'} />
+
+import scribble from '../../../public/images/case-studies/do_lectures/Our_Events.webp'
+import scribble_m from '../../../public/images/case-studies/do_lectures/Our_Events.webp'
+
+export const item20 = {
+  url: {
+    desktop: our_events,
+    mobile: our_events_m,
+  },
+  alt: 'Speakers profile',
+}
+
+<Carousel items={[item20]} layout={'half'} bgColor={'#F79621'} />
+
+import application_1 from '../../../public/images/case-studies/do_lectures/Application_1.webp'
+import application_1_m from '../../../public/images/case-studies/do_lectures/Application_1.webp'
+
+export const item21  = {
+  url: {
+    desktop: application_1,
+    mobile: application_1_m,
+  },
+  alt: 'Application 1',
+  caption: ' ',
+}
+
+import application_2 from '../../../public/images/case-studies/do_lectures/Application_2.webp'
+import application_2_m from '../../../public/images/case-studies/do_lectures/Application_2.webp'
+
+export const item22 = {
+  url: {
+    desktop: application_2,
+    mobile: application_2_m,
+  },
+  alt: 'Application 2',
+  caption: ' ',
+}
+
+import application_3 from '../../../public/images/case-studies/do_lectures/Application_3.webp'
+import application_3_m from '../../../public/images/case-studies/do_lectures/Application_3.webp'
+
+export const item23 = {
+  url: {
+    desktop: application_3,
+    mobile: application_3_m,
+  },
+  alt: 'Application 3',
+  caption: ' ',
+}
+
+<Carousel items={[item21, item22, item23]} bgColor={'#EBEBF0'} />
+
+<TextSection>
+
+### Technical Approach
+
+DO’s broad portfolio of content and products required a large and carefully considered system architecture. Essentially, they had a *tonne* of data, connections and integrations, calling for a comprehensive technical approach to accommodate all its needs.
+
+We began by examining the internal processes of how products and content were managed and created at DO HQ, helping us to sketch out the architecture needed to support the site’s wide and varied requirements. We found a somewhat fragmented customer journey, with users being taken away from the site into new tabs or sister sites, leaving the DO team in the dark as to what happens thereafter. The relationships between these separate domains were a cause for confusion, leaving users uncertain about which content was the most recent. Users were also more prone to trying to discover content rather than knowing already what they were looking for.
+
+</TextSection>
+
+import tech_stack from '../../../public/images/case-studies/do_lectures/Quiz.webp'
+import tech_stack_m from '../../../public/images/case-studies/do_lectures/Quiz.webp'
+
+export const item24 = {
+  url: {
+    desktop: onboarding,
+    mobile: onboarding_m,
+  },
+  alt: 'Onboarding',
+}
+
+<Carousel items={[item24]} bgColor={'#EBEBF0'} />
