@@ -9,7 +9,7 @@ const withMDX = MDX({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['mdx', 'tsx', 'js'],
+  pageExtensions: ['mdx', 'tsx', 'js', 'ts'],
   experimental: {
     styledComponents: true,
   },
