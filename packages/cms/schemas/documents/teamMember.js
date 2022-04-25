@@ -7,6 +7,7 @@ export default {
       name: 'name',
       title: 'Name',
       type: 'string',
+      validation: (rule) => rule.required(),
     },
     {
       name: 'job',
@@ -17,6 +18,8 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'image',
+      description: 'Ensure this has a transparent background',
+      validation: (rule) => rule.required(),
     },
   ],
   preview: {

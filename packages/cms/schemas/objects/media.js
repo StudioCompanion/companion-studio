@@ -29,26 +29,5 @@ export default {
       type: 'image',
       hidden: ({ parent }) => parent?.assetType !== 'image',
     },
-    {
-      name: 'caption',
-      title: 'Caption',
-      type: 'string',
-      hidden: ({ document, parent }) => {
-        /**
-         * Only show field if it's in a project
-         * and if the field is being used within
-         * a Media Block
-         */
-        return (
-          document._type !== 'project' ||
-          (document._type === 'project' &&
-            (document?.blocks ?? []).findIndex(
-              (block) =>
-                block?.items &&
-                block.items.some((item) => item._key === parent._key)
-            ))
-        )
-      },
-    },
   ],
 }

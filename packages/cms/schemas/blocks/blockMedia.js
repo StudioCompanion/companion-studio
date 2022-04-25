@@ -17,6 +17,12 @@ export default {
       },
       initialValue: 'full',
     },
+    {
+      name: 'isHero',
+      title: 'Is Hero?',
+      type: 'boolean',
+      initialValue: false,
+    },
     /**
      * TODO: make this a custom color input
      * (not the on already published as that's
@@ -26,6 +32,7 @@ export default {
       name: 'backgroundColor',
       title: 'Background Color',
       type: 'string',
+      initialValue: '#E5E5EB',
     },
     {
       name: 'items',
@@ -33,7 +40,33 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'media',
+          name: 'item',
+          type: 'object',
+          title: 'Media Item',
+          fields: [
+            {
+              name: 'hasMobile',
+              title: 'Has Mobile Asset?',
+              type: 'boolean',
+              initialValue: false,
+            },
+            {
+              name: 'mobile',
+              title: 'Mobile Asset',
+              type: 'media',
+              hidden: ({ parent }) => !parent?.hasMobile,
+            },
+            {
+              name: 'desktop',
+              title: 'Desktop Asset',
+              type: 'media',
+            },
+            {
+              name: 'caption',
+              title: 'Caption',
+              type: 'string',
+            },
+          ],
         },
       ],
       validation: (rule) => rule.required().min(1),
