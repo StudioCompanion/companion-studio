@@ -12,7 +12,7 @@ export default (props) => {
   return {
     label: 'Open Preview',
     icon: EarthGlobeIcon,
-    onHandle: async () => {
+    onHandle: () => {
       const siteUrl = process.env.SANITY_STUDIO_BASE_URL
       const secret = process.env.SANITY_STUDIO_SANITY_SECRET
 
@@ -29,11 +29,8 @@ export default (props) => {
       let slug = `/${document?.slug?.current}`
 
       switch (type) {
-        case 'genericPage':
-          slug = `/pages${slug}`
-          break
-        case 'innovMaterial':
-          slug = `/innovations${slug}`
+        case 'project':
+          slug = `/projects${slug}`
           break
         default:
           break

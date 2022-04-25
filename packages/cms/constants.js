@@ -16,4 +16,5 @@ export const PREVIEWABLE_DOCUMENT_TYPES = [
   /**
    * Documents
    */
+  ...DOCUMENT_TYPES,
 ]
