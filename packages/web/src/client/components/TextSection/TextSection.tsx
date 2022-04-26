@@ -9,16 +9,17 @@ import {
 } from '../../styles/fonts'
 
 import { FadeUp } from 'components/Transitions/FadeUp'
+import { RendererRichText } from 'components/Renderer/RendererRichText'
 
-export interface TextSectionProps {
-  children: React.ReactNode
-}
+import { Sanity } from 'src/types'
 
-export const TextSection = ({ children }: TextSectionProps) => {
+export type TextSectionProps = Sanity.BlockText
+
+export const TextSection = ({ richText }: TextSectionProps) => {
   return (
     <Container>
       <FadeUp>
-        <BodyContainer>{children}</BodyContainer>
+        {richText ? <RendererRichText blocks={richText} /> : null}
       </FadeUp>
     </Container>
   )
@@ -40,23 +41,6 @@ const Container = styled.div`
 
     ${MEDIA_QUERIES.tabletUp} {
       margin: ${PADDING.l}px 0px ${PADDING.xl}px;
-    }
-  }
-`
-const BodyContainer = styled.div`
-  ul {
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-  }
-  ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
-  p + p {
-    margin-top: ${PADDING.m}px;
-    ${MEDIA_QUERIES.tabletUp} {
-      margin-top: ${PADDING.m}px;
     }
   }
 `

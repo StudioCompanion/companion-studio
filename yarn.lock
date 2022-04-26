@@ -2681,7 +2681,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@portabletext/react@npm:^1.0.0":
+"@portabletext/react@npm:^1.0.0, @portabletext/react@npm:^1.0.6":
   version: 1.0.6
   resolution: "@portabletext/react@npm:1.0.6"
   dependencies:
@@ -4983,6 +4983,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@studiocompanion/web@workspace:packages/web"
   dependencies:
+    "@portabletext/react": ^1.0.6
     "@react-hook/intersection-observer": ^3.1.1
     "@react-spring/web": ^9.4.2
     "@sanity/client": ^3.3.0
