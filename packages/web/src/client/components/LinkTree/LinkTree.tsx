@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_17_400 } from 'styles/fonts'
-import { COLORS, PADDING, RADII } from 'styles/constants'
+import { Colors, PADDING, RADII } from 'styles/constants'
 
 interface LinkTreeItemProps {
   image: StaticImageData
@@ -47,7 +47,7 @@ export const LinkTree = ({ items }: LinkTreeProps) => {
 const LinkTreeItemContainer = styled.a`
   display: flex;
   align-items: center;
-  background-color: ${COLORS.lightgrey_2};
+  background-color: ${Colors.lightgrey_2};
   margin: ${PADDING.s}px 0;
   padding: 8px;
   color: inherit;
@@ -56,8 +56,8 @@ const LinkTreeItemContainer = styled.a`
   border: 1px solid transparent;
 
   &:hover {
-    background-color: ${COLORS.white};
-    border-color: ${COLORS.lightgrey_2};
+    background-color: ${Colors.white};
+    border-color: ${Colors.lightgrey_2};
   }
 `
 

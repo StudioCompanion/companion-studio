@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { COLORS, PADDING } from '../../styles/constants'
+import { Colors, PADDING } from '../../styles/constants'
 import { Logo } from 'components/Logo/Logo'
 
 export interface NavProps {
@@ -89,16 +89,16 @@ const NavLink = styled.a<{ active: boolean }>`
   text-decoration: none;
   display: block;
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};
-  background-color: ${(p) => (p.active ? COLORS.darkblue : 'transparent')};
+  background-color: ${(p) => (p.active ? Colors.darkblue : 'transparent')};
   padding: 8px;
   padding-bottom: 10px;
   border-radius: 500px;
-  color: ${(p) => (p.active ? COLORS.white : 'rgba(8, 11, 55, 0.57)')};
+  color: ${(p) => (p.active ? Colors.white : 'rgba(8, 11, 55, 0.57)')};
   width: 100%;
   height: 100%;
 
   &:hover {
     background-color: ${(p) =>
-      p.active ? COLORS.darkblue : COLORS.lightgrey_2};
+      p.active ? Colors.darkblue : Colors.lightgrey_2};
   }
 `

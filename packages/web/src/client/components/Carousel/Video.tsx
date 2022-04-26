@@ -16,7 +16,7 @@ import {
   DESKTOP,
   MOBILE,
   ASPECT_RATIOS,
-  CAROUSEL_LAYOUTS,
+  CarouselLayouts,
 } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
@@ -37,12 +37,12 @@ export interface IVideo {
 
 interface VideoProps {
   video: IVideo
-  layout?: CAROUSEL_LAYOUTS
+  layout?: CarouselLayouts
   setPaused: Dispatch<SetStateAction<boolean>>
 }
 
 export const Video = forwardRef<HTMLVideoElement, VideoProps>(
-  ({ video, setPaused, layout = CAROUSEL_LAYOUTS.FULL }, videoRef) => {
+  ({ video, setPaused, layout = CarouselLayouts.FULL }, videoRef) => {
     const isTabletUp = useMediaQuery({
       query: `(min-width: ${WIDTHS.tablet}px)`,
     })
@@ -140,7 +140,7 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
 
 const calcWidth = (
   size: keyof typeof ASPECT_RATIOS['carousel']['full'],
-  type: CAROUSEL_LAYOUTS,
+  type: CarouselLayouts,
   video: IVideo
 ) => {
   const aspect = video.height / video.width

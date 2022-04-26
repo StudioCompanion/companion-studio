@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { getFontStyles } from 'styles/getFontStyles'
-import { COLORS, HIDDEN } from 'styles/constants'
+import { Colors, HIDDEN } from 'styles/constants'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 
 interface InputProps {
@@ -45,9 +45,9 @@ const FormInput = styled.input`
   padding-bottom: 8px;
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};
   background-color: transparent;
-  border: 1px solid ${COLORS.white};
+  border: 1px solid ${Colors.white};
   border-radius: 500px;
-  color: ${COLORS.white};
+  color: ${Colors.white};
   &::placeholder {
     color: rgba(255, 255, 255, 57%);
   }

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { COLORS, RADII, PADDING } from 'styles/constants'
+import { Colors, RADII, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
@@ -41,7 +41,7 @@ export const ProjectInfoCard = ({
 }
 
 const Wrapper = styled.dl`
-  background-color: ${COLORS.lightgrey};
+  background-color: ${Colors.lightgrey};
   border-radius: ${RADII.wrapper_lg}px;
   padding: 16px;
   overflow-wrap: break-word;

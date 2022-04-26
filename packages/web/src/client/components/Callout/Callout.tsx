@@ -5,7 +5,7 @@ import { Button, ButtonContainer } from 'components/Button/Button'
 import { FadeUp } from 'components/Transitions/FadeUp'
 
 import {
-  COLORS,
+  Colors,
   RADII,
   PADDING,
   THEME_TYPES,
@@ -47,7 +47,7 @@ export const Callout = () => {
 
 const CalloutContainer = styled.a<{ $theme: THEME_TYPES.DARK }>`
   display: block;
-  background-color: ${COLORS.lightgrey_2};
+  background-color: ${Colors.lightgrey_2};
   border-radius: ${RADII.wrapper_lg}px;
   padding: ${PADDING.s}px;
   display: flex;

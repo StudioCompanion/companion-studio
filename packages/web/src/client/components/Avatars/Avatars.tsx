@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { useSprings, animated } from '@react-spring/web'
 
-import { COLORS } from 'styles/constants'
+import { Colors } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
@@ -88,7 +88,7 @@ const GridImageWrapper = styled.div`
   border-radius: 100%;
   padding: 4px;
   width: 40px;
-  background: ${COLORS.lightgrey_2};
+  background: ${Colors.lightgrey_2};
   position: relative;
 
   & img {

@@ -7,7 +7,7 @@ import isEmail from 'validator/lib/isEmail'
 
 import { Input } from '../Inputs/Input'
 
-import { COLORS, PADDING } from 'styles/constants'
+import { Colors, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
@@ -241,9 +241,9 @@ export const Footer = () => {
 }
 
 const FooterContainer = styled.footer`
-  background-color: ${COLORS.darkblue};
+  background-color: ${Colors.darkblue};
   border-radius: 12px;
-  color: ${COLORS.white};
+  color: ${Colors.white};
   padding: 20px;
 `
 const FooterContent = styled.div`
@@ -326,7 +326,7 @@ const ImprintLine = styled.span`
   opacity: 0.5;
   a {
     text-decoration: none;
-    color: ${COLORS.white};
+    color: ${Colors.white};
 
     &:hover {
       text-decoration: underline;
@@ -349,8 +349,8 @@ const FormFeedback = styled.div`
 
 const FormButton = styled.button`
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};
-  background-color: ${COLORS.white};
-  color: ${COLORS.darkblue};
+  background-color: ${Colors.white};
+  color: ${Colors.darkblue};
   border-radius: 500px;
   border: none;
   cursor: pointer;
@@ -378,7 +378,7 @@ const FooterLinks = styled.div`
 const FooterLink = styled.a`
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};
   text-decoration: none;
-  color: ${COLORS.white};
+  color: ${Colors.white};
   margin-right: 24px;
 
   &:hover {

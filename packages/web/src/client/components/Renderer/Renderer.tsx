@@ -1,3 +1,4 @@
+import { Carousel } from 'components/Carousel/Carousel'
 import { Testimonial } from 'components/Testimonial/Testimonial'
 import { TextSection } from 'components/TextSection/TextSection'
 
@@ -17,6 +18,8 @@ export const Renderer = ({ blocks }: RendererProps) => {
             return <TextSection key={_key} {...block} />
           case 'blockTestimonial':
             return <Testimonial key={_key} {...block} />
+          case 'blockMedia':
+            return <Carousel key={_key} {...block} />
           default:
             return null
         }

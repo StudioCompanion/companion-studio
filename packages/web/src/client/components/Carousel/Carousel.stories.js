@@ -4,7 +4,7 @@ import testVid from '../../../../public/testvid.mp4'
 import testPhoneVid from '../../../../public/testvid_phone.mp4'
 import testVid_poster from '../../../../public/testvid_placeholder.png'
 
-import { CAROUSEL_LAYOUTS } from '../../styles/constants'
+import { CarouselLayouts } from '../../styles/constants'
 
 const heroItem = {
   url: {
@@ -132,7 +132,7 @@ Phone_Video.args = {
 export const HalfW = Template.bind({})
 
 HalfW.args = {
-  layout: CAROUSEL_LAYOUTS.HALF,
+  layout: CarouselLayouts.HALF,
   items: halfItems,
   bgColor: '#E6EEEC',
 }
@@ -140,7 +140,7 @@ HalfW.args = {
 export const TwoThirdsW = Template.bind({})
 
 TwoThirdsW.args = {
-  layout: CAROUSEL_LAYOUTS.TWO_THIRDS,
+  layout: CarouselLayouts.TWO_THIRDS,
   items: [TwoThirdsItem],
   bgColor: '#E6EEEC',
 }

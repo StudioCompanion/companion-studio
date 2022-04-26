@@ -1,13 +1,20 @@
-import { PortableText, PortableTextReactComponents } from '@portabletext/react'
+import { PropsWithChildren } from 'react'
+import {
+  PortableText,
+  PortableTextReactComponents,
+  PortableTextMarkComponentProps,
+} from '@portabletext/react'
 import type { PortableTextBlock } from '@portabletext/types'
 import styled from 'styled-components'
 
-import { SanityGenerated } from 'src/types'
+import { Sanity, SanityGenerated } from 'src/types'
 
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_20_400 } from 'styles/fonts'
 import { PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { isArrayGuard, isStringGuard } from 'helpers/guards'
+import { InlineLink } from 'components/Links/InlineLink'
 
 interface RichTextRendererProps {
   blocks: PortableTextBlock | SanityGenerated.RichText
@@ -43,6 +50,7 @@ const Paragraph = styled.p`
 
   & + & {
     margin-top: ${PADDING.m}px;
+
     ${MEDIA_QUERIES.tabletUp} {
       margin-top: ${PADDING.m}px;
     }
@@ -57,5 +65,17 @@ const components: Partial<PortableTextReactComponents> = {
     h4: Heading4,
     h5: Heading5,
     normal: Paragraph,
+  },
+  marks: {
+    link: (
+      props: PropsWithChildren<
+        PortableTextMarkComponentProps<Sanity.Link & { _type: 'link' }>
+      >
+    ) => {
+      return isArrayGuard(props.children) &&
+        isStringGuard(props.children[0]) ? (
+        <InlineLink {...props.value} label={props.children[0]} />
+      ) : null
+    },
   },
 }

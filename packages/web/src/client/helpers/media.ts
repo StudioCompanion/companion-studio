@@ -1,9 +1,12 @@
 import {
   ASPECT_RATIOS,
   CARD_LAYOUTS,
-  CAROUSEL_LAYOUTS,
+  CarouselLayouts,
   LAYOUTS,
 } from 'styles/constants'
+import { WIDTHS } from 'styles/dimensions'
+
+import { findLastNonNullValue } from './arrays'
 
 export const getAspectRatio = (
   layout: LAYOUTS,
@@ -17,11 +20,11 @@ export const getAspectRatio = (
     return evalAspect(suppliedVal[size])
   }
   switch (layout) {
-    case CAROUSEL_LAYOUTS.FULL:
+    case CarouselLayouts.FULL:
       return ASPECT_RATIOS.carousel.full[size]
-    case CAROUSEL_LAYOUTS.HALF:
+    case CarouselLayouts.HALF:
       return ASPECT_RATIOS.carousel.half[size]
-    case CAROUSEL_LAYOUTS.TWO_THIRDS:
+    case CarouselLayouts.TWO_THIRDS:
       return ASPECT_RATIOS.carousel.two_thirds[size]
     case CARD_LAYOUTS.STUDIO:
       return ASPECT_RATIOS.card.studio[size]
@@ -45,4 +48,40 @@ const evalAspect = (aspect: string | number): string => {
   }
 
   return ''
+}
+
+export type SizesArray = [
+  largeMobile: string | null,
+  tablet?: string | null,
+  smallDesktop?: string | null,
+  largeDesktop?: string | null
+]
+
+export const generateSrcSetSizes = (sizes?: string | SizesArray) => {
+  if (!sizes) {
+    return undefined
+  }
+
+  if (typeof sizes === 'string') {
+    return sizes
+  }
+
+  if (sizes.length === 1 && sizes[0] !== null) {
+    return sizes[0]
+  }
+
+  return sizes
+    .map((val, i) => {
+      if (i === sizes.length - 1) {
+        return sizes[i]
+      }
+
+      let current = val
+      if (val === null) {
+        current = findLastNonNullValue(sizes, i)
+      }
+
+      return `(max-width: ${Object.values(WIDTHS).slice(4, 8)[i]}px) ${current}`
+    })
+    .join(', ')
 }

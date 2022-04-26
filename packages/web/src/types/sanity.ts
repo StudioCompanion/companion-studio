@@ -3,6 +3,7 @@ import {
   SanityImageDimensions,
   SanityReference,
 } from 'sanity-codegen'
+import { CarouselLayouts, Colors } from 'styles/constants'
 
 import { SanityGenerated } from './index'
 
@@ -34,7 +35,7 @@ export type BlockText = SanityGenerated.SanityKeyed<SanityGenerated.BlockText>
 export type BlockTestimonial =
   SanityGenerated.SanityKeyed<SanityGenerated.BlockTestimonial>
 
-interface BlockMediaItem {
+export interface BlockMediaItem {
   _type: 'item'
   hasMobile?: boolean
   caption?: string
@@ -43,8 +44,10 @@ interface BlockMediaItem {
 }
 
 export type BlockMedia = SanityGenerated.SanityKeyed<
-  Omit<SanityGenerated.BlockMedia, 'items'> & {
+  Omit<SanityGenerated.BlockMedia, 'items' | 'layout' | 'backgroundColor'> & {
     items: SanityGenerated.SanityKeyed<BlockMediaItem>[]
+    layout: CarouselLayouts
+    backgroundColor: Colors
   }
 >
 
@@ -86,4 +89,16 @@ export interface ProjectPage extends DocumentBase {
   subtext?: string
   blocks?: Blocks
   team?: Team
+}
+
+export type Pages =
+  | SanityGenerated.Homepage
+  | SanityGenerated.Approachpage
+  | SanityGenerated.Teampage
+  | SanityGenerated.Project
+
+export interface Link {
+  label?: string
+  url?: string | Pages
+  isExternal?: boolean
 }

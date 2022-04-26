@@ -1,7 +1,7 @@
 export const DESKTOP = 'desktop'
 export const MOBILE = 'mobile'
 
-export enum CAROUSEL_LAYOUTS {
+export enum CarouselLayouts {
   FULL = 'full',
   HALF = 'half',
   TWO_THIRDS = '2/3',
@@ -12,7 +12,7 @@ export enum CARD_LAYOUTS {
   CASE_STUDY = 'case',
 }
 
-export type LAYOUTS = CAROUSEL_LAYOUTS | CARD_LAYOUTS
+export type LAYOUTS = CarouselLayouts | CARD_LAYOUTS
 
 export const ASPECT_RATIOS = {
   video: {
@@ -65,7 +65,7 @@ export const PADDING = {
   xxl: 60,
 }
 
-export enum COLORS {
+export enum Colors {
   white = '#FFFFFF',
   lightgrey = '#F1F1F4',
   lightgrey_2 = '#E5E5EB',
@@ -90,20 +90,20 @@ export enum THEME_TYPES {
 
 export const THEMES = {
   [THEME_TYPES.LIGHT]: {
-    background: COLORS.white,
-    color: COLORS.darkblue,
-    hover_background: COLORS.lightgrey_2,
-    hover_color: COLORS.darkblue,
+    background: Colors.white,
+    color: Colors.darkblue,
+    hover_background: Colors.lightgrey_2,
+    hover_color: Colors.darkblue,
   },
   [THEME_TYPES.DARK]: {
-    background: COLORS.darkblue,
-    color: COLORS.white,
-    hover_background: COLORS.darkblue_light,
-    hover_color: COLORS.white,
+    background: Colors.darkblue,
+    color: Colors.white,
+    hover_background: Colors.darkblue_light,
+    hover_color: Colors.white,
   },
   [THEME_TYPES.GREY]: {
-    background: COLORS.lightgrey_2,
-    color: COLORS.darkblue,
+    background: Colors.lightgrey_2,
+    color: Colors.darkblue,
   },
 }
 

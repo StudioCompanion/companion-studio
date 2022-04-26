@@ -1,4 +1,4 @@
-import { COLORS } from './constants'
+import { Colors } from './constants'
 import { getFontStyles } from './getFontStyles'
 import {
   FONT_STYLE_APFEL_12_400,
@@ -50,7 +50,7 @@ export const CSS_GLOBAL = `
   body {
     margin: 0;
     padding: 0;
-    color: ${COLORS.darkblue}
+    color: ${Colors.darkblue}
   }
 
   h1,

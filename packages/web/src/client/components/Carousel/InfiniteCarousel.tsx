@@ -15,23 +15,19 @@ import useMeasure from 'react-use-measure'
 import { useDrag } from 'react-use-gesture'
 import { useSprings, animated } from '@react-spring/web'
 import styled from 'styled-components'
+import { Sanity, SanityGenerated } from 'src/types'
 
 export interface SliderApi {
   next: (ind: number) => number
   prev: (ind: number) => number
 }
 
-export interface IImage {
-  url: {
-    desktop: string
-    mobile: string
-  }
-  alt?: string
-}
-
 interface InfiniteSliderProps {
-  items: IImage[]
-  children: (img: IImage, index: number) => ReactNode
+  items: SanityGenerated.SanityKeyed<Sanity.BlockMediaItem>[]
+  children: (
+    img: SanityGenerated.SanityKeyed<Sanity.BlockMediaItem>,
+    index: number
+  ) => ReactNode
   className?: string
   onDragEnd?: (ind: number) => void
 }

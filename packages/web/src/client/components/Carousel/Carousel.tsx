@@ -7,8 +7,8 @@ import {
   DESKTOP,
   MOBILE,
   PADDING,
-  COLORS,
-  CAROUSEL_LAYOUTS,
+  Colors,
+  CarouselLayouts,
 } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
@@ -22,27 +22,19 @@ import { Slide } from './Slide'
 import { IVideo, Video } from './Video'
 import { InfiniteSlider, SliderApi, IImage } from './InfiniteCarousel'
 import { Cursor } from './Cursor'
+import { Sanity } from 'src/types'
 
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
 
-const regex = new RegExp(/^.*.(mp4|MP4|webm|WEBM)$/)
-
-interface CarouselProps {
-  bgColor?: COLORS
-  bgImage?: string
-  items: Array<IImage | IVideo>
-  layout?: CAROUSEL_LAYOUTS
-  hero?: boolean
-}
-
-export const Carousel = ({
-  bgColor = COLORS.lightgrey_2,
-  bgImage,
-  items,
-  layout = CAROUSEL_LAYOUTS.FULL,
-  hero,
-}: CarouselProps) => {
+export const Carousel = (props: Sanity.BlockMedia) => {
+  console.log(props)
+  const {
+    backgroundColor = Colors.lightgrey_2,
+    items,
+    layout = CarouselLayouts.FULL,
+    isHero,
+  } = props
   const itemCount = items.length
   const [containerEl, { width, left }] = useMeasure()
   const [activeIndex, setActiveIndex] = useState(0)
@@ -52,8 +44,9 @@ export const Carousel = ({
 
   const [paused, setPaused] = useState(false)
   const video = items.find(
-    (item) => regex.test(item.url.desktop) || regex.test(item.url.mobile)
-  ) as IVideo | undefined
+    (item) =>
+      item?.desktop?._type === 'video' || item?.mobile?._type === 'video'
+  )
 
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -122,8 +115,7 @@ export const Carousel = ({
   return (
     <>
       {showCursor && <Cursor icon={cursorIcon()} ref={cursorRef} />}
-
-      <Wrapper $hero={hero} $layout={layout}>
+      <Wrapper $hero={isHero} $layout={layout}>
         <FadeUp>
           <Container
             ref={containerEl}
@@ -132,40 +124,31 @@ export const Carousel = ({
             onMouseMove={handleMouseMove}
             onClick={handleClick}
             $layout={layout}
-            $bgColor={bgColor}
-            $bgImage={bgImage}
+            $bgColor={backgroundColor}
+            // $bgImage={bgImage}
             $showCursor={showCursor}
           >
             <Inner>
-              {video ? (
-                <Video
-                  video={video}
-                  ref={videoRef}
-                  setPaused={setPaused}
-                  layout={layout}
-                />
-              ) : (
+              {video ? // <Video
+              //   video={video}
+              //   ref={videoRef}
+              //   setPaused={setPaused}
+              //   layout={layout}
+              // />
+              null : (
                 <InfiniteSlider
                   ref={sliderApi}
-                  items={items as IImage[]}
+                  items={items}
                   onDragEnd={handleDragEnd}
                 >
-                  {(item) => (
-                    <Slide
-                      key={item.url.desktop}
-                      url={item.url}
-                      alt={item.alt}
-                    />
-                  )}
+                  {(item) => <Slide key={item._key} {...item} />}
                 </InfiniteSlider>
               )}
             </Inner>
           </Container>
           <Caption>
-            {(items[activeIndex] as IVideo).caption ? (
-              <CaptionText>
-                {(items[activeIndex] as IVideo).caption}
-              </CaptionText>
+            {items[activeIndex].caption ? (
+              <CaptionText>{items[activeIndex].caption}</CaptionText>
             ) : null}
             {!video && itemCount > 1 && (
               <Dots>
@@ -184,7 +167,7 @@ export const Carousel = ({
   )
 }
 
-const Wrapper = styled.div<{ $hero?: boolean; $layout: CAROUSEL_LAYOUTS }>`
+const Wrapper = styled.div<{ $hero?: boolean; $layout: CarouselLayouts }>`
   width: 100%;
   margin-bottom: ${(p) => (p.$hero ? `${PADDING.xl}px` : `${PADDING.s}px`)};
 
@@ -192,11 +175,11 @@ const Wrapper = styled.div<{ $hero?: boolean; $layout: CAROUSEL_LAYOUTS }>`
     margin-bottom: ${(p) => (p.$hero ? 0 : `${PADDING.m}px`)};
     width: ${({ $layout }) => {
       switch ($layout) {
-        case CAROUSEL_LAYOUTS.FULL:
+        case CarouselLayouts.FULL:
           return '100%'
-        case CAROUSEL_LAYOUTS.HALF:
+        case CarouselLayouts.HALF:
           return `calc(50% - ${PADDING.m / 2}px)`
-        case CAROUSEL_LAYOUTS.TWO_THIRDS:
+        case CarouselLayouts.TWO_THIRDS:
           return `${(2 / 3) * 100}%`
       }
     }};
@@ -207,7 +190,7 @@ const Container = styled.div<{
   $bgColor?: string
   $bgImage?: string
   $showCursor: boolean
-  $layout: CAROUSEL_LAYOUTS
+  $layout: CarouselLayouts
 }>`
   width: 100%;
   position: relative;

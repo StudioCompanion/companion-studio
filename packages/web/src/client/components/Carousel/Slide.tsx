@@ -1,32 +1,27 @@
 import styled from 'styled-components'
-import Image from 'next/image'
 import { useMediaQuery } from 'react-responsive'
 
 import { WIDTHS } from 'styles/dimensions'
+import { Media } from 'components/Media/Media'
+import { Sanity } from 'src/types'
 
-import type { IImage } from './InfiniteCarousel'
-
-export const Slide = ({ url, alt }: IImage) => {
+export const Slide = ({
+  hasMobile,
+  desktop,
+  mobile,
+}: Sanity.BlockMediaItem) => {
   const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
+
+  if (!desktop) {
+    return null
+  }
 
   return (
     <ImageWrapper>
-      {tabletUp ? (
-        <Image
-          draggable={false}
-          src={url.desktop}
-          alt={alt}
-          layout="fill"
-          placeholder="blur"
-        />
+      {!tabletUp && hasMobile && mobile ? (
+        <Media {...mobile} />
       ) : (
-        <Image
-          draggable={false}
-          src={url.mobile}
-          alt={alt}
-          layout="fill"
-          placeholder="blur"
-        />
+        <Media {...desktop} />
       )}
     </ImageWrapper>
   )
