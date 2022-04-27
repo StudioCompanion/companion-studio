@@ -6,12 +6,14 @@ import { Sanity } from 'src/types'
 import { SizesArray } from '../../helpers/media'
 
 import { MediaImage } from './MediaImage'
-import { MediaMux } from './MediaMux'
+import { MediaMux, MediaMuxProps } from './MediaMux'
 
-type SharedMediaProps = {
+type SharedMediaProps = Pick<
+  MediaMuxProps,
+  'isPaused' | 'floodParent' | 'onAutoplayCallback'
+> & {
   className?: string
   sizes?: SizesArray
-  floodParent?: boolean
   objectFit?: 'cover' | 'contain'
 }
 

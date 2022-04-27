@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, MouseEvent } from 'react'
+import React, { useState, useRef, MouseEvent } from 'react'
 import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
 
@@ -50,15 +50,8 @@ export const Carousel = (props: Sanity.BlockMedia) => {
       item?.desktop?._type === 'video' || item?.mobile?._type === 'video'
   )
 
-  const videoRef = useRef<HTMLVideoElement>(null)
-
   const [showCursor, setShowCursor] = useState(false)
   const cursorRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (videoRef.current && videoRef.current.paused !== paused)
-      setPaused(videoRef.current.paused)
-  }, [paused])
 
   const cursorIcon = () => {
     if (video) {
@@ -134,7 +127,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
               {video ? (
                 <Video
                   video={video}
-                  ref={videoRef}
+                  isPaused={paused}
                   setPaused={setPaused}
                   layout={layout}
                 />

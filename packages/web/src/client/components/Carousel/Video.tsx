@@ -1,14 +1,6 @@
-import {
-  Dispatch,
-  forwardRef,
-  MutableRefObject,
-  SetStateAction,
-  useEffect,
-  useRef,
-} from 'react'
+import { Dispatch, SetStateAction, useCallback } from 'react'
 import styled from 'styled-components'
 import { useMediaQuery } from 'react-responsive'
-import useIntersectionObserver from '@react-hook/intersection-observer'
 
 import { WIDTHS } from 'styles/dimensions'
 import {
@@ -43,83 +35,62 @@ interface VideoProps {
   video: Sanity.BlockMediaItem
   layout?: CarouselLayouts
   setPaused: Dispatch<SetStateAction<boolean>>
+  isPaused?: boolean
 }
 
-export const Video = forwardRef<HTMLVideoElement, VideoProps>(
-  ({ video, setPaused, layout = CarouselLayouts.FULL }, videoRef) => {
-    const isTabletUp = useMediaQuery({
-      query: `(min-width: ${WIDTHS.tablet}px)`,
-    })
-    const firstUpdate = useRef(true)
-    const { isIntersecting } = useIntersectionObserver(
-      videoRef as MutableRefObject<HTMLVideoElement>
-    )
-    const autoPause = useRef(false)
-    const srcRef = useRef<HTMLSourceElement>(null!)
+export const Video = ({
+  video,
+  setPaused,
+  layout = CarouselLayouts.FULL,
+  isPaused,
+}: VideoProps) => {
+  const isTabletUp = useMediaQuery({
+    query: `(min-width: ${WIDTHS.tablet}px)`,
+  })
 
-    // const handlePlay = () => {
-    //   setPaused(false)
-    // }
-
-    // const handlePause = () => {
-    //   setPaused(true)
-    // }
-
-    // useEffect(() => {
-    //   if (!isIntersecting) {
-    //     autoPause.current = true
-    //     if (firstUpdate.current) return
-    //     if (!(videoRef as MutableRefObject<HTMLVideoElement>).current.paused) {
-    //       ;(videoRef as MutableRefObject<HTMLVideoElement>).current.pause()
-    //     }
-    //   }
-    //   // check for autoPause variable to play only if the video has been automatically paused, not if the user has manually paused it
-    //   if (
-    //     autoPause.current &&
-    //     isIntersecting &&
-    //     (videoRef as MutableRefObject<HTMLVideoElement>).current.paused
-    //   ) {
-    //     ;(videoRef as MutableRefObject<HTMLVideoElement>).current.play()
-    //     autoPause.current = false
-    //   }
-    // }, [videoRef, isIntersecting])
-
-    // const handleVideoClick = () => {
-    //   if ((videoRef as MutableRefObject<HTMLVideoElement>).current.paused) {
-    //     ;(videoRef as MutableRefObject<HTMLVideoElement>).current.play()
-    //   } else {
-    //     ;(videoRef as MutableRefObject<HTMLVideoElement>).current.pause()
-    //   }
-    // }
-
-    return (
-      <VideoFlex>
-        <VideoWrapper
-          $mobileWidth={calcWidth(MOBILE, layout, video.mobile?.dimensions)}
-          $desktopWidth={calcWidth(DESKTOP, layout, video.desktop?.dimensions)}
-        >
-          {!isTabletUp && video.mobile?.asset ? (
-            <VideoAspect
-              $aspectRatio={
-                video.mobile.dimensions.height / video.mobile.dimensions.width
-              }
-            >
-              <VideoItem {...video.mobile} />
-            </VideoAspect>
-          ) : video.desktop?.asset ? (
-            <VideoAspect
-              $aspectRatio={
-                video.desktop.dimensions.height / video.desktop.dimensions.width
-              }
-            >
-              <VideoItem {...video.desktop} />
-            </VideoAspect>
-          ) : null}
-        </VideoWrapper>
-      </VideoFlex>
-    )
+  const handleVideoClick = () => {
+    setPaused((s) => !s)
   }
-)
+
+  const handleAutoplayCallback = useCallback((isPlaying: boolean) => {
+    setPaused(!isPlaying)
+  }, [])
+
+  return (
+    <VideoFlex onClick={handleVideoClick}>
+      <VideoWrapper
+        $mobileWidth={calcWidth(MOBILE, layout, video.mobile?.dimensions)}
+        $desktopWidth={calcWidth(DESKTOP, layout, video.desktop?.dimensions)}
+      >
+        {!isTabletUp && video.mobile?.asset ? (
+          <VideoAspect
+            $aspectRatio={
+              video.mobile.dimensions.height / video.mobile.dimensions.width
+            }
+          >
+            <VideoItem
+              {...video.mobile}
+              isPaused={isPaused}
+              onAutoplayCallback={handleAutoplayCallback}
+            />
+          </VideoAspect>
+        ) : video.desktop?.asset ? (
+          <VideoAspect
+            $aspectRatio={
+              video.desktop.dimensions.height / video.desktop.dimensions.width
+            }
+          >
+            <VideoItem
+              {...video.desktop}
+              isPaused={isPaused}
+              onAutoplayCallback={handleAutoplayCallback}
+            />
+          </VideoAspect>
+        ) : null}
+      </VideoWrapper>
+    </VideoFlex>
+  )
+}
 
 const calcWidth = (
   size: keyof typeof ASPECT_RATIOS['carousel']['full'],
