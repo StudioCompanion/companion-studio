@@ -98,7 +98,7 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
           $mobileWidth={calcWidth(MOBILE, layout, video.mobile?.dimensions)}
           $desktopWidth={calcWidth(DESKTOP, layout, video.desktop?.dimensions)}
         >
-          {!isTabletUp && video.mobile ? (
+          {!isTabletUp && video.mobile?.asset ? (
             <VideoAspect
               $aspectRatio={
                 video.mobile.dimensions.height / video.mobile.dimensions.width
@@ -106,7 +106,7 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
             >
               <VideoItem {...video.mobile} />
             </VideoAspect>
-          ) : video.desktop ? (
+          ) : video.desktop?.asset ? (
             <VideoAspect
               $aspectRatio={
                 video.desktop.dimensions.height / video.desktop.dimensions.width

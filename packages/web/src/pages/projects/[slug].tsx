@@ -18,7 +18,6 @@ interface ProjectPageProps {
 }
 
 const ProjectPage = ({ document }: ProjectPageProps) => {
-  console.log(document)
   const { blocks = [], title, subtext, team } = document
   return (
     <>

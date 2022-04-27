@@ -1,3 +1,5 @@
+import media from '../objects/media'
+
 export default {
   name: 'blockMedia',
   title: 'Media Block',
@@ -33,6 +35,11 @@ export default {
       title: 'Background Color',
       type: 'string',
       initialValue: '#E5E5EB',
+    },
+    {
+      name: 'backgroundImage',
+      title: 'Background Image',
+      type: 'image',
     },
     {
       name: 'items',
@@ -90,6 +97,9 @@ export default {
     prepare(selection) {
       const { items = [], layout } = selection
       return {
+        media: items[0]?.desktop?.image?.asset
+          ? items[0].desktop.image
+          : undefined,
         subtitle: `Media block`,
         title: `${items.length} slides, ${layout} layout`,
       }

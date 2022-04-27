@@ -24,13 +24,14 @@ import { InfiniteSlider, SliderApi } from './InfiniteCarousel'
 import { Cursor } from './Cursor'
 
 import { Sanity } from 'src/types'
+import { Media } from 'components/Media/Media'
 
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
 
 export const Carousel = (props: Sanity.BlockMedia) => {
-  console.log(props)
   const {
+    backgroundImage,
     backgroundColor = Colors.lightgrey_2,
     items,
     layout = CarouselLayouts.FULL,
@@ -126,9 +127,9 @@ export const Carousel = (props: Sanity.BlockMedia) => {
             onClick={handleClick}
             $layout={layout}
             $bgColor={backgroundColor}
-            // $bgImage={bgImage}
             $showCursor={showCursor}
           >
+            {backgroundImage ? <Media {...backgroundImage} /> : null}
             <Inner>
               {video ? (
                 <Video

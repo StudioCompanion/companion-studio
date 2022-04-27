@@ -44,6 +44,7 @@ export type BlockMedia = SanityGenerated.SanityKeyed<
     items: SanityGenerated.SanityKeyed<BlockMediaItem>[]
     layout: CarouselLayouts
     backgroundColor: Colors
+    backgroundImage: Image
   }
 >
 
