@@ -130,18 +130,12 @@ export const Carousel = (props: Sanity.BlockMedia) => {
             onMouseLeave={handleMouseLeave}
             onMouseMove={handleMouseMove}
             onClick={handleClick}
-            $layout={layout}
             $bgColor={backgroundColor}
             $showCursor={showCursor}
           >
             {backgroundImage ? <BackgroundImage {...backgroundImage} /> : null}
             {video ? (
-              <Video
-                video={video}
-                isPaused={paused}
-                setPaused={setPaused}
-                layout={layout}
-              />
+              <Video video={video} isPaused={paused} setPaused={setPaused} />
             ) : (
               <InfiniteSlider
                 ref={sliderApi}
@@ -195,7 +189,6 @@ const Wrapper = styled.section<{ $hero?: boolean; $layout: CarouselLayouts }>`
 const Container = styled.div<{
   $bgColor?: string
   $showCursor: boolean
-  $layout: CarouselLayouts
 }>`
   width: 100%;
   position: relative;

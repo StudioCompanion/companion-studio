@@ -5,12 +5,7 @@ import { VideoPlayer, VideoPlayerProps } from '../Video/VideoPlayer'
 export type MediaMuxProps = Sanity.Mux &
   Omit<VideoPlayerProps, 'src' | 'poster'>
 
-export const MediaMux = ({
-  asset,
-  floodParent,
-  isPaused,
-  onAutoplayCallback,
-}: MediaMuxProps) => {
+export const MediaMux = ({ asset, ...restProps }: MediaMuxProps) => {
   const { playbackId, thumbTime } = asset
 
   if (!playbackId) {
@@ -25,15 +20,7 @@ export const MediaMux = ({
     fitMode: 'preserve',
   })
 
-  return (
-    <VideoPlayer
-      floodParent={floodParent}
-      src={src}
-      poster={poster}
-      isPaused={isPaused}
-      onAutoplayCallback={onAutoplayCallback}
-    />
-  )
+  return <VideoPlayer src={src} poster={poster} {...restProps} />
 }
 
 export default function getPosterSrc(

@@ -9,6 +9,7 @@ export type VideoPlayerProps = {
   floodParent?: boolean
   isPaused?: boolean
   onAutoplayCallback?: (isPlaying: boolean) => void
+  onClick?: () => void
 }
 
 export const VideoPlayer = ({
@@ -17,6 +18,7 @@ export const VideoPlayer = ({
   floodParent,
   isPaused,
   onAutoplayCallback,
+  onClick,
 }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null!)
 
@@ -74,8 +76,14 @@ export const VideoPlayer = ({
     }
   }, [src])
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick()
+    }
+  }
+
   return (
-    <VideoContainer $floodParent={floodParent}>
+    <VideoContainer $floodParent={floodParent} onClick={handleClick}>
       <Video
         ref={videoRef}
         preload="auto"

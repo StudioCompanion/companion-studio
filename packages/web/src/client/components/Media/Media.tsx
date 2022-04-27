@@ -11,7 +11,7 @@ import { aspectRatio } from 'styles/mixins'
 
 type SharedMediaProps = Pick<
   MediaMuxProps,
-  'isPaused' | 'floodParent' | 'onAutoplayCallback'
+  'isPaused' | 'floodParent' | 'onAutoplayCallback' | 'onClick'
 > & {
   className?: string
   sizes?: SizesArray
