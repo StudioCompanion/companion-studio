@@ -7,10 +7,11 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
 
-import { Nav } from './Headers/SiteHeader'
-import { Callout } from './Callout/Callout'
-import { Footer } from './Footer/Footer'
-import { Splash } from './Splash/Splash'
+import { Nav } from '../Headers/SiteHeader'
+import { Splash } from '../Splash/Splash'
+
+import { Callout } from './SiteCallout'
+import { Footer } from './SiteFooter'
 
 interface LayoutProps {
   children: React.ReactNode

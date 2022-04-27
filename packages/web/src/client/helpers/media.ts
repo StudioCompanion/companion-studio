@@ -25,7 +25,7 @@ export const getAspectRatio = (
     case CarouselLayouts.HALF:
       return ASPECT_RATIOS.carousel.half[size]
     case CarouselLayouts.TWO_THIRDS:
-      return ASPECT_RATIOS.carousel.two_thirds[size]
+      return ASPECT_RATIOS.carousel['2/3'][size]
     case CARD_LAYOUTS.STUDIO:
       return ASPECT_RATIOS.card.studio[size]
     case CARD_LAYOUTS.CASE_STUDY:

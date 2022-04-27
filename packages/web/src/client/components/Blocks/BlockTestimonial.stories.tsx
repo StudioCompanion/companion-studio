@@ -1,4 +1,4 @@
-import { Testimonial, TestimonialProps } from './Testimonial'
+import { Testimonial, TestimonialProps } from './BlockTestimonial'
 import { Story, Meta } from '@storybook/react'
 
 const Template: Story<TestimonialProps> = (args) => (

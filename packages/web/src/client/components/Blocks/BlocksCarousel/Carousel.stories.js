@@ -1,10 +1,10 @@
-import { Carousel } from './Carousel'
+import { Carousel } from '.'
 
 import testVid from '../../../../public/testvid.mp4'
 import testPhoneVid from '../../../../public/testvid_phone.mp4'
 import testVid_poster from '../../../../public/testvid_placeholder.png'
 
-import { CarouselLayouts } from '../../styles/constants'
+import { CarouselLayouts } from '../../../styles/constants'
 
 const heroItem = {
   url: {

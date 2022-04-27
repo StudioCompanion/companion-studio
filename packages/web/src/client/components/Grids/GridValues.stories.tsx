@@ -1,4 +1,4 @@
-import { ValuesGrid } from './ValuesGrid'
+import { ValuesGrid } from './GridValues'
 import { Story, Meta } from '@storybook/react'
 
 const Template: Story = (args) => <ValuesGrid {...args} />

@@ -1,12 +1,7 @@
 import styled from 'styled-components'
 
-import { PADDING } from '../../styles/constants'
-import { getFontStyles } from '../../styles/getFontStyles'
-import { MEDIA_QUERIES } from '../../styles/mediaQueries'
-import {
-  FONT_STYLE_APFEL_12_400,
-  FONT_STYLE_RECKLESS_20_400,
-} from '../../styles/fonts'
+import { PADDING } from 'styles/constants'
+import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
