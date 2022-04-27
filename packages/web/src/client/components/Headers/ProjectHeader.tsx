@@ -19,7 +19,7 @@ export const ProjecHeader = ({ title, subtext, team }: ProjectHeaderProps) => {
             {subtext}
           </Heading>
         ) : null}
-        {subtext ? (
+        {title ? (
           <Heading tag="h2" fontStyle={FONT_STYLE_APFEL_58_500}>
             {title}
           </Heading>
