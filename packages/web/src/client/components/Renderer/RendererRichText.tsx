@@ -10,7 +10,14 @@ import styled from 'styled-components'
 import { Sanity, SanityGenerated } from 'src/types'
 
 import { getFontStyles } from 'styles/getFontStyles'
-import { FONT_STYLE_RECKLESS_20_400 } from 'styles/fonts'
+import {
+  FONT_STYLE_APFEL_17_400,
+  FONT_STYLE_APFEL_26_400,
+  FONT_STYLE_APFEL_32_400,
+  FONT_STYLE_APFEL_44_400,
+  FONT_STYLE_APFEL_58_400,
+  FONT_STYLE_RECKLESS_20_400,
+} from 'styles/fonts'
 import { PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { isArrayGuard, isStringGuard } from 'helpers/guards'
@@ -29,21 +36,28 @@ export const RendererRichText = ({
     <PortableText value={blocks as PortableTextBlock} components={components} />
   </TextContainer>
 )
-/**
- * TODO: Add text styles
- * across the board
- */
+
 const TextContainer = styled.div``
 
-const Heading1 = styled.h1``
+const Heading1 = styled.h1`
+  ${getFontStyles(FONT_STYLE_APFEL_58_400)}
+`
 
-const Heading2 = styled.h2``
+const Heading2 = styled.h2`
+  ${getFontStyles(FONT_STYLE_APFEL_44_400)}
+`
 
-const Heading3 = styled.h3``
+const Heading3 = styled.h3`
+  ${getFontStyles(FONT_STYLE_APFEL_32_400)}
+`
 
-const Heading4 = styled.h4``
+const Heading4 = styled.h4`
+  ${getFontStyles(FONT_STYLE_APFEL_26_400)}
+`
 
-const Heading5 = styled.h5``
+const Heading5 = styled.h5`
+  ${getFontStyles(FONT_STYLE_APFEL_17_400)}
+`
 
 const Paragraph = styled.p`
   ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
@@ -57,6 +71,27 @@ const Paragraph = styled.p`
   }
 `
 
+const BulletList = styled.ul`
+  list-style: disc;
+  ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
+  padding-left: 1.7rem;
+  margin: 0;
+
+  ${MEDIA_QUERIES.tabletUp} {
+    padding-left: 2rem;
+  }
+`
+
+const NumberList = styled.ol`
+  ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
+  padding-left: 1.7rem;
+  margin: 0;
+
+  ${MEDIA_QUERIES.tabletUp} {
+    padding-left: 2rem;
+  }
+`
+
 const components: Partial<PortableTextReactComponents> = {
   block: {
     h1: Heading1,
@@ -65,6 +100,10 @@ const components: Partial<PortableTextReactComponents> = {
     h4: Heading4,
     h5: Heading5,
     normal: Paragraph,
+  },
+  list: {
+    bullet: BulletList,
+    number: NumberList,
   },
   marks: {
     link: (

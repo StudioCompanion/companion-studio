@@ -5,6 +5,7 @@ import {
 import Link from 'next/link'
 import { Sanity } from 'src/types'
 import styled from 'styled-components'
+import { Colors } from 'styles/constants'
 
 interface InlineLinkProps extends Sanity.Link {
   className?: string
@@ -41,9 +42,14 @@ export const InlineLink = (props: InlineLinkProps) => {
 }
 
 const Anchor = styled.a`
-  color: inherit;
+  color: ${Colors.blue};
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
   font-family: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `
