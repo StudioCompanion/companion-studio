@@ -1,4 +1,4 @@
-import { Nav, NavProps } from './Nav'
+import { Nav, NavProps } from './SiteHeader'
 import { Story, Meta } from '@storybook/react'
 
 const Template: Story<NavProps> = (args) => <Nav {...args} />

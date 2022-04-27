@@ -11,6 +11,7 @@ import { Renderer } from 'components/Renderer/Renderer'
 import { ProjecHeader } from 'components/Headers/ProjectHeader'
 
 import { Sanity } from 'src/types'
+import styled from 'styled-components'
 
 interface ProjectPageProps {
   document: Sanity.ProjectPage
@@ -20,10 +21,10 @@ const ProjectPage = ({ document }: ProjectPageProps) => {
   console.log(document)
   const { blocks = [], title, subtext, team } = document
   return (
-    <article>
+    <Article>
       <ProjecHeader title={title} subtext={subtext} team={team} />
       <Renderer blocks={blocks} />
-    </article>
+    </Article>
   )
 }
 
@@ -73,3 +74,10 @@ export const getStaticProps: GetStaticProps<
     revalidate: REVALIDATE_TIME, // seconds
   }
 }
+
+const Article = styled.article`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+`

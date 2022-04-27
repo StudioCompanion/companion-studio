@@ -18,9 +18,7 @@ export type TextSectionProps = Sanity.BlockText
 export const TextSection = ({ richText }: TextSectionProps) => {
   return (
     <Container>
-      <FadeUp>
-        {richText ? <RendererRichText blocks={richText} /> : null}
-      </FadeUp>
+      <FadeUp>{richText ? <RichText blocks={richText} /> : null}</FadeUp>
     </Container>
   )
 }
@@ -30,12 +28,7 @@ const Container = styled.section`
 
   ${MEDIA_QUERIES.tabletUp} {
     margin: ${PADDING.xxl - PADDING.m}px 0 ${PADDING.xxl}px;
-    width: 47%;
-  }
-
-  h3 {
-    ${getFontStyles(FONT_STYLE_APFEL_12_400)}
-    margin-bottom: ${PADDING.xs}px;
+    width: 100%;
   }
 
   .hero + & {
@@ -44,5 +37,11 @@ const Container = styled.section`
     ${MEDIA_QUERIES.tabletUp} {
       margin: ${PADDING.l}px 0px ${PADDING.xl}px;
     }
+  }
+`
+
+const RichText = styled(RendererRichText)`
+  ${MEDIA_QUERIES.tabletUp} {
+    max-width: 47%;
   }
 `

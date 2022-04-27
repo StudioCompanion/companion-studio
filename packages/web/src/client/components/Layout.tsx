@@ -49,12 +49,6 @@ export const Layout = ({ children }: LayoutProps) => {
 }
 
 const Main = styled.main<{ $currentPath: string }>`
-  display: ${({ $currentPath }) =>
-    $currentPath.includes('projects') ? `flex` : `block`};
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-
   padding: ${({ $currentPath }) =>
     $currentPath === '/team' ? `0px` : `0px ${PADDING.s}px`};
   ${MEDIA_QUERIES.tabletUp} {
