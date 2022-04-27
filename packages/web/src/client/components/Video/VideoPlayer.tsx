@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
-import Hls from 'hls.js'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
 export type VideoPlayerProps = {
@@ -53,7 +52,8 @@ export const VideoPlayer = ({
 
     if (!video) return
 
-    let hls: Hls
+    const Hls = require('hls.js')
+    let hls: typeof Hls
 
     if (video.canPlayType('application/vnd.apple.mpegurl')) {
       // This will run in safari, where HLS is supported natively
