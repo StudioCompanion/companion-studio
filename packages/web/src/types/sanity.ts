@@ -13,11 +13,7 @@ export type Mux = {
     playbackId: string | null
     thumbTime: number | null
   }
-  dimensions: {
-    aspectRatio: string | null
-    width: number | null
-    height: number | null
-  }
+  dimensions: SanityImageDimensions
 }
 
 export interface Image {

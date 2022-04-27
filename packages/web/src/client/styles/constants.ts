@@ -19,15 +19,15 @@ export const ASPECT_RATIOS = {
     widescreen: '56.25%',
   },
   carousel: {
-    full: {
+    [CarouselLayouts.FULL]: {
       desktop: '56.25%',
       mobile: '69%',
     },
-    half: {
+    [CarouselLayouts.HALF]: {
       desktop: '114%',
       mobile: '103%',
     },
-    two_thirds: {
+    [CarouselLayouts.TWO_THIRDS]: {
       desktop: '85%',
       mobile: '69%',
     },

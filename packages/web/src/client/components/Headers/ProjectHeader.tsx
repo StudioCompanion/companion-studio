@@ -31,6 +31,7 @@ export const ProjecHeader = ({ title, subtext, team }: ProjectHeaderProps) => {
 }
 
 const Header = styled.header`
+  width: 100%;
   margin-bottom: ${PADDING.m}px;
   display: flex;
   justify-content: space-between;

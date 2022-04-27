@@ -19,9 +19,10 @@ import { getAspectRatio } from 'helpers/media'
 import { FadeUp } from 'components/Transitions/FadeUp'
 
 import { Slide } from './Slide'
-import { IVideo, Video } from './Video'
-import { InfiniteSlider, SliderApi, IImage } from './InfiniteCarousel'
+import { Video } from './Video'
+import { InfiniteSlider, SliderApi } from './InfiniteCarousel'
 import { Cursor } from './Cursor'
+
 import { Sanity } from 'src/types'
 
 const FORWARD = 'forward'

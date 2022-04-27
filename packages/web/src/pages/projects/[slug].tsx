@@ -21,10 +21,12 @@ const ProjectPage = ({ document }: ProjectPageProps) => {
   console.log(document)
   const { blocks = [], title, subtext, team } = document
   return (
-    <Article>
-      <ProjecHeader title={title} subtext={subtext} team={team} />
-      <Renderer blocks={blocks} />
-    </Article>
+    <>
+      <Article>
+        <ProjecHeader title={title} subtext={subtext} team={team} />
+        <Renderer blocks={blocks} />
+      </Article>
+    </>
   )
 }
 

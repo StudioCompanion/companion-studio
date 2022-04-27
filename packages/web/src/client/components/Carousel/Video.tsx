@@ -20,7 +20,9 @@ import {
 } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
-import { Sanity } from 'src/types'
+import { Sanity, SanityGenerated } from 'src/types'
+
+import { Media } from 'components/Media/Media'
 
 export interface IVideo {
   isDevice?: boolean
@@ -55,27 +57,13 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
     const autoPause = useRef(false)
     const srcRef = useRef<HTMLSourceElement>(null!)
 
-    const handlePlay = () => {
-      setPaused(false)
-    }
+    // const handlePlay = () => {
+    //   setPaused(false)
+    // }
 
-    const handlePause = () => {
-      setPaused(true)
-    }
-
-    // useEffect(() => {
-    //   if (firstUpdate.current) {
-    //     firstUpdate.current = false
-    //     ;(videoRef as MutableRefObject<HTMLVideoElement>).current.defaultMuted =
-    //       true
-
-    //     if (video.poster) {
-    //       ;(videoRef as MutableRefObject<HTMLVideoElement>).current.poster =
-    //         isTabletUp ? video.poster.desktop : video.poster.mobile
-    //     }
-    //     return
-    //   }
-    // }, [isTabletUp, video.poster])
+    // const handlePause = () => {
+    //   setPaused(true)
+    // }
 
     // useEffect(() => {
     //   if (!isIntersecting) {
@@ -96,44 +84,37 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
     //   }
     // }, [videoRef, isIntersecting])
 
-    const handleVideoClick = () => {
-      if ((videoRef as MutableRefObject<HTMLVideoElement>).current.paused) {
-        ;(videoRef as MutableRefObject<HTMLVideoElement>).current.play()
-      } else {
-        ;(videoRef as MutableRefObject<HTMLVideoElement>).current.pause()
-      }
-    }
-
-    // useEffect(() => {
-    //   if (
-    //     isIntersecting &&
-    //     srcRef.current &&
-    //     (videoRef as MutableRefObject<HTMLVideoElement>).current.readyState == 0
-    //   ) {
-    //     srcRef.current.src = isTabletUp ? video.url.desktop : video.url.mobile
-    //     ;(videoRef as MutableRefObject<HTMLVideoElement>).current.load()
+    // const handleVideoClick = () => {
+    //   if ((videoRef as MutableRefObject<HTMLVideoElement>).current.paused) {
+    //     ;(videoRef as MutableRefObject<HTMLVideoElement>).current.play()
+    //   } else {
+    //     ;(videoRef as MutableRefObject<HTMLVideoElement>).current.pause()
     //   }
-    // }, [isIntersecting, isTabletUp, video.url])
+    // }
 
     return (
-      <VideoFlex onClick={handleVideoClick}>
+      <VideoFlex>
         <VideoWrapper
-          $mobileWidth={calcWidth(MOBILE, layout, video)}
-          $desktopWidth={calcWidth(DESKTOP, layout, video)}
+          $mobileWidth={calcWidth(MOBILE, layout, video.mobile?.dimensions)}
+          $desktopWidth={calcWidth(DESKTOP, layout, video.desktop?.dimensions)}
         >
-          <VideoAspect $aspectRatio={video.height / video.width}>
-            <VideoItem
-              autoPlay
-              loop
-              playsInline
-              ref={videoRef}
-              muted
-              onPause={handlePause}
-              onPlay={handlePlay}
+          {!isTabletUp && video.mobile ? (
+            <VideoAspect
+              $aspectRatio={
+                video.mobile.dimensions.height / video.mobile.dimensions.width
+              }
             >
-              <source ref={srcRef} src="" type="video/mp4"></source>
-            </VideoItem>
-          </VideoAspect>
+              <VideoItem {...video.mobile} />
+            </VideoAspect>
+          ) : video.desktop ? (
+            <VideoAspect
+              $aspectRatio={
+                video.desktop.dimensions.height / video.desktop.dimensions.width
+              }
+            >
+              <VideoItem {...video.desktop} />
+            </VideoAspect>
+          ) : null}
         </VideoWrapper>
       </VideoFlex>
     )
@@ -143,9 +124,13 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
 const calcWidth = (
   size: keyof typeof ASPECT_RATIOS['carousel']['full'],
   type: CarouselLayouts,
-  video: IVideo
+  dimensions?: Omit<SanityGenerated.SanityImageDimensions, '_type'>
 ) => {
-  const aspect = video.height / video.width
+  if (!dimensions) {
+    return '100%'
+  }
+
+  const aspect = dimensions.height / dimensions.width
   //Is the video portrait (height > width)?
   if (aspect > 1) {
     /**
@@ -156,8 +141,9 @@ const calcWidth = (
      * the container
      */
     const invertedAspect = 1 / aspect
-    // @ts-expect-error
+
     const aspectSize = parseFloat(ASPECT_RATIOS.carousel[type][size])
+
     return `${((invertedAspect * aspectSize) / 100) * 88}%`
   } else {
     /**
@@ -198,17 +184,16 @@ const VideoAspect = styled.div<{ $aspectRatio: number }>`
   padding-top: ${(p) => `${p.$aspectRatio * 100}%`};
 `
 
-const VideoItem = styled.video`
+const VideoItem = styled(Media)`
   position: absolute;
-  display: block;
   top: 0;
   left: 0;
   min-width: 100%;
   width: auto;
   height: 100%;
-  object-fit: cover;
   border-radius: ${RADII.video_mobile}px;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 
   ${MEDIA_QUERIES.tabletUp} {
     border-radius: ${RADII.video_desktop}px;
