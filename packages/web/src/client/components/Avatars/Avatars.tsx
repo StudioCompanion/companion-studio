@@ -15,11 +15,11 @@ interface AvatarsProps {
   members?: Sanity.TeamMember[]
 }
 
-export const Avatars = ({ members = [] }: AvatarsProps) => {
+export const Avatars = ({ members }: AvatarsProps) => {
   const textRefs = useRef<HTMLDivElement[]>([])
 
   const [springs, api] = useSprings(
-    members.length,
+    (members ?? []).length,
     () => ({
       width: 0,
     }),
@@ -41,7 +41,7 @@ export const Avatars = ({ members = [] }: AvatarsProps) => {
 
   return (
     <GridWrapper>
-      {members.map(({ image, name, job }, i) => (
+      {(members ?? []).map(({ image, name, job }, i) => (
         <GridItemContainer
           onMouseEnter={handleMouseEnter(i)}
           onMouseLeave={handleMouseLeave(i)}
