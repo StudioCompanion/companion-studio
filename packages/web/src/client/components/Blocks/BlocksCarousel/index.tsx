@@ -2,19 +2,10 @@ import React, { useState, useRef, MouseEvent } from 'react'
 import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
 
-import {
-  RADII,
-  DESKTOP,
-  MOBILE,
-  PADDING,
-  Colors,
-  CarouselLayouts,
-} from 'styles/constants'
+import { RADII, PADDING, Colors, CarouselLayouts } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
-
-import { getAspectRatio } from 'helpers/media'
 
 import { FadeUp } from 'components/Transitions/FadeUp'
 
