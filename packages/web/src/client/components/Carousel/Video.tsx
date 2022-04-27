@@ -20,6 +20,8 @@ import {
 } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
+import { Sanity } from 'src/types'
+
 export interface IVideo {
   isDevice?: boolean
   width: number
@@ -36,7 +38,7 @@ export interface IVideo {
 }
 
 interface VideoProps {
-  video: IVideo
+  video: Sanity.BlockMediaItem
   layout?: CarouselLayouts
   setPaused: Dispatch<SetStateAction<boolean>>
 }
@@ -61,38 +63,38 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
       setPaused(true)
     }
 
-    useEffect(() => {
-      if (firstUpdate.current) {
-        firstUpdate.current = false
-        ;(videoRef as MutableRefObject<HTMLVideoElement>).current.defaultMuted =
-          true
+    // useEffect(() => {
+    //   if (firstUpdate.current) {
+    //     firstUpdate.current = false
+    //     ;(videoRef as MutableRefObject<HTMLVideoElement>).current.defaultMuted =
+    //       true
 
-        if (video.poster) {
-          ;(videoRef as MutableRefObject<HTMLVideoElement>).current.poster =
-            isTabletUp ? video.poster.desktop : video.poster.mobile
-        }
-        return
-      }
-    }, [isTabletUp, video.poster])
+    //     if (video.poster) {
+    //       ;(videoRef as MutableRefObject<HTMLVideoElement>).current.poster =
+    //         isTabletUp ? video.poster.desktop : video.poster.mobile
+    //     }
+    //     return
+    //   }
+    // }, [isTabletUp, video.poster])
 
-    useEffect(() => {
-      if (!isIntersecting) {
-        autoPause.current = true
-        if (firstUpdate.current) return
-        if (!(videoRef as MutableRefObject<HTMLVideoElement>).current.paused) {
-          ;(videoRef as MutableRefObject<HTMLVideoElement>).current.pause()
-        }
-      }
-      // check for autoPause variable to play only if the video has been automatically paused, not if the user has manually paused it
-      if (
-        autoPause.current &&
-        isIntersecting &&
-        (videoRef as MutableRefObject<HTMLVideoElement>).current.paused
-      ) {
-        ;(videoRef as MutableRefObject<HTMLVideoElement>).current.play()
-        autoPause.current = false
-      }
-    }, [videoRef, isIntersecting])
+    // useEffect(() => {
+    //   if (!isIntersecting) {
+    //     autoPause.current = true
+    //     if (firstUpdate.current) return
+    //     if (!(videoRef as MutableRefObject<HTMLVideoElement>).current.paused) {
+    //       ;(videoRef as MutableRefObject<HTMLVideoElement>).current.pause()
+    //     }
+    //   }
+    //   // check for autoPause variable to play only if the video has been automatically paused, not if the user has manually paused it
+    //   if (
+    //     autoPause.current &&
+    //     isIntersecting &&
+    //     (videoRef as MutableRefObject<HTMLVideoElement>).current.paused
+    //   ) {
+    //     ;(videoRef as MutableRefObject<HTMLVideoElement>).current.play()
+    //     autoPause.current = false
+    //   }
+    // }, [videoRef, isIntersecting])
 
     const handleVideoClick = () => {
       if ((videoRef as MutableRefObject<HTMLVideoElement>).current.paused) {
@@ -102,16 +104,16 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
       }
     }
 
-    useEffect(() => {
-      if (
-        isIntersecting &&
-        srcRef.current &&
-        (videoRef as MutableRefObject<HTMLVideoElement>).current.readyState == 0
-      ) {
-        srcRef.current.src = isTabletUp ? video.url.desktop : video.url.mobile
-        ;(videoRef as MutableRefObject<HTMLVideoElement>).current.load()
-      }
-    }, [isIntersecting, isTabletUp, video.url])
+    // useEffect(() => {
+    //   if (
+    //     isIntersecting &&
+    //     srcRef.current &&
+    //     (videoRef as MutableRefObject<HTMLVideoElement>).current.readyState == 0
+    //   ) {
+    //     srcRef.current.src = isTabletUp ? video.url.desktop : video.url.mobile
+    //     ;(videoRef as MutableRefObject<HTMLVideoElement>).current.load()
+    //   }
+    // }, [isIntersecting, isTabletUp, video.url])
 
     return (
       <VideoFlex onClick={handleVideoClick}>

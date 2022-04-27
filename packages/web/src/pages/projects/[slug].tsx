@@ -4,8 +4,12 @@ import groq from 'groq'
 import { createSanityClientRead } from '../../data/createSanityClientRead'
 import { PROJECT_PAGE } from '../../data/queries/documents/projectPage'
 import { fetchDocument } from '../../data/fetchDocument'
+
 import { REVALIDATE_TIME } from 'references/constants'
+
 import { Renderer } from 'components/Renderer/Renderer'
+import { ProjecHeader } from 'components/Headers/ProjectHeader'
+
 import { Sanity } from 'src/types'
 
 interface ProjectPageProps {
@@ -13,8 +17,14 @@ interface ProjectPageProps {
 }
 
 const ProjectPage = ({ document }: ProjectPageProps) => {
-  const { blocks = [] } = document
-  return <Renderer blocks={blocks} />
+  console.log(document)
+  const { blocks = [], title, subtext, team } = document
+  return (
+    <article>
+      <ProjecHeader title={title} subtext={subtext} team={team} />
+      <Renderer blocks={blocks} />
+    </article>
+  )
 }
 
 export default ProjectPage

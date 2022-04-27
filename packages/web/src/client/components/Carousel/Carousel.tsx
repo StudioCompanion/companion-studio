@@ -129,13 +129,14 @@ export const Carousel = (props: Sanity.BlockMedia) => {
             $showCursor={showCursor}
           >
             <Inner>
-              {video ? // <Video
-              //   video={video}
-              //   ref={videoRef}
-              //   setPaused={setPaused}
-              //   layout={layout}
-              // />
-              null : (
+              {video ? (
+                <Video
+                  video={video}
+                  ref={videoRef}
+                  setPaused={setPaused}
+                  layout={layout}
+                />
+              ) : (
                 <InfiniteSlider
                   ref={sliderApi}
                   items={items}
@@ -167,7 +168,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   )
 }
 
-const Wrapper = styled.div<{ $hero?: boolean; $layout: CarouselLayouts }>`
+const Wrapper = styled.section<{ $hero?: boolean; $layout: CarouselLayouts }>`
   width: 100%;
   margin-bottom: ${(p) => (p.$hero ? `${PADDING.xl}px` : `${PADDING.s}px`)};
 

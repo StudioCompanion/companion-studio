@@ -1,21 +1,21 @@
 import { useRef } from 'react'
 import styled from 'styled-components'
-import Image from 'next/image'
 import { useSprings, animated } from '@react-spring/web'
 
 import { Colors } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 
-import { FadeUp } from 'components/Transitions/FadeUp'
-import { Member, ALL_TEAM_MEMBERS } from 'references/constants'
+import { Heading } from 'components/Text/Heading'
+import { Media } from 'components/Media/Media'
+
+import { Sanity } from 'src/types'
 
 interface AvatarsProps {
-  members?: Member[]
+  members?: Sanity.TeamMember[]
 }
 
-export const Avatars = ({ members = ALL_TEAM_MEMBERS }: AvatarsProps) => {
+export const Avatars = ({ members = [] }: AvatarsProps) => {
   const textRefs = useRef<HTMLDivElement[]>([])
 
   const [springs, api] = useSprings(
@@ -41,24 +41,27 @@ export const Avatars = ({ members = ALL_TEAM_MEMBERS }: AvatarsProps) => {
 
   return (
     <GridWrapper>
-      {members.map(({ image, name, role }, i) => (
-        <FadeUp key={name}>
-          <GridItemContainer
-            onMouseEnter={handleMouseEnter(i)}
-            onMouseLeave={handleMouseLeave(i)}
+      {members.map(({ image, name, job }, i) => (
+        <GridItemContainer
+          onMouseEnter={handleMouseEnter(i)}
+          onMouseLeave={handleMouseLeave(i)}
+          key={name}
+        >
+          <GridImageWrapper>
+            {image ? <Media {...image} /> : null}
+          </GridImageWrapper>
+          <TeamMemberDetails
+            ref={(ref) => (textRefs.current[i] = ref as HTMLDivElement)}
+            style={{ width: springs[i].width }}
           >
-            <GridImageWrapper>
-              <Image src={image} placeholder="blur" alt={name} />
-            </GridImageWrapper>
-            <TeamMemberDetails
-              ref={(ref) => (textRefs.current[i] = ref as HTMLDivElement)}
-              style={{ width: springs[i].width }}
-            >
-              <TeamMemberName>{name}</TeamMemberName>
-              <TeamMemberRole>{role}</TeamMemberRole>
-            </TeamMemberDetails>
-          </GridItemContainer>
-        </FadeUp>
+            <TeamMemberName tag="h2" fontStyle={FONT_STYLE_APFEL_12_400}>
+              {name}
+            </TeamMemberName>
+            <TeamMemberRole tag="h3" fontStyle={FONT_STYLE_APFEL_12_400}>
+              {job}
+            </TeamMemberRole>
+          </TeamMemberDetails>
+        </GridItemContainer>
       ))}
     </GridWrapper>
   )
@@ -85,11 +88,12 @@ const GridItemContainer = styled.div`
 `
 
 const GridImageWrapper = styled.div`
+  position: relative;
   border-radius: 100%;
   padding: 4px;
-  width: 40px;
   background: ${Colors.lightgrey_2};
-  position: relative;
+  height: 50px;
+  width: 50px;
 
   & img {
     top: 3px !important;
@@ -104,12 +108,10 @@ const TeamMemberDetails = styled(animated.div)`
   margin-left: 8px;
 `
 
-const TeamMemberName = styled.h2`
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)}
+const TeamMemberName = styled(Heading)`
   white-space: nowrap;
 `
 
-const TeamMemberRole = styled.h3`
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)}
+const TeamMemberRole = styled(Heading)`
   white-space: nowrap;
 `

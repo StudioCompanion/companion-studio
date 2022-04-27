@@ -1,13 +1,6 @@
 import { Colors } from './constants'
-import { getFontStyles } from './getFontStyles'
-import {
-  FONT_STYLE_APFEL_12_400,
-  FONT_STYLE_RECKLESS_12_400,
-  FONT_STYLE_RECKLESS_20_400,
-  FONT_STYLE_APFEL_58_500,
-} from './fonts'
 
-export const CSS_GLOBAL = `
+export const CSS_GLOBAL = /* css */ `
   @font-face {
     font-family: 'Apfel Groteszk';
     src: url('/fonts/ApfelGrotezk-Regular.woff') format('woff');
@@ -69,36 +62,6 @@ export const CSS_GLOBAL = `
     list-style: none;
     padding: 0;
     margin: 0;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    margin: 0;
-  }
-
-  h1 {
-    ${getFontStyles(FONT_STYLE_APFEL_58_500)}
-  }
-  h2 {
-    ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
-  }
-  h3 {
-    ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
-  }
-  p {
-    ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
-  }
-  p a {
-      ${getFontStyles(FONT_STYLE_APFEL_12_400)}
-      color: inherit;
-    }
-  p a:hover {
-    opacity: .5;
   }
 
   // this is for lottie to stop the background showing

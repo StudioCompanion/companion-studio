@@ -25,12 +25,14 @@ export const TextSection = ({ richText }: TextSectionProps) => {
   )
 }
 
-const Container = styled.div`
+const Container = styled.section`
   margin: ${PADDING.xl - PADDING.s}px 0 ${PADDING.xl}px;
+
   ${MEDIA_QUERIES.tabletUp} {
     margin: ${PADDING.xxl - PADDING.m}px 0 ${PADDING.xxl}px;
     width: 47%;
   }
+
   h3 {
     ${getFontStyles(FONT_STYLE_APFEL_12_400)}
     margin-bottom: ${PADDING.xs}px;

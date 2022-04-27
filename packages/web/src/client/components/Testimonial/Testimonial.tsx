@@ -30,7 +30,7 @@ export const Testimonial = ({ quote, author }: TestimonialProps) => {
   )
 }
 
-const TestimonialContainer = styled.div`
+const TestimonialContainer = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
