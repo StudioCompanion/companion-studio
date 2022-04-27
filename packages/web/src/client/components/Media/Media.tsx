@@ -7,7 +7,6 @@ import { SizesArray } from '../../helpers/media'
 
 import { MediaImage } from './MediaImage'
 import { MediaMux, MediaMuxProps } from './MediaMux'
-import { aspectRatio } from 'styles/mixins'
 
 type SharedMediaProps = Pick<
   MediaMuxProps,
