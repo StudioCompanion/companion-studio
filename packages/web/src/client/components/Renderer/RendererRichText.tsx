@@ -20,7 +20,9 @@ import {
 } from 'styles/fonts'
 import { PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
+
 import { isArrayGuard, isStringGuard } from 'helpers/guards'
+
 import { InlineLink } from 'components/Links/InlineLink'
 
 interface RichTextRendererProps {

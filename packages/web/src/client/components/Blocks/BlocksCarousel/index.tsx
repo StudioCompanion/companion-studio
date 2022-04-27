@@ -86,11 +86,23 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   const handleClick = () => {
     if (direction === BACKWARD && sliderApi.current.prev) {
       const newInd = sliderApi.current.prev(-1)
-      setActiveIndex(newInd)
+      /**
+       * this formula handles a case where there are two items
+       * but in the dom there are four (so the animation works)
+       */
+      setActiveIndex(
+        (newInd < 0 ? newInd + items.length : newInd) % items.length
+      )
     }
     if (direction === FORWARD && sliderApi.current.next) {
       const newInd = sliderApi.current.next(1)
-      setActiveIndex(newInd)
+      /**
+       * this formula handles a case where there are two items
+       * but in the dom there are four (so the animation works)
+       */
+      setActiveIndex(
+        (newInd < 0 ? newInd + items.length : newInd) % items.length
+      )
     }
   }
 
@@ -122,25 +134,23 @@ export const Carousel = (props: Sanity.BlockMedia) => {
             $bgColor={backgroundColor}
             $showCursor={showCursor}
           >
-            {backgroundImage ? <Media {...backgroundImage} /> : null}
-            <Inner>
-              {video ? (
-                <Video
-                  video={video}
-                  isPaused={paused}
-                  setPaused={setPaused}
-                  layout={layout}
-                />
-              ) : (
-                <InfiniteSlider
-                  ref={sliderApi}
-                  items={items}
-                  onDragEnd={handleDragEnd}
-                >
-                  {(item) => <Slide key={item._key} {...item} />}
-                </InfiniteSlider>
-              )}
-            </Inner>
+            {backgroundImage ? <BackgroundImage {...backgroundImage} /> : null}
+            {video ? (
+              <Video
+                video={video}
+                isPaused={paused}
+                setPaused={setPaused}
+                layout={layout}
+              />
+            ) : (
+              <InfiniteSlider
+                ref={sliderApi}
+                items={items}
+                onDragEnd={handleDragEnd}
+              >
+                {(item) => <Slide key={item._key} {...item} />}
+              </InfiniteSlider>
+            )}
           </Container>
           <Caption>
             {items[activeIndex].caption ? (
@@ -184,33 +194,19 @@ const Wrapper = styled.section<{ $hero?: boolean; $layout: CarouselLayouts }>`
 
 const Container = styled.div<{
   $bgColor?: string
-  $bgImage?: string
   $showCursor: boolean
   $layout: CarouselLayouts
 }>`
   width: 100%;
   position: relative;
-  padding-top: ${({ $layout }) => getAspectRatio($layout, MOBILE)};
-  background-color: ${(p) => (p.$bgColor ? p.$bgColor : 'transparent')};
-  background-image: ${(p) => (p.$bgImage ? `url(${p.$bgImage})` : 'none')};
-  background-size: cover;
-  background-position: center;
+  background-color: ${(p) => p.$bgColor};
   border-radius: ${RADII.wrapper_mobile}px;
   overflow: hidden;
   cursor: ${(p) => (p.$showCursor ? 'none' : 'auto')};
 
   ${MEDIA_QUERIES.tabletUp} {
     border-radius: ${RADII.wrapper}px;
-    padding-top: ${({ $layout }) => getAspectRatio($layout, DESKTOP)};
   }
-`
-
-const Inner = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
 `
 
 const Dots = styled.div`
@@ -234,4 +230,11 @@ const Caption = styled.div`
 const CaptionText = styled.span`
   margin-top: 12px;
   ${getFontStyles(FONT_STYLE_APFEL_12_400)}
+`
+
+const BackgroundImage = styled(Media)`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 `

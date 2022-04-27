@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Sanity } from 'src/types'
 
@@ -7,6 +7,7 @@ import { SizesArray } from '../../helpers/media'
 
 import { MediaImage } from './MediaImage'
 import { MediaMux, MediaMuxProps } from './MediaMux'
+import { aspectRatio } from 'styles/mixins'
 
 type SharedMediaProps = Pick<
   MediaMuxProps,
@@ -22,13 +23,17 @@ export type MediaProps =
   | (Sanity.Mux & SharedMediaProps)
 
 export const Media = (props: MediaProps) => {
-  const { _type, className, floodParent, objectFit, ...restProps } = props
+  const { _type, className, floodParent, objectFit, dimensions, ...restProps } =
+    props
 
   switch (_type) {
     case 'image':
       const { sizes } = props
       return (
-        <MediaContainer className={className}>
+        <MediaContainer
+          className={className}
+          $aspectRatio={(dimensions.height / dimensions.width) * 100}
+        >
           <MediaImage
             layout="fill"
             image={{
@@ -41,7 +46,10 @@ export const Media = (props: MediaProps) => {
       )
     case 'video': {
       return (
-        <MediaContainer className={className}>
+        <MediaContainer
+          className={className}
+          $aspectRatio={(dimensions.height / dimensions.width) * 100}
+        >
           <MediaMux floodParent={floodParent} {...(restProps as Sanity.Mux)} />
         </MediaContainer>
       )
@@ -52,7 +60,19 @@ export const Media = (props: MediaProps) => {
   }
 }
 
-const MediaContainer = styled.div`
-  height: 100%;
-  width: 100%;
+const MediaContainer = styled.div<{ $aspectRatio?: number }>`
+  overflow: hidden;
+  position: relative;
+
+  ${(props) =>
+    props.$aspectRatio
+      ? css`
+          &:before {
+            display: block;
+            content: '';
+            width: 100%;
+            padding-top: ${props.$aspectRatio}%;
+          }
+        `
+      : ''}
 `

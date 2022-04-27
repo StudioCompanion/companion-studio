@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useCallback } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { useMediaQuery } from 'react-responsive'
 
 import { WIDTHS } from 'styles/dimensions'
@@ -15,6 +15,7 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { Sanity, SanityGenerated } from 'src/types'
 
 import { Media } from 'components/Media/Media'
+import { aspectRatio } from 'styles/mixins'
 
 export interface IVideo {
   isDevice?: boolean
@@ -57,35 +58,36 @@ export const Video = ({
   }, [])
 
   return (
-    <VideoFlex onClick={handleVideoClick}>
+    <VideoFlex
+      onClick={handleVideoClick}
+      $aspectRatio={
+        !isTabletUp && video.mobile?.dimensions
+          ? (video.mobile.dimensions.height / video.mobile.dimensions.width) *
+            100
+          : video.desktop?.dimensions
+          ? (video.desktop.dimensions.height / video.desktop.dimensions.width) *
+            100
+          : 0
+      }
+    >
       <VideoWrapper
         $mobileWidth={calcWidth(MOBILE, layout, video.mobile?.dimensions)}
         $desktopWidth={calcWidth(DESKTOP, layout, video.desktop?.dimensions)}
       >
         {!isTabletUp && video.mobile?.asset ? (
-          <VideoAspect
-            $aspectRatio={
-              video.mobile.dimensions.height / video.mobile.dimensions.width
-            }
-          >
-            <VideoItem
-              {...video.mobile}
-              isPaused={isPaused}
-              onAutoplayCallback={handleAutoplayCallback}
-            />
-          </VideoAspect>
+          <VideoItem
+            {...video.mobile}
+            isPaused={isPaused}
+            onAutoplayCallback={handleAutoplayCallback}
+            floodParent
+          />
         ) : video.desktop?.asset ? (
-          <VideoAspect
-            $aspectRatio={
-              video.desktop.dimensions.height / video.desktop.dimensions.width
-            }
-          >
-            <VideoItem
-              {...video.desktop}
-              isPaused={isPaused}
-              onAutoplayCallback={handleAutoplayCallback}
-            />
-          </VideoAspect>
+          <VideoItem
+            {...video.desktop}
+            isPaused={isPaused}
+            onAutoplayCallback={handleAutoplayCallback}
+            floodParent
+          />
         ) : null}
       </VideoWrapper>
     </VideoFlex>
@@ -126,23 +128,33 @@ const calcWidth = (
   }
 }
 
-const VideoFlex = styled.div`
+const VideoFlex = styled.div<{ $aspectRatio?: number }>`
   max-height: 100%;
   max-width: 100%;
-
   height: 100%;
+  position: relative;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${(props) =>
+    props.$aspectRatio
+      ? css`
+          &:before {
+            display: block;
+            content: '';
+            width: 100%;
+            padding-top: ${props.$aspectRatio}%;
+          }
+        `
+      : ''}
 `
 
 const VideoWrapper = styled.div<{
   $mobileWidth: string
   $desktopWidth: string
 }>`
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: ${(p) => p.$mobileWidth};
 
   ${MEDIA_QUERIES.tabletUp} {
@@ -150,18 +162,7 @@ const VideoWrapper = styled.div<{
   }
 `
 
-const VideoAspect = styled.div<{ $aspectRatio: number }>`
-  position: relative;
-  padding-top: ${(p) => `${p.$aspectRatio * 100}%`};
-`
-
 const VideoItem = styled(Media)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  width: auto;
-  height: 100%;
   border-radius: ${RADII.video_mobile}px;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.08);
   overflow: hidden;
