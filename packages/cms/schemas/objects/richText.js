@@ -45,6 +45,15 @@ export const basicRichText = {
                 type: 'reference',
                 to: REFERENCED_DOCUMENTS,
                 hidden: ({ parent }) => parent?.linkType !== 'internal',
+                validation: (rule) =>
+                  rule.custom((val, ctx) => {
+                    const { parent } = ctx
+                    if (parent.linkType === 'internal' && !val) {
+                      return 'You must select a reference to use an internal link'
+                    } else {
+                      return true
+                    }
+                  }),
               },
               {
                 name: 'linkExternal',

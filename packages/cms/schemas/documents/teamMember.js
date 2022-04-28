@@ -13,6 +13,7 @@ export default {
       name: 'job',
       title: 'Job Title',
       type: 'string',
+      validation: (rule) => rule.required(),
     },
     {
       name: 'image',

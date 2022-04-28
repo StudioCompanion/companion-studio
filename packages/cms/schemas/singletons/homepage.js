@@ -1,6 +1,5 @@
 import { House } from 'phosphor-react'
 import { REFERENCED_DOCUMENTS } from '../../constants'
-import { slug } from '../fields/slug'
 
 export default {
   name: 'homepage',
@@ -23,6 +22,7 @@ export default {
       type: 'richText',
       title: 'Standfirst',
       group: 'content',
+      validation: (rule) => rule.required(),
     },
     {
       name: 'cards',
@@ -35,6 +35,7 @@ export default {
           to: REFERENCED_DOCUMENTS,
         },
       ],
+      validation: (rule) => rule.required().min(1),
     },
     {
       name: 'meta',

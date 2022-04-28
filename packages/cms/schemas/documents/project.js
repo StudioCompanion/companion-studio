@@ -31,6 +31,7 @@ export default {
       title: 'Title',
       type: 'string',
       group: 'info',
+      validation: (rule) => rule.required(),
     },
     slug({ group: 'info', path: 'projects' }),
     {
@@ -38,12 +39,14 @@ export default {
       title: 'Subtext',
       type: 'string',
       group: 'info',
+      validation: (rule) => rule.required(),
     },
     {
       group: 'info',
       name: 'team',
       title: 'Team',
       type: 'array',
+      validation: (rule) => rule.required().min(1),
       of: [
         {
           name: 'member',
@@ -59,6 +62,7 @@ export default {
       type: 'array',
       of: BLOCKS_ARRAY,
       group: 'content',
+      validation: (rule) => rule.required().min(1),
     },
     {
       name: 'meta',

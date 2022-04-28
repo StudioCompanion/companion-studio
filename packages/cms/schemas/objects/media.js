@@ -22,12 +22,46 @@ export default {
       name: 'video',
       type: 'mux.video',
       hidden: ({ parent }) => parent?.assetType !== 'video',
+      validation: (rule) =>
+        rule.custom((value, ctx) => {
+          const { parent, path } = ctx
+
+          const isMobileAsset = path.slice(-2)[0] === 'mobile'
+
+          if (
+            parent.assetType === 'video' &&
+            value === undefined &&
+            path[0] !== 'card' &&
+            !isMobileAsset
+          ) {
+            return 'You must supply an asset'
+          } else {
+            return true
+          }
+        }),
     },
     {
       title: 'Image file',
       name: 'image',
       type: 'image',
       hidden: ({ parent }) => parent?.assetType !== 'image',
+      validation: (rule) =>
+        rule.custom((value, ctx) => {
+          const { parent, path } = ctx
+
+          const isMobileAsset = path.slice(-2)[0] === 'mobile'
+
+          if (
+            parent.assetType === 'image' &&
+            value === undefined &&
+            path[0] !== 'card' &&
+            !isMobileAsset
+          ) {
+            return 'You must supply an asset'
+          } else {
+            return true
+          }
+        }),
     },
   ],
   preview: {

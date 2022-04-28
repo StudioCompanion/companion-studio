@@ -8,6 +8,16 @@ export default {
       description: 'If omitted, the SEO title will be used',
       title: 'Card Title',
       type: 'string',
+      validation: (rule) =>
+        rule.custom((val, ctx) => {
+          const { document } = ctx
+
+          if (!document.meta.seo.seo_title && !val) {
+            return `You haven't set an SEO title, so you need to set card's title`
+          }
+
+          return true
+        }),
     },
     {
       name: 'subtitle',
@@ -19,6 +29,16 @@ export default {
       description: 'If omitted, the SEO media will be used',
       title: 'Media',
       type: 'media',
+      validation: (rule) =>
+        rule.custom((val, ctx) => {
+          const { document } = ctx
+
+          if (!document.meta.seo.image && !val.image) {
+            return `You haven't set an SEO image, so you need to set the card's image`
+          }
+
+          return true
+        }),
     },
     {
       name: 'layout',
@@ -32,6 +52,7 @@ export default {
         ],
       },
       initialValue: 'case',
+      validation: (rule) => rule.required(),
     },
     {
       name: 'theme',
@@ -46,6 +67,7 @@ export default {
         ],
       },
       initialValue: 'dark',
+      validation: (rule) => rule.required(),
     },
   ],
 }

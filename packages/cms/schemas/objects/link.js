@@ -13,6 +13,15 @@ export default {
       type: 'string',
       title: 'Label',
       description: 'If omitted, the title of the reference will be used',
+      validation: (rule) =>
+        rule.custom((val, ctx) => {
+          const { parent } = ctx
+          if (parent.linkType === 'external' && !val) {
+            return 'You must type a label to use an external URL'
+          } else {
+            return true
+          }
+        }),
     },
     {
       name: 'linkType',
@@ -35,6 +44,15 @@ export default {
       type: 'reference',
       to: REFERENCED_DOCUMENTS,
       hidden: ({ parent }) => parent?.linkType !== 'internal',
+      validation: (rule) =>
+        rule.custom((val, ctx) => {
+          const { parent } = ctx
+          if (parent.linkType === 'internal' && !val) {
+            return 'You must select a reference to use an internal link'
+          } else {
+            return true
+          }
+        }),
     },
     {
       name: 'linkExternal',

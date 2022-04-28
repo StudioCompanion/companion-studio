@@ -36,6 +36,7 @@ export default {
       name: 'navigation',
       title: 'Navigation',
       type: 'array',
+      validation: (rule) => rule.required().min(1),
       of: [
         {
           name: 'link',
@@ -79,6 +80,7 @@ export default {
           name: 'links',
           title: 'Links',
           type: 'array',
+          validation: (rule) => rule.required().min(1),
           of: [
             {
               name: 'link',
