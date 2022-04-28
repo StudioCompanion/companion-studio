@@ -3,7 +3,7 @@ import {
   SanityImageDimensions,
   SanityReference,
 } from 'sanity-codegen'
-import { CarouselLayouts, Colors } from 'styles/constants'
+import { CarouselLayouts, Colors, ThemeTypes } from 'styles/constants'
 
 import { SanityGenerated } from './index'
 
@@ -67,7 +67,9 @@ export interface Meta {
   image?: Image
 }
 
-export interface Card extends Omit<SanityGenerated.PageCard, 'media'> {
+export interface Card
+  extends Omit<SanityGenerated.PageCard, 'media' | 'theme'> {
+  theme?: ThemeTypes
   media?: Media
 }
 
@@ -92,7 +94,7 @@ export interface ProjectPage extends DocumentBase {
 }
 
 export type Pages =
-  | SanityGenerated.Homepage
+  | HomePage
   | ApproachPage
   | SanityGenerated.Teampage
   | ProjectPage
@@ -136,4 +138,14 @@ export interface DefaultLayoutProps {
   navigation: Link[]
   footer: Footer
   callout: Callout
+}
+
+export interface HomepageCard extends Card {
+  meta?: Meta
+  slug?: string
+}
+
+export interface HomePage extends DocumentBase {
+  standfirst?: SanityGenerated.RichText
+  cards?: SanityGenerated.SanityKeyed<HomepageCard>[]
 }

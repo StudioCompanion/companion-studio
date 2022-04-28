@@ -1,47 +1,7 @@
-export const DESKTOP = 'desktop'
-export const MOBILE = 'mobile'
-
 export enum CarouselLayouts {
   FULL = 'full',
   HALF = 'half',
   TWO_THIRDS = '2/3',
-}
-
-export enum CARD_LAYOUTS {
-  STUDIO = 'studio',
-  CASE_STUDY = 'case',
-}
-
-export type LAYOUTS = CarouselLayouts | CARD_LAYOUTS
-
-export const ASPECT_RATIOS = {
-  video: {
-    widescreen: '56.25%',
-  },
-  carousel: {
-    [CarouselLayouts.FULL]: {
-      desktop: '56.25%',
-      mobile: '69%',
-    },
-    [CarouselLayouts.HALF]: {
-      desktop: '114%',
-      mobile: '103%',
-    },
-    [CarouselLayouts.TWO_THIRDS]: {
-      desktop: '85%',
-      mobile: '69%',
-    },
-  },
-  card: {
-    caseStudy: {
-      desktop: '107%',
-      mobile: '124%',
-    },
-    studio: {
-      desktop: '71%',
-      mobile: '80%',
-    },
-  },
 }
 
 export const WIDTHS = {
@@ -83,28 +43,30 @@ export const HIDDEN = `
   white-space: nowrap;
   width: 1px;`
 
-export enum THEME_TYPES {
+export enum ThemeTypes {
   LIGHT = 'light',
   DARK = 'dark',
   GREY = 'grey',
 }
 
 export const THEMES = {
-  [THEME_TYPES.LIGHT]: {
+  [ThemeTypes.LIGHT]: {
     background: Colors.white,
     color: Colors.darkblue,
     hover_background: Colors.lightgrey_2,
     hover_color: Colors.darkblue,
   },
-  [THEME_TYPES.DARK]: {
+  [ThemeTypes.DARK]: {
     background: Colors.darkblue,
     color: Colors.white,
     hover_background: Colors.darkblue_light,
     hover_color: Colors.white,
   },
-  [THEME_TYPES.GREY]: {
+  [ThemeTypes.GREY]: {
     background: Colors.lightgrey_2,
     color: Colors.darkblue,
+    hover_background: Colors.lightgrey_2,
+    hover_color: Colors.white,
   },
 }
 

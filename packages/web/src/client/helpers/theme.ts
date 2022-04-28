@@ -1,6 +1,6 @@
-import { THEMES, THEME_TYPES } from '../styles/constants'
+import { THEMES, ThemeTypes } from '../styles/constants'
 
-export const getThemeValue = <TTheme extends THEME_TYPES = THEME_TYPES.LIGHT>(
-  theme: TTheme,
-  value: keyof typeof THEMES[TTheme]
-) => THEMES[theme][value]
+export const getThemeValue = <TTheme extends ThemeTypes = ThemeTypes.LIGHT>(
+  value: keyof typeof THEMES[TTheme],
+  theme?: TTheme
+) => (theme ? THEMES[theme][value] : '')

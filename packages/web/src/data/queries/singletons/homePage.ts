@@ -10,6 +10,7 @@ export const HOMEPAGE = groq`
         ${RICH_TEXT}
     },
     cards[]->{
+        "_key": _id,
         ...card {
             ${CARD}
         },
@@ -18,7 +19,4 @@ export const HOMEPAGE = groq`
         },
         "slug": slug.current
     },
-    meta {
-        ${META}
-    }
 `

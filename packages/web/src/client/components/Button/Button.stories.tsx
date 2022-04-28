@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from './Button'
 import { Story, Meta } from '@storybook/react'
 
-import { THEME_TYPES } from '../../styles/constants'
+import { ThemeTypes } from '../../styles/constants'
 
 const Template: Story<ButtonProps> = (args) => <Button {...args} />
 
@@ -12,7 +12,7 @@ LightTheme.args = { text: 'Message us' }
 
 export const DarkTheme = Template.bind({})
 
-DarkTheme.args = { text: 'Message us', theme: THEME_TYPES.DARK }
+DarkTheme.args = { text: 'Message us', theme: ThemeTypes.DARK }
 
 export const WithLink = Template.bind({})
 
