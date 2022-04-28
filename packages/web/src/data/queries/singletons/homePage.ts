@@ -13,7 +13,9 @@ export const HOMEPAGE = groq`
         ...card {
             ${CARD}
         },
-        "meta": meta.seo,
+        meta {
+            ${META}
+        },
         "slug": slug.current
     },
     meta {

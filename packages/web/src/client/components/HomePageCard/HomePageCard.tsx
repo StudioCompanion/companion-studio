@@ -101,7 +101,7 @@ HomePageCardProps) => {
             <CardInner>
               <ImageContainer>
                 <ImageWrapper>
-                  {meta && <Media {...meta?.image} />}
+                  {meta.image && <Media {...meta.image} />}
 
                   {/* <Image
                     src={meta?.seo.image?.asset as unknown as string}
