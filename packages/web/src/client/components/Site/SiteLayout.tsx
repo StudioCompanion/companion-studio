@@ -12,12 +12,25 @@ import { Splash } from '../Splash/Splash'
 
 import { Callout } from './SiteCallout'
 import { Footer } from './SiteFooter'
+import { SiteSeo } from './SiteSeo'
 
-interface LayoutProps {
+import { Sanity } from 'src/types'
+
+interface LayoutProps extends Sanity.DefaultLayoutProps {
   children: React.ReactNode
+  documentMeta?: Sanity.Meta
+  className?: string
 }
 
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({
+  children,
+  defaultMeta,
+  callout,
+  navigation,
+  footer,
+  documentMeta,
+  className,
+}: LayoutProps) => {
   const router = useRouter()
   const currentPath = router.pathname
 
@@ -34,15 +47,18 @@ export const Layout = ({ children }: LayoutProps) => {
 
   return (
     <>
+      <SiteSeo defaultSeo={defaultMeta} meta={documentMeta} />
       {showSplash && <Splash />}
-      <Nav currentPath={currentPath} />
-      <Main $currentPath={currentPath}>{children}</Main>
+      <Nav items={navigation} currentPath={currentPath} />
+      <Main className={className} $currentPath={currentPath}>
+        {children}
+      </Main>
       {currentPath !== '/instagram' && (
         <PaddingContainer>
           <Section>
-            <Callout />
+            <Callout {...callout} />
           </Section>
-          <Footer />
+          <Footer {...footer} />
         </PaddingContainer>
       )}
     </>

@@ -8,7 +8,7 @@ export default {
       title: 'SEO',
       type: 'seo-tools', // use seo-tools type
       options: {
-        baseUrl: process.env.SANITY_STUDIO_STAGING_BASE_URL, // (REQUIRED) This is the baseUrl for your site
+        baseUrl: process.env.SANITY_STUDIO_BASE_URL, // (REQUIRED) This is the baseUrl for your site
         slug(doc) {
           // (REQUIRED) a function to return the slug of the current page, which will be appended to the baseUrl
           return doc.slug.current

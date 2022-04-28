@@ -12,6 +12,11 @@ export const basicRichText = {
       type: 'block',
       marks: {
         annotations: [
+          /**
+           * TODO: investigate why this can't just
+           * be type: 'link' and use the one as part
+           * of the schema.
+           */
           {
             name: 'link',
             type: 'object',
@@ -40,6 +45,15 @@ export const basicRichText = {
                 type: 'reference',
                 to: REFERENCED_DOCUMENTS,
                 hidden: ({ parent }) => parent?.linkType !== 'internal',
+                validation: (rule) =>
+                  rule.custom((val, ctx) => {
+                    const { parent } = ctx
+                    if (parent.linkType === 'internal' && !val) {
+                      return 'You must select a reference to use an internal link'
+                    } else {
+                      return true
+                    }
+                  }),
               },
               {
                 name: 'linkExternal',

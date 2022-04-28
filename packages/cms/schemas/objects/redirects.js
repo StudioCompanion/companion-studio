@@ -12,11 +12,13 @@ export default {
           title: 'Current URL',
           name: 'source',
           type: 'string',
+          validation: (rule) => rule.required(),
         },
         {
           title: 'New URL',
           name: 'destination',
           type: 'string',
+          validation: (rule) => rule.required(),
         },
         {
           title: 'Permanent',

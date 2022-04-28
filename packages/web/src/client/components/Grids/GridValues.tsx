@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { PADDING, THEME_TYPES } from 'styles/constants'
+import { PADDING, ThemeTypes } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
 import {
@@ -91,7 +91,7 @@ export const ValuesGrid = () => {
         <ButtonWrapper>
           <Button
             text={'View our open positions'}
-            theme={THEME_TYPES.DARK}
+            theme={ThemeTypes.DARK}
             link={'#'}
           />
         </ButtonWrapper>

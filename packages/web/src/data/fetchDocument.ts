@@ -15,6 +15,7 @@ export type FetchDocumentParams = {
 
 export type FetchedDocument<TFetched> = {
   document?: TFetched
+  siteSettings?: Sanity.DefaultLayoutProps
 }
 
 export const fetchDocument = async <
@@ -24,7 +25,9 @@ export const fetchDocument = async <
   projection,
   preview,
   params = {},
-}: FetchDocumentParams): Promise<FetchedDocument<TFetchedDocument> | null> => {
+}: FetchDocumentParams): Promise<
+  Sanity.DefaultLayoutProps & { document: TFetchedDocument }
+> => {
   try {
     const documentProjection = projection ? `{${projection}}` : ''
     const documentQuery = filter
@@ -43,25 +46,31 @@ export const fetchDocument = async <
 
     const client = createSanityClientRead(preview)
 
-    const { document, ...restResult } = await client.fetch<
+    const { document, siteSettings } = await client.fetch<
       FetchedDocument<TFetchedDocument>
     >(pageQuery, params)
 
-    if (!document && documentQuery) {
+    if (!document || !siteSettings) {
       console.warn(
         `No document found with sanity query for filter – ${filter} with params – ${JSON.stringify(
           params
         )}, this could be intentional depending on the template.`
       )
-      return null
+      throw new Error('See warning above')
     }
 
     return {
       document,
-      ...restResult,
+      ...siteSettings,
     }
   } catch (err) {
     console.error(err)
-    return null
+    return {
+      document: {} as TFetchedDocument,
+      defaultMeta: {},
+      callout: {},
+      footer: {},
+      navigation: [],
+    }
   }
 }

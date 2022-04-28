@@ -3,7 +3,7 @@ import {
   SanityImageDimensions,
   SanityReference,
 } from 'sanity-codegen'
-import { CarouselLayouts, Colors } from 'styles/constants'
+import { CarouselLayouts, Colors, ThemeTypes } from 'styles/constants'
 
 import { SanityGenerated } from './index'
 
@@ -67,18 +67,23 @@ export interface Meta {
   image?: Image
 }
 
-export interface Card extends Omit<SanityGenerated.PageCard, 'media'> {
+export interface Card
+  extends Omit<SanityGenerated.PageCard, 'media' | 'theme'> {
+  theme?: ThemeTypes
   media?: Media
 }
+
+type PageTypes = 'homepage' | 'approachpage' | 'teampage' | 'project'
 
 export interface DocumentBase {
   _id?: string
   _createdAt?: string
   _rev?: string
   _updatedAt?: string
-  _type?: string
+  _type?: PageTypes
   card?: Card
   meta?: Meta
+  slug?: string
 }
 
 export interface ProjectPage extends DocumentBase {
@@ -89,13 +94,58 @@ export interface ProjectPage extends DocumentBase {
 }
 
 export type Pages =
-  | SanityGenerated.Homepage
-  | SanityGenerated.Approachpage
+  | HomePage
+  | ApproachPage
   | SanityGenerated.Teampage
-  | SanityGenerated.Project
+  | ProjectPage
 
 export interface Link {
   label?: string
   url?: string | Pages
   isExternal?: boolean
+}
+
+export interface ApproachPage extends DocumentBase {
+  meta?: Meta
+  card?: Card
+  slug?: string
+  sections?: Array<
+    | SanityGenerated.SanityKeyed<{
+        _type: 'textSection'
+        /**
+         * Text Block — `richText`
+         *
+         *
+         */
+        text?: SanityGenerated.RichText
+      }>
+    | SanityGenerated.SanityKeyed<Media>
+  >
+}
+
+export interface Footer {
+  links?: Link[]
+}
+
+export interface Callout {
+  link?: Link
+  media?: Media
+  text?: string
+}
+
+export interface DefaultLayoutProps {
+  defaultMeta: Meta
+  navigation: Link[]
+  footer: Footer
+  callout: Callout
+}
+
+export interface HomepageCard extends Card {
+  meta?: Meta
+  slug?: string
+}
+
+export interface HomePage extends DocumentBase {
+  standfirst?: SanityGenerated.RichText
+  cards?: SanityGenerated.SanityKeyed<HomepageCard>[]
 }

@@ -23,6 +23,7 @@ import { basicRichText, squiggleRichText } from './objects/richText'
 import meta from './objects/meta'
 import redirects from './objects/redirects'
 import pageCard from './objects/pageCard'
+import link from './objects/link'
 
 /**
  * Blocks
@@ -59,6 +60,7 @@ export default createSchema({
     meta,
     redirects,
     pageCard,
+    link,
     /**
      * Blocks
      */

@@ -190,13 +190,6 @@ export interface Homepage extends SanityDocument {
   _type: 'homepage'
 
   /**
-   * Slug — `slug`
-   *
-   *
-   */
-  slug?: { _type: 'slug'; current: string }
-
-  /**
    * Standfirst — `richText`
    *
    *
@@ -234,6 +227,57 @@ export interface Settings extends SanityDocument {
    *
    */
   meta?: Meta
+
+  /**
+   * Navigation — `array`
+   *
+   *
+   */
+  navigation?: Array<SanityKeyed<Link>>
+
+  /**
+   * Callout — `object`
+   *
+   *
+   */
+  callout?: {
+    _type: 'callout'
+    /**
+     * Text — `text`
+     *
+     *
+     */
+    text?: string
+
+    /**
+     * Link — `link`
+     *
+     * When clicked the callout links to...?
+     */
+    link?: Link
+
+    /**
+     * Media — `media`
+     *
+     *
+     */
+    media?: Media
+  }
+
+  /**
+   * Footer — `object`
+   *
+   *
+   */
+  footer?: {
+    _type: 'footer'
+    /**
+     * Links — `array`
+     *
+     *
+     */
+    links?: Array<SanityKeyed<Link>>
+  }
 
   /**
    * Redirects — `redirects`
@@ -431,6 +475,37 @@ export type PageCard = {
   theme?: 'light' | 'grey' | 'dark'
 }
 
+export type Link = {
+  _type: 'link'
+  /**
+   * Label — `string`
+   *
+   * If omitted, the title of the reference will be used
+   */
+  label?: string
+
+  /**
+   * Link Type — `string`
+   *
+   * Are you linking to an internal or external page?
+   */
+  linkType?: 'internal' | 'external'
+
+  /**
+   * Link Internal — `reference`
+   *
+   *
+   */
+  linkInternal?: SanityReference<Homepage | Teampage | Approachpage | Project>
+
+  /**
+   * Link External — `url`
+   *
+   *
+   */
+  linkExternal?: string
+}
+
 export type BlockMedia = {
   _type: 'blockMedia'
   /**
@@ -453,6 +528,18 @@ export type BlockMedia = {
    *
    */
   backgroundColor?: string
+
+  /**
+   * Background Image — `image`
+   *
+   *
+   */
+  backgroundImage?: {
+    _type: 'image'
+    asset: SanityReference<SanityImageAsset>
+    crop?: SanityImageCrop
+    hotspot?: SanityImageHotspot
+  }
 
   /**
    * Media Items — `array`

@@ -28,6 +28,7 @@ export default {
       name: 'sections',
       title: 'Sections',
       type: 'array',
+      validation: (rule) => rule.required().min(1),
       of: [
         {
           name: 'textSection',
@@ -38,6 +39,7 @@ export default {
               name: 'text',
               title: 'Text Block',
               type: 'richText',
+              validation: (rule) => rule.required(),
             },
           ],
           preview: {
