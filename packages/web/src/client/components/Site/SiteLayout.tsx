@@ -19,6 +19,7 @@ import { Sanity } from 'src/types'
 interface LayoutProps extends Sanity.DefaultLayoutProps {
   children: React.ReactNode
   documentMeta?: Sanity.Meta
+  className?: string
 }
 
 export const Layout = ({
@@ -28,6 +29,7 @@ export const Layout = ({
   navigation,
   footer,
   documentMeta,
+  className,
 }: LayoutProps) => {
   const router = useRouter()
   const currentPath = router.pathname
@@ -48,7 +50,9 @@ export const Layout = ({
       <SiteSeo defaultSeo={defaultMeta} meta={documentMeta} />
       {showSplash && <Splash />}
       <Nav items={navigation} currentPath={currentPath} />
-      <Main $currentPath={currentPath}>{children}</Main>
+      <Main className={className} $currentPath={currentPath}>
+        {children}
+      </Main>
       {currentPath !== '/instagram' && (
         <PaddingContainer>
           <Section>

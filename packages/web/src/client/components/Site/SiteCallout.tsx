@@ -11,7 +11,7 @@ import {
   Colors,
   RADII,
   PADDING,
-  THEME_TYPES,
+  ThemeTypes,
   HOVER_BACKGROUND,
 } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
@@ -32,10 +32,10 @@ export const Callout = ({ text, link, media }: Sanity.Callout) => {
 
   return (
     <FadeUp>
-      <CalloutContainer $theme={THEME_TYPES.DARK} {...restProps}>
+      <CalloutContainer $theme={ThemeTypes.DARK} {...restProps}>
         <div>
           <CalloutText>{text}</CalloutText>
-          <Button text={label} theme={THEME_TYPES.DARK} />
+          <Button text={label} theme={ThemeTypes.DARK} />
         </div>
         <CalloutImageWrapper>
           {media ? <Media {...media} /> : null}
@@ -45,7 +45,7 @@ export const Callout = ({ text, link, media }: Sanity.Callout) => {
   )
 }
 
-const CalloutContainer = styled(LinkBase)<{ $theme: THEME_TYPES.DARK }>`
+const CalloutContainer = styled(LinkBase)<{ $theme: ThemeTypes.DARK }>`
   display: block;
   background-color: ${Colors.lightgrey_2};
   border-radius: ${RADII.wrapper_lg}px;
@@ -62,7 +62,7 @@ const CalloutContainer = styled(LinkBase)<{ $theme: THEME_TYPES.DARK }>`
   @media (hover: hover) {
     &:hover {
       ${ButtonContainer} {
-        background-color: ${(p) => getThemeValue(p.$theme, HOVER_BACKGROUND)};
+        background-color: ${(p) => getThemeValue(HOVER_BACKGROUND, p.$theme)};
       }
     }
   }

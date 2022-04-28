@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 
-import { BACKGROUND, COLOR, THEME_TYPES } from 'styles/constants'
+import { BACKGROUND, COLOR, ThemeTypes } from 'styles/constants'
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 
@@ -9,7 +9,7 @@ import { getThemeValue } from 'helpers/theme'
 
 export interface ButtonInnerProps {
   text?: string
-  theme: THEME_TYPES
+  theme: ThemeTypes
 }
 
 export const ButtonInner = ({ text, theme }: ButtonInnerProps) => {
@@ -23,7 +23,7 @@ export interface ButtonProps extends ButtonInnerProps {
 export const Button = ({
   text,
   link,
-  theme = THEME_TYPES.LIGHT,
+  theme = ThemeTypes.LIGHT,
 }: ButtonProps) => {
   return (
     <>
@@ -40,14 +40,15 @@ export const Button = ({
   )
 }
 
-export const ButtonContainer = styled.div<{ $theme: THEME_TYPES }>`
+export const ButtonContainer = styled.div<{ $theme: ThemeTypes }>`
+  ${getFontStyles(FONT_STYLE_APFEL_12_400)}
+
   display: inline-block;
   border-radius: 500px;
   padding: 8px;
   padding-bottom: 9px;
-  color: ${(p) => getThemeValue(p.$theme, COLOR)};
-  background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)}
+  color: ${(p) => getThemeValue(COLOR, p.$theme)};
+  background-color: ${(p) => getThemeValue(BACKGROUND, p.$theme)};
   z-index: 1;
   text-decoration: none;
   cursor: pointer;
