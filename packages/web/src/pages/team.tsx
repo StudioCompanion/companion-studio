@@ -15,6 +15,7 @@ import { REVALIDATE_TIME } from 'references/constants'
 
 import { TEAMPAGE } from 'src/data/queries/singletons/teamPage'
 import { Teampage } from 'src/types/sanity.generated'
+import { SanityGenerated } from 'src/types'
 
 interface TeamProps {
   document: Teampage
@@ -24,17 +25,21 @@ const Team = ({ document }: TeamProps) => {
   const { team, textBlockOne, textBlockTwo } = document
 
   // log
-  console.log('🟢 BLOCK 2 is: ', textBlockOne)
+  console.log('🍏 TEAM is: ', team)
 
   return (
     <>
       <NextSeo title="Team" />
       <ImageStrip />
       <PaddingContainer>
-        <CenteredParagraph text={textBlockOne} />
+        <CenteredParagraph
+          text={textBlockOne as unknown as SanityGenerated.RichText}
+        />
 
-        <TeamGrid />
-        <CenteredParagraph text={textBlockTwo} />
+        <TeamGrid team={team} />
+        <CenteredParagraph
+          text={textBlockTwo as unknown as SanityGenerated.RichText}
+        />
 
         <ValuesGrid />
       </PaddingContainer>

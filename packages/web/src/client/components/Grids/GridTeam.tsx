@@ -11,33 +11,47 @@ import {
 
 import { FadeUp } from 'components/Transitions/FadeUp'
 
-import { ALL_TEAM_MEMBERS } from '../../references/constants'
+import { Media } from 'components/Media/Media'
+import { MediaImage } from 'components/Media/MediaImage'
 
-interface GridItemProps {
-  image: StaticImageData
-  name: string
-  role: string
+import { ALL_TEAM_MEMBERS } from '../../references/constants'
+import { Sanity } from 'src/types'
+
+// interface GridItemProps {
+//   image: StaticImageData
+//   name: string
+//   role: string
+// }
+
+interface TeamGridProps {
+  team: Sanity.Team
 }
 
-const GridItem = ({ image, name, role }: GridItemProps) => {
+const GridItem = ({ image, name, job, _key }: Sanity.TeamMember) => {
+  const selectedMedia = image?.asset ? image : image?.asset ? image : undefined
+
+  // log
+  console.log('🍏 IMAGE is: ', image)
+
   return (
     <FadeUp>
       <GridItemContainer>
         <GridImageWrapper>
-          <Image src={image} placeholder="blur" alt={name} />
+          {/* <Image src={image?.asset} placeholder="blur" alt={name} /> */}
+          {selectedMedia && <Media {...selectedMedia} />}
         </GridImageWrapper>
         <TeamMemberName>{name}</TeamMemberName>
-        <TeamMemberRole>{role}</TeamMemberRole>
+        <TeamMemberRole>{job}</TeamMemberRole>
       </GridItemContainer>
     </FadeUp>
   )
 }
 
-export const TeamGrid = () => {
+export const TeamGrid = ({ team }: TeamGridProps) => {
   return (
     <GridWrapper>
-      {ALL_TEAM_MEMBERS.map(({ image, name, role }) => (
-        <GridItem key={name} image={image} name={name} role={role} />
+      {team.map(({ image, name, job }) => (
+        <GridItem key={name} image={image} name={name} job={job} />
       ))}
     </GridWrapper>
   )

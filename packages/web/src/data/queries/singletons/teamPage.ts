@@ -7,9 +7,9 @@ import { META } from '../objects/meta'
 
 export const TEAMPAGE = groq`
     team[]->{
-        ...team {
+        ...{
             ${TEAM_MEMBER}
-        },
+        }
     },
     textBlockOne[] {
         ${RICH_TEXT}
