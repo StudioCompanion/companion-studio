@@ -45,7 +45,7 @@ export interface Image {
 // }
 
 export interface HomePageCardProps {
-  // layout: string
+  layout: string
   // media: Sanity.Image
   meta: Sanity.Meta
   subtitle: string
@@ -54,6 +54,8 @@ export interface HomePageCardProps {
   slug: string
   button?: string
   type: LAYOUTS
+  aspect: number | undefined
+
   // key?: string
   // image: Sanity.Image
   // video?: Video
@@ -77,6 +79,7 @@ export const HomePageCard = ({
   slug,
   button,
   type,
+  aspect = meta?.image?.dimensions.aspectRatio,
 }: // key,
 // type,
 // aspect,
@@ -90,6 +93,7 @@ export const HomePageCard = ({
 HomePageCardProps) => {
   // const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
 
+  // const aspect = meta?.image?.dimensions.aspectRatio
   // log
   console.log('🟠 META is: ', meta)
 
@@ -97,7 +101,7 @@ HomePageCardProps) => {
     <FadeUp>
       <Link href={slug} passHref>
         <CardWrapper $theme={THEME_TYPES.LIGHT}>
-          <CardContainer $theme={theme} $type={type}>
+          <CardContainer $theme={theme} $type={type} $aspect={aspect}>
             <CardInner>
               <ImageContainer>
                 <ImageWrapper>
@@ -181,6 +185,7 @@ const CardWrapper = styled.a<{ $theme: THEME_TYPES.LIGHT }>`
 const CardContainer = styled.div<{
   $theme: THEME_TYPES
   $type: LAYOUTS
+  $aspect: number | undefined
 }>`
   background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
   padding-top: ${({ $type, $aspect }) =>
