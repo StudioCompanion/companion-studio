@@ -56,7 +56,6 @@ export interface HomePageCardProps {
   type: LAYOUTS
   aspect: number | undefined
 
-  // key?: string
   // image: Sanity.Image
   // video?: Video
   // heading: string
