@@ -33,9 +33,11 @@ export default {
   preview: {
     select: {
       assetType: 'assetType',
+      media: 'image',
     },
     prepare: (selection) => ({
       title: selection?.assetType,
+      media: selection?.media,
     }),
   },
 }

@@ -14,9 +14,8 @@ import { Sanity } from 'src/types'
 import styled from 'styled-components'
 import { SiteSeo } from 'components/Site/SiteSeo'
 
-interface ProjectPageProps {
+interface ProjectPageProps extends Sanity.DefaultLayoutProps {
   document: Sanity.ProjectPage
-  defaultMeta: Sanity.Meta
 }
 
 const ProjectPage = ({ document, defaultMeta }: ProjectPageProps) => {
