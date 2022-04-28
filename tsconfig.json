@@ -26,6 +26,6 @@
       "styles/*": ["./src/client/styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "packages/**/*", "*.*.js", "*.*.ts"],
+  "include": ["*.d.ts", "packages/**/*", "*.*.js", "*.*.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,4 +1,8 @@
-export const aspectRatio = (w: number, h: number) => /* css */ `
+/**
+ * If h is omitted, w is expected to be the percentage value
+ * for the aspect ratio
+ */
+export const aspectRatio = (w: number, h?: number) => /* css */ `
 overflow: hidden;
 position: relative;
 
@@ -6,7 +10,7 @@ position: relative;
   display: block;
   content: '';
   width: 100%;
-  padding-top: ${(h / w) * 100}%;
+  padding-top: ${h ? (h / w) * 100 : w}%;
 }
 
 & > * {

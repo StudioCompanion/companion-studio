@@ -71,12 +71,14 @@ export interface Card extends Omit<SanityGenerated.PageCard, 'media'> {
   media?: Media
 }
 
+type PageTypes = 'homepage' | 'approachpage' | 'teampage' | 'project'
+
 export interface DocumentBase {
   _id?: string
   _createdAt?: string
   _rev?: string
   _updatedAt?: string
-  _type?: string
+  _type?: PageTypes
   card?: Card
   meta?: Meta
 }
@@ -90,7 +92,7 @@ export interface ProjectPage extends DocumentBase {
 
 export type Pages =
   | SanityGenerated.Homepage
-  | SanityGenerated.Approachpage
+  | ApproachPage
   | SanityGenerated.Teampage
   | SanityGenerated.Project
 
@@ -98,4 +100,26 @@ export interface Link {
   label?: string
   url?: string | Pages
   isExternal?: boolean
+}
+
+export interface ApproachPage extends DocumentBase {
+  meta?: Meta
+  card?: Card
+  slug?: string
+  sections?: Array<
+    | SanityGenerated.SanityKeyed<{
+        _type: 'textSection'
+        /**
+         * Text Block — `richText`
+         *
+         *
+         */
+        text?: SanityGenerated.RichText
+      }>
+    | SanityGenerated.SanityKeyed<Media>
+  >
+}
+
+export interface DefaultLayoutProps {
+  defaultMeta: Meta
 }

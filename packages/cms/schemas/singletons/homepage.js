@@ -18,7 +18,6 @@ export default {
     },
   ],
   fields: [
-    slug(),
     {
       name: 'standfirst',
       type: 'richText',

@@ -71,11 +71,10 @@ const GridWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  margin: 0px 0px 16px 0px;
+  margin: 16px 0px 16px 0px;
 
   ${MEDIA_QUERIES.tabletUp} {
-    width: 40%;
-    margin: 32px 0px 0px 0px;
+    margin: 0;
     justify-content: flex-end;
   }
 `

@@ -1,12 +1,11 @@
 import { Sanity } from 'src/types'
 
-import { VideoPlayer } from '../Video/VideoPlayer'
+import { VideoPlayer, VideoPlayerProps } from '../Video/VideoPlayer'
 
-export interface MediaMuxProps extends Sanity.Mux {
-  floodParent?: boolean
-}
+export type MediaMuxProps = Sanity.Mux &
+  Omit<VideoPlayerProps, 'src' | 'poster'>
 
-export const MediaMux = ({ asset, floodParent }: MediaMuxProps) => {
+export const MediaMux = ({ asset, ...restProps }: MediaMuxProps) => {
   const { playbackId, thumbTime } = asset
 
   if (!playbackId) {
@@ -21,7 +20,7 @@ export const MediaMux = ({ asset, floodParent }: MediaMuxProps) => {
     fitMode: 'preserve',
   })
 
-  return <VideoPlayer floodParent={floodParent} src={src} poster={poster} />
+  return <VideoPlayer src={src} poster={poster} {...restProps} />
 }
 
 export default function getPosterSrc(

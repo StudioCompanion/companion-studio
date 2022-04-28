@@ -69,6 +69,7 @@ export enum Colors {
   white = '#FFFFFF',
   lightgrey = '#F1F1F4',
   lightgrey_2 = '#E5E5EB',
+  blue = '#0037B0',
   darkblue = '#1E1C1C',
   darkblue_light = 'rgba(30, 28, 28, .7)',
 }
