@@ -26,7 +26,22 @@ import CASE_new_futures_m from '../../public/home/CASE_new_futures_m.png'
 import STUDIO_news from '../../public/home/STUDIO_news.png'
 import STUDIO_news_m from '../../public/home/STUDIO_news_m.png'
 
-const Index = () => {
+import { Sanity } from 'src/types'
+import { Homepage } from 'src/types/sanity.generated'
+import { HOMEPAGE } from 'src/data/queries/documents/homePage'
+import { fetchDocument } from 'src/data/fetchDocument'
+import { GetStaticProps } from 'next'
+import { REVALIDATE_TIME } from 'references/constants'
+
+interface IndexProps extends Sanity.DocumentBase {
+  document: Sanity.Pages
+}
+
+const Index = ({ card, meta, document }: IndexProps) => {
+  
+  // log
+  console.log('🟠 PROPS are: ', document, card, meta)
+
   return (
     <HomeContainer>
       <RightContainer>
@@ -168,7 +183,7 @@ const HOMEPAGE_DATA = [
       mobile: CASE_cellular_goods_m,
     },
     heading: 'Cellular Goods',
-    subheading: 'Digital direction for a cannibinoids eCommerce',
+    subheading: 'Digital direction for a cannabinoids eCommerce',
     link: '#',
     theme: THEME_TYPES.DARK,
   },
@@ -195,3 +210,20 @@ const HOMEPAGE_DATA = [
     theme: THEME_TYPES.GREY,
   },
 ]
+
+export const getStaticProps: GetStaticProps = async ({ preview }) => {
+  const sanityResult = await fetchDocument({
+    filter: `_type == 'homepage'`,
+    preview,
+    projection: HOMEPAGE,
+  })
+
+  return {
+    notFound: !sanityResult,
+    props: {
+      ...sanityResult,
+      preview: !!preview,
+    },
+    revalidate: REVALIDATE_TIME,
+  }
+}
