@@ -24,8 +24,8 @@ import { FadeUp } from 'components/Transitions/FadeUp'
 import { CardVideo, Video } from './CardVideo'
 
 import { Sanity } from 'src/types'
+import { Media } from 'components/Media/Media'
 
-<<<<<<< HEAD
 export interface Image {
   desktop: {
     src: string
@@ -45,13 +45,16 @@ export interface Image {
 // }
 
 export interface HomePageCardProps {
-  layout: string
-  media: Sanity.Image
+  // layout: string
+  // media: Sanity.Image
   meta: Sanity.Meta
   subtitle: string
-  theme: string
+  theme: THEME_TYPES
   title: string
   slug: string
+  button?: string
+  type: LAYOUTS
+  // key?: string
   // image: Sanity.Image
   // video?: Video
   // heading: string
@@ -65,14 +68,17 @@ export interface HomePageCardProps {
 }
 
 export const HomePageCard = ({
-  layout,
-  media,
+  // layout,
+  // media,
   meta,
   subtitle,
   theme,
   title,
   slug,
-}: // type,
+  button,
+  type,
+}: // key,
+// type,
 // aspect,
 // image,
 // video,
@@ -83,40 +89,27 @@ export const HomePageCard = ({
 // theme = THEME_TYPES.GREY,
 HomePageCardProps) => {
   // const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
-=======
-export interface HomePageCardProps {
-  image: Sanity.Image
-  video?: Video
-  heading: string
-  subheading: string
-  button?: string
-  link: string
-  type: LAYOUTS
-  theme: THEME_TYPES
-}
 
-export const HomePageCard = ({
-  type,
-  image,
-  video,
-  heading,
-  subheading,
-  button,
-  link,
-  theme = THEME_TYPES.GREY,
-}: HomePageCardProps) => {
-  const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
->>>>>>> 48bc9f5cae6903bdbe6abe5ce0ee2a1084607bf8
+  // log
+  console.log('🟠 META is: ', meta)
 
   return (
     <FadeUp>
-      <Link href={slug.current} passHref>
+      <Link href={slug} passHref>
         <CardWrapper $theme={THEME_TYPES.LIGHT}>
           <CardContainer $theme={theme} $type={type}>
             <CardInner>
               <ImageContainer>
                 <ImageWrapper>
-                  {!video && (
+                  {meta && <Media {...meta?.image} />}
+
+                  {/* <Image
+                    src={meta?.seo.image?.asset as unknown as string}
+                    layout="fill"
+                    alt={meta?.description}
+                    placeholder="blur"
+                  /> */}
+                  {/* {!video && (
                     <Image
                       // src={tabletUp ? image.desktop : image.mobile}
                       src={image?.asset as unknown as string}
@@ -124,20 +117,20 @@ export const HomePageCard = ({
                       alt={heading}
                       placeholder="blur"
                     />
-                  )}
-                  {video && (
+                  )} */}
+                  {/* {video && (
                     <CardVideo
                       tabletUp={tabletUp}
                       video={video}
                       image={image}
                     />
-                  )}
+                  )} */}
                 </ImageWrapper>
               </ImageContainer>
               <CardText $theme={theme}>
                 <div>
-                  <h2>{heading}</h2>
-                  <h3>{subheading}</h3>
+                  <h2>{title}</h2>
+                  <h3>{subtitle}</h3>
                 </div>
                 <Button
                   text={

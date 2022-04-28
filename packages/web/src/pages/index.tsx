@@ -46,9 +46,14 @@ const Index = ({ document }: IndexProps) => {
         <OpeningText text={standfirst} />
       </RightContainer>
       <CardsContainer>
-        {/* {Array.isArray(cards)
-          ? cards.map((item) => <HomePageCard key={item._key} {...item} />)
-          : null} */}
+        {Array.isArray(cards)
+          ? cards.map((item) => {
+              // log
+              console.log('🟡 ITEM is:', item)
+
+              return <HomePageCard key={item._key} {...item} />
+            })
+          : null}
       </CardsContainer>
     </HomeContainer>
   )
