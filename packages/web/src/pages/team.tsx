@@ -9,23 +9,33 @@ import { ValuesGrid } from 'components/Grids/GridValues'
 import { CenteredParagraph } from 'components/CenteredParagraph/CenteredParagraph'
 import { ImageStrip } from 'components/ImageStrip/ImageStrip'
 
-const Team = () => {
+import { fetchDocument } from 'src/data/fetchDocument'
+import { GetStaticProps } from 'next'
+import { REVALIDATE_TIME } from 'references/constants'
+
+import { TEAMPAGE } from 'src/data/queries/singletons/teamPage'
+import { Teampage } from 'src/types/sanity.generated'
+
+interface TeamProps {
+  document: Teampage
+}
+
+const Team = ({ document }: TeamProps) => {
+  const { team, textBlockOne, textBlockTwo } = document
+
+  // log
+  console.log('🟢 BLOCK 2 is: ', textBlockOne)
+
   return (
     <>
       <NextSeo title="Team" />
       <ImageStrip />
       <PaddingContainer>
-        <CenteredParagraph>
-          We’re a small and passionate team of designers, engineers and
-          strategists working from London. We’re trying our hardest, despite
-          what Myles might tell you.
-        </CenteredParagraph>
+        <CenteredParagraph text={textBlockOne} />
+
         <TeamGrid />
-        <CenteredParagraph>
-          We’re always on the lookout for like-minded people to join our team
-          either fulltime or on a freelance basis. Check out some of our key
-          values below and get in touch for a chat.
-        </CenteredParagraph>
+        <CenteredParagraph text={textBlockTwo} />
+
         <ValuesGrid />
       </PaddingContainer>
     </>
@@ -45,3 +55,20 @@ const PaddingContainer = styled.div`
     padding: 0 ${PADDING.m}px;
   }
 `
+
+export const getStaticProps: GetStaticProps = async ({ preview }) => {
+  const sanityResult = await fetchDocument({
+    filter: `_type == 'teampage'`,
+    preview,
+    projection: TEAMPAGE,
+  })
+
+  return {
+    notFound: !sanityResult,
+    props: {
+      ...sanityResult,
+      preview: !!preview,
+    },
+    revalidate: REVALIDATE_TIME,
+  }
+}

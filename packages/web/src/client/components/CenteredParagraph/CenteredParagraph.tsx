@@ -6,15 +6,19 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_32_400 } from 'styles/fonts'
 import { FadeUp } from 'components/Transitions/FadeUp'
 
+import { RendererRichText } from 'components/Renderer/RendererRichText'
+import { SanityGenerated } from 'src/types'
+
 type CenteredParagraphProps = {
-  children: React.ReactNode
+  // children: React.ReactNode
+  text: SanityGenerated.RichText
 }
 
-export const CenteredParagraph = ({ children }: CenteredParagraphProps) => {
+export const CenteredParagraph = ({ text }: CenteredParagraphProps) => {
   return (
     <FadeUp>
       <CenteredParagraphContainer>
-        <CenteredParagraphBody>{children}</CenteredParagraphBody>
+        {text ? <CenteredParagraphBody blocks={text} /> : null}
       </CenteredParagraphContainer>
     </FadeUp>
   )
@@ -28,7 +32,7 @@ const CenteredParagraphContainer = styled.div`
     margin: ${PADDING.xxl}px 0;
   }
 `
-const CenteredParagraphBody = styled.p`
+const CenteredParagraphBody = styled(RendererRichText)`
   ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
   text-align: center;
   ${MEDIA_QUERIES.tabletUp} {
