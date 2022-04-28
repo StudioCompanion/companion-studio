@@ -27,18 +27,21 @@ import STUDIO_news from '../../public/home/STUDIO_news.png'
 import STUDIO_news_m from '../../public/home/STUDIO_news_m.png'
 
 import { Sanity } from 'src/types'
+import { Homepage } from 'src/types/sanity.generated'
 import { HOMEPAGE } from 'src/data/queries/singletons/homePage'
 import { fetchDocument } from 'src/data/fetchDocument'
 import { GetStaticProps } from 'next'
 import { REVALIDATE_TIME } from 'references/constants'
 
-interface IndexProps extends Sanity.DocumentBase {
-  document: Sanity.Pages
+interface IndexProps {
+  document: Homepage
 }
 
-const Index = ({ card, meta, document }: IndexProps) => {
+const Index = ({ document }: IndexProps) => {
+  const { cards, standfirst } = document
+
   // log
-  console.log('🟠 PROPS are: ', document, card, meta)
+  console.log('✨✨✨ DOCUMENT are: ', document)
 
   return (
     <HomeContainer>
@@ -47,11 +50,14 @@ const Index = ({ card, meta, document }: IndexProps) => {
           text={`We're a design studio that partners with you to create digital products that inspire, disrupt, entertain and create a better future for people and planet.`}
         />
       </RightContainer>
-      <CardsContainer>
-        {HOMEPAGE_DATA.map((item, index) => (
-          <HomePageCard key={index} {...item} />
-        ))}
-      </CardsContainer>
+      {/* <CardsContainer>
+        {cards?.map((item, index) => {
+          // log
+          console.log('✨ ITEM is: ', item)
+
+          return <HomePageCard key={index} {...item} />
+        })}
+      </CardsContainer> */}
     </HomeContainer>
   )
 }

@@ -23,26 +23,28 @@ import { Button, ButtonContainer } from 'components/Button/Button'
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { CardVideo, Video } from './CardVideo'
 
-export interface Image {
-  desktop: {
-    src: string
-    height: number
-    width: number
-  }
-  mobile: {
-    src: string
-    height: number
-    width: number
-  }
-}
+import { Sanity } from 'src/types'
 
-interface Aspect {
-  desktop: string | number
-  mobile: string | number
-}
+// export interface Image {
+//   desktop: {
+//     src: string
+//     height: number
+//     width: number
+//   }
+//   mobile: {
+//     src: string
+//     height: number
+//     width: number
+//   }
+// }
+
+// interface Aspect {
+//   desktop: string | number
+//   mobile: string | number
+// }
 
 export interface HomePageCardProps {
-  image: Image
+  image: Sanity.Image
   video?: Video
   heading: string
   subheading: string
@@ -77,7 +79,8 @@ export const HomePageCard = ({
                 <ImageWrapper>
                   {!video && (
                     <Image
-                      src={tabletUp ? image.desktop : image.mobile}
+                      // src={tabletUp ? image.desktop : image.mobile}
+                      src={image?.asset as unknown as string}
                       layout="fill"
                       alt={heading}
                       placeholder="blur"
