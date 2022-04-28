@@ -27,8 +27,7 @@ import STUDIO_news from '../../public/home/STUDIO_news.png'
 import STUDIO_news_m from '../../public/home/STUDIO_news_m.png'
 
 import { Sanity } from 'src/types'
-import { Homepage } from 'src/types/sanity.generated'
-import { HOMEPAGE } from 'src/data/queries/documents/homePage'
+import { HOMEPAGE } from 'src/data/queries/singletons/homePage'
 import { fetchDocument } from 'src/data/fetchDocument'
 import { GetStaticProps } from 'next'
 import { REVALIDATE_TIME } from 'references/constants'
@@ -38,7 +37,6 @@ interface IndexProps extends Sanity.DocumentBase {
 }
 
 const Index = ({ card, meta, document }: IndexProps) => {
-  
   // log
   console.log('🟠 PROPS are: ', document, card, meta)
 

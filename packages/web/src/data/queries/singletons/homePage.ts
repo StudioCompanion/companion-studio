@@ -6,11 +6,13 @@ import { CARD } from '../objects/card'
 import { META } from '../objects/meta'
 
 export const HOMEPAGE = groq`
-    standfirst {
+    standfirst[] {
         ${RICH_TEXT}
     },
-    cards[0]->{
-        ${CARD}
+    cards[]->{
+        ...card {
+            ${CARD}
+        }
     },
     meta {
         ${META}
