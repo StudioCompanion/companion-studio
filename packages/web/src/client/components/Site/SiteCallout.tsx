@@ -1,8 +1,11 @@
 import styled from 'styled-components'
-import Image from 'next/image'
 
 import { Button, ButtonContainer } from 'components/Button/Button'
+import { Media } from 'components/Media/Media'
+import { LinkBase } from 'components/Links/LinkBase'
 import { FadeUp } from 'components/Transitions/FadeUp'
+
+import { getThemeValue } from 'helpers/theme'
 
 import {
   Colors,
@@ -13,39 +16,36 @@ import {
 } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
-import { getThemeValue } from 'helpers/theme'
 import {
   FONT_STYLE_RECKLESS_32_400,
   FONT_STYLE_RECKLESS_17_400,
 } from 'styles/fonts'
 
-export const Callout = () => {
+import { Sanity } from 'src/types'
+
+export const Callout = ({ text, link, media }: Sanity.Callout) => {
+  if (!link) {
+    return null
+  }
+
+  const { label, ...restProps } = link
+
   return (
     <FadeUp>
-      <CalloutContainer
-        $theme={THEME_TYPES.DARK}
-        href="mailto:hello@companion.studio"
-      >
+      <CalloutContainer $theme={THEME_TYPES.DARK} {...restProps}>
         <div>
-          <CalloutText>
-            Have a project you’d like to work on with us? Interested in joining
-            the team? Need a shoulder to cry on?
-          </CalloutText>
-          <Button text={'Message us'} theme={THEME_TYPES.DARK} />
+          <CalloutText>{text}</CalloutText>
+          <Button text={label} theme={THEME_TYPES.DARK} />
         </div>
         <CalloutImageWrapper>
-          <Image
-            src={'/images/graphics/callout_image.png'}
-            width={176}
-            height={174}
-          />
+          {media ? <Media {...media} /> : null}
         </CalloutImageWrapper>
       </CalloutContainer>
     </FadeUp>
   )
 }
 
-const CalloutContainer = styled.a<{ $theme: THEME_TYPES.DARK }>`
+const CalloutContainer = styled(LinkBase)<{ $theme: THEME_TYPES.DARK }>`
   display: block;
   background-color: ${Colors.lightgrey_2};
   border-radius: ${RADII.wrapper_lg}px;
@@ -82,6 +82,7 @@ const CalloutText = styled.p`
 
 const CalloutImageWrapper = styled.div`
   display: none;
+  flex: 0 0 17.4rem;
 
   ${MEDIA_QUERIES.smallTabletUp} {
     display: block;

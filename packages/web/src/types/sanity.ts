@@ -81,6 +81,7 @@ export interface DocumentBase {
   _type?: PageTypes
   card?: Card
   meta?: Meta
+  slug?: string
 }
 
 export interface ProjectPage extends DocumentBase {
@@ -94,7 +95,7 @@ export type Pages =
   | SanityGenerated.Homepage
   | ApproachPage
   | SanityGenerated.Teampage
-  | SanityGenerated.Project
+  | ProjectPage
 
 export interface Link {
   label?: string
@@ -120,6 +121,19 @@ export interface ApproachPage extends DocumentBase {
   >
 }
 
+export interface Footer {
+  links?: Link[]
+}
+
+export interface Callout {
+  link?: Link
+  media?: Media
+  text?: string
+}
+
 export interface DefaultLayoutProps {
   defaultMeta: Meta
+  navigation: Link[]
+  footer: Footer
+  callout: Callout
 }

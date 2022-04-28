@@ -25,7 +25,7 @@ export const SiteSeo = ({ defaultSeo, meta }: SiteSeoProps) => {
       title={seo.title}
       description={seo.description}
       openGraph={{
-        url: `${process.env.NEXT_PUBLIC_VERCEL_URL}${router.asPath}`,
+        url: `https://www.companion.studio${router.asPath}`,
         images: imageProps
           ? [
               {

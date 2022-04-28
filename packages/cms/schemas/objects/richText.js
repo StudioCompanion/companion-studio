@@ -12,6 +12,11 @@ export const basicRichText = {
       type: 'block',
       marks: {
         annotations: [
+          /**
+           * TODO: investigate why this can't just
+           * be type: 'link' and use the one as part
+           * of the schema.
+           */
           {
             name: 'link',
             type: 'object',
