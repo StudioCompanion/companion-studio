@@ -50,14 +50,14 @@ const Index = ({ document }: IndexProps) => {
           text={`We're a design studio that partners with you to create digital products that inspire, disrupt, entertain and create a better future for people and planet.`}
         />
       </RightContainer>
-      {/* <CardsContainer>
+      <CardsContainer>
         {cards?.map((item, index) => {
           // log
           console.log('✨ ITEM is: ', item)
 
-          return <HomePageCard key={index} {...item} />
+          // return <HomePageCard key={index} {...item} />
         })}
-      </CardsContainer> */}
+      </CardsContainer>
     </HomeContainer>
   )
 }

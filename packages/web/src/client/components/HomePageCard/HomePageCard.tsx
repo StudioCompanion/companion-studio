@@ -25,18 +25,18 @@ import { CardVideo, Video } from './CardVideo'
 
 import { Sanity } from 'src/types'
 
-// export interface Image {
-//   desktop: {
-//     src: string
-//     height: number
-//     width: number
-//   }
-//   mobile: {
-//     src: string
-//     height: number
-//     width: number
-//   }
-// }
+export interface Image {
+  desktop: {
+    src: string
+    height: number
+    width: number
+  }
+  mobile: {
+    src: string
+    height: number
+    width: number
+  }
+}
 
 // interface Aspect {
 //   desktop: string | number
@@ -44,34 +44,48 @@ import { Sanity } from 'src/types'
 // }
 
 export interface HomePageCardProps {
-  image: Sanity.Image
-  video?: Video
-  heading: string
-  subheading: string
-  button?: string
-  link: string
-  type: LAYOUTS
-  aspect?: Aspect
-  theme: THEME_TYPES
-  key?: number
+  layout: string
+  media: Sanity.Image
+  meta: Sanity.Meta
+  subtitle: string
+  theme: string
+  title: string
+  slug: string
+  // image: Sanity.Image
+  // video?: Video
+  // heading: string
+  // subheading: string
+  // button?: string
+  // link: string
+  // type: LAYOUTS
+  // aspect?: Aspect
+  // theme: THEME_TYPES
+  // key?: number
 }
 
 export const HomePageCard = ({
-  type,
-  aspect,
-  image,
-  video,
-  heading,
-  subheading,
-  button,
-  link,
-  theme = THEME_TYPES.GREY,
-}: HomePageCardProps) => {
-  const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
+  layout,
+  media,
+  meta,
+  subtitle,
+  theme,
+  title,
+  slug,
+}: // type,
+// aspect,
+// image,
+// video,
+// heading,
+// subheading,
+// button,
+// link,
+// theme = THEME_TYPES.GREY,
+HomePageCardProps) => {
+  // const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
 
   return (
     <FadeUp>
-      <Link href={link} passHref>
+      <Link href={slug.current} passHref>
         <CardWrapper $theme={THEME_TYPES.LIGHT}>
           <CardContainer $theme={theme} $type={type} $aspect={aspect}>
             <CardInner>

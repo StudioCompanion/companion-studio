@@ -13,7 +13,8 @@ export const HOMEPAGE = groq`
         ...card {
             ${CARD}
         },
-        meta
+        meta,
+        slug
     },
     meta {
         ${META}
