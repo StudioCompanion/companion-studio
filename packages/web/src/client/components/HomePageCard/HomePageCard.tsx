@@ -25,24 +25,6 @@ import { CardVideo, Video } from './CardVideo'
 
 import { Sanity } from 'src/types'
 
-// export interface Image {
-//   desktop: {
-//     src: string
-//     height: number
-//     width: number
-//   }
-//   mobile: {
-//     src: string
-//     height: number
-//     width: number
-//   }
-// }
-
-// interface Aspect {
-//   desktop: string | number
-//   mobile: string | number
-// }
-
 export interface HomePageCardProps {
   image: Sanity.Image
   video?: Video
@@ -51,14 +33,11 @@ export interface HomePageCardProps {
   button?: string
   link: string
   type: LAYOUTS
-  aspect?: Aspect
   theme: THEME_TYPES
-  key?: number
 }
 
 export const HomePageCard = ({
   type,
-  aspect,
   image,
   video,
   heading,
@@ -73,7 +52,7 @@ export const HomePageCard = ({
     <FadeUp>
       <Link href={link} passHref>
         <CardWrapper $theme={THEME_TYPES.LIGHT}>
-          <CardContainer $theme={theme} $type={type} $aspect={aspect}>
+          <CardContainer $theme={theme} $type={type}>
             <CardInner>
               <ImageContainer>
                 <ImageWrapper>
@@ -149,7 +128,6 @@ const CardWrapper = styled.a<{ $theme: THEME_TYPES.LIGHT }>`
 const CardContainer = styled.div<{
   $theme: THEME_TYPES
   $type: LAYOUTS
-  $aspect?: Aspect
 }>`
   background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
   padding-top: ${({ $type, $aspect }) =>

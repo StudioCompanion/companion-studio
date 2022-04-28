@@ -2,15 +2,14 @@ import styled from 'styled-components'
 
 import { PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { getFontStyles } from 'styles/getFontStyles'
-import {
-  FONT_STYLE_RECKLESS_20_400,
-  FONT_STYLE_RECKLESS_32_400,
-} from 'styles/fonts'
+
 import { Logo } from 'components/Logo/Logo'
+import { RendererRichText } from 'components/Renderer/RendererRichText'
+
+import { SanityGenerated } from 'src/types'
 
 export interface OpeningTextProps {
-  text: string
+  text?: SanityGenerated.RichText
 }
 
 export const OpeningText = ({ text }: OpeningTextProps) => {
@@ -20,7 +19,7 @@ export const OpeningText = ({ text }: OpeningTextProps) => {
         <Logo />
       </LogoContainer>
       <OpeningTextInner>
-        <OpeningTextCopy>{text}</OpeningTextCopy>
+        {text ? <OpeningTextCopy blocks={text} /> : null}
       </OpeningTextInner>
     </OpeningTextContainer>
   )
@@ -33,6 +32,7 @@ const OpeningTextContainer = styled.div`
   justify-content: center;
   margin: 24px 0 ${PADDING.xl}px 0;
   width: 100%;
+
   ${MEDIA_QUERIES.tabletUp} {
     position: sticky;
     top: 0;
@@ -52,10 +52,6 @@ const LogoContainer = styled.div`
   margin-bottom: 8px;
 `
 
-const OpeningTextCopy = styled.h1`
+const OpeningTextCopy = styled(RendererRichText)`
   text-align: center;
-  ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
-  ${MEDIA_QUERIES.tabletUp} {
-    ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
-  }
 `
