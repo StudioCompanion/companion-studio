@@ -5,11 +5,11 @@ import imageUrlBuilder from '@sanity/image-url'
 import { createSanityClientRead } from '../../data/createSanityClientRead'
 import { Sanity } from 'src/types'
 
-export const useSanityImage = (image: Sanity.Image) => {
+export const useSanityImage = (image?: Sanity.Image) => {
   const [client] = useState(createSanityClientRead())
 
   const imageProps = useMemo(() => {
-    if (!image.asset) {
+    if (!image?.asset) {
       return null
     }
 

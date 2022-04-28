@@ -40,23 +40,15 @@ interface IndexProps {
 const Index = ({ document }: IndexProps) => {
   const { cards, standfirst } = document
 
-  // log
-  console.log('✨✨✨ DOCUMENT are: ', document)
-
   return (
     <HomeContainer>
       <RightContainer>
-        <OpeningText
-          text={`We're a design studio that partners with you to create digital products that inspire, disrupt, entertain and create a better future for people and planet.`}
-        />
+        <OpeningText text={standfirst} />
       </RightContainer>
       <CardsContainer>
-        {cards?.map((item, index) => {
-          // log
-          console.log('✨ ITEM is: ', item)
-
-          // return <HomePageCard key={index} {...item} />
-        })}
+        {/* {Array.isArray(cards)
+          ? cards.map((item) => <HomePageCard key={item._key} {...item} />)
+          : null} */}
       </CardsContainer>
     </HomeContainer>
   )

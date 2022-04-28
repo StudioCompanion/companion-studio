@@ -1,64 +1,102 @@
-import { useRef, useEffect } from "react";
-import styled, { css } from "styled-components";
-import Hls from "hls.js";
+import { useRef, useEffect } from 'react'
+import styled, { css } from 'styled-components'
+import useIntersectionObserver from '@react-hook/intersection-observer'
 
 export type VideoPlayerProps = {
-  src: string;
-  poster?: string;
-  floodParent?: boolean;
-};
+  src: string
+  poster?: string
+  floodParent?: boolean
+  isPaused?: boolean
+  onAutoplayCallback?: (isPlaying: boolean) => void
+  onClick?: () => void
+}
 
-export const VideoPlayer = ({ src, poster, floodParent }: VideoPlayerProps) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
+export const VideoPlayer = ({
+  src,
+  poster,
+  floodParent,
+  isPaused,
+  onAutoplayCallback,
+  onClick,
+}: VideoPlayerProps) => {
+  const videoRef = useRef<HTMLVideoElement>(null!)
+
+  const { isIntersecting } = useIntersectionObserver(videoRef)
+
+  useEffect(() => {
+    if (isIntersecting) {
+      videoRef.current.play()
+    } else {
+      videoRef.current.pause()
+    }
+
+    if (onAutoplayCallback) {
+      onAutoplayCallback(isIntersecting)
+    }
+  }, [isIntersecting, onAutoplayCallback])
+
+  useEffect(() => {
+    if (isPaused) {
+      videoRef.current.pause()
+    } else {
+      videoRef.current.play()
+    }
+  }, [isPaused])
 
   /**
    * Only used if the video is MUX which at the
    * time of writing it would only be...
    */
   useEffect(() => {
-    const video = videoRef.current;
+    const video = videoRef.current
 
-    if (!video) return;
+    if (!video) return
 
-    let hls: Hls;
+    const Hls = require('hls.js')
+    let hls: typeof Hls
 
-    if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
       // This will run in safari, where HLS is supported natively
-      video.src = src;
+      video.src = src
     } else if (Hls.isSupported()) {
       // This will run in all other modern browsers
-      hls = new Hls();
-      hls.loadSource(src);
-      hls.attachMedia(video);
+      hls = new Hls()
+      hls.loadSource(src)
+      hls.attachMedia(video)
     } else {
       const ERR_MSG =
-        "This is an old browser that does not support MSE https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API";
-      console.error(ERR_MSG);
+        'This is an old browser that does not support MSE https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API'
+      console.error(ERR_MSG)
     }
 
     return () => {
       if (hls) {
-        hls.destroy();
+        hls.destroy()
       }
-    };
-  }, [src]);
+    }
+  }, [src])
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick()
+    }
+  }
 
   return (
-    <VideoContainer $floodParent={floodParent}>
+    <VideoContainer $floodParent={floodParent} onClick={handleClick}>
       <Video
         ref={videoRef}
         preload="auto"
         src={src}
         poster={poster}
-        autoPlay
         loop
         muted
         playsInline
         $floodParent={floodParent}
       />
     </VideoContainer>
-  );
-};
+  )
+}
 
 const VideoContainer = styled.div<{ $floodParent?: boolean }>`
   overflow: hidden;
@@ -76,7 +114,7 @@ const VideoContainer = styled.div<{ $floodParent?: boolean }>`
       : css`
           position: relative;
         `}
-`;
+`
 
 const Video = styled.video<{ $floodParent?: boolean }>`
   max-width: 100%;
@@ -95,4 +133,4 @@ const Video = styled.video<{ $floodParent?: boolean }>`
       : css`
           width: 100%;
         `}
-`;
+`

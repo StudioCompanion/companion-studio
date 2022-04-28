@@ -8,6 +8,11 @@ import {
   FONT_STYLE_RECKLESS_26_400,
   FONT_STYLE_RECKLESS_58_400,
   FONT_STYLE_RECKLESS_32_400,
+  FONT_STYLE_APFEL_44_400,
+  FONT_STYLE_APFEL_32_400,
+  FONT_STYLE_APFEL_26_400,
+  FONT_STYLE_APFEL_17_400,
+  FONT_STYLE_APFEL_58_400,
 } from './fonts'
 import { MEDIA_QUERIES } from './mediaQueries'
 
@@ -84,6 +89,47 @@ export const getFontStyles = (type: string) => {
           `
       break
 
+    case FONT_STYLE_APFEL_17_400:
+      fontProps += `
+      font-size: 1.7rem;
+      line-height: 1.3;
+      `
+      break
+
+    case FONT_STYLE_APFEL_26_400:
+      fontProps += `
+      font-size: 2rem;
+      line-height: 1.3;
+
+      ${MEDIA_QUERIES.tabletUp} {
+        font-size: 2.6rem;
+      }
+      `
+      break
+
+    case FONT_STYLE_APFEL_32_400:
+      fontProps += `
+      font-size: 2.6rem;
+      line-height: 1.2;
+
+      ${MEDIA_QUERIES.tabletUp} {
+        font-size: 3.2rem;
+      }
+      `
+      break
+
+    case FONT_STYLE_APFEL_44_400:
+      fontProps += `
+      font-size: 3.2rem;
+      line-height: 1.2;
+
+      ${MEDIA_QUERIES.tabletUp} {
+        font-size: 4.4rem;
+      }
+      `
+      break
+
+    case FONT_STYLE_APFEL_58_400:
     case FONT_STYLE_APFEL_58_500:
       fontProps += `
         font-size: 4.4rem;

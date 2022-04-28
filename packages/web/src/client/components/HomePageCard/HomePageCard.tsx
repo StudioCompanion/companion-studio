@@ -25,6 +25,7 @@ import { CardVideo, Video } from './CardVideo'
 
 import { Sanity } from 'src/types'
 
+<<<<<<< HEAD
 export interface Image {
   desktop: {
     src: string
@@ -82,12 +83,36 @@ export const HomePageCard = ({
 // theme = THEME_TYPES.GREY,
 HomePageCardProps) => {
   // const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
+=======
+export interface HomePageCardProps {
+  image: Sanity.Image
+  video?: Video
+  heading: string
+  subheading: string
+  button?: string
+  link: string
+  type: LAYOUTS
+  theme: THEME_TYPES
+}
+
+export const HomePageCard = ({
+  type,
+  image,
+  video,
+  heading,
+  subheading,
+  button,
+  link,
+  theme = THEME_TYPES.GREY,
+}: HomePageCardProps) => {
+  const tabletUp = useMediaQuery({ query: `(min-width: ${WIDTHS.tablet}px)` })
+>>>>>>> 48bc9f5cae6903bdbe6abe5ce0ee2a1084607bf8
 
   return (
     <FadeUp>
       <Link href={slug.current} passHref>
         <CardWrapper $theme={THEME_TYPES.LIGHT}>
-          <CardContainer $theme={theme} $type={type} $aspect={aspect}>
+          <CardContainer $theme={theme} $type={type}>
             <CardInner>
               <ImageContainer>
                 <ImageWrapper>
@@ -163,7 +188,6 @@ const CardWrapper = styled.a<{ $theme: THEME_TYPES.LIGHT }>`
 const CardContainer = styled.div<{
   $theme: THEME_TYPES
   $type: LAYOUTS
-  $aspect?: Aspect
 }>`
   background-color: ${(p) => getThemeValue(p.$theme, BACKGROUND)};
   padding-top: ${({ $type, $aspect }) =>
