@@ -12,15 +12,18 @@ import { ProjecHeader } from 'components/Headers/ProjectHeader'
 
 import { Sanity } from 'src/types'
 import styled from 'styled-components'
+import { SiteSeo } from 'components/Site/SiteSeo'
 
 interface ProjectPageProps {
   document: Sanity.ProjectPage
+  defaultMeta: Sanity.Meta
 }
 
-const ProjectPage = ({ document }: ProjectPageProps) => {
-  const { blocks = [], title, subtext, team } = document
+const ProjectPage = ({ document, defaultMeta }: ProjectPageProps) => {
+  const { blocks = [], title, subtext, team, meta } = document
   return (
     <>
+      <SiteSeo defaultSeo={defaultMeta} meta={meta} />
       <Article>
         <ProjecHeader title={title} subtext={subtext} team={team} />
         <Renderer blocks={blocks} />
@@ -69,6 +72,7 @@ export const getStaticProps: GetStaticProps<
     notFound: !sanityResult,
     props: {
       document: {},
+      defaultMeta: {},
       ...sanityResult,
       preview: !!preview,
     },
