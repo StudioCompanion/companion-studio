@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-
 import Image from 'next/image'
-import Link from 'next/link'
-import isEmail from 'validator/lib/isEmail'
-
-import { Input } from '../Inputs/Input'
 
 import { Colors, PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
@@ -14,96 +9,51 @@ import {
   FONT_STYLE_RECKLESS_17_400,
   FONT_STYLE_APFEL_12_400,
 } from 'styles/fonts'
+
+import { Sanity } from 'src/types'
+
 import { FadeUp } from 'components/Transitions/FadeUp'
+import { SignUpForm } from 'components/Forms/FormFooter'
+import { LinkBase } from 'components/Links/LinkBase'
 
-const SignUpForm = () => {
-  const [showSuccess, setShowSuccess] = useState(false)
-  const [value, setValue] = useState<string>('')
+/**
+ * TODO: make this CMS-able
+ */
+const partnerLogos = [
+  {
+    title: '1% for the Planet',
+    url: 'https://www.onepercentfortheplanet.org/',
+    image: '/images/graphics/partner-logos/partnerlogo_1percent.svg',
+    width: 83,
+    height: 35,
+  },
+  {
+    title: 'Creative Lives in Progress',
+    url: 'https://www.creativelivesinprogress.com/',
+    image: '/images/graphics/partner-logos/partnerlogo_CLIP.svg',
+    width: 55,
+    height: 35,
+  },
+  {
+    title: 'New Futures',
+    url: 'https://newfutureshq.org.uk/',
+    image: '/images/graphics/partner-logos/partnerlogo_newfutures.svg',
+    width: 58,
+    height: 35,
+  },
+  {
+    title: 'ARTHOUSE Unlimited',
+    url: 'https://arthouseunlimited.org/',
+    image: '/images/graphics/partner-logos/partnerlogo_AHU.png',
+    width: 94,
+    height: 9,
+  },
+]
 
-  const [touched, setTouched] = useState(false)
-
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(
-    undefined
-  )
-
-  const handleBlur = () => {
-    setTouched(true)
-    setErrorMessage(validateForm(value))
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    if (validateForm(value)) {
-      e.preventDefault()
-      setErrorMessage(validateForm(value))
-    } else {
-      setShowSuccess(true)
-      setValue('')
-      setTouched(false)
-    }
-  }
-
-  const validateForm = (value: string) => {
-    let error = undefined
-    if (value === '' || value === null) {
-      error = 'Please enter an email address'
-    } else if (!isEmail(value)) {
-      error = 'That didn’t work! Please enter a valid email address'
-    }
-    return error
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
-    if ((errorMessage && errorMessage !== '') || touched) {
-      setErrorMessage(validateForm(value))
-    }
-    if (showSuccess) {
-      setShowSuccess(false)
-    }
-  }
-
-  return (
-    <SignUp>
-      <iframe
-        name="dummyframe"
-        id="dummyframe"
-        style={{ display: 'none' }}
-      ></iframe>
-      <Form
-        action="https://companionstudio.substack.com/api/v1/free?nojs=true"
-        target="dummyframe"
-        method="post"
-        onSubmit={handleSubmit}
-      >
-        <InputWrapper>
-          <Input
-            name={'email'}
-            placeholder={'Subscribe for occasional ramblings'}
-            type={'email'}
-            value={value}
-            handleChange={handleChange}
-            handleBlur={handleBlur}
-          />
-          <FormFeedback>
-            {errorMessage && errorMessage !== '' && <span>{errorMessage}</span>}
-            {!(errorMessage && errorMessage !== '') && showSuccess && (
-              <span>Success! Keep an eye out for our ramblings</span>
-            )}
-          </FormFeedback>
-        </InputWrapper>
-        <FormButton
-          type={'submit'}
-          value="Submit"
-          disabled={Boolean(!value || (errorMessage && errorMessage !== ''))}
-        >
-          Submit
-        </FormButton>
-      </Form>
-    </SignUp>
-  )
-}
-
-export const Footer = () => {
+export const Footer = ({ links }: Sanity.Footer) => {
+  /**
+   * TODO: replace with date-fns
+   */
   const dateFounded = new Date('2020-11-30').getTime()
   const [currentTime, setCurrentTime] = useState<number>(0)
   const timeActive = currentTime - dateFounded
@@ -111,6 +61,7 @@ export const Footer = () => {
   const minutes = Math.floor((timeActive / 1000 / 60) % 60)
   const hours = Math.floor((timeActive / (1000 * 60 * 60)) % 24)
   const days = Math.floor(timeActive / (1000 * 60 * 60 * 24))
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(Date.now())
@@ -118,53 +69,6 @@ export const Footer = () => {
 
     return () => clearInterval(interval)
   }, [])
-
-  const footerLinks = [
-    { title: 'Work', url: '/' },
-    { title: 'Approach', url: '/approach' },
-    { title: 'Team', url: '/team' },
-    { title: 'Privacy', url: '/privacy' },
-    {
-      title: 'Instagram',
-      url: 'https://www.instagram.com/companion_studio/?hl=en',
-    },
-    { title: 'Twitter', url: 'https://twitter.com/ourcompanion' },
-    {
-      title: 'Linkedin',
-      url: 'https://www.linkedin.com/company/companion-studio',
-    },
-  ]
-
-  const partnerLogos = [
-    {
-      title: '1% for the Planet',
-      url: 'https://www.onepercentfortheplanet.org/',
-      image: '/images/graphics/partner-logos/partnerlogo_1percent.svg',
-      width: 83,
-      height: 35,
-    },
-    {
-      title: 'Creative Lives in Progress',
-      url: 'https://www.creativelivesinprogress.com/',
-      image: '/images/graphics/partner-logos/partnerlogo_CLIP.svg',
-      width: 55,
-      height: 35,
-    },
-    {
-      title: 'New Futures',
-      url: 'https://newfutureshq.org.uk/',
-      image: '/images/graphics/partner-logos/partnerlogo_newfutures.svg',
-      width: 58,
-      height: 35,
-    },
-    {
-      title: 'ARTHOUSE Unlimited',
-      url: 'https://arthouseunlimited.org/',
-      image: '/images/graphics/partner-logos/partnerlogo_AHU.png',
-      width: 94,
-      height: 9,
-    },
-  ]
 
   return (
     <FadeUp>
@@ -216,22 +120,11 @@ export const Footer = () => {
           </ImprintLeft>
           <ImprintRight>
             <FooterLinks>
-              {footerLinks.map((link, index) =>
-                link?.url && link.url.startsWith('/') ? (
-                  <Link key={index} href={link.url} passHref>
-                    <FooterLink>{link.title}</FooterLink>
-                  </Link>
-                ) : (
-                  <FooterLink
-                    key={index}
-                    href={link.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {link.title}
-                  </FooterLink>
-                )
-              )}
+              {links?.map((link) => (
+                <li key={link.label}>
+                  <FooterLink {...link}>{link.label}</FooterLink>
+                </li>
+              ))}
             </FooterLinks>
           </ImprintRight>
         </Imprint>
@@ -333,49 +226,26 @@ const ImprintLine = styled.span`
     }
   }
 `
-const SignUp = styled.div``
-const Form = styled.form`
-  display: flex;
-  align-items: flex-start;
-`
-const InputWrapper = styled.div`
-  flex-grow: 1;
-  margin-right: 8px;
-`
-const FormFeedback = styled.div`
-  margin-top: 8px;
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)}
-`
 
-const FormButton = styled.button`
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)};
-  background-color: ${Colors.white};
-  color: ${Colors.darkblue};
-  border-radius: 500px;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  padding-bottom: 9px;
-  min-height: 30px;
-
-  &:hover {
-    opacity: 0.8;
-  }
-`
-const FooterLinks = styled.div`
+const FooterLinks = styled.ul`
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: auto;
   grid-template-rows: repeat(4, auto);
   column-gap: 50px;
   row-gap: 12px;
+
   ${MEDIA_QUERIES.tabletUp} {
     display: block;
     margin-right: -24px;
+
+    & > li {
+      display: inline-block;
+    }
   }
 `
 
-const FooterLink = styled.a`
+const FooterLink = styled(LinkBase)`
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};
   text-decoration: none;
   color: ${Colors.white};

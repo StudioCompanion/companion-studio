@@ -5,8 +5,8 @@ import { PADDING } from 'styles/constants'
 
 import { StickyParagraph } from 'components/StickyElements/StickyParagraph'
 import { FadeUp } from 'components/Transitions/FadeUp'
-import { SiteSeo } from 'components/Site/SiteSeo'
 import { StickMedia } from 'components/StickyElements/StickyMedia'
+import { Layout } from 'components/Site/SiteLayout'
 
 import { fetchDocument } from 'src/data/fetchDocument'
 import { APPROACH_PAGE } from 'src/data/queries/singletons/approach'
@@ -19,12 +19,11 @@ interface ApproachProps extends Sanity.DefaultLayoutProps {
   document: Sanity.ApproachPage
 }
 
-const Approach = ({ defaultMeta, document }: ApproachProps) => {
+const Approach = ({ document, ...siteProps }: ApproachProps) => {
   const { sections, meta } = document
 
   return (
-    <>
-      <SiteSeo defaultSeo={defaultMeta} meta={meta} />
+    <Layout documentMeta={meta} {...siteProps}>
       <ApproachContainer>
         {Array.isArray(sections) &&
           sections.map((props) => (
@@ -33,7 +32,7 @@ const Approach = ({ defaultMeta, document }: ApproachProps) => {
             </FadeUp>
           ))}
       </ApproachContainer>
-    </>
+    </Layout>
   )
 }
 
@@ -66,8 +65,6 @@ export const getStaticProps: GetStaticProps<ApproachProps> = async ({
   return {
     notFound: !sanityResult,
     props: {
-      document: {},
-      defaultMeta: {},
       ...sanityResult,
       preview: !!preview,
     },

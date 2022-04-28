@@ -5,13 +5,23 @@ import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { Colors, PADDING } from '../../styles/constants'
+
 import { Logo } from 'components/Logo/Logo'
+
+import { Sanity } from 'src/types'
+import { LinkBase } from 'components/Links/LinkBase'
 
 export interface NavProps {
   currentPath?: string
+  items?: Sanity.Link[]
 }
 
-export const Nav = ({ currentPath = '/' }: NavProps) => {
+/**
+ * TODO: be nice if the background moved
+ * between the buttons instead of just
+ * being a background
+ */
+export const Nav = ({ currentPath = '/', items }: NavProps) => {
   return (
     <>
       {currentPath !== '/' && currentPath !== '/instagram' && (
@@ -23,25 +33,23 @@ export const Nav = ({ currentPath = '/' }: NavProps) => {
           </Link>
           <NavWrapper>
             <NavList>
-              <NavItem>
-                <Link href={'/'} passHref>
-                  <NavLink active={currentPath.includes('projects')}>
-                    Work
-                  </NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href={'/approach'} passHref>
-                  <NavLink active={currentPath === '/approach'}>
-                    Approach
-                  </NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href={'/team'} passHref>
-                  <NavLink active={currentPath === '/team'}>Team</NavLink>
-                </Link>
-              </NavItem>
+              {Array.isArray(items)
+                ? items.map((item) => (
+                    <NavItem key={item.label}>
+                      <NavLink
+                        {...item}
+                        active={
+                          // @ts-expect-error this should be redundant after all the pages are moved over
+                          currentPath === `/${item.url?.slug}` ||
+                          (currentPath.includes('projects') &&
+                            item.label === 'Work')
+                        }
+                      >
+                        {item.label}
+                      </NavLink>
+                    </NavItem>
+                  ))
+                : null}
             </NavList>
           </NavWrapper>
         </NavContainer>
@@ -54,6 +62,7 @@ const LogoWrapper = styled.a`
   display: block;
   margin-right: 10px;
 `
+
 const NavContainer = styled.div`
   position: sticky;
   z-index: 1;
@@ -70,6 +79,7 @@ const NavContainer = styled.div`
 
   padding: ${PADDING.s}px;
 `
+
 const NavWrapper = styled.nav`
   background-color: white;
   width: fit-content;
@@ -78,14 +88,18 @@ const NavWrapper = styled.nav`
   border: 1px solid rgba(232, 232, 238, 0.25);
   box-shadow: 0px 0px 21px rgba(8, 11, 55, 0.03);
 `
+
 const NavList = styled.ul`
   display: flex;
-  margin-right: -6px;
 `
+
 const NavItem = styled.li`
-  margin-right: 6px;
+  & + & {
+    margin-left: 6px;
+  }
 `
-const NavLink = styled.a<{ active: boolean }>`
+
+const NavLink = styled(LinkBase)<{ active: boolean }>`
   text-decoration: none;
   display: block;
   ${getFontStyles(FONT_STYLE_APFEL_12_400)};

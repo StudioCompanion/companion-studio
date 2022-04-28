@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 
-import { BACKGROUND, COLOR, THEME_TYPES } from '../../styles/constants'
-import { getFontStyles } from '../../styles/getFontStyles'
+import { BACKGROUND, COLOR, THEME_TYPES } from 'styles/constants'
+import { getFontStyles } from 'styles/getFontStyles'
+import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
+
 import { getThemeValue } from 'helpers/theme'
-import { FONT_STYLE_APFEL_12_400 } from '../../styles/fonts'
 
 export interface ButtonInnerProps {
-  text: string
+  text?: string
   theme: THEME_TYPES
 }
 
@@ -15,10 +16,8 @@ export const ButtonInner = ({ text, theme }: ButtonInnerProps) => {
   return <ButtonContainer $theme={theme}>{text}</ButtonContainer>
 }
 
-export interface ButtonProps {
-  text: string
+export interface ButtonProps extends ButtonInnerProps {
   link?: string
-  theme: THEME_TYPES
 }
 
 export const Button = ({

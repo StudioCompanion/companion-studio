@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
+import styled from 'styled-components'
 import groq from 'groq'
 
 import { createSanityClientRead } from '../../data/createSanityClientRead'
@@ -9,25 +10,23 @@ import { REVALIDATE_TIME } from 'references/constants'
 
 import { Renderer } from 'components/Renderer/Renderer'
 import { ProjecHeader } from 'components/Headers/ProjectHeader'
+import { Layout } from 'components/Site/SiteLayout'
 
 import { Sanity } from 'src/types'
-import styled from 'styled-components'
-import { SiteSeo } from 'components/Site/SiteSeo'
 
 interface ProjectPageProps extends Sanity.DefaultLayoutProps {
   document: Sanity.ProjectPage
 }
 
-const ProjectPage = ({ document, defaultMeta }: ProjectPageProps) => {
+const ProjectPage = ({ document, ...siteProps }: ProjectPageProps) => {
   const { blocks = [], title, subtext, team, meta } = document
   return (
-    <>
-      <SiteSeo defaultSeo={defaultMeta} meta={meta} />
+    <Layout {...siteProps} documentMeta={meta}>
       <Article>
         <ProjecHeader title={title} subtext={subtext} team={team} />
         <Renderer blocks={blocks} />
       </Article>
-    </>
+    </Layout>
   )
 }
 
@@ -70,8 +69,6 @@ export const getStaticProps: GetStaticProps<
   return {
     notFound: !sanityResult,
     props: {
-      document: {},
-      defaultMeta: {},
       ...sanityResult,
       preview: !!preview,
     },
