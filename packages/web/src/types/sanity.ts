@@ -5,7 +5,7 @@ import {
 } from 'sanity-codegen'
 import { CarouselLayouts, Colors, ThemeTypes } from 'styles/constants'
 
-import { Sanity, SanityGenerated } from './index'
+import { SanityGenerated } from './index'
 
 export type Mux = {
   _type: 'video'
