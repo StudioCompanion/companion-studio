@@ -14,6 +14,7 @@ import approach from './singletons/approach'
 import homepage from './singletons/homepage'
 import settings from './singletons/settings'
 import teampage from './singletons/teampage'
+import linktree from './singletons/linktree'
 
 /**
  * Objects
@@ -51,6 +52,7 @@ export default createSchema({
     homepage,
     settings,
     teampage,
+    linktree,
     /**
      * Objects
      */

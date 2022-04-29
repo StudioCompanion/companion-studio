@@ -202,7 +202,9 @@ export interface Homepage extends SanityDocument {
    *
    */
   cards?: Array<
-    SanityKeyedReference<Homepage | Teampage | Approachpage | Project>
+    SanityKeyedReference<
+      Homepage | Teampage | Approachpage | Linktree | Project
+    >
   >
 
   /**
@@ -369,6 +371,29 @@ export interface Teampage extends SanityDocument {
   card?: PageCard
 }
 
+/**
+ * Linktree page
+ *
+ *
+ */
+export interface Linktree extends SanityDocument {
+  _type: 'linktree'
+
+  /**
+   * Links — `array`
+   *
+   *
+   */
+  links?: Array<SanityKeyed<Link>>
+
+  /**
+   * Page meta — `meta`
+   *
+   *
+   */
+  meta?: Meta
+}
+
 export type Media = {
   _type: 'media'
   /**
@@ -496,7 +521,9 @@ export type Link = {
    *
    *
    */
-  linkInternal?: SanityReference<Homepage | Teampage | Approachpage | Project>
+  linkInternal?: SanityReference<
+    Homepage | Teampage | Approachpage | Linktree | Project
+  >
 
   /**
    * Link External — `url`
@@ -614,6 +641,7 @@ export type Documents =
   | Homepage
   | Settings
   | Teampage
+  | Linktree
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but
