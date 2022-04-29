@@ -40,7 +40,7 @@ export const CardHome = ({
   const actualTitle = title ?? meta?.title
 
   return (
-    <Link href={slug ?? ''} passHref>
+    <Link href={`/projects/${slug}` ?? ''} passHref>
       <CardWrapper className={className} $theme={theme}>
         <ImageContainer>
           {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}
