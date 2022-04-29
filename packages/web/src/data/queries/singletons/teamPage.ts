@@ -2,6 +2,7 @@ import groq from 'groq'
 
 import { RICH_TEXT } from '../objects/richText'
 import { TEAM_MEMBER } from '../objects/teamMember'
+import { IMAGE } from '../objects/image'
 
 import { META } from '../objects/meta'
 
@@ -27,4 +28,9 @@ export const TEAMPAGE = groq`
         }
         
     },
+    slideshow[] {
+        image {
+            ${IMAGE}
+        }
+    }
 `

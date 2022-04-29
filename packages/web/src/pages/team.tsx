@@ -26,18 +26,18 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
     document
 
   // log
-  console.log('🍏 QUALITIES is: ', qualities)
+  console.log('🍏 SLIDESHOW is: ', slideshow)
 
   return (
     <Layout documentMeta={meta} {...siteProps}>
       <NextSeo title="Team" />
-      <ImageStrip />
+      {slideshow ? <ImageStrip slideshow={slideshow} /> : null}
       <PaddingContainer>
-        <CenteredParagraph text={textBlockOne} />
+        {textBlockOne ? <CenteredParagraph text={textBlockOne} /> : null}
         {team && <TeamGrid team={team} />}
-        <CenteredParagraph text={textBlockTwo} />
+        {textBlockTwo ? <CenteredParagraph text={textBlockTwo} /> : null}
 
-        <ValuesGrid qualities={qualities as unknown as Sanity.Qualities} />
+        {qualities ? <ValuesGrid qualities={qualities} /> : null}
       </PaddingContainer>
     </Layout>
   )

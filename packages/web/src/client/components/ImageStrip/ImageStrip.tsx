@@ -9,6 +9,9 @@ import { WIDTHS } from '../../styles/dimensions'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { FadeUp } from 'components/Transitions/FadeUp'
 
+import { Sanity } from 'src/types'
+import { Media } from 'components/Media/Media'
+
 const SMALL = 'small'
 const MEDIUM = 'medium'
 const LARGE = 'large'
@@ -21,6 +24,10 @@ interface ImageStripImageProps {
   width: number
   height: number
   tabletUp: boolean
+}
+
+interface ImageStripProps {
+  slideshow: Sanity.Media[]
 }
 
 const ImageStripImage = ({
@@ -107,7 +114,7 @@ const ImageStripImage = ({
   )
 }
 
-export const ImageStrip = ({}) => {
+export const ImageStrip = ({ slideshow }: ImageStripProps) => {
   const [pageIsVisible, setPageIsVisible] = useState(true)
   const handleVisibilityChange = (isVisible: boolean) => {
     setPageIsVisible(isVisible)
@@ -140,7 +147,7 @@ export const ImageStrip = ({}) => {
             <Ticker>
               {() => (
                 <ImageStripWrapper>
-                  {images.map((image, i) => (
+                  {/* {images.map((image, i) => (
                     <ImageStripImage
                       key={i}
                       src={image.src}
@@ -151,7 +158,10 @@ export const ImageStrip = ({}) => {
                       rotation={image.rotation}
                       tabletUp={isTabletUp}
                     />
-                  ))}
+                  ))} */}
+                  {slideshow.map((image) => {
+                    image ? <Media {...image} /> : null
+                  })}
                 </ImageStripWrapper>
               )}
             </Ticker>

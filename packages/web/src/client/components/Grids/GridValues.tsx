@@ -68,11 +68,6 @@ const gridItems = [
   },
 ]
 
-// interface GridItemProps {
-//   heading: (string | JSX.Element)[]
-//   body: string
-// }
-
 interface ValueGridProps {
   qualities: Sanity.Qualities
 }
@@ -87,9 +82,6 @@ export const GridItem = ({ title, text }: Sanity.Quality) => {
 }
 
 export const ValuesGrid = ({ qualities }: ValueGridProps) => {
-  // log
-  console.log('🍏 TYPEOF qualities is: ', typeof qualities)
-
   return (
     <FadeUp>
       <GridWrapper>
