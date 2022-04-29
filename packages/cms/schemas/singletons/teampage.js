@@ -32,7 +32,36 @@ export default {
         {
           name: 'slide',
           title: 'Slide',
-          type: 'media',
+          type: 'object',
+          fields: [
+            {
+              name: 'media',
+              type: 'media',
+              title: 'Media',
+            },
+            {
+              name: 'rotation',
+              type: 'number',
+              title: 'Rotation',
+              intialValue: 0,
+              validation: (rule) => rule.required().min(-360).max(360),
+            },
+          ],
+          preview: {
+            select: {
+              media: 'media',
+              rotation: 'rotation',
+            },
+            prepare(selection) {
+              const { media, rotation } = selection
+
+              return {
+                title: 'Slide',
+                subtitle: `with ${rotation}deg rotation`,
+                media: media.assetType === 'image' ? media.image : undefined,
+              }
+            },
+          },
         },
       ],
     },
@@ -94,6 +123,12 @@ export default {
           },
         },
       ],
+    },
+    {
+      group: 'content',
+      name: 'cta',
+      title: 'Cta',
+      type: 'link',
     },
     {
       name: 'meta',

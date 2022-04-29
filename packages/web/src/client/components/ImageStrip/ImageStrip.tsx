@@ -1,113 +1,79 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import Image from 'next/image'
 import Ticker from 'react-ticker'
 import PageVisibility from 'react-page-visibility'
 
 import { RADII, PADDING } from 'styles/constants'
-import { WIDTHS } from '../../styles/dimensions'
+import { WIDTHS } from 'styles/dimensions'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
+
 import { FadeUp } from 'components/Transitions/FadeUp'
+import { Media } from 'components/Media/Media'
 
-const SMALL = 'small'
-const MEDIUM = 'medium'
-const LARGE = 'large'
+import { Sanity } from 'src/types'
 
-interface ImageStripImageProps {
-  size: string
-  rotation?: number
-  src: StaticImageData
-  alt: string
-  width: number
-  height: number
+interface ImageStripImageProps extends Sanity.Slide {
   tabletUp: boolean
 }
 
 const ImageStripImage = ({
-  size,
-  rotation,
-  src,
-  alt,
-  width,
-  height,
+  media,
   tabletUp,
+  rotation = 2,
 }: ImageStripImageProps) => {
+  if (!media) {
+    return null
+  }
+
   function toRadians(angle: number) {
     return angle * (Math.PI / 180)
   }
   const calcNewDimensions = (
     resizedWidth: number,
     resizedHeight: number,
-    rotation?: number
+    rot: number
   ) => {
-    if (!rotation || rotation === 0) {
-      return { x: resizedWidth, y: resizedHeight }
-    } else
-      return {
-        x:
-          Math.abs(resizedHeight * Math.cos(toRadians(90 - rotation))) +
-          Math.abs(resizedWidth * Math.cos(toRadians(rotation))),
-        y:
-          Math.abs(resizedWidth * Math.sin(toRadians(rotation))) +
-          Math.abs(resizedHeight * Math.sin(toRadians(90 - rotation))),
-      }
-  }
-  const getMaxWidth = (): number => {
-    switch (size) {
-      case LARGE:
-        if (tabletUp) return 550
-        else return 275
-      case MEDIUM:
-        if (tabletUp) return 400
-        else return 200
-      case SMALL:
-        if (tabletUp) return 300
-        else return 150
-      default:
-        return 0
+    return {
+      x:
+        Math.abs(resizedHeight * Math.cos(toRadians(90 - rot))) +
+        Math.abs(resizedWidth * Math.cos(toRadians(rot))),
+      y:
+        Math.abs(resizedWidth * Math.sin(toRadians(rot))) +
+        Math.abs(resizedHeight * Math.sin(toRadians(90 - rot))),
     }
   }
 
-  const maxWidth = getMaxWidth()
+  const maxWidth = tabletUp ? 550 : 275
+
+  const width = media.dimensions.width
+  const height = media.dimensions.height
 
   const resizedWidth = Math.min(maxWidth, width)
   const resizedHeight = (height * resizedWidth) / width
 
-  const rotatedWidth = calcNewDimensions(
-    resizedWidth,
-    resizedHeight,
-    rotation
-  ).x
-  const rotatedHeight = calcNewDimensions(
-    resizedWidth,
-    resizedHeight,
-    rotation
-  ).y
-  const paddingX = Math.round(rotatedWidth - resizedWidth) / 2
-  const paddingY = Math.round(rotatedHeight - resizedHeight) / 2
+  const { x, y } = calcNewDimensions(resizedWidth, resizedHeight, rotation)
+  const paddingX = Math.round(x - resizedWidth) / 2
+  const paddingY = Math.round(y - resizedHeight) / 2
 
   return (
     <ImageContainer
       style={{
-        width: `${rotatedWidth}px`,
-        height: `${rotatedHeight}px`,
+        width: `${x}px`,
+        height: `${y}px`,
         padding: `${paddingY}px ${paddingX}px`,
+        transform: `rotate(${rotation ?? 0}deg)`,
       }}
     >
-      <ImageWrapper $size={size} $rotation={rotation}>
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          placeholder="blur"
-        />
+      <ImageWrapper>
+        <Media {...media} />
       </ImageWrapper>
     </ImageContainer>
   )
 }
 
-export const ImageStrip = ({}) => {
+export const ImageStrip = ({
+  slideshow,
+}: Pick<Sanity.TeamPage, 'slideshow'>) => {
   const [pageIsVisible, setPageIsVisible] = useState(true)
   const handleVisibilityChange = (isVisible: boolean) => {
     setPageIsVisible(isVisible)
@@ -140,18 +106,17 @@ export const ImageStrip = ({}) => {
             <Ticker>
               {() => (
                 <ImageStripWrapper>
-                  {images.map((image, i) => (
-                    <ImageStripImage
-                      key={i}
-                      src={image.src}
-                      alt={image.alt}
-                      width={image.width}
-                      height={image.height}
-                      size={image.size}
-                      rotation={image.rotation}
-                      tabletUp={isTabletUp}
-                    />
-                  ))}
+                  {Array.isArray(slideshow)
+                    ? slideshow.map(({ media, rotation }) => (
+                        <ImageStripImage
+                          // @ts-ignore
+                          key={media.asset._ref}
+                          media={media}
+                          rotation={rotation}
+                          tabletUp={isTabletUp}
+                        />
+                      ))
+                    : null}
                 </ImageStripWrapper>
               )}
             </Ticker>
@@ -162,14 +127,9 @@ export const ImageStrip = ({}) => {
   )
 }
 
-const ImageWrapper = styled.div<{
-  $size: string
-  $rotation?: number
-}>`
+const ImageWrapper = styled.div`
   border-radius: ${RADII.wrapper_lg}px;
   overflow: hidden;
-  transform: ${({ $rotation }) =>
-    $rotation ? `rotate(${$rotation}deg)` : 'none'};
 
   & img {
     transition: 0.4s ease-out;
@@ -195,41 +155,3 @@ const ImageStripWrapper = styled.div`
   align-items: center;
   width: max-content;
 `
-
-import largeImage from '../../../../public/images/graphics/image-strip/large-image.jpg'
-import scooby from '../../../../public/images/graphics/image-strip/scooby.jpg'
-import mediumImage from '../../../../public/images/graphics/image-strip/medium-image.jpg'
-import smallImage from '../../../../public/images/graphics/image-strip/small-image.jpg'
-
-const images = [
-  {
-    src: largeImage,
-    alt: 'Large Image',
-    width: 531,
-    height: 549,
-    size: LARGE,
-    rotation: 10,
-  },
-  {
-    src: scooby,
-    alt: 'Scooby',
-    width: 3024,
-    height: 4032,
-    size: SMALL,
-  },
-  {
-    src: mediumImage,
-    alt: 'Medium Image',
-    width: 333,
-    height: 444,
-    size: MEDIUM,
-    rotation: -5,
-  },
-  {
-    src: smallImage,
-    alt: 'Small Image',
-    width: 294,
-    height: 256,
-    size: SMALL,
-  },
-]

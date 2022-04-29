@@ -51,13 +51,12 @@ export type BlockMedia = SanityGenerated.SanityKeyed<
 export type Blocks = Array<BlockText | BlockTestimonial | BlockMedia>
 
 export interface TeamMember {
-  _key: string
   name?: string
   job?: string
   image?: Image
 }
 
-export type Team = TeamMember[]
+export type Team = SanityGenerated.SanityKeyed<TeamMember>[]
 
 export interface Meta {
   title?: string
@@ -96,7 +95,7 @@ export interface ProjectPage extends DocumentBase {
 export type Pages =
   | HomePage
   | ApproachPage
-  | SanityGenerated.Teampage
+  | TeamPage
   | ProjectPage
   | LinktreePage
 
@@ -122,6 +121,25 @@ export interface ApproachPage extends DocumentBase {
       }>
     | SanityGenerated.SanityKeyed<Media>
   >
+}
+
+export interface Slide {
+  rotation?: number
+  media?: Media
+}
+
+export interface TeamPage
+  extends DocumentBase,
+    Pick<
+      SanityGenerated.Teampage,
+      'textBlockOne' | 'textBlockTwo' | 'qualities'
+    > {
+  meta?: Meta
+  slug?: string
+  slideshow?: Slide[]
+  team?: Team
+  card?: Card
+  cta?: Link
 }
 
 export interface Footer {
