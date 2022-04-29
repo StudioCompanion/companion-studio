@@ -1,7 +1,8 @@
 ---
 name: 🚀 Feature
-labels: 'feature'
+labels: 'template: request'
 about: Submit a proposal for a new feature
+title: '[request]:'
 ---
 
 ## 🚀 Feature Proposal
