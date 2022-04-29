@@ -11,5 +11,8 @@ declare namespace NodeJS {
 
     // Accessibe
     NEXT_PUBLIC_ENABLE_ACCESSIBE: boolean
+
+    // Plausible
+    NEXT_PUBLIC_ENABLE_PLAUSIBLE: boolean
   }
 }
