@@ -25,9 +25,6 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
   const { team, textBlockOne, textBlockTwo, qualities, slideshow, meta } =
     document
 
-  // log
-  console.log('🍏 SLIDESHOW is: ', slideshow)
-
   return (
     <Layout documentMeta={meta} {...siteProps}>
       <NextSeo title="Team" />
@@ -36,7 +33,6 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
         {textBlockOne ? <CenteredParagraph text={textBlockOne} /> : null}
         {team && <TeamGrid team={team} />}
         {textBlockTwo ? <CenteredParagraph text={textBlockTwo} /> : null}
-
         {qualities ? <ValuesGrid qualities={qualities} /> : null}
       </PaddingContainer>
     </Layout>

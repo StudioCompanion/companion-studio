@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Image from 'next/image'
 
 import { PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
@@ -10,38 +9,23 @@ import {
 } from 'styles/fonts'
 
 import { FadeUp } from 'components/Transitions/FadeUp'
-
 import { Media } from 'components/Media/Media'
-import { MediaImage } from 'components/Media/MediaImage'
 
-import { ALL_TEAM_MEMBERS } from '../../references/constants'
 import { Sanity } from 'src/types'
-
-// interface GridItemProps {
-//   image: StaticImageData
-//   name: string
-//   job: string
-// }
 
 interface TeamGridProps {
   team: Sanity.Team
 }
 
 const GridItem = ({ image, name, job }: Sanity.TeamMember) => {
-  const selectedMedia = image?.asset ? image : image?.asset ? image : undefined
-
-  // log
-  // console.log('🍏 IMAGE is: ', image)
-
   return (
     <FadeUp>
       <GridItemContainer>
-        <GridImageWrapper>
-          {/* <Image src={image?.asset as unknown as string} placeholder="blur" alt={name} /> */}
-          {selectedMedia && <Media {...selectedMedia} />}
-        </GridImageWrapper>
-        <TeamMemberName>{name}</TeamMemberName>
-        <TeamMemberRole>{job}</TeamMemberRole>
+        {image ? <GridImage {...image} /> : null}
+        <div>
+          <TeamMemberName>{name}</TeamMemberName>
+          <TeamMemberRole>{job}</TeamMemberRole>
+        </div>
       </GridItemContainer>
     </FadeUp>
   )
@@ -66,7 +50,6 @@ const GridWrapper = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     gap: ${PADDING.m}px;
     margin: ${PADDING.xxl}px 0;
-    /* max-width: 1200px; */
   }
 `
 
@@ -75,13 +58,16 @@ const GridItemContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 8px;
+  height: 100%;
+  justify-content: space-between;
   ${MEDIA_QUERIES.tabletUp} {
     padding: ${PADDING.xl}px;
   }
 `
 
-const GridImageWrapper = styled.div`
+const GridImage = styled(Media)`
   max-width: 90px;
+  width: 100%;
   margin-bottom: 8px;
   ${MEDIA_QUERIES.tabletUp} {
     max-width: 300px;
@@ -95,48 +81,10 @@ const GridImageWrapper = styled.div`
 const TeamMemberName = styled.h2`
   ${getFontStyles(FONT_STYLE_RECKLESS_17_400)}
   margin-bottom: 4px;
+  text-align: center;
 `
 
 const TeamMemberRole = styled.h3`
   ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
+  text-align: center;
 `
-
-// import myles from '../../../../public/images/team/myles.png'
-// import elena from '../../../../public/images/team/elena.png'
-// import alexandra from '../../../../public/images/team/alexandra.png'
-// import axelle from '../../../../public/images/team/axelle.png'
-// import josh from '../../../../public/images/team/josh.png'
-// import willem from '../../../../public/images/team/willem.png'
-
-// const team = [
-//   {
-//     name: 'Myles Palmer',
-//     role: 'Founder & Creative Director',
-//     image: myles,
-//   },
-//   {
-//     name: 'Elena Marinaki',
-//     role: 'Developer Apprentice',
-//     image: elena,
-//   },
-//   {
-//     name: 'Alexandra Votjku',
-//     role: 'Digital Designer',
-//     image: alexandra,
-//   },
-//   {
-//     name: 'Axelle Van de Goor',
-//     role: 'Producer',
-//     image: axelle,
-//   },
-//   {
-//     name: 'Josh Ellis',
-//     role: 'Fullstack Developer',
-//     image: josh,
-//   },
-//   {
-//     name: 'Willem Purdy',
-//     role: 'Digital Designer',
-//     image: willem,
-//   },
-// ]
