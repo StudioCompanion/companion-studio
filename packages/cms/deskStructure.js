@@ -6,6 +6,7 @@ import {
   Handshake,
   UsersThree,
   UserList,
+  Link,
 } from 'phosphor-react'
 
 export default () =>
@@ -53,6 +54,16 @@ export default () =>
         .icon(UserList)
         .child(S.documentTypeList('teamMember')),
       S.divider(),
+      S.listItem()
+        .title('Linktree')
+        .icon(Link)
+        .child(
+          S.editor()
+            .title('Linktree')
+            .id('linktree')
+            .schemaType('linktree')
+            .documentId('linktree')
+        ),
       S.listItem()
         .title('Settings')
         .icon(Wrench)

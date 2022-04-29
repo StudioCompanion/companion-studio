@@ -1,4 +1,9 @@
-export const LOCKED_DOCUMENT_TYPES = ['homepage', 'teampage', 'approachpage']
+export const LOCKED_DOCUMENT_TYPES = [
+  'homepage',
+  'teampage',
+  'approachpage',
+  'linktree',
+]
 
 const DOCUMENT_TYPES = ['project']
 
