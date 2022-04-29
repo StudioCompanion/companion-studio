@@ -8,7 +8,6 @@ import Document, {
   DocumentContext,
 } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import { WidgetMarker } from 'components/Widgets/WidgetMarker'
 
 export default class Doc extends Document {
   static async getInitialProps(
@@ -57,7 +56,6 @@ export default class Doc extends Document {
           />
           <link rel="manifest" href={'/manifest.json'} />
           <link rel="shortcut icon" href={'/favicon.ico'} />
-          <WidgetMarker />
         </Head>
         <body>
           <Main />
