@@ -22,7 +22,7 @@ interface TeamProps extends Sanity.DefaultLayoutProps {
 }
 
 const Team = ({ document, ...siteProps }: TeamProps) => {
-  const { team, textBlockOne, textBlockTwo, qualities, slideshow, meta } =
+  const { team, textBlockOne, textBlockTwo, qualities, slideshow, cta, meta } =
     document
 
   return (
@@ -33,7 +33,7 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
         <CenteredParagraph text={textBlockOne} />
         <TeamGrid team={team} />
         <CenteredParagraph text={textBlockTwo} />
-        <ValuesGrid qualities={qualities} />
+        <ValuesGrid qualities={qualities} cta={cta} />
       </PaddingContainer>
     </Layout>
   )

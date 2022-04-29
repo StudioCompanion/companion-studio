@@ -4,7 +4,7 @@ import { RICH_TEXT } from '../objects/richText'
 import { TEAM_MEMBER } from '../objects/teamMember'
 import { IMAGE } from '../objects/image'
 
-import { META } from '../objects/meta'
+import { LINK } from '../objects/link'
 
 export const TEAMPAGE = groq`
     team[]->{
@@ -32,5 +32,8 @@ export const TEAMPAGE = groq`
         image {
             ${IMAGE}
         }
-    }
+    },
+    cta {
+        ${LINK}
+    },
 `

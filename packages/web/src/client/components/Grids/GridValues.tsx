@@ -3,17 +3,15 @@ import styled from 'styled-components'
 import { PADDING, ThemeTypes } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { getFontStyles } from 'styles/getFontStyles'
-import {
-  FONT_STYLE_RECKLESS_26_400,
-  FONT_STYLE_RECKLESS_17_400,
-} from 'styles/fonts'
+import { FONT_STYLE_RECKLESS_26_400 } from 'styles/fonts'
+
 import { Button } from 'components/Button/Button'
 import { FadeUp } from 'components/Transitions/FadeUp'
-
 import { RendererRichText } from 'components/Renderer/RendererRichText'
+
 import { NonNullSkipArray, PickType, Sanity } from 'src/types'
 
-type ValueGridProps = Pick<Sanity.TeamPage, 'qualities'>
+type ValueGridProps = Pick<Sanity.TeamPage, 'qualities' | 'cta'>
 
 export const GridItem = ({
   title,
@@ -25,12 +23,12 @@ export const GridItem = ({
   return (
     <GridItemContainer>
       {title ? <GridItemHeading blocks={title} /> : null}
-      {text ? <GridItemBody blocks={text} /> : null}
+      {text ? <RendererRichText blocks={text} /> : null}
     </GridItemContainer>
   )
 }
 
-export const ValuesGrid = ({ qualities }: ValueGridProps) => {
+export const ValuesGrid = ({ qualities, cta }: ValueGridProps) => {
   return (
     <FadeUp>
       <GridWrapper>
@@ -42,11 +40,7 @@ export const ValuesGrid = ({ qualities }: ValueGridProps) => {
             : null}
         </GridContainer>
         <ButtonWrapper>
-          <Button
-            text={'View our open positions'}
-            theme={ThemeTypes.DARK}
-            link={'#'}
-          />
+          <Button theme={ThemeTypes.DARK} {...cta} />
         </ButtonWrapper>
       </GridWrapper>
     </FadeUp>
@@ -79,12 +73,11 @@ const GridWrapper = styled.div`
 `
 
 const GridItemHeading = styled(RendererRichText)`
-  ${getFontStyles(FONT_STYLE_RECKLESS_26_400)}
+  & * {
+    // Little hack because this uses a very specific subset of the RichTextRenderer in the CMS
+    ${getFontStyles(FONT_STYLE_RECKLESS_26_400)}
+  }
   margin-bottom: 20px;
-`
-
-const GridItemBody = styled(RendererRichText)`
-  ${getFontStyles(FONT_STYLE_RECKLESS_17_400)}
 `
 
 const GridItemContainer = styled.div`
@@ -97,6 +90,7 @@ const GridItemContainer = styled.div`
 const ButtonWrapper = styled.div`
   align-self: center;
   margin: ${PADDING.xl}px 0;
+
   ${MEDIA_QUERIES.tabletUp} {
     margin: ${PADDING.xxl}px 0;
   }

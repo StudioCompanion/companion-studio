@@ -144,4 +144,8 @@ const Squiggle = styled.span`
     background-image: ${(props) =>
       `url(/static/squiggles/underline_${props.type}.png)`};
   }
+
+  & * {
+    border-bottom: none !important;
+  }
 `

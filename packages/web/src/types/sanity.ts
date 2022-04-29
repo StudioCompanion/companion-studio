@@ -134,6 +134,7 @@ export interface TeamPage
   slideshow?: Array<Media>
   team?: Team
   card?: Card
+  cta?: Link
 }
 
 export interface Footer {

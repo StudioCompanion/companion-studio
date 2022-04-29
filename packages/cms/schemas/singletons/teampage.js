@@ -96,6 +96,12 @@ export default {
       ],
     },
     {
+      group: 'content',
+      name: 'cta',
+      title: 'Cta',
+      type: 'link',
+    },
+    {
       name: 'meta',
       title: 'Page meta',
       type: 'meta',
