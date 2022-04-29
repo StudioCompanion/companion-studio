@@ -2,9 +2,8 @@ import groq from 'groq'
 
 import { RICH_TEXT } from '../objects/richText'
 import { TEAM_MEMBER } from '../objects/teamMember'
-import { IMAGE } from '../objects/image'
-
 import { LINK } from '../objects/link'
+import { MEDIA } from '../objects/media'
 
 export const TEAMPAGE = groq`
     team[]->{
@@ -29,9 +28,10 @@ export const TEAMPAGE = groq`
         
     },
     slideshow[] {
-        image {
-            ${IMAGE}
-        }
+        media {
+            ${MEDIA}
+        },
+        rotation,
     },
     cta {
         ${LINK}

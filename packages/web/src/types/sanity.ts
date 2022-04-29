@@ -123,6 +123,11 @@ export interface ApproachPage extends DocumentBase {
   >
 }
 
+export interface Slide {
+  rotation?: number
+  media?: Media
+}
+
 export interface TeamPage
   extends DocumentBase,
     Pick<
@@ -131,7 +136,7 @@ export interface TeamPage
     > {
   meta?: Meta
   slug?: string
-  slideshow?: Array<Media>
+  slideshow?: Slide[]
   team?: Team
   card?: Card
   cta?: Link
