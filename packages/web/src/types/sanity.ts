@@ -59,6 +59,14 @@ export interface TeamMember {
 
 export type Team = TeamMember[]
 
+export interface Quality {
+  _key: string
+  text: BlockText
+  title: BlockText
+}
+
+export type Qualities = Quality[]
+
 export interface Meta {
   title?: string
   description?: string

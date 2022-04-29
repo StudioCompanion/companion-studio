@@ -15,17 +15,17 @@ import { REVALIDATE_TIME } from 'references/constants'
 
 import { TEAMPAGE } from 'src/data/queries/singletons/teamPage'
 import { Teampage } from 'src/types/sanity.generated'
-import { SanityGenerated } from 'src/types'
+import { Sanity, SanityGenerated } from 'src/types'
 
 interface TeamProps {
   document: Teampage
 }
 
 const Team = ({ document }: TeamProps) => {
-  const { team, textBlockOne, textBlockTwo } = document
+  const { team, textBlockOne, textBlockTwo, qualities, slideshow } = document
 
   // log
-  console.log('🍏 TEAM is: ', team)
+  console.log('🍏 QUALITIES is: ', qualities)
 
   return (
     <>
@@ -35,13 +35,12 @@ const Team = ({ document }: TeamProps) => {
         <CenteredParagraph
           text={textBlockOne as unknown as SanityGenerated.RichText}
         />
-
-        <TeamGrid team={team} />
+        {team && <TeamGrid team={team} />}
         <CenteredParagraph
           text={textBlockTwo as unknown as SanityGenerated.RichText}
         />
 
-        <ValuesGrid />
+        <ValuesGrid qualities={qualities as unknown as Sanity.Qualities} />
       </PaddingContainer>
     </>
   )

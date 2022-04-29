@@ -20,24 +20,24 @@ import { Sanity } from 'src/types'
 // interface GridItemProps {
 //   image: StaticImageData
 //   name: string
-//   role: string
+//   job: string
 // }
 
 interface TeamGridProps {
   team: Sanity.Team
 }
 
-const GridItem = ({ image, name, job, _key }: Sanity.TeamMember) => {
+const GridItem = ({ image, name, job }: Sanity.TeamMember) => {
   const selectedMedia = image?.asset ? image : image?.asset ? image : undefined
 
   // log
-  console.log('🍏 IMAGE is: ', image)
+  // console.log('🍏 IMAGE is: ', image)
 
   return (
     <FadeUp>
       <GridItemContainer>
         <GridImageWrapper>
-          {/* <Image src={image?.asset} placeholder="blur" alt={name} /> */}
+          {/* <Image src={image?.asset as unknown as string} placeholder="blur" alt={name} /> */}
           {selectedMedia && <Media {...selectedMedia} />}
         </GridImageWrapper>
         <TeamMemberName>{name}</TeamMemberName>

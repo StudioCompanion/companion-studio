@@ -10,6 +10,8 @@ import {
 import { Button } from 'components/Button/Button'
 import { FadeUp } from 'components/Transitions/FadeUp'
 
+import { Sanity } from 'src/types'
+
 const gridItems = [
   {
     heading: [
@@ -65,29 +67,38 @@ const gridItems = [
   },
 ]
 
-interface GridItemProps {
-  heading: (string | JSX.Element)[]
-  body: string
+// interface GridItemProps {
+//   heading: (string | JSX.Element)[]
+//   body: string
+// }
+
+interface ValueGridProps {
+  qualities: Sanity.Qualities
 }
 
-export const GridItem = ({ heading, body }: GridItemProps) => {
+export const GridItem = ({ title, text }: Sanity.Quality) => {
   return (
     <GridItemContainer>
-      <GridItemHeading>{heading}</GridItemHeading>
-      <GridItemBody>{body}</GridItemBody>
+      <GridItemHeading>{title}</GridItemHeading>
+      <GridItemBody>{text}</GridItemBody>
     </GridItemContainer>
   )
 }
 
-export const ValuesGrid = () => {
+export const ValuesGrid = ({ qualities }: ValueGridProps) => {
+  // log
+  console.log('🍏 TYPEOF qualities is: ', typeof qualities)
+
   return (
     <FadeUp>
       <GridWrapper>
-        <GridContainer>
-          {gridItems.map((item, index) => (
-            <GridItem key={index} heading={item.heading} body={item.body} />
-          ))}
-        </GridContainer>
+        {/* <GridContainer>
+          {Array.isArray(qualities)
+            ? qualities.map((item, index) => (
+                <GridItem key={index} title={item.title} text={item.text} />
+              ))
+            : null}
+        </GridContainer> */}
         <ButtonWrapper>
           <Button
             text={'View our open positions'}
