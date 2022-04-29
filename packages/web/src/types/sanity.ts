@@ -98,6 +98,7 @@ export type Pages =
   | ApproachPage
   | SanityGenerated.Teampage
   | ProjectPage
+  | LinktreePage
 
 export interface Link {
   label?: string
@@ -148,4 +149,13 @@ export interface HomepageCard extends Card {
 export interface HomePage extends DocumentBase {
   standfirst?: SanityGenerated.RichText
   cards?: SanityGenerated.SanityKeyed<HomepageCard>[]
+}
+
+export interface LinktreeItem {
+  link?: Link
+  media?: Media
+}
+
+export interface LinktreePage extends DocumentBase {
+  links?: SanityGenerated.SanityKeyed<LinktreeItem>[]
 }

@@ -23,7 +23,34 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'link',
+          name: 'item',
+          title: 'Linktree Item',
+          type: 'object',
+          fields: [
+            {
+              name: 'link',
+              title: 'Link',
+              type: 'link',
+            },
+            {
+              type: 'media',
+              name: 'media',
+              title: 'Media',
+            },
+          ],
+          preview: {
+            select: {
+              media: 'media',
+              label: 'link.label',
+            },
+            prepare(selection) {
+              const { label, media } = selection
+              return {
+                title: label ?? 'Link',
+                media: media.assetType === 'image' ? media.image : undefined,
+              }
+            },
+          },
         },
       ],
       validation: (rule) => rule.required().min(1),
