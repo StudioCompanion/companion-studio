@@ -1,4 +1,6 @@
 /**
+ * @deprecated
+ * Move to use the Stitches styled component
  * If h is omitted, w is expected to be the percentage value
  * for the aspect ratio
  */

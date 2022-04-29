@@ -4,10 +4,18 @@ export enum CarouselLayouts {
   TWO_THIRDS = '2/3',
 }
 
+/**
+ * @deprecated
+ * Move to use the Stitches styled component
+ */
 export const WIDTHS = {
   centeredP: 653,
 }
 
+/**
+ * @deprecated
+ * Move to use the Stitches styled component
+ */
 export const RADII = {
   wrapper: 8,
   wrapper_lg: 12,
@@ -16,6 +24,10 @@ export const RADII = {
   video_mobile: 2,
 }
 
+/**
+ * @deprecated
+ * Move to use the Stitches styled component
+ */
 export const PADDING = {
   xs: 12,
   s: 16,
@@ -25,6 +37,10 @@ export const PADDING = {
   xxl: 60,
 }
 
+/**
+ * @deprecated
+ * Move to use the Stitches styled component
+ */
 export enum Colors {
   white = '#FFFFFF',
   lightgrey = '#F1F1F4',

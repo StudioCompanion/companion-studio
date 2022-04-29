@@ -60,7 +60,8 @@ const getFontData = (type: string) => {
 }
 
 /**
- *
+ * @deprecated
+ * Move to use the Stitches styled component
  * @param {string} type
  * @returns {string}
  */

@@ -1,3 +1,7 @@
+/**
+ * @deprecated
+ * Move to use the Stitches styled component
+ */
 export const WIDTHS = {
   smallTablet: 400,
   tablet: 768,

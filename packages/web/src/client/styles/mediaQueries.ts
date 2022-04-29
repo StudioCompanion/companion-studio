@@ -1,5 +1,9 @@
 import { WIDTHS } from './dimensions'
 
+/**
+ * @deprecated
+ * Move to use the Stitches styled component
+ */
 const MEDIA_QUERIES = {
   smallTabletUp: `@media (min-width: ${WIDTHS.smallTablet}px)`,
   tabletUp: `@media (min-width: ${WIDTHS.tablet}px)`,
