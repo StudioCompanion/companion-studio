@@ -15,7 +15,7 @@ import type {
   SanityImageDimensions,
   SanityImagePalette,
   SanityImagePaletteSwatch,
-} from 'sanity-codegen'
+} from "sanity-codegen";
 
 export type {
   SanityReference,
@@ -34,7 +34,7 @@ export type {
   SanityImageDimensions,
   SanityImagePalette,
   SanityImagePaletteSwatch,
-}
+};
 
 /**
  * Project
@@ -42,35 +42,35 @@ export type {
  *
  */
 export interface Project extends SanityDocument {
-  _type: 'project'
+  _type: "project";
 
   /**
    * Title — `string`
    *
    *
    */
-  title?: string
+  title?: string;
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug?: { _type: 'slug'; current: string }
+  slug?: { _type: "slug"; current: string };
 
   /**
    * Subtext — `string`
    *
    *
    */
-  subtext?: string
+  subtext?: string;
 
   /**
    * Team — `array`
    *
    *
    */
-  team?: Array<SanityKeyedReference<TeamMember>>
+  team?: Array<SanityKeyedReference<TeamMember>>;
 
   /**
    * Page blocks — `array`
@@ -81,21 +81,21 @@ export interface Project extends SanityDocument {
     | SanityKeyed<BlockMedia>
     | SanityKeyed<BlockText>
     | SanityKeyed<BlockTestimonial>
-  >
+  >;
 
   /**
    * Page meta — `meta`
    *
    *
    */
-  meta?: Meta
+  meta?: Meta;
 
   /**
    * Page Card — `pageCard`
    *
    *
    */
-  card?: PageCard
+  card?: PageCard;
 }
 
 /**
@@ -104,21 +104,21 @@ export interface Project extends SanityDocument {
  *
  */
 export interface TeamMember extends SanityDocument {
-  _type: 'teamMember'
+  _type: "teamMember";
 
   /**
    * Name — `string`
    *
    *
    */
-  name?: string
+  name?: string;
 
   /**
    * Job Title — `string`
    *
    *
    */
-  job?: string
+  job?: string;
 
   /**
    * Image — `image`
@@ -126,11 +126,11 @@ export interface TeamMember extends SanityDocument {
    * Ensure this has a transparent background
    */
   image?: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**
@@ -139,14 +139,14 @@ export interface TeamMember extends SanityDocument {
  *
  */
 export interface Approachpage extends SanityDocument {
-  _type: 'approachpage'
+  _type: "approachpage";
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug?: { _type: 'slug'; current: string }
+  slug?: { _type: "slug"; current: string };
 
   /**
    * Sections — `array`
@@ -155,30 +155,30 @@ export interface Approachpage extends SanityDocument {
    */
   sections?: Array<
     | SanityKeyed<{
-        _type: 'textSection'
+        _type: "textSection";
         /**
          * Text Block — `richText`
          *
          *
          */
-        text?: RichText
+        text?: RichText;
       }>
     | SanityKeyed<Media>
-  >
+  >;
 
   /**
    * Page meta — `meta`
    *
    *
    */
-  meta?: Meta
+  meta?: Meta;
 
   /**
    * Page Card — `pageCard`
    *
    *
    */
-  card?: PageCard
+  card?: PageCard;
 }
 
 /**
@@ -187,14 +187,14 @@ export interface Approachpage extends SanityDocument {
  *
  */
 export interface Homepage extends SanityDocument {
-  _type: 'homepage'
+  _type: "homepage";
 
   /**
    * Standfirst — `richText`
    *
    *
    */
-  standfirst?: RichText
+  standfirst?: RichText;
 
   /**
    * Cards — `array`
@@ -205,14 +205,14 @@ export interface Homepage extends SanityDocument {
     SanityKeyedReference<
       Homepage | Teampage | Approachpage | Linktree | Project
     >
-  >
+  >;
 
   /**
    * Page meta — `meta`
    *
    *
    */
-  meta?: Meta
+  meta?: Meta;
 }
 
 /**
@@ -221,21 +221,21 @@ export interface Homepage extends SanityDocument {
  *
  */
 export interface Settings extends SanityDocument {
-  _type: 'settings'
+  _type: "settings";
 
   /**
    * Default meta — `meta`
    *
    *
    */
-  meta?: Meta
+  meta?: Meta;
 
   /**
    * Navigation — `array`
    *
    *
    */
-  navigation?: Array<SanityKeyed<Link>>
+  navigation?: Array<SanityKeyed<Link>>;
 
   /**
    * Callout — `object`
@@ -243,28 +243,28 @@ export interface Settings extends SanityDocument {
    *
    */
   callout?: {
-    _type: 'callout'
+    _type: "callout";
     /**
      * Text — `text`
      *
      *
      */
-    text?: string
+    text?: string;
 
     /**
      * Link — `link`
      *
      * When clicked the callout links to...?
      */
-    link?: Link
+    link?: Link;
 
     /**
      * Media — `media`
      *
      *
      */
-    media?: Media
-  }
+    media?: Media;
+  };
 
   /**
    * Footer — `object`
@@ -272,21 +272,21 @@ export interface Settings extends SanityDocument {
    *
    */
   footer?: {
-    _type: 'footer'
+    _type: "footer";
     /**
      * Links — `array`
      *
      *
      */
-    links?: Array<SanityKeyed<Link>>
-  }
+    links?: Array<SanityKeyed<Link>>;
+  };
 
   /**
    * Redirects — `redirects`
    *
    *
    */
-  redirects?: Redirects
+  redirects?: Redirects;
 }
 
 /**
@@ -295,42 +295,42 @@ export interface Settings extends SanityDocument {
  *
  */
 export interface Teampage extends SanityDocument {
-  _type: 'teampage'
+  _type: "teampage";
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug?: { _type: 'slug'; current: string }
+  slug?: { _type: "slug"; current: string };
 
   /**
    * Slideshow — `array`
    *
    *
    */
-  slideshow?: Array<SanityKeyed<Media>>
+  slideshow?: Array<SanityKeyed<Media>>;
 
   /**
    * Text Block — `richText`
    *
    *
    */
-  textBlockOne?: RichText
+  textBlockOne?: RichText;
 
   /**
    * Team — `array`
    *
    *
    */
-  team?: Array<SanityKeyedReference<TeamMember>>
+  team?: Array<SanityKeyedReference<TeamMember>>;
 
   /**
    * Text Block — `richText`
    *
    *
    */
-  textBlockTwo?: RichText
+  textBlockTwo?: RichText;
 
   /**
    * Qualities — `array`
@@ -339,36 +339,36 @@ export interface Teampage extends SanityDocument {
    */
   qualities?: Array<
     SanityKeyed<{
-      _type: 'quality'
+      _type: "quality";
       /**
        * Title — `squiggleRichText`
        *
        * underline the text you want to be squiggled!
        */
-      title?: SquiggleRichText
+      title?: SquiggleRichText;
 
       /**
        * Text — `richText`
        *
        *
        */
-      text?: RichText
+      text?: RichText;
     }>
-  >
+  >;
 
   /**
    * Page meta — `meta`
    *
    *
    */
-  meta?: Meta
+  meta?: Meta;
 
   /**
    * Page Card — `pageCard`
    *
    *
    */
-  card?: PageCard
+  card?: PageCard;
 }
 
 /**
@@ -377,38 +377,102 @@ export interface Teampage extends SanityDocument {
  *
  */
 export interface Linktree extends SanityDocument {
-  _type: 'linktree'
+  _type: "linktree";
 
   /**
    * Links — `array`
    *
    *
    */
-  links?: Array<SanityKeyed<Link>>
+  links?: Array<
+    SanityKeyed<{
+      _type: "item";
+      /**
+       * Link — `link`
+       *
+       *
+       */
+      link?: Link;
+
+      /**
+       * Media — `media`
+       *
+       *
+       */
+      media?: Media;
+    }>
+  >;
 
   /**
    * Page meta — `meta`
    *
    *
    */
-  meta?: Meta
+  meta?: Meta;
+}
+
+/**
+ * Privacy
+ *
+ *
+ */
+export interface Privacy extends SanityDocument {
+  _type: "privacy";
+
+  /**
+   * FAQ — `array`
+   *
+   *
+   */
+  faq?: Array<
+    SanityKeyed<{
+      _type: "q_a";
+      /**
+       * Question — `string`
+       *
+       *
+       */
+      question?: string;
+
+      /**
+       * Answer — `richText`
+       *
+       *
+       */
+      answer?: RichText;
+    }>
+  >;
+
+  /**
+   * Page meta — `meta`
+   *
+   *
+   */
+  meta?: Meta;
+
+  /**
+   * Page Card — `pageCard`
+   *
+   *
+   */
+  card?: PageCard;
 }
 
 export type Media = {
-  _type: 'media'
+  _type: "media";
   /**
    * Asset type — `string`
    *
    *
    */
-  assetType?: 'image' | 'video'
+  assetType?: "image" | "video";
 
   /**
    * Video file — `mux.video`
    *
    *
    */
-  video?: MuxVideo
+  video?: MuxVideo;
 
   /**
    * Image file — `image`
@@ -416,26 +480,26 @@ export type Media = {
    *
    */
   image?: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
-}
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
+};
 
-export type RichText = Array<SanityKeyed<SanityBlock>>
+export type RichText = Array<SanityKeyed<SanityBlock>>;
 
-export type SquiggleRichText = Array<SanityKeyed<SanityBlock>>
+export type SquiggleRichText = Array<SanityKeyed<SanityBlock>>;
 
 export type Meta = {
-  _type: 'meta'
+  _type: "meta";
   /**
    * SEO — `seo-tools`
    *
    *
    */
-  seo?: SeoTools
-}
+  seo?: SeoTools;
+};
 
 export type Redirects = Array<
   SanityKeyed<{
@@ -444,77 +508,77 @@ export type Redirects = Array<
      *
      *
      */
-    source?: string
+    source?: string;
 
     /**
      * New URL — `string`
      *
      *
      */
-    destination?: string
+    destination?: string;
 
     /**
      * Permanent — `boolean`
      *
      *
      */
-    permanent?: boolean
+    permanent?: boolean;
   }>
->
+>;
 
 export type PageCard = {
-  _type: 'pageCard'
+  _type: "pageCard";
   /**
    * Card Title — `string`
    *
    * If omitted, the SEO title will be used
    */
-  title?: string
+  title?: string;
 
   /**
    * Subtitle — `string`
    *
    *
    */
-  subtitle?: string
+  subtitle?: string;
 
   /**
    * Media — `media`
    *
    * If omitted, the SEO media will be used
    */
-  media?: Media
+  media?: Media;
 
   /**
    * Layout — `string`
    *
    *
    */
-  layout?: 'case' | 'studio'
+  layout?: "case" | "studio";
 
   /**
    * Theme — `string`
    *
    *
    */
-  theme?: 'light' | 'grey' | 'dark'
-}
+  theme?: "light" | "grey" | "dark";
+};
 
 export type Link = {
-  _type: 'link'
+  _type: "link";
   /**
    * Label — `string`
    *
    * If omitted, the title of the reference will be used
    */
-  label?: string
+  label?: string;
 
   /**
    * Link Type — `string`
    *
    * Are you linking to an internal or external page?
    */
-  linkType?: 'internal' | 'external'
+  linkType?: "internal" | "external";
 
   /**
    * Link Internal — `reference`
@@ -523,38 +587,38 @@ export type Link = {
    */
   linkInternal?: SanityReference<
     Homepage | Teampage | Approachpage | Linktree | Project
-  >
+  >;
 
   /**
    * Link External — `url`
    *
    *
    */
-  linkExternal?: string
-}
+  linkExternal?: string;
+};
 
 export type BlockMedia = {
-  _type: 'blockMedia'
+  _type: "blockMedia";
   /**
    * Layout — `string`
    *
    *
    */
-  layout?: 'full' | 'half' | '2/3'
+  layout?: "full" | "half" | "2/3";
 
   /**
    * Is Hero? — `boolean`
    *
    *
    */
-  isHero?: boolean
+  isHero?: boolean;
 
   /**
    * Background Color — `string`
    *
    *
    */
-  backgroundColor?: string
+  backgroundColor?: string;
 
   /**
    * Background Image — `image`
@@ -562,11 +626,11 @@ export type BlockMedia = {
    *
    */
   backgroundImage?: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * Media Items — `array`
@@ -575,64 +639,64 @@ export type BlockMedia = {
    */
   items?: Array<
     SanityKeyed<{
-      _type: 'item'
+      _type: "item";
       /**
        * Has Mobile Asset? — `boolean`
        *
        *
        */
-      hasMobile?: boolean
+      hasMobile?: boolean;
 
       /**
        * Mobile Asset — `media`
        *
        *
        */
-      mobile?: Media
+      mobile?: Media;
 
       /**
        * Desktop Asset — `media`
        *
        *
        */
-      desktop?: Media
+      desktop?: Media;
 
       /**
        * Caption — `string`
        *
        *
        */
-      caption?: string
+      caption?: string;
     }>
-  >
-}
+  >;
+};
 
 export type BlockText = {
-  _type: 'blockText'
+  _type: "blockText";
   /**
    * Text — `richText`
    *
    *
    */
-  richText?: RichText
-}
+  richText?: RichText;
+};
 
 export type BlockTestimonial = {
-  _type: 'blockTestimonial'
+  _type: "blockTestimonial";
   /**
    * Quote — `richText`
    *
    *
    */
-  quote?: RichText
+  quote?: RichText;
 
   /**
    * Author — `string`
    *
    *
    */
-  author?: string
-}
+  author?: string;
+};
 
 export type Documents =
   | Project
@@ -642,17 +706,18 @@ export type Documents =
   | Settings
   | Teampage
   | Linktree
+  | Privacy;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but
  * the definition was not actually found. Future versions of
  * sanity-codegen will let you type this explicity.
  */
-type MuxVideo = any
+type MuxVideo = any;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but
  * the definition was not actually found. Future versions of
  * sanity-codegen will let you type this explicity.
  */
-type SeoTools = any
+type SeoTools = any;
