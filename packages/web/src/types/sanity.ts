@@ -5,7 +5,7 @@ import {
 } from 'sanity-codegen'
 import { CarouselLayouts, Colors, ThemeTypes } from 'styles/constants'
 
-import { SanityGenerated } from './index'
+import { Sanity, SanityGenerated } from './index'
 
 export type Mux = {
   _type: 'video'
@@ -51,21 +51,12 @@ export type BlockMedia = SanityGenerated.SanityKeyed<
 export type Blocks = Array<BlockText | BlockTestimonial | BlockMedia>
 
 export interface TeamMember {
-  _key: string
   name?: string
   job?: string
   image?: Image
 }
 
-export type Team = TeamMember[]
-
-export interface Quality {
-  _key: string
-  text: BlockText
-  title: BlockText
-}
-
-export type Qualities = Quality[]
+export type Team = SanityGenerated.SanityKeyed<TeamMember>[]
 
 export interface Meta {
   title?: string
@@ -132,20 +123,16 @@ export interface ApproachPage extends DocumentBase {
   >
 }
 
-export interface TeamPage extends DocumentBase {
+export interface TeamPage
+  extends DocumentBase,
+    Pick<
+      SanityGenerated.Teampage,
+      'textBlockOne' | 'textBlockTwo' | 'qualities'
+    > {
   meta?: Meta
   slug?: string
   slideshow?: Array<Media>
-  textBlockOne?: SanityGenerated.RichText
-  team?: Array<TeamMember>
-  textBlockTwo?: SanityGenerated.RichText
-  qualities?: Array<
-    SanityGenerated.SanityKeyed<{
-      _type: 'quality'
-      title?: SanityGenerated.SquiggleRichText
-      text?: SanityGenerated.RichText
-    }>
-  >
+  team?: Team
   card?: Card
 }
 

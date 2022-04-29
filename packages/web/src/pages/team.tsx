@@ -28,12 +28,12 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
   return (
     <Layout documentMeta={meta} {...siteProps}>
       <NextSeo title="Team" />
-      {slideshow ? <ImageStrip slideshow={slideshow} /> : null}
+      {/* {slideshow ? <ImageStrip slideshow={slideshow} /> : null} */}
       <PaddingContainer>
-        {textBlockOne ? <CenteredParagraph text={textBlockOne} /> : null}
-        {team && <TeamGrid team={team} />}
-        {textBlockTwo ? <CenteredParagraph text={textBlockTwo} /> : null}
-        {qualities ? <ValuesGrid qualities={qualities} /> : null}
+        <CenteredParagraph text={textBlockOne} />
+        <TeamGrid team={team} />
+        <CenteredParagraph text={textBlockTwo} />
+        <ValuesGrid qualities={qualities} />
       </PaddingContainer>
     </Layout>
   )

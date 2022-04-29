@@ -10,8 +10,7 @@ import { RendererRichText } from 'components/Renderer/RendererRichText'
 import { SanityGenerated } from 'src/types'
 
 type CenteredParagraphProps = {
-  // children: React.ReactNode
-  text: SanityGenerated.RichText
+  text?: SanityGenerated.RichText
 }
 
 export const CenteredParagraph = ({ text }: CenteredParagraphProps) => {

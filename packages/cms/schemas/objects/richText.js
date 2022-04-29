@@ -1,4 +1,6 @@
-import { Link } from 'phosphor-react'
+import React from 'react'
+import { Link, Pencil } from 'phosphor-react'
+import styled from 'styled-components'
 
 import { REFERENCED_DOCUMENTS } from '../../constants'
 
@@ -71,11 +73,6 @@ export const basicRichText = {
   ],
 }
 
-/**
- * TODO: add in the squiggles decorator so when
- * someone underlines it, it appends a squiggle
- * in the editor
- */
 export const squiggleRichText = {
   title: 'Squiggle Rich text',
   name: 'squiggleRichText',
@@ -87,14 +84,64 @@ export const squiggleRichText = {
       styles: [],
       lists: [],
       marks: {
-        decorators: [
+        decorators: [],
+        annotations: [
           {
-            title: 'Underline',
-            value: 'underline',
+            name: 'squiggle',
+            type: 'object',
+            fields: [
+              {
+                name: 'squiggleType',
+                title: 'Squiggle Type',
+                type: 'string',
+                options: {
+                  layout: 'dropdown',
+                  list: [
+                    { title: 'A', value: 'a' },
+                    { title: 'B', value: 'b' },
+                    { title: 'C', value: 'c' },
+                    { title: 'D', value: 'd' },
+                    { title: 'E', value: 'e' },
+                    { title: 'F', value: 'f' },
+                  ],
+                },
+              },
+            ],
+            blockEditor: {
+              icon: Pencil,
+              render: (props) => {
+                return (
+                  <Squiggle type={props.squiggleType}>
+                    {props.children}
+                  </Squiggle>
+                )
+              },
+            },
           },
         ],
-        annotations: [],
       },
     },
   ],
 }
+
+const Squiggle = styled.span`
+  position: relative;
+  z-index: 0;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    transform: translateY(50%);
+    width: 100%;
+    height: 20px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: ${(props) =>
+      `url(/static/squiggles/underline_${props.type}.png)`};
+  }
+`
