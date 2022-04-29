@@ -80,10 +80,8 @@ interface ValueGridProps {
 export const GridItem = ({ title, text }: Sanity.Quality) => {
   return (
     <GridItemContainer>
-      {/* <GridItemHeading>{title}</GridItemHeading> */}
-      <GridItemHeading blocks={title} />
-      {/* <GridItemBody>{text}</GridItemBody> */}
-      <GridItemBody blocks={text} />
+      {title ? <GridItemHeading blocks={title} /> : null}
+      {text ? <GridItemBody blocks={text} /> : null}
     </GridItemContainer>
   )
 }
@@ -97,8 +95,8 @@ export const ValuesGrid = ({ qualities }: ValueGridProps) => {
       <GridWrapper>
         <GridContainer>
           {Array.isArray(qualities)
-            ? qualities.map((item, index) => (
-                <GridItem key={index} title={item.title} text={item.text} />
+            ? qualities.map((item) => (
+                <GridItem key={item._key} title={item.title} text={item.text} />
               ))
             : null}
         </GridContainer>
@@ -159,6 +157,9 @@ const GridItemHeading = styled(RendererRichText)`
     background-repeat: no-repeat;
   }
 
+  /* & > :first-child::after {
+    background-image: url('/images/graphics/team/underline_a.png');
+  } */
   .underline--a::after {
     background-image: url('/images/graphics/team/underline_a.png');
   }

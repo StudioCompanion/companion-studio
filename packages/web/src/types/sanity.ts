@@ -101,11 +101,7 @@ export interface ProjectPage extends DocumentBase {
   team?: Team
 }
 
-export type Pages =
-  | HomePage
-  | ApproachPage
-  | SanityGenerated.Teampage
-  | ProjectPage
+export type Pages = HomePage | ApproachPage | TeamPage | ProjectPage
 
 export interface Link {
   label?: string
@@ -129,6 +125,23 @@ export interface ApproachPage extends DocumentBase {
       }>
     | SanityGenerated.SanityKeyed<Media>
   >
+}
+
+export interface TeamPage extends DocumentBase {
+  meta?: Meta
+  slug?: string
+  slideshow?: Array<Media>
+  textBlockOne?: SanityGenerated.RichText
+  team?: Array<TeamMember>
+  textBlockTwo?: SanityGenerated.RichText
+  qualities?: Array<
+    SanityGenerated.SanityKeyed<{
+      _type: 'quality'
+      title?: SanityGenerated.SquiggleRichText
+      text?: SanityGenerated.RichText
+    }>
+  >
+  card?: Card
 }
 
 export interface Footer {

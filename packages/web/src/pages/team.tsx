@@ -13,36 +13,33 @@ import { fetchDocument } from 'src/data/fetchDocument'
 import { GetStaticProps } from 'next'
 import { REVALIDATE_TIME } from 'references/constants'
 
+import { Layout } from 'components/Site/SiteLayout'
 import { TEAMPAGE } from 'src/data/queries/singletons/teamPage'
-import { Teampage } from 'src/types/sanity.generated'
-import { Sanity, SanityGenerated } from 'src/types'
+import { Sanity } from 'src/types'
 
-interface TeamProps {
-  document: Teampage
+interface TeamProps extends Sanity.DefaultLayoutProps {
+  document: Sanity.TeamPage
 }
 
-const Team = ({ document }: TeamProps) => {
-  const { team, textBlockOne, textBlockTwo, qualities, slideshow } = document
+const Team = ({ document, ...siteProps }: TeamProps) => {
+  const { team, textBlockOne, textBlockTwo, qualities, slideshow, meta } =
+    document
 
   // log
   console.log('🍏 QUALITIES is: ', qualities)
 
   return (
-    <>
+    <Layout documentMeta={meta} {...siteProps}>
       <NextSeo title="Team" />
       <ImageStrip />
       <PaddingContainer>
-        <CenteredParagraph
-          text={textBlockOne as unknown as SanityGenerated.RichText}
-        />
+        <CenteredParagraph text={textBlockOne} />
         {team && <TeamGrid team={team} />}
-        <CenteredParagraph
-          text={textBlockTwo as unknown as SanityGenerated.RichText}
-        />
+        <CenteredParagraph text={textBlockTwo} />
 
         <ValuesGrid qualities={qualities as unknown as Sanity.Qualities} />
       </PaddingContainer>
-    </>
+    </Layout>
   )
 }
 

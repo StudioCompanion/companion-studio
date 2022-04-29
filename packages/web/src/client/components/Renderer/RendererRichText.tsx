@@ -17,6 +17,7 @@ import {
   FONT_STYLE_APFEL_44_400,
   FONT_STYLE_APFEL_58_400,
   FONT_STYLE_RECKLESS_20_400,
+  FONT_STYLE_RECKLESS_26_400,
 } from 'styles/fonts'
 import { PADDING } from 'styles/constants'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
@@ -61,6 +62,66 @@ const Heading5 = styled.h5`
   ${getFontStyles(FONT_STYLE_APFEL_17_400)}
 `
 
+const Squiggle = styled.span`
+  ${getFontStyles(FONT_STYLE_RECKLESS_26_400)}
+  margin-bottom: 20px;
+
+  .underline {
+    display: inline-block;
+    position: relative;
+  }
+  .underline::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    transform: translateY(30%);
+    width: 100%;
+    height: 20px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+`
+
+const SquiggleA = styled(Squiggle)`
+  .underline--a::after {
+    background-image: url('/images/graphics/team/underline_a.png');
+  }
+`
+
+const SquiggleB = styled(Squiggle)`
+  .underline--b::after {
+    background-image: url('/images/graphics/team/underline_b.png');
+  }
+`
+
+const SquiggleC = styled(Squiggle)`
+  .underline--c::after {
+    background-image: url('/images/graphics/team/underline_c.png');
+  }
+`
+
+const SquiggleD = styled(Squiggle)`
+  .underline--d::after {
+    background-image: url('/images/graphics/team/underline_d.png');
+  }
+`
+
+const SquiggleE = styled(Squiggle)`
+  .underline--e::after {
+    background-image: url('/images/graphics/team/underline_e.png');
+  }
+`
+
+const SquiggleF = styled(Squiggle)`
+  .underline--f::after {
+    background-image: url('/images/graphics/team/underline_f.png');
+  }
+`
+
 const Paragraph = styled.p`
   ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
 
@@ -102,6 +163,12 @@ const components: Partial<PortableTextReactComponents> = {
     h4: Heading4,
     h5: Heading5,
     normal: Paragraph,
+    sqA: SquiggleA,
+    sqB: SquiggleB,
+    sqC: SquiggleC,
+    sqD: SquiggleD,
+    sqE: SquiggleE,
+    sqF: SquiggleF,
   },
   list: {
     bullet: BulletList,
