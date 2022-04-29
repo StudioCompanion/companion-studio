@@ -6,16 +6,6 @@ import { TEAM_MEMBER } from '../objects/teamMember'
 import { META } from '../objects/meta'
 
 export const TEAMPAGE = groq`
-    qualities[] {
-        ...{
-            text[] {
-                ${RICH_TEXT}
-            },
-            title[] {
-                ${RICH_TEXT}
-            }
-        }
-    },
     team[]->{
         ...{
             ${TEAM_MEMBER}
@@ -26,5 +16,15 @@ export const TEAMPAGE = groq`
     },
     textBlockTwo[] {
         ${RICH_TEXT}
+    },
+    qualities[] {
+        _key,
+        text[] {
+            ${RICH_TEXT}
+        },
+        title[] {
+            ${RICH_TEXT}
+        }
+        
     },
 `

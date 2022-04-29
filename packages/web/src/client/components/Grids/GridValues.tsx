@@ -10,6 +10,7 @@ import {
 import { Button } from 'components/Button/Button'
 import { FadeUp } from 'components/Transitions/FadeUp'
 
+import { RendererRichText } from 'components/Renderer/RendererRichText'
 import { Sanity } from 'src/types'
 
 const gridItems = [
@@ -79,8 +80,10 @@ interface ValueGridProps {
 export const GridItem = ({ title, text }: Sanity.Quality) => {
   return (
     <GridItemContainer>
-      <GridItemHeading>{title}</GridItemHeading>
-      <GridItemBody>{text}</GridItemBody>
+      {/* <GridItemHeading>{title}</GridItemHeading> */}
+      <GridItemHeading blocks={title} />
+      {/* <GridItemBody>{text}</GridItemBody> */}
+      <GridItemBody blocks={text} />
     </GridItemContainer>
   )
 }
@@ -92,13 +95,13 @@ export const ValuesGrid = ({ qualities }: ValueGridProps) => {
   return (
     <FadeUp>
       <GridWrapper>
-        {/* <GridContainer>
+        <GridContainer>
           {Array.isArray(qualities)
             ? qualities.map((item, index) => (
                 <GridItem key={index} title={item.title} text={item.text} />
               ))
             : null}
-        </GridContainer> */}
+        </GridContainer>
         <ButtonWrapper>
           <Button
             text={'View our open positions'}
@@ -133,7 +136,7 @@ const GridWrapper = styled.div`
     margin-top: ${PADDING.xxl}px;
   }
 `
-const GridItemHeading = styled.h2`
+const GridItemHeading = styled(RendererRichText)`
   ${getFontStyles(FONT_STYLE_RECKLESS_26_400)}
   margin-bottom: 20px;
 
@@ -175,7 +178,7 @@ const GridItemHeading = styled.h2`
     background-image: url('/images/graphics/team/underline_f.png');
   }
 `
-const GridItemBody = styled.p`
+const GridItemBody = styled(RendererRichText)`
   ${getFontStyles(FONT_STYLE_RECKLESS_17_400)}
 `
 const GridItemContainer = styled.div`
