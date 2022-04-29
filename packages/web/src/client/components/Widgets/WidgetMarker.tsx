@@ -1,22 +1,33 @@
-export const WidgetMarker = () =>
-  process.env.ENABLE_MARKER ? (
+import Script from 'next/script'
+
+export const WidgetMarker = () => {
+  if (!process.env.NEXT_PUBLIC_ENABLE_MARKER) {
+    return null
+  }
+
+  return (
     <>
-      <script
+      <Script
+        id="marker-config"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
-    window.markerConfig = {
-        destination: '61977915d16f4f22480430fa', 
-        source: 'snippet'
-      }
+window.markerConfig = {
+    destination: '61977915d16f4f22480430fa', 
+    source: 'snippet'
+  }
 `,
         }}
       />
-      <script
+      <Script
+        id="marker-load"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
-          __html: `
-        !function(e,r,a){if(!e.__Marker){e.__Marker={};var t=[],n={__cs:t};["show","hide","isVisible","capture","cancelCapture","unload","reload","isExtensionInstalled","setReporter","setCustomData","on","off"].forEach(function(e){n[e]=function(){var r=Array.prototype.slice.call(arguments);r.unshift(e),t.push(r)}}),e.Marker=n;var s=r.createElement("script");s.async=1,s.src="https://edge.marker.io/latest/shim.js";var i=r.getElementsByTagName("script")[0];i.parentNode.insertBefore(s,i)}}(window,document);  
-    `,
+          __html: /* js */ `
+    !function(e,r,a){if(!e.__Marker){e.__Marker={};var t=[],n={__cs:t};["show","hide","isVisible","capture","cancelCapture","unload","reload","isExtensionInstalled","setReporter","setCustomData","on","off"].forEach(function(e){n[e]=function(){var r=Array.prototype.slice.call(arguments);r.unshift(e),t.push(r)}}),e.Marker=n;var s=r.createElement("script");s.async=1,s.src="https://edge.marker.io/latest/shim.js";var i=r.getElementsByTagName("script")[0];i.parentNode.insertBefore(s,i)}}(window,document);  
+`,
         }}
       />
     </>
-  ) : null
+  )
+}

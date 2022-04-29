@@ -1,50 +1,24 @@
 import styled from 'styled-components'
-import Image from 'next/image'
-import Link from 'next/link'
 
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_17_400 } from 'styles/fonts'
 import { Colors, PADDING, RADII } from 'styles/constants'
 
-interface LinkTreeItemProps {
-  image: StaticImageData
-  text: string
-  url: string
-}
+import { LinkBase } from 'components/Links/LinkBase'
+import { Media } from 'components/Media/Media'
 
-export const LinkTreeItem = ({ image, text, url }: LinkTreeItemProps) => {
+import { Sanity } from 'src/types'
+
+export const LinkTreeItem = ({ link, media }: Sanity.LinktreeItem) => {
   return (
-    <Link href={url} passHref>
-      <LinkTreeItemContainer>
-        <LinkTreeImageContainer>
-          <Image src={image} />
-        </LinkTreeImageContainer>
-        <LinkTreeItemText>{text}</LinkTreeItemText>
-      </LinkTreeItemContainer>
-    </Link>
+    <LinkTreeItemContainer {...link}>
+      {media ? <LinkTreeImage {...media} /> : null}
+      <LinkTreeItemText>{link?.label}</LinkTreeItemText>
+    </LinkTreeItemContainer>
   )
 }
 
-interface LinkTreeProps {
-  items: LinkTreeItemProps[]
-}
-
-export const LinkTree = ({ items }: LinkTreeProps) => {
-  return (
-    <>
-      {items.map((item, index) => (
-        <LinkTreeItem
-          image={item.image}
-          text={item.text}
-          url={item.url}
-          key={index}
-        />
-      ))}
-    </>
-  )
-}
-
-const LinkTreeItemContainer = styled.a`
+const LinkTreeItemContainer = styled(LinkBase)`
   display: flex;
   align-items: center;
   background-color: ${Colors.lightgrey_2};
@@ -61,12 +35,10 @@ const LinkTreeItemContainer = styled.a`
   }
 `
 
-const LinkTreeImageContainer = styled.div`
+const LinkTreeImage = styled(Media)`
   width: 40px;
   height: 40px;
   margin-right: ${PADDING.s}px;
-  display: flex;
-  align-items: center;
 `
 
 const LinkTreeItemText = styled.span`

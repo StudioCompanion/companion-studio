@@ -14,7 +14,7 @@ export type VideoPlayerProps = {
 export const VideoPlayer = ({
   src,
   poster,
-  floodParent,
+  floodParent = true,
   isPaused,
   onAutoplayCallback,
   onClick,

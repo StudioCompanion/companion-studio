@@ -1,7 +1,8 @@
 ---
 name: 🐛 Bug report
-labels: 'bug'
+labels: 'template: potential bug'
 about: Create a report to help us improve
+title: '[bug]:'
 ---
 
 ## 🐛 Bug Report
