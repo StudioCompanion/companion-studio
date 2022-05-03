@@ -1,7 +1,4 @@
 import { GetStaticProps } from 'next'
-import styled from 'styled-components'
-
-// import { NextSeo } from 'next-seo'
 
 import { Layout } from 'components/Site/SiteLayout'
 import { PrivacyWrapper, PrivacyContainer } from 'components/Privacy'
@@ -17,13 +14,13 @@ interface PrivacyProps extends Sanity.DefaultLayoutProps {
   document: Sanity.PrivacyPage
 }
 const Privacy = ({ document, ...siteProps }: PrivacyProps) => {
-  const { faq, meta } = document
+  const { content, meta } = document
 
   return (
     <Layout documentMeta={meta} {...siteProps}>
       <PrivacyWrapper>
         <PrivacyContainer>
-          <Faq blocks={faq}></Faq>
+          <RendererRichText blocks={content} />
         </PrivacyContainer>
       </PrivacyWrapper>
     </Layout>
@@ -31,8 +28,6 @@ const Privacy = ({ document, ...siteProps }: PrivacyProps) => {
 }
 
 export default Privacy
-
-const Faq = styled(RendererRichText)``
 
 export const getStaticProps: GetStaticProps<PrivacyProps> = async ({
   preview,

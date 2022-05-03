@@ -7,8 +7,8 @@ export default {
   icon: Lock,
   fields: [
     {
-      name: 'faq',
-      title: 'FAQ',
+      name: 'content',
+      title: 'Content',
       type: 'richText',
     },
     {
