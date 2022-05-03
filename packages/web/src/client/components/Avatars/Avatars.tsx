@@ -44,9 +44,7 @@ export const Avatars = ({ members }: AvatarsProps) => {
           onMouseLeave={handleMouseLeave(i)}
           key={name}
         >
-          <GridImageWrapper>
-            {image ? <Media {...image} /> : null}
-          </GridImageWrapper>
+          {image ? <GridImageWrapper {...image} /> : null}
           <TeamMemberDetails
             ref={(ref) => (textRefs.current[i] = ref as HTMLDivElement)}
             style={{ width: springs[i].width }}
@@ -83,7 +81,7 @@ const GridItemContainer = styled('div', {
   cursor: 'pointer',
 })
 
-const GridImageWrapper = styled('div', {
+const GridImageWrapper = styled(Media, {
   position: 'relative',
   borderRadius: '$circle',
   padding: '$xxxs',

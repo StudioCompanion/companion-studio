@@ -227,5 +227,5 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
 )
 
 const InfiniteContainer = styled('div', {
-  touchAction: 'none',
+  touchAction: 'pan-y',
 })
