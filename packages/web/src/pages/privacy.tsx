@@ -19,19 +19,11 @@ interface PrivacyProps extends Sanity.DefaultLayoutProps {
 const Privacy = ({ document, ...siteProps }: PrivacyProps) => {
   const { faq, meta } = document
 
-  //   log
-  console.log('🟢 FAQ is: ', faq)
-
   return (
     <Layout documentMeta={meta} {...siteProps}>
       <PrivacyWrapper>
         <PrivacyContainer>
-          {faq?.map((item, idx) => (
-            <>
-              <Question key={idx}>{item.question}</Question>
-              <Answer blocks={item.answer}></Answer>
-            </>
-          ))}
+          <Faq blocks={faq}></Faq>
         </PrivacyContainer>
       </PrivacyWrapper>
     </Layout>
@@ -40,13 +32,7 @@ const Privacy = ({ document, ...siteProps }: PrivacyProps) => {
 
 export default Privacy
 
-const Question = styled.h2`
-  color: olivedrab;
-`
-
-const Answer = styled(RendererRichText)`
-  color: burlywood;
-`
+const Faq = styled(RendererRichText)``
 
 export const getStaticProps: GetStaticProps<PrivacyProps> = async ({
   preview,

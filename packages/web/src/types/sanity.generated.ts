@@ -420,28 +420,11 @@ export interface Privacy extends SanityDocument {
   _type: "privacy";
 
   /**
-   * FAQ — `array`
+   * FAQ — `richText`
    *
    *
    */
-  faq?: Array<
-    SanityKeyed<{
-      _type: "q_a";
-      /**
-       * Question — `string`
-       *
-       *
-       */
-      question?: string;
-
-      /**
-       * Answer — `richText`
-       *
-       *
-       */
-      answer?: RichText;
-    }>
-  >;
+  faq?: RichText;
 
   /**
    * Page meta — `meta`

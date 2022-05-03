@@ -127,13 +127,7 @@ export interface ApproachPage extends DocumentBase {
 export interface PrivacyPage extends DocumentBase {
   meta?: Meta
   card?: Card
-  faq?: Array<
-    SanityGenerated.SanityKeyed<{
-      _type: 'q_a'
-      question?: string
-      answer?: SanityGenerated.RichText
-    }>
-  >
+  faq?: SanityGenerated.RichText
 }
 
 export interface Footer {
