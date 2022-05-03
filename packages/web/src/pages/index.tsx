@@ -20,10 +20,10 @@ interface IndexProps extends Sanity.DefaultLayoutProps {
 }
 
 const Index = ({ document, ...siteProps }: IndexProps) => {
-  const { cards, standfirst } = document
+  const { cards, standfirst, meta } = document
 
   return (
-    <HomeContainer {...siteProps}>
+    <HomeContainer documentMeta={meta} {...siteProps}>
       <RightContainer>
         <OpeningText text={standfirst} />
       </RightContainer>
