@@ -218,7 +218,7 @@ const InfiniteContainer = styled.div<{
   $desktopAspect: number
   $isSlideShow: boolean
 }>`
-  touch-action: none;
+  touch-action: pan-y;
   ${(props) =>
     props.$mobileAspect > 0 && props.$isSlideShow
       ? aspectRatio(props.$mobileAspect)
