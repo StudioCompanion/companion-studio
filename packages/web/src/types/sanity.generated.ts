@@ -384,7 +384,24 @@ export interface Linktree extends SanityDocument {
    *
    *
    */
-  links?: Array<SanityKeyed<Link>>
+  links?: Array<
+    SanityKeyed<{
+      _type: 'item'
+      /**
+       * Link — `link`
+       *
+       *
+       */
+      link?: Link
+
+      /**
+       * Media — `media`
+       *
+       *
+       */
+      media?: Media
+    }>
+  >
 
   /**
    * Page meta — `meta`
