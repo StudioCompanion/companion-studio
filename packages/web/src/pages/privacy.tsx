@@ -20,7 +20,7 @@ const Privacy = ({ document, ...siteProps }: PrivacyProps) => {
     <Layout documentMeta={meta} {...siteProps}>
       <PrivacyWrapper>
         <PrivacyContainer>
-          <RendererRichText blocks={content} />
+          {content ? <RendererRichText blocks={content} /> : null}
         </PrivacyContainer>
       </PrivacyWrapper>
     </Layout>
