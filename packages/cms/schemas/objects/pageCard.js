@@ -12,7 +12,7 @@ export default {
         rule.custom((val, ctx) => {
           const { document } = ctx
 
-          if (!document.meta.seo.seo_title && !val) {
+          if (!document?.meta?.seo?.seo_title && !val) {
             return `You haven't set an SEO title, so you need to set card's title`
           }
 
@@ -33,7 +33,7 @@ export default {
         rule.custom((val, ctx) => {
           const { document } = ctx
 
-          if (!document.meta.seo.image && !val.image) {
+          if (!document?.meta?.seo?.image && !val.image && !val.video) {
             return `You haven't set an SEO image, so you need to set the card's image`
           }
 

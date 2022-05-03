@@ -61,6 +61,28 @@ const Heading5 = styled.h5`
   ${getFontStyles(FONT_STYLE_APFEL_17_400)}
 `
 
+const Squiggle = styled.span<{ type: 'a' | 'b' | 'c' | 'd' | 'e' | 'f' }>`
+  position: relative;
+  z-index: 0;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    transform: translateY(50%);
+    width: 100%;
+    height: 20px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: ${(props) =>
+      `url('/images/graphics/team/underline_${props.type}.png')`};
+  }
+`
+
 const Paragraph = styled.p`
   ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
 
@@ -108,6 +130,22 @@ const components: Partial<PortableTextReactComponents> = {
     number: NumberList,
   },
   marks: {
+    squiggle: (
+      props: PropsWithChildren<
+        PortableTextMarkComponentProps<{
+          _type: 'squiggle'
+          squiggleType: 'a' | 'b' | 'c' | 'd' | 'e' | 'f'
+        }>
+      >
+    ) => {
+      const { value, children } = props
+
+      if (!value) {
+        return <>{children}</>
+      }
+
+      return <Squiggle type={value.squiggleType}>{children}</Squiggle>
+    },
     link: (
       props: PropsWithChildren<
         PortableTextMarkComponentProps<Sanity.Link & { _type: 'link' }>

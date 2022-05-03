@@ -9,26 +9,33 @@ import { ValuesGrid } from 'components/Grids/GridValues'
 import { CenteredParagraph } from 'components/CenteredParagraph/CenteredParagraph'
 import { ImageStrip } from 'components/ImageStrip/ImageStrip'
 
-const Team = () => {
+import { fetchDocument } from 'src/data/fetchDocument'
+import { GetStaticProps } from 'next'
+import { REVALIDATE_TIME } from 'references/constants'
+
+import { Layout } from 'components/Site/SiteLayout'
+import { TEAMPAGE } from 'src/data/queries/singletons/teamPage'
+import { Sanity } from 'src/types'
+
+interface TeamProps extends Sanity.DefaultLayoutProps {
+  document: Sanity.TeamPage
+}
+
+const Team = ({ document, ...siteProps }: TeamProps) => {
+  const { team, textBlockOne, textBlockTwo, qualities, slideshow, cta, meta } =
+    document
+
   return (
-    <>
+    <Layout documentMeta={meta} {...siteProps}>
       <NextSeo title="Team" />
-      <ImageStrip />
+      <ImageStrip slideshow={slideshow} />
       <PaddingContainer>
-        <CenteredParagraph>
-          We’re a small and passionate team of designers, engineers and
-          strategists working from London. We’re trying our hardest, despite
-          what Myles might tell you.
-        </CenteredParagraph>
-        <TeamGrid />
-        <CenteredParagraph>
-          We’re always on the lookout for like-minded people to join our team
-          either fulltime or on a freelance basis. Check out some of our key
-          values below and get in touch for a chat.
-        </CenteredParagraph>
-        <ValuesGrid />
+        <CenteredParagraph text={textBlockOne} />
+        <TeamGrid team={team} />
+        <CenteredParagraph text={textBlockTwo} />
+        <ValuesGrid qualities={qualities} cta={cta} />
       </PaddingContainer>
-    </>
+    </Layout>
   )
 }
 
@@ -45,3 +52,20 @@ const PaddingContainer = styled.div`
     padding: 0 ${PADDING.m}px;
   }
 `
+
+export const getStaticProps: GetStaticProps = async ({ preview }) => {
+  const sanityResult = await fetchDocument({
+    filter: `_type == 'teampage'`,
+    preview,
+    projection: TEAMPAGE,
+  })
+
+  return {
+    notFound: !sanityResult,
+    props: {
+      ...sanityResult,
+      preview: !!preview,
+    },
+    revalidate: REVALIDATE_TIME,
+  }
+}

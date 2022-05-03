@@ -1,11 +1,12 @@
 import styled from 'styled-components'
-import Link from 'next/link'
 
 import { BACKGROUND, COLOR, ThemeTypes } from 'styles/constants'
 import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 
 import { getThemeValue } from 'helpers/theme'
+import { LinkBase } from 'components/Links/LinkBase'
+import { Sanity } from 'src/types'
 
 export interface ButtonInnerProps {
   text?: string
@@ -16,23 +17,21 @@ export const ButtonInner = ({ text, theme }: ButtonInnerProps) => {
   return <ButtonContainer $theme={theme}>{text}</ButtonContainer>
 }
 
-export interface ButtonProps extends ButtonInnerProps {
-  link?: string
-}
+export type ButtonProps = ButtonInnerProps & Partial<Sanity.Link>
 
 export const Button = ({
   text,
-  link,
   theme = ThemeTypes.LIGHT,
+  label,
+  url,
+  isExternal,
 }: ButtonProps) => {
   return (
     <>
-      {link ? (
-        <Link href={link} passHref>
-          <ButtonAnchor>
-            <ButtonInner theme={theme} text={text} />
-          </ButtonAnchor>
-        </Link>
+      {url ? (
+        <ButtonAnchor url={url} isExternal={isExternal}>
+          <ButtonInner theme={theme} text={label} />
+        </ButtonAnchor>
       ) : (
         <ButtonInner theme={theme} text={text} />
       )}
@@ -53,6 +52,6 @@ export const ButtonContainer = styled.div<{ $theme: ThemeTypes }>`
   text-decoration: none;
   cursor: pointer;
 `
-const ButtonAnchor = styled.a`
+const ButtonAnchor = styled(LinkBase)`
   display: inline-block;
 `
