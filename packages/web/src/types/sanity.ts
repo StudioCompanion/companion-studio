@@ -119,14 +119,10 @@ export interface ApproachPage extends DocumentBase {
       }>
     | SanityGenerated.SanityKeyed<Media>
   >
-  card?: Card
-  meta?: Meta
 }
 
 export interface PrivacyPage extends DocumentBase {
   content?: SanityGenerated.RichText
-  card?: Card
-  meta?: Meta
 }
 export interface Slide {
   rotation?: number
@@ -143,8 +139,6 @@ export interface TeamPage
   slideshow?: Slide[]
   team?: Team
   cta?: Link
-  card?: Card
-  meta?: Meta
 }
 
 export interface Footer {
@@ -180,5 +174,4 @@ export interface LinktreeItem {
 
 export interface LinktreePage extends DocumentBase {
   links?: SanityGenerated.SanityKeyed<LinktreeItem>[]
-  meta?: Meta
 }
