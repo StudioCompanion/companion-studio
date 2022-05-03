@@ -7,5 +7,8 @@ import { META } from '../objects/meta'
 export const PRIVACY_PAGE = groq`
     faq[] {
         ${RICH_TEXT}
+    },
+    meta {
+        ${META}
     }
 `
