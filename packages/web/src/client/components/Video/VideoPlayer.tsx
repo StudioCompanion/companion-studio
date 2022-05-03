@@ -1,11 +1,11 @@
 import { useRef, useEffect } from 'react'
-import styled, { css } from 'styled-components'
 import useIntersectionObserver from '@react-hook/intersection-observer'
+
+import { styled } from 'styles/stitches.config'
 
 export type VideoPlayerProps = {
   src: string
   poster?: string
-  floodParent?: boolean
   isPaused?: boolean
   onAutoplayCallback?: (isPlaying: boolean) => void
   onClick?: () => void
@@ -14,7 +14,6 @@ export type VideoPlayerProps = {
 export const VideoPlayer = ({
   src,
   poster,
-  floodParent = true,
   isPaused,
   onAutoplayCallback,
   onClick,
@@ -83,7 +82,7 @@ export const VideoPlayer = ({
   }
 
   return (
-    <VideoContainer $floodParent={floodParent} onClick={handleClick}>
+    <VideoContainer onClick={handleClick}>
       <Video
         ref={videoRef}
         preload="auto"
@@ -92,45 +91,24 @@ export const VideoPlayer = ({
         loop
         muted
         playsInline
-        $floodParent={floodParent}
       />
     </VideoContainer>
   )
 }
 
-const VideoContainer = styled.div<{ $floodParent?: boolean }>`
-  overflow: hidden;
+const VideoContainer = styled('div', {
+  overflow: 'hidden',
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+})
 
-  ${(props) =>
-    props.$floodParent
-      ? css`
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        `
-      : css`
-          position: relative;
-        `}
-`
-
-const Video = styled.video<{ $floodParent?: boolean }>`
-  max-width: 100%;
-  object-fit: cover;
-
-  ${(props) =>
-    props.$floodParent
-      ? css`
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 100%;
-          height: 100%;
-        `
-      : css`
-          width: 100%;
-        `}
-`
+const Video = styled('video', {
+  maxWidth: '100%',
+  objectFit: 'cover',
+  width: '100%',
+  height: '100%',
+})

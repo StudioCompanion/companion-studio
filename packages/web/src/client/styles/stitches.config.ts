@@ -24,6 +24,7 @@ const { styled, globalCss, getCssText, config, keyframes } =
         centeredParagraph: '65.3rem',
       },
       space: {
+        xxs: '0.4rem',
         xs: '1.2rem',
         s: '1.6rem',
         m: '2rem',
@@ -37,6 +38,7 @@ const { styled, globalCss, getCssText, config, keyframes } =
         wrapperMobile: '0.4rem',
         videoDesktop: '0.4rem',
         videoMobile: '0.2rem',
+        circle: '50%',
       },
       zIndices: {
         1: '100',
@@ -66,6 +68,10 @@ const { styled, globalCss, getCssText, config, keyframes } =
         h5: '3rem',
         h6: '2.6rem',
         body: '2.2rem',
+      },
+      fontWeights: {
+        regular: 400,
+        medium: 500,
       },
     },
     media: {

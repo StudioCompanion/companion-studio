@@ -1,7 +1,5 @@
-/* eslint-disable no-case-declarations */
-import styled, { css } from 'styled-components'
-
-import { Sanity } from 'src/types'
+import { CSS, styled } from 'styles/stitches.config'
+import { Sanity } from '@types'
 
 import { SizesArray } from '../../helpers/media'
 
@@ -10,7 +8,7 @@ import { MediaMux, MediaMuxProps } from './MediaMux'
 
 type SharedMediaProps = Pick<
   MediaMuxProps,
-  'isPaused' | 'floodParent' | 'onAutoplayCallback' | 'onClick'
+  'isPaused' | 'onAutoplayCallback' | 'onClick'
 > & {
   className?: string
   sizes?: SizesArray
@@ -22,17 +20,24 @@ export type MediaProps =
   | (Sanity.Mux & SharedMediaProps)
 
 export const Media = (props: MediaProps) => {
-  const { _type, className, floodParent, objectFit, dimensions, ...restProps } =
-    props
+  const { _type, className, objectFit, dimensions, ...restProps } = props
+
+  const aspectRatio = (dimensions.height / dimensions.width) * 100
+
+  const aspectRatioCss: CSS = {
+    '&:before': {
+      display: 'block',
+      content: '',
+      width: '100%',
+      pt: `${aspectRatio}%`,
+    },
+  }
 
   switch (_type) {
     case 'image':
       const { sizes } = props
       return (
-        <MediaContainer
-          className={className}
-          $aspectRatio={(dimensions.height / dimensions.width) * 100}
-        >
+        <MediaContainer className={className} css={aspectRatioCss}>
           <MediaImage
             layout="fill"
             image={{
@@ -45,11 +50,8 @@ export const Media = (props: MediaProps) => {
       )
     case 'video': {
       return (
-        <MediaContainer
-          className={className}
-          $aspectRatio={(dimensions.height / dimensions.width) * 100}
-        >
-          <MediaMux floodParent={floodParent} {...(restProps as Sanity.Mux)} />
+        <MediaContainer className={className} css={aspectRatioCss}>
+          <MediaMux {...(restProps as Sanity.Mux)} />
         </MediaContainer>
       )
     }
@@ -59,19 +61,7 @@ export const Media = (props: MediaProps) => {
   }
 }
 
-const MediaContainer = styled.div<{ $aspectRatio?: number }>`
-  overflow: hidden;
-  position: relative;
-
-  ${(props) =>
-    props.$aspectRatio
-      ? css`
-          &:before {
-            display: block;
-            content: '';
-            width: 100%;
-            padding-top: ${props.$aspectRatio}%;
-          }
-        `
-      : ''}
-`
+const MediaContainer = styled('div', {
+  overflow: 'hidden',
+  position: 'relative',
+})
