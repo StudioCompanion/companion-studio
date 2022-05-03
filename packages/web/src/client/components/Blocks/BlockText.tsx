@@ -6,7 +6,7 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 export type TextSectionProps = Sanity.BlockText
 

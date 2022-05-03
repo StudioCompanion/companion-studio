@@ -10,7 +10,7 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { Media } from 'components/Media/Media'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface ImageStripImageProps extends Sanity.Slide {
   tabletUp: boolean

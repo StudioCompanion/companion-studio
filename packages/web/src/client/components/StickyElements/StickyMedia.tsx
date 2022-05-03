@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { Media } from 'components/Media/Media'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 export const StickMedia = (props: Sanity.Media) => {
   return (

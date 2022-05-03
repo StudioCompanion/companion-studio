@@ -14,7 +14,7 @@ import { Callout } from './SiteCallout'
 import { Footer } from './SiteFooter'
 import { SiteSeo } from './SiteSeo'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface LayoutProps extends Sanity.DefaultLayoutProps {
   children: React.ReactNode

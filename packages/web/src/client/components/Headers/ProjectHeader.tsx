@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { Heading } from 'components/Text/Heading'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 import { FONT_STYLE_APFEL_58_500, FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { PADDING } from 'styles/constants'

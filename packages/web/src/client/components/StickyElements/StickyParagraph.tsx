@@ -5,7 +5,7 @@ import { getFontStyles } from 'styles/getFontStyles'
 import { FONT_STYLE_RECKLESS_32_400 } from 'styles/fonts'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
-import { SanityGenerated } from 'src/types'
+import { SanityGenerated } from '@types'
 
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 

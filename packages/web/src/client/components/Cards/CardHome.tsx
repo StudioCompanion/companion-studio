@@ -15,7 +15,7 @@ import { Button, ButtonContainer } from 'components/Button/Button'
 import { Media } from 'components/Media/Media'
 import { Heading } from 'components/Text/Heading'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface CardHomeProps extends Sanity.HomepageCard {
   className?: string

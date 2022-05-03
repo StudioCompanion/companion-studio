@@ -7,7 +7,7 @@ import { FONT_STYLE_RECKLESS_32_400 } from 'styles/fonts'
 import { FadeUp } from 'components/Transitions/FadeUp'
 
 import { RendererRichText } from 'components/Renderer/RendererRichText'
-import { SanityGenerated } from 'src/types'
+import { SanityGenerated } from '@types'
 
 type CenteredParagraphProps = {
   text?: SanityGenerated.RichText

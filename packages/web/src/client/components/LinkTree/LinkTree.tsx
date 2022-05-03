@@ -7,7 +7,7 @@ import { Colors, PADDING, RADII } from 'styles/constants'
 import { LinkBase } from 'components/Links/LinkBase'
 import { Media } from 'components/Media/Media'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 export const LinkTreeItem = ({ link, media }: Sanity.LinktreeItem) => {
   return (

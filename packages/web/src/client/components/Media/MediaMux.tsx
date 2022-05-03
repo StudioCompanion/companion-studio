@@ -1,4 +1,4 @@
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 import { VideoPlayer, VideoPlayerProps } from '../Video/VideoPlayer'
 

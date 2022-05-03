@@ -12,7 +12,7 @@ import { Renderer } from 'components/Renderer/Renderer'
 import { ProjecHeader } from 'components/Headers/ProjectHeader'
 import { Layout } from 'components/Site/SiteLayout'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface ProjectPageProps extends Sanity.DefaultLayoutProps {
   document: Sanity.ProjectPage

@@ -8,7 +8,7 @@ import { Colors, PADDING } from '../../styles/constants'
 
 import { Logo } from 'components/Logo/Logo'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 import { LinkBase } from 'components/Links/LinkBase'
 
 export interface NavProps {

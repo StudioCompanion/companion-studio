@@ -6,7 +6,7 @@ import { OpeningText } from 'components/OpeningText/OpeningText'
 
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 import { HOMEPAGE } from 'src/data/queries/singletons/homePage'
 import { fetchDocument } from 'src/data/fetchDocument'

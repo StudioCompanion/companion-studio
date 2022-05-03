@@ -11,7 +11,7 @@ import {
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { Media } from 'components/Media/Media'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface TeamGridProps {
   team?: Sanity.Team

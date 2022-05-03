@@ -21,7 +21,7 @@ import {
   FONT_STYLE_RECKLESS_17_400,
 } from 'styles/fonts'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 export const Callout = ({ text, link, media }: Sanity.Callout) => {
   if (!link) {

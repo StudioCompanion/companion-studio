@@ -13,7 +13,7 @@ import { APPROACH_PAGE } from 'src/data/queries/singletons/approach'
 
 import { REVALIDATE_TIME } from 'references/constants'
 
-import { NonNullSkipArray, Sanity } from 'src/types'
+import { NonNullSkipArray, Sanity } from '@types'
 
 interface ApproachProps extends Sanity.DefaultLayoutProps {
   document: Sanity.ApproachPage

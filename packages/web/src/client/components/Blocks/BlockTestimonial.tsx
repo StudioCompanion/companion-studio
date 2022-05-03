@@ -8,7 +8,7 @@ import {
 import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { PADDING, WIDTHS } from 'styles/constants'
 import { FadeUp } from 'components/Transitions/FadeUp'
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 
 export type TestimonialProps = Sanity.BlockTestimonial

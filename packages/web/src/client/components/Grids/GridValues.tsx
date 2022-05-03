@@ -9,7 +9,7 @@ import { Button } from 'components/Button/Button'
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 
-import { NonNullSkipArray, PickType, Sanity } from 'src/types'
+import { NonNullSkipArray, PickType, Sanity } from '@types'
 
 type ValueGridProps = Pick<Sanity.TeamPage, 'qualities' | 'cta'>
 

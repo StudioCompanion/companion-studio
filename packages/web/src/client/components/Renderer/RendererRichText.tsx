@@ -7,7 +7,7 @@ import {
 import type { PortableTextBlock } from '@portabletext/types'
 import styled from 'styled-components'
 
-import { Sanity, SanityGenerated } from 'src/types'
+import { Sanity, SanityGenerated } from '@types'
 
 import { getFontStyles } from 'styles/getFontStyles'
 import {

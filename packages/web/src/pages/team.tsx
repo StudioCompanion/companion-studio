@@ -15,7 +15,7 @@ import { REVALIDATE_TIME } from 'references/constants'
 
 import { Layout } from 'components/Site/SiteLayout'
 import { TEAMPAGE } from 'src/data/queries/singletons/teamPage'
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface TeamProps extends Sanity.DefaultLayoutProps {
   document: Sanity.TeamPage

@@ -6,7 +6,7 @@ import { MEDIA_QUERIES } from 'styles/mediaQueries'
 import { Logo } from 'components/Logo/Logo'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 
-import { SanityGenerated } from 'src/types'
+import { SanityGenerated } from '@types'
 
 export interface OpeningTextProps {
   text?: SanityGenerated.RichText

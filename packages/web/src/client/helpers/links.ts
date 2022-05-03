@@ -1,4 +1,4 @@
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 type BadRef = { _type: string }
 

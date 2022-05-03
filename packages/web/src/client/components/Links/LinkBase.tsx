@@ -7,7 +7,7 @@ import {
   urlIsReferenceGuard,
 } from 'helpers/links'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface LinkBaseProps extends Sanity.Link {
   className?: string

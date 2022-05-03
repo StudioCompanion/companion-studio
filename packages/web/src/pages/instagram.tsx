@@ -8,7 +8,7 @@ import { LINKTREE_PAGE } from 'src/data/queries/singletons/linktree'
 
 import { REVALIDATE_TIME } from 'references/constants'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface LinktreeProps extends Sanity.DefaultLayoutProps {
   document: Sanity.LinktreePage

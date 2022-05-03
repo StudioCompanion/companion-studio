@@ -10,7 +10,7 @@ import {
   FONT_STYLE_APFEL_12_400,
 } from 'styles/fonts'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { SignUpForm } from 'components/Forms/FormFooter'

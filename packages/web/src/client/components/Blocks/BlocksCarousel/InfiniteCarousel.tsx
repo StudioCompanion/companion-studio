@@ -17,7 +17,7 @@ import { useDrag } from 'react-use-gesture'
 import { useSprings, animated } from '@react-spring/web'
 import styled, { css } from 'styled-components'
 
-import { Sanity, SanityGenerated } from 'src/types'
+import { Sanity, SanityGenerated } from '@types'
 
 import { aspectRatio } from 'styles/mixins'
 import { MEDIA_QUERIES } from 'styles/mediaQueries'

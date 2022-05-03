@@ -6,7 +6,7 @@ import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 
 import { getThemeValue } from 'helpers/theme'
 import { LinkBase } from 'components/Links/LinkBase'
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 export interface ButtonInnerProps {
   text?: string

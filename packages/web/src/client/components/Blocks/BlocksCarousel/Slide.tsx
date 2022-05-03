@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 import { Media } from 'components/Media/Media'
-import { Sanity } from 'src/types'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { Sanity } from '@types'
 
 export const Slide = ({
   hasMobile,

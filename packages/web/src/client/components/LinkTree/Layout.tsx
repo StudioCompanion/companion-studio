@@ -5,7 +5,7 @@ import { Logo } from 'components/Logo/Logo'
 
 import { PADDING } from 'styles/constants'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 import { SquiggleBackground } from './SquiggleBackground'
 

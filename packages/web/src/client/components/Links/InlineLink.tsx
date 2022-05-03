@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 import { Colors } from 'styles/constants'
 

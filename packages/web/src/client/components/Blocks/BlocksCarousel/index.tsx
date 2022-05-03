@@ -14,7 +14,7 @@ import { Video } from './Video'
 import { InfiniteSlider, SliderApi } from './InfiniteCarousel'
 import { Cursor } from './Cursor'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 import { Media } from 'components/Media/Media'
 
 const FORWARD = 'forward'
