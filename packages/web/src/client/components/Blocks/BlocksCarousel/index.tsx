@@ -1,13 +1,11 @@
 import React, { useState, useRef, MouseEvent } from 'react'
-import styled from 'styled-components'
 import useMeasure from 'react-use-measure'
 
-import { RADII, PADDING, Colors, CarouselLayouts } from 'styles/constants'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
-import { getFontStyles } from 'styles/getFontStyles'
+import { CarouselLayouts } from 'styles/constants'
+import { styled } from 'styles/stitches.config'
 
 import { FadeUp } from 'components/Transitions/FadeUp'
+import { Media } from 'components/Media/Media'
 
 import { Slide } from './Slide'
 import { Video } from './Video'
@@ -15,7 +13,6 @@ import { InfiniteSlider, SliderApi } from './InfiniteCarousel'
 import { Cursor } from './Cursor'
 
 import { Sanity } from '@types'
-import { Media } from 'components/Media/Media'
 
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
@@ -23,7 +20,7 @@ const BACKWARD = 'backward'
 export const Carousel = (props: Sanity.BlockMedia) => {
   const {
     backgroundImage,
-    backgroundColor = Colors.lightgrey_2,
+    backgroundColor = '$lightGrey',
     items,
     layout = CarouselLayouts.FULL,
     isHero,
@@ -113,7 +110,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   return (
     <>
       {showCursor && <Cursor icon={cursorIcon()} ref={cursorRef} />}
-      <Wrapper $hero={isHero} $layout={layout}>
+      <Wrapper hero={isHero} layout={layout}>
         <FadeUp>
           <Container
             ref={containerEl}
@@ -121,8 +118,10 @@ export const Carousel = (props: Sanity.BlockMedia) => {
             onMouseLeave={handleMouseLeave}
             onMouseMove={handleMouseMove}
             onClick={handleClick}
-            $bgColor={backgroundColor}
-            $showCursor={showCursor}
+            css={{
+              backgroundColor,
+              cursor: showCursor ? 'none' : 'auto',
+            }}
           >
             {backgroundImage ? <BackgroundImage {...backgroundImage} /> : null}
             {video ? (
@@ -158,67 +157,85 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   )
 }
 
-const Wrapper = styled.section<{ $hero?: boolean; $layout: CarouselLayouts }>`
-  width: 100%;
-  margin-bottom: ${(p) => (p.$hero ? `${PADDING.xl}px` : `${PADDING.s}px`)};
+const Wrapper = styled('section', {
+  width: '100%',
+  mb: '$s',
 
-  ${MEDIA_QUERIES.tabletUp} {
-    margin-bottom: ${(p) => (p.$hero ? 0 : `${PADDING.m}px`)};
-    width: ${({ $layout }) => {
-      switch ($layout) {
-        case CarouselLayouts.FULL:
-          return '100%'
-        case CarouselLayouts.HALF:
-          return `calc(50% - ${PADDING.m / 2}px)`
-        case CarouselLayouts.TWO_THIRDS:
-          return `${(2 / 3) * 100}%`
-      }
-    }};
-  }
-`
+  '@tabletUp': {
+    mb: '$m',
+  },
 
-const Container = styled.div<{
-  $bgColor?: string
-  $showCursor: boolean
-}>`
-  width: 100%;
-  position: relative;
-  background-color: ${(p) => p.$bgColor};
-  border-radius: ${RADII.wrapper_mobile}px;
-  overflow: hidden;
-  cursor: ${(p) => (p.$showCursor ? 'none' : 'auto')};
+  variants: {
+    hero: {
+      true: {
+        mb: '$xl',
 
-  ${MEDIA_QUERIES.tabletUp} {
-    border-radius: ${RADII.wrapper}px;
-  }
-`
+        '@tabletUp': {
+          mb: 0,
+        },
+      },
+    },
+    layout: {
+      [CarouselLayouts.FULL]: {
+        '@tabletUp': {
+          width: '100%',
+        },
+      },
+      [CarouselLayouts.HALF]: {
+        '@tabletUp': {
+          width: `calc(50% - var(--space-m) / 2)`,
+        },
+      },
+      [CarouselLayouts.TWO_THIRDS]: {
+        '@tabletUp': {
+          width: `${(2 / 3) * 100}%`,
+        },
+      },
+    },
+  },
+})
 
-const Dots = styled.div`
-  margin-top: 12px;
-  display: flex;
-`
+const Container = styled('div', {
+  width: '100%',
+  position: 'relative',
+  overflow: 'hidden',
+  borderRadius: '$wrapperMobile',
 
-const Dot = styled.div`
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #080b37;
-  margin-right: 4px;
-`
+  '@tabletUp': {
+    borderRadius: '$wrapper',
+  },
+})
 
-const Caption = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
+const Dots = styled('div', {
+  mt: '$xs',
+  display: 'flex',
+})
 
-const CaptionText = styled.span`
-  margin-top: 12px;
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)}
-`
+const Dot = styled('div', {
+  width: 6,
+  height: 6,
+  borderRadius: '$circle',
+  backgroundColor: '$darkBlue',
 
-const BackgroundImage = styled(Media)`
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-`
+  '& + &': {
+    ml: '$xxxs',
+  },
+})
+
+const Caption = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+})
+
+const CaptionText = styled('span', {
+  mt: '$xs',
+  fontSize: '$body',
+  lineHeight: '$body',
+})
+
+const BackgroundImage = styled(Media, {
+  position: 'absolute',
+  inset: 0,
+  width: '100%',
+  height: '100%',
+})

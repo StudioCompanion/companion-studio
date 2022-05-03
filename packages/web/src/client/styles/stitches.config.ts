@@ -13,6 +13,7 @@ const { styled, globalCss, getCssText, config, keyframes } =
         lightGrey: '#f1f1f4',
         grey: '#e5e5eb',
         blue: '#0037B0',
+        darkBlue: '#080B37',
         black: '#1E1C1C',
         black70: 'rgba(30, 28, 28, .7)',
       },
@@ -24,7 +25,8 @@ const { styled, globalCss, getCssText, config, keyframes } =
         centeredParagraph: '65.3rem',
       },
       space: {
-        xxs: '0.4rem',
+        xxxs: '0.4rem',
+        xxs: '0.8rem',
         xs: '1.2rem',
         s: '1.6rem',
         m: '2rem',
@@ -150,7 +152,7 @@ const { styled, globalCss, getCssText, config, keyframes } =
        *  If h is omitted, w is expected to be the percentage value
        * for the aspect ratio
        */
-      aspectRatio: ({ w = 0, h = 0 }: AspectRatioProps) => ({
+      aspect: ({ w = 0, h = 0 }: AspectRatioProps) => ({
         overflow: 'hidden',
         position: 'relative',
 
@@ -162,10 +164,11 @@ const { styled, globalCss, getCssText, config, keyframes } =
         },
 
         '& > *': {
+          width: '100%',
+          height: '100%',
           position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%,-50%)',
+          top: 0,
+          left: 0,
         },
       }),
     },

@@ -1,6 +1,7 @@
-import styled from 'styled-components'
+import { styled } from 'styles/stitches.config'
 
 import { Media } from 'components/Media/Media'
+
 import { Sanity } from '@types'
 
 export const Slide = ({
@@ -15,25 +16,26 @@ export const Slide = ({
   return (
     <>
       {mobile?.asset ? (
-        <MobileAsset $show={Boolean(hasMobile)} {...mobile} />
+        <ImageAsset isMobile={Boolean(hasMobile)} {...mobile} />
       ) : null}
-      <DesktopAsset $hasMobile={Boolean(hasMobile)} {...desktop} />
+      <ImageAsset hasMobile={Boolean(hasMobile)} {...desktop} />
     </>
   )
 }
 
-const MobileAsset = styled(Media)<{ $show: boolean }>`
-  display: ${(props) => (props.$show ? 'block' : 'none')};
-
-  ${MEDIA_QUERIES.desktopUp} {
-    display: none;
-  }
-`
-
-const DesktopAsset = styled(Media)<{ $hasMobile: boolean }>`
-  display: ${(props) => (props.$hasMobile ? 'none' : 'block')};
-
-  ${MEDIA_QUERIES.desktopUp} {
-    display: block;
-  }
-`
+const ImageAsset = styled(Media, {
+  variants: {
+    hasMobile: {
+      true: {
+        display: 'none',
+      },
+    },
+    isMobile: {
+      true: {
+        '@desktopUp': {
+          display: 'none',
+        },
+      },
+    },
+  },
+})

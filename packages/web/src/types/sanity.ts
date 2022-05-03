@@ -3,7 +3,8 @@ import {
   SanityImageDimensions,
   SanityReference,
 } from 'sanity-codegen'
-import { CarouselLayouts, Colors, ThemeTypes } from 'styles/constants'
+import { CarouselLayouts, ThemeTypes } from 'styles/constants'
+import { ScaleValue } from 'styles/stitches.config'
 
 import { SanityGenerated } from './index'
 
@@ -43,7 +44,7 @@ export type BlockMedia = SanityGenerated.SanityKeyed<
   Omit<SanityGenerated.BlockMedia, 'items' | 'layout' | 'backgroundColor'> & {
     items: SanityGenerated.SanityKeyed<BlockMediaItem>[]
     layout: CarouselLayouts
-    backgroundColor: Colors
+    backgroundColor: ScaleValue<'colors'>
     backgroundImage: Image
   }
 >
@@ -134,11 +135,9 @@ export interface TeamPage
       SanityGenerated.Teampage,
       'textBlockOne' | 'textBlockTwo' | 'qualities'
     > {
-  meta?: Meta
   slug?: string
   slideshow?: Slide[]
   team?: Team
-  card?: Card
   cta?: Link
 }
 

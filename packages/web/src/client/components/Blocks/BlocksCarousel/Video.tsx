@@ -1,9 +1,8 @@
 import { Dispatch, SetStateAction, useCallback } from 'react'
-import styled from 'styled-components'
 
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { Sanity } from '@types'
 
-import { Sanity } from 'src/types'
+import { styled } from 'styles/stitches.config'
 
 import { Media } from 'components/Media/Media'
 
@@ -30,30 +29,37 @@ export const Video = ({ video, setPaused, isPaused }: VideoProps) => {
         <VideoItem
           {...video.mobile}
           isPaused={isPaused}
-          $isMobile={hasMobile}
+          isMobile={hasMobile}
           onClick={handleVideoClick}
           onAutoplayCallback={handleAutoplayCallback}
-          floodParent
         />
       ) : null}
       {video.desktop?.asset ? (
         <VideoItem
           {...video.desktop}
           isPaused={isPaused}
-          $hasMobile={hasMobile}
+          hasMobile={hasMobile}
           onClick={handleVideoClick}
           onAutoplayCallback={handleAutoplayCallback}
-          floodParent
         />
       ) : null}
     </>
   )
 }
 
-const VideoItem = styled(Media)<{ $hasMobile?: boolean; $isMobile?: boolean }>`
-  display: ${(props) => (props.$hasMobile ? 'none' : 'block')};
-
-  ${MEDIA_QUERIES.desktopUp} {
-    display: ${(props) => (props.$isMobile ? 'none' : 'block')};
-  }
-`
+const VideoItem = styled(Media, {
+  variants: {
+    hasMobile: {
+      true: {
+        display: 'none',
+      },
+    },
+    isMobile: {
+      true: {
+        '@desktopUp': {
+          display: 'none',
+        },
+      },
+    },
+  },
+})
