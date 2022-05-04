@@ -13,6 +13,7 @@ import { InfiniteSlider, SliderApi } from './InfiniteCarousel'
 import { Cursor } from './Cursor'
 
 import { Sanity } from '@types'
+import { getFontStyle } from 'styles/getFontStyles'
 
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
@@ -229,8 +230,7 @@ const Caption = styled('div', {
 
 const CaptionText = styled('span', {
   mt: '$xs',
-  fontSize: '$body',
-  lineHeight: '$body',
+  ...getFontStyle('$body'),
 })
 
 const BackgroundImage = styled(Media, {

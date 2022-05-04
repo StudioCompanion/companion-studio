@@ -5,6 +5,7 @@ import { Sanity } from '@types'
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 import { Heading } from 'components/Text/Heading'
+import { getFontStyle } from 'styles/getFontStyles'
 
 export type TestimonialProps = Sanity.BlockTestimonial
 
@@ -46,8 +47,7 @@ const TestimonialWrapper = styled('div', {
 
 const Quote = styled(RendererRichText, {
   mb: '$s',
-  fontSize: 'h3',
-  lineHeight: 'h3',
+  ...getFontStyle('$h4'),
 })
 
 const Author = styled(Heading, {
