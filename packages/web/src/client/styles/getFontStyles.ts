@@ -270,6 +270,7 @@ export const getFontStyle = (DeskStyle: DesktopFontSizeTokens): CSS => {
       }
     case '$body':
       return {
+        fontFamily: '$reckless',
         fontSize: '$h5',
         lineHeight: '$h5',
 
