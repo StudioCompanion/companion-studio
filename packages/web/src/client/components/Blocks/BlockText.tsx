@@ -26,6 +26,6 @@ const Container = styled('section', {
 
 const RichText = styled(RendererRichText, {
   '@tabletUp': {
-    maxWidth: '47%',
+    maxWidth: '$documentWrapper',
   },
 })
