@@ -115,7 +115,9 @@ const components: Partial<PortableTextReactComponents> = {
       return (
         <Squiggle
           css={{
-            backgroundImage: `url('/images/graphics/team/underline_${value.squiggleType}.png')`,
+            '&::after': {
+              backgroundImage: `url('/images/graphics/team/underline_${value.squiggleType}.png')`,
+            },
           }}
         >
           {children}
