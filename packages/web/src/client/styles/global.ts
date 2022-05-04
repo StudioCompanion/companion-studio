@@ -36,7 +36,7 @@ export const globalStyles = globalCss({
     '-moz-osx-font-smoothing': 'grayscale',
     m: 0,
     p: 0,
-    color: '$black',
+    color: '$darkBlue',
   },
 
   button: {
