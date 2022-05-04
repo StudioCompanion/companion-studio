@@ -107,8 +107,6 @@ export interface Link {
 }
 
 export interface ApproachPage extends DocumentBase {
-  meta?: Meta
-  card?: Card
   slug?: string
   sections?: Array<
     | SanityGenerated.SanityKeyed<{
@@ -124,6 +122,9 @@ export interface ApproachPage extends DocumentBase {
   >
 }
 
+export interface PrivacyPage extends DocumentBase {
+  content?: SanityGenerated.RichText
+}
 export interface Slide {
   rotation?: number
   media?: Media
@@ -159,8 +160,8 @@ export interface DefaultLayoutProps {
 }
 
 export interface HomepageCard extends Card {
-  meta?: Meta
   slug?: string
+  meta?: Meta
 }
 
 export interface HomePage extends DocumentBase {

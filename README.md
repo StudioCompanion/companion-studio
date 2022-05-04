@@ -16,7 +16,6 @@ Make a list of the ENVs we have
 
 ### Built With
 
-- MDX
 - Nextjs
 - Styled components
 - React

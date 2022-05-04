@@ -15,6 +15,7 @@ import homepage from './singletons/homepage'
 import settings from './singletons/settings'
 import teampage from './singletons/teampage'
 import linktree from './singletons/linktree'
+import privacy from './singletons/privacy'
 
 /**
  * Objects
@@ -53,6 +54,7 @@ export default createSchema({
     settings,
     teampage,
     linktree,
+    privacy,
     /**
      * Objects
      */
