@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styles/stitches.config'
 
 export const Logo = () => {
   return (
@@ -21,7 +21,7 @@ export const Logo = () => {
   )
 }
 
-const LogoContainer = styled.div`
-  position: relative;
-  width: 100px;
-`
+const LogoContainer = styled('div', {
+  position: 'relative',
+  width: '10rem',
+})

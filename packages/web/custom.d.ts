@@ -3,6 +3,13 @@ import { CSS } from 'styles/stitches.config'
 export {}
 
 declare global {
+  type StaticImageData = {
+    src: string
+    height: number
+    width: number
+    blurDataURL?: string
+  }
+
   namespace JSX {
     /**
      * Do we need to modify `LibraryManagedAttributes` too,

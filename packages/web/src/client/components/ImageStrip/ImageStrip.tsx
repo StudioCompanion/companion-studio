@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react'
-import styled from 'styled-components'
 import Ticker from 'react-ticker'
 import PageVisibility from 'react-page-visibility'
 
-import { RADII, PADDING } from 'styles/constants'
 import { WIDTHS } from 'styles/dimensions'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { styled } from 'styles/stitches.config'
 
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { Media } from 'components/Media/Media'
@@ -127,31 +125,28 @@ export const ImageStrip = ({
   )
 }
 
-const ImageWrapper = styled.div`
-  border-radius: ${RADII.wrapper_lg}px;
-  overflow: hidden;
+const ImageWrapper = styled('div', {
+  borderRadius: '$wrapperLarge',
+  overflow: 'hidden',
+})
 
-  & img {
-    transition: 0.4s ease-out;
-  }
-`
+const ImageContainer = styled('div', {
+  mx: 'calc($m / 2}',
+  flexShrink: 0,
+})
 
-const ImageContainer = styled.div`
-  margin: 0 ${PADDING.m / 2}px;
-  flex-shrink: 0;
-`
+const ImageStripContainer = styled('div', {
+  position: 'relative',
+  width: '100%',
+  my: '$xl',
 
-const ImageStripContainer = styled.div`
-  position: relative;
-  width: 100%;
-  margin: ${PADDING.xl}px 0;
-  ${MEDIA_QUERIES.tabletUp} {
-    margin: ${PADDING.l} 0;
-  }
-`
+  '@tabletUp': {
+    my: '$l',
+  },
+})
 
-const ImageStripWrapper = styled.div`
-  display: inline-flex;
-  align-items: center;
-  width: max-content;
-`
+const ImageStripWrapper = styled('div', {
+  display: 'inline-flex',
+  alignItems: 'center',
+  width: 'max-content',
+})

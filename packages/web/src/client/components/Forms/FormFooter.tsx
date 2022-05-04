@@ -1,10 +1,13 @@
-import { Input } from 'components/Inputs/Input'
 import { useState } from 'react'
-import styled from 'styled-components'
+import isEmail from 'validator/lib/isEmail'
+
+import { Input } from 'components/Inputs/Input'
+
 import { Colors } from 'styles/constants'
 import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
 import { getFontStyles } from 'styles/getFontStyles'
-import isEmail from 'validator/lib/isEmail'
+import { styled } from 'styles/stitches.config'
+import { Heading } from 'components/Text/Heading'
 
 export const SignUpForm = () => {
   const [showSuccess, setShowSuccess] = useState(false)
@@ -53,7 +56,7 @@ export const SignUpForm = () => {
   }
 
   return (
-    <SignUp>
+    <div>
       <iframe
         name="dummyframe"
         id="dummyframe"
@@ -74,7 +77,7 @@ export const SignUpForm = () => {
             handleChange={handleChange}
             handleBlur={handleBlur}
           />
-          <FormFeedback>
+          <FormFeedback tag="p" fontStyle="$body">
             {errorMessage && errorMessage !== '' && <span>{errorMessage}</span>}
             {!(errorMessage && errorMessage !== '') && showSuccess && (
               <span>Success! Keep an eye out for our ramblings</span>
@@ -89,39 +92,35 @@ export const SignUpForm = () => {
           Submit
         </FormButton>
       </Form>
-    </SignUp>
+    </div>
   )
 }
 
-const SignUp = styled.div``
+const Form = styled('form', {
+  display: 'flex',
+  alignItems: 'flex-start',
+})
 
-const Form = styled.form`
-  display: flex;
-  align-items: flex-start;
-`
+const InputWrapper = styled('div', {
+  flexGrow: 1,
+  mr: '$xxs',
+})
 
-const InputWrapper = styled.div`
-  flex-grow: 1;
-  margin-right: 8px;
-`
+const FormFeedback = styled(Heading, {
+  mt: '$xxs',
+})
 
-const FormFeedback = styled.div`
-  margin-top: 8px;
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)}
-`
+const FormButton = styled('button', {
+  backgroundColor: '$white',
+  color: '$black',
+  borderRadius: '$pill',
+  border: 'none',
+  cursor: 'pointer',
+  p: '$xxs',
+  pb: 9,
+  minHeight: 30,
 
-const FormButton = styled.button`
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)};
-  background-color: ${Colors.white};
-  color: ${Colors.darkblue};
-  border-radius: 500px;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  padding-bottom: 9px;
-  min-height: 30px;
-
-  &:hover {
-    opacity: 0.8;
-  }
-`
+  '&:hover': {
+    opacity: 0.8,
+  },
+})

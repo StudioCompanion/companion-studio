@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
-import styled from 'styled-components'
 import Link from 'next/link'
+
+import { styled } from 'styles/stitches.config'
 
 import {
   getHrefSlugFromSanityReference,
@@ -45,4 +46,4 @@ export const LinkBase = (props: LinkBaseProps) => {
   return null
 }
 
-const Anchor = styled.a``
+const Anchor = styled('a')

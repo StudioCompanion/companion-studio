@@ -72,8 +72,6 @@ const Main = styled.main<{ $currentPath: string }>`
     padding: ${({ $currentPath }) =>
       $currentPath === '/team' ? `0px` : `0px ${PADDING.m}px`};
   }
-
-  overflow-x: hidden;
 `
 const Section = styled.section`
   margin-bottom: ${PADDING.s}px;

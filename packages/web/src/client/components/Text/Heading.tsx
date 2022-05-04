@@ -8,7 +8,7 @@ export interface Props {
   className?: string
   tag?: keyof Pick<
     JSX.IntrinsicElements,
-    'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+    'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p'
   >
   fontStyle?: ScaleValue<'fontSizes'>
   weight?: ScaleValue<'fontWeights'>

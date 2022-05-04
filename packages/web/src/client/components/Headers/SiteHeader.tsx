@@ -1,15 +1,11 @@
-import styled from 'styled-components'
 import Link from 'next/link'
 
-import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
-import { getFontStyles } from 'styles/getFontStyles'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { Colors, PADDING } from '../../styles/constants'
+import { styled } from 'styles/stitches.config'
 
 import { Logo } from 'components/Logo/Logo'
+import { LinkBase } from 'components/Links/LinkBase'
 
 import { Sanity } from '@types'
-import { LinkBase } from 'components/Links/LinkBase'
 
 export interface NavProps {
   currentPath?: string
@@ -58,61 +54,74 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
   )
 }
 
-const LogoWrapper = styled.a`
-  display: block;
-  margin-right: 10px;
-`
+const LogoWrapper = styled('a', {
+  display: 'block',
+  mr: '$xs',
+})
 
-const NavContainer = styled.div`
-  position: sticky;
-  z-index: 1;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 0 ${PADDING.xl}px;
+const NavContainer = styled('header', {
+  position: 'sticky',
+  zIndex: '$1',
+  top: 0,
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  mb: '$xl',
+  p: '$s',
 
-  ${MEDIA_QUERIES.tabletUp} {
-    margin: 0 0 ${PADDING.xl}px;
-    padding: ${PADDING.m}px;
-  }
+  '@tabletUp': {
+    p: '$m',
+  },
+})
 
-  padding: ${PADDING.s}px;
-`
+const NavWrapper = styled('nav', {
+  backgroundColor: '$white',
+  width: 'fit-content',
+  p: 6,
+  borderRadius: '$pill',
+  border: '1px solid rgba(232, 232, 238, 0.25)',
+  boxShadow: '0px 0px 21px rgba(8, 11, 55, 0.03)',
+})
 
-const NavWrapper = styled.nav`
-  background-color: white;
-  width: fit-content;
-  padding: 6px;
-  border-radius: 500px;
-  border: 1px solid rgba(232, 232, 238, 0.25);
-  box-shadow: 0px 0px 21px rgba(8, 11, 55, 0.03);
-`
+const NavList = styled('ul', {
+  display: 'flex',
+})
 
-const NavList = styled.ul`
-  display: flex;
-`
+const NavItem = styled('li', {
+  '& + &': {
+    ml: 6,
+  },
+})
 
-const NavItem = styled.li`
-  & + & {
-    margin-left: 6px;
-  }
-`
+const NavLink = styled(LinkBase, {
+  textDecoration: 'none',
+  display: 'block',
+  fontSize: '$h6',
+  lineHeight: '$h6',
+  p: '$xxs',
+  pb: 10,
+  borderRadius: '$pill',
+  width: '100%',
+  height: '100%',
 
-const NavLink = styled(LinkBase)<{ active: boolean }>`
-  text-decoration: none;
-  display: block;
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)};
-  background-color: ${(p) => (p.active ? Colors.darkblue : 'transparent')};
-  padding: 8px;
-  padding-bottom: 10px;
-  border-radius: 500px;
-  color: ${(p) => (p.active ? Colors.white : 'rgba(8, 11, 55, 0.57)')};
-  width: 100%;
-  height: 100%;
+  variants: {
+    active: {
+      true: {
+        backgroundColor: '$darkBlue',
+        color: '$white',
 
-  &:hover {
-    background-color: ${(p) =>
-      p.active ? Colors.darkblue : Colors.lightgrey_2};
-  }
-`
+        '&:hover': {
+          backgroundColor: '$darkBlue',
+        },
+      },
+      false: {
+        backgroundColor: 'transparent',
+        color: 'rgba(8, 11, 55, 0.57)',
+
+        '&:hover': {
+          backgroundColor: '$lightGrey',
+        },
+      },
+    },
+  },
+})

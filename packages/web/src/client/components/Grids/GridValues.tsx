@@ -1,9 +1,5 @@
-import styled from 'styled-components'
-
-import { PADDING, ThemeTypes } from 'styles/constants'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { getFontStyles } from 'styles/getFontStyles'
-import { FONT_STYLE_RECKLESS_26_400 } from 'styles/fonts'
+import { styled } from 'styles/stitches.config'
+import { ThemeTypes } from 'styles/constants'
 
 import { Button } from 'components/Button/Button'
 import { FadeUp } from 'components/Transitions/FadeUp'
@@ -47,51 +43,49 @@ export const ValuesGrid = ({ qualities, cta }: ValueGridProps) => {
   )
 }
 
-const GridContainer = styled.div`
-  display: grid;
-  gap: ${PADDING.xl}px;
-  grid-template-columns: 1fr;
-  justify-items: center;
+const GridContainer = styled('div', {
+  display: 'grid',
+  gap: '$xl',
+  gridTemplateColumns: '1fr',
+  justifyItems: 'center',
 
-  ${MEDIA_QUERIES.tabletUp} {
-    gap: ${PADDING.xxl}px ${PADDING.m}px;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  }
+  '@tabletUp': {
+    gap: '$xxl $m',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(35rem, 1fr)',
+  },
 
-  ${MEDIA_QUERIES.largeDesktopUp} {
-    grid-template-columns: repeat(3, 1fr);
-  }
-`
+  '@largeDesktopUp': {
+    gridTemplateColumns: 'repeat(3,1fr)',
+  },
+})
 
-const GridWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: ${PADDING.xl}px;
-  ${MEDIA_QUERIES.tabletUp} {
-    margin-top: ${PADDING.xxl}px;
-  }
-`
+const GridWrapper = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  my: '$xl',
 
-const GridItemHeading = styled(RendererRichText)`
-  & * {
-    // Little hack because this uses a very specific subset of the RichTextRenderer in the CMS
-    ${getFontStyles(FONT_STYLE_RECKLESS_26_400)}
-  }
-  margin-bottom: 20px;
-`
+  '@tabletUp': {
+    my: '$xxl',
+  },
+})
 
-const GridItemContainer = styled.div`
-  text-align: center;
-  ${MEDIA_QUERIES.tabletUp} {
-    max-width: 425px;
-  }
-`
+const GridItemHeading = styled(RendererRichText, {
+  mb: '$m',
+})
 
-const ButtonWrapper = styled.div`
-  align-self: center;
-  margin: ${PADDING.xl}px 0;
+const GridItemContainer = styled('div', {
+  textAlign: 'center',
 
-  ${MEDIA_QUERIES.tabletUp} {
-    margin: ${PADDING.xxl}px 0;
-  }
-`
+  '@tabletUp': {
+    maxWidth: '42.5rem',
+  },
+})
+
+const ButtonWrapper = styled('div', {
+  alignSelf: 'center',
+  my: '$xl',
+
+  '@tabletUp': {
+    my: '$xxl',
+  },
+})

@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import React from 'react'
 import Image from 'next/image'
 
-import React from 'react'
+import { styled } from 'styles/stitches.config'
 
 interface SquiggleProps {
   src: StaticImageData
@@ -75,15 +75,15 @@ const squiggles = [
   s018,
 ]
 
-const SquiggleBackgroundContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`
+const SquiggleBackgroundContainer = styled('div', {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+})
 
-const SquiggleContainer = styled.div`
-  position: absolute;
-  max-width: 50px;
-`
+const SquiggleContainer = styled('div', {
+  position: 'absolute',
+  maxWidth: '5rem',
+})

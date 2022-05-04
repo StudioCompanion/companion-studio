@@ -49,10 +49,10 @@ export const Avatars = ({ members }: AvatarsProps) => {
             ref={(ref) => (textRefs.current[i] = ref as HTMLDivElement)}
             style={{ width: springs[i].width }}
           >
-            <TeamMemberHeading tag="h2" fontStyle="$body">
+            <TeamMemberHeading tag="h2" fontStyle="$h6">
               {name}
             </TeamMemberHeading>
-            <TeamMemberHeading tag="h3" fontStyle="$body">
+            <TeamMemberHeading tag="h3" fontStyle="$h6">
               {job}
             </TeamMemberHeading>
           </TeamMemberDetails>

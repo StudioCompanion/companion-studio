@@ -1,11 +1,8 @@
-import styled from 'styled-components'
+import { ThemeTypes } from 'styles/constants'
+import { styled } from 'styles/stitches.config'
 
-import { BACKGROUND, COLOR, ThemeTypes } from 'styles/constants'
-import { getFontStyles } from 'styles/getFontStyles'
-import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
-
-import { getThemeValue } from 'helpers/theme'
 import { LinkBase } from 'components/Links/LinkBase'
+
 import { Sanity } from '@types'
 
 export interface ButtonInnerProps {
@@ -14,7 +11,7 @@ export interface ButtonInnerProps {
 }
 
 export const ButtonInner = ({ text, theme }: ButtonInnerProps) => {
-  return <ButtonContainer $theme={theme}>{text}</ButtonContainer>
+  return <ButtonContainer theme={theme}>{text}</ButtonContainer>
 }
 
 export type ButtonProps = ButtonInnerProps & Partial<Sanity.Link>
@@ -39,19 +36,34 @@ export const Button = ({
   )
 }
 
-export const ButtonContainer = styled.div<{ $theme: ThemeTypes }>`
-  ${getFontStyles(FONT_STYLE_APFEL_12_400)}
+export const ButtonContainer = styled('div', {
+  display: 'inline-block',
+  borderRadius: '$pill',
+  p: '$xxs',
+  pb: 9,
+  textDecoration: 'none',
+  cursor: 'pointer',
+  fontSize: '$h6',
+  lineHeight: '$h6',
 
-  display: inline-block;
-  border-radius: 500px;
-  padding: 8px;
-  padding-bottom: 9px;
-  color: ${(p) => getThemeValue(COLOR, p.$theme)};
-  background-color: ${(p) => getThemeValue(BACKGROUND, p.$theme)};
-  z-index: 1;
-  text-decoration: none;
-  cursor: pointer;
-`
-const ButtonAnchor = styled(LinkBase)`
-  display: inline-block;
-`
+  variants: {
+    theme: {
+      [ThemeTypes.LIGHT]: {
+        backgroundColor: '$white',
+        color: '$black',
+      },
+      [ThemeTypes.GREY]: {
+        backgroundColor: '$lightGrey',
+        color: '$black',
+      },
+      [ThemeTypes.DARK]: {
+        backgroundColor: '$black',
+        color: '$white',
+      },
+    },
+  },
+})
+
+const ButtonAnchor = styled(LinkBase, {
+  display: 'inline-block',
+})

@@ -1,17 +1,10 @@
-import styled from 'styled-components'
-
-import { PADDING } from 'styles/constants'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { getFontStyles } from 'styles/getFontStyles'
-import {
-  FONT_STYLE_RECKLESS_12_400,
-  FONT_STYLE_RECKLESS_17_400,
-} from 'styles/fonts'
+import { styled } from 'styles/stitches.config'
 
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { Media } from 'components/Media/Media'
 
 import { Sanity } from '@types'
+import { Heading } from 'components/Text/Heading'
 
 interface TeamGridProps {
   team?: Sanity.Team
@@ -23,8 +16,12 @@ const GridItem = ({ image, name, job }: Sanity.TeamMember) => {
       <GridItemContainer>
         {image ? <GridImage {...image} /> : null}
         <div>
-          <TeamMemberName>{name}</TeamMemberName>
-          <TeamMemberRole>{job}</TeamMemberRole>
+          <TeamMemberName tag="h2" fontStyle="$h5">
+            {name}
+          </TeamMemberName>
+          <TeamMemberRole tag="h3" fontStyle="$body">
+            {job}
+          </TeamMemberRole>
         </div>
       </GridItemContainer>
     </FadeUp>
@@ -45,48 +42,47 @@ export const TeamGrid = ({ team = [] }: TeamGridProps) => {
   )
 }
 
-const GridWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: ${PADDING.s}px 8px;
-  margin: ${PADDING.xl}px 0;
+const GridWrapper = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  gap: '$s $xxs',
+  my: '$xl',
 
-  ${MEDIA_QUERIES.tabletUp} {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: ${PADDING.m}px;
-    margin: ${PADDING.xxl}px 0;
-  }
-`
+  '@tabletUp': {
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: '$m',
+    my: '$xxl',
+  },
+})
 
-const GridItemContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 8px;
-  height: 100%;
-  justify-content: space-between;
+const GridItemContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  p: '$xxs',
+  height: '100%',
+  justifyContent: 'space-between',
 
-  ${MEDIA_QUERIES.tabletUp} {
-    padding: ${PADDING.xl}px;
-  }
-`
+  '@tabletUp': {
+    p: '$xl',
+  },
+})
 
-const GridImage = styled(Media)`
-  max-width: 90px;
-  width: 100%;
-  margin-bottom: 8px;
-  ${MEDIA_QUERIES.tabletUp} {
-    max-width: 300px;
-  }
-`
+const GridImage = styled(Media, {
+  maxWidth: '9rem',
+  width: '100%',
+  mb: '$xxs',
 
-const TeamMemberName = styled.h2`
-  ${getFontStyles(FONT_STYLE_RECKLESS_17_400)}
-  margin-bottom: 4px;
-  text-align: center;
-`
+  '@tabletUp': {
+    maxWidth: '30rem',
+  },
+})
 
-const TeamMemberRole = styled.h3`
-  ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
-  text-align: center;
-`
+const TeamMemberName = styled(Heading, {
+  mb: '$xxxs',
+  textAlign: 'center',
+})
+
+const TeamMemberRole = styled(Heading, {
+  textAlign: 'center',
+})
