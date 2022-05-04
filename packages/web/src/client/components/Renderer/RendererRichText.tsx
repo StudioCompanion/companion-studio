@@ -75,12 +75,12 @@ const NumberList = styled('ol', {
 
 const components: Partial<PortableTextReactComponents> = {
   block: {
-    h1: (...props) => <Heading tag="h1" fontStyle="$h1" {...props} />,
-    h2: (...props) => <Heading tag="h2" fontStyle="$h2" {...props} />,
-    h3: (...props) => <Heading tag="h3" fontStyle="$h3" {...props} />,
-    h4: (...props) => <Heading tag="h4" fontStyle="$h4" {...props} />,
-    h5: (...props) => <Heading tag="h5" fontStyle="$h5" {...props} />,
-    normal: (...props) => (
+    h1: ({ ...props }) => <Heading tag="h1" fontStyle="$h1" {...props} />,
+    h2: ({ ...props }) => <Heading tag="h2" fontStyle="$h2" {...props} />,
+    h3: ({ ...props }) => <Heading tag="h3" fontStyle="$h3" {...props} />,
+    h4: ({ ...props }) => <Heading tag="h4" fontStyle="$h4" {...props} />,
+    h5: ({ ...props }) => <Heading tag="h5" fontStyle="$h5" {...props} />,
+    normal: ({ ...props }) => (
       <Heading
         tag="p"
         fontStyle="$body"
