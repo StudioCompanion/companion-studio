@@ -7,6 +7,7 @@ import {
   UsersThree,
   UserList,
   Link,
+  Lock,
 } from 'phosphor-react'
 
 export default () =>
@@ -63,6 +64,16 @@ export default () =>
             .id('linktree')
             .schemaType('linktree')
             .documentId('linktree')
+        ),
+      S.listItem()
+        .title('Privacy')
+        .icon(Lock)
+        .child(
+          S.editor()
+            .title('Privacy')
+            .id('privacy')
+            .schemaType('privacy')
+            .documentId('privacy')
         ),
       S.listItem()
         .title('Settings')
