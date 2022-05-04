@@ -1,11 +1,9 @@
-import styled from 'styled-components'
-
 import { SiteSeo } from 'components/Site/SiteSeo'
 import { Logo } from 'components/Logo/Logo'
 
-import { PADDING } from 'styles/constants'
+import { styled } from 'styles/stitches.config'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 import { SquiggleBackground } from './SquiggleBackground'
 
@@ -35,19 +33,21 @@ export const LinkTreeLayout = ({
   )
 }
 
-const LinkTreeContainer = styled.main`
-  position: relative;
-  display: flex;
-  justify-content: center;
-`
-const LinkTreeWrapper = styled.article`
-  width: 100%;
-  max-width: 800px;
-`
-const LogoContainer = styled.header`
-  display: flex;
-  justify-content: center;
-  max-width: 90px;
-  margin: ${PADDING.xl}px auto;
-  width: 100%;
-`
+const LinkTreeContainer = styled('main', {
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
+})
+
+const LinkTreeWrapper = styled('article', {
+  width: '100%',
+  maxWidth: '$documentWrapper',
+})
+
+const LogoContainer = styled('header', {
+  display: 'flex',
+  justifyContent: 'center',
+  maxWidth: '9rem',
+  m: '$xl auto',
+  width: '100%',
+})

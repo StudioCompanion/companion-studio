@@ -18,12 +18,14 @@
     "baseUrl": "./packages/web",
     "paths": {
       "components/*": ["./src/client/components/*"],
+      "data/*": ["./src/data/*"],
       "helpers/*": ["./src/client/helpers/*"],
       "hooks/*": ["./src/client/hooks/*"],
       "references/*": ["./src/client/references/*"],
       "server/*": ["./src/server/*"],
       "services/*": ["./src/server/services/*"],
-      "styles/*": ["./src/client/styles/*"]
+      "styles/*": ["./src/client/styles/*"],
+      "@types": ["./src/types"]
     }
   },
   "include": ["*.d.ts", "packages/**/*", "*.*.js", "*.*.ts"],

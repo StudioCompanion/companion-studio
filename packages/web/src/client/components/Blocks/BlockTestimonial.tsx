@@ -1,15 +1,11 @@
-import styled from 'styled-components'
+import { styled } from 'styles/stitches.config'
 
-import { getFontStyles } from 'styles/getFontStyles'
-import {
-  FONT_STYLE_RECKLESS_32_400,
-  FONT_STYLE_RECKLESS_12_400,
-} from 'styles/fonts'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { PADDING, WIDTHS } from 'styles/constants'
+import { Sanity } from '@types'
+
 import { FadeUp } from 'components/Transitions/FadeUp'
-import { Sanity } from 'src/types'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
+import { Heading } from 'components/Text/Heading'
+import { getFontStyle } from 'styles/getFontStyles'
 
 export type TestimonialProps = Sanity.BlockTestimonial
 
@@ -18,45 +14,38 @@ export const Testimonial = ({ quote, author }: TestimonialProps) => {
     <TestimonialContainer>
       <TestimonialWrapper>
         <FadeUp>
-          {quote ? (
-            <Quote>
-              <RendererRichText blocks={quote} />
-            </Quote>
+          {quote ? <Quote blocks={quote} /> : null}
+          {author ? (
+            <Heading tag="h3" fontStyle="$body">
+              {author}
+            </Heading>
           ) : null}
-          {author ? <Author>{author}</Author> : null}
         </FadeUp>
       </TestimonialWrapper>
     </TestimonialContainer>
   )
 }
 
-const TestimonialContainer = styled.section`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin: ${PADDING.xxl}px 0;
-  ${MEDIA_QUERIES.tabletUp} {
-    margin: ${PADDING.xxl * 2}px 0;
-  }
-`
+const TestimonialContainer = styled('section', {
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  my: '$xxl',
 
-const TestimonialWrapper = styled.div`
-  text-align: center;
-  ${MEDIA_QUERIES.tabletUp} {
-    max-width: ${WIDTHS.centeredP}px;
-  }
-`
+  '@tabletUp': {
+    my: '$xxxl',
+  },
+})
 
-const Quote = styled.div`
-  ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
-  margin-bottom: 16px;
-`
+const TestimonialWrapper = styled('div', {
+  textAlign: 'center',
 
-const Author = styled.h3`
-  ${getFontStyles(FONT_STYLE_RECKLESS_12_400)}
+  '@tabletUp': {
+    maxWidth: '$centeredParagraph',
+  },
+})
 
-  ${MEDIA_QUERIES.tabletUp} {
-    font-size: 2rem;
-    line-height: 2.6rem;
-  }
-`
+const Quote = styled(RendererRichText, {
+  mb: '$s',
+  ...getFontStyle('$h4'),
+})

@@ -1,12 +1,9 @@
-import styled from 'styled-components'
-
-import { PADDING } from 'styles/constants'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { styled } from 'styles/stitches.config'
 
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 export type TextSectionProps = Sanity.BlockText
 
@@ -18,25 +15,17 @@ export const TextSection = ({ richText }: TextSectionProps) => {
   )
 }
 
-const Container = styled.section`
-  margin: ${PADDING.xl - PADDING.s}px 0 ${PADDING.xl}px;
+const Container = styled('section', {
+  m: 'calc($xl - $s) 0 $xl',
 
-  ${MEDIA_QUERIES.tabletUp} {
-    margin: ${PADDING.xxl - PADDING.m}px 0 ${PADDING.xxl}px;
-    width: 100%;
-  }
+  '@tabletUp': {
+    width: '100%',
+    m: 'calc($xxl - $m) 0 $xxl',
+  },
+})
 
-  .hero + & {
-    margin: 0px 0px ${PADDING.xl}px;
-
-    ${MEDIA_QUERIES.tabletUp} {
-      margin: ${PADDING.l}px 0px ${PADDING.xl}px;
-    }
-  }
-`
-
-const RichText = styled(RendererRichText)`
-  ${MEDIA_QUERIES.tabletUp} {
-    max-width: 47%;
-  }
-`
+const RichText = styled(RendererRichText, {
+  '@tabletUp': {
+    maxWidth: '47%',
+  },
+})

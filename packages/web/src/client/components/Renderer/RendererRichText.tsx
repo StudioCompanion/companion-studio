@@ -5,25 +5,16 @@ import {
   PortableTextMarkComponentProps,
 } from '@portabletext/react'
 import type { PortableTextBlock } from '@portabletext/types'
-import styled from 'styled-components'
 
-import { Sanity, SanityGenerated } from 'src/types'
+import { Sanity, SanityGenerated } from '@types'
 
-import { getFontStyles } from 'styles/getFontStyles'
-import {
-  FONT_STYLE_APFEL_17_400,
-  FONT_STYLE_APFEL_26_400,
-  FONT_STYLE_APFEL_32_400,
-  FONT_STYLE_APFEL_44_400,
-  FONT_STYLE_APFEL_58_400,
-  FONT_STYLE_RECKLESS_20_400,
-} from 'styles/fonts'
-import { PADDING } from 'styles/constants'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { getFontStyle } from 'styles/getFontStyles'
+import { styled } from 'styles/stitches.config'
 
 import { isArrayGuard, isStringGuard } from 'helpers/guards'
 
 import { InlineLink } from 'components/Links/InlineLink'
+import { Heading } from 'components/Text/Heading'
 
 interface RichTextRendererProps {
   blocks: PortableTextBlock | SanityGenerated.RichText
@@ -39,91 +30,68 @@ export const RendererRichText = ({
   </TextContainer>
 )
 
-const TextContainer = styled.div``
+const TextContainer = styled('div')
 
-const Heading1 = styled.h1`
-  ${getFontStyles(FONT_STYLE_APFEL_58_400)}
-`
+const Squiggle = styled('span', {
+  position: 'relative',
+  zIndex: 0,
 
-const Heading2 = styled.h2`
-  ${getFontStyles(FONT_STYLE_APFEL_44_400)}
-`
+  '&::after': {
+    content: '',
+    display: 'block',
+    position: 'absolute',
+    zIndex: -1,
+    bottom: 0,
+    left: 0,
+    transform: 'translateY(50%)',
+    width: '100%',
+    height: 20,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+  },
+})
 
-const Heading3 = styled.h3`
-  ${getFontStyles(FONT_STYLE_APFEL_32_400)}
-`
+const BulletList = styled('ul', {
+  ...getFontStyle('$body'),
+  listStyle: 'disc',
+  pl: '$s',
+  m: 0,
 
-const Heading4 = styled.h4`
-  ${getFontStyles(FONT_STYLE_APFEL_26_400)}
-`
+  '@tabletUp': {
+    pl: '$m',
+  },
+})
 
-const Heading5 = styled.h5`
-  ${getFontStyles(FONT_STYLE_APFEL_17_400)}
-`
+const NumberList = styled('ol', {
+  ...getFontStyle('$body'),
+  pl: '$s',
+  m: 0,
 
-const Squiggle = styled.span<{ type: 'a' | 'b' | 'c' | 'd' | 'e' | 'f' }>`
-  position: relative;
-  z-index: 0;
-
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    z-index: -1;
-    bottom: 0;
-    left: 0;
-    transform: translateY(50%);
-    width: 100%;
-    height: 20px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: ${(props) =>
-      `url('/images/graphics/team/underline_${props.type}.png')`};
-  }
-`
-
-const Paragraph = styled.p`
-  ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
-
-  & + & {
-    margin-top: ${PADDING.m}px;
-
-    ${MEDIA_QUERIES.tabletUp} {
-      margin-top: ${PADDING.m}px;
-    }
-  }
-`
-
-const BulletList = styled.ul`
-  list-style: disc;
-  ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
-  padding-left: 1.7rem;
-  margin: 0;
-
-  ${MEDIA_QUERIES.tabletUp} {
-    padding-left: 2rem;
-  }
-`
-
-const NumberList = styled.ol`
-  ${getFontStyles(FONT_STYLE_RECKLESS_20_400)}
-  padding-left: 1.7rem;
-  margin: 0;
-
-  ${MEDIA_QUERIES.tabletUp} {
-    padding-left: 2rem;
-  }
-`
+  '@tabletUp': {
+    pl: '$m',
+  },
+})
 
 const components: Partial<PortableTextReactComponents> = {
   block: {
-    h1: Heading1,
-    h2: Heading2,
-    h3: Heading3,
-    h4: Heading4,
-    h5: Heading5,
-    normal: Paragraph,
+    h1: ({ ...props }) => <Heading tag="h1" fontStyle="$h1" {...props} />,
+    h2: ({ ...props }) => <Heading tag="h2" fontStyle="$h2" {...props} />,
+    h3: ({ ...props }) => <Heading tag="h3" fontStyle="$h3" {...props} />,
+    h4: ({ ...props }) => <Heading tag="h4" fontStyle="$h4" {...props} />,
+    h5: ({ ...props }) => <Heading tag="h5" fontStyle="$h5" {...props} />,
+    normal: ({ ...props }) => (
+      <Heading
+        tag="p"
+        fontStyle="$body"
+        css={{
+          '& + &': {
+            mt: '$m',
+          },
+        }}
+        {...props}
+      />
+    ),
   },
   list: {
     bullet: BulletList,
@@ -144,7 +112,17 @@ const components: Partial<PortableTextReactComponents> = {
         return <>{children}</>
       }
 
-      return <Squiggle type={value.squiggleType}>{children}</Squiggle>
+      return (
+        <Squiggle
+          css={{
+            '&::after': {
+              backgroundImage: `url('/images/graphics/team/underline_${value.squiggleType}.png')`,
+            },
+          }}
+        >
+          {children}
+        </Squiggle>
+      )
     },
     link: (
       props: PropsWithChildren<

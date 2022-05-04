@@ -1,7 +1,7 @@
 import { useSanityImage } from 'hooks/useSanityImage'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface SiteSeoProps {
   defaultSeo?: Sanity.Meta

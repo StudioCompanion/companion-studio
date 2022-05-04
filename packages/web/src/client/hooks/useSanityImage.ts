@@ -3,7 +3,7 @@ import { ImageLoaderProps } from 'next/image'
 import imageUrlBuilder from '@sanity/image-url'
 
 import { createSanityClientRead } from '../../data/createSanityClientRead'
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 export const useSanityImage = (image?: Sanity.Image) => {
   const [client] = useState(createSanityClientRead())

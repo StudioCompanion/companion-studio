@@ -1,8 +1,6 @@
-import styled from 'styled-components'
+import { Sanity } from '@types'
 
-import { Sanity } from 'src/types'
-
-import { Colors } from 'styles/constants'
+import { styled } from 'styles/stitches.config'
 
 import { LinkBase } from './LinkBase'
 
@@ -19,15 +17,15 @@ export const InlineLink = (props: InlineLinkProps) => {
   )
 }
 
-const Anchor = styled(LinkBase)`
-  color: ${Colors.blue};
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  font-family: inherit;
-  text-decoration: none;
+const Anchor = styled(LinkBase, {
+  color: '$blue',
+  fontSize: 'inherit',
+  fontWeight: 'inherit',
+  lineHeight: 'inherit',
+  fontFamily: 'inherit',
+  textDecoration: 'none',
 
-  &:hover {
-    text-decoration: underline;
-  }
-`
+  '&:hover': {
+    textDecoration: 'underline',
+  },
+})

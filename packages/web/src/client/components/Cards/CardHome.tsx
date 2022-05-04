@@ -1,21 +1,13 @@
-import styled from 'styled-components'
 import Link from 'next/link'
 
-import {
-  ThemeTypes,
-  COLOR,
-  BACKGROUND,
-  HOVER_BACKGROUND,
-} from 'styles/constants'
-import { FONT_STYLE_RECKLESS_20_400 } from 'styles/fonts'
-
-import { getThemeValue } from 'helpers/theme'
+import { ThemeTypes } from 'styles/constants'
+import { styled } from 'styles/stitches.config'
 
 import { Button, ButtonContainer } from 'components/Button/Button'
 import { Media } from 'components/Media/Media'
 import { Heading } from 'components/Text/Heading'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface CardHomeProps extends Sanity.HomepageCard {
   className?: string
@@ -41,18 +33,22 @@ export const CardHome = ({
 
   return (
     <Link href={`/projects/${slug}` ?? ''} passHref>
-      <CardWrapper className={className} $theme={theme}>
+      <CardWrapper className={className} theme={theme}>
         <ImageContainer>
           {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}
         </ImageContainer>
-        <CardText $theme={theme}>
+        <CardText theme={theme}>
           <div>
             {actualTitle ? (
-              <Heading tag="h2" fontStyle={FONT_STYLE_RECKLESS_20_400}>
+              <Heading tag="h2" fontStyle="$body">
                 {actualTitle}
               </Heading>
             ) : null}
-            {subtitle ? <Heading tag="h3">{subtitle}</Heading> : null}
+            {subtitle ? (
+              <Heading tag="h3" fontStyle="$h6">
+                {subtitle}
+              </Heading>
+            ) : null}
           </div>
           <Button
             text={layout === 'studio' ? 'View' : 'Read'}
@@ -64,52 +60,93 @@ export const CardHome = ({
   )
 }
 
-const ImageContainer = styled.div`
-  transform: scale(1);
-  transform-origin: 50% 50%;
-  transition: all 350ms cubic-bezier(0.76, 0, 0.24, 1);
-`
+const ImageContainer = styled('div', {
+  transform: 'scale(1)',
+  transformOrigin: '50% 50%',
+  transition: 'all 350ms cubic-bezier(0.76, 0, 0.24, 1)',
+})
 
-const MediaContainer = styled(Media)`
-  border-radius: 12px;
-  overflow: hidden;
-`
+const MediaContainer = styled(Media, {
+  borderRadius: '$wrapperLarge',
+  overflow: 'hidden',
+})
 
-const CardWrapper = styled.a<{ $theme?: ThemeTypes }>`
-  display: block;
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: ${(p) => getThemeValue(BACKGROUND, p.$theme)};
+const CardWrapper = styled('a', {
+  display: 'block',
+  position: 'relative',
+  borderRadius: '$wrapperLarge',
+  overflow: 'hidden',
 
-  &:hover {
-    & ${ImageContainer} {
-      transform: scale(0.85, 0.85) translateY(-4%);
-      transition: all 350ms cubic-bezier(0.76, 0, 0.24, 1);
-    }
+  '&:hover': {
+    [`& ${ImageContainer}`]: {
+      transform: 'scale(0.85, 0.85) translateY(-4%)',
+      transition: 'all 350ms cubic-bezier(0.76, 0, 0.24, 1)',
+    },
+  },
 
-    & ${ButtonContainer} {
-      background-color: ${(p) =>
-        getThemeValue(HOVER_BACKGROUND, ThemeTypes.LIGHT)};
-    }
-  }
-`
+  variants: {
+    theme: {
+      [ThemeTypes.LIGHT]: {
+        backgroundColor: '$white',
 
-const CardText = styled.div<{ $theme?: ThemeTypes }>`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  padding: 2rem;
+        '&:hover': {
+          [`& ${ButtonContainer}`]: {
+            backgroundColor: '$lightGrey',
+          },
+        },
+      },
+      [ThemeTypes.GREY]: {
+        backgroundColor: '$lightGrey',
 
-  display: flex;
-  justify-content: space-between;
-  align-self: flex-end;
-  align-items: flex-end;
+        '&:hover': {
+          [`& ${ButtonContainer}`]: {
+            backgroundColor: '$lightGrey',
+          },
+        },
+      },
+      [ThemeTypes.DARK]: {
+        backgroundColor: '$black',
 
-  & h2,
-  & h3 {
-    color: ${(p) => getThemeValue(COLOR, p.$theme)} !important;
-  }
-`
+        '&:hover': {
+          [`& ${ButtonContainer}`]: {
+            backgroundColor: '$lightGrey',
+          },
+        },
+      },
+    },
+  },
+})
+
+const CardText = styled('div', {
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  width: '100%',
+  padding: '$m',
+
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignSelf: 'flex-end',
+  alignItems: 'flex-end',
+
+  variants: {
+    theme: {
+      [ThemeTypes.LIGHT]: {
+        '& h2, & h3': {
+          color: '$black',
+        },
+      },
+      [ThemeTypes.GREY]: {
+        '& h2, & h3': {
+          color: '$black',
+        },
+      },
+      [ThemeTypes.DARK]: {
+        '& h2, & h3': {
+          color: '$white',
+        },
+      },
+    },
+  },
+})

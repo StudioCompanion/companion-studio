@@ -1,15 +1,12 @@
 import { useRef } from 'react'
-import styled from 'styled-components'
 import { useSprings, animated } from '@react-spring/web'
 
-import { Colors } from 'styles/constants'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
+import { styled } from 'styles/stitches.config'
 
 import { Heading } from 'components/Text/Heading'
 import { Media } from 'components/Media/Media'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface AvatarsProps {
   members?: Sanity.TeamMember[]
@@ -52,12 +49,12 @@ export const Avatars = ({ members }: AvatarsProps) => {
             ref={(ref) => (textRefs.current[i] = ref as HTMLDivElement)}
             style={{ width: springs[i].width }}
           >
-            <TeamMemberName tag="h2" fontStyle={FONT_STYLE_APFEL_12_400}>
+            <TeamMemberHeading tag="h2" fontStyle="$h6">
               {name}
-            </TeamMemberName>
-            <TeamMemberRole tag="h3" fontStyle={FONT_STYLE_APFEL_12_400}>
+            </TeamMemberHeading>
+            <TeamMemberHeading tag="h3" fontStyle="$h6">
               {job}
-            </TeamMemberRole>
+            </TeamMemberHeading>
           </TeamMemberDetails>
         </GridItemContainer>
       ))}
@@ -65,50 +62,46 @@ export const Avatars = ({ members }: AvatarsProps) => {
   )
 }
 
-const GridWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  margin: 16px 0px 16px 0px;
+const GridWrapper = styled('div', {
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'flex-start',
+  my: '$s',
 
-  ${MEDIA_QUERIES.tabletUp} {
-    margin: 0;
-    justify-content: flex-end;
-  }
-`
+  '@tabletUp': {
+    my: 0,
+    justifyContent: 'flex-end',
+  },
+})
 
-const GridItemContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  cursor: default;
-`
+const GridItemContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  cursor: 'pointer',
+})
 
-const GridImageWrapper = styled(Media)`
-  position: relative;
-  border-radius: 100%;
-  padding: 4px;
-  background: ${Colors.lightgrey_2};
-  height: 50px;
-  width: 50px;
+const GridImageWrapper = styled(Media, {
+  position: 'relative',
+  borderRadius: '$circle',
+  padding: '$xxxs',
+  background: '$lightGrey',
+  height: 50,
+  width: 50,
 
-  & img {
-    top: 3px !important;
-    transition: 0.4s ease-out;
-  }
-`
+  '& img': {
+    top: '3px !important',
+    transition: '0.4s ease-out',
+  },
+})
 
-const TeamMemberDetails = styled(animated.div)`
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  margin-left: 8px;
-`
+const TeamMemberDetails = styled(animated.div, {
+  display: 'flex',
+  flexDirection: 'column',
+  overflow: 'hidden',
+  ml: '$xxs',
+})
 
-const TeamMemberName = styled(Heading)`
-  white-space: nowrap;
-`
-
-const TeamMemberRole = styled(Heading)`
-  white-space: nowrap;
-`
+const TeamMemberHeading = styled(Heading, {
+  whiteSpace: 'nowrap',
+})

@@ -4,7 +4,7 @@ import { useSanityImage } from '../../hooks/useSanityImage'
 
 import { generateSrcSetSizes } from '../../helpers/media'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 type ImageLayout = 'fill' | 'fixed' | 'intrinsic' | 'responsive'
 

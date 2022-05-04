@@ -1,27 +1,13 @@
-import styled from 'styled-components'
-
 import { Button, ButtonContainer } from 'components/Button/Button'
 import { Media } from 'components/Media/Media'
 import { LinkBase } from 'components/Links/LinkBase'
 import { FadeUp } from 'components/Transitions/FadeUp'
+import { Heading } from 'components/Text/Heading'
 
-import { getThemeValue } from 'helpers/theme'
+import { ThemeTypes } from 'styles/constants'
+import { styled } from 'styles/stitches.config'
 
-import {
-  Colors,
-  RADII,
-  PADDING,
-  ThemeTypes,
-  HOVER_BACKGROUND,
-} from 'styles/constants'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { getFontStyles } from 'styles/getFontStyles'
-import {
-  FONT_STYLE_RECKLESS_32_400,
-  FONT_STYLE_RECKLESS_17_400,
-} from 'styles/fonts'
-
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 export const Callout = ({ text, link, media }: Sanity.Callout) => {
   if (!link) {
@@ -32,9 +18,11 @@ export const Callout = ({ text, link, media }: Sanity.Callout) => {
 
   return (
     <FadeUp>
-      <CalloutContainer $theme={ThemeTypes.DARK} {...restProps}>
+      <CalloutContainer {...restProps}>
         <div>
-          <CalloutText>{text}</CalloutText>
+          <CalloutText tag="p" fontStyle="$h3">
+            {text}
+          </CalloutText>
           <Button text={label} theme={ThemeTypes.DARK} />
         </div>
         <CalloutImageWrapper>
@@ -45,53 +33,52 @@ export const Callout = ({ text, link, media }: Sanity.Callout) => {
   )
 }
 
-const CalloutContainer = styled(LinkBase)<{ $theme: ThemeTypes.DARK }>`
-  display: block;
-  background-color: ${Colors.lightgrey_2};
-  border-radius: ${RADII.wrapper_lg}px;
-  padding: ${PADDING.s}px;
-  display: flex;
-  justify-content: space-between;
-  text-decoration: none;
-  color: inherit;
+const CalloutContainer = styled(LinkBase, {
+  display: 'flex',
+  justifyContent: 'space-between',
+  backgroundColor: '$lightGrey',
+  borderRadius: '$wrapperLarge',
+  p: '$s',
+  textDecoration: 'none',
+  color: 'inherit',
 
-  ${MEDIA_QUERIES.tabletUp} {
-    padding: ${PADDING.m}px;
-  }
+  '@tabletUp': {
+    p: '$m',
+  },
 
-  @media (hover: hover) {
-    &:hover {
-      ${ButtonContainer} {
-        background-color: ${(p) => getThemeValue(HOVER_BACKGROUND, p.$theme)};
-      }
-    }
-  }
-`
+  '@media (hover: hover)': {
+    '&:hover': {
+      [`& ${ButtonContainer}`]: {
+        backgroundColor: '$black70',
+      },
+    },
+  },
+})
 
-const CalloutText = styled.p`
-  ${getFontStyles(FONT_STYLE_RECKLESS_17_400)}
-  margin-bottom: 30px;
-  ${MEDIA_QUERIES.smallTabletUp} {
-    max-width: 300px;
-  }
-  ${MEDIA_QUERIES.tabletUp} {
-    max-width: 530px;
-    ${getFontStyles(FONT_STYLE_RECKLESS_32_400)}
-  }
-`
+const CalloutText = styled(Heading, {
+  mb: '3rem',
 
-const CalloutImageWrapper = styled.div`
-  display: none;
-  flex: 0 0 17.4rem;
+  '@smallTabletUp': {
+    maxWidth: '30rem',
+  },
 
-  ${MEDIA_QUERIES.smallTabletUp} {
-    display: block;
-    margin-left: 50px;
-    max-width: 125px;
-  }
+  '@tabletUp': {
+    maxWidth: '53rem',
+  },
+})
 
-  ${MEDIA_QUERIES.tabletUp} {
-    margin-left: 0;
-    max-width: none;
-  }
-`
+const CalloutImageWrapper = styled('div', {
+  display: 'none',
+  flex: '0 0 17.4rem',
+
+  '@smallTabletUp': {
+    display: 'block',
+    ml: '$xl',
+    maxWidth: '12.5rem',
+  },
+
+  '@tabletUp': {
+    ml: 0,
+    maxWidth: 'unset',
+  },
+})

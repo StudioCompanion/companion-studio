@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { useSpring, animated, easings } from '@react-spring/web'
-import styled from 'styled-components'
+
+import { styled } from 'styles/stitches.config'
 
 const DURATION = 1600
 
@@ -42,11 +43,11 @@ export const FadeUp = ({ children }: FadeUpProps) => {
   )
 }
 
-const FadeInComp = styled(animated.div)`
-  opacity: 0;
-  transition: opacity ${DURATION}ms cubic-bezier(0.33, 1, 0.68, 1);
+const FadeInComp = styled(animated.div, {
+  opacity: 0,
+  transition: `opacity ${DURATION}ms cubic-bezier(0.33, 1, 0.68, 1)`,
 
-  &.fade {
-    opacity: 1;
-  }
-`
+  '&.fade': {
+    opacity: 1,
+  },
+})

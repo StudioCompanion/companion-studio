@@ -1,38 +1,42 @@
-/* eslint-disable react/display-name */
-import { createElement, CSSProperties, ForwardedRef, forwardRef } from 'react'
-import styled from 'styled-components'
+import { forwardRef } from 'react'
 
-import { getFontStyles } from 'styles/getFontStyles'
-import { FONT_STYLE_RECKLESS_12_400 } from 'styles/fonts'
-import { Colors } from 'styles/constants'
+import { getFontStyle } from 'styles/getFontStyles'
+import { CSS, ScaleValue, styled } from 'styles/stitches.config'
 
 export interface Props {
-  children: React.ReactNode
-  color?: string
+  children?: React.ReactNode
   className?: string
-  tag?: string
-  style?: CSSProperties
-  fontStyle?: string
+  tag?: keyof Pick<
+    JSX.IntrinsicElements,
+    'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p'
+  >
+  fontStyle?: ScaleValue<'fontSizes'>
+  weight?: ScaleValue<'fontWeights'>
+  css?: CSS
 }
 
-export const Heading = forwardRef<HTMLElement, Props>(
+export const Heading = forwardRef<HTMLHeadingElement, Props>(
   (
     {
-      children,
-      fontStyle = FONT_STYLE_RECKLESS_12_400,
-      color,
-      className,
       tag = 'h1',
+      fontStyle = '$h1',
+      weight = '$regular',
+      children,
+      className,
+      css,
     },
     ref
   ) => {
     return (
       <Element
         className={className}
-        fontStyle={fontStyle}
-        color={color}
-        tag={tag}
-        forwardedRef={ref}
+        ref={ref}
+        as={tag}
+        css={{
+          fontWeight: weight,
+          ...getFontStyle(fontStyle),
+          ...css,
+        }}
       >
         {children}
       </Element>
@@ -40,21 +44,10 @@ export const Heading = forwardRef<HTMLElement, Props>(
   }
 )
 
-type ElementProps = Omit<Props, 'tag' | 'fontStyle'> &
-  Required<Pick<Props, 'tag' | 'fontStyle'>> & {
-    forwardedRef: ForwardedRef<HTMLElement>
-  }
+const Element = styled('h1', {
+  color: '$black',
 
-const Element = styled(({ tag, children, ...props }: ElementProps) => {
-  return createElement(
-    tag,
-    {
-      className: props.className,
-      ref: props.forwardedRef,
-    },
-    children
-  )
-})`
-  ${(props) => getFontStyles(props.fontStyle)}
-  color: ${(props) => (props.color ? props.color : Colors.darkblue)};
-`
+  '& > a': {
+    textDecoration: 'none',
+  },
+})

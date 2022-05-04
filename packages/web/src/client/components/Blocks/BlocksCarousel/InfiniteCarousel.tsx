@@ -15,12 +15,10 @@ import {
 import useMeasure from 'react-use-measure'
 import { useDrag } from 'react-use-gesture'
 import { useSprings, animated } from '@react-spring/web'
-import styled, { css } from 'styled-components'
 
-import { Sanity, SanityGenerated } from 'src/types'
+import { Sanity, SanityGenerated } from '@types'
 
-import { aspectRatio } from 'styles/mixins'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { styled } from 'styles/stitches.config'
 
 export interface SliderApi {
   next: (ind: number) => number
@@ -199,9 +197,24 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
         className={className}
         ref={measureRef}
         {...bind()}
-        $mobileAspect={mobileAspectRatio}
-        $desktopAspect={desktopAspectRatio}
-        $isSlideShow={actualItems.length > 1}
+        css={
+          Boolean(actualItems.length > 1)
+            ? {
+                aspect: {
+                  w:
+                    mobileAspectRatio > 0
+                      ? mobileAspectRatio
+                      : desktopAspectRatio,
+                },
+
+                '@desktopUp': {
+                  aspect: {
+                    w: desktopAspectRatio,
+                  },
+                },
+              }
+            : undefined
+        }
       >
         {springs.map(({ x }, i) => (
           <animated.div key={i} style={{ x }}>
@@ -213,32 +226,6 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
   }
 )
 
-const InfiniteContainer = styled.div<{
-  $mobileAspect: number
-  $desktopAspect: number
-  $isSlideShow: boolean
-}>`
-  touch-action: pan-y;
-  ${(props) =>
-    props.$mobileAspect > 0 && props.$isSlideShow
-      ? aspectRatio(props.$mobileAspect)
-      : props.$isSlideShow
-      ? aspectRatio(props.$desktopAspect)
-      : ''}
-
-  ${MEDIA_QUERIES.desktopUp} {
-    ${(props) => (props.$isSlideShow ? aspectRatio(props.$desktopAspect) : '')}
-  }
-
-  ${(props) =>
-    props.$isSlideShow
-      ? css`
-          & > * {
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-          }
-        `
-      : ''}
-`
+const InfiniteContainer = styled('div', {
+  touchAction: 'pan-y',
+})

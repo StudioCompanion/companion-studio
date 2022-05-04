@@ -1,21 +1,23 @@
 import { ReactNode } from 'react'
-import styled from 'styled-components'
 import Link from 'next/link'
+
+import { styled, CSS } from 'styles/stitches.config'
 
 import {
   getHrefSlugFromSanityReference,
   urlIsReferenceGuard,
 } from 'helpers/links'
 
-import { Sanity } from 'src/types'
+import { Sanity } from '@types'
 
 interface LinkBaseProps extends Sanity.Link {
   className?: string
   children: ReactNode
+  css?: CSS
 }
 
 export const LinkBase = (props: LinkBaseProps) => {
-  const { isExternal, url, label, children, className } = props
+  const { isExternal, url, label, children, className, css } = props
 
   if (url) {
     if (isExternal && !urlIsReferenceGuard(url)) {
@@ -25,6 +27,7 @@ export const LinkBase = (props: LinkBaseProps) => {
           href={url}
           rel="noopener noreferrer"
           target="_blank"
+          css={css}
         >
           {children ?? label}
         </Anchor>
@@ -36,7 +39,9 @@ export const LinkBase = (props: LinkBaseProps) => {
 
       return (
         <Link href={actualInternalUrl} passHref>
-          <Anchor className={className}>{children ?? label}</Anchor>
+          <Anchor className={className} css={css}>
+            {children ?? label}
+          </Anchor>
         </Link>
       )
     }
@@ -45,4 +50,10 @@ export const LinkBase = (props: LinkBaseProps) => {
   return null
 }
 
-const Anchor = styled.a``
+const Anchor = styled('a', {
+  color: 'inherit',
+
+  '&:visited': {
+    color: 'inherit',
+  },
+})

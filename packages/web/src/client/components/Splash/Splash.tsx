@@ -1,9 +1,11 @@
 import { useRef, useState } from 'react'
-import styled from 'styled-components'
 import lottie from 'lottie-web'
 
 import splashAnimation from '../../../../public/lottie/splashAnimation.json'
+
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
+
+import { styled } from 'styles/stitches.config'
 
 const COLOR_SETS = [
   {
@@ -67,30 +69,31 @@ export const Splash = () => {
   return (
     <SplashContainer
       ref={lottieRef}
-      $colorSetIndex={colorSetIndex}
+      css={{
+        background: COLOR_SETS[colorSetIndex].background,
+        /*
+         * Renamed the lottie layers with classes
+         * so text can be selected with .text and
+         * background with .background
+         */
+        '.text path': {
+          fill: COLOR_SETS[colorSetIndex].text,
+        },
+      }}
     ></SplashContainer>
   )
 }
 
-const SplashContainer = styled.div<{ $colorSetIndex: number }>`
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  opacity: 1;
-  background: ${(props) => COLOR_SETS[props.$colorSetIndex].background};
-  transition: opacity 600ms ease-out;
-  will-change: opacity;
-  pointer-events: none;
-  display: none;
-  /*
-  * Renamed the lottie layers with classes
-  * so text can be selected with .text and
-  * background with .background
-  */
-  .text path {
-    fill: ${(p) => COLOR_SETS[p.$colorSetIndex].text};
-  }
-`
+const SplashContainer = styled('div', {
+  width: '100%',
+  height: '100%',
+  position: 'fixed',
+  zIndex: '$2',
+  top: 0,
+  left: 0,
+  opacity: 1,
+  transition: 'opacity 600ms ease-out',
+  willChange: 'opacity',
+  pointerEvents: 'none',
+  display: 'none',
+})
