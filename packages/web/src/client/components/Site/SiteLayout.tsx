@@ -1,9 +1,7 @@
 import { useState } from 'react'
-import styled from 'styled-components'
 import { useRouter } from 'next/router'
 
-import { PADDING } from 'styles/constants'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { styled } from 'styles/stitches.config'
 
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
 
@@ -50,7 +48,7 @@ export const Layout = ({
       <SiteSeo defaultSeo={defaultMeta} meta={documentMeta} />
       {showSplash && <Splash />}
       <Nav items={navigation} currentPath={currentPath} />
-      <Main className={className} $currentPath={currentPath}>
+      <Main className={className} isTeamRoute={currentPath === '/team'}>
         {children}
       </Main>
       {currentPath !== '/instagram' && (
@@ -65,24 +63,39 @@ export const Layout = ({
   )
 }
 
-const Main = styled.main<{ $currentPath: string }>`
-  padding: ${({ $currentPath }) =>
-    $currentPath === '/team' ? `0px` : `0px ${PADDING.s}px`};
-  ${MEDIA_QUERIES.tabletUp} {
-    padding: ${({ $currentPath }) =>
-      $currentPath === '/team' ? `0px` : `0px ${PADDING.m}px`};
-  }
-`
-const Section = styled.section`
-  margin-bottom: ${PADDING.s}px;
-  ${MEDIA_QUERIES.tabletUp} {
-    margin-bottom: ${PADDING.m}px;
-  }
-`
+const Main = styled('main', {
+  px: '$s',
 
-const PaddingContainer = styled.div`
-  padding: 0 ${PADDING.s}px ${PADDING.s}px;
-  ${MEDIA_QUERIES.tabletUp} {
-    padding: 0 ${PADDING.m}px ${PADDING.s}px;
-  }
-`
+  '@tabletUp': {
+    px: '$m',
+  },
+
+  variants: {
+    isTeamRoute: {
+      true: {
+        p: 0,
+
+        '@tabletUp': {
+          p: 0,
+        },
+      },
+    },
+  },
+})
+
+const Section = styled('section', {
+  mb: '$s',
+
+  '@tabletUp': {
+    mb: '$m',
+  },
+})
+
+const PaddingContainer = styled('div', {
+  px: '$s',
+  pb: '$s',
+
+  '@tabletUp': {
+    px: '$m',
+  },
+})

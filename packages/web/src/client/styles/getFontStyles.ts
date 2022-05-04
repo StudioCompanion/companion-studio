@@ -270,8 +270,13 @@ export const getFontStyle = (DeskStyle: DesktopFontSizeTokens): CSS => {
       }
     case '$body':
       return {
-        fontSize: DeskStyle,
-        lineHeight: DeskStyle,
+        fontSize: '$h5',
+        lineHeight: '$h5',
+
+        '@tabletUp': {
+          fontSize: DeskStyle,
+          lineHeight: DeskStyle,
+        },
       }
     default:
       return {}

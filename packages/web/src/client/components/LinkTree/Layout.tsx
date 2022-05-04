@@ -41,7 +41,7 @@ const LinkTreeContainer = styled('main', {
 
 const LinkTreeWrapper = styled('article', {
   width: '100%',
-  maxWidth: '80rem',
+  maxWidth: '$documentWrapper',
 })
 
 const LogoContainer = styled('header', {

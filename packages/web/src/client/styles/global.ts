@@ -29,18 +29,19 @@ export const globalStyles = globalCss({
     transition: 'background-color 250ms ease-in-out, opacity 250ms ease-in-out',
   },
 
-  html: {
+  'html, body': {
     fontSize: '62.5%',
     fontFamily: '$apfel',
     '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',
     overflowX: 'hidden',
-  },
-
-  body: {
     m: 0,
     p: 0,
     color: '$black',
+  },
+
+  button: {
+    fontFamily: '$apfel',
   },
 
   'h1, h2, h3, h4, h5, h6, p, dd, dl': {

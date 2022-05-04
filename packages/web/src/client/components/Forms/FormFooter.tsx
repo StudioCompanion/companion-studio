@@ -2,14 +2,15 @@ import { useState } from 'react'
 import isEmail from 'validator/lib/isEmail'
 
 import { Input } from 'components/Inputs/Input'
-
-import { Colors } from 'styles/constants'
-import { FONT_STYLE_APFEL_12_400 } from 'styles/fonts'
-import { getFontStyles } from 'styles/getFontStyles'
-import { styled } from 'styles/stitches.config'
 import { Heading } from 'components/Text/Heading'
 
-export const SignUpForm = () => {
+import { styled } from 'styles/stitches.config'
+
+interface SignUpFormProps {
+  className?: string
+}
+
+export const SignUpForm = ({ className }: SignUpFormProps) => {
   const [showSuccess, setShowSuccess] = useState(false)
   const [value, setValue] = useState('')
 
@@ -56,7 +57,7 @@ export const SignUpForm = () => {
   }
 
   return (
-    <div>
+    <div className={className}>
       <iframe
         name="dummyframe"
         id="dummyframe"
@@ -70,19 +71,23 @@ export const SignUpForm = () => {
       >
         <InputWrapper>
           <Input
-            name={'email'}
+            name="email"
             placeholder={'Subscribe for occasional ramblings'}
-            type={'email'}
+            type="email"
             value={value}
             handleChange={handleChange}
             handleBlur={handleBlur}
           />
-          <FormFeedback tag="p" fontStyle="$body">
-            {errorMessage && errorMessage !== '' && <span>{errorMessage}</span>}
-            {!(errorMessage && errorMessage !== '') && showSuccess && (
-              <span>Success! Keep an eye out for our ramblings</span>
-            )}
-          </FormFeedback>
+          {(errorMessage && errorMessage !== '') || showSuccess ? (
+            <FormFeedback tag="p" fontStyle="$body">
+              {errorMessage && errorMessage !== '' && (
+                <span>{errorMessage}</span>
+              )}
+              {!(errorMessage && errorMessage !== '') && showSuccess && (
+                <span>Success! Keep an eye out for our ramblings</span>
+              )}
+            </FormFeedback>
+          ) : null}
         </InputWrapper>
         <FormButton
           type={'submit'}
@@ -119,6 +124,8 @@ const FormButton = styled('button', {
   p: '$xxs',
   pb: 9,
   minHeight: 30,
+  fontSize: '$h6',
+  lineHeight: '$h6',
 
   '&:hover': {
     opacity: 0.8,

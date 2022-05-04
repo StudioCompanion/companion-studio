@@ -23,6 +23,8 @@ const { styled, globalCss, getCssText, config, keyframes } =
         desktop: '102.4rem',
         largeDesktop: '144rem',
         centeredParagraph: '65.3rem',
+        documentWrapper: '80rem',
+        footerWrapper: '45rem',
       },
       space: {
         xxxs: '0.4rem',
@@ -79,6 +81,7 @@ const { styled, globalCss, getCssText, config, keyframes } =
       },
     },
     media: {
+      smallTabletUp: '(min-width: 400px)',
       tabletUp: '(min-width: 768px)',
       desktopUp: '(min-width: 1024px)',
       largeDesktopUp: '(min-width: 1440px)',
