@@ -1,6 +1,8 @@
 import * as React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
+import { getCssText } from 'styles/stitches.config'
+
 export default class Doc extends Document {
   render() {
     return (
@@ -20,6 +22,10 @@ export default class Doc extends Document {
           />
           <link rel="manifest" href={'/manifest.json'} />
           <link rel="shortcut icon" href={'/favicon.ico'} />
+          <style
+            id="stitches"
+            dangerouslySetInnerHTML={{ __html: getCssText() }}
+          />
         </Head>
         <body>
           <Main />
