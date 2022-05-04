@@ -51,14 +51,32 @@ export const ButtonContainer = styled('div', {
       [ThemeTypes.LIGHT]: {
         backgroundColor: '$white',
         color: '$black',
+
+        '@media(hover:hover)': {
+          '&:hover': {
+            backgroundColor: '$lightGrey',
+          },
+        },
       },
       [ThemeTypes.GREY]: {
         backgroundColor: '$lightGrey',
         color: '$black',
+
+        '@media(hover:hover)': {
+          '&:hover': {
+            backgroundColor: '$black70',
+          },
+        },
       },
       [ThemeTypes.DARK]: {
         backgroundColor: '$black',
         color: '$white',
+
+        '@media(hover:hover)': {
+          '&:hover': {
+            backgroundColor: '$black70',
+          },
+        },
       },
     },
   },
