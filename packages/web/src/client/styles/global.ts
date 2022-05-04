@@ -34,7 +34,6 @@ export const globalStyles = globalCss({
     fontFamily: '$apfel',
     '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',
-    overflowX: 'hidden',
     m: 0,
     p: 0,
     color: '$black',

@@ -107,11 +107,11 @@ const NavLink = styled(LinkBase, {
   variants: {
     active: {
       true: {
-        backgroundColor: '$darkBlue',
-        color: '$white',
+        backgroundColor: '$black',
+        color: '$white !important',
 
         '&:hover': {
-          backgroundColor: '$darkBlue',
+          backgroundColor: '$black70',
         },
       },
       false: {
