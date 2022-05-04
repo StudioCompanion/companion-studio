@@ -1,5 +1,6 @@
-import styled from 'styled-components'
 import Link from 'next/link'
+
+import { styled } from 'styles/stitches.config'
 
 const FOX = `
                            :.
@@ -37,23 +38,23 @@ export default function ErrorPage() {
     </Page>
   )
 }
-const Page = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 4rem;
-`
+const Page = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  mb: '$xxxs',
+})
 
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const Content = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
 
-  & > pre {
-    transform: translateX(-9%);
-  }
+  '& > pre': {
+    transform: 'translateX(-9%)',
+  },
 
-  & * {
-    font-size: 1.3rem !important;
-    font-family: monospace !important;
-  }
-`
+  '& *': {
+    fontSize: '1.3rem !important',
+    fontFamily: 'monospace !important',
+  },
+})

@@ -1,13 +1,6 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
-import { Colors, PADDING } from 'styles/constants'
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { getFontStyles } from 'styles/getFontStyles'
-import {
-  FONT_STYLE_RECKLESS_17_400,
-  FONT_STYLE_APFEL_12_400,
-} from 'styles/fonts'
 import { styled } from 'styles/stitches.config'
 
 import { Sanity } from '@types'

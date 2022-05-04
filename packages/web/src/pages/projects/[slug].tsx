@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import styled from 'styled-components'
 import groq from 'groq'
 
 import { createSanityClientRead } from '../../data/createSanityClientRead'
@@ -13,6 +12,8 @@ import { ProjecHeader } from 'components/Headers/ProjectHeader'
 import { Layout } from 'components/Site/SiteLayout'
 
 import { Sanity } from '@types'
+
+import { styled } from 'styles/stitches.config'
 
 interface ProjectPageProps extends Sanity.DefaultLayoutProps {
   document: Sanity.ProjectPage
@@ -76,9 +77,9 @@ export const getStaticProps: GetStaticProps<
   }
 }
 
-const Article = styled.article`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-`
+const Article = styled('article', {
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+})

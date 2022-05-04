@@ -1,20 +1,19 @@
-import styled from 'styled-components'
+import { GetStaticProps } from 'next'
 import { NextSeo } from 'next-seo'
 
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
-import { PADDING } from 'styles/constants'
+import { styled } from 'styles/stitches.config'
 
 import { TeamGrid } from 'components/Grids/GridTeam'
 import { ValuesGrid } from 'components/Grids/GridValues'
 import { CenteredParagraph } from 'components/CenteredParagraph/CenteredParagraph'
 import { ImageStrip } from 'components/ImageStrip/ImageStrip'
+import { Layout } from 'components/Site/SiteLayout'
 
-import { fetchDocument } from 'src/data/fetchDocument'
-import { GetStaticProps } from 'next'
+import { fetchDocument } from 'data/fetchDocument'
+import { TEAMPAGE } from 'data/queries/singletons/teamPage'
+
 import { REVALIDATE_TIME } from 'references/constants'
 
-import { Layout } from 'components/Site/SiteLayout'
-import { TEAMPAGE } from 'src/data/queries/singletons/teamPage'
 import { Sanity } from '@types'
 
 interface TeamProps extends Sanity.DefaultLayoutProps {
@@ -41,17 +40,18 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
 
 export default Team
 
-const PaddingContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 ${PADDING.s}px;
-  max-width: 1200px;
-  margin: auto;
-  ${MEDIA_QUERIES.tabletUp} {
-    padding: 0 ${PADDING.m}px;
-  }
-`
+const PaddingContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  px: '$s',
+  maxWidth: '120rem',
+  margin: 'auto',
+
+  '@tabletUp': {
+    px: '$m',
+  },
+})
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {
   const sanityResult = await fetchDocument({

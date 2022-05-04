@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next'
-import styled from 'styled-components'
 
-import { PADDING } from 'styles/constants'
+import { styled } from 'styles/stitches.config'
 
 import { StickyParagraph } from 'components/StickyElements/StickyParagraph'
 import { FadeUp } from 'components/Transitions/FadeUp'
@@ -72,13 +71,13 @@ export const getStaticProps: GetStaticProps<ApproachProps> = async ({
   }
 }
 
-const ApproachContainer = styled.article`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: ${PADDING.xxl}px;
+const ApproachContainer = styled('article', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  pb: '$xxl',
 
-  & > * {
-    width: 100%;
-  }
-`
+  '& > *': {
+    width: '100%',
+  },
+})

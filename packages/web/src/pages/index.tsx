@@ -1,19 +1,18 @@
 import { GetStaticProps } from 'next'
-import styled from 'styled-components'
 
 import { CardHome } from 'components/Cards/CardHome'
 import { OpeningText } from 'components/OpeningText/OpeningText'
+import { Layout } from 'components/Site/SiteLayout'
+import { FadeUp } from 'components/Transitions/FadeUp'
 
-import { MEDIA_QUERIES } from 'styles/mediaQueries'
+import { styled } from 'styles/stitches.config'
 
 import { Sanity } from '@types'
 
-import { HOMEPAGE } from 'src/data/queries/singletons/homePage'
-import { fetchDocument } from 'src/data/fetchDocument'
+import { HOMEPAGE } from 'data/queries/singletons/homePage'
+import { fetchDocument } from 'data/fetchDocument'
 
 import { REVALIDATE_TIME } from 'references/constants'
-import { Layout } from 'components/Site/SiteLayout'
-import { FadeUp } from 'components/Transitions/FadeUp'
 
 interface IndexProps extends Sanity.DefaultLayoutProps {
   document: Sanity.HomePage
@@ -42,38 +41,40 @@ const Index = ({ document, ...siteProps }: IndexProps) => {
 
 export default Index
 
-const HomeContainer = styled(Layout)`
-  display: flex;
-  flex-direction: column;
-  padding: 1.6rem;
-  padding-bottom: 0;
+const HomeContainer = styled(Layout, {
+  display: 'flex',
+  flexDirection: 'column',
+  p: '$s',
+  pb: 0,
 
-  ${MEDIA_QUERIES.tabletUp} {
-    gap: 2rem;
-    padding: 2rem;
-    padding-bottom: 0;
-    flex-direction: row;
-  }
-`
-const CardsContainer = styled.div`
-  width: 100%;
-  position: relative;
-`
+  '@tabletUp': {
+    gap: '$m',
+    p: '$m',
+    pb: 0,
+    flexDirection: 'row',
+  },
+})
 
-const RightContainer = styled.div`
-  width: 100%;
-  ${MEDIA_QUERIES.tabletUp} {
-    order: 1;
-  }
-`
+const CardsContainer = styled('div', {
+  width: '100%',
+  position: 'relative',
+})
 
-const HomepageCard = styled(CardHome)`
-  margin-bottom: 1.6rem;
+const RightContainer = styled('div', {
+  width: '100%',
 
-  ${MEDIA_QUERIES.desktopUp} {
-    margin-bottom: 2rem;
-  }
-`
+  '@tabletUp': {
+    order: 1,
+  },
+})
+
+const HomepageCard = styled(CardHome, {
+  mb: '$s',
+
+  '@desktopUp': {
+    mb: '$m',
+  },
+})
 
 export const getStaticProps: GetStaticProps<IndexProps> = async ({
   preview,
