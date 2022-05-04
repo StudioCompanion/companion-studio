@@ -36,6 +36,7 @@ const Index = ({ document, ...siteProps }: IndexProps) => {
             ))
           : null}
       </CardsContainer>
+
     </HomeContainer>
   )
 }

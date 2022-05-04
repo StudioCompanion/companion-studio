@@ -1,21 +1,13 @@
 import BundleAnalyzer from '@next/bundle-analyzer'
-import MDX from '@next/mdx'
 import groq from 'groq'
 
 const withBundleAnalyzer = BundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 })
 
-const withMDX = MDX({
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-  },
-})
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['mdx', 'tsx', 'js', 'ts'],
+  pageExtensions: ['tsx', 'js', 'ts'],
   compiler: {
     styledComponents: true,
   },
@@ -45,4 +37,4 @@ const nextConfig = {
   },
 }
 
-export default withBundleAnalyzer(withMDX(nextConfig))
+export default withBundleAnalyzer(nextConfig)
