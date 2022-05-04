@@ -1,18 +1,32 @@
 import { useState } from 'react'
 import isEmail from 'validator/lib/isEmail'
+import { useRouter } from 'next/router'
 
 import { Input } from 'components/Inputs/Input'
 import { Heading } from 'components/Text/Heading'
 
 import { styled } from 'styles/stitches.config'
 
+import { EventNames, firePlausibleEvent } from 'helpers/analytics'
+
 interface SignUpFormProps {
   className?: string
+}
+
+const validateForm = (value: string) => {
+  let error = undefined
+  if (value === '' || value === null) {
+    error = 'Please enter an email address'
+  } else if (!isEmail(value)) {
+    error = 'That didn’t work! Please enter a valid email address'
+  }
+  return error
 }
 
 export const SignUpForm = ({ className }: SignUpFormProps) => {
   const [showSuccess, setShowSuccess] = useState(false)
   const [value, setValue] = useState('')
+  const router = useRouter()
 
   const [touched, setTouched] = useState(false)
 
@@ -25,25 +39,27 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
     setErrorMessage(validateForm(value))
   }
 
+  const currentPage =
+    (router.query?.slug as string) ?? router.route !== '/'
+      ? router.route.substring(1)
+      : 'Home'
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    if (validateForm(value)) {
+    const error = validateForm(value)
+    if (error) {
       e.preventDefault()
-      setErrorMessage(validateForm(value))
+      setErrorMessage(error)
     } else {
+      firePlausibleEvent({
+        name: EventNames.NewsletterSubmission,
+        additionalProps: {
+          page: currentPage,
+        },
+      })
       setShowSuccess(true)
       setValue('')
       setTouched(false)
     }
-  }
-
-  const validateForm = (value: string) => {
-    let error = undefined
-    if (value === '' || value === null) {
-      error = 'Please enter an email address'
-    } else if (!isEmail(value)) {
-      error = 'That didn’t work! Please enter a valid email address'
-    }
-    return error
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,6 +70,15 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
     if (showSuccess) {
       setShowSuccess(false)
     }
+  }
+
+  const handleFocus = () => {
+    firePlausibleEvent({
+      name: EventNames.NewsletterActivation,
+      additionalProps: {
+        page: currentPage,
+      },
+    })
   }
 
   return (
@@ -75,8 +100,9 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
             placeholder={'Subscribe for occasional ramblings'}
             type="email"
             value={value}
-            handleChange={handleChange}
-            handleBlur={handleBlur}
+            onFocus={handleFocus}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           {(errorMessage && errorMessage !== '') || showSuccess ? (
             <FormFeedback tag="p" fontStyle="$body">

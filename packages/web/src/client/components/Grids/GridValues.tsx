@@ -6,6 +6,7 @@ import { FadeUp } from 'components/Transitions/FadeUp'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 
 import { NonNullSkipArray, PickType, Sanity } from '@types'
+import { EventNames, firePlausibleEvent } from 'helpers/analytics'
 
 type ValueGridProps = Pick<Sanity.TeamPage, 'qualities' | 'cta'>
 
@@ -25,6 +26,12 @@ export const GridItem = ({
 }
 
 export const ValuesGrid = ({ qualities, cta }: ValueGridProps) => {
+  const handleCareersClick = () => {
+    firePlausibleEvent({
+      name: EventNames.CareersClick,
+    })
+  }
+
   return (
     <FadeUp>
       <GridWrapper>
@@ -36,7 +43,11 @@ export const ValuesGrid = ({ qualities, cta }: ValueGridProps) => {
             : null}
         </GridContainer>
         <ButtonWrapper>
-          <Button theme={ThemeTypes.DARK} {...cta} />
+          <Button
+            theme={ThemeTypes.DARK}
+            {...cta}
+            onClick={handleCareersClick}
+          />
         </ButtonWrapper>
       </GridWrapper>
     </FadeUp>

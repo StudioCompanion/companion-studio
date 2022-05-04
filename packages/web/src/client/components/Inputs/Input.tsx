@@ -1,3 +1,4 @@
+import { ChangeEventHandler, FocusEventHandler } from 'react'
 import { styled } from 'styles/stitches.config'
 
 interface InputProps {
@@ -5,8 +6,9 @@ interface InputProps {
   name: string
   placeholder: string
   type: string
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  handleBlur: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: ChangeEventHandler<HTMLInputElement>
+  onBlur?: FocusEventHandler<HTMLInputElement>
+  onFocus?: FocusEventHandler<HTMLInputElement>
 }
 
 export const Input = ({
@@ -14,9 +16,28 @@ export const Input = ({
   name,
   placeholder,
   type,
-  handleChange,
-  handleBlur,
+  onChange,
+  onBlur,
+  onFocus,
 }: InputProps) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (onChange) {
+      onChange(e)
+    }
+  }
+
+  const handleBlur: FocusEventHandler<HTMLInputElement> = (e) => {
+    if (onBlur) {
+      onBlur(e)
+    }
+  }
+
+  const handleFocus: FocusEventHandler<HTMLInputElement> = (e) => {
+    if (onFocus) {
+      onFocus(e)
+    }
+  }
+
   return (
     <>
       <Label htmlFor={name}>Email</Label>
@@ -27,6 +48,7 @@ export const Input = ({
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
+        onFocus={handleFocus}
       />
     </>
   )

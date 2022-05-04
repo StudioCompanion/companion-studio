@@ -10,6 +10,10 @@ declare global {
     blurDataURL?: string
   }
 
+  interface Window {
+    plausible?: (...args: unknown[]) => void
+  }
+
   namespace JSX {
     /**
      * Do we need to modify `LibraryManagedAttributes` too,

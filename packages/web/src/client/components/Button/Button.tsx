@@ -4,9 +4,11 @@ import { styled } from 'styles/stitches.config'
 import { LinkBase } from 'components/Links/LinkBase'
 
 import { Sanity } from '@types'
+import { MouseEventHandler } from 'react'
 
 export interface ButtonInnerProps {
   text?: string
+  onClick?: MouseEventHandler<HTMLAnchorElement>
   theme: ThemeTypes
 }
 
@@ -22,11 +24,18 @@ export const Button = ({
   label,
   url,
   isExternal,
+  onClick,
 }: ButtonProps) => {
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
+    if (onClick) {
+      onClick(e)
+    }
+  }
+
   return (
     <>
       {url ? (
-        <ButtonAnchor url={url} isExternal={isExternal}>
+        <ButtonAnchor onClick={handleClick} url={url} isExternal={isExternal}>
           <ButtonInner theme={theme} text={label} />
         </ButtonAnchor>
       ) : (
@@ -36,7 +45,7 @@ export const Button = ({
   )
 }
 
-export const ButtonContainer = styled('div', {
+export const ButtonContainer = styled('span', {
   display: 'inline-block',
   borderRadius: '$pill',
   p: '$xxs',

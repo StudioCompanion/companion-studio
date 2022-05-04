@@ -1,11 +1,15 @@
-import React, { useState, useRef, MouseEvent } from 'react'
+import React, { useState, useRef, MouseEvent, useEffect } from 'react'
 import useMeasure from 'react-use-measure'
+import { useRouter } from 'next/router'
 
 import { CarouselLayouts } from 'styles/constants'
 import { styled } from 'styles/stitches.config'
+import { getFontStyle } from 'styles/getFontStyles'
 
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { Media } from 'components/Media/Media'
+
+import { EventNames, firePlausibleEvent } from 'helpers/analytics'
 
 import { Slide } from './Slide'
 import { Video } from './Video'
@@ -13,7 +17,6 @@ import { InfiniteSlider, SliderApi } from './InfiniteCarousel'
 import { Cursor } from './Cursor'
 
 import { Sanity } from '@types'
-import { getFontStyle } from 'styles/getFontStyles'
 
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
@@ -102,11 +105,35 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   const handleMouseEnter = () => {
     if (itemCount > 1 || video) setShowCursor(true)
   }
+
   const handleMouseLeave = () => {
     if (showCursor) {
       setShowCursor(false)
     }
   }
+
+  const hasMounted = useRef(false)
+  const router = useRouter()
+
+  useEffect(() => {
+    /**
+     * We don't want to fire the event on mount
+     * only when the index has actually changed
+     * meaning someone has actually clicked through
+     * to another image
+     */
+    if (!hasMounted.current) {
+      hasMounted.current = true
+    } else {
+      const { slug } = router.query
+      firePlausibleEvent({
+        name: EventNames.CarouselClick,
+        additionalProps: {
+          caseStudy: slug as string,
+        },
+      })
+    }
+  }, [activeIndex, router.query])
 
   return (
     <>

@@ -9,6 +9,7 @@ import { FadeUp } from 'components/Transitions/FadeUp'
 import { SignUpForm } from 'components/Forms/FormFooter'
 import { LinkBase } from 'components/Links/LinkBase'
 import { Heading } from 'components/Text/Heading'
+import { EventNames, firePlausibleEvent } from 'helpers/analytics'
 
 /**
  * TODO: make this CMS-able
@@ -64,6 +65,29 @@ export const Footer = ({ links }: Sanity.Footer) => {
     return () => clearInterval(interval)
   }, [])
 
+  const handlePartnerClick = (partnerName: string) => () =>
+    firePlausibleEvent({
+      name: EventNames.CharityLinks,
+      additionalProps: {
+        charity: partnerName,
+      },
+    })
+
+  const handleSocialClick = (social?: string) => () => {
+    if (
+      social === 'LinkedIn' ||
+      social === 'Twitter' ||
+      social === 'Instagram'
+    ) {
+      firePlausibleEvent({
+        name: EventNames.SocialClick,
+        additionalProps: {
+          social,
+        },
+      })
+    }
+  }
+
   return (
     <FadeUp>
       <FooterContainer>
@@ -77,7 +101,12 @@ export const Footer = ({ links }: Sanity.Footer) => {
             </FooterText>
             <FooterPartnerLogos>
               {partnerLogos.map(({ title, url, image, width, height }) => (
-                <FooterPartnerLogo key={title} url={url} isExternal>
+                <FooterPartnerLogo
+                  key={title}
+                  url={url}
+                  isExternal
+                  onClick={handlePartnerClick(title)}
+                >
                   <Image
                     src={image}
                     width={width}
@@ -110,7 +139,9 @@ export const Footer = ({ links }: Sanity.Footer) => {
           <FooterLinks>
             {links?.map((link) => (
               <li key={link.label}>
-                <FooterLink {...link}>{link.label}</FooterLink>
+                <FooterLink {...link} onClick={handleSocialClick(link.label)}>
+                  {link.label}
+                </FooterLink>
               </li>
             ))}
           </FooterLinks>
