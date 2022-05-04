@@ -54,7 +54,7 @@ const GridContainer = styled('div', {
     gridTemplateColumns: 'repeat(auto-fit, minmax(35rem, 1fr)',
   },
 
-  '@largeDesktopUp': {
+  '@desktopUp': {
     gridTemplateColumns: 'repeat(3,1fr)',
   },
 })

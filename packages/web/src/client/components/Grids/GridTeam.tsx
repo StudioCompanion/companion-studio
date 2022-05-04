@@ -19,7 +19,7 @@ const GridItem = ({ image, name, job }: Sanity.TeamMember) => {
           <TeamMemberName tag="h2" fontStyle="$h5">
             {name}
           </TeamMemberName>
-          <TeamMemberRole tag="h3" fontStyle="$body">
+          <TeamMemberRole tag="h3" fontStyle="$h6">
             {job}
           </TeamMemberRole>
         </div>
