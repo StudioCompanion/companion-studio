@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import Ticker from 'react-ticker'
 import PageVisibility from 'react-page-visibility'
 
-import { WIDTHS } from 'styles/dimensions'
-import { styled } from 'styles/stitches.config'
+import { styled, Widths } from 'styles/stitches.config'
 
 import { FadeUp } from 'components/Transitions/FadeUp'
 import { Media } from 'components/Media/Media'
@@ -81,7 +80,7 @@ export const ImageStrip = ({
 
   useEffect(() => {
     const handleResize = () => {
-      const isNowTabletUp: boolean = window.innerWidth >= WIDTHS.tablet
+      const isNowTabletUp: boolean = window.innerWidth >= Widths.Tablet
       if (isNowTabletUp !== isTabletUp) {
         setIsTabletUp(isNowTabletUp)
       }

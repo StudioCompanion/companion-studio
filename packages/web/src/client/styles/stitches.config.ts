@@ -5,6 +5,13 @@ interface AspectRatioProps {
   h?: number
 }
 
+export enum Widths {
+  SmallTablet = 400,
+  Tablet = 768,
+  Desktop = 1024,
+  LargeDesktop = 1440,
+}
+
 const { styled, globalCss, getCssText, config, keyframes } =
   Stitches.createStitches({
     theme: {
@@ -18,10 +25,10 @@ const { styled, globalCss, getCssText, config, keyframes } =
         black70: 'rgba(30, 28, 28, .7)',
       },
       sizes: {
-        smallTablet: '40rem',
-        tablet: '76.8rem',
-        desktop: '102.4rem',
-        largeDesktop: '144rem',
+        smallTablet: `${Widths.SmallTablet / 10}rem`,
+        tablet: `${Widths.Tablet / 10}rem`,
+        desktop: `${Widths.Desktop / 10}rem`,
+        largeDesktop: `${Widths.LargeDesktop / 10}rem`,
         centeredParagraph: '65.3rem',
         documentWrapper: '80rem',
         footerWrapper: '45rem',
@@ -81,10 +88,10 @@ const { styled, globalCss, getCssText, config, keyframes } =
       },
     },
     media: {
-      smallTabletUp: '(min-width: 400px)',
-      tabletUp: '(min-width: 768px)',
-      desktopUp: '(min-width: 1024px)',
-      largeDesktopUp: '(min-width: 1440px)',
+      smallTabletUp: `(min-width: ${Widths.SmallTablet}px)`,
+      tabletUp: `(min-width: ${Widths.Tablet}px)`,
+      desktopUp: `(min-width: ${Widths.Desktop}px)`,
+      largeDesktopUp: `(min-width: ${Widths.LargeDesktop}px)`,
       dark: '(prefers-color-scheme: dark)',
       light: '(prefers-color-scheme: light)',
       motion: '(prefers-reduced-motion)',

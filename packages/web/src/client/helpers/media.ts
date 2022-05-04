@@ -1,4 +1,4 @@
-import { WIDTHS } from 'styles/dimensions'
+import { Widths } from 'styles/stitches.config'
 
 import { findLastNonNullValue } from './arrays'
 
@@ -33,7 +33,7 @@ export const generateSrcSetSizes = (sizes?: string | SizesArray) => {
         current = findLastNonNullValue(sizes, i)
       }
 
-      return `(max-width: ${Object.values(WIDTHS).slice(4, 8)[i]}px) ${current}`
+      return `(max-width: ${Object.values(Widths).slice(4, 8)[i]}px) ${current}`
     })
     .join(', ')
 }
