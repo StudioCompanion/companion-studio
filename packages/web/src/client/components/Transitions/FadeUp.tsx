@@ -3,7 +3,7 @@ import { useSpring, animated, easings } from '@react-spring/web'
 
 import { styled } from 'styles/stitches.config'
 
-const DURATION = 1600
+const DURATION = 1200
 
 interface FadeUpProps {
   children: React.ReactNode
