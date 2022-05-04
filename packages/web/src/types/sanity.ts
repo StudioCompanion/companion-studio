@@ -160,6 +160,7 @@ export interface DefaultLayoutProps {
 
 export interface HomepageCard extends Card {
   slug?: string
+  meta?: Meta
 }
 
 export interface HomePage extends DocumentBase {

@@ -19,7 +19,6 @@ import { Sanity } from 'src/types'
 
 interface CardHomeProps extends Sanity.HomepageCard {
   className?: string
-  meta: Sanity.Meta
 }
 
 export const CardHome = ({
