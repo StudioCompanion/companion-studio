@@ -73,6 +73,11 @@ const NumberList = styled('ol', {
   },
 })
 
+const availableHeadings = new Array(5)
+  .fill(null)
+  .map((_, i) => `h${i + 1} + &`)
+  .reduce((acc, curr) => `${acc ? `${acc},` : acc} ${curr}`, '')
+
 const components: Partial<PortableTextReactComponents> = {
   block: {
     h1: ({ ...props }) => <Heading tag="h1" fontStyle="$h1" {...props} />,
@@ -85,6 +90,9 @@ const components: Partial<PortableTextReactComponents> = {
         tag="p"
         fontStyle="$body"
         css={{
+          [availableHeadings]: {
+            mt: '$xxs',
+          },
           '& + &': {
             mt: '$m',
           },
