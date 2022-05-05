@@ -6,7 +6,7 @@ import { CarouselLayouts } from 'styles/constants'
 import { styled } from 'styles/stitches.config'
 import { getFontStyle } from 'styles/getFontStyles'
 
-import { FadeUp } from 'components/Transitions/FadeUp'
+import { FadeIn } from 'components/Transitions/FadeIn'
 import { Media } from 'components/Media/Media'
 
 import { EventNames, firePlausibleEvent } from 'helpers/analytics'
@@ -139,53 +139,51 @@ export const Carousel = (props: Sanity.BlockMedia) => {
     <>
       {showCursor && <Cursor icon={cursorIcon()} ref={cursorRef} />}
       <Wrapper hero={isHero} layout={layout}>
-        <FadeUp>
-          <Container
-            ref={containerEl}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onMouseMove={handleMouseMove}
-            onClick={handleClick}
-            css={{
-              backgroundColor,
-              cursor: showCursor ? 'none' : 'auto',
-            }}
-          >
-            {backgroundImage ? <BackgroundImage {...backgroundImage} /> : null}
-            {video ? (
-              <Video video={video} isPaused={paused} setPaused={setPaused} />
-            ) : (
-              <InfiniteSlider
-                ref={sliderApi}
-                items={items}
-                onDragEnd={handleDragEnd}
-              >
-                {(item) => <Slide key={item._key} {...item} />}
-              </InfiniteSlider>
-            )}
-          </Container>
-          <Caption>
-            {items[activeIndex].caption ? (
-              <CaptionText>{items[activeIndex].caption}</CaptionText>
-            ) : null}
-            {!video && itemCount > 1 && (
-              <Dots>
-                {items.map((_, index) => (
-                  <Dot
-                    key={index}
-                    style={{ opacity: activeIndex === index ? 1 : 0.2 }}
-                  />
-                ))}
-              </Dots>
-            )}
-          </Caption>
-        </FadeUp>
+        <Container
+          ref={containerEl}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onMouseMove={handleMouseMove}
+          onClick={handleClick}
+          css={{
+            backgroundColor,
+            cursor: showCursor ? 'none' : 'auto',
+          }}
+        >
+          {backgroundImage ? <BackgroundImage {...backgroundImage} /> : null}
+          {video ? (
+            <Video video={video} isPaused={paused} setPaused={setPaused} />
+          ) : (
+            <InfiniteSlider
+              ref={sliderApi}
+              items={items}
+              onDragEnd={handleDragEnd}
+            >
+              {(item) => <Slide key={item._key} {...item} />}
+            </InfiniteSlider>
+          )}
+        </Container>
+        <Caption>
+          {items[activeIndex].caption ? (
+            <CaptionText>{items[activeIndex].caption}</CaptionText>
+          ) : null}
+          {!video && itemCount > 1 && (
+            <Dots>
+              {items.map((_, index) => (
+                <Dot
+                  key={index}
+                  style={{ opacity: activeIndex === index ? 1 : 0.2 }}
+                />
+              ))}
+            </Dots>
+          )}
+        </Caption>
       </Wrapper>
     </>
   )
 }
 
-const Wrapper = styled('section', {
+const Wrapper = styled(FadeIn, {
   width: '100%',
   mb: '$s',
 

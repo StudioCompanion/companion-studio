@@ -5,7 +5,7 @@ import { styled } from 'styles/stitches.config'
 
 import { Sanity } from '@types'
 
-import { FadeUp } from 'components/Transitions/FadeUp'
+import { FadeIn } from 'components/Transitions/FadeIn'
 import { SignUpForm } from 'components/Forms/FormFooter'
 import { LinkBase } from 'components/Links/LinkBase'
 import { Heading } from 'components/Text/Heading'
@@ -89,69 +89,62 @@ export const Footer = ({ links }: Sanity.Footer) => {
   }
 
   return (
-    <FadeUp>
-      <FooterContainer>
-        <FooterContent>
-          <FooterLeft>
-            <FooterText tag="p" fontStyle="$h5">
-              Companion is based in London and has been operating globally for{' '}
-              {days}d {hours}h {minutes}m {seconds}s. We are proud to contribute
-              5% of our annual revenue to organisations that create a better
-              future for earth.
-            </FooterText>
-            <FooterPartnerLogos>
-              {partnerLogos.map(({ title, url, image, width, height }) => (
-                <FooterPartnerLogo
-                  key={title}
-                  url={url}
-                  isExternal
-                  onClick={handlePartnerClick(title)}
-                >
-                  <Image
-                    src={image}
-                    width={width}
-                    height={height}
-                    alt={title}
-                  />
-                </FooterPartnerLogo>
-              ))}
-            </FooterPartnerLogos>
-          </FooterLeft>
-          <FooterForm />
-        </FooterContent>
-        <Imprint>
-          <ImprintCopy tag="p" fontStyle="$h6">
-            <ImprintLine>Companion Studio Ltd. (No. 13051984)</ImprintLine>
-            <ImprintLine>
-              <LinkBase
-                css={{
-                  '&:hover': {
-                    textDecoration: 'underline',
-                  },
-                }}
-                url="https://goo.gl/maps/qhhF9sFMuWqYgPTw5"
+    <FooterContainer tag="footer">
+      <FooterContent>
+        <FooterLeft>
+          <FooterText tag="p" fontStyle="$h5">
+            Companion is based in London and has been operating globally for{' '}
+            {days}d {hours}h {minutes}m {seconds}s. We are proud to contribute
+            5% of our annual revenue to organisations that create a better
+            future for earth.
+          </FooterText>
+          <FooterPartnerLogos>
+            {partnerLogos.map(({ title, url, image, width, height }) => (
+              <FooterPartnerLogo
+                key={title}
+                url={url}
                 isExternal
+                onClick={handlePartnerClick(title)}
               >
-                32-38 Scrutton Street, London, EC2A 4RQ
-              </LinkBase>
-            </ImprintLine>
-          </ImprintCopy>
-          <FooterLinks>
-            {links?.map((link) => (
-              <li key={link.label}>
-                <FooterLink {...link} onClick={handleSocialClick(link.label)}>
-                  {link.label}
-                </FooterLink>
-              </li>
+                <Image src={image} width={width} height={height} alt={title} />
+              </FooterPartnerLogo>
             ))}
-          </FooterLinks>
-        </Imprint>
-      </FooterContainer>
-    </FadeUp>
+          </FooterPartnerLogos>
+        </FooterLeft>
+        <FooterForm />
+      </FooterContent>
+      <Imprint>
+        <ImprintCopy tag="p" fontStyle="$h6">
+          <ImprintLine>Companion Studio Ltd. (No. 13051984)</ImprintLine>
+          <ImprintLine>
+            <LinkBase
+              css={{
+                '&:hover': {
+                  textDecoration: 'underline',
+                },
+              }}
+              url="https://goo.gl/maps/qhhF9sFMuWqYgPTw5"
+              isExternal
+            >
+              32-38 Scrutton Street, London, EC2A 4RQ
+            </LinkBase>
+          </ImprintLine>
+        </ImprintCopy>
+        <FooterLinks>
+          {links?.map((link) => (
+            <li key={link.label}>
+              <FooterLink {...link} onClick={handleSocialClick(link.label)}>
+                {link.label}
+              </FooterLink>
+            </li>
+          ))}
+        </FooterLinks>
+      </Imprint>
+    </FooterContainer>
   )
 }
 
-const FooterContainer = styled('footer', {
+const FooterContainer = styled(FadeIn, {
   backgroundColor: '$black',
   borderRadius: '$wrapperLarge',
   color: '$white',

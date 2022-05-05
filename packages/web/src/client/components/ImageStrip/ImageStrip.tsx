@@ -4,7 +4,7 @@ import PageVisibility from 'react-page-visibility'
 
 import { styled, Widths } from 'styles/stitches.config'
 
-import { FadeUp } from 'components/Transitions/FadeUp'
+import { FadeIn } from 'components/Transitions/FadeIn'
 import { Media } from 'components/Media/Media'
 
 import { Sanity } from '@types'
@@ -96,33 +96,40 @@ export const ImageStrip = ({
   }, [isTabletUp])
 
   return (
-    <FadeUp>
-      <PageVisibility onChange={handleVisibilityChange}>
-        <ImageStripContainer>
-          {pageIsVisible && (
-            <Ticker>
-              {() => (
-                <ImageStripWrapper>
-                  {Array.isArray(slideshow)
-                    ? slideshow.map(({ media, rotation }) => (
-                        <ImageStripImage
-                          // @ts-ignore
-                          key={media.asset._ref}
-                          media={media}
-                          rotation={rotation}
-                          tabletUp={isTabletUp}
-                        />
-                      ))
-                    : null}
-                </ImageStripWrapper>
-              )}
-            </Ticker>
-          )}
-        </ImageStripContainer>
-      </PageVisibility>
-    </FadeUp>
+    <PageVisibility onChange={handleVisibilityChange}>
+      <ImageStripContainer>
+        {pageIsVisible && (
+          <Ticker>
+            {() => (
+              <ImageStripWrapper>
+                {Array.isArray(slideshow)
+                  ? slideshow.map(({ media, rotation }) => (
+                      <ImageStripImage
+                        // @ts-ignore
+                        key={media.asset._ref}
+                        media={media}
+                        rotation={rotation}
+                        tabletUp={isTabletUp}
+                      />
+                    ))
+                  : null}
+              </ImageStripWrapper>
+            )}
+          </Ticker>
+        )}
+      </ImageStripContainer>
+    </PageVisibility>
   )
 }
+const ImageStripContainer = styled(FadeIn, {
+  position: 'relative',
+  width: '100%',
+  my: '$xl',
+
+  '@tabletUp': {
+    my: '$l',
+  },
+})
 
 const ImageWrapper = styled('div', {
   borderRadius: '$wrapperLarge',
@@ -132,16 +139,6 @@ const ImageWrapper = styled('div', {
 const ImageContainer = styled('div', {
   mx: 'calc($m / 2}',
   flexShrink: 0,
-})
-
-const ImageStripContainer = styled('div', {
-  position: 'relative',
-  width: '100%',
-  my: '$xl',
-
-  '@tabletUp': {
-    my: '$l',
-  },
 })
 
 const ImageStripWrapper = styled('div', {

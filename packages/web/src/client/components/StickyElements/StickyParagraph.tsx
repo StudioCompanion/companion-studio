@@ -18,7 +18,7 @@ export const StickyParagraph = ({ text }: StickyParagraphProps) => {
   )
 }
 
-const StickyParagraphContainer = styled('section', {
+const StickyParagraphContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

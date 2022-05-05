@@ -40,7 +40,7 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
 
 export default Team
 
-const PaddingContainer = styled('div', {
+const PaddingContainer = styled('article', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
