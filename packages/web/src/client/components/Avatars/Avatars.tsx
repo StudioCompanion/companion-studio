@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useSprings, animated } from '@react-spring/web'
 
 import { styled } from 'styles/stitches.config'
@@ -14,6 +14,8 @@ interface AvatarsProps {
 
 export const Avatars = ({ members }: AvatarsProps) => {
   const textRefs = useRef<HTMLDivElement[]>([])
+
+  const [toggled, setToggled] = useState(false)
 
   const [springs, api] = useSprings(
     (members ?? []).length,
@@ -36,12 +38,23 @@ export const Avatars = ({ members }: AvatarsProps) => {
     }))
   }
 
+  const handleAvatarMobile = (i: number) => {
+    if (toggled) handleMouseLeave(i)
+    else handleMouseEnter(i)
+  }
+
   return (
     <GridWrapper>
       {(members ?? []).map(({ image, name, job }, i) => (
         <GridItemContainer
-          onMouseEnter={handleMouseEnter(i)}
-          onMouseLeave={handleMouseLeave(i)}
+          // onMouseEnter={handleMouseEnter(i)}
+          // onMouseLeave={handleMouseLeave(i)}
+          // onTouchStart={handleMouseEnter(i)}
+          // onTouchEnd={handleMouseLeave(i)}
+          onClick={() => {
+            handleAvatarMobile(i)
+            setToggled(!toggled)
+          }}
           key={name}
         >
           {image ? <GridImageWrapper {...image} /> : null}
