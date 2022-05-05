@@ -2,10 +2,11 @@ import { styled } from 'styles/stitches.config'
 import { ThemeTypes } from 'styles/constants'
 
 import { Button } from 'components/Button/Button'
-import { FadeUp } from 'components/Transitions/FadeUp'
+import { FadeIn } from 'components/Transitions/FadeIn'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 
 import { NonNullSkipArray, PickType, Sanity } from '@types'
+import { EventNames, firePlausibleEvent } from 'helpers/analytics'
 
 type ValueGridProps = Pick<Sanity.TeamPage, 'qualities' | 'cta'>
 
@@ -25,25 +26,29 @@ export const GridItem = ({
 }
 
 export const ValuesGrid = ({ qualities, cta }: ValueGridProps) => {
+  const handleCareersClick = () => {
+    firePlausibleEvent({
+      name: EventNames.CareersClick,
+    })
+  }
+
   return (
-    <FadeUp>
-      <GridWrapper>
-        <GridContainer>
-          {Array.isArray(qualities)
-            ? qualities.map((item) => (
-                <GridItem key={item._key} title={item.title} text={item.text} />
-              ))
-            : null}
-        </GridContainer>
-        <ButtonWrapper>
-          <Button theme={ThemeTypes.DARK} {...cta} />
-        </ButtonWrapper>
-      </GridWrapper>
-    </FadeUp>
+    <GridWrapper>
+      <GridContainer>
+        {Array.isArray(qualities)
+          ? qualities.map((item) => (
+              <GridItem key={item._key} title={item.title} text={item.text} />
+            ))
+          : null}
+      </GridContainer>
+      <ButtonWrapper>
+        <Button theme={ThemeTypes.DARK} {...cta} onClick={handleCareersClick} />
+      </ButtonWrapper>
+    </GridWrapper>
   )
 }
 
-const GridContainer = styled('div', {
+const GridContainer = styled(FadeIn, {
   display: 'grid',
   gap: '$xl',
   gridTemplateColumns: '1fr',

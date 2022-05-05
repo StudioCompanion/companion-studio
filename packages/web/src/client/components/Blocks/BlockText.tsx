@@ -1,6 +1,6 @@
 import { styled } from 'styles/stitches.config'
 
-import { FadeUp } from 'components/Transitions/FadeUp'
+import { FadeIn } from 'components/Transitions/FadeIn'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 
 import { Sanity } from '@types'
@@ -9,13 +9,11 @@ export type TextSectionProps = Sanity.BlockText
 
 export const TextSection = ({ richText }: TextSectionProps) => {
   return (
-    <Container>
-      <FadeUp>{richText ? <RichText blocks={richText} /> : null}</FadeUp>
-    </Container>
+    <Container>{richText ? <RichText blocks={richText} /> : null}</Container>
   )
 }
 
-const Container = styled('section', {
+const Container = styled(FadeIn, {
   m: 'calc($xl - $s) 0 $xl',
 
   '@tabletUp': {

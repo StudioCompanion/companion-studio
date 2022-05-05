@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import { styled } from 'styles/stitches.config'
 
 import { StickyParagraph } from 'components/StickyElements/StickyParagraph'
-import { FadeUp } from 'components/Transitions/FadeUp'
+import { FadeIn } from 'components/Transitions/FadeIn'
 import { StickMedia } from 'components/StickyElements/StickyMedia'
 import { Layout } from 'components/Site/SiteLayout'
 
@@ -26,9 +26,9 @@ const Approach = ({ document, ...siteProps }: ApproachProps) => {
       <ApproachContainer>
         {Array.isArray(sections) &&
           sections.map((props) => (
-            <FadeUp key={props._key}>
+            <FadeIn key={props._key}>
               <ApproachRenderer {...props} />
-            </FadeUp>
+            </FadeIn>
           ))}
       </ApproachContainer>
     </Layout>

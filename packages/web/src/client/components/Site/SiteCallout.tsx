@@ -1,7 +1,7 @@
 import { Button, ButtonContainer } from 'components/Button/Button'
 import { Media } from 'components/Media/Media'
 import { LinkBase } from 'components/Links/LinkBase'
-import { FadeUp } from 'components/Transitions/FadeUp'
+import { FadeIn } from 'components/Transitions/FadeIn'
 import { Heading } from 'components/Text/Heading'
 
 import { ThemeTypes } from 'styles/constants'
@@ -17,7 +17,7 @@ export const Callout = ({ text, link, media }: Sanity.Callout) => {
   const { label, ...restProps } = link
 
   return (
-    <FadeUp>
+    <FadeIn>
       <CalloutContainer {...restProps}>
         <div>
           <CalloutText tag="p" fontStyle="$h3">
@@ -29,7 +29,7 @@ export const Callout = ({ text, link, media }: Sanity.Callout) => {
           {media ? <Media {...media} /> : null}
         </CalloutImageWrapper>
       </CalloutContainer>
-    </FadeUp>
+    </FadeIn>
   )
 }
 

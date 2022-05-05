@@ -1,4 +1,7 @@
+import { useCallback } from 'react'
 import Link from 'next/link'
+import { animated, useSpring } from '@react-spring/web'
+import { useHover } from 'react-use-gesture'
 
 import { ThemeTypes } from 'styles/constants'
 import { styled } from 'styles/stitches.config'
@@ -6,6 +9,8 @@ import { styled } from 'styles/stitches.config'
 import { Button, ButtonContainer } from 'components/Button/Button'
 import { Media } from 'components/Media/Media'
 import { Heading } from 'components/Text/Heading'
+
+import { useCanHover } from 'hooks/useCanHover'
 
 import { Sanity } from '@types'
 
@@ -31,10 +36,46 @@ export const CardHome = ({
 
   const actualTitle = title ?? meta?.title
 
+  const [styles, api] = useSpring(
+    () => ({
+      scale: 1,
+      y: '0',
+      config: {
+        tension: 160,
+      },
+    }),
+    []
+  )
+
+  const canHover = useCanHover()
+
+  const hoverCallback = useCallback(
+    ({ hovering }) => {
+      if (!canHover) {
+        return
+      }
+
+      if (hovering) {
+        api.start({
+          scale: 0.75,
+          y: '-4%',
+        })
+      } else {
+        api.start({
+          scale: 1,
+          y: '0',
+        })
+      }
+    },
+    [canHover, api]
+  )
+
+  const bind = useHover(hoverCallback)
+
   return (
     <Link href={`/projects/${slug}` ?? ''} passHref>
-      <CardWrapper className={className} theme={theme}>
-        <ImageContainer>
+      <CardWrapper className={className} theme={theme} {...bind()}>
+        <ImageContainer style={styles}>
           {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}
         </ImageContainer>
         <CardText theme={theme}>
@@ -60,29 +101,11 @@ export const CardHome = ({
   )
 }
 
-const ImageContainer = styled('div', {
-  transform: 'scale(1)',
-  transformOrigin: '50% 50%',
-  transition: 'all 350ms cubic-bezier(0.76, 0, 0.24, 1)',
-})
-
-const MediaContainer = styled(Media, {
-  borderRadius: '$wrapperLarge',
-  overflow: 'hidden',
-})
-
 const CardWrapper = styled('a', {
   display: 'block',
   position: 'relative',
   borderRadius: '$wrapperLarge',
   overflow: 'hidden',
-
-  '&:hover': {
-    [`& ${ImageContainer}`]: {
-      transform: 'scale(0.85, 0.85) translateY(-4%)',
-      transition: 'all 350ms cubic-bezier(0.76, 0, 0.24, 1)',
-    },
-  },
 
   variants: {
     theme: {
@@ -115,6 +138,15 @@ const CardWrapper = styled('a', {
       },
     },
   },
+})
+
+const ImageContainer = styled(animated.div, {
+  transformOrigin: '50% 50%',
+})
+
+const MediaContainer = styled(Media, {
+  borderRadius: '$wrapperLarge',
+  overflow: 'hidden',
 })
 
 const CardText = styled('div', {

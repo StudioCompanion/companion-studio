@@ -1,6 +1,6 @@
 import { styled } from 'styles/stitches.config'
 
-import { FadeUp } from 'components/Transitions/FadeUp'
+import { FadeIn } from 'components/Transitions/FadeIn'
 import { Media } from 'components/Media/Media'
 
 import { Sanity } from '@types'
@@ -12,19 +12,17 @@ interface TeamGridProps {
 
 const GridItem = ({ image, name, job }: Sanity.TeamMember) => {
   return (
-    <FadeUp>
-      <GridItemContainer>
-        {image ? <GridImage {...image} /> : null}
-        <div>
-          <TeamMemberName tag="h2" fontStyle="$h5">
-            {name}
-          </TeamMemberName>
-          <TeamMemberRole tag="h3" fontStyle="$h6">
-            {job}
-          </TeamMemberRole>
-        </div>
-      </GridItemContainer>
-    </FadeUp>
+    <GridItemContainer tag="div">
+      {image ? <GridImage {...image} /> : null}
+      <div>
+        <TeamMemberName tag="h2" fontStyle="$h5">
+          {name}
+        </TeamMemberName>
+        <TeamMemberRole tag="h3" fontStyle="$h6">
+          {job}
+        </TeamMemberRole>
+      </div>
+    </GridItemContainer>
   )
 }
 
@@ -42,7 +40,7 @@ export const TeamGrid = ({ team = [] }: TeamGridProps) => {
   )
 }
 
-const GridWrapper = styled('div', {
+const GridWrapper = styled('section', {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
   gap: '$s $xxs',
@@ -55,7 +53,7 @@ const GridWrapper = styled('div', {
   },
 })
 
-const GridItemContainer = styled('div', {
+const GridItemContainer = styled(FadeIn, {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

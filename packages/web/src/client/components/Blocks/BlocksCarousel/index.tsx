@@ -1,11 +1,15 @@
-import React, { useState, useRef, MouseEvent } from 'react'
+import React, { useState, useRef, MouseEvent, useEffect } from 'react'
 import useMeasure from 'react-use-measure'
+import { useRouter } from 'next/router'
 
 import { CarouselLayouts } from 'styles/constants'
 import { styled } from 'styles/stitches.config'
+import { getFontStyle } from 'styles/getFontStyles'
 
-import { FadeUp } from 'components/Transitions/FadeUp'
+import { FadeIn } from 'components/Transitions/FadeIn'
 import { Media } from 'components/Media/Media'
+
+import { EventNames, firePlausibleEvent } from 'helpers/analytics'
 
 import { Slide } from './Slide'
 import { Video } from './Video'
@@ -13,7 +17,6 @@ import { InfiniteSlider, SliderApi } from './InfiniteCarousel'
 import { Cursor } from './Cursor'
 
 import { Sanity } from '@types'
-import { getFontStyle } from 'styles/getFontStyles'
 
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
@@ -102,63 +105,85 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   const handleMouseEnter = () => {
     if (itemCount > 1 || video) setShowCursor(true)
   }
+
   const handleMouseLeave = () => {
     if (showCursor) {
       setShowCursor(false)
     }
   }
 
+  const hasMounted = useRef(false)
+  const router = useRouter()
+
+  useEffect(() => {
+    /**
+     * We don't want to fire the event on mount
+     * only when the index has actually changed
+     * meaning someone has actually clicked through
+     * to another image
+     */
+    if (!hasMounted.current) {
+      hasMounted.current = true
+    } else {
+      const { slug } = router.query
+      firePlausibleEvent({
+        name: EventNames.CarouselClick,
+        additionalProps: {
+          caseStudy: slug as string,
+        },
+      })
+    }
+  }, [activeIndex, router.query])
+
   return (
     <>
       {showCursor && <Cursor icon={cursorIcon()} ref={cursorRef} />}
       <Wrapper hero={isHero} layout={layout}>
-        <FadeUp>
-          <Container
-            ref={containerEl}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onMouseMove={handleMouseMove}
-            onClick={handleClick}
-            css={{
-              backgroundColor,
-              cursor: showCursor ? 'none' : 'auto',
-            }}
-          >
-            {backgroundImage ? <BackgroundImage {...backgroundImage} /> : null}
-            {video ? (
-              <Video video={video} isPaused={paused} setPaused={setPaused} />
-            ) : (
-              <InfiniteSlider
-                ref={sliderApi}
-                items={items}
-                onDragEnd={handleDragEnd}
-              >
-                {(item) => <Slide key={item._key} {...item} />}
-              </InfiniteSlider>
-            )}
-          </Container>
-          <Caption>
-            {items[activeIndex].caption ? (
-              <CaptionText>{items[activeIndex].caption}</CaptionText>
-            ) : null}
-            {!video && itemCount > 1 && (
-              <Dots>
-                {items.map((_, index) => (
-                  <Dot
-                    key={index}
-                    style={{ opacity: activeIndex === index ? 1 : 0.2 }}
-                  />
-                ))}
-              </Dots>
-            )}
-          </Caption>
-        </FadeUp>
+        <Container
+          ref={containerEl}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onMouseMove={handleMouseMove}
+          onClick={handleClick}
+          css={{
+            backgroundColor,
+            cursor: showCursor ? 'none' : 'auto',
+          }}
+        >
+          {backgroundImage ? <BackgroundImage {...backgroundImage} /> : null}
+          {video ? (
+            <Video video={video} isPaused={paused} setPaused={setPaused} />
+          ) : (
+            <InfiniteSlider
+              ref={sliderApi}
+              items={items}
+              onDragEnd={handleDragEnd}
+            >
+              {(item) => <Slide key={item._key} {...item} />}
+            </InfiniteSlider>
+          )}
+        </Container>
+        <Caption>
+          {items[activeIndex].caption ? (
+            <CaptionText>{items[activeIndex].caption}</CaptionText>
+          ) : null}
+          {!video && itemCount > 1 && (
+            <Dots>
+              {items.map((_, index) => (
+                <Dot
+                  key={index}
+                  style={{ opacity: activeIndex === index ? 1 : 0.2 }}
+                />
+              ))}
+            </Dots>
+          )}
+        </Caption>
       </Wrapper>
     </>
   )
 }
 
-const Wrapper = styled('section', {
+const Wrapper = styled(FadeIn, {
   width: '100%',
   mb: '$s',
 

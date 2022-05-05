@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import { CardHome } from 'components/Cards/CardHome'
 import { OpeningText } from 'components/OpeningText/OpeningText'
 import { Layout } from 'components/Site/SiteLayout'
-import { FadeUp } from 'components/Transitions/FadeUp'
+import { FadeIn } from 'components/Transitions/FadeIn'
 
 import { styled } from 'styles/stitches.config'
 
@@ -29,9 +29,9 @@ const Index = ({ document, ...siteProps }: IndexProps) => {
       <CardsContainer>
         {Array.isArray(cards)
           ? cards.map((item) => (
-              <FadeUp key={item._key}>
+              <FadeIn tag="div" key={item._key}>
                 <HomepageCard {...item} />
-              </FadeUp>
+              </FadeIn>
             ))
           : null}
       </CardsContainer>

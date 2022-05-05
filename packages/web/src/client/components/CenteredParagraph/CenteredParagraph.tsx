@@ -1,6 +1,6 @@
 import { styled } from 'styles/stitches.config'
 
-import { FadeUp } from 'components/Transitions/FadeUp'
+import { FadeIn } from 'components/Transitions/FadeIn'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 
 import { SanityGenerated } from '@types'
@@ -11,15 +11,13 @@ type CenteredParagraphProps = {
 
 export const CenteredParagraph = ({ text }: CenteredParagraphProps) => {
   return (
-    <FadeUp>
-      <CenteredParagraphContainer>
-        {text ? <CenteredParagraphBody blocks={text} /> : null}
-      </CenteredParagraphContainer>
-    </FadeUp>
+    <CenteredParagraphContainer tag="div">
+      {text ? <CenteredParagraphBody blocks={text} /> : null}
+    </CenteredParagraphContainer>
   )
 }
 
-const CenteredParagraphContainer = styled('div', {
+const CenteredParagraphContainer = styled(FadeIn, {
   my: '$xl',
   display: 'flex',
   justifyContent: 'center',
