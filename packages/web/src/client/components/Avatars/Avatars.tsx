@@ -9,8 +9,6 @@ import { Media } from 'components/Media/Media'
 import { Sanity } from '@types'
 import { useCanHover } from '../../hooks/useCanHover'
 
-import Tappable from 'react-tappable'
-
 interface AvatarsProps {
   members?: Sanity.TeamMember[]
 }
