@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
 import { styled } from 'styles/stitches.config'
+import { useReducedMotion } from 'hooks/useReducedMotion'
 
 export type VideoPlayerProps = {
   src: string
@@ -22,25 +23,46 @@ export const VideoPlayer = ({
 
   const { isIntersecting } = useIntersectionObserver(videoRef)
 
+  const reduceMotion = useReducedMotion()
+
+  /**
+   * Play/Pause handling
+   */
   useEffect(() => {
-    if (isIntersecting) {
+    /**
+     * If it's not paused and intersecting,
+     * play the video
+     */
+    if (!isPaused && isIntersecting) {
       videoRef.current.play()
-    } else {
+    } else if (isPaused) {
+      /**
+       * Else if it pause, pause it
+       */
       videoRef.current.pause()
+    }
+  }, [isIntersecting, isPaused])
+
+  /**
+   * Autoplay effect handling
+   */
+  useEffect(() => {
+    /**
+     * If there is reduced motion so we make sure it doesnt autoplay
+     */
+    if (reduceMotion || !isIntersecting) {
+      videoRef.current.pause()
+    } else if (isIntersecting) {
+      /**
+       * Otherwise outplay in the frame
+       */
+      videoRef.current.play()
     }
 
     if (onAutoplayCallback) {
-      onAutoplayCallback(isIntersecting)
+      onAutoplayCallback(!videoRef.current.paused)
     }
-  }, [isIntersecting, onAutoplayCallback])
-
-  useEffect(() => {
-    if (isPaused) {
-      videoRef.current.pause()
-    } else {
-      videoRef.current.play()
-    }
-  }, [isPaused])
+  }, [reduceMotion, isIntersecting, onAutoplayCallback])
 
   /**
    * Only used if the video is MUX which at the

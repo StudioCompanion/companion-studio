@@ -1,12 +1,16 @@
 import { useRef, useState } from 'react'
-import lottie from 'lottie-web'
+import lottie, { AnimationItem } from 'lottie-web'
 
 import splashAnimation from '../../../../public/lottie/splashAnimation.json'
 
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
 
 import { styled } from 'styles/stitches.config'
+import { useReducedMotion } from 'hooks/useReducedMotion'
 
+/**
+ * TODO: Would be cool to make this CMS-able
+ */
 const COLOR_SETS = [
   {
     background: '#EF7E38',
@@ -34,10 +38,21 @@ const COLOR_SETS = [
   },
 ]
 
+/**
+ * For reduced motion instances, we want to show to logo
+ * on the background color however, at the animation end
+ * the logo collapses back down, this is the frame where
+ * the entire logo is visible
+ */
+const HALFWAY_POINT = 32
+
 export const Splash = () => {
   const [colorSetIndex, setColorIndex] = useState(0)
 
   const lottieRef = useRef<HTMLDivElement>(null!)
+  const animationRef = useRef<AnimationItem | null>(null)
+
+  const reduceMotion = useReducedMotion()
 
   useIsomorphicLayoutEffect(() => {
     /**
@@ -48,23 +63,45 @@ export const Splash = () => {
      */
     setColorIndex(Math.floor(Math.random() * COLOR_SETS.length))
 
-    const animation = lottie.loadAnimation({
-      container: lottieRef.current,
-      animationData: splashAnimation,
-      loop: false,
-      autoplay: true,
-    })
+    if (!animationRef.current) {
+      animationRef.current = lottie.loadAnimation({
+        container: lottieRef.current,
+        animationData: splashAnimation,
+        loop: false,
+        autoplay: true,
+      })
 
-    animation.addEventListener('complete', () => {
-      lottieRef.current.style.opacity = '0'
-    })
+      animationRef.current.addEventListener('complete', () => {
+        lottieRef.current.style.opacity = '0'
+      })
 
-    lottieRef.current.style.display = 'block'
+      lottieRef.current.style.display = 'block'
+    }
 
     return () => {
-      animation.destroy()
+      if (animationRef.current) {
+        animationRef.current.destroy()
+        animationRef.current = null
+      }
     }
   }, [])
+
+  useIsomorphicLayoutEffect(() => {
+    let timeout: ReturnType<typeof window.setTimeout> | null = null
+    if (reduceMotion && animationRef.current) {
+      animationRef.current.goToAndStop(HALFWAY_POINT, true)
+
+      timeout = setTimeout(() => {
+        lottieRef.current.style.opacity = '0'
+      }, 1000)
+    }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout)
+      }
+    }
+  }, [reduceMotion])
 
   return (
     <SplashContainer
@@ -96,4 +133,8 @@ const SplashContainer = styled('div', {
   willChange: 'opacity',
   pointerEvents: 'none',
   display: 'none',
+
+  '@motion': {
+    transition: 'none',
+  },
 })

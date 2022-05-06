@@ -49,6 +49,10 @@ const Element = styled('section', {
   opacity: 0,
   transition: `opacity ${DURATION}ms cubic-bezier(0.33, 1, 0.68, 1)`,
 
+  '@motion': {
+    transition: 'none',
+  },
+
   '&.fade': {
     opacity: 1,
   },

@@ -92,7 +92,6 @@ const GridImageWrapper = styled(Media, {
 
   '& img': {
     top: '3px !important',
-    transition: '0.4s ease-out',
   },
 })
 

@@ -27,6 +27,10 @@ export const globalStyles = globalCss({
   '*, *:before, *:after': {
     boxSizing: 'border-box',
     transition: 'background-color 250ms ease-in-out, opacity 250ms ease-in-out',
+
+    '@motion': {
+      transition: 'none',
+    },
   },
 
   'html, body': {

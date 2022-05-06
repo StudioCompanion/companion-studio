@@ -6,10 +6,15 @@ import SEO from '../../next-seo.config'
 
 import { WidgetMarker } from 'components/Widgets/WidgetMarker'
 import { WidgetAccessibe } from 'components/Widgets/WidgetAccessibe'
+
 import { globalStyles } from 'styles/global'
+
+import { useReducedMotion } from 'hooks/useReducedMotion'
 
 const App = ({ Component, pageProps }: AppProps) => {
   globalStyles()
+
+  useReducedMotion()
 
   return (
     <>
