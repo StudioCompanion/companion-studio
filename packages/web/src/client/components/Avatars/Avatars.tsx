@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from 'react'
+import { useRef, useState } from 'react'
 import { useSprings, animated } from '@react-spring/web'
 
 import { styled } from 'styles/stitches.config'
