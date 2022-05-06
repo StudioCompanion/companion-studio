@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useCallback } from 'react'
 import { useSprings, animated } from '@react-spring/web'
 
 import { styled } from 'styles/stitches.config'
@@ -7,6 +7,9 @@ import { Heading } from 'components/Text/Heading'
 import { Media } from 'components/Media/Media'
 
 import { Sanity } from '@types'
+import { useCanHover } from '../../hooks/useCanHover'
+
+import Tappable from 'react-tappable'
 
 interface AvatarsProps {
   members?: Sanity.TeamMember[]
@@ -43,17 +46,24 @@ export const Avatars = ({ members }: AvatarsProps) => {
     else handleMouseEnter(i)
   }
 
+  const canHover = useCanHover()
+
   return (
     <GridWrapper>
       {(members ?? []).map(({ image, name, job }, i) => (
         <GridItemContainer
-          // onMouseEnter={handleMouseEnter(i)}
-          // onMouseLeave={handleMouseLeave(i)}
-          // onTouchStart={handleMouseEnter(i)}
-          // onTouchEnd={handleMouseLeave(i)}
-          onClick={() => {
+          onMouseEnter={() => {
+            if (!canHover) return
+            handleMouseEnter(i)
+          }}
+          onMouseLeave={() => {
+            if (!canHover) return
+            handleMouseLeave(i)
+          }}
+          onClick={(e) => {
+            e.preventDefault()
+            if (canHover) return
             handleAvatarMobile(i)
-            setToggled(!toggled)
           }}
           key={name}
         >
