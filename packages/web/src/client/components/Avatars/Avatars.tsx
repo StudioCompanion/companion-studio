@@ -66,6 +66,7 @@ const GridWrapper = styled('div', {
   width: '100%',
   display: 'flex',
   justifyContent: 'flex-start',
+  alignItems: 'flex-end',
   my: '$s',
   overflow: 'scroll',
 

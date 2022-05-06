@@ -11,6 +11,7 @@ export const Cursor = React.forwardRef<HTMLDivElement, CursorProps>(
     return (
       <CursorEl
         ref={cursorRef}
+        aria-hidden="true"
         css={{
           background: `center / contain no-repeat url(${icon})`,
         }}

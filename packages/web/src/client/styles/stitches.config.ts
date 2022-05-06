@@ -94,7 +94,7 @@ const { styled, globalCss, getCssText, config, keyframes } =
       largeDesktopUp: `(min-width: ${Widths.LargeDesktop}px)`,
       dark: '(prefers-color-scheme: dark)',
       light: '(prefers-color-scheme: light)',
-      motion: '(prefers-reduced-motion)',
+      motion: '(prefers-reduced-motion: true)',
     },
     utils: {
       p: (value: Stitches.PropertyValue<'padding'>) => ({

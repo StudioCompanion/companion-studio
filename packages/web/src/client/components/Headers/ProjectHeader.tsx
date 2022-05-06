@@ -34,7 +34,7 @@ const Header = styled('header', {
   justifyContent: 'space-between',
   flexDirection: 'column',
 
-  '@desktopUp': {
+  '@tabletUp': {
     flexDirection: 'row',
 
     '& > *': {

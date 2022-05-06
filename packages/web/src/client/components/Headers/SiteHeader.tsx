@@ -24,7 +24,7 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
         <NavContainer>
           <Link href={'/'} passHref>
             <LogoWrapper>
-              <Logo />
+              <Logo label="Homepage" />
             </LogoWrapper>
           </Link>
           <NavWrapper>
