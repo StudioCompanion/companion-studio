@@ -7,6 +7,7 @@ import { Heading } from 'components/Text/Heading'
 import { Media } from 'components/Media/Media'
 
 import { Sanity } from '@types'
+import { useCanHover } from '../../hooks/useCanHover'
 
 interface AvatarsProps {
   members?: Sanity.TeamMember[]
@@ -23,16 +24,56 @@ export const Avatars = ({ members }: AvatarsProps) => {
     [members]
   )
 
+  const canHover = useCanHover()
+
   const handleMouseEnter = (i: number) => () => {
+    if (!canHover) {
+      return
+    }
+
     api.start((j) => ({
       width: j === i ? textRefs.current[i].scrollWidth + 8 : 0,
     }))
   }
 
   const handleMouseLeave = (i: number) => () => {
+    if (!canHover) {
+      return
+    }
+
     api.start((j) => ({
       width: 0,
       delay: j === i ? 400 : 0,
+    }))
+  }
+
+  const isOpenId = useRef<number | null>(null)
+
+  const handleClick = (i: number) => () => {
+    if (canHover) {
+      return
+    }
+
+    api.start((j) => ({
+      width:
+        j === i && isOpenId.current !== i
+          ? textRefs.current[i].scrollWidth + 8
+          : 0,
+      onStart: () => {
+        /**
+         * If nothing is open or the id isn't what we clicked
+         * change the id to the one we just clicked
+         */
+        if (!isOpenId.current || isOpenId.current !== i) {
+          isOpenId.current = i
+        } else {
+          /**
+           * Else, we're closing one so reset it to null
+           * otherwise it cant be reopened
+           */
+          isOpenId.current = null
+        }
+      },
     }))
   }
 
@@ -42,6 +83,7 @@ export const Avatars = ({ members }: AvatarsProps) => {
         <GridItemContainer
           onMouseEnter={handleMouseEnter(i)}
           onMouseLeave={handleMouseLeave(i)}
+          onClick={handleClick(i)}
           key={name}
         >
           {image ? <GridImageWrapper {...image} /> : null}
