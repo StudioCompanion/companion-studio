@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useSprings, animated } from '@react-spring/web'
 
 import { styled } from 'styles/stitches.config'
@@ -16,8 +16,6 @@ interface AvatarsProps {
 export const Avatars = ({ members }: AvatarsProps) => {
   const textRefs = useRef<HTMLDivElement[]>([])
 
-  const [toggled, setToggled] = useState(false)
-
   const [springs, api] = useSprings(
     (members ?? []).length,
     () => ({
@@ -26,43 +24,66 @@ export const Avatars = ({ members }: AvatarsProps) => {
     [members]
   )
 
+  const canHover = useCanHover()
+
   const handleMouseEnter = (i: number) => () => {
+    if (!canHover) {
+      return
+    }
+
     api.start((j) => ({
       width: j === i ? textRefs.current[i].scrollWidth + 8 : 0,
     }))
   }
 
   const handleMouseLeave = (i: number) => () => {
+    if (!canHover) {
+      return
+    }
+
     api.start((j) => ({
       width: 0,
       delay: j === i ? 400 : 0,
     }))
   }
 
-  const handleAvatarMobile = (i: number) => {
-    if (toggled) handleMouseLeave(i)
-    else handleMouseEnter(i)
-  }
+  const isOpenId = useRef<number | null>(null)
 
-  const canHover = useCanHover()
+  const handleClick = (i: number) => () => {
+    if (canHover) {
+      return
+    }
+
+    api.start((j) => ({
+      width:
+        j === i && isOpenId.current !== i
+          ? textRefs.current[i].scrollWidth + 8
+          : 0,
+      onStart: () => {
+        /**
+         * If nothing is open or the id isn't what we clicked
+         * change the id to the one we just clicked
+         */
+        if (!isOpenId.current || isOpenId.current !== i) {
+          isOpenId.current = i
+        } else {
+          /**
+           * Else, we're closing one so reset it to null
+           * otherwise it cant be reopened
+           */
+          isOpenId.current = null
+        }
+      },
+    }))
+  }
 
   return (
     <GridWrapper>
       {(members ?? []).map(({ image, name, job }, i) => (
         <GridItemContainer
-          onMouseEnter={() => {
-            if (!canHover) return
-            handleMouseEnter(i)
-          }}
-          onMouseLeave={() => {
-            if (!canHover) return
-            handleMouseLeave(i)
-          }}
-          onClick={(e) => {
-            e.preventDefault()
-            if (canHover) return
-            handleAvatarMobile(i)
-          }}
+          onMouseEnter={handleMouseEnter(i)}
+          onMouseLeave={handleMouseLeave(i)}
+          onClick={handleClick(i)}
           key={name}
         >
           {image ? <GridImageWrapper {...image} /> : null}
