@@ -12,7 +12,7 @@ export enum Widths {
   LargeDesktop = 1440,
 }
 
-const { styled, globalCss, getCssText, config, keyframes } =
+const { styled, globalCss, getCssText, config, keyframes, reset } =
   Stitches.createStitches({
     theme: {
       colors: {
@@ -192,4 +192,4 @@ type ScaleValue<TValue> = Stitches.ScaleValue<TValue, StitchesConfig>
 
 export type { StitchesConfig, CSS, ScaleValue }
 
-export { styled, getCssText, globalCss, keyframes }
+export { styled, getCssText, globalCss, keyframes, reset }
