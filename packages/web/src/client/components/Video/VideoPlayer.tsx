@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
 import { styled } from 'styles/stitches.config'
@@ -20,10 +20,31 @@ export const VideoPlayer = ({
   onClick,
 }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null!)
+  // const [focused, setFocused] = useState<boolean>(false)
 
   const { isIntersecting } = useIntersectionObserver(videoRef)
 
+  // log
+  console.log('✨✨✨ VIDEO playing state: ', videoRef.current)
+
   const reduceMotion = useReducedMotion()
+
+  useEffect(() => {
+    // detecting for 'space' events
+    document.addEventListener('keydown', (e) => {
+      e.preventDefault()
+      // we have to check if a video is in focus
+      if (document.activeElement === videoRef.current) {
+        // if the key pressed is the space key
+        if (e.keyCode === 32) {
+          // if (e.code === 'Space') {
+          isPaused ? videoRef.current.play() : videoRef.current.pause()
+        }
+      }
+    })
+
+    // videoRef.current.focus()
+  }, [isPaused])
 
   /**
    * Play/Pause handling
@@ -106,6 +127,7 @@ export const VideoPlayer = ({
   return (
     <VideoContainer onClick={handleClick}>
       <Video
+        tabIndex={0}
         ref={videoRef}
         preload="auto"
         src={src}
