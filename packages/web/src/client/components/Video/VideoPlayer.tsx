@@ -140,7 +140,7 @@ export const VideoPlayer = ({
         <span>
           <img
             src={
-              !isPaused ? '/icons/cursor_play.svg' : '/icons/cursor_pause.svg'
+              isPaused ? '/icons/cursor_play.svg' : '/icons/cursor_pause.svg'
             }
           />
         </span>
@@ -167,29 +167,29 @@ const Video = styled('video', {
 })
 
 const Control = styled('button', {
-  // '&:focus': {
-  //   outline: 'none',
-  //   boxShadow: 'none',
-  // },
+  bottom: '16px',
+  right: '16px',
+  background: 'white',
+  width: '40px',
+  height: '40px',
+  position: 'absolute',
+  display: 'flex',
+  borderRadius: '50%',
+  border: 'none',
+  '&:hover': {
+    background: '#e5e5e5',
+    cursor: 'pointer',
+  },
   span: {
-    padding: '16px',
-    // width: '40px',
-    background: 'white',
-    position: 'absolute',
-    bottom: '16px',
-    right: '16px',
-    border: '1px solid white',
-    borderRadius: '50%',
-    '&:focus': {
-      outline: 'none',
-      // outlineRadius: '500px',
-    },
-    // '&:hover': {
-    //   backgroundImage: 'grey',
-    //   cursor: 'pointer',
-    // },
+    width: '24px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+
     img: {
-      margin: 'auto',
+      position: 'absolute',
+      top: '12px',
+      right: '3px',
     },
   },
 })
