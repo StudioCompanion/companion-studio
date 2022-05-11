@@ -24,27 +24,26 @@ export const VideoPlayer = ({
 
   const { isIntersecting } = useIntersectionObserver(videoRef)
 
-  // log
-  console.log('✨✨✨ VIDEO playing state: ', videoRef.current)
-
   const reduceMotion = useReducedMotion()
 
-  useEffect(() => {
-    // detecting for 'space' events
-    document.addEventListener('keydown', (e) => {
-      e.preventDefault()
-      // we have to check if a video is in focus
-      if (document.activeElement === videoRef.current) {
-        // if the key pressed is the space key
-        if (e.keyCode === 32) {
-          // if (e.code === 'Space') {
-          isPaused ? videoRef.current.play() : videoRef.current.pause()
-        }
-      }
-    })
+  // useEffect(() => {
+  //   // detecting for 'space' events
+  //   document.addEventListener('keydown', (e) => {
+  //     e.preventDefault()
+  //     // we have to check if a video is in focus
+  //     if (document.activeElement === videoRef.current) {
+  //       // if the key pressed is the space key
+  //       if (e.keyCode === 32) {
+  //         // if (e.code === 'Space') {
+  //         !isPaused ? videoRef.current.play() : videoRef.current.pause()
+  //         // log
+  //         console.log('✨✨✨ SPACE has been PRESSED!!!! 🚀')
+  //       }
+  //     }
+  //   })
 
-    // videoRef.current.focus()
-  }, [isPaused])
+  //   // videoRef.current.focus()
+  // }, [isPaused])
 
   /**
    * Play/Pause handling
@@ -127,7 +126,7 @@ export const VideoPlayer = ({
   return (
     <VideoContainer onClick={handleClick}>
       <Video
-        tabIndex={0}
+        // tabIndex={0}
         ref={videoRef}
         preload="auto"
         src={src}
@@ -136,6 +135,16 @@ export const VideoPlayer = ({
         muted
         playsInline
       />
+      {/* <Control>{isPaused ? '/icons/Playing.png' : 'icons/Paused.png'}</Control> */}
+      <Control>
+        <span>
+          <img
+            src={
+              !isPaused ? '/icons/cursor_play.svg' : '/icons/cursor_pause.svg'
+            }
+          />
+        </span>
+      </Control>
     </VideoContainer>
   )
 }
@@ -155,4 +164,32 @@ const Video = styled('video', {
   objectFit: 'cover',
   width: '100%',
   height: '100%',
+})
+
+const Control = styled('button', {
+  // '&:focus': {
+  //   outline: 'none',
+  //   boxShadow: 'none',
+  // },
+  span: {
+    padding: '16px',
+    // width: '40px',
+    background: 'white',
+    position: 'absolute',
+    bottom: '16px',
+    right: '16px',
+    border: '1px solid white',
+    borderRadius: '50%',
+    '&:focus': {
+      outline: 'none',
+      // outlineRadius: '500px',
+    },
+    // '&:hover': {
+    //   backgroundImage: 'grey',
+    //   cursor: 'pointer',
+    // },
+    img: {
+      margin: 'auto',
+    },
+  },
 })
