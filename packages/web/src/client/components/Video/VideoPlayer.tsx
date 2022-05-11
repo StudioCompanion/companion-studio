@@ -189,7 +189,7 @@ const Control = styled('button', {
     img: {
       position: 'absolute',
       top: '12px',
-      right: '3px',
+      right: '2px',
     },
   },
 })

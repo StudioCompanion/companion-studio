@@ -29,4 +29,8 @@ const CursorEl = styled('div', {
   filter: 'invert(0.5)',
   mixBlendMode: 'difference',
   transform: 'translate(-50%,-50%)',
+
+  '@tabletDown': {
+    display: 'none',
+  },
 })
