@@ -89,7 +89,6 @@ const { styled, globalCss, getCssText, config, keyframes } =
     },
     media: {
       smallTabletUp: `(min-width: ${Widths.SmallTablet}px)`,
-      tabletDown: `(max-width: ${Widths.Tablet}px)`,
       tabletUp: `(min-width: ${Widths.Tablet}px)`,
       desktopUp: `(min-width: ${Widths.Desktop}px)`,
       largeDesktopUp: `(min-width: ${Widths.LargeDesktop}px)`,

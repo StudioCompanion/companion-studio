@@ -21,16 +21,16 @@ export const Cursor = React.forwardRef<HTMLDivElement, CursorProps>(
 )
 
 const CursorEl = styled('div', {
-  width: 24,
-  height: 24,
-  position: 'fixed',
-  zIndex: '$1',
-  pointerEvents: 'none',
-  filter: 'invert(0.5)',
-  mixBlendMode: 'difference',
-  transform: 'translate(-50%,-50%)',
-
-  '@tabletDown': {
-    display: 'none',
+  display: 'none',
+  '@tabletUp': {
+    display: 'block',
+    width: 24,
+    height: 24,
+    position: 'fixed',
+    zIndex: '$1',
+    pointerEvents: 'none',
+    filter: 'invert(0.5)',
+    mixBlendMode: 'difference',
+    transform: 'translate(-50%,-50%)',
   },
 })
