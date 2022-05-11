@@ -26,25 +26,6 @@ export const VideoPlayer = ({
 
   const reduceMotion = useReducedMotion()
 
-  // useEffect(() => {
-  //   // detecting for 'space' events
-  //   document.addEventListener('keydown', (e) => {
-  //     e.preventDefault()
-  //     // we have to check if a video is in focus
-  //     if (document.activeElement === videoRef.current) {
-  //       // if the key pressed is the space key
-  //       if (e.keyCode === 32) {
-  //         // if (e.code === 'Space') {
-  //         !isPaused ? videoRef.current.play() : videoRef.current.pause()
-  //         // log
-  //         console.log('✨✨✨ SPACE has been PRESSED!!!! 🚀')
-  //       }
-  //     }
-  //   })
-
-  //   // videoRef.current.focus()
-  // }, [isPaused])
-
   /**
    * Play/Pause handling
    */
@@ -126,7 +107,6 @@ export const VideoPlayer = ({
   return (
     <VideoContainer onClick={handleClick}>
       <Video
-        // tabIndex={0}
         ref={videoRef}
         preload="auto"
         src={src}
@@ -135,7 +115,6 @@ export const VideoPlayer = ({
         muted
         playsInline
       />
-      {/* <Control>{isPaused ? '/icons/Playing.png' : 'icons/Paused.png'}</Control> */}
       <Control>
         <span>
           <img

@@ -44,25 +44,6 @@ export const Carousel = (props: Sanity.BlockMedia) => {
       item?.desktop?._type === 'video' || item?.mobile?._type === 'video'
   )
 
-  // useEffect(() => {
-  //   // detecting for 'space' events
-  //   document.addEventListener('keydown', (e) => {
-  //     e.preventDefault()
-  //     // we have to check if a video is in focus
-  //     if (document.activeElement === videoRef.current) {
-  //       // if the key pressed is the space key
-  //       if (e.keyCode === 32) {
-  //         // if (e.code === 'Space') {
-  //         paused ? videoRef.current.play() : videoRef.current.pause()
-  //         // log
-  //         console.log('✨✨✨ SPACE has been PRESSED!!!! 🚀')
-  //       }
-  //     }
-  //   })
-
-  //   // videoRef.current.focus()
-  // }, [paused])
-
   const [showCursor, setShowCursor] = useState(false)
   const cursorRef = useRef<HTMLDivElement>(null)
 
