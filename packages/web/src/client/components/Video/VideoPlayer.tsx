@@ -149,17 +149,6 @@ const Video = styled('video', {
 })
 
 const Control = styled('button', {
-  bottom: '16px',
-  right: '16px',
-  background: 'white',
-  width: '40px',
-  height: '40px',
-  position: 'absolute',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  borderRadius: '50%',
-  border: 'none',
   variants: {
     canHover: {
       true: {
@@ -172,9 +161,46 @@ const Control = styled('button', {
     },
   },
 
+  bottom: '16px',
+  right: '16px',
+  background: 'white',
+  width: '40px',
+  height: '40px',
+  position: 'absolute',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: '50%',
+  border: 'none',
+
   span: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  '@desktopUp': {
+    '&:focus': {
+      bottom: '16px',
+      right: '16px',
+      background: 'white',
+      width: '40px',
+      height: '40px',
+      position: 'absolute',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: '50%',
+      border: 'none',
+
+      span: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    },
+    background: 'transparent',
+    span: {
+      display: 'none',
+    },
   },
 })
