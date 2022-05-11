@@ -36,8 +36,6 @@ export const Carousel = (props: Sanity.BlockMedia) => {
     typeof FORWARD | typeof BACKWARD | null
   >(null)
 
-  // const videoRef = useRef<HTMLVideoElement>(null!)
-
   const [paused, setPaused] = useState(false)
   const video = items.find(
     (item) =>
