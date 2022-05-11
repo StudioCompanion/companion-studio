@@ -44,6 +44,7 @@ export const Input = ({
       <FormInput
         placeholder={placeholder}
         type={type}
+        id={name}
         name={name}
         value={value}
         onChange={handleChange}
