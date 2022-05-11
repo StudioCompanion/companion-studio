@@ -3,6 +3,7 @@ import useIntersectionObserver from '@react-hook/intersection-observer'
 
 import { styled } from 'styles/stitches.config'
 import { useReducedMotion } from 'hooks/useReducedMotion'
+import { useCanHover } from 'hooks/useCanHover'
 
 export type VideoPlayerProps = {
   src: string
@@ -104,6 +105,8 @@ export const VideoPlayer = ({
     }
   }
 
+  const canHover = useCanHover()
+
   return (
     <VideoContainer onClick={handleClick}>
       <Video
@@ -115,7 +118,7 @@ export const VideoPlayer = ({
         muted
         playsInline
       />
-      <Control>
+      <Control canHover={canHover ? 'true' : 'false'}>
         <span>
           <img
             src={
@@ -153,22 +156,25 @@ const Control = styled('button', {
   height: '40px',
   position: 'absolute',
   display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   borderRadius: '50%',
   border: 'none',
-  '&:hover': {
-    background: '#e5e5e5',
-    cursor: 'pointer',
+  variants: {
+    canHover: {
+      true: {
+        '&:hover': {
+          background: 'lightGrey',
+          cursor: 'pointer',
+        },
+      },
+      false: {},
+    },
   },
+
   span: {
-    width: '24px',
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative',
-
-    img: {
-      position: 'absolute',
-      top: '12px',
-      right: '2px',
-    },
   },
 })
