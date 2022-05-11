@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
 import { styled } from 'styles/stitches.config'
