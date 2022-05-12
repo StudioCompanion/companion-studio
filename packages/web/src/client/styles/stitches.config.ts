@@ -18,7 +18,6 @@ const { styled, globalCss, getCssText, config, keyframes } =
       colors: {
         white: '#fff',
         lightGrey: '#f1f1f4',
-        whiteGrey: '#e5e5e5',
         grey: '#e5e5eb',
         blue: '#0037B0',
         darkBlue: '#080B37',
