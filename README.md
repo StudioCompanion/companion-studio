@@ -1,6 +1,6 @@
 # Companion Site
 
-This repo is the monorepo for the companion website. Whilst there is only one project, we've opted for a monorepo with the ambition we'll include the CMS package when developing the project further.
+This repo is the monorepo for the companion website.
 
 ## Authors
 
@@ -10,20 +10,22 @@ Josh Ellis <josh@companion.studio>
 
 Make a list of the ENVs we have
 
-- Staging – [the-link-to-staging](my-staging-server)
+- Staging – [https://companion-studio-eta.vercel.app/](https://companion-studio-eta.vercel.app/)
 
 ## Developing
 
 ### Built With
 
 - Nextjs
-- Styled components
+- Stitches
 - React
+- react-spring
 
 ### Prerequisites
 
 - Node 16.13.0 (theres an nvm file)
 - Yarn >=3
+- Doppler
 
 ### Setting up Dev
 
@@ -32,6 +34,9 @@ the project further:
 
 ```shell
 yarn
+
+doppler login
+
 yarn web:dev
 ```
 
