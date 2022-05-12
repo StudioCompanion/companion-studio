@@ -26,7 +26,7 @@ export default (props) => {
       const previewUrl = `${siteUrl}/api/preview?secret=${secret}`
       const document = draft || published
 
-      let slug = `/${document?.slug?.current}`
+      let slug = `/${document?.slug?.current ?? ''}`
 
       switch (type) {
         case 'project':

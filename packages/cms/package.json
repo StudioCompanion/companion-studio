@@ -7,9 +7,8 @@
   "author": "Elena Marinaki <elena@companion.studio>",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "sanity start",
-    "build": "sanity build",
-    "deploy": "sanity deploy"
+    "start": "doppler run -c dev -p site-cms -- sanity start",
+    "deploy": "doppler run -c prd -p site-cms -- sanity deploy"
   },
   "keywords": [
     "sanity"
