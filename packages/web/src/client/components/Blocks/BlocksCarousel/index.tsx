@@ -17,6 +17,7 @@ import { InfiniteSlider, SliderApi } from './InfiniteCarousel'
 import { Cursor } from './Cursor'
 
 import { Sanity } from '@types'
+import { useCanHover } from 'hooks/useCanHover'
 
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
@@ -102,11 +103,21 @@ export const Carousel = (props: Sanity.BlockMedia) => {
     setActiveIndex(index)
   }
 
+  const canHover = useCanHover()
+
   const handleMouseEnter = () => {
+    if (!canHover) {
+      return
+    }
+
     if (itemCount > 1 || video) setShowCursor(true)
   }
 
   const handleMouseLeave = () => {
+    if (!canHover) {
+      return
+    }
+
     if (showCursor) {
       setShowCursor(false)
     }
