@@ -24,6 +24,6 @@ const Container = styled(FadeIn, {
 
 const RichText = styled(RendererRichText, {
   '@tabletUp': {
-    maxWidth: '$documentWrapper',
+    maxWidth: '$centeredParagraph',
   },
 })
