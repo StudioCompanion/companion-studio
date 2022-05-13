@@ -61,30 +61,24 @@ export const ButtonContainer = styled('span', {
         backgroundColor: '$white100',
         color: '$black100',
 
-        '@media(hover:hover)': {
-          '&:hover': {
-            backgroundColor: '$white50',
-          },
+        hover: {
+          backgroundColor: '$white50',
         },
       },
       [ThemeTypes.GREY]: {
         backgroundColor: '$white50',
         color: '$black100',
 
-        '@media(hover:hover)': {
-          '&:hover': {
-            backgroundColor: '$black70',
-          },
+        hover: {
+          backgroundColor: '$black70',
         },
       },
       [ThemeTypes.DARK]: {
         backgroundColor: '$black100',
         color: '$white100',
 
-        '@media(hover:hover)': {
-          '&:hover': {
-            backgroundColor: '$black70',
-          },
+        hover: {
+          backgroundColor: '$black70',
         },
       },
     },

@@ -46,11 +46,9 @@ const CalloutContainer = styled(LinkBase, {
     p: '$m',
   },
 
-  '@media (hover: hover)': {
-    '&:hover': {
-      [`& ${ButtonContainer}`]: {
-        backgroundColor: '$black50',
-      },
+  hover: {
+    [`& ${ButtonContainer}`]: {
+      backgroundColor: '$black50',
     },
   },
 })

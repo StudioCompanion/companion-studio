@@ -52,7 +52,7 @@ const Element = styled('h1', {
   variants: {
     size: {
       ['XXXL']: {
-        ...getFontStyle('XXL'),
+        ...getFontStyle('$XXXL'),
       },
       ['XXL']: {
         ...getFontStyle('$XXL'),

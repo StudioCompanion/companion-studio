@@ -28,7 +28,7 @@ const LinkTreeItemContainer = styled(LinkBase, {
   borderRadius: '$wrapperMobile',
   border: '1px solid transparent',
 
-  '&:hover': {
+  hover: {
     backgroundColor: '$white100',
     borderColor: '$white50',
   },

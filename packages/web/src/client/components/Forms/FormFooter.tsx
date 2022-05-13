@@ -154,7 +154,7 @@ const FormButton = styled('button', {
   fontSize: '$XS',
   lineHeight: '$XS',
 
-  '&:hover': {
+  hover: {
     backgroundColor: '$white50',
   },
 

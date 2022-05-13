@@ -193,6 +193,14 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
           left: 0,
         },
       }),
+
+      hover: (val: object) => ({
+        '@media (hover:hover)': {
+          '&:hover': {
+            ...val,
+          },
+        },
+      }),
     },
   })
 

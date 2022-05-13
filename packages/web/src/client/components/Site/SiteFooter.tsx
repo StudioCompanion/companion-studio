@@ -67,7 +67,7 @@ export const Footer = ({ links }: Sanity.Footer) => {
           <ImprintLine>
             <LinkBase
               css={{
-                '&:hover': {
+                hover: {
                   textDecoration: 'underline',
                 },
               }}
@@ -186,9 +186,7 @@ const FooterLinks = styled('ul', {
 const FooterLink = styled(LinkBase, {
   textDecoration: 'none',
 
-  '@media (hover: hover)': {
-    '&:hover': {
-      textDecoration: 'underline',
-    },
+  hover: {
+    textDecoration: 'underline',
   },
 })
