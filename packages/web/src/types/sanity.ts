@@ -88,7 +88,6 @@ export interface DocumentBase {
 
 export interface ProjectPage extends DocumentBase {
   title?: string
-  subtext?: string
   blocks?: Blocks
   team?: Team
 }

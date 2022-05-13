@@ -35,13 +35,6 @@ export default {
     },
     slug({ group: 'info', path: 'projects' }),
     {
-      name: 'subtext',
-      title: 'Subtext',
-      type: 'string',
-      group: 'info',
-      validation: (rule) => rule.required(),
-    },
-    {
       group: 'info',
       name: 'team',
       title: 'Team',
