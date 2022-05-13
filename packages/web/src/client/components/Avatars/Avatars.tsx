@@ -129,7 +129,7 @@ const GridImageWrapper = styled(Media, {
   position: 'relative',
   borderRadius: '$circle',
   padding: '$xxxs',
-  background: '$lightGrey',
+  background: '$white50',
   height: 50,
   width: 50,
 

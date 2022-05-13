@@ -52,24 +52,24 @@ export const ButtonContainer = styled('span', {
   pb: 9,
   textDecoration: 'none',
   cursor: 'pointer',
-  fontSize: '$h6',
-  lineHeight: '$h6',
+  fontSize: '$XS',
+  lineHeight: '$XS',
 
   variants: {
     theme: {
       [ThemeTypes.LIGHT]: {
-        backgroundColor: '$white',
-        color: '$black',
+        backgroundColor: '$white100',
+        color: '$black100',
 
         '@media(hover:hover)': {
           '&:hover': {
-            backgroundColor: '$lightGrey',
+            backgroundColor: '$white50',
           },
         },
       },
       [ThemeTypes.GREY]: {
-        backgroundColor: '$lightGrey',
-        color: '$black',
+        backgroundColor: '$white50',
+        color: '$black100',
 
         '@media(hover:hover)': {
           '&:hover': {
@@ -78,8 +78,8 @@ export const ButtonContainer = styled('span', {
         },
       },
       [ThemeTypes.DARK]: {
-        backgroundColor: '$black',
-        color: '$white',
+        backgroundColor: '$black100',
+        color: '$white100',
 
         '@media(hover:hover)': {
           '&:hover': {

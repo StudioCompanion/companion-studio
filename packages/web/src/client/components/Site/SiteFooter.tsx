@@ -145,9 +145,9 @@ export const Footer = ({ links }: Sanity.Footer) => {
 }
 
 const FooterContainer = styled(FadeIn, {
-  backgroundColor: '$black',
+  backgroundColor: '$black100',
   borderRadius: '$wrapperLarge',
-  color: '$white',
+  color: '$white100',
   p: '$s',
 
   '@tabletUp': {
@@ -172,7 +172,7 @@ const FooterContent = styled('div', {
 })
 
 const FooterText = styled(Heading, {
-  color: '$white',
+  color: '$white100',
   mb: '$l',
 })
 
@@ -218,7 +218,7 @@ const Imprint = styled('div', {
 
 const ImprintCopy = styled(Heading, {
   mt: '$l',
-  color: '$white',
+  color: '$white100',
   opacity: 0.5,
 
   '@tabletUp': {
@@ -237,7 +237,7 @@ const ImprintLine = styled('span', {
 const FooterLinks = styled('ul', {
   fontSize: '$h6',
   lineHeight: '$h6',
-  color: '$white',
+  color: '$white100',
   display: 'grid',
   gridTemplateColumns: 'repeat(2, min-content)',
   gap: '1.2rem 5.4rem',

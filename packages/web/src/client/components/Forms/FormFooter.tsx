@@ -142,8 +142,8 @@ const FormFeedback = styled(Heading, {
 })
 
 const FormButton = styled('button', {
-  backgroundColor: '$white',
-  color: '$black',
+  backgroundColor: '$white100',
+  color: '$black100',
   borderRadius: '$pill',
   border: 'none',
   cursor: 'pointer',

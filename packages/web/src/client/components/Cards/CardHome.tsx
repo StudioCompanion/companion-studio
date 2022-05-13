@@ -111,28 +111,34 @@ const CardWrapper = styled('a', {
     theme: {
       [ThemeTypes.LIGHT]: {
         backgroundColor: '$white',
+        backgroundColor: '$white100',
 
         '&:hover': {
           [`& ${ButtonContainer}`]: {
             backgroundColor: '$lightGrey',
+            backgroundColor: '$white50',
           },
         },
       },
       [ThemeTypes.GREY]: {
         backgroundColor: '$lightGrey',
+        backgroundColor: '$white50',
 
         '&:hover': {
           [`& ${ButtonContainer}`]: {
             backgroundColor: '$lightGrey',
+            backgroundColor: '$white50',
           },
         },
       },
       [ThemeTypes.DARK]: {
         backgroundColor: '$black',
+        backgroundColor: '$black100',
 
         '&:hover': {
           [`& ${ButtonContainer}`]: {
             backgroundColor: '$lightGrey',
+            backgroundColor: '$white50',
           },
         },
       },
@@ -167,16 +173,19 @@ const CardText = styled('div', {
       [ThemeTypes.LIGHT]: {
         '& h2, & h3': {
           color: '$black',
+          color: '$black100',
         },
       },
       [ThemeTypes.GREY]: {
         '& h2, & h3': {
           color: '$black',
+          color: '$black100',
         },
       },
       [ThemeTypes.DARK]: {
         '& h2, & h3': {
           color: '$white',
+          color: '$white100',
         },
       },
     },

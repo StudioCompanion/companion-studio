@@ -24,7 +24,7 @@ const BACKWARD = 'backward'
 export const Carousel = (props: Sanity.BlockMedia) => {
   const {
     backgroundImage,
-    backgroundColor = '$lightGrey',
+    backgroundColor = '$white50',
     items,
     layout = CarouselLayouts.FULL,
     isHero,

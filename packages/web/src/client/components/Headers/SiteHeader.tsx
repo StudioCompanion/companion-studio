@@ -75,7 +75,7 @@ const NavContainer = styled('header', {
 })
 
 const NavWrapper = styled('nav', {
-  backgroundColor: '$white',
+  backgroundColor: '$white100',
   width: 'fit-content',
   p: 6,
   borderRadius: '$pill',
@@ -107,7 +107,7 @@ const NavLink = styled(LinkBase, {
   variants: {
     active: {
       true: {
-        backgroundColor: '$black',
+        backgroundColor: '$black100',
         color: '$white !important',
 
         '&:hover': {
@@ -119,7 +119,7 @@ const NavLink = styled(LinkBase, {
         color: 'rgba(8, 11, 55, 0.57)',
 
         '&:hover': {
-          backgroundColor: '$lightGrey',
+          backgroundColor: '$white50',
         },
       },
     },

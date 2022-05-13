@@ -20,7 +20,7 @@ export const LinkTreeItem = ({ link, media }: Sanity.LinktreeItem) => {
 const LinkTreeItemContainer = styled(LinkBase, {
   display: 'flex',
   alignItems: 'center',
-  backgroundColor: '$lightGrey',
+  backgroundColor: '$white50',
   my: '$s',
   p: '$xxs',
   color: 'inherit',
@@ -29,8 +29,8 @@ const LinkTreeItemContainer = styled(LinkBase, {
   border: '1px solid transparent',
 
   '&:hover': {
-    backgroundColor: '$white',
-    borderColor: '$lightGrey',
+    backgroundColor: '$white100',
+    borderColor: '$white50',
   },
 })
 

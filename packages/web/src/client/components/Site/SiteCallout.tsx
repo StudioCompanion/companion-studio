@@ -36,7 +36,7 @@ export const Callout = ({ text, link, media }: Sanity.Callout) => {
 const CalloutContainer = styled(LinkBase, {
   display: 'flex',
   justifyContent: 'space-between',
-  backgroundColor: '$lightGrey',
+  backgroundColor: '$white50',
   borderRadius: '$wrapperLarge',
   p: '$s',
   textDecoration: 'none',
