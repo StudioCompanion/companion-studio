@@ -51,9 +51,7 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
         s: '1.6rem',
         m: '2rem',
         l: '2.4rem',
-        xl: '4rem',
-        xxl: '6rem',
-        xxxl: '8rem',
+        xl: '3rem',
       },
       radii: {
         wrapper: '0.8rem',

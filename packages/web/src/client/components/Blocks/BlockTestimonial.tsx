@@ -31,7 +31,7 @@ const TestimonialContainer = styled('section', {
   my: '$xxl',
 
   '@tabletUp': {
-    my: '$xxxl',
+    my: 'XXL',
   },
 })
 

@@ -69,10 +69,14 @@ const RightContainer = styled('div', {
 })
 
 const HomepageCard = styled(CardHome, {
-  mb: '$s',
+  '& + &': {
+    mt: '$s',
+  },
 
   '@desktopUp': {
-    mb: '$m',
+    '& + &': {
+      mt: '$m',
+    },
   },
 })
 

@@ -10,7 +10,7 @@ export interface Props {
     JSX.IntrinsicElements,
     'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p'
   >
-  fontStyle?: ScaleValue<'fontSizes'>
+  fontStyle?: 'XXXL' | 'XXL' | 'XL' | 'L' | 'M' | 'S' | 'XS' | 'XXS'
   weight?: ScaleValue<'fontWeights'>
   css?: CSS
 }
@@ -19,7 +19,7 @@ export const Heading = forwardRef<HTMLHeadingElement, Props>(
   (
     {
       tag = 'h1',
-      fontStyle = '$h1',
+      fontStyle = 'XXS',
       weight = '$regular',
       children,
       className,
@@ -32,9 +32,9 @@ export const Heading = forwardRef<HTMLHeadingElement, Props>(
         className={className}
         ref={ref}
         as={tag}
+        size={fontStyle}
         css={{
           fontWeight: weight,
-          ...getFontStyle(fontStyle),
           ...css,
         }}
       >
@@ -47,5 +47,34 @@ export const Heading = forwardRef<HTMLHeadingElement, Props>(
 const Element = styled('h1', {
   '& > a': {
     textDecoration: 'none',
+  },
+
+  variants: {
+    size: {
+      ['XXXL']: {
+        ...getFontStyle('XXL'),
+      },
+      ['XXL']: {
+        ...getFontStyle('$XXL'),
+      },
+      ['XL']: {
+        ...getFontStyle('$XL'),
+      },
+      ['L']: {
+        ...getFontStyle('$L'),
+      },
+      ['M']: {
+        ...getFontStyle('$M'),
+      },
+      ['S']: {
+        ...getFontStyle('$S'),
+      },
+      ['XS']: {
+        ...getFontStyle('$XS'),
+      },
+      ['XXS']: {
+        ...getFontStyle('$XXS'),
+      },
+    },
   },
 })

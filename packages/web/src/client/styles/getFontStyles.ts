@@ -2,18 +2,12 @@ import { CSS, ScaleValue } from './stitches.config'
 
 type DesktopFontSizeTokens = ScaleValue<'fontSizes'>
 
-type DesktopFontWeightTokens = ScaleValue<'fontWeights'>
-
-export const getFontStyle = (
-  DeskStyle: DesktopFontSizeTokens,
-  weight: DesktopFontWeightTokens = '$regular'
-): CSS => {
+export const getFontStyle = (DeskStyle: DesktopFontSizeTokens): CSS => {
   switch (DeskStyle) {
-    case '$XXXL':
+    case 'XXL':
       return {
         fontSize: '$XXL',
         lineHeight: '$XXL',
-        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
@@ -24,7 +18,6 @@ export const getFontStyle = (
       return {
         fontSize: '$XL',
         lineHeight: '$XL',
-        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
@@ -35,7 +28,6 @@ export const getFontStyle = (
       return {
         fontSize: '$L',
         lineHeight: '$L',
-        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
@@ -46,7 +38,6 @@ export const getFontStyle = (
       return {
         fontSize: '$M',
         lineHeight: '$M',
-        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
@@ -57,7 +48,6 @@ export const getFontStyle = (
       return {
         fontSize: '$S',
         lineHeight: '$S',
-        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
@@ -68,7 +58,6 @@ export const getFontStyle = (
       return {
         fontSize: '$XS',
         lineHeight: '$XS',
-        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
@@ -77,20 +66,13 @@ export const getFontStyle = (
       }
     case '$XS':
       return {
-        fontSize: '$XXS',
-        lineHeight: '$XXS',
-        fontWeight: weight,
-
-        '@tabletUp': {
-          fontSize: DeskStyle,
-          lineHeight: DeskStyle,
-        },
+        fontSize: DeskStyle,
+        lineHeight: DeskStyle,
       }
     case '$XXS':
       return {
         fontSize: DeskStyle,
         lineHeight: DeskStyle,
-        fontWeight: weight,
       }
     default:
       return {}

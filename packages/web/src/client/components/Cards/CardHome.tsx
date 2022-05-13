@@ -81,12 +81,12 @@ export const CardHome = ({
         <CardText theme={theme}>
           <div>
             {actualTitle ? (
-              <Heading tag="h2" fontStyle="$body">
+              <Heading tag="h2" fontStyle="L" weight="$bold">
                 {actualTitle}
               </Heading>
             ) : null}
             {subtitle ? (
-              <Heading tag="h3" fontStyle="$h6">
+              <Heading tag="h3" fontStyle="XS">
                 {subtitle}
               </Heading>
             ) : null}
@@ -110,34 +110,28 @@ const CardWrapper = styled('a', {
   variants: {
     theme: {
       [ThemeTypes.LIGHT]: {
-        backgroundColor: '$white',
         backgroundColor: '$white100',
 
         '&:hover': {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$lightGrey',
             backgroundColor: '$white50',
           },
         },
       },
       [ThemeTypes.GREY]: {
-        backgroundColor: '$lightGrey',
         backgroundColor: '$white50',
 
         '&:hover': {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$lightGrey',
             backgroundColor: '$white50',
           },
         },
       },
       [ThemeTypes.DARK]: {
-        backgroundColor: '$black',
         backgroundColor: '$black100',
 
         '&:hover': {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$lightGrey',
             backgroundColor: '$white50',
           },
         },
@@ -172,19 +166,16 @@ const CardText = styled('div', {
     theme: {
       [ThemeTypes.LIGHT]: {
         '& h2, & h3': {
-          color: '$black',
           color: '$black100',
         },
       },
       [ThemeTypes.GREY]: {
         '& h2, & h3': {
-          color: '$black',
           color: '$black100',
         },
       },
       [ThemeTypes.DARK]: {
         '& h2, & h3': {
-          color: '$white',
           color: '$white100',
         },
       },

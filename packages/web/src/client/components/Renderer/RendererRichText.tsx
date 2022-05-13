@@ -83,13 +83,13 @@ const availableHeadings = new Array(3)
 
 const components: Partial<PortableTextReactComponents> = {
   block: {
-    XXXL: ({ ...props }) => <Heading tag="h1" fontStyle="$XXXL" {...props} />,
-    XXL: ({ ...props }) => <Heading tag="h2" fontStyle="$XXL" {...props} />,
-    XL: ({ ...props }) => <Heading tag="h3" fontStyle="$XL" {...props} />,
+    XXXL: ({ ...props }) => <Heading tag="h1" fontStyle="XXXL" {...props} />,
+    XXL: ({ ...props }) => <Heading tag="h2" fontStyle="XXL" {...props} />,
+    XL: ({ ...props }) => <Heading tag="h3" fontStyle="XL" {...props} />,
     L: ({ ...props }) => (
       <Heading
         tag="p"
-        fontStyle="$L"
+        fontStyle="L"
         css={{
           [availableHeadings]: {
             mt: '$xs',
@@ -104,7 +104,7 @@ const components: Partial<PortableTextReactComponents> = {
     normal: ({ ...props }) => (
       <Heading
         tag="p"
-        fontStyle="$M"
+        fontStyle="M"
         css={{
           [availableHeadings]: {
             mt: '$xs',
@@ -119,7 +119,7 @@ const components: Partial<PortableTextReactComponents> = {
     S: ({ ...props }) => (
       <Heading
         tag="p"
-        fontStyle="$S"
+        fontStyle="S"
         css={{
           [availableHeadings]: {
             mt: '$xxs',
@@ -141,7 +141,7 @@ const components: Partial<PortableTextReactComponents> = {
         <BulletList
           css={{
             // @ts-ignore
-            ...getFontStyle(`$${style === 'normal' ? 'M' : style}`),
+            ...getFontStyle(`${style === 'normal' ? 'M' : style}`),
 
             'p + &': {
               mt: getMarginFromStyle(style),
@@ -160,7 +160,7 @@ const components: Partial<PortableTextReactComponents> = {
         <NumberList
           css={{
             // @ts-ignore
-            ...getFontStyle(`$${style === 'normal' ? 'M' : style}`),
+            ...getFontStyle(`${style === 'normal' ? 'M' : style}`),
 
             'p + &': {
               mt: getMarginFromStyle(style),
