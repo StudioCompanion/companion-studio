@@ -29,9 +29,9 @@ const Index = ({ document, ...siteProps }: IndexProps) => {
       <CardsContainer>
         {Array.isArray(cards)
           ? cards.map((item) => (
-              <FadeIn tag="div" key={item._key}>
-                <HomepageCard {...item} />
-              </FadeIn>
+              <HomeCardFade tag="div" key={item._key}>
+                <CardHome {...item} />
+              </HomeCardFade>
             ))
           : null}
       </CardsContainer>
@@ -68,7 +68,7 @@ const RightContainer = styled('div', {
   },
 })
 
-const HomepageCard = styled(CardHome, {
+const HomeCardFade = styled(FadeIn, {
   '& + &': {
     mt: '$s',
   },
