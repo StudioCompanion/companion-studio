@@ -4,6 +4,49 @@ import styled from 'styled-components'
 
 import { REFERENCED_DOCUMENTS } from '../../constants'
 
+const RICH_TEXT_THEME = {
+  XXXL: {
+    fontSize: '58px',
+    lineHeight: '120%',
+    fontFamily: 'Apfel Groteszk',
+    letterSpacing: '-0.01em',
+  },
+  XXL: {
+    fontSize: '44px',
+    lineHeight: '120%',
+    fontFamily: 'Apfel Groteszk',
+    letterSpacing: '-0.01em',
+  },
+  XL: {
+    fontSize: '32px',
+    lineHeight: '120%',
+    fontFamily: 'Apfel Groteszk',
+    letterSpacing: '-0.01em',
+  },
+  L: {
+    fontSize: '26px',
+    lineHeight: '130%',
+    fontFamily: 'Apfel Groteszk',
+    letterSpacing: '-0.01em',
+  },
+  normal: {
+    fontSize: '20px',
+    lineHeight: '130%',
+    fontFamily: 'Apfel Groteszk',
+    letterSpacing: '-0.01em',
+  },
+  S: {
+    fontSize: '17px',
+    lineHeight: '130%',
+    fontFamily: 'Apfel Groteszk',
+    letterSpacing: '-0.01em',
+  },
+}
+
+const styleRenderer = (props) => (
+  <span style={{ ...RICH_TEXT_THEME[props.style] }}>{props.children}</span>
+)
+
 export const basicRichText = {
   title: 'Rich text',
   name: 'richText',
@@ -12,7 +55,56 @@ export const basicRichText = {
     {
       title: 'Block',
       type: 'block',
+      styles: [
+        {
+          title: 'H1',
+          value: 'XXXL',
+          blockEditor: {
+            render: styleRenderer,
+          },
+        },
+        {
+          title: 'H2',
+          value: 'XXL',
+          blockEditor: {
+            render: styleRenderer,
+          },
+        },
+        {
+          title: 'H3',
+          value: 'XL',
+          blockEditor: {
+            render: styleRenderer,
+          },
+        },
+        {
+          title: 'Large Copy',
+          value: 'L',
+          blockEditor: {
+            render: styleRenderer,
+          },
+        },
+        {
+          title: 'Normal Copy',
+          value: 'normal',
+          blockEditor: {
+            render: styleRenderer,
+          },
+        },
+        {
+          title: 'Small Copy',
+          value: 'S',
+          blockEditor: {
+            render: styleRenderer,
+          },
+        },
+      ],
       marks: {
+        decorators: [
+          { title: 'Strong', value: 'strong' },
+          { title: 'Emphasis', value: 'em' },
+          { title: 'Underline', value: 'underline' },
+        ],
         annotations: [
           /**
            * TODO: investigate why this can't just

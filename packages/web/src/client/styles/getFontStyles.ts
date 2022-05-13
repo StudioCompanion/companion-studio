@@ -2,73 +2,95 @@ import { CSS, ScaleValue } from './stitches.config'
 
 type DesktopFontSizeTokens = ScaleValue<'fontSizes'>
 
-export const getFontStyle = (DeskStyle: DesktopFontSizeTokens): CSS => {
+type DesktopFontWeightTokens = ScaleValue<'fontWeights'>
+
+export const getFontStyle = (
+  DeskStyle: DesktopFontSizeTokens,
+  weight: DesktopFontWeightTokens = '$regular'
+): CSS => {
   switch (DeskStyle) {
-    case '$h1':
+    case '$XXXL':
       return {
-        fontSize: '$h2',
-        lineHeight: '$h2',
+        fontSize: '$XXL',
+        lineHeight: '$XXL',
+        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
       }
-    case '$h2':
+    case '$XXL':
       return {
-        fontSize: '$h3',
-        lineHeight: '$h3',
+        fontSize: '$XL',
+        lineHeight: '$XL',
+        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
       }
-    case '$h3':
+    case '$XL':
       return {
-        fontSize: '$h4',
-        lineHeight: '$h4',
+        fontSize: '$L',
+        lineHeight: '$L',
+        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
       }
-    case '$h4':
+    case '$L':
       return {
-        fontSize: '$h5',
-        lineHeight: '$h5',
+        fontSize: '$M',
+        lineHeight: '$M',
+        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
       }
-    case '$h5':
+    case '$M':
       return {
-        fontSize: '$h6',
-        lineHeight: '$h6',
+        fontSize: '$S',
+        lineHeight: '$S',
+        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
       }
-    case '$h6':
+    case '$S':
       return {
-        fontSize: '$h6',
-        lineHeight: '$h6',
-      }
-    case '$body':
-      return {
-        fontFamily: '$reckless',
-        fontSize: '$h5',
-        lineHeight: '$h5',
+        fontSize: '$XS',
+        lineHeight: '$XS',
+        fontWeight: weight,
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
+      }
+    case '$XS':
+      return {
+        fontSize: '$XXS',
+        lineHeight: '$XXS',
+        fontWeight: weight,
+
+        '@tabletUp': {
+          fontSize: DeskStyle,
+          lineHeight: DeskStyle,
+        },
+      }
+    case '$XXS':
+      return {
+        fontSize: DeskStyle,
+        lineHeight: DeskStyle,
+        fontWeight: weight,
       }
     default:
       return {}
