@@ -29,8 +29,9 @@ const Header = styled('header', {
   flexDirection: 'column',
 
   '@tabletUp': {
-    mb: '$xxs',
+    mb: '$xs',
     flexDirection: 'row',
+    alignItems: 'center',
 
     '& > *': {
       flex: '1 0 50%',
