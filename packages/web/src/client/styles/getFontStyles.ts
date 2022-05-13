@@ -2,9 +2,14 @@ import { CSS, ScaleValue } from './stitches.config'
 
 type DesktopFontSizeTokens = ScaleValue<'fontSizes'>
 
+/**
+ * Use the desktop size and it will add the mobile.
+ * Relates to our Stitches config so autocomplete
+ * will help you find the right style.
+ */
 export const getFontStyle = (DeskStyle: DesktopFontSizeTokens): CSS => {
   switch (DeskStyle) {
-    case 'XXL':
+    case '$XXXL':
       return {
         fontSize: '$XXL',
         lineHeight: '$XXL',

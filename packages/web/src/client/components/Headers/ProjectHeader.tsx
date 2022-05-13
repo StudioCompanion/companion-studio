@@ -12,7 +12,7 @@ export const ProjecHeader = ({ title, team }: ProjectHeaderProps) => {
     <Header>
       <div>
         {title ? (
-          <Heading tag="h1" fontStyle={'$h1'} weight="$medium">
+          <Heading tag="h1" fontStyle={'XXXL'} weight="$bold">
             {title}
           </Heading>
         ) : null}
@@ -24,12 +24,12 @@ export const ProjecHeader = ({ title, team }: ProjectHeaderProps) => {
 
 const Header = styled('header', {
   width: '100%',
-  mb: '$m',
   display: 'flex',
   justifyContent: 'space-between',
   flexDirection: 'column',
 
   '@tabletUp': {
+    mb: '$xxs',
     flexDirection: 'row',
 
     '& > *': {

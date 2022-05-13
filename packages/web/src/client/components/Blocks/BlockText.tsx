@@ -14,7 +14,7 @@ export const TextSection = ({ richText }: TextSectionProps) => {
 }
 
 const Container = styled(FadeIn, {
-  m: 'calc($xl - $s) 0 $xl',
+  m: 'calc($l - $s) 0 $l',
 
   '@tabletUp': {
     width: '100%',
