@@ -13,6 +13,7 @@ import { Heading } from 'components/Text/Heading'
 import { useCanHover } from 'hooks/useCanHover'
 
 import { Sanity } from '@types'
+import { getHrefSlugFromSanityReference } from 'helpers/links'
 
 interface CardHomeProps extends Sanity.HomepageCard {
   className?: string
@@ -27,6 +28,7 @@ export const CardHome = ({
   title,
   slug,
   className,
+  type,
 }: CardHomeProps) => {
   const selectedMedia = media?.asset
     ? media
@@ -73,7 +75,7 @@ export const CardHome = ({
   const bind = useHover(hoverCallback)
 
   return (
-    <Link href={`/projects/${slug}` ?? ''} passHref>
+    <Link href={getHrefSlugFromSanityReference({ _type: type, slug })} passHref>
       <CardWrapper className={className} theme={theme} {...bind()}>
         <ImageContainer style={styles}>
           {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}

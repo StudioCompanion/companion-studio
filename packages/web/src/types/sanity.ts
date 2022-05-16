@@ -72,6 +72,7 @@ export interface Card
   extends Omit<SanityGenerated.PageCard, 'media' | 'theme'> {
   theme?: ThemeTypes
   media?: Media
+  type?: PageTypes
 }
 
 type PageTypes = 'homepage' | 'approachpage' | 'teampage' | 'project'

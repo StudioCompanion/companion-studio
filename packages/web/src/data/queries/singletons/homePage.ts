@@ -17,6 +17,7 @@ export const HOMEPAGE = groq`
         meta {
             ${META}
         },
+        "type": _type,
         "slug": slug.current
     },
 `
