@@ -12,12 +12,12 @@ import { Heading } from 'components/Text/Heading'
 
 import { useCanHover } from 'hooks/useCanHover'
 
-import { PickType, Sanity, SanityGenerated } from '@types'
+import { PickType, Sanity } from '@types'
 import { getHrefSlugFromSanityReference } from 'helpers/links'
 
 interface CardHomeProps extends Sanity.HomepageCard {
   className?: string
-  status?: PickType<SanityGenerated.Project, 'status'>
+  status?: PickType<Sanity.ProjectPage, 'status'>
 }
 
 interface CardHomeInnerProps
