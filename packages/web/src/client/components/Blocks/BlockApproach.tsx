@@ -30,7 +30,7 @@ const Section = styled(FadeIn, {
 })
 
 const BlockMedia = styled(Media, {
-  borderRadius: '$wrapperLarge',
+  br: '$wrapperLarge',
   mb: '$l',
 
   '@tabletUp': {
