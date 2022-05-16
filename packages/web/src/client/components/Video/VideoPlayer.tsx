@@ -148,16 +148,15 @@ export const VideoPlayer = ({
         muted
         playsInline
       />
-      <span>
-        <label htmlFor="videoControl">{isPaused ? 'Play' : 'Pause'}</label>
-      </span>
       <VideoButton
         style={style}
         onFocus={handleButtonFocus}
         onBlur={handleButtonBlur}
         aria-controls="video"
         id={src}
+        aria-label={isPaused ? 'Play' : 'Pause'}
       >
+        <span hidden>{isPaused ? 'Play' : 'Pause'}</span>
         <VideoButtonIcon>
           {isPaused ? (
             <svg
