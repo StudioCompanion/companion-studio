@@ -59,6 +59,13 @@ export interface Project extends SanityDocument {
   slug?: { _type: 'slug'; current: string }
 
   /**
+   * Status — `string`
+   *
+   *
+   */
+  status?: 'comingSoon' | 'live'
+
+  /**
    * Team — `array`
    *
    *
@@ -373,13 +380,6 @@ export interface Teampage extends SanityDocument {
   >
 
   /**
-   * Cta — `link`
-   *
-   *
-   */
-  cta?: Link
-
-  /**
    * Page meta — `meta`
    *
    *
@@ -554,11 +554,11 @@ export type PageCard = {
   media?: Media
 
   /**
-   * Layout — `string`
+   * Card Button Label — `string`
    *
    *
    */
-  layout?: 'case' | 'studio'
+  cardButtonLabel?: string
 
   /**
    * Theme — `string`

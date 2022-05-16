@@ -12,23 +12,23 @@ import { Heading } from 'components/Text/Heading'
 
 import { useCanHover } from 'hooks/useCanHover'
 
-import { Sanity } from '@types'
+import { PickType, Sanity, SanityGenerated } from '@types'
 import { getHrefSlugFromSanityReference } from 'helpers/links'
 
 interface CardHomeProps extends Sanity.HomepageCard {
   className?: string
+  status?: PickType<SanityGenerated.Project, 'status'>
 }
 
-export const CardHome = ({
-  layout,
+const CardHomeInner = ({
   media,
   meta,
   subtitle,
   theme,
   title,
-  slug,
   className,
-  type,
+  cardButtonLabel = 'View',
+  status,
 }: CardHomeProps) => {
   const selectedMedia = media?.asset
     ? media
@@ -53,7 +53,7 @@ export const CardHome = ({
 
   const hoverCallback = useCallback(
     ({ hovering }) => {
-      if (!canHover) {
+      if (!canHover || status === 'comingSoon') {
         return
       }
 
@@ -69,36 +69,54 @@ export const CardHome = ({
         })
       }
     },
-    [canHover, api]
+    [canHover, api, status]
   )
 
   const bind = useHover(hoverCallback)
 
+  const isOutlined = status === 'comingSoon'
+
+  return (
+    <CardWrapper
+      className={className}
+      theme={isOutlined ? ThemeTypes.OUTLINED : theme}
+      {...bind()}
+    >
+      <ImageContainer style={styles}>
+        {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}
+      </ImageContainer>
+      <CardText theme={theme}>
+        <div>
+          {actualTitle ? (
+            <Heading tag="h2" fontStyle="L" weight="$bold">
+              {actualTitle}
+            </Heading>
+          ) : null}
+          {subtitle ? (
+            <Heading tag="h3" fontStyle="XS">
+              {subtitle}
+            </Heading>
+          ) : null}
+        </div>
+        <Button
+          text={cardButtonLabel}
+          theme={isOutlined ? ThemeTypes.OUTLINED : ThemeTypes.LIGHT}
+        />
+      </CardText>
+    </CardWrapper>
+  )
+}
+
+export const CardHome = (props: CardHomeProps) => {
+  const { slug, type, status } = props
+
+  if (status === 'comingSoon') {
+    return <CardHomeInner {...props} />
+  }
+
   return (
     <Link href={getHrefSlugFromSanityReference({ _type: type, slug })} passHref>
-      <CardWrapper className={className} theme={theme} {...bind()}>
-        <ImageContainer style={styles}>
-          {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}
-        </ImageContainer>
-        <CardText theme={theme}>
-          <div>
-            {actualTitle ? (
-              <Heading tag="h2" fontStyle="L" weight="$bold">
-                {actualTitle}
-              </Heading>
-            ) : null}
-            {subtitle ? (
-              <Heading tag="h3" fontStyle="XS">
-                {subtitle}
-              </Heading>
-            ) : null}
-          </div>
-          <Button
-            text={layout === 'studio' ? 'View' : 'Read'}
-            theme={ThemeTypes.LIGHT}
-          />
-        </CardText>
-      </CardWrapper>
+      <CardHomeInner {...props} />
     </Link>
   )
 }
@@ -111,6 +129,7 @@ const CardWrapper = styled('a', {
 
   variants: {
     theme: {
+      [ThemeTypes.OUTLINED]: {},
       [ThemeTypes.LIGHT]: {
         backgroundColor: '$white100',
 
@@ -166,6 +185,11 @@ const CardText = styled('div', {
 
   variants: {
     theme: {
+      [ThemeTypes.OUTLINED]: {
+        '& h2, & h3': {
+          color: '$black100',
+        },
+      },
       [ThemeTypes.LIGHT]: {
         '& h2, & h3': {
           color: '$black100',
