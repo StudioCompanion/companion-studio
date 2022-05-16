@@ -59,13 +59,6 @@ export interface Project extends SanityDocument {
   slug?: { _type: 'slug'; current: string }
 
   /**
-   * Subtext — `string`
-   *
-   *
-   */
-  subtext?: string
-
-  /**
    * Team — `array`
    *
    *
@@ -154,16 +147,22 @@ export interface Approachpage extends SanityDocument {
    *
    */
   sections?: Array<
-    | SanityKeyed<{
-        _type: 'textSection'
-        /**
-         * Text Block — `richText`
-         *
-         *
-         */
-        text?: RichText
-      }>
-    | SanityKeyed<Media>
+    SanityKeyed<{
+      _type: 'section'
+      /**
+       * Text Block — `richText`
+       *
+       *
+       */
+      text?: RichText
+
+      /**
+       * Media Section — `media`
+       *
+       *
+       */
+      media?: Media
+    }>
   >
 
   /**
@@ -358,11 +357,11 @@ export interface Teampage extends SanityDocument {
     SanityKeyed<{
       _type: 'quality'
       /**
-       * Title — `squiggleRichText`
+       * Media — `media`
        *
-       * underline the text you want to be squiggled!
+       *
        */
-      title?: SquiggleRichText
+      media?: Media
 
       /**
        * Text — `richText`
@@ -495,8 +494,6 @@ export type Media = {
 }
 
 export type RichText = Array<SanityKeyed<SanityBlock>>
-
-export type SquiggleRichText = Array<SanityKeyed<SanityBlock>>
 
 export type Meta = {
   _type: 'meta'

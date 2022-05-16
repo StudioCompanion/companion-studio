@@ -6,6 +6,7 @@ import { Logo } from 'components/Logo/Logo'
 import { LinkBase } from 'components/Links/LinkBase'
 
 import { Sanity } from '@types'
+import { urlIsReferenceGuard } from 'helpers/links'
 
 export interface NavProps {
   currentPath?: string
@@ -18,45 +19,47 @@ export interface NavProps {
  * being a background
  */
 export const Nav = ({ currentPath = '/', items }: NavProps) => {
+  if (currentPath === '/' || currentPath === '/instagram') {
+    return null
+  }
+
   return (
-    <>
-      {currentPath !== '/' && currentPath !== '/instagram' && (
-        <NavContainer>
-          <Link href={'/'} passHref>
-            <LogoWrapper>
-              <Logo label="Homepage" />
-            </LogoWrapper>
-          </Link>
-          <NavWrapper>
-            <NavList>
-              {Array.isArray(items)
-                ? items.map((item) => (
-                    <NavItem key={item.label}>
-                      <NavLink
-                        {...item}
-                        active={
-                          // @ts-expect-error this should be redundant after all the pages are moved over
-                          currentPath === `/${item.url?.slug}` ||
+    <NavContainer>
+      <Link href={'/'} passHref>
+        <LogoWrapper>
+          <Logo label="Homepage" />
+        </LogoWrapper>
+      </Link>
+      <NavWrapper>
+        <NavList>
+          {Array.isArray(items)
+            ? items.map((item) => (
+                <NavItem key={item.label}>
+                  <NavLink
+                    {...item}
+                    active={
+                      urlIsReferenceGuard(item.url)
+                        ? currentPath === `/${item.url?.slug}` ||
                           (currentPath.includes('projects') &&
                             item.label === 'Work')
-                        }
-                      >
-                        {item.label}
-                      </NavLink>
-                    </NavItem>
-                  ))
-                : null}
-            </NavList>
-          </NavWrapper>
-        </NavContainer>
-      )}
-    </>
+                        : currentPath === item.url
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                </NavItem>
+              ))
+            : null}
+        </NavList>
+      </NavWrapper>
+    </NavContainer>
   )
 }
 
 const LogoWrapper = styled('a', {
   display: 'block',
   mr: '$xs',
+  width: '8.5rem',
 })
 
 const NavContainer = styled('header', {
@@ -75,11 +78,11 @@ const NavContainer = styled('header', {
 })
 
 const NavWrapper = styled('nav', {
-  backgroundColor: '$white',
+  backgroundColor: '$white100',
   width: 'fit-content',
   p: 6,
   borderRadius: '$pill',
-  border: '1px solid rgba(232, 232, 238, 0.25)',
+  border: '1px solid $grey25',
   boxShadow: '0px 0px 21px rgba(8, 11, 55, 0.03)',
 })
 
@@ -96,8 +99,8 @@ const NavItem = styled('li', {
 const NavLink = styled(LinkBase, {
   textDecoration: 'none',
   display: 'block',
-  fontSize: '$h6',
-  lineHeight: '$h6',
+  fontSize: '$XS',
+  lineHeight: '$XS',
   p: '$xxs',
   pb: 10,
   borderRadius: '$pill',
@@ -107,19 +110,19 @@ const NavLink = styled(LinkBase, {
   variants: {
     active: {
       true: {
-        backgroundColor: '$black',
-        color: '$white !important',
+        backgroundColor: '$black100',
+        color: '$white100 !important',
 
-        '&:hover': {
-          backgroundColor: '$black70',
+        hover: {
+          backgroundColor: '$black50',
         },
       },
       false: {
         backgroundColor: 'transparent',
-        color: 'rgba(8, 11, 55, 0.57)',
+        color: '$black50',
 
-        '&:hover': {
-          backgroundColor: '$lightGrey',
+        hover: {
+          backgroundColor: '$grey25',
         },
       },
     },

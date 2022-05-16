@@ -1,17 +1,15 @@
 import { styled } from 'styles/stitches.config'
-import { ThemeTypes } from 'styles/constants'
 
-import { Button } from 'components/Button/Button'
 import { FadeIn } from 'components/Transitions/FadeIn'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
+import { Media } from 'components/Media/Media'
 
 import { NonNullSkipArray, PickType, Sanity } from '@types'
-import { EventNames, firePlausibleEvent } from 'helpers/analytics'
 
-type ValueGridProps = Pick<Sanity.TeamPage, 'qualities' | 'cta'>
+type ValueGridProps = Pick<Sanity.TeamPage, 'qualities'>
 
 export const GridItem = ({
-  title,
+  media,
   text,
 }: Omit<
   NonNullSkipArray<PickType<ValueGridProps, 'qualities'>>,
@@ -19,78 +17,60 @@ export const GridItem = ({
 >) => {
   return (
     <GridItemContainer>
-      {title ? <GridItemHeading blocks={title} /> : null}
-      {text ? <RendererRichText blocks={text} /> : null}
+      {media ? <GridItemMedia {...media} /> : null}
+      {text ? <GridItemText blocks={text} /> : null}
     </GridItemContainer>
   )
 }
 
-export const ValuesGrid = ({ qualities, cta }: ValueGridProps) => {
-  const handleCareersClick = () => {
-    firePlausibleEvent({
-      name: EventNames.CareersClick,
-    })
-  }
-
+export const ValuesGrid = ({ qualities }: ValueGridProps) => {
   return (
     <GridWrapper>
       <GridContainer>
         {Array.isArray(qualities)
           ? qualities.map((item) => (
-              <GridItem key={item._key} title={item.title} text={item.text} />
+              <GridItem key={item._key} media={item.media} text={item.text} />
             ))
           : null}
       </GridContainer>
-      <ButtonWrapper>
-        <Button theme={ThemeTypes.DARK} {...cta} onClick={handleCareersClick} />
-      </ButtonWrapper>
     </GridWrapper>
   )
 }
 
 const GridContainer = styled(FadeIn, {
-  display: 'grid',
-  gap: '$xl',
-  gridTemplateColumns: '1fr',
-  justifyItems: 'center',
+  mt: '$s',
 
   '@tabletUp': {
-    gap: '$xxl $m',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(35rem, 1fr)',
-  },
-
-  '@desktopUp': {
-    gridTemplateColumns: 'repeat(3,1fr)',
+    display: 'grid',
+    gap: '$xxxl 13.5rem',
+    gridTemplateColumns: 'repeat(2, 1fr)',
   },
 })
 
-const GridWrapper = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  my: '$xl',
-
-  '@tabletUp': {
-    my: '$xxl',
-  },
-})
-
-const GridItemHeading = styled(RendererRichText, {
-  mb: '$m',
-})
+const GridWrapper = styled('div')
 
 const GridItemContainer = styled('div', {
-  textAlign: 'center',
+  '& + &': {
+    mt: '$xxxl',
+  },
 
   '@tabletUp': {
-    maxWidth: '42.5rem',
+    '& + &': {
+      mt: 0,
+    },
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
 })
 
-const ButtonWrapper = styled('div', {
-  alignSelf: 'center',
-  my: '$xl',
+const GridItemMedia = styled(Media, {
+  width: '100%',
+})
 
-  '@tabletUp': {
-    my: '$xxl',
-  },
+const GridItemText = styled(RendererRichText, {
+  mt: '$l',
+  maxWidth: '53.9rem',
 })

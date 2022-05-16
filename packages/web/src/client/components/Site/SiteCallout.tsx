@@ -20,7 +20,7 @@ export const Callout = ({ text, link, media }: Sanity.Callout) => {
     <FadeIn>
       <CalloutContainer {...restProps}>
         <div>
-          <CalloutText tag="p" fontStyle="$h3">
+          <CalloutText tag="p" fontStyle="L">
             {text}
           </CalloutText>
           <Button text={label} theme={ThemeTypes.DARK} />
@@ -36,7 +36,7 @@ export const Callout = ({ text, link, media }: Sanity.Callout) => {
 const CalloutContainer = styled(LinkBase, {
   display: 'flex',
   justifyContent: 'space-between',
-  backgroundColor: '$lightGrey',
+  backgroundColor: '$cream100',
   borderRadius: '$wrapperLarge',
   p: '$s',
   textDecoration: 'none',
@@ -46,21 +46,15 @@ const CalloutContainer = styled(LinkBase, {
     p: '$m',
   },
 
-  '@media (hover: hover)': {
-    '&:hover': {
-      [`& ${ButtonContainer}`]: {
-        backgroundColor: '$black70',
-      },
+  hover: {
+    [`& ${ButtonContainer}`]: {
+      backgroundColor: '$black50',
     },
   },
 })
 
 const CalloutText = styled(Heading, {
   mb: '3rem',
-
-  '@smallTabletUp': {
-    maxWidth: '30rem',
-  },
 
   '@tabletUp': {
     maxWidth: '53rem',
@@ -71,13 +65,8 @@ const CalloutImageWrapper = styled('div', {
   display: 'none',
   flex: '0 0 17.4rem',
 
-  '@smallTabletUp': {
-    display: 'block',
-    ml: '$xl',
-    maxWidth: '12.5rem',
-  },
-
   '@tabletUp': {
+    display: 'block',
     ml: 0,
     maxWidth: 'unset',
   },

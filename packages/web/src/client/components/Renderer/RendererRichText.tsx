@@ -32,69 +32,80 @@ export const RendererRichText = ({
 
 const TextContainer = styled('div')
 
-const Squiggle = styled('span', {
-  position: 'relative',
-  zIndex: 0,
-
-  '&::after': {
-    content: '',
-    display: 'block',
-    position: 'absolute',
-    zIndex: -1,
-    bottom: 0,
-    left: 0,
-    transform: 'translateY(50%)',
-    width: '100%',
-    height: 20,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  },
-})
-
 const BulletList = styled('ul', {
-  ...getFontStyle('$body'),
   listStyle: 'disc',
-  pl: '$s',
+  pl: `${4 / 3}em`,
   m: 0,
-
-  '@tabletUp': {
-    pl: '$m',
-  },
 })
 
 const NumberList = styled('ol', {
-  ...getFontStyle('$body'),
-  pl: '$s',
+  pl: `${4 / 3}em`,
   m: 0,
-
-  '@tabletUp': {
-    pl: '$m',
-  },
 })
 
-const availableHeadings = new Array(5)
+const getMarginFromStyle = (style: 'L' | 'normal' | 'S') => {
+  switch (style) {
+    case 'L':
+      return '$s'
+    case 'normal':
+      return '$xs'
+    case 'S':
+      return '$xxs'
+    default:
+      return ''
+  }
+}
+
+const availableHeadings = new Array(3)
   .fill(null)
   .map((_, i) => `h${i + 1} + &`)
   .reduce((acc, curr) => `${acc ? `${acc},` : acc} ${curr}`, '')
 
 const components: Partial<PortableTextReactComponents> = {
   block: {
-    h1: ({ ...props }) => <Heading tag="h1" fontStyle="$h1" {...props} />,
-    h2: ({ ...props }) => <Heading tag="h2" fontStyle="$h2" {...props} />,
-    h3: ({ ...props }) => <Heading tag="h3" fontStyle="$h3" {...props} />,
-    h4: ({ ...props }) => <Heading tag="h4" fontStyle="$h4" {...props} />,
-    h5: ({ ...props }) => <Heading tag="h5" fontStyle="$h5" {...props} />,
+    XXXL: ({ ...props }) => <Heading tag="h1" fontStyle="XXXL" {...props} />,
+    XXL: ({ ...props }) => <Heading tag="h2" fontStyle="XXL" {...props} />,
+    XL: ({ ...props }) => <Heading tag="h3" fontStyle="XL" {...props} />,
+    L: ({ ...props }) => (
+      <Heading
+        tag="p"
+        fontStyle="L"
+        css={{
+          [availableHeadings]: {
+            mt: '$xs',
+          },
+          '& + &': {
+            mt: '$s',
+          },
+        }}
+        {...props}
+      />
+    ),
     normal: ({ ...props }) => (
       <Heading
         tag="p"
-        fontStyle="$body"
+        fontStyle="M"
+        css={{
+          [availableHeadings]: {
+            mt: '$xs',
+          },
+          '& + &': {
+            mt: '$xs',
+          },
+        }}
+        {...props}
+      />
+    ),
+    S: ({ ...props }) => (
+      <Heading
+        tag="p"
+        fontStyle="S"
         css={{
           [availableHeadings]: {
             mt: '$xxs',
           },
           '& + &': {
-            mt: '$m',
+            mt: '$xxs',
           },
         }}
         {...props}
@@ -102,36 +113,46 @@ const components: Partial<PortableTextReactComponents> = {
     ),
   },
   list: {
-    bullet: BulletList,
-    number: NumberList,
-  },
-  marks: {
-    squiggle: (
-      props: PropsWithChildren<
-        PortableTextMarkComponentProps<{
-          _type: 'squiggle'
-          squiggleType: 'a' | 'b' | 'c' | 'd' | 'e' | 'f'
-        }>
-      >
-    ) => {
-      const { value, children } = props
-
-      if (!value) {
-        return <>{children}</>
-      }
+    bullet: (props) => {
+      // @ts-ignore
+      const [{ style }] = props.value.children
 
       return (
-        <Squiggle
+        <BulletList
           css={{
-            '&::after': {
-              backgroundImage: `url('/images/graphics/team/underline_${value.squiggleType}.png')`,
+            // @ts-ignore
+            ...getFontStyle(`${style === 'normal' ? 'M' : style}`),
+
+            'p + &': {
+              mt: getMarginFromStyle(style),
             },
           }}
         >
-          {children}
-        </Squiggle>
+          {props.children}
+        </BulletList>
       )
     },
+    number: (props) => {
+      // @ts-ignore
+      const [{ style }] = props.value.children
+
+      return (
+        <NumberList
+          css={{
+            // @ts-ignore
+            ...getFontStyle(`${style === 'normal' ? 'M' : style}`),
+
+            'p + &': {
+              mt: getMarginFromStyle(style),
+            },
+          }}
+        >
+          {props.children}
+        </NumberList>
+      )
+    },
+  },
+  marks: {
     link: (
       props: PropsWithChildren<
         PortableTextMarkComponentProps<Sanity.Link & { _type: 'link' }>

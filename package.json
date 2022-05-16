@@ -36,7 +36,7 @@
     "build-storybook": "build-storybook -s packages/web/public",
     "storybook": "start-storybook -s packages/web/public -p 6006",
     "web:dev": "yarn workspace @studiocompanion/web dev",
-    "web:build": "yarn workspace @studiocompanion/web build",
+    "web:build": "yarn workspace @studiocompanion/web build:local",
     "web:start": "yarn workspace @studiocompanion/web start",
     "test:ts": "tsc --noEmit",
     "chromatic": "npx chromatic --project-token=1a465065bcd3",

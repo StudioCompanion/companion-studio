@@ -25,7 +25,7 @@ const Anchor = styled(LinkBase, {
   fontFamily: 'inherit',
   textDecoration: 'none',
 
-  '&:hover': {
+  hover: {
     textDecoration: 'underline',
   },
 })

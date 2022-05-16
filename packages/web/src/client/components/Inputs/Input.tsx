@@ -61,22 +61,26 @@ const Label = styled('label', {
 
 const FormInput = styled('input', {
   width: '100%',
-  padding: '6px $xs',
-  pb: '$xxs',
+  padding: '$xxs $xs',
   backgroundColor: 'transparent',
-  border: '1px solid $white',
+  border: '1px solid $white100',
   borderRadius: '$pill',
-  color: '$white',
+  color: '$white100',
   minHeight: 30,
-  fontSize: '$h6',
-  lineHeight: '$h6',
+  fontSize: '$XS',
+  lineHeight: '$XS',
 
   '&::placeholder': {
-    color: `rgba(255, 255, 255, 57%)`,
+    color: `$white50`,
   },
 
   '&:focus': {
-    backgroundColor: 'hsla(0, 0%, 100%, 0.2)',
+    backgroundColor: '$white100',
+    color: '$black100',
     outline: 'none',
+
+    '&::placeholder': {
+      color: 'inherit',
+    },
   },
 })

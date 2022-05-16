@@ -5,19 +5,14 @@ import { Sanity } from '@types'
 
 import { styled } from 'styles/stitches.config'
 
-type ProjectHeaderProps = Pick<Sanity.ProjectPage, 'title' | 'subtext' | 'team'>
+type ProjectHeaderProps = Pick<Sanity.ProjectPage, 'title' | 'team'>
 
-export const ProjecHeader = ({ title, subtext, team }: ProjectHeaderProps) => {
+export const ProjecHeader = ({ title, team }: ProjectHeaderProps) => {
   return (
     <Header>
       <div>
-        {subtext ? (
-          <Heading tag="h1" fontStyle={'$h6'}>
-            {subtext}
-          </Heading>
-        ) : null}
         {title ? (
-          <Heading tag="h2" fontStyle={'$h1'} weight="$medium">
+          <Heading tag="h1" fontStyle={'XXXL'} weight="$bold">
             {title}
           </Heading>
         ) : null}
@@ -29,13 +24,14 @@ export const ProjecHeader = ({ title, subtext, team }: ProjectHeaderProps) => {
 
 const Header = styled('header', {
   width: '100%',
-  mb: '$m',
   display: 'flex',
   justifyContent: 'space-between',
   flexDirection: 'column',
 
   '@tabletUp': {
+    mb: '$xs',
     flexDirection: 'row',
+    alignItems: 'center',
 
     '& > *': {
       flex: '1 0 50%',

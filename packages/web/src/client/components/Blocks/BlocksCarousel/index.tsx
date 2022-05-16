@@ -24,7 +24,7 @@ const BACKWARD = 'backward'
 export const Carousel = (props: Sanity.BlockMedia) => {
   const {
     backgroundImage,
-    backgroundColor = '$lightGrey',
+    backgroundColor = '$white50',
     items,
     layout = CarouselLayouts.FULL,
     isHero,
@@ -255,7 +255,7 @@ const Caption = styled('div', {
 
 const CaptionText = styled('span', {
   mt: '$xs',
-  ...getFontStyle('$body'),
+  ...getFontStyle('$XXS'),
 })
 
 const BackgroundImage = styled(Media, {

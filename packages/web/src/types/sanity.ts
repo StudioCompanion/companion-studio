@@ -7,6 +7,7 @@ import { CarouselLayouts, ThemeTypes } from 'styles/constants'
 import { ScaleValue } from 'styles/stitches.config'
 
 import { SanityGenerated } from './index'
+import { RichText } from './sanity.generated'
 
 export type Mux = {
   _type: 'video'
@@ -71,6 +72,7 @@ export interface Card
   extends Omit<SanityGenerated.PageCard, 'media' | 'theme'> {
   theme?: ThemeTypes
   media?: Media
+  type?: PageTypes
 }
 
 type PageTypes = 'homepage' | 'approachpage' | 'teampage' | 'project'
@@ -88,7 +90,6 @@ export interface DocumentBase {
 
 export interface ProjectPage extends DocumentBase {
   title?: string
-  subtext?: string
   blocks?: Blocks
   team?: Team
 }
@@ -106,20 +107,14 @@ export interface Link {
   isExternal?: boolean
 }
 
+export interface ApproachBlock {
+  text?: RichText
+  media?: Media
+}
+
 export interface ApproachPage extends DocumentBase {
   slug?: string
-  sections?: Array<
-    | SanityGenerated.SanityKeyed<{
-        _type: 'textSection'
-        /**
-         * Text Block — `richText`
-         *
-         *
-         */
-        text?: SanityGenerated.RichText
-      }>
-    | SanityGenerated.SanityKeyed<Media>
-  >
+  sections?: SanityGenerated.SanityKeyed<ApproachBlock>[]
 }
 
 export interface PrivacyPage extends DocumentBase {
@@ -130,16 +125,18 @@ export interface Slide {
   media?: Media
 }
 
+export interface TeamQuality {
+  media?: Media
+  text?: RichText
+}
+
 export interface TeamPage
   extends DocumentBase,
-    Pick<
-      SanityGenerated.Teampage,
-      'textBlockOne' | 'textBlockTwo' | 'qualities'
-    > {
+    Pick<SanityGenerated.Teampage, 'textBlockOne' | 'textBlockTwo'> {
   slug?: string
   slideshow?: Slide[]
+  qualities?: SanityGenerated.SanityKeyed<TeamQuality>[]
   team?: Team
-  cta?: Link
 }
 
 export interface Footer {

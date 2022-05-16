@@ -103,10 +103,9 @@ export default {
           type: 'object',
           fields: [
             {
-              name: 'title',
-              title: 'Title',
-              description: 'underline the text you want to be squiggled!',
-              type: 'squiggleRichText',
+              name: 'media',
+              title: 'Media',
+              type: 'media',
             },
             {
               name: 'text',
@@ -115,20 +114,18 @@ export default {
             },
           ],
           preview: {
-            prepare() {
+            select: {
+              media: 'media',
+            },
+            prepare({ media }) {
               return {
                 title: `Quality`,
+                media: media?.assetType === 'image' ? media.image : undefined,
               }
             },
           },
         },
       ],
-    },
-    {
-      group: 'content',
-      name: 'cta',
-      title: 'Cta',
-      type: 'link',
     },
     {
       name: 'meta',

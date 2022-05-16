@@ -13,6 +13,7 @@ import { Heading } from 'components/Text/Heading'
 import { useCanHover } from 'hooks/useCanHover'
 
 import { Sanity } from '@types'
+import { getHrefSlugFromSanityReference } from 'helpers/links'
 
 interface CardHomeProps extends Sanity.HomepageCard {
   className?: string
@@ -27,6 +28,7 @@ export const CardHome = ({
   title,
   slug,
   className,
+  type,
 }: CardHomeProps) => {
   const selectedMedia = media?.asset
     ? media
@@ -73,7 +75,7 @@ export const CardHome = ({
   const bind = useHover(hoverCallback)
 
   return (
-    <Link href={`/projects/${slug}` ?? ''} passHref>
+    <Link href={getHrefSlugFromSanityReference({ _type: type, slug })} passHref>
       <CardWrapper className={className} theme={theme} {...bind()}>
         <ImageContainer style={styles}>
           {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}
@@ -81,12 +83,12 @@ export const CardHome = ({
         <CardText theme={theme}>
           <div>
             {actualTitle ? (
-              <Heading tag="h2" fontStyle="$body">
+              <Heading tag="h2" fontStyle="L" weight="$bold">
                 {actualTitle}
               </Heading>
             ) : null}
             {subtitle ? (
-              <Heading tag="h3" fontStyle="$h6">
+              <Heading tag="h3" fontStyle="XS">
                 {subtitle}
               </Heading>
             ) : null}
@@ -110,29 +112,29 @@ const CardWrapper = styled('a', {
   variants: {
     theme: {
       [ThemeTypes.LIGHT]: {
-        backgroundColor: '$white',
+        backgroundColor: '$white100',
 
-        '&:hover': {
+        hover: {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$lightGrey',
+            backgroundColor: '$white50',
           },
         },
       },
       [ThemeTypes.GREY]: {
-        backgroundColor: '$lightGrey',
+        backgroundColor: '$white50',
 
-        '&:hover': {
+        hover: {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$lightGrey',
+            backgroundColor: '$white50',
           },
         },
       },
       [ThemeTypes.DARK]: {
-        backgroundColor: '$black',
+        backgroundColor: '$black100',
 
-        '&:hover': {
+        hover: {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$lightGrey',
+            backgroundColor: '$white50',
           },
         },
       },
@@ -166,17 +168,17 @@ const CardText = styled('div', {
     theme: {
       [ThemeTypes.LIGHT]: {
         '& h2, & h3': {
-          color: '$black',
+          color: '$black100',
         },
       },
       [ThemeTypes.GREY]: {
         '& h2, & h3': {
-          color: '$black',
+          color: '$black100',
         },
       },
       [ThemeTypes.DARK]: {
         '& h2, & h3': {
-          color: '$white',
+          color: '$white100',
         },
       },
     },

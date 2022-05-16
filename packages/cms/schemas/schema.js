@@ -21,7 +21,7 @@ import privacy from './singletons/privacy'
  * Objects
  */
 import media from './objects/media'
-import { basicRichText, squiggleRichText } from './objects/richText'
+import { basicRichText } from './objects/richText'
 import meta from './objects/meta'
 import redirects from './objects/redirects'
 import pageCard from './objects/pageCard'
@@ -60,7 +60,6 @@ export default createSchema({
      */
     media,
     basicRichText,
-    squiggleRichText,
     meta,
     redirects,
     pageCard,

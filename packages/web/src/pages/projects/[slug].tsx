@@ -20,11 +20,11 @@ interface ProjectPageProps extends Sanity.DefaultLayoutProps {
 }
 
 const ProjectPage = ({ document, ...siteProps }: ProjectPageProps) => {
-  const { blocks = [], title, subtext, team, meta } = document
+  const { blocks = [], title, team, meta } = document
   return (
     <Layout {...siteProps} documentMeta={meta}>
       <Article>
-        <ProjecHeader title={title} subtext={subtext} team={team} />
+        <ProjecHeader title={title} team={team} />
         <Renderer blocks={blocks} />
       </Article>
     </Layout>
