@@ -7,18 +7,85 @@ import { LinkBase } from 'components/Links/LinkBase'
 
 import { Sanity } from '@types'
 import { urlIsReferenceGuard } from 'helpers/links'
+import { animated, useSpring } from '@react-spring/web'
+import { useRef } from 'react'
+import { useCanHover } from 'hooks/useCanHover'
 
 export interface NavProps {
   currentPath?: string
   items?: Sanity.Link[]
 }
 
-/**
- * TODO: be nice if the background moved
- * between the buttons instead of just
- * being a background
- */
 export const Nav = ({ currentPath = '/', items }: NavProps) => {
+  const navBackgroundIsVisible = useRef(false)
+  const navRefs = useRef<HTMLLIElement[]>([])
+
+  const [{ opacity }, opacityApi] = useSpring(
+    () => ({
+      opacity: 0,
+      config: {
+        tension: 200,
+        friction: 10,
+      },
+    }),
+    []
+  )
+
+  const [style, api] = useSpring(
+    () => ({
+      width: 0,
+      height: 0,
+      x: 0,
+      y: 0,
+    }),
+    []
+  )
+
+  const canHover = useCanHover()
+
+  const handleMouseEnter = (i: number) => () => {
+    if (!canHover) {
+      return
+    }
+
+    const element = navRefs.current[i]
+
+    const { width, height, x, y } = element.getBoundingClientRect()
+
+    if (!navBackgroundIsVisible.current) {
+      api.set({
+        width,
+        height,
+        x,
+        y,
+      })
+
+      opacityApi.start({
+        opacity: 1,
+      })
+
+      navBackgroundIsVisible.current = true
+    } else {
+      api.start({
+        width,
+        height,
+        x,
+        y,
+      })
+    }
+  }
+  const handleMouseLeave = () => {
+    if (!canHover) {
+      return
+    }
+
+    navBackgroundIsVisible.current = false
+
+    opacityApi.start({
+      opacity: 0,
+    })
+  }
+
   if (currentPath === '/' || currentPath === '/instagram') {
     return null
   }
@@ -30,25 +97,28 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
           <Logo label="Homepage" />
         </LogoWrapper>
       </Link>
-      <NavWrapper>
+      <NavWrapper onMouseLeave={handleMouseLeave}>
+        <NavBackground style={{ ...style, opacity }} />
         <NavList>
           {Array.isArray(items)
-            ? items.map((item) => (
-                <NavItem key={item.label}>
-                  <NavLink
-                    {...item}
-                    active={
-                      urlIsReferenceGuard(item.url)
-                        ? currentPath === `/${item.url?.slug}` ||
-                          (currentPath.includes('projects') &&
-                            item.label === 'Work')
-                        : currentPath === item.url
-                    }
+            ? items.map((item, index) => {
+                const isActive = urlIsReferenceGuard(item.url)
+                  ? currentPath === `/${item.url?.slug}` ||
+                    (currentPath.includes('projects') && item.label === 'Work')
+                  : currentPath === item.url
+
+                return (
+                  <NavItem
+                    ref={(ref) => (navRefs.current[index] = ref!)}
+                    key={item.label}
+                    onMouseEnter={handleMouseEnter(index)}
                   >
-                    {item.label}
-                  </NavLink>
-                </NavItem>
-              ))
+                    <NavLink {...item} active={isActive}>
+                      {item.label}
+                    </NavLink>
+                  </NavItem>
+                )
+              })
             : null}
         </NavList>
       </NavWrapper>
@@ -88,6 +158,8 @@ const NavWrapper = styled('nav', {
 
 const NavList = styled('ul', {
   display: 'flex',
+  position: 'relative',
+  zIndex: '$1',
 })
 
 const NavItem = styled('li', {
@@ -121,10 +193,19 @@ const NavLink = styled(LinkBase, {
         backgroundColor: 'transparent',
         color: '$black50',
 
-        hover: {
-          backgroundColor: '$grey25',
-        },
+        // hover: {
+        //   backgroundColor: '$grey25',
+        // },
       },
     },
   },
+})
+
+const NavBackground = styled(animated.span, {
+  position: 'absolute',
+  zIndex: 0,
+  top: 0,
+  left: 0,
+  backgroundColor: '$grey25',
+  borderRadius: '$pill',
 })

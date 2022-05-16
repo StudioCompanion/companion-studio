@@ -4,7 +4,7 @@ export const globalStyles = globalCss({
   '@font-face': [
     {
       fontFamily: 'Apfel Groteszk',
-      src: "url('/fonts/ApfelGrotezk-Regular.wof2f') format('woff2'), url('/fonts/ApfelGrotezk-Regular.woff') format('woff')",
+      src: "url('/fonts/ApfelGrotezk-Regular.woff2') format('woff2'), url('/fonts/ApfelGrotezk-Regular.woff') format('woff')",
       fontWeight: 400,
     },
     {
