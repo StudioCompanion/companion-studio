@@ -8,6 +8,7 @@ import { ScaleValue } from 'styles/stitches.config'
 
 import { SanityGenerated } from './index'
 import { RichText } from './sanity.generated'
+import { PickType } from './utils'
 
 export type Mux = {
   _type: 'video'
@@ -92,6 +93,7 @@ export interface ProjectPage extends DocumentBase {
   title?: string
   blocks?: Blocks
   team?: Team
+  status?: PickType<SanityGenerated.Project, 'status'>
 }
 
 export type Pages =
