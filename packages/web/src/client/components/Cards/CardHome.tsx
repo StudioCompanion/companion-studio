@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import Link from 'next/link'
-import { animated, useSpring } from '@react-spring/web'
+import { animated, SpringValues, useSpring } from '@react-spring/web'
 import { useHover } from 'react-use-gesture'
 
 import { ThemeTypes } from 'styles/constants'
@@ -20,16 +20,21 @@ interface CardHomeProps extends Sanity.HomepageCard {
   status?: PickType<SanityGenerated.Project, 'status'>
 }
 
+interface CardHomeInnerProps
+  extends Omit<CardHomeProps, 'slug' | 'type' | 'className'> {
+  style?: SpringValues<{ y: string; scale: number }>
+}
+
 const CardHomeInner = ({
   media,
   meta,
   subtitle,
   theme,
   title,
-  className,
   cardButtonLabel = 'View',
   status,
-}: CardHomeProps) => {
+  style,
+}: CardHomeInnerProps) => {
   const selectedMedia = media?.asset
     ? media
     : meta?.image?.asset
@@ -38,51 +43,9 @@ const CardHomeInner = ({
 
   const actualTitle = title ?? meta?.title
 
-  const [styles, api] = useSpring(
-    () => ({
-      scale: 1,
-      y: '0',
-      config: {
-        tension: 160,
-      },
-    }),
-    []
-  )
-
-  const canHover = useCanHover()
-
-  const hoverCallback = useCallback(
-    ({ hovering }) => {
-      if (!canHover || status === 'comingSoon') {
-        return
-      }
-
-      if (hovering) {
-        api.start({
-          scale: 0.75,
-          y: '-4%',
-        })
-      } else {
-        api.start({
-          scale: 1,
-          y: '0',
-        })
-      }
-    },
-    [canHover, api, status]
-  )
-
-  const bind = useHover(hoverCallback)
-
-  const isOutlined = status === 'comingSoon'
-
   return (
-    <CardWrapper
-      className={className}
-      theme={isOutlined ? ThemeTypes.OUTLINED : theme}
-      {...bind()}
-    >
-      <ImageContainer style={styles}>
+    <>
+      <ImageContainer style={style}>
         {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}
       </ImageContainer>
       <CardText theme={theme}>
@@ -100,23 +63,67 @@ const CardHomeInner = ({
         </div>
         <Button
           text={cardButtonLabel}
-          theme={isOutlined ? ThemeTypes.OUTLINED : ThemeTypes.LIGHT}
+          theme={
+            status === 'comingSoon' ? ThemeTypes.OUTLINED : ThemeTypes.LIGHT
+          }
         />
       </CardText>
-    </CardWrapper>
+    </>
   )
 }
 
 export const CardHome = (props: CardHomeProps) => {
-  const { slug, type, status } = props
+  const { slug, type, status, className, theme } = props
+
+  const [styles, api] = useSpring(
+    () => ({
+      scale: 1,
+      y: '0',
+      config: {
+        tension: 160,
+      },
+    }),
+    []
+  )
+
+  const canHover = useCanHover()
+
+  const hoverCallback = useCallback(
+    ({ hovering }) => {
+      if (!canHover) {
+        return
+      }
+
+      if (hovering) {
+        api.start({
+          scale: 0.75,
+          y: '-4%',
+        })
+      } else {
+        api.start({
+          scale: 1,
+          y: '0',
+        })
+      }
+    },
+    [canHover, api]
+  )
+
+  const bind = useHover(hoverCallback)
 
   if (status === 'comingSoon') {
-    return <CardHomeInner {...props} />
+    return (
+      <CardWrapper as="div" className={className} theme={ThemeTypes.OUTLINED}>
+        <CardHomeInner {...props} />
+      </CardWrapper>
+    )
   }
 
   return (
     <Link href={getHrefSlugFromSanityReference({ _type: type, slug })} passHref>
-      <CardHomeInner {...props} />
+      <CardWrapper className={className} theme={theme} {...bind()}>
+        <CardHomeInner {...props} style={styles} />
+      </CardWrapper>
     </Link>
   )
 }
