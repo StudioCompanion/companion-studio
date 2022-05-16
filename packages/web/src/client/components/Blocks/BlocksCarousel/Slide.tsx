@@ -28,6 +28,10 @@ const ImageAsset = styled(Media, {
     hasMobile: {
       true: {
         display: 'none',
+
+        '@desktopUp': {
+          display: 'block',
+        },
       },
     },
     isMobile: {
