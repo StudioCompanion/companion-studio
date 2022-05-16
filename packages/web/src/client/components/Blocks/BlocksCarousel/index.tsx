@@ -255,7 +255,7 @@ const Caption = styled('div', {
 
 const CaptionText = styled('span', {
   mt: '$xs',
-  ...getFontStyle('$body'),
+  ...getFontStyle('$XXS'),
 })
 
 const BackgroundImage = styled(Media, {

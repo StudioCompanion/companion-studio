@@ -134,7 +134,7 @@ export interface TeamPage
     Pick<SanityGenerated.Teampage, 'textBlockOne' | 'textBlockTwo'> {
   slug?: string
   slideshow?: Slide[]
-  qualities: SanityGenerated.SanityKeyed<TeamQuality>[]
+  qualities?: SanityGenerated.SanityKeyed<TeamQuality>[]
   team?: Team
 }
 
