@@ -7,6 +7,7 @@ import { CarouselLayouts, ThemeTypes } from 'styles/constants'
 import { ScaleValue } from 'styles/stitches.config'
 
 import { SanityGenerated } from './index'
+import { RichText } from './sanity.generated'
 
 export type Mux = {
   _type: 'video'
@@ -105,20 +106,14 @@ export interface Link {
   isExternal?: boolean
 }
 
+export interface ApproachBlock {
+  text: RichText
+  media: Media
+}
+
 export interface ApproachPage extends DocumentBase {
   slug?: string
-  sections?: Array<
-    | SanityGenerated.SanityKeyed<{
-        _type: 'textSection'
-        /**
-         * Text Block — `richText`
-         *
-         *
-         */
-        text?: SanityGenerated.RichText
-      }>
-    | SanityGenerated.SanityKeyed<Media>
-  >
+  sections?: SanityGenerated.SanityKeyed<ApproachBlock>[]
 }
 
 export interface PrivacyPage extends DocumentBase {

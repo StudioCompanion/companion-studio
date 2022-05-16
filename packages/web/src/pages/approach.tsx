@@ -2,9 +2,6 @@ import { GetStaticProps } from 'next'
 
 import { styled } from 'styles/stitches.config'
 
-import { StickyParagraph } from 'components/StickyElements/StickyParagraph'
-import { FadeIn } from 'components/Transitions/FadeIn'
-import { StickMedia } from 'components/StickyElements/StickyMedia'
 import { Layout } from 'components/Site/SiteLayout'
 
 import { fetchDocument } from 'src/data/fetchDocument'
@@ -12,7 +9,8 @@ import { APPROACH_PAGE } from 'src/data/queries/singletons/approach'
 
 import { REVALIDATE_TIME } from 'references/constants'
 
-import { NonNullSkipArray, Sanity } from '@types'
+import { Sanity } from '@types'
+import { BlockApproach } from 'components/Blocks/BlockApproach'
 
 interface ApproachProps extends Sanity.DefaultLayoutProps {
   document: Sanity.ApproachPage
@@ -26,28 +24,11 @@ const Approach = ({ document, ...siteProps }: ApproachProps) => {
       <ApproachContainer>
         {Array.isArray(sections) &&
           sections.map((props) => (
-            <FadeIn key={props._key}>
-              <ApproachRenderer {...props} />
-            </FadeIn>
+            <ApproachSection key={props._key} {...props} />
           ))}
       </ApproachContainer>
     </Layout>
   )
-}
-
-const ApproachRenderer = (
-  props: NonNullSkipArray<Sanity.ApproachPage['sections']>
-) => {
-  const { _type } = props
-  switch (_type) {
-    case 'textSection':
-      return <StickyParagraph {...props} />
-    case 'image':
-    case 'video':
-      return <StickMedia {...props} />
-    default:
-      return null
-  }
 }
 
 export default Approach
@@ -72,12 +53,21 @@ export const getStaticProps: GetStaticProps<ApproachProps> = async ({
 }
 
 const ApproachContainer = styled('article', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  pb: '$xxl',
+  mb: '$xxl',
 
-  '& > *': {
-    width: '100%',
+  '@tabletUp': {
+    mb: 0,
+  },
+})
+
+const ApproachSection = styled(BlockApproach, {
+  '& + &': {
+    mt: '$xl',
+  },
+
+  '@tabletUp': {
+    '& + &': {
+      mt: '$l',
+    },
   },
 })

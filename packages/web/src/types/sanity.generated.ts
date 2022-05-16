@@ -59,13 +59,6 @@ export interface Project extends SanityDocument {
   slug?: { _type: 'slug'; current: string }
 
   /**
-   * Subtext — `string`
-   *
-   *
-   */
-  subtext?: string
-
-  /**
    * Team — `array`
    *
    *
@@ -154,16 +147,22 @@ export interface Approachpage extends SanityDocument {
    *
    */
   sections?: Array<
-    | SanityKeyed<{
-        _type: 'textSection'
-        /**
-         * Text Block — `richText`
-         *
-         *
-         */
-        text?: RichText
-      }>
-    | SanityKeyed<Media>
+    SanityKeyed<{
+      _type: 'section'
+      /**
+       * Text Block — `richText`
+       *
+       *
+       */
+      text?: RichText
+
+      /**
+       * Media Section — `media`
+       *
+       *
+       */
+      media?: Media
+    }>
   >
 
   /**
