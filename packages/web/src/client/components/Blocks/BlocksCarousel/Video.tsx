@@ -21,15 +21,15 @@ export const Video = ({ video, setPaused, isPaused }: VideoProps) => {
     setPaused(!isPlaying)
   }, [])
 
-  const hasMobile = Boolean(video.mobile?.asset)
+  const hasMobileBool = Boolean(video.hasMobile)
 
   return (
     <>
-      {video.mobile?.asset ? (
+      {video.mobile?.asset && hasMobileBool ? (
         <VideoItem
           {...video.mobile}
           isPaused={isPaused}
-          isMobile={hasMobile}
+          isMobile={hasMobileBool}
           onClick={handleVideoClick}
           onAutoplayCallback={handleAutoplayCallback}
         />
@@ -38,7 +38,7 @@ export const Video = ({ video, setPaused, isPaused }: VideoProps) => {
         <VideoItem
           {...video.desktop}
           isPaused={isPaused}
-          hasMobile={hasMobile}
+          hasMobile={hasMobileBool}
           onClick={handleVideoClick}
           onAutoplayCallback={handleAutoplayCallback}
         />
@@ -52,6 +52,10 @@ const VideoItem = styled(Media, {
     hasMobile: {
       true: {
         display: 'none',
+
+        '@desktopUp': {
+          display: 'block',
+        },
       },
     },
     isMobile: {
