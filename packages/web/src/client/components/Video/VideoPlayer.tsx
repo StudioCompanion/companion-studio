@@ -148,9 +148,9 @@ export const VideoPlayer = ({
         muted
         playsInline
       />
-      <span>
-        <label htmlFor="videoControl">{isPaused ? 'Play' : 'Pause'}</label>
-      </span>
+
+      <label htmlFor="videoControl">{isPaused ? 'Play' : 'Pause'}</label>
+
       <VideoButton
         style={style}
         onFocus={handleButtonFocus}
