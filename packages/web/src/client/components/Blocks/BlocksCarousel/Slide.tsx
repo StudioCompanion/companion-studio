@@ -15,7 +15,7 @@ export const Slide = ({
 
   return (
     <>
-      {mobile?.asset ? (
+      {mobile?.asset && Boolean(hasMobile) ? (
         <ImageAsset isMobile={Boolean(hasMobile)} {...mobile} />
       ) : null}
       <ImageAsset hasMobile={Boolean(hasMobile)} {...desktop} />
