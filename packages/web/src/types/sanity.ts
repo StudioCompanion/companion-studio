@@ -107,8 +107,8 @@ export interface Link {
 }
 
 export interface ApproachBlock {
-  text: RichText
-  media: Media
+  text?: RichText
+  media?: Media
 }
 
 export interface ApproachPage extends DocumentBase {
@@ -124,16 +124,18 @@ export interface Slide {
   media?: Media
 }
 
+export interface TeamQuality {
+  media?: Media
+  text?: RichText
+}
+
 export interface TeamPage
   extends DocumentBase,
-    Pick<
-      SanityGenerated.Teampage,
-      'textBlockOne' | 'textBlockTwo' | 'qualities'
-    > {
+    Pick<SanityGenerated.Teampage, 'textBlockOne' | 'textBlockTwo'> {
   slug?: string
   slideshow?: Slide[]
+  qualities: SanityGenerated.SanityKeyed<TeamQuality>[]
   team?: Team
-  cta?: Link
 }
 
 export interface Footer {

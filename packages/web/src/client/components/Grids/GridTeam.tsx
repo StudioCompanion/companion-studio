@@ -15,12 +15,12 @@ const GridItem = ({ image, name, job }: Sanity.TeamMember) => {
     <GridItemContainer tag="div">
       {image ? <GridImage {...image} /> : null}
       <div>
-        <TeamMemberName tag="h2" fontStyle="$h5">
+        <Heading tag="h2" fontStyle="S" weight="$bold">
           {name}
-        </TeamMemberName>
-        <TeamMemberRole tag="h3" fontStyle="$h6">
+        </Heading>
+        <Heading tag="h3" fontStyle="S">
           {job}
-        </TeamMemberRole>
+        </Heading>
       </div>
     </GridItemContainer>
   )
@@ -43,44 +43,30 @@ export const TeamGrid = ({ team = [] }: TeamGridProps) => {
 const GridWrapper = styled('section', {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: '$s $xxs',
-  my: '$xl',
+  gap: '$s',
+  mt: '$s',
+  width: '100%',
 
   '@tabletUp': {
     gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: '$m',
-    my: '$xxl',
+    gap: '$xxl $m',
+    mt: '$l',
   },
 })
 
 const GridItemContainer = styled(FadeIn, {
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
-  p: '$xxs',
   height: '100%',
   justifyContent: 'space-between',
-
-  '@tabletUp': {
-    p: '$xl',
-  },
 })
 
 const GridImage = styled(Media, {
-  maxWidth: '9rem',
   width: '100%',
   mb: '$xxs',
+  borderRadius: '$wrapper',
 
   '@tabletUp': {
-    maxWidth: '30rem',
+    borderRadius: '$wrapperLarge',
   },
-})
-
-const TeamMemberName = styled(Heading, {
-  mb: '$xxxs',
-  textAlign: 'center',
-})
-
-const TeamMemberRole = styled(Heading, {
-  textAlign: 'center',
 })

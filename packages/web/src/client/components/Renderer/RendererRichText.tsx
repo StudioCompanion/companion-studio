@@ -32,26 +32,6 @@ export const RendererRichText = ({
 
 const TextContainer = styled('div')
 
-const Squiggle = styled('span', {
-  position: 'relative',
-  zIndex: 0,
-
-  '&::after': {
-    content: '',
-    display: 'block',
-    position: 'absolute',
-    zIndex: -1,
-    bottom: 0,
-    left: 0,
-    transform: 'translateY(50%)',
-    width: '100%',
-    height: 20,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  },
-})
-
 const BulletList = styled('ul', {
   listStyle: 'disc',
   pl: `${4 / 3}em`,
@@ -173,32 +153,6 @@ const components: Partial<PortableTextReactComponents> = {
     },
   },
   marks: {
-    squiggle: (
-      props: PropsWithChildren<
-        PortableTextMarkComponentProps<{
-          _type: 'squiggle'
-          squiggleType: 'a' | 'b' | 'c' | 'd' | 'e' | 'f'
-        }>
-      >
-    ) => {
-      const { value, children } = props
-
-      if (!value) {
-        return <>{children}</>
-      }
-
-      return (
-        <Squiggle
-          css={{
-            '&::after': {
-              backgroundImage: `url('/images/graphics/team/underline_${value.squiggleType}.png')`,
-            },
-          }}
-        >
-          {children}
-        </Squiggle>
-      )
-    },
     link: (
       props: PropsWithChildren<
         PortableTextMarkComponentProps<Sanity.Link & { _type: 'link' }>
