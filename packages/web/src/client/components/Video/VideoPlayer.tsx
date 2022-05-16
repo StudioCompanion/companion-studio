@@ -153,7 +153,10 @@ export const VideoPlayer = ({
         onFocus={handleButtonFocus}
         onBlur={handleButtonBlur}
       >
-        <VideoButtonIcon aria-label={isPaused ? 'Play' : 'Pause'}>
+        <VideoButtonIcon
+          aria-label={isPaused ? 'Play' : 'Pause'}
+          id={videoRef.current?.src.split('/').slice(1).join('')}
+        >
           {isPaused ? (
             <svg
               id="play"
