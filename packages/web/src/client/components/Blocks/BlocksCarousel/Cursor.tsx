@@ -21,6 +21,7 @@ export const Cursor = React.forwardRef<HTMLDivElement, CursorProps>(
 )
 
 const CursorEl = styled('div', {
+  display: 'block',
   width: 24,
   height: 24,
   position: 'fixed',
