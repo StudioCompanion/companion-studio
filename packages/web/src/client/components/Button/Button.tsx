@@ -8,15 +8,20 @@ import { MouseEventHandler } from 'react'
 
 export interface ButtonInnerProps {
   text?: string
-  onClick?: MouseEventHandler<HTMLAnchorElement>
   theme: ThemeTypes
+}
+
+export interface ButtonAnchorProps {
+  onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
 export const ButtonInner = ({ text, theme }: ButtonInnerProps) => {
   return <ButtonContainer theme={theme}>{text}</ButtonContainer>
 }
 
-export type ButtonProps = ButtonInnerProps & Partial<Sanity.Link>
+export type ButtonProps = ButtonInnerProps &
+  Partial<Sanity.Link> &
+  ButtonAnchorProps
 
 export const Button = ({
   text,
@@ -34,7 +39,7 @@ export const Button = ({
 
   return (
     <>
-      {url ? (
+      {url && theme !== ThemeTypes.OUTLINED ? (
         <ButtonAnchor onClick={handleClick} url={url} isExternal={isExternal}>
           <ButtonInner theme={theme} text={label} />
         </ButtonAnchor>
@@ -52,39 +57,39 @@ export const ButtonContainer = styled('span', {
   pb: 9,
   textDecoration: 'none',
   cursor: 'pointer',
-  fontSize: '$h6',
-  lineHeight: '$h6',
+  fontSize: '$XS',
+  lineHeight: '$XS',
 
   variants: {
     theme: {
+      [ThemeTypes.OUTLINED]: {
+        backgroundColor: 'transparent',
+        border: 'solid 1px $white100',
+        color: '$white100',
+        cursor: 'default',
+      },
       [ThemeTypes.LIGHT]: {
-        backgroundColor: '$white',
-        color: '$black',
+        backgroundColor: '$white100',
+        color: '$black100',
 
-        '@media(hover:hover)': {
-          '&:hover': {
-            backgroundColor: '$lightGrey',
-          },
+        hover: {
+          backgroundColor: '$white50',
         },
       },
       [ThemeTypes.GREY]: {
-        backgroundColor: '$lightGrey',
-        color: '$black',
+        backgroundColor: '$white50',
+        color: '$black100',
 
-        '@media(hover:hover)': {
-          '&:hover': {
-            backgroundColor: '$black70',
-          },
+        hover: {
+          backgroundColor: '$black70',
         },
       },
       [ThemeTypes.DARK]: {
-        backgroundColor: '$black',
-        color: '$white',
+        backgroundColor: '$black100',
+        color: '$white100',
 
-        '@media(hover:hover)': {
-          '&:hover': {
-            backgroundColor: '$black70',
-          },
+        hover: {
+          backgroundColor: '$black70',
         },
       },
     },

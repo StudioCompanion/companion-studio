@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "analyze": "ANALYZE=true next build",
-    "dev": "next dev",
+    "dev": "doppler run -c dev -p site-web -- next dev",
     "build": "next build",
+    "build:local": "doppler run -c prd -p site-web -- next build",
     "start": "next start"
   },
   "dependencies": {

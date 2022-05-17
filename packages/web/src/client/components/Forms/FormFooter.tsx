@@ -105,7 +105,7 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
             onBlur={handleBlur}
           />
           {(errorMessage && errorMessage !== '') || showSuccess ? (
-            <FormFeedback tag="p" fontStyle="$body">
+            <FormFeedback tag="p" fontStyle="XS">
               {errorMessage && errorMessage !== '' && (
                 <span>{errorMessage}</span>
               )}
@@ -138,22 +138,27 @@ const InputWrapper = styled('div', {
 })
 
 const FormFeedback = styled(Heading, {
-  mt: '$xxs',
+  mt: '$xxxs',
+  ml: '$xs',
 })
 
 const FormButton = styled('button', {
-  backgroundColor: '$white',
-  color: '$black',
+  backgroundColor: '$white100',
+  color: '$black100',
   borderRadius: '$pill',
   border: 'none',
   cursor: 'pointer',
   p: '$xxs',
   pb: 9,
   minHeight: 30,
-  fontSize: '$h6',
-  lineHeight: '$h6',
+  fontSize: '$XS',
+  lineHeight: '$XS',
 
-  '&:hover': {
-    opacity: 0.8,
+  hover: {
+    backgroundColor: '$white50',
+  },
+
+  '&:disabled': {
+    backgroundColor: '$white25',
   },
 })

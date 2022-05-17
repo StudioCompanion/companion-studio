@@ -41,17 +41,10 @@ export default {
         }),
     },
     {
-      name: 'layout',
-      title: 'Layout',
+      name: 'cardButtonLabel',
       type: 'string',
-      options: {
-        layout: 'dropdown',
-        list: [
-          { title: 'Case Study', value: 'case' },
-          { title: 'Studio', value: 'studio' },
-        ],
-      },
-      initialValue: 'case',
+      title: 'Card Button Label',
+      initialValue: 'View',
       validation: (rule) => rule.required(),
     },
     {

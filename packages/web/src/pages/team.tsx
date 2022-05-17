@@ -5,7 +5,6 @@ import { styled } from 'styles/stitches.config'
 
 import { TeamGrid } from 'components/Grids/GridTeam'
 import { ValuesGrid } from 'components/Grids/GridValues'
-import { CenteredParagraph } from 'components/CenteredParagraph/CenteredParagraph'
 import { ImageStrip } from 'components/ImageStrip/ImageStrip'
 import { Layout } from 'components/Site/SiteLayout'
 
@@ -15,13 +14,14 @@ import { TEAMPAGE } from 'data/queries/singletons/teamPage'
 import { REVALIDATE_TIME } from 'references/constants'
 
 import { Sanity } from '@types'
+import { RendererRichText } from 'components/Renderer/RendererRichText'
 
 interface TeamProps extends Sanity.DefaultLayoutProps {
   document: Sanity.TeamPage
 }
 
 const Team = ({ document, ...siteProps }: TeamProps) => {
-  const { team, textBlockOne, textBlockTwo, qualities, slideshow, cta, meta } =
+  const { team, textBlockOne, textBlockTwo, qualities, slideshow, meta } =
     document
 
   return (
@@ -29,10 +29,17 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
       <NextSeo title="Team" />
       <ImageStrip slideshow={slideshow} />
       <PaddingContainer>
-        <CenteredParagraph text={textBlockOne} />
+        {textBlockOne ? (
+          <TeamTextBlock
+            blocks={textBlockOne}
+            css={{
+              maxWidth: '55.5rem',
+            }}
+          />
+        ) : null}
         <TeamGrid team={team} />
-        <CenteredParagraph text={textBlockTwo} />
-        <ValuesGrid qualities={qualities} cta={cta} />
+        {textBlockTwo ? <TeamTextBlock blocks={textBlockTwo} /> : null}
+        <ValuesGrid qualities={qualities} />
       </PaddingContainer>
     </Layout>
   )
@@ -41,15 +48,19 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
 export default Team
 
 const PaddingContainer = styled('article', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
   px: '$s',
-  maxWidth: '120rem',
-  margin: 'auto',
 
   '@tabletUp': {
     px: '$m',
+  },
+})
+
+const TeamTextBlock = styled(RendererRichText, {
+  mt: '$xxl',
+  maxWidth: '$centeredParagraph',
+
+  '@tabletUp': {
+    mt: '11.6rem',
   },
 })
 

@@ -2,73 +2,82 @@ import { CSS, ScaleValue } from './stitches.config'
 
 type DesktopFontSizeTokens = ScaleValue<'fontSizes'>
 
+/**
+ * Use the desktop size and it will add the mobile.
+ * Relates to our Stitches config so autocomplete
+ * will help you find the right style.
+ */
 export const getFontStyle = (DeskStyle: DesktopFontSizeTokens): CSS => {
   switch (DeskStyle) {
-    case '$h1':
+    case '$XXXL':
       return {
-        fontSize: '$h2',
-        lineHeight: '$h2',
+        fontSize: '$XXL',
+        lineHeight: '$XXL',
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
       }
-    case '$h2':
+    case '$XXL':
       return {
-        fontSize: '$h3',
-        lineHeight: '$h3',
+        fontSize: '$XL',
+        lineHeight: '$XL',
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
       }
-    case '$h3':
+    case '$XL':
       return {
-        fontSize: '$h4',
-        lineHeight: '$h4',
+        fontSize: '$L',
+        lineHeight: '$L',
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
       }
-    case '$h4':
+    case '$L':
       return {
-        fontSize: '$h5',
-        lineHeight: '$h5',
+        fontSize: '$M',
+        lineHeight: '$M',
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
       }
-    case '$h5':
+    case '$M':
       return {
-        fontSize: '$h6',
-        lineHeight: '$h6',
+        fontSize: '$S',
+        lineHeight: '$S',
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
       }
-    case '$h6':
+    case '$S':
       return {
-        fontSize: '$h6',
-        lineHeight: '$h6',
-      }
-    case '$body':
-      return {
-        fontFamily: '$reckless',
-        fontSize: '$h5',
-        lineHeight: '$h5',
+        fontSize: '$XS',
+        lineHeight: '$XS',
 
         '@tabletUp': {
           fontSize: DeskStyle,
           lineHeight: DeskStyle,
         },
+      }
+    case '$XS':
+      return {
+        fontSize: DeskStyle,
+        lineHeight: DeskStyle,
+      }
+    case '$XXS':
+      return {
+        fontSize: DeskStyle,
+        lineHeight: DeskStyle,
       }
     default:
       return {}

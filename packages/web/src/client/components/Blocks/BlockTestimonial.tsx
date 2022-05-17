@@ -15,7 +15,7 @@ export const Testimonial = ({ quote, author }: TestimonialProps) => {
       <TestimonialWrapper tag="div">
         {quote ? <Quote blocks={quote} /> : null}
         {author ? (
-          <Heading tag="h3" fontStyle="$body">
+          <Heading tag="h3" fontStyle="S">
             {author}
           </Heading>
         ) : null}
@@ -45,5 +45,5 @@ const TestimonialWrapper = styled(FadeIn, {
 
 const Quote = styled(RendererRichText, {
   mb: '$s',
-  ...getFontStyle('$h4'),
+  ...getFontStyle('$L'),
 })

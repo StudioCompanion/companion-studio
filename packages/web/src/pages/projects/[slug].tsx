@@ -20,12 +20,13 @@ interface ProjectPageProps extends Sanity.DefaultLayoutProps {
 }
 
 const ProjectPage = ({ document, ...siteProps }: ProjectPageProps) => {
-  const { blocks = [], title, subtext, team, meta } = document
+  const { blocks, title, team, meta } = document
+
   return (
     <Layout {...siteProps} documentMeta={meta}>
       <Article>
-        <ProjecHeader title={title} subtext={subtext} team={team} />
-        <Renderer blocks={blocks} />
+        <ProjecHeader title={title} team={team} />
+        <Renderer blocks={blocks ?? []} />
       </Article>
     </Layout>
   )
@@ -33,22 +34,31 @@ const ProjectPage = ({ document, ...siteProps }: ProjectPageProps) => {
 
 export default ProjectPage
 
+interface ProjectSnippet extends Pick<Sanity.ProjectPage, 'status'> {
+  slug: string
+}
+
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   const client = createSanityClientRead()
 
   const allProjectSlugsQuery = groq`
-    *[_type == "project"].slug.current
+    *[_type == "project"][] {
+      status,
+      "slug": slug.current
+    }
   `
 
-  const slugs = await client.fetch<string[]>(allProjectSlugsQuery)
+  const slugs = await client.fetch<ProjectSnippet[]>(allProjectSlugsQuery)
 
   return {
     fallback: 'blocking',
-    paths: slugs.map((slug) => ({
-      params: {
-        slug,
-      },
-    })),
+    paths: slugs
+      .filter(({ status }) => status !== 'comingSoon')
+      .map(({ slug }) => ({
+        params: {
+          slug,
+        },
+      })),
   }
 }
 
@@ -58,7 +68,7 @@ export const getStaticProps: GetStaticProps<
 > = async ({ preview, params }) => {
   const slug = params?.slug ?? ''
 
-  const sanityResult = await fetchDocument({
+  const sanityResult = await fetchDocument<Sanity.ProjectPage>({
     filter: `_type == 'project' && slug.current == $slug`,
     preview,
     projection: PROJECT_PAGE,
@@ -68,7 +78,7 @@ export const getStaticProps: GetStaticProps<
   })
 
   return {
-    notFound: !sanityResult,
+    notFound: !sanityResult || sanityResult.document.status === 'comingSoon',
     props: {
       ...sanityResult,
       preview: !!preview,

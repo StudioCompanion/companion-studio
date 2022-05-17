@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 
 import { styled } from 'styles/stitches.config'
 
@@ -10,40 +9,7 @@ import { SignUpForm } from 'components/Forms/FormFooter'
 import { LinkBase } from 'components/Links/LinkBase'
 import { Heading } from 'components/Text/Heading'
 import { EventNames, firePlausibleEvent } from 'helpers/analytics'
-
-/**
- * TODO: make this CMS-able
- */
-const partnerLogos = [
-  {
-    title: '1% for the Planet',
-    url: 'https://www.onepercentfortheplanet.org/',
-    image: '/images/graphics/partner-logos/partnerlogo_1percent.svg',
-    width: 83,
-    height: 35,
-  },
-  {
-    title: 'Creative Lives in Progress',
-    url: 'https://www.creativelivesinprogress.com/',
-    image: '/images/graphics/partner-logos/partnerlogo_CLIP.svg',
-    width: 55,
-    height: 35,
-  },
-  {
-    title: 'New Futures',
-    url: 'https://newfutureshq.org.uk/',
-    image: '/images/graphics/partner-logos/partnerlogo_newfutures.svg',
-    width: 58,
-    height: 35,
-  },
-  {
-    title: 'ARTHOUSE Unlimited',
-    url: 'https://arthouseunlimited.org/',
-    image: '/images/graphics/partner-logos/partnerlogo_AHU.png',
-    width: 94,
-    height: 9,
-  },
-]
+import { getFontStyle } from 'styles/getFontStyles'
 
 export const Footer = ({ links }: Sanity.Footer) => {
   /**
@@ -65,14 +31,6 @@ export const Footer = ({ links }: Sanity.Footer) => {
     return () => clearInterval(interval)
   }, [])
 
-  const handlePartnerClick = (partnerName: string) => () =>
-    firePlausibleEvent({
-      name: EventNames.CharityLinks,
-      additionalProps: {
-        charity: partnerName,
-      },
-    })
-
   const handleSocialClick = (social?: string) => () => {
     if (
       social === 'LinkedIn' ||
@@ -92,34 +50,24 @@ export const Footer = ({ links }: Sanity.Footer) => {
     <FooterContainer tag="footer">
       <FooterContent>
         <FooterLeft>
-          <FooterText tag="p" fontStyle="$h5">
+          <FooterText tag="p" fontStyle="S">
             Companion is based in London and has been operating globally for{' '}
-            {days}d {hours}h {minutes}m {seconds}s. We are proud to contribute
-            5% of our annual revenue to organisations that create a better
-            future for earth.
+            {days}d {hours}h {minutes}m {seconds}s.
+            <br />
+            <br />
+            We are proud to contribute 5% of our annual revenue to organisations
+            that create a better future for earth.
           </FooterText>
-          <FooterPartnerLogos>
-            {partnerLogos.map(({ title, url, image, width, height }) => (
-              <FooterPartnerLogo
-                key={title}
-                url={url}
-                isExternal
-                onClick={handlePartnerClick(title)}
-              >
-                <Image src={image} width={width} height={height} alt={title} />
-              </FooterPartnerLogo>
-            ))}
-          </FooterPartnerLogos>
         </FooterLeft>
         <FooterForm />
       </FooterContent>
       <Imprint>
-        <ImprintCopy tag="p" fontStyle="$h6">
+        <ImprintCopy tag="p" fontStyle="XS">
           <ImprintLine>Companion Studio Ltd. (No. 13051984)</ImprintLine>
           <ImprintLine>
             <LinkBase
               css={{
-                '&:hover': {
+                hover: {
                   textDecoration: 'underline',
                 },
               }}
@@ -145,9 +93,9 @@ export const Footer = ({ links }: Sanity.Footer) => {
 }
 
 const FooterContainer = styled(FadeIn, {
-  backgroundColor: '$black',
+  backgroundColor: '$blue100',
   borderRadius: '$wrapperLarge',
-  color: '$white',
+  color: '$white100',
   p: '$s',
 
   '@tabletUp': {
@@ -172,8 +120,10 @@ const FooterContent = styled('div', {
 })
 
 const FooterText = styled(Heading, {
-  color: '$white',
+  color: '$white100',
   mb: '$l',
+  fontSize: '$S !important',
+  lineHeight: '$S !important',
 })
 
 const FooterLeft = styled('div', {
@@ -191,20 +141,6 @@ const FooterForm = styled(SignUpForm, {
   },
 })
 
-const FooterPartnerLogos = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-})
-
-const FooterPartnerLogo = styled(LinkBase, {
-  '@media (hover: hover)': {
-    '&:hover': {
-      opacity: 0.5,
-    },
-  },
-})
-
 const Imprint = styled('div', {
   display: 'flex',
   flexDirection: 'column-reverse',
@@ -218,8 +154,7 @@ const Imprint = styled('div', {
 
 const ImprintCopy = styled(Heading, {
   mt: '$l',
-  color: '$white',
-  opacity: 0.5,
+  color: '$white100',
 
   '@tabletUp': {
     mt: 0,
@@ -235,12 +170,12 @@ const ImprintLine = styled('span', {
 })
 
 const FooterLinks = styled('ul', {
-  fontSize: '$h6',
-  lineHeight: '$h6',
-  color: '$white',
+  color: '$white100',
   display: 'grid',
   gridTemplateColumns: 'repeat(2, min-content)',
   gap: '1.2rem 5.4rem',
+
+  ...getFontStyle('$XS'),
 
   '@tabletUp': {
     display: 'flex',
@@ -251,9 +186,7 @@ const FooterLinks = styled('ul', {
 const FooterLink = styled(LinkBase, {
   textDecoration: 'none',
 
-  '@media (hover: hover)': {
-    '&:hover': {
-      textDecoration: 'underline',
-    },
+  hover: {
+    textDecoration: 'underline',
   },
 })

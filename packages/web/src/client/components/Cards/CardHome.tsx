@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import Link from 'next/link'
-import { animated, useSpring } from '@react-spring/web'
+import { animated, SpringValues, useSpring } from '@react-spring/web'
 import { useHover } from 'react-use-gesture'
 
 import { ThemeTypes } from 'styles/constants'
@@ -12,22 +12,29 @@ import { Heading } from 'components/Text/Heading'
 
 import { useCanHover } from 'hooks/useCanHover'
 
-import { Sanity } from '@types'
+import { PickType, Sanity } from '@types'
+import { getHrefSlugFromSanityReference } from 'helpers/links'
 
 interface CardHomeProps extends Sanity.HomepageCard {
   className?: string
+  status?: PickType<Sanity.ProjectPage, 'status'>
 }
 
-export const CardHome = ({
-  layout,
+interface CardHomeInnerProps
+  extends Omit<CardHomeProps, 'slug' | 'type' | 'className'> {
+  style?: SpringValues<{ y: string; scale: number }>
+}
+
+const CardHomeInner = ({
   media,
   meta,
   subtitle,
   theme,
   title,
-  slug,
-  className,
-}: CardHomeProps) => {
+  cardButtonLabel = 'View',
+  status,
+  style,
+}: CardHomeInnerProps) => {
   const selectedMedia = media?.asset
     ? media
     : meta?.image?.asset
@@ -35,6 +42,38 @@ export const CardHome = ({
     : undefined
 
   const actualTitle = title ?? meta?.title
+
+  return (
+    <>
+      <ImageContainer style={style}>
+        {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}
+      </ImageContainer>
+      <CardText theme={theme}>
+        <div>
+          {actualTitle ? (
+            <Heading tag="h2" fontStyle="L" weight="$bold">
+              {actualTitle}
+            </Heading>
+          ) : null}
+          {subtitle ? (
+            <Heading tag="h3" fontStyle="XS">
+              {subtitle}
+            </Heading>
+          ) : null}
+        </div>
+        <Button
+          text={cardButtonLabel}
+          theme={
+            status === 'comingSoon' ? ThemeTypes.OUTLINED : ThemeTypes.LIGHT
+          }
+        />
+      </CardText>
+    </>
+  )
+}
+
+export const CardHome = (props: CardHomeProps) => {
+  const { slug, type, status, className, theme } = props
 
   const [styles, api] = useSpring(
     () => ({
@@ -72,30 +111,18 @@ export const CardHome = ({
 
   const bind = useHover(hoverCallback)
 
+  if (status === 'comingSoon') {
+    return (
+      <CardWrapper as="div" className={className} theme={ThemeTypes.OUTLINED}>
+        <CardHomeInner {...props} />
+      </CardWrapper>
+    )
+  }
+
   return (
-    <Link href={`/projects/${slug}` ?? ''} passHref>
+    <Link href={getHrefSlugFromSanityReference({ _type: type, slug })} passHref>
       <CardWrapper className={className} theme={theme} {...bind()}>
-        <ImageContainer style={styles}>
-          {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}
-        </ImageContainer>
-        <CardText theme={theme}>
-          <div>
-            {actualTitle ? (
-              <Heading tag="h2" fontStyle="$body">
-                {actualTitle}
-              </Heading>
-            ) : null}
-            {subtitle ? (
-              <Heading tag="h3" fontStyle="$h6">
-                {subtitle}
-              </Heading>
-            ) : null}
-          </div>
-          <Button
-            text={layout === 'studio' ? 'View' : 'Read'}
-            theme={ThemeTypes.LIGHT}
-          />
-        </CardText>
+        <CardHomeInner {...props} style={styles} />
       </CardWrapper>
     </Link>
   )
@@ -109,30 +136,31 @@ const CardWrapper = styled('a', {
 
   variants: {
     theme: {
+      [ThemeTypes.OUTLINED]: {},
       [ThemeTypes.LIGHT]: {
-        backgroundColor: '$white',
+        backgroundColor: '$white100',
 
-        '&:hover': {
+        hover: {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$lightGrey',
+            backgroundColor: '$white50',
           },
         },
       },
       [ThemeTypes.GREY]: {
-        backgroundColor: '$lightGrey',
+        backgroundColor: '$white50',
 
-        '&:hover': {
+        hover: {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$lightGrey',
+            backgroundColor: '$white50',
           },
         },
       },
       [ThemeTypes.DARK]: {
-        backgroundColor: '$black',
+        backgroundColor: '$black100',
 
-        '&:hover': {
+        hover: {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$lightGrey',
+            backgroundColor: '$white50',
           },
         },
       },
@@ -164,19 +192,24 @@ const CardText = styled('div', {
 
   variants: {
     theme: {
+      [ThemeTypes.OUTLINED]: {
+        '& h2, & h3': {
+          color: '$black100',
+        },
+      },
       [ThemeTypes.LIGHT]: {
         '& h2, & h3': {
-          color: '$black',
+          color: '$black100',
         },
       },
       [ThemeTypes.GREY]: {
         '& h2, & h3': {
-          color: '$black',
+          color: '$black100',
         },
       },
       [ThemeTypes.DARK]: {
         '& h2, & h3': {
-          color: '$white',
+          color: '$white100',
         },
       },
     },

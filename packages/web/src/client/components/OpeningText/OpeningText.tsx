@@ -47,8 +47,13 @@ const OpeningTextInner = styled('div', {
 const LogoContainer = styled('div', {
   display: 'flex',
   justifyContent: 'center',
-  maxWidth: '9rem',
-  mb: '$xxs',
+  width: '8rem',
+  mb: '$s',
+
+  '@tabletUp': {
+    width: '13.8rem',
+    mb: '$m',
+  },
 })
 
 const OpeningTextCopy = styled(RendererRichText, {

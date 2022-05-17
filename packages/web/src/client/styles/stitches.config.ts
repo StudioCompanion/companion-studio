@@ -12,17 +12,31 @@ export enum Widths {
   LargeDesktop = 1440,
 }
 
-const { styled, globalCss, getCssText, config, keyframes } =
+const { styled, globalCss, getCssText, config, keyframes, reset } =
   Stitches.createStitches({
     theme: {
       colors: {
-        white: '#fff',
-        lightGrey: '#f1f1f4',
-        grey: '#e5e5eb',
-        blue: '#0037B0',
-        darkBlue: '#080B37',
-        black: '#1E1C1C',
-        black70: 'rgba(30, 28, 28, .7)',
+        white100: 'rgba(255,255,255,1)',
+        white50: 'rgba(255, 255, 255, 0.5)',
+        white25: 'rgba(255, 255, 255, 0.25)',
+        black100: '#1B1C1D',
+        black50: '#8D8D8E',
+        black25: '#C6C6C6',
+        blue100: '#0037B0',
+        blue50: '#809BD8',
+        blue25: '#BFCDEB',
+        orange100: '#EF7F3A',
+        orange50: '#F7BF9D',
+        orange25: '#FBDFCE',
+        green100: '#00B66B',
+        green50: '#80DBB5',
+        green25: '#BFEDDA',
+        cream100: '#F7EEE2',
+        cream50: '#FBF7F1',
+        cream25: '#FDFBF8',
+        grey100: '#E5E5EB',
+        grey50: '#F2F2F5',
+        grey25: '#F9F9FA',
       },
       sizes: {
         smallTablet: `${Widths.SmallTablet / 10}rem`,
@@ -40,9 +54,9 @@ const { styled, globalCss, getCssText, config, keyframes } =
         s: '1.6rem',
         m: '2rem',
         l: '2.4rem',
-        xl: '4rem',
-        xxl: '6rem',
-        xxxl: '8rem',
+        xl: '3.2rem',
+        xxl: '4rem',
+        xxxl: '6rem',
       },
       radii: {
         wrapper: '0.8rem',
@@ -62,29 +76,30 @@ const { styled, globalCss, getCssText, config, keyframes } =
       },
       fonts: {
         apfel: '"Apfel Groteszk", -apple-system, system-ui, sans-serif',
-        reckless: '"Reckless Neue", serif',
       },
       fontSizes: {
-        h1: '5.8rem',
-        h2: '4.4rem',
-        h3: '3.2rem',
-        h4: '2.6rem',
-        h5: '1.7rem',
-        h6: '1.2rem',
-        body: '2rem',
+        XXXL: '5.8rem',
+        XXL: '4.4rem',
+        XL: '3.2rem',
+        L: '2.6rem',
+        M: '2rem',
+        S: '1.7rem',
+        XS: '1.2rem',
+        XXS: '1rem',
       },
       lineHeights: {
-        h1: '120%',
-        h2: '120%',
-        h3: '120%',
-        h4: '130%',
-        h5: '130%',
-        h6: '120%',
-        body: '130%',
+        XXXL: '120%',
+        XXL: '120%',
+        XL: '120%',
+        L: '130%',
+        M: '130%',
+        S: '130%',
+        XS: '120%',
+        XXS: '120%',
       },
       fontWeights: {
         regular: 400,
-        medium: 500,
+        bold: 700,
       },
     },
     media: {
@@ -183,6 +198,14 @@ const { styled, globalCss, getCssText, config, keyframes } =
           left: 0,
         },
       }),
+
+      hover: (val: object) => ({
+        '@media (hover:hover)': {
+          '&:hover': {
+            ...val,
+          },
+        },
+      }),
     },
   })
 
@@ -192,4 +215,4 @@ type ScaleValue<TValue> = Stitches.ScaleValue<TValue, StitchesConfig>
 
 export type { StitchesConfig, CSS, ScaleValue }
 
-export { styled, getCssText, globalCss, keyframes }
+export { styled, getCssText, globalCss, keyframes, reset }

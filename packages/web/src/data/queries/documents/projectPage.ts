@@ -7,7 +7,7 @@ import { TEAM_MEMBER } from '../objects/teamMember'
 
 export const PROJECT_PAGE = groq`
     title,
-    subtext,
+    status,
     meta {
         ${META}
     },

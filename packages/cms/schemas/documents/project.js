@@ -35,18 +35,38 @@ export default {
     },
     slug({ group: 'info', path: 'projects' }),
     {
-      name: 'subtext',
-      title: 'Subtext',
+      name: 'status',
+      title: 'Status',
       type: 'string',
       group: 'info',
-      validation: (rule) => rule.required(),
+      options: {
+        layout: 'dropdown',
+        list: [
+          {
+            value: 'comingSoon',
+            title: 'Coming Soon',
+          },
+          {
+            value: 'live',
+            title: 'Live',
+          },
+        ],
+      },
+      initialValue: 'comingSoon',
     },
     {
       group: 'info',
       name: 'team',
       title: 'Team',
       type: 'array',
-      validation: (rule) => rule.required().min(1),
+      validation: (rule) =>
+        rule.custom((value, { parent }) => {
+          if (parent.status === 'live' && value.length < 1) {
+            return 'You must add at least one team member'
+          }
+
+          return true
+        }),
       of: [
         {
           name: 'member',
@@ -62,7 +82,14 @@ export default {
       type: 'array',
       of: BLOCKS_ARRAY,
       group: 'content',
-      validation: (rule) => rule.required().min(1),
+      validation: (rule) =>
+        rule.custom((value, { parent }) => {
+          if (parent.status === 'live' && value.length < 1) {
+            return 'You must add at least one page block'
+          }
+
+          return true
+        }),
     },
     {
       name: 'meta',

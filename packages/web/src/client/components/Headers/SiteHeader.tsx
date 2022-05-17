@@ -6,57 +6,130 @@ import { Logo } from 'components/Logo/Logo'
 import { LinkBase } from 'components/Links/LinkBase'
 
 import { Sanity } from '@types'
+import { urlIsReferenceGuard } from 'helpers/links'
+import { animated, useSpring } from '@react-spring/web'
+import { useRef } from 'react'
+import { useCanHover } from 'hooks/useCanHover'
 
 export interface NavProps {
   currentPath?: string
   items?: Sanity.Link[]
 }
 
-/**
- * TODO: be nice if the background moved
- * between the buttons instead of just
- * being a background
- */
 export const Nav = ({ currentPath = '/', items }: NavProps) => {
+  const navBackgroundIsVisible = useRef(false)
+  const navRefs = useRef<HTMLLIElement[]>([])
+
+  const [{ opacity }, opacityApi] = useSpring(
+    () => ({
+      opacity: 0,
+      config: {
+        tension: 200,
+        friction: 10,
+      },
+    }),
+    []
+  )
+
+  const [style, api] = useSpring(
+    () => ({
+      width: 0,
+      height: 0,
+      x: 0,
+      y: 0,
+    }),
+    []
+  )
+
+  const canHover = useCanHover()
+
+  const handleMouseEnter = (i: number) => () => {
+    if (!canHover) {
+      return
+    }
+
+    const element = navRefs.current[i]
+
+    const { width, height, x, y } = element.getBoundingClientRect()
+
+    if (!navBackgroundIsVisible.current) {
+      api.set({
+        width,
+        height,
+        x,
+        y,
+      })
+
+      opacityApi.start({
+        opacity: 1,
+      })
+
+      navBackgroundIsVisible.current = true
+    } else {
+      api.start({
+        width,
+        height,
+        x,
+        y,
+      })
+    }
+  }
+  const handleMouseLeave = () => {
+    if (!canHover) {
+      return
+    }
+
+    navBackgroundIsVisible.current = false
+
+    opacityApi.start({
+      opacity: 0,
+    })
+  }
+
+  if (currentPath === '/' || currentPath === '/instagram') {
+    return null
+  }
+
   return (
-    <>
-      {currentPath !== '/' && currentPath !== '/instagram' && (
-        <NavContainer>
-          <Link href={'/'} passHref>
-            <LogoWrapper>
-              <Logo label="Homepage" />
-            </LogoWrapper>
-          </Link>
-          <NavWrapper>
-            <NavList>
-              {Array.isArray(items)
-                ? items.map((item) => (
-                    <NavItem key={item.label}>
-                      <NavLink
-                        {...item}
-                        active={
-                          // @ts-expect-error this should be redundant after all the pages are moved over
-                          currentPath === `/${item.url?.slug}` ||
-                          (currentPath.includes('projects') &&
-                            item.label === 'Work')
-                        }
-                      >
-                        {item.label}
-                      </NavLink>
-                    </NavItem>
-                  ))
-                : null}
-            </NavList>
-          </NavWrapper>
-        </NavContainer>
-      )}
-    </>
+    <NavContainer>
+      <Link href={'/'} passHref>
+        <LogoWrapper>
+          <Logo label="Homepage" />
+        </LogoWrapper>
+      </Link>
+      <NavWrapper onMouseLeave={handleMouseLeave}>
+        <NavBackground style={{ ...style, opacity }} />
+        <NavList>
+          {Array.isArray(items)
+            ? items.map((item, index) => {
+                const isActive = urlIsReferenceGuard(item.url)
+                  ? currentPath === `/${item.url?.slug}` ||
+                    (currentPath.includes('projects') && item.label === 'Work')
+                  : currentPath === item.url
+
+                return (
+                  <NavItem
+                    ref={(ref) => (navRefs.current[index] = ref!)}
+                    key={item.label}
+                    onMouseEnter={handleMouseEnter(index)}
+                  >
+                    <NavLink {...item} active={isActive}>
+                      {item.label}
+                    </NavLink>
+                  </NavItem>
+                )
+              })
+            : null}
+        </NavList>
+      </NavWrapper>
+    </NavContainer>
   )
 }
 
 const LogoWrapper = styled('a', {
   display: 'block',
   mr: '$xs',
+  width: '8.5rem',
 })
 
 const NavContainer = styled('header', {
@@ -75,16 +148,18 @@ const NavContainer = styled('header', {
 })
 
 const NavWrapper = styled('nav', {
-  backgroundColor: '$white',
+  backgroundColor: '$white100',
   width: 'fit-content',
   p: 6,
   borderRadius: '$pill',
-  border: '1px solid rgba(232, 232, 238, 0.25)',
+  border: '1px solid $grey25',
   boxShadow: '0px 0px 21px rgba(8, 11, 55, 0.03)',
 })
 
 const NavList = styled('ul', {
   display: 'flex',
+  position: 'relative',
+  zIndex: '$1',
 })
 
 const NavItem = styled('li', {
@@ -96,8 +171,8 @@ const NavItem = styled('li', {
 const NavLink = styled(LinkBase, {
   textDecoration: 'none',
   display: 'block',
-  fontSize: '$h6',
-  lineHeight: '$h6',
+  fontSize: '$XS',
+  lineHeight: '$XS',
   p: '$xxs',
   pb: 10,
   borderRadius: '$pill',
@@ -107,21 +182,30 @@ const NavLink = styled(LinkBase, {
   variants: {
     active: {
       true: {
-        backgroundColor: '$black',
-        color: '$white !important',
+        backgroundColor: '$black100',
+        color: '$white100 !important',
 
-        '&:hover': {
-          backgroundColor: '$black70',
+        hover: {
+          backgroundColor: '$black50',
         },
       },
       false: {
         backgroundColor: 'transparent',
-        color: 'rgba(8, 11, 55, 0.57)',
+        color: '$black50',
 
-        '&:hover': {
-          backgroundColor: '$lightGrey',
-        },
+        // hover: {
+        //   backgroundColor: '$grey25',
+        // },
       },
     },
   },
+})
+
+const NavBackground = styled(animated.span, {
+  position: 'absolute',
+  zIndex: 0,
+  top: 0,
+  left: 0,
+  backgroundColor: '$grey25',
+  borderRadius: '$pill',
 })

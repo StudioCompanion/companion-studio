@@ -16,15 +16,16 @@ interface AvatarsProps {
 export const Avatars = ({ members }: AvatarsProps) => {
   const textRefs = useRef<HTMLDivElement[]>([])
 
+  const canHover = useCanHover()
+
   const [springs, api] = useSprings(
     (members ?? []).length,
     () => ({
-      width: 0,
+      width: canHover ? 0 : 'unset',
+      immediate: true,
     }),
-    [members]
+    [members, canHover]
   )
-
-  const canHover = useCanHover()
 
   const handleMouseEnter = (i: number) => () => {
     if (!canHover) {
@@ -47,54 +48,26 @@ export const Avatars = ({ members }: AvatarsProps) => {
     }))
   }
 
-  const isOpenId = useRef<number | null>(null)
-
-  const handleClick = (i: number) => () => {
-    if (canHover) {
-      return
-    }
-
-    api.start((j) => ({
-      width:
-        j === i && isOpenId.current !== i
-          ? textRefs.current[i].scrollWidth + 8
-          : 0,
-      onStart: () => {
-        /**
-         * If nothing is open or the id isn't what we clicked
-         * change the id to the one we just clicked
-         */
-        if (!isOpenId.current || isOpenId.current !== i) {
-          isOpenId.current = i
-        } else {
-          /**
-           * Else, we're closing one so reset it to null
-           * otherwise it cant be reopened
-           */
-          isOpenId.current = null
-        }
-      },
-    }))
-  }
-
   return (
     <GridWrapper>
       {(members ?? []).map(({ image, name, job }, i) => (
         <GridItemContainer
           onMouseEnter={handleMouseEnter(i)}
           onMouseLeave={handleMouseLeave(i)}
-          onClick={handleClick(i)}
           key={name}
+          css={{
+            mr: canHover ? 0 : '$s',
+          }}
         >
           {image ? <GridImageWrapper {...image} /> : null}
           <TeamMemberDetails
             ref={(ref) => (textRefs.current[i] = ref as HTMLDivElement)}
             style={{ width: springs[i].width }}
           >
-            <TeamMemberHeading tag="h2" fontStyle="$h6">
+            <TeamMemberHeading tag="h2" fontStyle="XS" weight="$bold">
               {name}
             </TeamMemberHeading>
-            <TeamMemberHeading tag="h3" fontStyle="$h6">
+            <TeamMemberHeading tag="h3" fontStyle="XS">
               {job}
             </TeamMemberHeading>
           </TeamMemberDetails>
@@ -109,11 +82,11 @@ const GridWrapper = styled('div', {
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'flex-end',
-  my: '$s',
-  overflow: 'scroll',
+  py: '$s',
+  overflow: 'auto',
 
   '@tabletUp': {
-    my: 0,
+    py: 0,
     justifyContent: 'flex-end',
   },
 })
@@ -129,7 +102,7 @@ const GridImageWrapper = styled(Media, {
   position: 'relative',
   borderRadius: '$circle',
   padding: '$xxxs',
-  background: '$lightGrey',
+  background: '$white50',
   height: 50,
   width: 50,
 

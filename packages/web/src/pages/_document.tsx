@@ -1,9 +1,37 @@
 import * as React from 'react'
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document'
 
-import { getCssText } from 'styles/stitches.config'
+import { getCssText, reset } from 'styles/stitches.config'
 
 export default class Doc extends Document {
+  getInitialProps = async (ctx: DocumentContext) => {
+    // render page
+    const results = await ctx.defaultGetInitialProps(ctx)
+    // get the css for the current rendering cycle
+    const stitchesCssString = getCssText()
+    // reset the styles between renders
+    reset()
+
+    return {
+      ...results,
+      styles: (
+        <>
+          {results.styles}
+          <style
+            id="stitches"
+            dangerouslySetInnerHTML={{ __html: stitchesCssString }}
+          />
+        </>
+      ),
+    }
+  }
+
   render() {
     return (
       <Html lang="en">
@@ -22,10 +50,6 @@ export default class Doc extends Document {
           />
           <link rel="manifest" href={'/manifest.json'} />
           <link rel="shortcut icon" href={'/favicon.ico'} />
-          <style
-            id="stitches"
-            dangerouslySetInnerHTML={{ __html: getCssText() }}
-          />
         </Head>
         <body>
           <Main />

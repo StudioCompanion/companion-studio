@@ -23,8 +23,8 @@ export const TEAMPAGE = groq`
         text[] {
             ${RICH_TEXT}
         },
-        title[] {
-            ${RICH_TEXT}
+        media {
+            ${MEDIA}
         }
         
     },

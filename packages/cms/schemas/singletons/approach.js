@@ -31,8 +31,8 @@ export default {
       validation: (rule) => rule.required().min(1),
       of: [
         {
-          name: 'textSection',
-          title: 'Text Section',
+          name: 'section',
+          title: 'Section',
           type: 'object',
           fields: [
             {
@@ -41,19 +41,19 @@ export default {
               type: 'richText',
               validation: (rule) => rule.required(),
             },
+            {
+              name: 'media',
+              title: 'Media Section',
+              type: 'media',
+            },
           ],
           preview: {
             prepare() {
               return {
-                title: `Text Section`,
+                title: 'Section',
               }
             },
           },
-        },
-        {
-          name: 'mediaSection',
-          title: 'Media Section',
-          type: 'media',
         },
       ],
     },

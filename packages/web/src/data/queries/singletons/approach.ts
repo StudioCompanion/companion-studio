@@ -10,14 +10,11 @@ export const APPROACH_PAGE = groq`
         ${META}
     },
     sections[]{
-        (_type == "textSection") => {
-            ...,
-            text[] {
-                ${RICH_TEXT}
-            }
+        _key,
+        text[] {
+            ${RICH_TEXT}
         },
-        (_type == "mediaSection") => {
-            _key,
+        media {
             ${MEDIA}
         }
     }

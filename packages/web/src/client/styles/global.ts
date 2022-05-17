@@ -4,23 +4,13 @@ export const globalStyles = globalCss({
   '@font-face': [
     {
       fontFamily: 'Apfel Groteszk',
-      src: "url('/fonts/ApfelGrotezk-Regular.woff') format('woff')",
+      src: "url('/fonts/ApfelGrotezk-Regular.woff2') format('woff2'), url('/fonts/ApfelGrotezk-Regular.woff') format('woff')",
       fontWeight: 400,
     },
     {
       fontFamily: 'Apfel Groteszk',
-      src: "url('/fonts/ApfelGrotezk-Fett.woff') format('woff')",
-      fontWeight: 500,
-    },
-    {
-      fontFamily: 'Reckless Neue',
-      src: "url('/fonts/RecklessNeue-Book.woff') format('woff')",
-      fontWeight: 400,
-    },
-    {
-      fontFamily: 'Reckless Neue',
-      src: "url('/fonts/RecklessNeue-Regular.woff') format('woff')",
-      fontWeight: 500,
+      src: "url('/fonts/ApfelGrotezk-Fett.woff2') format('woff2'), url('/fonts/ApfelGrotezk-Fett.woff') format('woff')",
+      fontWeight: 700,
     },
   ],
 
@@ -36,6 +26,7 @@ export const globalStyles = globalCss({
   'html, body': {
     fontSize: '62.5%',
     fontFamily: '$apfel',
+    letterSpacing: '-0.01em',
     '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',
     m: 0,
@@ -55,6 +46,10 @@ export const globalStyles = globalCss({
     listStyle: 'none',
     p: 0,
     m: 0,
+  },
+
+  strong: {
+    fontWeight: '$bold',
   },
 
   // this is for lottie to stop the background showing
