@@ -159,6 +159,13 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
         marginTop: value,
         marginBottom: value,
       }),
+      br: (value: Stitches.PropertyValue<'borderRadius'>) => ({
+        borderRadius: value,
+        // Safari requires this to be explicitly set on videos
+        video: {
+          borderRadius: value,
+        },
+      }),
       debug: (value: Stitches.PropertyValue<'color'>) => ({
         border: `solid 1px ${value}`,
       }),

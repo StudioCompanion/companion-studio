@@ -236,10 +236,10 @@ const Container = styled('div', {
   width: '100%',
   position: 'relative',
   overflow: 'hidden',
-  borderRadius: '$wrapperMobile',
+  br: '$wrapperMobile',
 
   '@tabletUp': {
-    borderRadius: '$wrapper',
+    br: '$wrapper',
   },
 })
 

@@ -50,6 +50,10 @@ const LogoContainer = styled('div', {
   width: '8rem',
   mb: '$s',
 
+  '& > svg': {
+    width: '100%',
+  },
+
   '@tabletUp': {
     width: '13.8rem',
     mb: '$m',

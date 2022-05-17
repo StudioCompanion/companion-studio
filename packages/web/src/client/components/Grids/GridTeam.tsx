@@ -64,9 +64,9 @@ const GridItemContainer = styled(FadeIn, {
 const GridImage = styled(Media, {
   width: '100%',
   mb: '$xxs',
-  borderRadius: '$wrapper',
+  br: '$wrapper',
 
   '@tabletUp': {
-    borderRadius: '$wrapperLarge',
+    br: '$wrapperLarge',
   },
 })

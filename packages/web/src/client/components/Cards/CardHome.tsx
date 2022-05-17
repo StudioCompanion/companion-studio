@@ -131,7 +131,7 @@ export const CardHome = (props: CardHomeProps) => {
 const CardWrapper = styled('a', {
   display: 'block',
   position: 'relative',
-  borderRadius: '$wrapperLarge',
+  br: '$wrapperLarge',
   overflow: 'hidden',
 
   variants: {
@@ -173,7 +173,7 @@ const ImageContainer = styled(animated.div, {
 })
 
 const MediaContainer = styled(Media, {
-  borderRadius: '$wrapperLarge',
+  br: '$wrapperLarge',
   overflow: 'hidden',
 })
 
