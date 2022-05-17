@@ -147,16 +147,15 @@ export const VideoPlayer = ({
         loop
         muted
         playsInline
+        id={src}
       />
       <VideoButton
         style={style}
         onFocus={handleButtonFocus}
         onBlur={handleButtonBlur}
-        aria-controls="video"
-        id={src}
-        aria-label={isPaused ? 'Play' : 'Pause'}
+        aria-controls={src}
       >
-        <span hidden>{isPaused ? 'Play' : 'Pause'}</span>
+        <Control>{isPaused ? 'Play' : 'Pause'}</Control>
         <VideoButtonIcon>
           {isPaused ? (
             <svg
@@ -259,4 +258,8 @@ const VideoButton = styled(animated.button, {
       outline: 'auto 5px -webkit-focus-ring-color',
     },
   },
+})
+
+const Control = styled('span', {
+  visuallyHidden: '',
 })
