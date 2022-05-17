@@ -56,8 +56,8 @@ export default class Doc extends Document {
             href={'android-chrome-192x192.png'}
           />
           <link
-            rel="android-chrome-256x256"
-            href={'android-chrome-256x256.png'}
+            rel="favicon/android-chrome-256x256"
+            href={'favicon/android-chrome-256x256.png'}
           />
           <link rel="mask-icon" href={'favicon/safari-pinned-tab.svg'} />
         </Head>
