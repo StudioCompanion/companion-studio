@@ -52,8 +52,8 @@ export default class Doc extends Document {
           <link rel="shortcut icon" href={'favicon/favicon.ico'} />
           <link rel="apple-touch-icon" href={'favicon/apple-touch-icon.png'} />
           <link
-            rel="android-chrome-192x192"
-            href={'android-chrome-192x192.png'}
+            rel="favicon/android-chrome-192x192"
+            href={'favicon/android-chrome-192x192.png'}
           />
           <link
             rel="favicon/android-chrome-256x256"
