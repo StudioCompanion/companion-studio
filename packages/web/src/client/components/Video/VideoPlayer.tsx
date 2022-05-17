@@ -211,7 +211,7 @@ const VideoButtonIcon = styled('span', {
   width: 24,
   height: 24,
   borderRadius: '$circle',
-  backgroundColor: 'white',
+  backgroundColor: '$white100',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
