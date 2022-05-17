@@ -3,6 +3,8 @@ import { RouterContext } from 'next/dist/shared/lib/router-context'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import * as NextImage from 'next/image'
 
+import { globalStyles } from '../packages/web/src/client/styles/global'
+
 const { iphonex, iphone12 } = INITIAL_VIEWPORTS
 
 const custom = {
@@ -30,11 +32,14 @@ export const parameters = {
 }
 
 export const decorators = [
-  (Story) => (
-    <>
-      <Story />
-    </>
-  ),
+  (Story) => {
+    globalStyles()
+    return (
+      <>
+        <Story />
+      </>
+    )
+  },
 ]
 
 /**

@@ -30,7 +30,18 @@ const createAliasesFromPaths = () => {
 const config: StorybookConfig = {
   stories: ['../**/*.stories.@(js|jsx|ts|tsx)'],
   framework: '@storybook/react',
-  addons: ['@storybook/addon-essentials', 'storybook-addon-next-router'],
+  addons: [
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        backgrounds: false,
+        actions: false,
+        controls: false,
+        docs: false,
+      },
+    },
+    'storybook-addon-next-router',
+  ],
   staticDirs: ['../packages/web/public'],
   core: { builder: 'webpack5' },
   webpackFinal: async (config) => {
