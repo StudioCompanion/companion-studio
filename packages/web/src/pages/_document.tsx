@@ -48,8 +48,18 @@ export default class Doc extends Document {
             sizes="16x16"
             href={'favicon/favicon-16x16.png'}
           />
-          <link rel="manifest" href={'/manifest.json'} />
-          <link rel="shortcut icon" href={'/favicon.ico'} />
+          <link rel="manifest" href={'favicon/site.webmanifest'} />
+          <link rel="shortcut icon" href={'favicon/favicon.ico'} />
+          <link rel="apple-touch-icon" href={'favicon/apple-touch-icon.png'} />
+          <link
+            rel="android-chrome-192x192"
+            href={'android-chrome-192x192.png'}
+          />
+          <link
+            rel="android-chrome-256x256"
+            href={'android-chrome-256x256.png'}
+          />
+          <link rel="mask-icon" href={'favicon/safari-pinned-tab.svg'} />
         </Head>
         <body>
           <Main />
