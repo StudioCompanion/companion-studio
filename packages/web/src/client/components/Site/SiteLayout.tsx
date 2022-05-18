@@ -69,7 +69,7 @@ export const Layout = ({
           `/images/favicon-sequence/Companion_Favicon${counter}.png`
         )
 
-        if (counter === 150) {
+        if (counter === 149) {
           counter = 0
         } else {
           counter += 1
