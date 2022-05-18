@@ -66,10 +66,10 @@ export const Layout = ({
       if (link) {
         link.setAttribute(
           'href',
-          `/images/favicon-sequence/Companion_Favicon_${counter}.png`
+          `/images/favicon-sequence/Companion_Favicon${counter}.png`
         )
 
-        if (counter === 61) {
+        if (counter === 150) {
           counter = 0
         } else {
           counter += 1
@@ -78,7 +78,7 @@ export const Layout = ({
     }
 
     // 60FPS
-    const timerId = setInterval(animateLogo, 60)
+    const timerId = setInterval(animateLogo, 1000 / 60)
 
     return () => {
       /**
