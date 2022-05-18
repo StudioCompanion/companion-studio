@@ -35,44 +35,30 @@ export const Layout = ({
   const currentPath = router.pathname
 
   const [showSplash, setShowSplash] = useState(true)
+  const [count, setCount] = useState(0)
 
-  // :: ------------------------------------------------------
-  let counter = 0
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      // checking we can access the "document"
+      if (typeof window !== 'undefined') {
+        const link = document.querySelector("link[rel='icon']")
 
-  setInterval(() => {
-    if (typeof window !== 'undefined') {
-      if (document.querySelector("link[rel='icon']") !== null)
-        document.querySelector("link[rel='icon']")?.remove()
-
-      document
-        .querySelector('Head')
-        ?.insertAdjacentHTML(
-          'beforeend',
-          '<link rel="icon" href="' +
-            `faviconAnimated/Companion_Favicon_${counter}.png` +
-            '" type="image/gif">'
+        // mutating the source -> replacing the frame
+        link?.setAttribute(
+          'href',
+          `faviconAnimated/Companion_Favicon_${count}.png`
         )
-
-      if (counter === 62) {
-        counter = 0
-      } else {
-        counter++
       }
-    }
-  }, 200)
+      // updating the counter correctly
+      if (count === 62) {
+        setCount(0)
+      } else {
+        setCount((prevCount) => prevCount + 1)
+      }
+    }, 200)
 
-  // useEffect(() => {
-  //   let counter = 0
-
-  //   setInterval(() => {
-  //     faviconRef.current.href = `faviconAnimated/Companion_Favicon_${counter}.png`
-  //     if (counter === 62) {
-  //       counter = 0
-  //     } else {
-  //       counter++
-  //     }
-  //   }, 200)
-  // }, [])
+    return () => clearInterval(intervalId)
+  })
 
   useIsomorphicLayoutEffect(() => {
     const shown = sessionStorage.getItem('splash_shown')
@@ -88,6 +74,7 @@ export const Layout = ({
       <SiteSeo defaultSeo={defaultMeta} meta={documentMeta} />
       <Head>
         <link
+          id="favicon"
           rel="shortcut icon"
           href={'faviconAnimated/Companion_Favicon_00.png'}
           type="image/png"
