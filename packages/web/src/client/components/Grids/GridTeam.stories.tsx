@@ -2,12 +2,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { TeamGrid } from './GridTeam'
 
-// const Template: Story = (args) => <TeamGrid {...args} />
-
-// export const Primary = Template.bind({})
-
-// Primary.args = {}
-
 export default {
   title: 'Team Grid',
   component: TeamGrid,

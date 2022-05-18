@@ -12,11 +12,11 @@ export const NoMembers: ComponentStory<typeof Avatars> = () => (
 )
 
 export const WithMembers: ComponentStory<typeof Avatars> = () => (
-  <Avatars members={fixtures.withMemebers} />
+  <Avatars members={fixtures.withMembers} />
 )
 
 const fixtures = {
-  withMemebers: [
+  withMembers: [
     {
       _key: '303774d9-252e-4626-90a3-633bceb1f736',
       image: {
