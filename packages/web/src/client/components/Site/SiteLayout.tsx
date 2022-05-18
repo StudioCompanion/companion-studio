@@ -105,7 +105,7 @@ export const Layout = ({
         <link
           id="favicon"
           rel="icon"
-          href={'faviconAnimated/Companion_Favicon_0.png'}
+          href={'/images/faviconAnimated/Companion_Favicon_0.png'}
           type="image/gif"
         />
       </Head>
