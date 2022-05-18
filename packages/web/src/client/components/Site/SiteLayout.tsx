@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { styled } from 'styles/stitches.config'
@@ -35,30 +35,59 @@ export const Layout = ({
   const currentPath = router.pathname
 
   const [showSplash, setShowSplash] = useState(true)
-  const [count, setCount] = useState(0)
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      // checking we can access the "document"
-      if (typeof window !== 'undefined') {
-        const link = document.querySelector("link[rel='icon']")
+    let counter = 0
 
-        // mutating the source -> replacing the frame
-        link?.setAttribute(
+    const link = document.querySelector('link#favicon')
+
+    /**
+     * These are the old links that we set in `_document`
+     * lets remove them from the DOM on mount
+     */
+    const icon32 = document.querySelector('link#icon32')
+    const icon16 = document.querySelector('link#icon16')
+    const ico = document.querySelector('link#ico')
+
+    if (icon32) {
+      icon32.remove()
+    }
+    if (icon16) {
+      icon16.remove()
+    }
+    if (ico) {
+      ico.remove()
+    }
+
+    /**
+     * Animate logo function, could be doing in a raf call?
+     */
+    const animateLogo = () => {
+      if (link) {
+        link.setAttribute(
           'href',
-          `faviconAnimated/Companion_Favicon_${count}.png`
+          `/images/favicon-sequence/Companion_Favicon_${counter}.png`
         )
-      }
-      // updating the counter correctly
-      if (count === 62) {
-        setCount(0)
-      } else {
-        setCount((prevCount) => prevCount + 1)
-      }
-    }, 200)
 
-    return () => clearInterval(intervalId)
-  })
+        if (counter === 61) {
+          counter = 0
+        } else {
+          counter += 1
+        }
+      }
+    }
+
+    // 60FPS
+    const timerId = setInterval(animateLogo, 60)
+
+    return () => {
+      /**
+       * Clear interval on cleanup.
+       */
+      clearInterval(timerId)
+    }
+    // mount only effect.
+  }, [])
 
   useIsomorphicLayoutEffect(() => {
     const shown = sessionStorage.getItem('splash_shown')
@@ -75,9 +104,9 @@ export const Layout = ({
       <Head>
         <link
           id="favicon"
-          rel="shortcut icon"
-          href={'faviconAnimated/Companion_Favicon_00.png'}
-          type="image/png"
+          rel="icon"
+          href={'faviconAnimated/Companion_Favicon_0.png'}
+          type="image/gif"
         />
       </Head>
       {showSplash && <Splash />}

@@ -37,29 +37,31 @@ export default class Doc extends Document {
       <Html lang="en">
         <Head>
           <link
+            id="icon32"
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href={'favicon/favicon-32x32.png'}
+            href={'/site/favicon-32x32.png'}
           />
           <link
+            id="icon16"
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href={'favicon/favicon-16x16.png'}
+            href={'/site/favicon-16x16.png'}
           />
-          <link rel="manifest" href={'favicon/site.webmanifest'} />
-          <link rel="shortcut icon" href={'favicon/favicon.ico'} />
-          <link rel="apple-touch-icon" href={'favicon/apple-touch-icon.png'} />
+          <link id="ico" rel="shortcut icon" href={'/site/favicon.ico'} />
+          <link rel="manifest" href={'/site/site.webmanifest'} />
+          <link rel="apple-touch-icon" href={'/site/apple-touch-icon.png'} />
           <link
             rel="android-chrome-192x192"
-            href={'favicon/android-chrome-192x192.png'}
+            href={'/site/android-chrome-192x192.png'}
           />
           <link
             rel="android-chrome-256x256"
-            href={'favicon/android-chrome-256x256.png'}
+            href={'/site/android-chrome-256x256.png'}
           />
-          <link rel="mask-icon" href={'favicon/safari-pinned-tab.svg'} />
+          <link rel="mask-icon" href={'/site/safari-pinned-tab.svg'} />
         </Head>
         <body>
           <Main />
