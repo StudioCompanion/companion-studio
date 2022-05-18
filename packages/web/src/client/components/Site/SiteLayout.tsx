@@ -14,8 +14,6 @@ import { SiteSeo } from './SiteSeo'
 
 import { Sanity } from '@types'
 
-import Head from 'next/head'
-
 interface LayoutProps extends Sanity.DefaultLayoutProps {
   children: React.ReactNode
   documentMeta?: Sanity.Meta
@@ -48,14 +46,6 @@ export const Layout = ({
   return (
     <>
       <SiteSeo defaultSeo={defaultMeta} meta={documentMeta} />
-      <Head>
-        <link
-          id="favicon"
-          rel="icon"
-          href={'/images/faviconAnimated/Companion_Favicon_0.png'}
-          type="image/gif"
-        />
-      </Head>
       {showSplash && <Splash />}
       <Nav items={navigation} currentPath={currentPath} />
       <Main className={className} isTeamRoute={currentPath === '/team'}>
