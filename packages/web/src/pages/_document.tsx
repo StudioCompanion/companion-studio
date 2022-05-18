@@ -37,19 +37,31 @@ export default class Doc extends Document {
       <Html lang="en">
         <Head>
           <link
+            id="icon32"
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href={'/favicon-32x32.png'}
+            href={'/site/favicon-32x32.png'}
           />
           <link
+            id="icon16"
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href={'/favicon-16x16.png'}
+            href={'/site/favicon-16x16.png'}
           />
-          <link rel="manifest" href={'/manifest.json'} />
-          <link rel="shortcut icon" href={'/favicon.ico'} />
+          <link id="ico" rel="shortcut icon" href={'/site/favicon.ico'} />
+          <link rel="manifest" href={'/site/site.webmanifest'} />
+          <link rel="apple-touch-icon" href={'/site/apple-touch-icon.png'} />
+          <link
+            rel="android-chrome-192x192"
+            href={'/site/android-chrome-192x192.png'}
+          />
+          <link
+            rel="android-chrome-256x256"
+            href={'/site/android-chrome-256x256.png'}
+          />
+          <link rel="mask-icon" href={'/site/safari-pinned-tab.svg'} />
         </Head>
         <body>
           <Main />
