@@ -36,59 +36,6 @@ export const Layout = ({
 
   const [showSplash, setShowSplash] = useState(true)
 
-  useEffect(() => {
-    let counter = 0
-
-    const link = document.querySelector('link#favicon')
-
-    /**
-     * These are the old links that we set in `_document`
-     * lets remove them from the DOM on mount
-     */
-    const icon32 = document.querySelector('link#icon32')
-    const icon16 = document.querySelector('link#icon16')
-    const ico = document.querySelector('link#ico')
-
-    if (icon32) {
-      icon32.remove()
-    }
-    if (icon16) {
-      icon16.remove()
-    }
-    if (ico) {
-      ico.remove()
-    }
-
-    /**
-     * Animate logo function, could be doing in a raf call?
-     */
-    const animateLogo = () => {
-      if (link) {
-        link.setAttribute(
-          'href',
-          `/images/favicon-sequence/Companion_Favicon${counter}.png`
-        )
-
-        if (counter === 149) {
-          counter = 0
-        } else {
-          counter += 1
-        }
-      }
-    }
-
-    // 60FPS
-    const timerId = setInterval(animateLogo, 1000 / 60)
-
-    return () => {
-      /**
-       * Clear interval on cleanup.
-       */
-      clearInterval(timerId)
-    }
-    // mount only effect.
-  }, [])
-
   useIsomorphicLayoutEffect(() => {
     const shown = sessionStorage.getItem('splash_shown')
     if (Boolean(shown)) {
