@@ -23,9 +23,4 @@ const Anchor = styled(LinkBase, {
   fontWeight: 'inherit',
   lineHeight: 'inherit',
   fontFamily: 'inherit',
-  textDecoration: 'none',
-
-  hover: {
-    textDecoration: 'underline',
-  },
 })

@@ -60,7 +60,6 @@ export const LinkBase = (props: LinkBaseProps) => {
 
 const Anchor = styled('a', {
   color: 'inherit',
-
   '&:visited': {
     color: 'inherit',
   },

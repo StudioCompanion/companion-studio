@@ -160,7 +160,16 @@ const components: Partial<PortableTextReactComponents> = {
     ) => {
       return isArrayGuard(props.children) &&
         isStringGuard(props.children[0]) ? (
-        <InlineLink {...props.value} label={props.children[0]} />
+        <InlineLink
+          {...props.value}
+          label={props.children[0]}
+          css={{
+            textDecoration: 'underline',
+            '&:hover': {
+              textDecoration: 'none',
+            },
+          }}
+        />
       ) : null
     },
   },
