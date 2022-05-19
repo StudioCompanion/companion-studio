@@ -79,7 +79,7 @@ const CardHomeInner = ({
 }
 
 export const CardHome = (props: CardHomeProps) => {
-  const { slug, type, status, className, theme } = props
+  const { slug, type, status, className, theme, backgroundColor } = props
 
   const [styles, api] = useSpring(
     () => ({
@@ -127,7 +127,14 @@ export const CardHome = (props: CardHomeProps) => {
 
   return (
     <Link href={getHrefSlugFromSanityReference({ _type: type, slug })} passHref>
-      <CardWrapper className={className} theme={theme} {...bind()}>
+      <CardWrapper
+        className={className}
+        theme={theme}
+        css={{
+          backgroundColor,
+        }}
+        {...bind()}
+      >
         <CardHomeInner {...props} style={styles} />
       </CardWrapper>
     </Link>
@@ -144,8 +151,6 @@ const CardWrapper = styled('a', {
     theme: {
       [ThemeTypes.OUTLINED]: {},
       [ThemeTypes.LIGHT]: {
-        backgroundColor: '$white100',
-
         hover: {
           [`& ${ButtonContainer}`]: {
             backgroundColor: '$white50',
@@ -153,8 +158,6 @@ const CardWrapper = styled('a', {
         },
       },
       [ThemeTypes.GREY]: {
-        backgroundColor: '$white50',
-
         hover: {
           [`& ${ButtonContainer}`]: {
             backgroundColor: '$white50',
@@ -162,8 +165,6 @@ const CardWrapper = styled('a', {
         },
       },
       [ThemeTypes.DARK]: {
-        backgroundColor: '$black100',
-
         hover: {
           [`& ${ButtonContainer}`]: {
             backgroundColor: '$white50',
