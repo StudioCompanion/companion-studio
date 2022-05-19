@@ -1,44 +1,40 @@
-import { Nav, NavProps } from './SiteHeader'
+import { Nav } from './SiteHeader'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-
-const Template: Story<NavProps> = (args) => <Nav {...args} />
-
-export const WorkPage = Template.bind({})
-
-WorkPage.args = {
-  currentPath: '/projects/del-core',
-}
-
-export const ApproachPage = Template.bind({})
-
-ApproachPage.args = {
-  currentPath: '/approach',
-}
-
-export const TeamPage = Template.bind({})
-
-TeamPage.args = {
-  currentPath: '/team',
-}
-
-export const HomePage = Template.bind({})
-
-HomePage.args = {
-  currentPath: '/',
-}
-
-// ::----------------------------------
 
 export default {
   title: 'Nav',
   component: Nav,
 } as ComponentMeta<typeof Nav>
 
-export const NoLink: ComponentStory<typeof Nav> = () => (
-  <>
-    <HomePage />
-    <TeamPage />
-    <ApproachPage />
-    <WorkPage />
-  </>
+export const NoLinks: ComponentStory<typeof Nav> = () => (
+  <Nav items={fixtures.noLinks} />
 )
+
+export const WithLinks: ComponentStory<typeof Nav> = () => (
+  <Nav items={fixtures.withLinks} />
+)
+
+const fixtures = {
+  noLinks: undefined,
+  withLinks: [
+    {
+      label: 'Work',
+      url: { _id: 'homepage', _type: 'homepage' as const, slug: '' },
+      linkType: 'internal',
+    },
+    {
+      label: 'Approach',
+      url: {
+        _id: 'approachpage',
+        _type: 'approachpage' as const,
+        slug: 'approach',
+      },
+      linkType: 'internal',
+    },
+    {
+      label: 'Team',
+      url: { _id: 'teampage', _type: 'teampage' as const, slug: 'team' },
+      linkType: 'internal',
+    },
+  ],
+}
