@@ -60,6 +60,10 @@ export const LinkBase = (props: LinkBaseProps) => {
 
 const Anchor = styled('a', {
   color: 'inherit',
+  textDecoration: 'underline',
+  '&:hover': {
+    textDecoration: 'none',
+  },
   '&:visited': {
     color: 'inherit',
   },
