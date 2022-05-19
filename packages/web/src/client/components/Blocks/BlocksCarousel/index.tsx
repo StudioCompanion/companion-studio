@@ -254,7 +254,7 @@ const Dot = styled('div', {
   width: 6,
   height: 6,
   borderRadius: '$circle',
-  backgroundColor: '$blue100',
+  backgroundColor: '$black100',
 
   '& + &': {
     ml: '$xxxs',
