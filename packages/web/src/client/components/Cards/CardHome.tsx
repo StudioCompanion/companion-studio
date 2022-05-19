@@ -51,17 +51,7 @@ const CardHomeInner = ({
       <CardText theme={theme}>
         <div>
           {actualTitle ? (
-            <Heading
-              tag="h2"
-              fontStyle="M"
-              weight="$bold"
-              // css={{
-              //   fontSize: '$M',
-              //   '@tabletUp': {
-              //     fontSize: '$S',
-              //   },
-              // }}
-            >
+            <Heading tag="h2" fontStyle="M" weight="$bold">
               {actualTitle}
             </Heading>
           ) : null}
