@@ -175,11 +175,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
           )}
         </Container>
         <Caption>
-          {items[activeIndex].caption ? (
-            <CaptionText>{items[activeIndex].caption}</CaptionText>
-          ) : (
-            <CaptionText />
-          )}
+          {<CaptionText>{items[activeIndex].caption}</CaptionText>}
           {!video && itemCount > 1 && (
             <Dots>
               {items.map((_, index) => (
