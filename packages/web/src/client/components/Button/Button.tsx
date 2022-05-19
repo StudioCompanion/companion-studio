@@ -54,7 +54,6 @@ export const ButtonContainer = styled('span', {
   display: 'inline-block',
   borderRadius: '$pill',
   p: '$xxs',
-  pb: 9,
   textDecoration: 'none',
   cursor: 'pointer',
   fontSize: '$XS',
