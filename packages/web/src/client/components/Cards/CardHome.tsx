@@ -51,7 +51,7 @@ const CardHomeInner = ({
       <CardText theme={theme}>
         <div>
           {actualTitle ? (
-            <Heading tag="h2" fontStyle="L" weight="$bold">
+            <Heading tag="h2" fontStyle="S" weight="$bold">
               {actualTitle}
             </Heading>
           ) : null}
