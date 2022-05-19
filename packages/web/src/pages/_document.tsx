@@ -36,6 +36,10 @@ export default class Doc extends Document {
     return (
       <Html lang="en">
         <Head>
+          <style
+            id="stitches"
+            dangerouslySetInnerHTML={{ __html: getCssText() }}
+          />
           <link
             id="icon32"
             rel="icon"
