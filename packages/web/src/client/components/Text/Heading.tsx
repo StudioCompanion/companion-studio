@@ -45,10 +45,6 @@ export const Heading = forwardRef<HTMLHeadingElement, Props>(
 )
 
 const Element = styled('h1', {
-  '& > a': {
-    textDecoration: 'none',
-  },
-
   variants: {
     size: {
       ['XXXL']: {
