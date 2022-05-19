@@ -175,9 +175,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
           )}
         </Container>
         <Caption>
-          {items[activeIndex].caption ? (
-            <CaptionText>{items[activeIndex].caption}</CaptionText>
-          ) : null}
+          {<CaptionText>{items[activeIndex].caption}</CaptionText>}
           {!video && itemCount > 1 && (
             <Dots>
               {items.map((_, index) => (
@@ -252,7 +250,7 @@ const Dot = styled('div', {
   width: 6,
   height: 6,
   borderRadius: '$circle',
-  backgroundColor: '$darkBlue',
+  backgroundColor: '$black100',
 
   '& + &': {
     ml: '$xxxs',
