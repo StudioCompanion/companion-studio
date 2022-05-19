@@ -11,9 +11,9 @@ import { globalStyles } from 'styles/global'
 
 import { useReducedMotion } from 'hooks/useReducedMotion'
 
-const App = ({ Component, pageProps }: AppProps) => {
-  globalStyles()
+globalStyles()
 
+const App = ({ Component, pageProps }: AppProps) => {
   useReducedMotion()
 
   return (
