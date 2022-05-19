@@ -1,5 +1,5 @@
 import { Nav, NavProps } from './SiteHeader'
-import { Story, Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 const Template: Story<NavProps> = (args) => <Nav {...args} />
 
@@ -27,7 +27,18 @@ HomePage.args = {
   currentPath: '/',
 }
 
+// ::----------------------------------
+
 export default {
-  title: 'Components/Nav',
+  title: 'Nav',
   component: Nav,
-} as Meta
+} as ComponentMeta<typeof Nav>
+
+export const NoLink: ComponentStory<typeof Nav> = () => (
+  <>
+    <HomePage />
+    <TeamPage />
+    <ApproachPage />
+    <WorkPage />
+  </>
+)
