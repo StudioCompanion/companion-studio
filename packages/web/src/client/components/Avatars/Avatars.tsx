@@ -105,10 +105,6 @@ const GridImageWrapper = styled(Media, {
   background: '$white50',
   height: 50,
   width: 50,
-
-  '& img': {
-    top: '3px !important',
-  },
 })
 
 const TeamMemberDetails = styled(animated.div, {
