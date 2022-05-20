@@ -13,6 +13,7 @@ type SharedMediaProps = Pick<
   className?: string
   sizes?: SizesArray
   objectFit?: 'cover' | 'contain'
+  controls?: boolean
 }
 
 export type MediaProps =
@@ -20,7 +21,8 @@ export type MediaProps =
   | (Sanity.Mux & SharedMediaProps)
 
 export const Media = (props: MediaProps) => {
-  const { _type, className, objectFit, dimensions, ...restProps } = props
+  const { _type, className, objectFit, dimensions, controls, ...restProps } =
+    props
 
   const aspectRatio = (dimensions.height / dimensions.width) * 100
 
@@ -51,7 +53,7 @@ export const Media = (props: MediaProps) => {
     case 'video': {
       return (
         <MediaContainer className={className} css={aspectRatioCss}>
-          <MediaMux {...(restProps as Sanity.Mux)} />
+          <MediaMux controls={controls} {...(restProps as Sanity.Mux)} />
         </MediaContainer>
       )
     }

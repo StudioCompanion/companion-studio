@@ -46,7 +46,9 @@ const CardHomeInner = ({
   return (
     <>
       <ImageContainer style={style}>
-        {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}
+        {selectedMedia ? (
+          <MediaContainer controls={false} {...selectedMedia} />
+        ) : null}
       </ImageContainer>
       <CardText theme={theme}>
         <div>
