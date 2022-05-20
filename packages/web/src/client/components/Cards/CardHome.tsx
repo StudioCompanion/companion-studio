@@ -34,6 +34,7 @@ const CardHomeInner = ({
   cardButtonLabel = 'View',
   status,
   style,
+  backgroundColor,
 }: CardHomeInnerProps) => {
   const selectedMedia = media?.asset
     ? media
@@ -45,6 +46,11 @@ const CardHomeInner = ({
 
   return (
     <>
+      <BackgroundColor
+        style={{
+          backgroundColor,
+        }}
+      />
       <ImageContainer style={style}>
         {selectedMedia ? (
           <MediaContainer controls={false} {...selectedMedia} />
@@ -81,7 +87,7 @@ const CardHomeInner = ({
 }
 
 export const CardHome = (props: CardHomeProps) => {
-  const { slug, type, status, className, theme, backgroundColor } = props
+  const { slug, type, status, className, theme } = props
 
   const [styles, api] = useSpring(
     () => ({
@@ -129,14 +135,7 @@ export const CardHome = (props: CardHomeProps) => {
 
   return (
     <Link href={getHrefSlugFromSanityReference({ _type: type, slug })} passHref>
-      <CardWrapper
-        className={className}
-        theme={theme}
-        css={{
-          backgroundColor,
-        }}
-        {...bind()}
-      >
+      <CardWrapper className={className} theme={theme} {...bind()}>
         <CardHomeInner {...props} style={styles} />
       </CardWrapper>
     </Link>
@@ -146,7 +145,7 @@ export const CardHome = (props: CardHomeProps) => {
 const CardWrapper = styled('a', {
   display: 'block',
   position: 'relative',
-  br: '$wrapperLarge',
+  borderRadius: '$wrapperLarge',
   overflow: 'hidden',
 
   variants: {
@@ -177,13 +176,23 @@ const CardWrapper = styled('a', {
   },
 })
 
+const BackgroundColor = styled('div', {
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  inset: 0,
+  zIndex: -1,
+  borderRadius: '$wrapperLarge',
+  transformOrigin: '50% 50%',
+  transform: 'scale(0.998)',
+})
+
 const ImageContainer = styled(animated.div, {
   transformOrigin: '50% 50%',
 })
 
 const MediaContainer = styled(Media, {
   br: '$wrapperLarge',
-  overflow: 'hidden',
 })
 
 const CardText = styled('div', {
