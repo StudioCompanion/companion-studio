@@ -62,5 +62,23 @@ export default {
       initialValue: 'dark',
       validation: (rule) => rule.required(),
     },
+    {
+      name: 'backgroundColor',
+      title: 'Background Colour',
+      description:
+        'The entered value should be in any valid HEX format, e.g. #EF5632, #ef5632, #EF5632A1, #ef5632a1, #ffe, #ffea',
+      type: 'string',
+      initialValue: '#FFF',
+      validation: (Rule) =>
+        Rule.custom((input) =>
+        /**
+         * original regex found here: 
+         * https://stackoverflow.com/questions/8027423/how-to-check-if-a-string-is-a-valid-hex-color-representation
+         */
+          /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{4}){1,2}$/i.test(input)
+            ? true
+            : 'Invalid HEX code!'
+        ),
+    },
   ],
 }
