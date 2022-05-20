@@ -31,7 +31,7 @@ export const Media = (props: MediaProps) => {
       display: 'block',
       content: '',
       width: '100%',
-      pt: `${aspectRatio}%`,
+      pt: `${Math.floor(aspectRatio)}%`,
     },
   }
 
