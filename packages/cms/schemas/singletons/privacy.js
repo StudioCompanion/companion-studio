@@ -12,14 +12,14 @@ export default {
       type: 'richText',
     },
     {
-      name: 'meta',
-      title: 'Page meta',
-      type: 'meta',
-    },
-    {
       name: 'card',
       title: 'Page Card',
       type: 'pageCard',
+    },
+    {
+      name: 'meta',
+      title: 'Page meta',
+      type: 'meta',
     },
   ],
 }
