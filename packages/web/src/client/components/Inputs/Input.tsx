@@ -50,6 +50,7 @@ export const Input = ({
         onChange={handleChange}
         onBlur={handleBlur}
         onFocus={handleFocus}
+        hasValue={Boolean(value)}
       />
     </>
   )
@@ -71,16 +72,19 @@ const FormInput = styled('input', {
   lineHeight: '$XS',
 
   '&::placeholder': {
-    color: `$white50`,
+    color: `$white100`,
   },
 
   '&:focus': {
-    backgroundColor: '$white100',
-    color: '$black100',
-    outline: 'none',
+    backgroundColor: '$white25',
+  },
 
-    '&::placeholder': {
-      color: 'inherit',
+  variants: {
+    hasValue: {
+      true: {
+        backgroundColor: '$white100 !important',
+        color: '$black100',
+      },
     },
   },
 })
