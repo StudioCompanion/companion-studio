@@ -195,7 +195,6 @@ const NavContainer = styled('header', {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  mb: '$xl',
   p: '$s',
 
   '@tabletUp': {
