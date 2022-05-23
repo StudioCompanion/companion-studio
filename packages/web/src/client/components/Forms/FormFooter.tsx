@@ -28,16 +28,16 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
   const [value, setValue] = useState('')
   const router = useRouter()
 
-  const [touched, setTouched] = useState(false)
-
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined
   )
 
-  const handleBlur = () => {
-    setTouched(true)
-    setErrorMessage(validateForm(value))
-  }
+  const handleBlur = () =>
+    setErrorMessage(
+      Boolean(value) && !isEmail(value)
+        ? 'That didn’t work! Please enter a valid email address'
+        : undefined
+    )
 
   const currentPage =
     (router.query?.slug as string) ?? router.route !== '/'
@@ -45,6 +45,7 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
       : 'Home'
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setErrorMessage(undefined)
     const error = validateForm(value)
     if (error) {
       e.preventDefault()
@@ -58,21 +59,20 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
       })
       setShowSuccess(true)
       setValue('')
-      setTouched(false)
     }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
-    if ((errorMessage && errorMessage !== '') || touched) {
-      setErrorMessage(validateForm(value))
-    }
+
     if (showSuccess) {
       setShowSuccess(false)
     }
   }
 
   const handleFocus = () => {
+    setErrorMessage(undefined)
+
     firePlausibleEvent({
       name: EventNames.NewsletterActivation,
       additionalProps: {
@@ -115,11 +115,7 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
             </FormFeedback>
           ) : null}
         </InputWrapper>
-        <FormButton
-          type={'submit'}
-          value="Submit"
-          disabled={Boolean(!value || (errorMessage && errorMessage !== ''))}
-        >
+        <FormButton type={'submit'} value="Submit">
           Submit
         </FormButton>
       </Form>
@@ -156,9 +152,5 @@ const FormButton = styled('button', {
 
   hover: {
     backgroundColor: '$white50',
-  },
-
-  '&:disabled': {
-    backgroundColor: '$white25',
   },
 })
