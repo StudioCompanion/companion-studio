@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react'
-
 import { styled } from 'styles/stitches.config'
 
 import { Sanity } from '@types'
@@ -10,27 +8,9 @@ import { LinkBase } from 'components/Links/LinkBase'
 import { Heading } from 'components/Text/Heading'
 import { EventNames, firePlausibleEvent } from 'helpers/analytics'
 import { getFontStyle } from 'styles/getFontStyles'
+import { RendererRichText } from 'components/Renderer/RendererRichText'
 
-export const Footer = ({ links }: Sanity.Footer) => {
-  /**
-   * TODO: replace with date-fns
-   */
-  const dateFounded = new Date('2020-11-30').getTime()
-  const [currentTime, setCurrentTime] = useState<number>(0)
-  const timeActive = currentTime - dateFounded
-  const seconds = Math.floor((timeActive / 1000) % 60)
-  const minutes = Math.floor((timeActive / 1000 / 60) % 60)
-  const hours = Math.floor((timeActive / (1000 * 60 * 60)) % 24)
-  const days = Math.floor(timeActive / (1000 * 60 * 60 * 24))
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(Date.now())
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [])
-
+export const Footer = ({ links, text }: Sanity.Footer) => {
   const handleSocialClick = (social?: string) => () => {
     if (
       social === 'LinkedIn' ||
@@ -49,16 +29,7 @@ export const Footer = ({ links }: Sanity.Footer) => {
   return (
     <FooterContainer tag="footer">
       <FooterContent>
-        <FooterLeft>
-          <FooterText tag="p" fontStyle="S">
-            Companion is based in London and has been operating globally for{' '}
-            {days}d {hours}h {minutes}m {seconds}s.
-            <br />
-            <br />
-            We are proud to contribute 5% of our annual revenue to organisations
-            that create a better future for earth.
-          </FooterText>
-        </FooterLeft>
+        <FooterLeft>{text ? <FooterText blocks={text} /> : null}</FooterLeft>
         <FooterForm />
       </FooterContent>
       <Imprint>
@@ -119,7 +90,7 @@ const FooterContent = styled('div', {
   },
 })
 
-const FooterText = styled(Heading, {
+const FooterText = styled(RendererRichText, {
   color: '$white100',
   mb: '$l',
   fontSize: '$S !important',

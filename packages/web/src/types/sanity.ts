@@ -143,6 +143,7 @@ export interface TeamPage
 
 export interface Footer {
   links?: Link[]
+  text?: RichText
 }
 
 export interface Callout {

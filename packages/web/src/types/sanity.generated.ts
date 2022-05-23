@@ -84,18 +84,18 @@ export interface Project extends SanityDocument {
   >
 
   /**
-   * Page meta — `meta`
-   *
-   *
-   */
-  meta?: Meta
-
-  /**
    * Page Card — `pageCard`
    *
    *
    */
   card?: PageCard
+
+  /**
+   * Page meta — `meta`
+   *
+   *
+   */
+  meta?: Meta
 }
 
 /**
@@ -173,18 +173,18 @@ export interface Approachpage extends SanityDocument {
   >
 
   /**
-   * Page meta — `meta`
-   *
-   *
-   */
-  meta?: Meta
-
-  /**
    * Page Card — `pageCard`
    *
    *
    */
   card?: PageCard
+
+  /**
+   * Page meta — `meta`
+   *
+   *
+   */
+  meta?: Meta
 }
 
 /**
@@ -209,7 +209,7 @@ export interface Homepage extends SanityDocument {
    */
   cards?: Array<
     SanityKeyedReference<
-      Homepage | Teampage | Approachpage | Linktree | Project
+      Homepage | Teampage | Approachpage | Linktree | Privacy | Project
     >
   >
 
@@ -279,6 +279,13 @@ export interface Settings extends SanityDocument {
    */
   footer?: {
     _type: 'footer'
+    /**
+     * Text — `richText`
+     *
+     *
+     */
+    text?: RichText
+
     /**
      * Links — `array`
      *
@@ -380,18 +387,18 @@ export interface Teampage extends SanityDocument {
   >
 
   /**
-   * Page meta — `meta`
-   *
-   *
-   */
-  meta?: Meta
-
-  /**
    * Page Card — `pageCard`
    *
    *
    */
   card?: PageCard
+
+  /**
+   * Page meta — `meta`
+   *
+   *
+   */
+  meta?: Meta
 }
 
 /**
@@ -450,18 +457,18 @@ export interface Privacy extends SanityDocument {
   content?: RichText
 
   /**
-   * Page meta — `meta`
-   *
-   *
-   */
-  meta?: Meta
-
-  /**
    * Page Card — `pageCard`
    *
    *
    */
   card?: PageCard
+
+  /**
+   * Page meta — `meta`
+   *
+   *
+   */
+  meta?: Meta
 }
 
 export type Media = {
@@ -570,7 +577,7 @@ export type PageCard = {
   /**
    * Background Colour — `string`
    *
-   * The entered value should be in HEX format, e.g. ef5632
+   * The entered value should be in any valid HEX format, e.g. #EF5632, #ef5632, #EF5632A1, #ef5632a1, #ffe, #ffea
    */
   backgroundColor?: string
 }
@@ -597,7 +604,7 @@ export type Link = {
    *
    */
   linkInternal?: SanityReference<
-    Homepage | Teampage | Approachpage | Linktree | Project
+    Homepage | Teampage | Approachpage | Linktree | Privacy | Project
   >
 
   /**
@@ -673,11 +680,11 @@ export type BlockMedia = {
       desktop?: Media
 
       /**
-       * Caption — `string`
+       * Caption — `richText`
        *
        *
        */
-      caption?: string
+      caption?: RichText
     }>
   >
 }
