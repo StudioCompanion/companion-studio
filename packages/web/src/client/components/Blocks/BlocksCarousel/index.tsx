@@ -194,11 +194,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
 
 const Wrapper = styled(FadeIn, {
   width: '100%',
-  mb: '$s',
-
-  '@tabletUp': {
-    mb: '$m',
-  },
+  mb: '$xs',
 
   variants: {
     hero: {
