@@ -5038,6 +5038,7 @@ __metadata:
     "@sanity/client": ^3.3.0
     "@sanity/image-url": ^1.0.1
     "@stitches/react": ^1.2.8
+    fontfaceobserver: ^2.3.0
     groq: ^2.29.3
     hls.js: ^1.1.5
     lottie-web: ^5.9.4
@@ -5065,6 +5066,7 @@ __metadata:
     "@storybook/addon-essentials": 6.4.22
     "@storybook/react": 6.4.22
     "@studiocompanion/scripts": ^1.2.2
+    "@types/fontfaceobserver": ^2.1.0
     "@types/node": ^16.11.33
     "@types/react": 17.0.45
     "@types/react-dom": 17.0.16
@@ -5355,6 +5357,13 @@ __metadata:
   version: 1.0.32
   resolution: "@types/diff-match-patch@npm:1.0.32"
   checksum: 8431ab2bf2f0e96ece30beddeae3bc8024429bd6071f1ab695c3f64112b2551446fc4a746a44a7a7d14e47ffce622333286c1c78869cfb510c775a9e8c47a1b1
+  languageName: node
+  linkType: hard
+
+"@types/fontfaceobserver@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@types/fontfaceobserver@npm:2.1.0"
+  checksum: 19bf653d82f91e86f32cd3f2df2988495b96d8ad5be5a625b7dad06a1a01a9add76607f8b8f821c50aad1f45f4d40433bec48463d60c7e9fa05a02e9e8469b66
   languageName: node
   linkType: hard
 
@@ -11488,6 +11497,13 @@ __metadata:
     debug:
       optional: true
   checksum: f5982e0eb481818642492d3ca35a86989c98af1128b8e1a62911a3410621bc15d2b079e8170b35b19d3bdee770b73ed431a257ed86195af773771145baa57845
+  languageName: node
+  linkType: hard
+
+"fontfaceobserver@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "fontfaceobserver@npm:2.3.0"
+  checksum: 5f14715974203b9d68f299f93a7623afd9d5701572d683e861cdbb7514573ac556f56e9b5d07d2d534e01aed19a3b0bbe568e735e0e5494cbea913fc3f12b856
   languageName: node
   linkType: hard
 

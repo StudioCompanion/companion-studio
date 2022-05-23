@@ -13,6 +13,7 @@ import { urlIsReferenceGuard } from 'helpers/links'
 
 import { useCanHover } from 'hooks/useCanHover'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
+import { useFontFaceObserver } from 'hooks/useFontFaceObserver'
 
 export interface NavProps {
   currentPath?: string
@@ -99,15 +100,17 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
     }
   }
 
+  const fontLoaded = useFontFaceObserver('Apfel Groteszk')
+
   useIsomorphicLayoutEffect(() => {
     const activeIndex = (items ?? []).findIndex((item) =>
       isNavItemActive(item, currentPath)
     )
 
-    if (activeIndex >= 0) {
+    if (activeIndex >= 0 && fontLoaded) {
       runBackgroundSpring(activeIndex, true, true)
     }
-  }, [currentPath, items, runBackgroundSpring])
+  }, [currentPath, items, runBackgroundSpring, fontLoaded])
 
   if (currentPath === '/' || currentPath === '/instagram') {
     return null
@@ -128,7 +131,9 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
                 const isActive = isNavItemActive(item, currentPath)
                 return (
                   <NavItem
-                    ref={(ref) => (navRefs.current[index] = ref!)}
+                    ref={(ref) => {
+                      navRefs.current[index] = ref!
+                    }}
                     key={item.label}
                     onMouseEnter={handleMouseEnter(index, isActive)}
                   >
