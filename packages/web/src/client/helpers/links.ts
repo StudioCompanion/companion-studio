@@ -14,6 +14,8 @@ export const getHrefSlugFromSanityReference = <TPage extends Sanity.Pages>(
       return '/team'
     case 'project':
       return `/projects/${ref.slug}`
+    case 'privacy':
+      return `/privacy`
     default:
       console.warn(
         `Missing transformSanityDocumentReferencesIntoLinks case for ${
