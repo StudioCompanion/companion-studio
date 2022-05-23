@@ -77,6 +77,12 @@ export default {
       type: 'object',
       fields: [
         {
+          name: 'text',
+          title: 'Text',
+          type: 'richText',
+          validation: (rule) => rule.required(),
+        },
+        {
           name: 'links',
           title: 'Links',
           type: 'array',
