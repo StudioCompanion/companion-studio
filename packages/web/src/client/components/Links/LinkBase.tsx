@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from 'react'
+import { CSSProperties, MouseEventHandler, ReactNode } from 'react'
 import Link from 'next/link'
 
 import { styled, CSS } from 'styles/stitches.config'
@@ -15,10 +15,12 @@ interface LinkBaseProps extends Sanity.Link {
   children: ReactNode
   css?: CSS
   onClick?: MouseEventHandler<HTMLAnchorElement>
+  style?: CSSProperties
 }
 
 export const LinkBase = (props: LinkBaseProps) => {
-  const { isExternal, url, label, children, className, css, onClick } = props
+  const { isExternal, url, label, children, className, css, onClick, style } =
+    props
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
@@ -36,6 +38,7 @@ export const LinkBase = (props: LinkBaseProps) => {
           target="_blank"
           css={css}
           onClick={handleClick}
+          style={style}
         >
           {children ?? label}
         </Anchor>
@@ -47,7 +50,7 @@ export const LinkBase = (props: LinkBaseProps) => {
 
       return (
         <Link href={actualInternalUrl} passHref>
-          <Anchor className={className} css={css}>
+          <Anchor className={className} css={css} style={style}>
             {children ?? label}
           </Anchor>
         </Link>
