@@ -39,10 +39,7 @@ const TestimonialWrapper = styled(FadeIn, {
   textAlign: 'center',
 
   '@tabletUp': {
-    maxWidth: '$centeredParagraph',
-  },
-  '@desktopUp': {
-    maxWidth: '800px',
+    maxWidth: '$documentWrapper',
   },
 })
 
