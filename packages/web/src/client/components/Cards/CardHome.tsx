@@ -158,13 +158,6 @@ const CardWrapper = styled('a', {
           },
         },
       },
-      [ThemeTypes.GREY]: {
-        hover: {
-          [`& ${ButtonContainer}`]: {
-            backgroundColor: '$white50',
-          },
-        },
-      },
       [ThemeTypes.DARK]: {
         hover: {
           [`& ${ButtonContainer}`]: {
@@ -216,11 +209,6 @@ const CardText = styled('div', {
         },
       },
       [ThemeTypes.LIGHT]: {
-        '& h2, & h3': {
-          color: '$black100',
-        },
-      },
-      [ThemeTypes.GREY]: {
         '& h2, & h3': {
           color: '$black100',
         },

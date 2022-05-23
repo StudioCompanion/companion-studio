@@ -75,14 +75,6 @@ export const ButtonContainer = styled('span', {
           backgroundColor: '$white50',
         },
       },
-      [ThemeTypes.GREY]: {
-        backgroundColor: '$white50',
-        color: '$black100',
-
-        hover: {
-          backgroundColor: '$black50',
-        },
-      },
       [ThemeTypes.DARK]: {
         backgroundColor: '$black100',
         color: '$white100',

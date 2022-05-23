@@ -55,7 +55,6 @@ export default {
         layout: 'dropdown',
         list: [
           { title: 'Light', value: 'light' },
-          { title: 'Grey', value: 'grey' },
           { title: 'Dark', value: 'dark' },
         ],
       },
