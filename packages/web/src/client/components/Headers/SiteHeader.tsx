@@ -28,7 +28,7 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
 
   const [{ backgroundColor, color }, colorsApi] = useSpring(
     () => ({
-      backgroundColor: 'var(--colors-black100)',
+      backgroundColor: 'transparent',
       color: 'var(--colors-white100)',
       config: {
         mass: 0.5,
@@ -52,6 +52,9 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
 
   const canHover = useCanHover()
 
+  const hasNoActiveIndex = useRef(false)
+  const isHovering = useRef(false)
+
   const runBackgroundSpring = useCallback(
     (i: number, isActive: boolean, immediate = false) => {
       const element = navRefs.current[i]
@@ -63,6 +66,7 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
         backgroundColor: isActive
           ? 'var(--colors-black100)'
           : 'var(--colors-grey25)',
+        immediate,
       })
 
       api.start({
@@ -81,7 +85,15 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
       return
     }
 
-    runBackgroundSpring(i, isActive)
+    runBackgroundSpring(
+      i,
+      isActive,
+      hasNoActiveIndex.current && !isHovering.current
+    )
+
+    if (!isHovering.current) {
+      isHovering.current = true
+    }
   }
 
   const handleMouseLeave = () => {
@@ -97,6 +109,14 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
 
     if (activeIndex >= 0) {
       runBackgroundSpring(activeIndex, true)
+    } else {
+      isHovering.current = false
+
+      api.start({
+        width: 0,
+        height: 0,
+        immediate: true,
+      })
     }
   }
 
@@ -108,7 +128,10 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
     )
 
     if (activeIndex >= 0 && fontLoaded) {
+      hasNoActiveIndex.current = false
       runBackgroundSpring(activeIndex, true, true)
+    } else {
+      hasNoActiveIndex.current = true
     }
   }, [currentPath, items, runBackgroundSpring, fontLoaded])
 
