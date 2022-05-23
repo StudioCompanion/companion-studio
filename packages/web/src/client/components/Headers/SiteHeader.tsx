@@ -1,4 +1,6 @@
+import { useCallback, useRef } from 'react'
 import Link from 'next/link'
+import { animated, useSpring } from '@react-spring/web'
 
 import { styled } from 'styles/stitches.config'
 
@@ -6,26 +8,33 @@ import { Logo } from 'components/Logo/Logo'
 import { LinkBase } from 'components/Links/LinkBase'
 
 import { Sanity } from '@types'
+
 import { urlIsReferenceGuard } from 'helpers/links'
-import { animated, useSpring } from '@react-spring/web'
-import { useRef } from 'react'
+
 import { useCanHover } from 'hooks/useCanHover'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
+import { useFontFaceObserver } from 'hooks/useFontFaceObserver'
 
 export interface NavProps {
   currentPath?: string
   items?: Sanity.Link[]
 }
 
+const PADDING = 6
+
 export const Nav = ({ currentPath = '/', items }: NavProps) => {
   const navBackgroundIsVisible = useRef(false)
   const navRefs = useRef<HTMLLIElement[]>([])
 
-  const [{ opacity }, opacityApi] = useSpring(
+  const [{ backgroundColor, color }, colorsApi] = useSpring(
     () => ({
-      opacity: 0,
+      backgroundColor: 'transparent',
+      color: 'var(--colors-white100)',
       config: {
-        tension: 200,
-        friction: 10,
+        mass: 0.5,
+        tension: 380,
+        friction: 15,
+        clamp: true,
       },
     }),
     []
@@ -43,37 +52,50 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
 
   const canHover = useCanHover()
 
-  const handleMouseEnter = (i: number) => () => {
+  const hasNoActiveIndex = useRef(false)
+  const isHovering = useRef(false)
+
+  const runBackgroundSpring = useCallback(
+    (i: number, isActive: boolean, immediate = false) => {
+      const element = navRefs.current[i]
+
+      const { width, height } = element.getBoundingClientRect()
+
+      colorsApi.start({
+        color: isActive ? 'var(--colors-white100)' : 'var(--colors-black100)',
+        backgroundColor: isActive
+          ? 'var(--colors-black100)'
+          : 'var(--colors-grey25)',
+        immediate,
+      })
+
+      api.start({
+        width,
+        height,
+        x: element.offsetLeft + PADDING,
+        y: element.offsetTop + PADDING,
+        immediate,
+      })
+    },
+    [api, colorsApi]
+  )
+
+  const handleMouseEnter = (i: number, isActive: boolean) => () => {
     if (!canHover) {
       return
     }
 
-    const element = navRefs.current[i]
+    runBackgroundSpring(
+      i,
+      isActive,
+      hasNoActiveIndex.current && !isHovering.current
+    )
 
-    const { width, height, x, y } = element.getBoundingClientRect()
-
-    if (!navBackgroundIsVisible.current) {
-      api.set({
-        width,
-        height,
-        x,
-        y,
-      })
-
-      opacityApi.start({
-        opacity: 1,
-      })
-
-      navBackgroundIsVisible.current = true
-    } else {
-      api.start({
-        width,
-        height,
-        x,
-        y,
-      })
+    if (!isHovering.current) {
+      isHovering.current = true
     }
   }
+
   const handleMouseLeave = () => {
     if (!canHover) {
       return
@@ -81,10 +103,37 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
 
     navBackgroundIsVisible.current = false
 
-    opacityApi.start({
-      opacity: 0,
-    })
+    const activeIndex = (items ?? []).findIndex((item) =>
+      isNavItemActive(item, currentPath)
+    )
+
+    if (activeIndex >= 0) {
+      runBackgroundSpring(activeIndex, true)
+    } else {
+      isHovering.current = false
+
+      api.start({
+        width: 0,
+        height: 0,
+        immediate: true,
+      })
+    }
   }
+
+  const fontLoaded = useFontFaceObserver('Apfel Groteszk')
+
+  useIsomorphicLayoutEffect(() => {
+    const activeIndex = (items ?? []).findIndex((item) =>
+      isNavItemActive(item, currentPath)
+    )
+
+    if (activeIndex >= 0 && fontLoaded) {
+      hasNoActiveIndex.current = false
+      runBackgroundSpring(activeIndex, true, true)
+    } else {
+      hasNoActiveIndex.current = true
+    }
+  }, [currentPath, items, runBackgroundSpring, fontLoaded])
 
   if (currentPath === '/' || currentPath === '/instagram') {
     return null
@@ -98,22 +147,23 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
         </LogoWrapper>
       </Link>
       <NavWrapper onMouseLeave={handleMouseLeave}>
-        <NavBackground style={{ ...style, opacity }} />
+        <NavBackground style={{ ...style, backgroundColor }} />
         <NavList>
           {Array.isArray(items)
             ? items.map((item, index) => {
-                const isActive = urlIsReferenceGuard(item.url)
-                  ? currentPath === `/${item.url?.slug}` ||
-                    (currentPath.includes('projects') && item.label === 'Work')
-                  : currentPath === item.url
-
+                const isActive = isNavItemActive(item, currentPath)
                 return (
                   <NavItem
-                    ref={(ref) => (navRefs.current[index] = ref!)}
+                    ref={(ref) => {
+                      navRefs.current[index] = ref!
+                    }}
                     key={item.label}
-                    onMouseEnter={handleMouseEnter(index)}
+                    onMouseEnter={handleMouseEnter(index, isActive)}
                   >
-                    <NavLink {...item} active={isActive}>
+                    <NavLink
+                      {...item}
+                      style={{ color: isActive ? color : undefined }}
+                    >
                       {item.label}
                     </NavLink>
                   </NavItem>
@@ -125,6 +175,12 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
     </NavContainer>
   )
 }
+
+const isNavItemActive = (item: Sanity.Link, currentPath: string) =>
+  urlIsReferenceGuard(item.url)
+    ? currentPath === `/${item.url?.slug}` ||
+      (currentPath.includes('projects') && item.label === 'Work')
+    : currentPath === item.url
 
 const LogoWrapper = styled('a', {
   display: 'block',
@@ -150,10 +206,11 @@ const NavContainer = styled('header', {
 const NavWrapper = styled('nav', {
   backgroundColor: '$white100',
   width: 'fit-content',
-  p: 6,
+  p: PADDING,
   borderRadius: '$pill',
   border: '1px solid $grey25',
   boxShadow: '0px 0px 21px rgba(8, 11, 55, 0.03)',
+  position: 'relative',
 })
 
 const NavList = styled('ul', {
@@ -168,7 +225,7 @@ const NavItem = styled('li', {
   },
 })
 
-const NavLink = styled(LinkBase, {
+const NavLink = styled(animated(LinkBase), {
   textDecoration: 'none',
   display: 'block',
   fontSize: '$XS',
@@ -178,27 +235,7 @@ const NavLink = styled(LinkBase, {
   borderRadius: '$pill',
   width: '100%',
   height: '100%',
-
-  variants: {
-    active: {
-      true: {
-        backgroundColor: '$black100',
-        color: '$white100 !important',
-
-        hover: {
-          backgroundColor: '$black50',
-        },
-      },
-      false: {
-        backgroundColor: 'transparent',
-        color: '$black50',
-
-        // hover: {
-        //   backgroundColor: '$grey25',
-        // },
-      },
-    },
-  },
+  color: '$black50',
 })
 
 const NavBackground = styled(animated.span, {
