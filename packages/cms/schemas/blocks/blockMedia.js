@@ -1,5 +1,3 @@
-import media from '../objects/media'
-
 export default {
   name: 'blockMedia',
   title: 'Media Block',
@@ -71,17 +69,15 @@ export default {
             {
               name: 'caption',
               title: 'Caption',
-              type: 'string',
+              type: 'richText',
             },
           ],
           preview: {
             select: {
-              caption: 'caption',
               desktop: 'desktop',
             },
             prepare: (selection) => ({
               title: selection.desktop.assetType,
-              subtitle: selection.caption,
             }),
           },
         },

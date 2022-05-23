@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 
 import { CarouselLayouts } from 'styles/constants'
 import { styled } from 'styles/stitches.config'
-import { getFontStyle } from 'styles/getFontStyles'
 
 import { FadeIn } from 'components/Transitions/FadeIn'
 import { Media } from 'components/Media/Media'
@@ -18,6 +17,7 @@ import { Cursor } from './Cursor'
 
 import { Sanity } from '@types'
 import { useCanHover } from 'hooks/useCanHover'
+import { RendererRichText } from 'components/Renderer/RendererRichText'
 
 const FORWARD = 'forward'
 const BACKWARD = 'backward'
@@ -175,7 +175,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
           )}
         </Container>
         <Caption>
-          {<CaptionText>{items[activeIndex].caption}</CaptionText>}
+          <CaptionText blocks={items[activeIndex].caption ?? []} />
           {!video && itemCount > 1 && (
             <Dots>
               {items.map((_, index) => (
@@ -262,9 +262,8 @@ const Caption = styled('div', {
   justifyContent: 'space-between',
 })
 
-const CaptionText = styled('span', {
+const CaptionText = styled(RendererRichText, {
   mt: '$xs',
-  ...getFontStyle('$XXS'),
 })
 
 const BackgroundImage = styled(Media, {

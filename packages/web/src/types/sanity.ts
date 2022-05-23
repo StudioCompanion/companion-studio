@@ -37,7 +37,7 @@ export type BlockTestimonial =
 export interface BlockMediaItem {
   _type: 'item'
   hasMobile?: boolean
-  caption?: string
+  caption?: RichText
   mobile?: Media
   desktop?: Media
 }
