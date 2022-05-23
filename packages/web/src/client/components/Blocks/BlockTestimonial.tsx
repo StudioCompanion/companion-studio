@@ -41,6 +41,9 @@ const TestimonialWrapper = styled(FadeIn, {
   '@tabletUp': {
     maxWidth: '$centeredParagraph',
   },
+  '@desktopUp': {
+    maxWidth: '800px',
+  },
 })
 
 const Quote = styled(RendererRichText, {
