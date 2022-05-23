@@ -77,9 +77,7 @@ const CardHomeInner = ({
         </div>
         <Button
           text={cardButtonLabel}
-          theme={
-            status === 'comingSoon' ? ThemeTypes.OUTLINED : ThemeTypes.LIGHT
-          }
+          theme={status === 'comingSoon' ? ThemeTypes.OUTLINED : theme}
         />
       </CardText>
     </>
@@ -161,7 +159,7 @@ const CardWrapper = styled('a', {
       [ThemeTypes.DARK]: {
         hover: {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$white50',
+            backgroundColor: '$black50',
           },
         },
       },
@@ -210,12 +208,12 @@ const CardText = styled('div', {
       },
       [ThemeTypes.LIGHT]: {
         '& h2, & h3': {
-          color: '$black100',
+          color: '$white100',
         },
       },
       [ThemeTypes.DARK]: {
         '& h2, & h3': {
-          color: '$white100',
+          color: '$black100',
         },
       },
     },

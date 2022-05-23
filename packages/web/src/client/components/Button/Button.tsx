@@ -8,7 +8,7 @@ import { MouseEventHandler } from 'react'
 
 export interface ButtonInnerProps {
   text?: string
-  theme: ThemeTypes
+  theme?: ThemeTypes
 }
 
 export interface ButtonAnchorProps {
