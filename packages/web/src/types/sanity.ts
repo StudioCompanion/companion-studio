@@ -76,7 +76,12 @@ export interface Card
   type?: PageTypes
 }
 
-type PageTypes = 'homepage' | 'approachpage' | 'teampage' | 'project'
+type PageTypes =
+  | 'homepage'
+  | 'approachpage'
+  | 'teampage'
+  | 'project'
+  | 'privacy'
 
 export interface DocumentBase {
   _id?: string
@@ -102,6 +107,7 @@ export type Pages =
   | TeamPage
   | ProjectPage
   | LinktreePage
+  | PrivacyPage
 
 export interface Link {
   label?: string
