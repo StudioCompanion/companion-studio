@@ -3,6 +3,7 @@ export const LOCKED_DOCUMENT_TYPES = [
   'teampage',
   'approachpage',
   'linktree',
+  'privacy',
 ]
 
 const DOCUMENT_TYPES = ['project']

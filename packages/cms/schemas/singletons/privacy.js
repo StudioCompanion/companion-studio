@@ -22,4 +22,11 @@ export default {
       type: 'meta',
     },
   ],
+  preview: {
+    prepare() {
+      return {
+        title: `Privacy page`,
+      }
+    },
+  },
 }
