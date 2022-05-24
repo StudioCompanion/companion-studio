@@ -61,7 +61,6 @@ const GridItemContainer = styled('div', {
 
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
     alignItems: 'flex-start',
   },
 })
