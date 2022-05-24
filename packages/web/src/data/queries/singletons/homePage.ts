@@ -9,6 +9,9 @@ export const HOMEPAGE = groq`
     standfirst[] {
         ${RICH_TEXT}
     },
+    meta {
+        ${META}
+    },
     cards[]->{
         "_key": _id,
         ...card {

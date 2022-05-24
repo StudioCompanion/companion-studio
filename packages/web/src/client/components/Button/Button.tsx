@@ -8,15 +8,34 @@ import { MouseEventHandler } from 'react'
 
 export interface ButtonInnerProps {
   text?: string
-  theme: ThemeTypes
+  theme?: ThemeTypes
+  tag?: keyof Pick<JSX.IntrinsicElements, 'button' | 'span'>
+  type?: string
+  isOutlined?: boolean
 }
 
 export interface ButtonAnchorProps {
   onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
-export const ButtonInner = ({ text, theme }: ButtonInnerProps) => {
-  return <ButtonContainer theme={theme}>{text}</ButtonContainer>
+export const ButtonInner = ({
+  text,
+  tag = 'span',
+  theme,
+  type,
+  isOutlined,
+}: ButtonInnerProps) => {
+  return (
+    // @ts-expect-error conflict using as with an optional `type` prop
+    <ButtonContainer
+      as={tag}
+      theme={theme}
+      type={tag === 'button' ? type : undefined}
+      outlineTheme={isOutlined ? theme : undefined}
+    >
+      {text}
+    </ButtonContainer>
+  )
 }
 
 export type ButtonProps = ButtonInnerProps &
@@ -30,6 +49,8 @@ export const Button = ({
   url,
   isExternal,
   onClick,
+  type = 'button',
+  isOutlined = false,
 }: ButtonProps) => {
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
@@ -39,12 +60,18 @@ export const Button = ({
 
   return (
     <>
-      {url && theme !== ThemeTypes.OUTLINED ? (
+      {url && !isOutlined ? (
         <ButtonAnchor onClick={handleClick} url={url} isExternal={isExternal}>
           <ButtonInner theme={theme} text={label} />
         </ButtonAnchor>
       ) : (
-        <ButtonInner theme={theme} text={text} />
+        <ButtonInner
+          tag={isOutlined ? 'span' : 'button'}
+          type={type}
+          isOutlined={isOutlined}
+          theme={theme}
+          text={text}
+        />
       )}
     </>
   )
@@ -54,34 +81,42 @@ export const ButtonContainer = styled('span', {
   display: 'inline-block',
   borderRadius: '$pill',
   p: '$xxs',
-  pb: 9,
   textDecoration: 'none',
   cursor: 'pointer',
   fontSize: '$XS',
   lineHeight: '$XS',
+  border: 'none',
 
   variants: {
-    theme: {
-      [ThemeTypes.OUTLINED]: {
+    outlineTheme: {
+      [ThemeTypes.LIGHT]: {
         backgroundColor: 'transparent',
         border: 'solid 1px $white100',
         color: '$white100',
         cursor: 'default',
+
+        hover: {
+          backgroundColor: 'transparent',
+        },
       },
+      [ThemeTypes.DARK]: {
+        backgroundColor: 'transparent',
+        border: 'solid 1px $black100',
+        color: '$black100',
+        cursor: 'default',
+
+        hover: {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+    theme: {
       [ThemeTypes.LIGHT]: {
         backgroundColor: '$white100',
         color: '$black100',
 
         hover: {
-          backgroundColor: '$white50',
-        },
-      },
-      [ThemeTypes.GREY]: {
-        backgroundColor: '$white50',
-        color: '$black100',
-
-        hover: {
-          backgroundColor: '$black70',
+          backgroundColor: '$grey100',
         },
       },
       [ThemeTypes.DARK]: {
@@ -89,7 +124,7 @@ export const ButtonContainer = styled('span', {
         color: '$white100',
 
         hover: {
-          backgroundColor: '$black70',
+          backgroundColor: '$blackHover',
         },
       },
     },

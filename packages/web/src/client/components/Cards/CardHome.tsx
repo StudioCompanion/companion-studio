@@ -34,6 +34,7 @@ const CardHomeInner = ({
   cardButtonLabel = 'View',
   status,
   style,
+  backgroundColor,
 }: CardHomeInnerProps) => {
   const selectedMedia = media?.asset
     ? media
@@ -45,13 +46,26 @@ const CardHomeInner = ({
 
   return (
     <>
+      <BackgroundColor
+        style={{
+          backgroundColor,
+        }}
+      />
       <ImageContainer style={style}>
-        {selectedMedia ? <MediaContainer {...selectedMedia} /> : null}
+        {selectedMedia ? (
+          <MediaContainer controls={false} {...selectedMedia} />
+        ) : null}
       </ImageContainer>
       <CardText theme={theme}>
         <div>
           {actualTitle ? (
-            <Heading tag="h2" fontStyle="L" weight="$bold">
+            <Heading
+              tag="h2"
+              weight="$bold"
+              css={{
+                fontSize: '$S',
+              }}
+            >
               {actualTitle}
             </Heading>
           ) : null}
@@ -63,9 +77,8 @@ const CardHomeInner = ({
         </div>
         <Button
           text={cardButtonLabel}
-          theme={
-            status === 'comingSoon' ? ThemeTypes.OUTLINED : ThemeTypes.LIGHT
-          }
+          theme={theme}
+          isOutlined={status === 'comingSoon'}
         />
       </CardText>
     </>
@@ -113,7 +126,7 @@ export const CardHome = (props: CardHomeProps) => {
 
   if (status === 'comingSoon') {
     return (
-      <CardWrapper as="div" className={className} theme={ThemeTypes.OUTLINED}>
+      <CardWrapper as="div" className={className}>
         <CardHomeInner {...props} />
       </CardWrapper>
     )
@@ -136,31 +149,17 @@ const CardWrapper = styled('a', {
 
   variants: {
     theme: {
-      [ThemeTypes.OUTLINED]: {},
       [ThemeTypes.LIGHT]: {
-        backgroundColor: '$white100',
-
         hover: {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$white50',
-          },
-        },
-      },
-      [ThemeTypes.GREY]: {
-        backgroundColor: '$white50',
-
-        hover: {
-          [`& ${ButtonContainer}`]: {
-            backgroundColor: '$white50',
+            backgroundColor: '$grey100',
           },
         },
       },
       [ThemeTypes.DARK]: {
-        backgroundColor: '$black100',
-
         hover: {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$white50',
+            backgroundColor: '$blackHover',
           },
         },
       },
@@ -168,13 +167,23 @@ const CardWrapper = styled('a', {
   },
 })
 
+const BackgroundColor = styled('div', {
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  inset: 0,
+  zIndex: -1,
+  borderRadius: '$wrapperLarge',
+  transformOrigin: '50% 50%',
+  transform: 'scale(0.998)',
+})
+
 const ImageContainer = styled(animated.div, {
   transformOrigin: '50% 50%',
 })
 
 const MediaContainer = styled(Media, {
-  borderRadius: '$wrapperLarge',
-  overflow: 'hidden',
+  br: '$wrapperLarge',
 })
 
 const CardText = styled('div', {
@@ -192,24 +201,14 @@ const CardText = styled('div', {
 
   variants: {
     theme: {
-      [ThemeTypes.OUTLINED]: {
-        '& h2, & h3': {
-          color: '$black100',
-        },
-      },
       [ThemeTypes.LIGHT]: {
         '& h2, & h3': {
-          color: '$black100',
-        },
-      },
-      [ThemeTypes.GREY]: {
-        '& h2, & h3': {
-          color: '$black100',
+          color: '$white100',
         },
       },
       [ThemeTypes.DARK]: {
         '& h2, & h3': {
-          color: '$white100',
+          color: '$black100',
         },
       },
     },

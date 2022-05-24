@@ -132,7 +132,7 @@ const ImageStripContainer = styled(FadeIn, {
 })
 
 const ImageWrapper = styled('div', {
-  borderRadius: '$wrapperLarge',
+  br: '$wrapperLarge',
   overflow: 'hidden',
 })
 

@@ -37,7 +37,7 @@ export type BlockTestimonial =
 export interface BlockMediaItem {
   _type: 'item'
   hasMobile?: boolean
-  caption?: string
+  caption?: RichText
   mobile?: Media
   desktop?: Media
 }
@@ -76,7 +76,12 @@ export interface Card
   type?: PageTypes
 }
 
-type PageTypes = 'homepage' | 'approachpage' | 'teampage' | 'project'
+type PageTypes =
+  | 'homepage'
+  | 'approachpage'
+  | 'teampage'
+  | 'project'
+  | 'privacy'
 
 export interface DocumentBase {
   _id?: string
@@ -102,6 +107,7 @@ export type Pages =
   | TeamPage
   | ProjectPage
   | LinktreePage
+  | PrivacyPage
 
 export interface Link {
   label?: string
@@ -143,6 +149,7 @@ export interface TeamPage
 
 export interface Footer {
   links?: Link[]
+  text?: RichText
 }
 
 export interface Callout {

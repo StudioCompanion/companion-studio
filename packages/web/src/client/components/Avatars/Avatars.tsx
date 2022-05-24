@@ -50,45 +50,54 @@ export const Avatars = ({ members }: AvatarsProps) => {
 
   return (
     <GridWrapper>
-      {(members ?? []).map(({ image, name, job }, i) => (
-        <GridItemContainer
-          onMouseEnter={handleMouseEnter(i)}
-          onMouseLeave={handleMouseLeave(i)}
-          key={name}
-          css={{
-            mr: canHover ? 0 : '$s',
-          }}
-        >
-          {image ? <GridImageWrapper {...image} /> : null}
-          <TeamMemberDetails
-            ref={(ref) => (textRefs.current[i] = ref as HTMLDivElement)}
-            style={{ width: springs[i].width }}
+      <GridScrollWrapper
+        css={{
+          '@tabletUp': {
+            justifyContent: canHover ? 'flex-end' : 'flex-start',
+            py: canHover ? 0 : '$s',
+          },
+        }}
+      >
+        {(members ?? []).map(({ image, name, job }, i) => (
+          <GridItemContainer
+            onMouseEnter={handleMouseEnter(i)}
+            onMouseLeave={handleMouseLeave(i)}
+            key={name}
+            css={{
+              '& + &': {
+                ml: canHover ? 0 : '$s',
+              },
+            }}
           >
-            <TeamMemberHeading tag="h2" fontStyle="XS" weight="$bold">
-              {name}
-            </TeamMemberHeading>
-            <TeamMemberHeading tag="h3" fontStyle="XS">
-              {job}
-            </TeamMemberHeading>
-          </TeamMemberDetails>
-        </GridItemContainer>
-      ))}
+            {image ? <GridImageWrapper {...image} /> : null}
+            <TeamMemberDetails
+              ref={(ref) => (textRefs.current[i] = ref as HTMLDivElement)}
+              style={{ width: springs[i].width }}
+            >
+              <TeamMemberHeading tag="h2" fontStyle="XS" weight="$bold">
+                {name}
+              </TeamMemberHeading>
+              <TeamMemberHeading tag="h3" fontStyle="XS">
+                {job}
+              </TeamMemberHeading>
+            </TeamMemberDetails>
+          </GridItemContainer>
+        ))}
+      </GridScrollWrapper>
     </GridWrapper>
   )
 }
 
 const GridWrapper = styled('div', {
   width: '100%',
+})
+
+const GridScrollWrapper = styled('div', {
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'flex-end',
-  py: '$s',
   overflow: 'auto',
-
-  '@tabletUp': {
-    py: 0,
-    justifyContent: 'flex-end',
-  },
+  py: '$s',
 })
 
 const GridItemContainer = styled('div', {
@@ -105,10 +114,6 @@ const GridImageWrapper = styled(Media, {
   background: '$white50',
   height: 50,
   width: 50,
-
-  '& img': {
-    top: '3px !important',
-  },
 })
 
 const TeamMemberDetails = styled(animated.div, {

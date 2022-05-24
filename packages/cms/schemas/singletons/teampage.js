@@ -13,12 +13,12 @@ export default {
       title: 'Page Content',
     },
     {
-      name: 'meta',
-      title: 'Page meta',
-    },
-    {
       name: 'card',
       title: 'Page card',
+    },
+    {
+      name: 'meta',
+      title: 'Page meta',
     },
   ],
   fields: [
@@ -128,16 +128,16 @@ export default {
       ],
     },
     {
-      name: 'meta',
-      title: 'Page meta',
-      type: 'meta',
-      group: 'meta',
-    },
-    {
       name: 'card',
       title: 'Page Card',
       type: 'pageCard',
       group: 'card',
+    },
+    {
+      name: 'meta',
+      title: 'Page meta',
+      type: 'meta',
+      group: 'meta',
     },
   ],
   preview: {

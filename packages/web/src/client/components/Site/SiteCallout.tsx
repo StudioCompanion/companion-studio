@@ -1,6 +1,5 @@
-import { Button, ButtonContainer } from 'components/Button/Button'
+import { Button } from 'components/Button/Button'
 import { Media } from 'components/Media/Media'
-import { LinkBase } from 'components/Links/LinkBase'
 import { FadeIn } from 'components/Transitions/FadeIn'
 import { Heading } from 'components/Text/Heading'
 
@@ -14,16 +13,14 @@ export const Callout = ({ text, link, media }: Sanity.Callout) => {
     return null
   }
 
-  const { label, ...restProps } = link
-
   return (
     <FadeIn>
-      <CalloutContainer {...restProps}>
+      <CalloutContainer>
         <div>
           <CalloutText tag="p" fontStyle="L">
             {text}
           </CalloutText>
-          <Button text={label} theme={ThemeTypes.DARK} />
+          <Button {...link} theme={ThemeTypes.DARK} />
         </div>
         <CalloutImageWrapper>
           {media ? <Media {...media} /> : null}
@@ -33,7 +30,7 @@ export const Callout = ({ text, link, media }: Sanity.Callout) => {
   )
 }
 
-const CalloutContainer = styled(LinkBase, {
+const CalloutContainer = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   backgroundColor: '$cream100',
@@ -44,12 +41,6 @@ const CalloutContainer = styled(LinkBase, {
 
   '@tabletUp': {
     p: '$m',
-  },
-
-  hover: {
-    [`& ${ButtonContainer}`]: {
-      backgroundColor: '$black50',
-    },
   },
 })
 
