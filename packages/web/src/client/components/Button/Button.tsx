@@ -9,6 +9,8 @@ import { MouseEventHandler } from 'react'
 export interface ButtonInnerProps {
   text?: string
   theme?: ThemeTypes
+  tag?: keyof Pick<JSX.IntrinsicElements, 'button' | 'span'>
+  type?: string
   isOutlined?: boolean
 }
 
@@ -16,10 +18,19 @@ export interface ButtonAnchorProps {
   onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
-export const ButtonInner = ({ text, theme, isOutlined }: ButtonInnerProps) => {
+export const ButtonInner = ({
+  text,
+  tag = 'span',
+  theme,
+  type,
+  isOutlined,
+}: ButtonInnerProps) => {
   return (
+    // @ts-expect-error conflict using as with an optional `type` prop
     <ButtonContainer
+      as={tag}
       theme={theme}
+      type={tag === 'button' ? type : undefined}
       outlineTheme={isOutlined ? theme : undefined}
     >
       {text}
@@ -38,6 +49,7 @@ export const Button = ({
   url,
   isExternal,
   onClick,
+  type = 'button',
   isOutlined = false,
 }: ButtonProps) => {
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
@@ -53,7 +65,13 @@ export const Button = ({
           <ButtonInner theme={theme} text={label} />
         </ButtonAnchor>
       ) : (
-        <ButtonInner isOutlined={isOutlined} theme={theme} text={text} />
+        <ButtonInner
+          tag={isOutlined ? 'span' : 'button'}
+          type={type}
+          isOutlined={isOutlined}
+          theme={theme}
+          text={text}
+        />
       )}
     </>
   )
@@ -67,6 +85,7 @@ export const ButtonContainer = styled('span', {
   cursor: 'pointer',
   fontSize: '$XS',
   lineHeight: '$XS',
+  border: 'none',
 
   variants: {
     outlineTheme: {
@@ -97,7 +116,7 @@ export const ButtonContainer = styled('span', {
         color: '$black100',
 
         hover: {
-          backgroundColor: '$white50',
+          backgroundColor: '$grey100',
         },
       },
       [ThemeTypes.DARK]: {
@@ -105,7 +124,7 @@ export const ButtonContainer = styled('span', {
         color: '$white100',
 
         hover: {
-          backgroundColor: '$black50',
+          backgroundColor: '$blackHover',
         },
       },
     },
