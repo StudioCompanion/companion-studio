@@ -9,14 +9,22 @@ import { MouseEventHandler } from 'react'
 export interface ButtonInnerProps {
   text?: string
   theme?: ThemeTypes
+  isOutlined?: boolean
 }
 
 export interface ButtonAnchorProps {
   onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
-export const ButtonInner = ({ text, theme }: ButtonInnerProps) => {
-  return <ButtonContainer theme={theme}>{text}</ButtonContainer>
+export const ButtonInner = ({ text, theme, isOutlined }: ButtonInnerProps) => {
+  return (
+    <ButtonContainer
+      theme={theme}
+      outlineTheme={isOutlined ? theme : undefined}
+    >
+      {text}
+    </ButtonContainer>
+  )
 }
 
 export type ButtonProps = ButtonInnerProps &
@@ -30,6 +38,7 @@ export const Button = ({
   url,
   isExternal,
   onClick,
+  isOutlined = false,
 }: ButtonProps) => {
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
@@ -39,12 +48,12 @@ export const Button = ({
 
   return (
     <>
-      {url && theme !== ThemeTypes.OUTLINED ? (
+      {url && !isOutlined ? (
         <ButtonAnchor onClick={handleClick} url={url} isExternal={isExternal}>
           <ButtonInner theme={theme} text={label} />
         </ButtonAnchor>
       ) : (
-        <ButtonInner theme={theme} text={text} />
+        <ButtonInner isOutlined={isOutlined} theme={theme} text={text} />
       )}
     </>
   )
@@ -60,13 +69,29 @@ export const ButtonContainer = styled('span', {
   lineHeight: '$XS',
 
   variants: {
-    theme: {
-      [ThemeTypes.OUTLINED]: {
+    outlineTheme: {
+      [ThemeTypes.LIGHT]: {
         backgroundColor: 'transparent',
         border: 'solid 1px $white100',
         color: '$white100',
         cursor: 'default',
+
+        hover: {
+          backgroundColor: 'transparent',
+        },
       },
+      [ThemeTypes.DARK]: {
+        backgroundColor: 'transparent',
+        border: 'solid 1px $black100',
+        color: '$black100',
+        cursor: 'default',
+
+        hover: {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+    theme: {
       [ThemeTypes.LIGHT]: {
         backgroundColor: '$white100',
         color: '$black100',
