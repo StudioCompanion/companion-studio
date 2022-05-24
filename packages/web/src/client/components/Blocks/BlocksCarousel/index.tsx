@@ -146,6 +146,9 @@ export const Carousel = (props: Sanity.BlockMedia) => {
     }
   }, [activeIndex, router.query])
 
+  const shouldShowDots = !video && itemCount > 1
+  const hasCaption = Boolean(items[activeIndex].caption)
+
   return (
     <>
       {showCursor && <Cursor icon={cursorIcon()} ref={cursorRef} />}
@@ -174,19 +177,21 @@ export const Carousel = (props: Sanity.BlockMedia) => {
             </InfiniteSlider>
           )}
         </Container>
-        <Caption>
-          <CaptionText blocks={items[activeIndex].caption ?? []} />
-          {!video && itemCount > 1 && (
-            <Dots>
-              {items.map((_, index) => (
-                <Dot
-                  key={index}
-                  style={{ opacity: activeIndex === index ? 1 : 0.2 }}
-                />
-              ))}
-            </Dots>
-          )}
-        </Caption>
+        {shouldShowDots || hasCaption ? (
+          <Caption>
+            <CaptionText blocks={items[activeIndex].caption ?? []} />
+            {!video && itemCount > 1 && (
+              <Dots>
+                {items.map((_, index) => (
+                  <Dot
+                    key={index}
+                    style={{ opacity: activeIndex === index ? 1 : 0.2 }}
+                  />
+                ))}
+              </Dots>
+            )}
+          </Caption>
+        ) : null}
       </Wrapper>
     </>
   )
