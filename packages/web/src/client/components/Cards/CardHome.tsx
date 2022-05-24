@@ -77,9 +77,8 @@ const CardHomeInner = ({
         </div>
         <Button
           text={cardButtonLabel}
-          theme={
-            status === 'comingSoon' ? ThemeTypes.OUTLINED : ThemeTypes.LIGHT
-          }
+          theme={theme}
+          isOutlined={status === 'comingSoon'}
         />
       </CardText>
     </>
@@ -127,7 +126,7 @@ export const CardHome = (props: CardHomeProps) => {
 
   if (status === 'comingSoon') {
     return (
-      <CardWrapper as="div" className={className} theme={ThemeTypes.OUTLINED}>
+      <CardWrapper as="div" className={className}>
         <CardHomeInner {...props} />
       </CardWrapper>
     )
@@ -150,15 +149,7 @@ const CardWrapper = styled('a', {
 
   variants: {
     theme: {
-      [ThemeTypes.OUTLINED]: {},
       [ThemeTypes.LIGHT]: {
-        hover: {
-          [`& ${ButtonContainer}`]: {
-            backgroundColor: '$white50',
-          },
-        },
-      },
-      [ThemeTypes.GREY]: {
         hover: {
           [`& ${ButtonContainer}`]: {
             backgroundColor: '$white50',
@@ -168,7 +159,7 @@ const CardWrapper = styled('a', {
       [ThemeTypes.DARK]: {
         hover: {
           [`& ${ButtonContainer}`]: {
-            backgroundColor: '$white50',
+            backgroundColor: '$black50',
           },
         },
       },
@@ -210,24 +201,14 @@ const CardText = styled('div', {
 
   variants: {
     theme: {
-      [ThemeTypes.OUTLINED]: {
-        '& h2, & h3': {
-          color: '$black100',
-        },
-      },
       [ThemeTypes.LIGHT]: {
         '& h2, & h3': {
-          color: '$black100',
-        },
-      },
-      [ThemeTypes.GREY]: {
-        '& h2, & h3': {
-          color: '$black100',
+          color: '$white100',
         },
       },
       [ThemeTypes.DARK]: {
         '& h2, & h3': {
-          color: '$white100',
+          color: '$black100',
         },
       },
     },

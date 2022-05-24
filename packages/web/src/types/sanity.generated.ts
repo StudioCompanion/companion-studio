@@ -572,7 +572,7 @@ export type PageCard = {
    *
    *
    */
-  theme?: 'light' | 'grey' | 'dark'
+  theme?: 'light' | 'dark'
 
   /**
    * Background Colour — `string`
