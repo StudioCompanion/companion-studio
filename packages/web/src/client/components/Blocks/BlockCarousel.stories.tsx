@@ -1,7 +1,10 @@
 import { Carousel } from './BlockCarousel'
+
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { ComponentProps } from 'react'
+
 import { CarouselLayouts } from 'styles/constants'
+
+import { StoryFixtures } from '@types'
 
 export default {
   title: 'Blocks/Media',
@@ -36,7 +39,7 @@ export const IsHero: ComponentStory<typeof Carousel> = () => (
   <Carousel {...fixtures.isHero} />
 )
 
-const fixtures: Record<string, ComponentProps<typeof Carousel>> = {
+const fixtures: StoryFixtures<typeof Carousel> = {
   //   carouselNoCaptions: { _type: 'blockMedia' as const, items: [] },
   //   carouselWithCaptions: { _type: 'blockMedia' as const, items: [] },
   //   singleVideo: {},
