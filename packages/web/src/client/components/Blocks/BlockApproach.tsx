@@ -1,4 +1,5 @@
 import { Sanity } from '@types'
+
 import { Media } from 'components/Media/Media'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 import { FadeIn } from 'components/Transitions/FadeIn'
@@ -17,7 +18,11 @@ export const BlockApproach = ({
   return (
     <Section className={className}>
       {media ? <BlockMedia {...media} /> : null}
-      {text ? <BlockText blocks={text} /> : null}
+      {text ? (
+        <BlockTextContainer>
+          <BlockText blocks={text} />
+        </BlockTextContainer>
+      ) : null}
     </Section>
   )
 }
@@ -39,11 +44,12 @@ const BlockMedia = styled(Media, {
   },
 })
 
-const BlockText = styled(RendererRichText, {
+const BlockTextContainer = styled('div', {
   '@tabletUp': {
     flex: '1 1 50%',
-    '& > p': {
-      maxWidth: '$centeredParagraph',
-    },
   },
+})
+
+const BlockText = styled(RendererRichText, {
+  maxWidth: '$centeredParagraph',
 })
