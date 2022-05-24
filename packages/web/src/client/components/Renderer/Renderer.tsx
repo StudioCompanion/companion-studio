@@ -1,4 +1,4 @@
-import { Carousel } from 'components/Blocks/BlocksCarousel'
+import { Carousel } from 'components/Blocks/BlockCarousel'
 import { Testimonial } from 'components/Blocks/BlockTestimonial'
 import { TextSection } from 'components/Blocks/BlockText'
 
