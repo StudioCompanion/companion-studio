@@ -194,7 +194,7 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
           display: 'block',
           content: '',
           width: '100%',
-          paddingTop: `${h ? (h / w) * 100 : w}%`,
+          paddingTop: `${(h ? (h / w) * 100 : w).toFixed(2)}%`,
         },
 
         '& > *': {
