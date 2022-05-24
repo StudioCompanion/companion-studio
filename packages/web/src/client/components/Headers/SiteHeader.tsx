@@ -59,23 +59,25 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
     (i: number, isActive: boolean, immediate = false) => {
       const element = navRefs.current[i]
 
-      const { width, height } = element.getBoundingClientRect()
+      if (element) {
+        const { width, height } = element.getBoundingClientRect()
 
-      colorsApi.start({
-        color: isActive ? 'var(--colors-white100)' : 'var(--colors-black100)',
-        backgroundColor: isActive
-          ? 'var(--colors-black100)'
-          : 'var(--colors-grey25)',
-        immediate,
-      })
+        colorsApi.start({
+          color: isActive ? 'var(--colors-white100)' : 'var(--colors-black100)',
+          backgroundColor: isActive
+            ? 'var(--colors-black100)'
+            : 'var(--colors-grey25)',
+          immediate,
+        })
 
-      api.start({
-        width,
-        height,
-        x: element.offsetLeft + PADDING,
-        y: element.offsetTop + PADDING,
-        immediate,
-      })
+        api.start({
+          width,
+          height,
+          x: element.offsetLeft + PADDING,
+          y: element.offsetTop + PADDING,
+          immediate,
+        })
+      }
     },
     [api, colorsApi]
   )
@@ -235,6 +237,10 @@ const NavLink = styled(animated(LinkBase), {
   width: '100%',
   height: '100%',
   color: '$black50',
+
+  '&:visited': {
+    color: '$black50',
+  },
 })
 
 const NavBackground = styled(animated.span, {
