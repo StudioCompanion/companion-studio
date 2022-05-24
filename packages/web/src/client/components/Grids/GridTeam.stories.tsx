@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { TeamGrid } from './GridTeam'
 
 export default {
-  title: 'Team Grid',
+  title: 'Grids/Team',
   component: TeamGrid,
 } as ComponentMeta<typeof TeamGrid>
 

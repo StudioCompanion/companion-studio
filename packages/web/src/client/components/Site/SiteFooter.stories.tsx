@@ -8,6 +8,6 @@ export const Primary = Template.bind({})
 Primary.args = {}
 
 export default {
-  title: 'Components/Footer',
+  title: 'Site/Footer',
   component: Footer,
 } as Meta

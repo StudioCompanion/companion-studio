@@ -8,6 +8,6 @@ export const Primary = Template.bind({})
 Primary.args = {}
 
 export default {
-  title: 'Components/Callout',
+  title: 'Site/Callout',
   component: Callout,
 } as Meta

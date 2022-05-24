@@ -2,7 +2,7 @@ import { Nav } from './SiteHeader'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
-  title: 'Nav',
+  title: 'Headers/Site',
   component: Nav,
 } as ComponentMeta<typeof Nav>
 

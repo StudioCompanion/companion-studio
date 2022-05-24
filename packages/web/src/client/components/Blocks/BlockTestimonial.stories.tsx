@@ -2,7 +2,7 @@ import { Testimonial } from './BlockTestimonial'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
-  title: 'Testimonial',
+  title: 'Blocks/Testimonial',
   component: Testimonial,
 } as ComponentMeta<typeof Testimonial>
 
