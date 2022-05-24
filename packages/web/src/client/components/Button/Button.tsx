@@ -90,7 +90,7 @@ export const ButtonContainer = styled('span', {
         color: '$black100',
 
         hover: {
-          backgroundColor: '$white50',
+          backgroundColor: '$grey100',
         },
       },
       [ThemeTypes.GREY]: {
@@ -106,7 +106,7 @@ export const ButtonContainer = styled('span', {
         color: '$white100',
 
         hover: {
-          backgroundColor: '$black50',
+          backgroundColor: '$blackHover',
         },
       },
     },

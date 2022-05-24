@@ -37,6 +37,7 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
         grey100: '#E5E5EB',
         grey50: '#F2F2F5',
         grey25: '#F9F9FA',
+        blackHover: '#56595C',
       },
       sizes: {
         smallTablet: `${Widths.SmallTablet / 10}rem`,
