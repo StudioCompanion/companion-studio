@@ -42,5 +42,8 @@ const BlockMedia = styled(Media, {
 const BlockText = styled(RendererRichText, {
   '@tabletUp': {
     flex: '1 1 50%',
+    '& > p': {
+      maxWidth: '$centeredParagraph',
+    },
   },
 })
