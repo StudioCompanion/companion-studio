@@ -1,6 +1,7 @@
 import groq from 'groq'
 import { IMAGE } from '../objects/image'
 import { MEDIA } from '../objects/media'
+import { RICH_TEXT } from '../objects/richText'
 
 export const BLOCK_MEDIA = groq`
     _key,
@@ -14,7 +15,9 @@ export const BLOCK_MEDIA = groq`
     items[]{
         _key,
         hasMobile,
-        caption,
+        caption[] {
+            ${RICH_TEXT}
+        },
         mobile {
             ${MEDIA}
         },

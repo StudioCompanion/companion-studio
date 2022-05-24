@@ -8,5 +8,7 @@ export const CARD = groq`
     cardButtonLabel,
     media {
         ${MEDIA}
-    }
+    },
+    theme,
+    backgroundColor
 `

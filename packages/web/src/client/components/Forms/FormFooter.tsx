@@ -8,6 +8,8 @@ import { Heading } from 'components/Text/Heading'
 import { styled } from 'styles/stitches.config'
 
 import { EventNames, firePlausibleEvent } from 'helpers/analytics'
+import { Button } from 'components/Button/Button'
+import { ThemeTypes } from 'styles/constants'
 
 interface SignUpFormProps {
   className?: string
@@ -28,16 +30,16 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
   const [value, setValue] = useState('')
   const router = useRouter()
 
-  const [touched, setTouched] = useState(false)
-
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined
   )
 
-  const handleBlur = () => {
-    setTouched(true)
-    setErrorMessage(validateForm(value))
-  }
+  const handleBlur = () =>
+    setErrorMessage(
+      Boolean(value) && !isEmail(value)
+        ? 'That didn’t work! Please enter a valid email address'
+        : undefined
+    )
 
   const currentPage =
     (router.query?.slug as string) ?? router.route !== '/'
@@ -45,6 +47,7 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
       : 'Home'
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setErrorMessage(undefined)
     const error = validateForm(value)
     if (error) {
       e.preventDefault()
@@ -58,21 +61,20 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
       })
       setShowSuccess(true)
       setValue('')
-      setTouched(false)
     }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
-    if ((errorMessage && errorMessage !== '') || touched) {
-      setErrorMessage(validateForm(value))
-    }
+
     if (showSuccess) {
       setShowSuccess(false)
     }
   }
 
   const handleFocus = () => {
+    setErrorMessage(undefined)
+
     firePlausibleEvent({
       name: EventNames.NewsletterActivation,
       additionalProps: {
@@ -115,13 +117,7 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
             </FormFeedback>
           ) : null}
         </InputWrapper>
-        <FormButton
-          type={'submit'}
-          value="Submit"
-          disabled={Boolean(!value || (errorMessage && errorMessage !== ''))}
-        >
-          Submit
-        </FormButton>
+        <Button text="Submit" type="submit" theme={ThemeTypes.LIGHT}></Button>
       </Form>
     </div>
   )
@@ -140,25 +136,4 @@ const InputWrapper = styled('div', {
 const FormFeedback = styled(Heading, {
   mt: '$xxxs',
   ml: '$xs',
-})
-
-const FormButton = styled('button', {
-  backgroundColor: '$white100',
-  color: '$black100',
-  borderRadius: '$pill',
-  border: 'none',
-  cursor: 'pointer',
-  p: '$xxs',
-  pb: 9,
-  minHeight: 30,
-  fontSize: '$XS',
-  lineHeight: '$XS',
-
-  hover: {
-    backgroundColor: '$white50',
-  },
-
-  '&:disabled': {
-    backgroundColor: '$white25',
-  },
 })

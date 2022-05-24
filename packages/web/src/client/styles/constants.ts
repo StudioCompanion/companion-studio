@@ -7,6 +7,4 @@ export enum CarouselLayouts {
 export enum ThemeTypes {
   LIGHT = 'light',
   DARK = 'dark',
-  GREY = 'grey',
-  OUTLINED = 'outlined',
 }

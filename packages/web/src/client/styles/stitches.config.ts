@@ -37,6 +37,7 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
         grey100: '#E5E5EB',
         grey50: '#F2F2F5',
         grey25: '#F9F9FA',
+        blackHover: '#56595C',
       },
       sizes: {
         smallTablet: `${Widths.SmallTablet / 10}rem`,
@@ -159,6 +160,13 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
         marginTop: value,
         marginBottom: value,
       }),
+      br: (value: Stitches.PropertyValue<'borderRadius'>) => ({
+        borderRadius: value,
+        // Safari requires this to be explicitly set on videos
+        video: {
+          borderRadius: value,
+        },
+      }),
       debug: (value: Stitches.PropertyValue<'color'>) => ({
         border: `solid 1px ${value}`,
       }),
@@ -187,7 +195,7 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
           display: 'block',
           content: '',
           width: '100%',
-          paddingTop: `${h ? (h / w) * 100 : w}%`,
+          paddingTop: `${(h ? (h / w) * 100 : w).toFixed(2)}%`,
         },
 
         '& > *': {
