@@ -9,14 +9,30 @@ import { MouseEventHandler } from 'react'
 export interface ButtonInnerProps {
   text?: string
   theme: ThemeTypes
+  tag?: keyof Pick<JSX.IntrinsicElements, 'button' | 'span'>
+  type?: string
 }
 
 export interface ButtonAnchorProps {
   onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
-export const ButtonInner = ({ text, theme }: ButtonInnerProps) => {
-  return <ButtonContainer theme={theme}>{text}</ButtonContainer>
+export const ButtonInner = ({
+  text,
+  tag = 'span',
+  theme,
+  type,
+}: ButtonInnerProps) => {
+  return (
+    // @ts-expect-error conflict using as with an optional `type` prop
+    <ButtonContainer
+      as={tag}
+      theme={theme}
+      type={tag === 'button' ? type : undefined}
+    >
+      {text}
+    </ButtonContainer>
+  )
 }
 
 export type ButtonProps = ButtonInnerProps &
@@ -30,6 +46,7 @@ export const Button = ({
   url,
   isExternal,
   onClick,
+  type = 'button',
 }: ButtonProps) => {
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
@@ -44,7 +61,7 @@ export const Button = ({
           <ButtonInner theme={theme} text={label} />
         </ButtonAnchor>
       ) : (
-        <ButtonInner theme={theme} text={text} />
+        <ButtonInner tag="button" type={type} theme={theme} text={text} />
       )}
     </>
   )
@@ -58,6 +75,7 @@ export const ButtonContainer = styled('span', {
   cursor: 'pointer',
   fontSize: '$XS',
   lineHeight: '$XS',
+  border: 'none',
 
   variants: {
     theme: {

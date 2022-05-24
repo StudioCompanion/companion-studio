@@ -8,6 +8,8 @@ import { Heading } from 'components/Text/Heading'
 import { styled } from 'styles/stitches.config'
 
 import { EventNames, firePlausibleEvent } from 'helpers/analytics'
+import { Button } from 'components/Button/Button'
+import { ThemeTypes } from 'styles/constants'
 
 interface SignUpFormProps {
   className?: string
@@ -115,9 +117,7 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
             </FormFeedback>
           ) : null}
         </InputWrapper>
-        <FormButton type={'submit'} value="Submit">
-          Submit
-        </FormButton>
+        <Button text="Submit" type="submit" theme={ThemeTypes.LIGHT}></Button>
       </Form>
     </div>
   )
@@ -136,21 +136,4 @@ const InputWrapper = styled('div', {
 const FormFeedback = styled(Heading, {
   mt: '$xxxs',
   ml: '$xs',
-})
-
-const FormButton = styled('button', {
-  backgroundColor: '$white100',
-  color: '$black100',
-  borderRadius: '$pill',
-  border: 'none',
-  cursor: 'pointer',
-  p: '$xxs',
-  pb: 9,
-  minHeight: 30,
-  fontSize: '$XS',
-  lineHeight: '$XS',
-
-  hover: {
-    backgroundColor: '$white50',
-  },
 })
