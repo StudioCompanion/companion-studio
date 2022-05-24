@@ -10,6 +10,6 @@ export const Primary = Template.bind({})
 Primary.args = {}
 
 export default {
-  title: 'Components/Image Strip',
+  title: 'Image Strip',
   component: ImageStrip,
 } as Meta
