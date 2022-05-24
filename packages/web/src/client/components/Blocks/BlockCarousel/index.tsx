@@ -7,21 +7,23 @@ import { styled } from 'styles/stitches.config'
 
 import { FadeIn } from 'components/Transitions/FadeIn'
 import { Media } from 'components/Media/Media'
+import { RendererRichText } from 'components/Renderer/RendererRichText'
 
 import { EventNames, firePlausibleEvent } from 'helpers/analytics'
 
-import { Slide } from './Slide'
-import { Video } from './Video'
+import { CarouselSlide } from './CarouselSlide'
 import { InfiniteSlider, SliderApi } from './InfiniteCarousel'
-import { Cursor } from './Cursor'
+import { CarouselCursor, CursorDirection } from './CarouselCursor'
 
 import { Sanity } from '@types'
-import { useCanHover } from 'hooks/useCanHover'
-import { RendererRichText } from 'components/Renderer/RendererRichText'
 
-const FORWARD = 'forward'
-const BACKWARD = 'backward'
-
+/**
+ *
+ * This component is complicated.
+ *
+ * So there's notes to help you navigate it.
+ *
+ */
 export const Carousel = (props: Sanity.BlockMedia) => {
   const {
     backgroundImage,
@@ -30,97 +32,103 @@ export const Carousel = (props: Sanity.BlockMedia) => {
     layout = CarouselLayouts.FULL,
     isHero,
   } = props
-  const itemCount = items.length
   const [containerEl, { width, left }] = useMeasure()
+
+  /**
+   * The active index of the carousel
+   * indexed at 0
+   */
   const [activeIndex, setActiveIndex] = useState(0)
-  const [direction, setDirection] = useState<
-    typeof FORWARD | typeof BACKWARD | null
-  >(null)
 
-  const [paused, setPaused] = useState(false)
-  const video = items.find(
-    (item) =>
-      item?.desktop?._type === 'video' || item?.mobile?._type === 'video'
-  )
+  /**
+   * Is the video currently playing paused?
+   *
+   * TODO: how does this work if we have more than one video?
+   */
+  const [isPaused, setPaused] = useState(false)
 
-  const [showCursor, setShowCursor] = useState(false)
+  /**
+   * Cursor State.
+   *
+   * Defines the direction the cursor is pointing (only applies
+   * if the item is _not_ a video) and handles whether the
+   * cursor is visible or not, animation is handled within
+   * the spring component
+   */
+  const [cursorState, setCursorState] = useState({
+    direction: CursorDirection.Forwards,
+    isVisible: false,
+  })
+
   const cursorRef = useRef<HTMLDivElement>(null)
 
-  const cursorIcon = () => {
-    if (video) {
-      return paused ? '/icons/cursor_play.svg' : '/icons/cursor_pause.svg'
-    }
-    if (itemCount > 1) {
-      return direction === FORWARD
-        ? '/icons/cursor_right_arrow.svg'
-        : '/icons/cursor_left_arrow.svg'
-    } else return ''
-  }
+  const isVideo = items[activeIndex].desktop?._type === 'video'
 
   const handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
     if (cursorRef.current) {
+      /**
+       * TODO: review this.
+       *
+       * Is this the most performant way?
+       * Probably better to use transform as opposed to top/left
+       * but how does that deal with the moving the element to
+       * be underneath the cursor
+       */
       cursorRef.current.style.left = `${clientX}px`
       cursorRef.current.style.top = `${clientY}px`
     }
 
-    const x = clientX - left
-    if (itemCount > 1 && !video) {
-      if (x >= Math.round(width / 2) && direction !== FORWARD) {
-        setDirection(FORWARD)
-      }
-      if (x < Math.round(width / 2) && direction !== BACKWARD && !video) {
-        setDirection(BACKWARD)
-      }
+    const currentX = clientX - left
+    const shouldBeForwards = currentX >= width / 2
+
+    if (
+      shouldBeForwards &&
+      cursorState.direction !== CursorDirection.Forwards
+    ) {
+      setCursorState((s) => ({ ...s, direction: CursorDirection.Forwards }))
+    } else if (
+      !shouldBeForwards &&
+      cursorState.direction !== CursorDirection.Backwards
+    ) {
+      setCursorState((s) => ({ ...s, direction: CursorDirection.Backwards }))
     }
   }
 
   const sliderApi = useRef<SliderApi>(null!)
 
-  const handleClick = () => {
-    if (direction === BACKWARD && sliderApi.current.prev) {
-      const newInd = sliderApi.current.prev(-1)
-      /**
-       * this formula handles a case where there are two items
-       * but in the dom there are four (so the animation works)
-       */
-      setActiveIndex(
-        (newInd < 0 ? newInd + items.length : newInd) % items.length
-      )
-    }
-    if (direction === FORWARD && sliderApi.current.next) {
-      const newInd = sliderApi.current.next(1)
-      /**
-       * this formula handles a case where there are two items
-       * but in the dom there are four (so the animation works)
-       */
-      setActiveIndex(
-        (newInd < 0 ? newInd + items.length : newInd) % items.length
-      )
-    }
-  }
+  // const handleClick = () => {
+  //   if (direction === BACKWARD && sliderApi.current.prev) {
+  //     const newInd = sliderApi.current.prev(-1)
+  //     /**
+  //      * this formula handles a case where there are two items
+  //      * but in the dom there are four (so the animation works)
+  //      */
+  //     setActiveIndex(
+  //       (newInd < 0 ? newInd + items.length : newInd) % items.length
+  //     )
+  //   }
+  //   if (direction === FORWARD && sliderApi.current.next) {
+  //     const newInd = sliderApi.current.next(1)
+  //     /**
+  //      * this formula handles a case where there are two items
+  //      * but in the dom there are four (so the animation works)
+  //      */
+  //     setActiveIndex(
+  //       (newInd < 0 ? newInd + items.length : newInd) % items.length
+  //     )
+  //   }
+  // }
 
   const handleDragEnd = (index: number) => {
     setActiveIndex(index)
   }
 
-  const canHover = useCanHover()
-
   const handleMouseEnter = () => {
-    if (!canHover) {
-      return
-    }
-
-    if (itemCount > 1 || video) setShowCursor(true)
+    setCursorState((s) => ({ ...s, isVisible: true }))
   }
 
   const handleMouseLeave = () => {
-    if (!canHover) {
-      return
-    }
-
-    if (showCursor) {
-      setShowCursor(false)
-    }
+    setCursorState((s) => ({ ...s, isVisible: false }))
   }
 
   const hasMounted = useRef(false)
@@ -146,41 +154,50 @@ export const Carousel = (props: Sanity.BlockMedia) => {
     }
   }, [activeIndex, router.query])
 
-  const shouldShowDots = !video && itemCount > 1
+  const shouldShowDots = items.length > 1
   const hasCaption = Boolean(items[activeIndex].caption)
 
   return (
     <>
-      {showCursor && <Cursor icon={cursorIcon()} ref={cursorRef} />}
+      <CarouselCursor
+        ref={cursorRef}
+        isPaused={isPaused}
+        isVideo={isVideo}
+        {...cursorState}
+      />
       <Wrapper hero={isHero} layout={layout}>
         <Container
           ref={containerEl}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onMouseMove={handleMouseMove}
-          onClick={handleClick}
+          // onClick={handleClick}
           css={{
             backgroundColor,
-            cursor: showCursor ? 'none' : 'auto',
+            cursor: cursorState.isVisible ? 'none' : 'auto',
           }}
         >
           {backgroundImage ? <BackgroundImage {...backgroundImage} /> : null}
-          {video ? (
-            <Video video={video} isPaused={paused} setPaused={setPaused} />
-          ) : (
-            <InfiniteSlider
-              ref={sliderApi}
-              items={items}
-              onDragEnd={handleDragEnd}
-            >
-              {(item) => <Slide key={item._key} {...item} />}
-            </InfiniteSlider>
-          )}
+          <InfiniteSlider
+            ref={sliderApi}
+            items={items}
+            onDragEnd={handleDragEnd}
+          >
+            {(item) => (
+              <CarouselSlide
+                key={item._key}
+                isPaused={isPaused}
+                setPaused={setPaused}
+                {...item}
+                hasMobile={Boolean(item.hasMobile)}
+              />
+            )}
+          </InfiniteSlider>
         </Container>
         {shouldShowDots || hasCaption ? (
           <Caption>
             <CaptionText blocks={items[activeIndex].caption ?? []} />
-            {!video && itemCount > 1 && (
+            {shouldShowDots ? (
               <Dots>
                 {items.map((_, index) => (
                   <Dot
@@ -189,7 +206,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
                   />
                 ))}
               </Dots>
-            )}
+            ) : null}
           </Caption>
         ) : null}
       </Wrapper>

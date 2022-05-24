@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { StoryFixtures } from '@types'
-import { ComponentProps } from 'react'
 
 import { Avatars } from './Avatars'
 

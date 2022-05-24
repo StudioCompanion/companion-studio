@@ -1,18 +1,25 @@
 import { Dispatch, SetStateAction, useCallback } from 'react'
 
-import { Sanity } from '@types'
-
 import { styled } from 'styles/stitches.config'
 
 import { Media } from 'components/Media/Media'
 
-interface VideoProps {
-  video: Sanity.BlockMediaItem
+import { Sanity } from '@types'
+
+interface CarouselSlideProps
+  extends Omit<Sanity.BlockMediaItem, 'caption' | 'hasMobile'> {
   setPaused: Dispatch<SetStateAction<boolean>>
   isPaused?: boolean
+  hasMobile: boolean
 }
 
-export const Video = ({ video, setPaused, isPaused }: VideoProps) => {
+export const CarouselSlide = ({
+  hasMobile,
+  desktop,
+  mobile,
+  setPaused,
+  isPaused,
+}: CarouselSlideProps) => {
   const handleVideoClick = () => {
     setPaused((s) => !s)
   }
@@ -21,33 +28,33 @@ export const Video = ({ video, setPaused, isPaused }: VideoProps) => {
     setPaused(!isPlaying)
   }, [])
 
-  const hasMobileBool = Boolean(video.hasMobile)
+  if (!desktop) {
+    return null
+  }
 
   return (
     <>
-      {video.mobile?.asset && hasMobileBool ? (
-        <VideoItem
-          {...video.mobile}
+      {mobile?.asset && hasMobile ? (
+        <Asset
+          isMobile
           isPaused={isPaused}
-          isMobile={hasMobileBool}
           onClick={handleVideoClick}
           onAutoplayCallback={handleAutoplayCallback}
+          {...mobile}
         />
       ) : null}
-      {video.desktop?.asset ? (
-        <VideoItem
-          {...video.desktop}
-          isPaused={isPaused}
-          hasMobile={hasMobileBool}
-          onClick={handleVideoClick}
-          onAutoplayCallback={handleAutoplayCallback}
-        />
-      ) : null}
+      <Asset
+        hasMobile={hasMobile}
+        isPaused={isPaused}
+        onClick={handleVideoClick}
+        onAutoplayCallback={handleAutoplayCallback}
+        {...desktop}
+      />
     </>
   )
 }
 
-const VideoItem = styled(Media, {
+const Asset = styled(Media, {
   variants: {
     hasMobile: {
       true: {
