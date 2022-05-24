@@ -4,7 +4,19 @@
 name: 'Chromatic'
 
 # Event for the workflow
-on: push
+'on':
+  push:
+    branches:
+      # TODO: change to main when we've launched site
+      - v2
+      # remove after this task has been finished
+      - chore/visual-regression-testing
+  pull_request:
+    branches:
+      # TODO: change to main when we've launched site
+      - v2
+      # remove after this task has been finished
+      - chore/visual-regression-testing
 
 # List of jobs
 jobs:
