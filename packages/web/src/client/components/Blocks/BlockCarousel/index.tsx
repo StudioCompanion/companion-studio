@@ -7,13 +7,13 @@ import { styled } from 'styles/stitches.config'
 
 import { FadeIn } from 'components/Transitions/FadeIn'
 import { Media } from 'components/Media/Media'
-import { RendererRichText } from 'components/Renderer/RendererRichText'
 
 import { EventNames, firePlausibleEvent } from 'helpers/analytics'
 
 import { CarouselSlide } from './CarouselSlide'
 import { InfiniteSlider, SliderApi } from './InfiniteCarousel'
 import { CarouselCursor, CursorDirection } from './CarouselCursor'
+import { CarouselFooter } from './CarouselFooter'
 
 import { Sanity } from '@types'
 
@@ -155,7 +155,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   }, [activeIndex, router.query])
 
   const shouldShowDots = items.length > 1
-  const hasCaption = Boolean(items[activeIndex].caption)
+  const currentCaption = items[activeIndex].caption
 
   return (
     <>
@@ -172,7 +172,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
           onMouseLeave={handleMouseLeave}
           onMouseMove={handleMouseMove}
           // onClick={handleClick}
-          css={{
+          style={{
             backgroundColor,
             cursor: cursorState.isVisible ? 'none' : 'auto',
           }}
@@ -186,6 +186,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
             {(item) => (
               <CarouselSlide
                 key={item._key}
+                activeIndex={activeIndex}
                 isPaused={isPaused}
                 setPaused={setPaused}
                 {...item}
@@ -194,20 +195,12 @@ export const Carousel = (props: Sanity.BlockMedia) => {
             )}
           </InfiniteSlider>
         </Container>
-        {shouldShowDots || hasCaption ? (
-          <Caption>
-            <CaptionText blocks={items[activeIndex].caption ?? []} />
-            {shouldShowDots ? (
-              <Dots>
-                {items.map((_, index) => (
-                  <Dot
-                    key={index}
-                    style={{ opacity: activeIndex === index ? 1 : 0.2 }}
-                  />
-                ))}
-              </Dots>
-            ) : null}
-          </Caption>
+        {shouldShowDots || currentCaption ? (
+          <CarouselFooter
+            dotCount={items.length}
+            activeIndex={activeIndex}
+            caption={currentCaption}
+          />
         ) : null}
       </Wrapper>
     </>
@@ -261,31 +254,6 @@ const Container = styled('div', {
   '@tabletUp': {
     br: '$wrapper',
   },
-})
-
-const Dots = styled('div', {
-  mt: '$xs',
-  display: 'flex',
-})
-
-const Dot = styled('div', {
-  width: 6,
-  height: 6,
-  borderRadius: '$circle',
-  backgroundColor: '$black100',
-
-  '& + &': {
-    ml: '$xxxs',
-  },
-})
-
-const Caption = styled('div', {
-  display: 'flex',
-  justifyContent: 'space-between',
-})
-
-const CaptionText = styled(RendererRichText, {
-  mt: '$xs',
 })
 
 const BackgroundImage = styled(Media, {

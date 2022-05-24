@@ -10,6 +10,7 @@ interface CarouselSlideProps
   extends Omit<Sanity.BlockMediaItem, 'caption' | 'hasMobile'> {
   setPaused: Dispatch<SetStateAction<boolean>>
   isPaused?: boolean
+  activeIndex: number
   hasMobile: boolean
 }
 
