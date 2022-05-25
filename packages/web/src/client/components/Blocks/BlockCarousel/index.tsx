@@ -18,6 +18,8 @@ import { CarouselCursor, CursorDirection } from './CarouselCursor'
 import { CarouselFooter } from './CarouselFooter'
 
 import { Sanity } from '@types'
+import { useReducedMotion } from 'hooks/useReducedMotion'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
 
 /**
  *
@@ -35,13 +37,27 @@ export const Carousel = (props: Sanity.BlockMedia) => {
     isHero,
   } = props
   const [containerRef, { width, left }] = useMeasure()
+  const reducedMotion = useReducedMotion()
+  const [carouselAutoplay] = useState(() =>
+    Autoplay({
+      playOnInit: false,
+    })
+  )
   const [viewportRef, embla] = useEmblaCarousel(
     {
       skipSnaps: false,
       loop: true,
     },
-    [Autoplay()]
+    [carouselAutoplay]
   )
+
+  useIsomorphicLayoutEffect(() => {
+    if (reducedMotion) {
+      carouselAutoplay.stop()
+    } else {
+      carouselAutoplay.play()
+    }
+  }, [reducedMotion])
 
   /**
    * The active index of the carousel
