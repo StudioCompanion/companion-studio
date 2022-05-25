@@ -25,9 +25,12 @@ export const CarouselSlide = ({
     setPaused((s) => !s)
   }
 
-  const handleAutoplayCallback = useCallback((isPlaying: boolean) => {
-    setPaused(!isPlaying)
-  }, [])
+  const handleAutoplayCallback = useCallback(
+    (isPlaying: boolean) => {
+      setPaused(!isPlaying)
+    },
+    [setPaused]
+  )
 
   if (!desktop) {
     return null

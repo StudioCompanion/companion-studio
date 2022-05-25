@@ -1,13 +1,13 @@
 import { SanityGenerated } from '@types'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
-import { MouseEventHandler } from 'react'
+import { MouseEvent, MouseEventHandler } from 'react'
 import { styled } from 'styles/stitches.config'
 
 interface CarouselFooterProps {
   dotCount: number
   activeIndex: number
   caption?: SanityGenerated.RichText
-  onClick?: MouseEventHandler<HTMLButtonElement>
+  onClick?: (index: number, e: MouseEvent<HTMLButtonElement>) => void
 }
 
 export const CarouselFooter = ({
@@ -20,11 +20,12 @@ export const CarouselFooter = ({
 
   const actualIndex = activeIndex + 1
 
-  const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
-    if (onClick) {
-      onClick(e)
+  const handleClick: (index: number) => MouseEventHandler<HTMLButtonElement> =
+    (index) => (e) => {
+      if (onClick) {
+        onClick(index, e)
+      }
     }
-  }
 
   return (
     <Footer>
@@ -40,7 +41,7 @@ export const CarouselFooter = ({
               key={index}
               type="button"
               style={{ opacity: activeIndex === index ? 1 : 0.2 }}
-              onClick={handleClick}
+              onClick={handleClick(index)}
             >
               <VisuallyHiddenLabel>{`Image ${index + 1}`}</VisuallyHiddenLabel>
               {activeIndex === index ? (
@@ -80,6 +81,7 @@ const Dot = styled('button', {
   margin: 0,
   borderRadius: '$circle',
   backgroundColor: '$black100',
+  cursor: 'pointer',
 
   '& + &': {
     ml: '$xxxs',

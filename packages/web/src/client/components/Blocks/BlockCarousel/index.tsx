@@ -48,6 +48,13 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   const [isPaused, setPaused] = useState(false)
 
   /**
+   * Derived state
+   */
+  const isVideo = items[activeIndex].desktop?._type === 'video'
+  const shouldShowDots = items.length > 1
+  const currentCaption = items[activeIndex].caption
+
+  /**
    * Cursor State.
    *
    * Defines the direction the cursor is pointing (only applies
@@ -62,7 +69,16 @@ export const Carousel = (props: Sanity.BlockMedia) => {
 
   const cursorRef = useRef<HTMLDivElement>(null)
 
-  const isVideo = items[activeIndex].desktop?._type === 'video'
+  /**
+   * Cursor related event handlers
+   */
+  const handleMouseEnter = () => {
+    setCursorState((s) => ({ ...s, isVisible: true }))
+  }
+
+  const handleMouseLeave = () => {
+    setCursorState((s) => ({ ...s, isVisible: false }))
+  }
 
   const handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
     if (cursorRef.current) {
@@ -94,43 +110,34 @@ export const Carousel = (props: Sanity.BlockMedia) => {
     }
   }
 
+  /**
+   * Carousel related handlers
+   */
   const sliderApi = useRef<SliderApi>(null!)
 
-  // const handleClick = () => {
-  //   if (direction === BACKWARD && sliderApi.current.prev) {
-  //     const newInd = sliderApi.current.prev(-1)
-  //     /**
-  //      * this formula handles a case where there are two items
-  //      * but in the dom there are four (so the animation works)
-  //      */
-  //     setActiveIndex(
-  //       (newInd < 0 ? newInd + items.length : newInd) % items.length
-  //     )
-  //   }
-  //   if (direction === FORWARD && sliderApi.current.next) {
-  //     const newInd = sliderApi.current.next(1)
-  //     /**
-  //      * this formula handles a case where there are two items
-  //      * but in the dom there are four (so the animation works)
-  //      */
-  //     setActiveIndex(
-  //       (newInd < 0 ? newInd + items.length : newInd) % items.length
-  //     )
-  //   }
-  // }
+  const handleCarouselClick = () => {
+    if (cursorState.direction === CursorDirection.Backwards) {
+      const newInd = sliderApi.current.prev()
+      setActiveIndex(newInd)
+    }
+    if (cursorState.direction === CursorDirection.Forwards) {
+      const newInd = sliderApi.current.next()
+      setActiveIndex(newInd)
+    }
+  }
 
   const handleDragEnd = (index: number) => {
     setActiveIndex(index)
   }
 
-  const handleMouseEnter = () => {
-    setCursorState((s) => ({ ...s, isVisible: true }))
+  const handleDotClick = (dotIndex: number) => {
+    const newInd = sliderApi.current.advanceToItem(dotIndex)
+    setActiveIndex(newInd)
   }
 
-  const handleMouseLeave = () => {
-    setCursorState((s) => ({ ...s, isVisible: false }))
-  }
-
+  /**
+   * Async analytic event handling
+   */
   const hasMounted = useRef(false)
   const router = useRouter()
 
@@ -154,9 +161,6 @@ export const Carousel = (props: Sanity.BlockMedia) => {
     }
   }, [activeIndex, router.query])
 
-  const shouldShowDots = items.length > 1
-  const currentCaption = items[activeIndex].caption
-
   return (
     <>
       <CarouselCursor
@@ -171,7 +175,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onMouseMove={handleMouseMove}
-          // onClick={handleClick}
+          onClick={handleCarouselClick}
           style={{
             backgroundColor,
             cursor: cursorState.isVisible ? 'none' : 'auto',
@@ -200,6 +204,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
             dotCount={items.length}
             activeIndex={activeIndex}
             caption={currentCaption}
+            onClick={handleDotClick}
           />
         ) : null}
       </Wrapper>

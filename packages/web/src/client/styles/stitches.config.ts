@@ -1,6 +1,6 @@
 import * as Stitches from '@stitches/react'
 
-interface AspectRatioProps {
+export interface AspectRatioProps {
   w: number
   h?: number
 }
