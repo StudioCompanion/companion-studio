@@ -57,6 +57,7 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
     const prev = useRef([0, 1])
     const index = useRef(0)
     const isDragging = useRef(false)
+    const listItemRefs = useRef<HTMLLIElement[]>([])
 
     /**
      * If there are only two items in the array then
@@ -210,6 +211,9 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
         }
       }
 
+      /**
+       * Always keep moving the springs
+       */
       runSprings(vx, down, xMove)
     }
 
@@ -280,6 +284,8 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
           x: (-(newIndex * width) % (width * actualItems.length)) + width * i,
         }))
 
+        listItemRefs.current[newIndex].focus()
+
         index.current = newIndex
         prev.current = [newIndex, 1]
 
@@ -313,24 +319,12 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
         }
       >
         {springs.map(({ x }, i) => (
-          <animated.li key={i} style={{ x }}>
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                background: 'white',
-                width: 40,
-                height: 40,
-                borderRadius: '50%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: 24,
-              }}
-            >
-              {i}
-            </div>
+          <animated.li
+            ref={(ref) => (listItemRefs.current[i] = ref!)}
+            key={i}
+            style={{ x }}
+            tabIndex={-1}
+          >
             {children(actualItems[i], i)}
           </animated.li>
         ))}
