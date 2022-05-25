@@ -19,6 +19,7 @@ import { useSprings, animated } from '@react-spring/web'
 import { Sanity, SanityGenerated } from '@types'
 
 import { styled, AspectRatioProps } from 'styles/stitches.config'
+import { useCanHover } from 'hooks/useCanHover'
 
 export interface SliderApi {
   /**
@@ -211,37 +212,7 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
       [actualItems.length, api, getIndex, getPos, getRank, width]
     )
 
-    const handleDrag = (
-      vx: number,
-      down: boolean,
-      xMove = 0,
-      xDir = 0,
-      distance?: number,
-      cancel?: () => void
-    ) => {
-      // This decides if we move over to the next slide or back to the initial
-      if (
-        down &&
-        distance &&
-        (distance > width / 2 || Math.abs(vx) > 1) &&
-        cancel
-      ) {
-        index.current = index.current + (xDir > 0 ? -1 : 1)
-
-        cancel()
-
-        if (onDragEnd) {
-          onDragEnd(getIndex(index.current))
-        }
-
-        isDragging.current = false
-      }
-
-      /**
-       * Always keep moving the springs
-       */
-      runSprings(vx, down, xMove)
-    }
+    const canHover = useCanHover()
 
     const bind = useDrag(
       ({
@@ -252,22 +223,58 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
         cancel,
         distance,
       }) => {
-        if (onDragStart && down) {
-          onDragStart()
+        if (actualItems.length <= 1 || canHover) {
+          return
         }
 
-        console.log(vx)
-
-        if (actualItems.length > 1 && vx) {
+        if (down && !isDragging.current) {
           isDragging.current = true
-          handleDrag(-vx, down, xMove, xDir, distance, cancel)
+
+          if (onDragStart) {
+            onDragStart()
+          }
         }
+
+        if (!down && distance === 0 && isDragging.current) {
+          /**
+           * We did not drag
+           */
+          isDragging.current = false
+
+          return
+        } else if (!down && isDragging.current) {
+          /**
+           * We finished dragging
+           */
+          isDragging.current = false
+
+          if (onDragEnd) {
+            onDragEnd(getIndex(index.current))
+          }
+
+          return
+        }
+        // This decides if we move over to the next slide or back to the initial
+        if (
+          down &&
+          distance &&
+          (distance > width / 2 || Math.abs(vx) > 1) &&
+          cancel
+        ) {
+          index.current = index.current + (xDir > 0 ? -1 : 1)
+
+          cancel()
+        }
+
+        /**
+         * Always keep moving the springs
+         */
+        runSprings(-vx, down, xMove)
       }
     )
 
     useImperativeHandle(ref, () => ({
       next: () => {
-        console.log(isDragging.current)
         if (!isDragging.current) {
           runSprings(1, true, 0, true)
         }

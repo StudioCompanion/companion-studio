@@ -125,24 +125,22 @@ export const Carousel = (props: Sanity.BlockMedia) => {
 
   const handleCarouselClick = () => {
     if (cursorState.direction === CursorDirection.Backwards) {
-      // clearInterval()
+      clearInterval()
       const newInd = sliderApi.current.prev()
       setActiveIndex(newInd)
     }
     if (cursorState.direction === CursorDirection.Forwards) {
-      // clearInterval()
+      clearInterval()
       const newInd = sliderApi.current.next()
       setActiveIndex(newInd)
     }
   }
 
   const handleDragStart = () => {
-    console.log('calling drag start')
     clearInterval()
   }
 
   const handleDragEnd = (index: number) => {
-    console.log('calling drag end')
     setActiveIndex(index)
   }
 
@@ -161,18 +159,14 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   const reduceMotion = useReducedMotion()
 
   const startInterval = useCallback(() => {
-    console.log('starting interval')
     intervalId.current = setTimeout(() => {
-      console.log('interval called')
       const newInd = sliderApi.current.next()
-      console.log(newInd)
       setActiveIndex(newInd)
     }, 2000)
   }, [])
 
   const clearInterval = useCallback(() => {
     if (intervalId.current) {
-      console.log('clearing interval')
       clearTimeout(intervalId.current)
       intervalId.current = null
     }
@@ -186,7 +180,6 @@ export const Carousel = (props: Sanity.BlockMedia) => {
     startInterval()
 
     return () => {
-      console.log('cleaning up effect')
       clearInterval()
     }
   }, [startInterval, activeIndex])
