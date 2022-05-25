@@ -49,14 +49,22 @@ interface InfiniteSliderProps {
   ) => ReactNode
   className?: string
   onDragEnd?: (ind: number) => void
+  onDragStart?: () => void
 }
 
 export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
-  ({ items, className, children, onDragEnd }, ref) => {
+  ({ items, className, children, onDragEnd, onDragStart }, ref) => {
     const [measureRef, { width }] = useMeasure()
     const prev = useRef([0, 1])
+    /**
+     * current index, is not strictly limited by the
+     * range of 0 - items.length
+     */
     const index = useRef(0)
     const isDragging = useRef(false)
+    /**
+     * Used for focussing after a nav button has been clicked.
+     */
     const listItemRefs = useRef<HTMLLIElement[]>([])
 
     /**
@@ -132,6 +140,22 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
 
     const runSprings = useCallback(
       (vx: number, down: boolean, xMove = 0, resetSlides = false) => {
+        /**
+         * This is necessary when we're using the prev / next buttons
+         * Why? Because when using the dots it easier to transition in
+         * a linear way:
+         * [0][1][2][3]
+         *
+         * We can easily identify what index we want to show and go from there.
+         * However, in an infinite carousel, we need the previous item in
+         * a sequence to be behind the visible slide:
+         * [3][0][1][2]
+         *
+         * Otherwise when you go backwards you won't see the desired slide
+         * because it's travelling from the front of the queue. This function
+         * resets the slides into this infinite order before actually transitioning
+         * where we want to go.
+         */
         if (resetSlides) {
           // The actual scrolling value
           const currentY = index.current * width
@@ -209,6 +233,8 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
         if (onDragEnd) {
           onDragEnd(getIndex(index.current))
         }
+
+        isDragging.current = false
       }
 
       /**
@@ -226,17 +252,22 @@ export const InfiniteSlider = forwardRef<SliderApi, InfiniteSliderProps>(
         cancel,
         distance,
       }) => {
+        if (onDragStart && down) {
+          onDragStart()
+        }
+
+        console.log(vx)
+
         if (actualItems.length > 1 && vx) {
           isDragging.current = true
           handleDrag(-vx, down, xMove, xDir, distance, cancel)
-        } else {
-          isDragging.current = false
         }
       }
     )
 
     useImperativeHandle(ref, () => ({
       next: () => {
+        console.log(isDragging.current)
         if (!isDragging.current) {
           runSprings(1, true, 0, true)
         }

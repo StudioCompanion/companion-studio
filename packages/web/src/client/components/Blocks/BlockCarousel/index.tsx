@@ -1,4 +1,10 @@
-import React, { useState, useRef, MouseEvent, useEffect } from 'react'
+import React, {
+  useState,
+  useRef,
+  MouseEvent,
+  useEffect,
+  useCallback,
+} from 'react'
 import useMeasure from 'react-use-measure'
 import { useRouter } from 'next/router'
 
@@ -16,6 +22,8 @@ import { CarouselCursor, CursorDirection } from './CarouselCursor'
 import { CarouselFooter } from './CarouselFooter'
 
 import { Sanity } from '@types'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
+import { useReducedMotion } from 'hooks/useReducedMotion'
 
 /**
  *
@@ -117,23 +125,71 @@ export const Carousel = (props: Sanity.BlockMedia) => {
 
   const handleCarouselClick = () => {
     if (cursorState.direction === CursorDirection.Backwards) {
+      // clearInterval()
       const newInd = sliderApi.current.prev()
       setActiveIndex(newInd)
     }
     if (cursorState.direction === CursorDirection.Forwards) {
+      // clearInterval()
       const newInd = sliderApi.current.next()
       setActiveIndex(newInd)
     }
   }
 
+  const handleDragStart = () => {
+    console.log('calling drag start')
+    clearInterval()
+  }
+
   const handleDragEnd = (index: number) => {
+    console.log('calling drag end')
     setActiveIndex(index)
   }
 
   const handleDotClick = (dotIndex: number) => {
+    clearInterval()
+
     const newInd = sliderApi.current.advanceToItem(dotIndex)
     setActiveIndex(newInd)
   }
+
+  /**
+   * Holds the interval id so it can be cleared
+   */
+  const intervalId = useRef<NodeJS.Timer | null>(null)
+
+  const reduceMotion = useReducedMotion()
+
+  const startInterval = useCallback(() => {
+    console.log('starting interval')
+    intervalId.current = setTimeout(() => {
+      console.log('interval called')
+      const newInd = sliderApi.current.next()
+      console.log(newInd)
+      setActiveIndex(newInd)
+    }, 2000)
+  }, [])
+
+  const clearInterval = useCallback(() => {
+    if (intervalId.current) {
+      console.log('clearing interval')
+      clearTimeout(intervalId.current)
+      intervalId.current = null
+    }
+  }, [])
+
+  useIsomorphicLayoutEffect(() => {
+    if (reduceMotion) {
+      return
+    }
+
+    startInterval()
+
+    return () => {
+      console.log('cleaning up effect')
+      clearInterval()
+    }
+  }, [startInterval, activeIndex])
 
   /**
    * Async analytic event handling
@@ -185,6 +241,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
           <InfiniteSlider
             ref={sliderApi}
             items={items}
+            onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
           >
             {(item) => (
