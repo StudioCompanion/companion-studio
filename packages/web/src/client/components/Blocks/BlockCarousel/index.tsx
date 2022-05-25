@@ -1,10 +1,7 @@
-import React, {
-  useState,
-  useRef,
-  MouseEvent,
-  useEffect,
-  useCallback,
-} from 'react'
+import { useState, useRef, MouseEvent, useEffect } from 'react'
+import mergeRefs from 'react-merge-refs'
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 import useMeasure from 'react-use-measure'
 import { useRouter } from 'next/router'
 
@@ -17,13 +14,10 @@ import { Media } from 'components/Media/Media'
 import { EventNames, firePlausibleEvent } from 'helpers/analytics'
 
 import { CarouselSlide } from './CarouselSlide'
-import { InfiniteSlider, SliderApi } from './InfiniteCarousel'
 import { CarouselCursor, CursorDirection } from './CarouselCursor'
 import { CarouselFooter } from './CarouselFooter'
 
 import { Sanity } from '@types'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
-import { useReducedMotion } from 'hooks/useReducedMotion'
 
 /**
  *
@@ -40,7 +34,14 @@ export const Carousel = (props: Sanity.BlockMedia) => {
     layout = CarouselLayouts.FULL,
     isHero,
   } = props
-  const [containerEl, { width, left }] = useMeasure()
+  const [containerRef, { width, left }] = useMeasure()
+  const [viewportRef, embla] = useEmblaCarousel(
+    {
+      skipSnaps: false,
+      loop: true,
+    },
+    [Autoplay()]
+  )
 
   /**
    * The active index of the carousel
@@ -119,70 +120,49 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   }
 
   /**
-   * Carousel related handlers
+   * Carousel event handling
    */
-  const sliderApi = useRef<SliderApi>(null!)
+
+  const slideRefs = useRef<HTMLLIElement[]>([])
 
   const handleCarouselClick = () => {
-    if (cursorState.direction === CursorDirection.Backwards) {
-      clearInterval()
-      const newInd = sliderApi.current.prev()
-      setActiveIndex(newInd)
-    }
-    if (cursorState.direction === CursorDirection.Forwards) {
-      clearInterval()
-      const newInd = sliderApi.current.next()
-      setActiveIndex(newInd)
+    if (embla) {
+      if (cursorState.direction === CursorDirection.Forwards) {
+        embla.scrollNext()
+      } else {
+        embla.scrollPrev()
+      }
     }
   }
 
-  const handleDragStart = () => {
-    clearInterval()
-  }
+  const handleDotClick = (index: number) => {
+    if (embla) {
+      embla.scrollTo(index)
+      setActiveIndex(index)
 
-  const handleDragEnd = (index: number) => {
-    setActiveIndex(index)
-  }
-
-  const handleDotClick = (dotIndex: number) => {
-    clearInterval()
-
-    const newInd = sliderApi.current.advanceToItem(dotIndex)
-    setActiveIndex(newInd)
-  }
-
-  /**
-   * Holds the interval id so it can be cleared
-   */
-  const intervalId = useRef<NodeJS.Timer | null>(null)
-
-  const reduceMotion = useReducedMotion()
-
-  const startInterval = useCallback(() => {
-    intervalId.current = setTimeout(() => {
-      const newInd = sliderApi.current.next()
-      setActiveIndex(newInd)
-    }, 2000)
-  }, [])
-
-  const clearInterval = useCallback(() => {
-    if (intervalId.current) {
-      clearTimeout(intervalId.current)
-      intervalId.current = null
+      if (slideRefs.current[index]) {
+        slideRefs.current[index].focus()
+      }
     }
-  }, [])
+  }
 
-  useIsomorphicLayoutEffect(() => {
-    if (reduceMotion) {
-      return
+  useEffect(() => {
+    const handleSelect = () => {
+      if (embla) {
+        setActiveIndex(embla.selectedScrollSnap())
+      }
     }
 
-    startInterval()
+    if (embla) {
+      embla.on('select', handleSelect)
+    }
 
     return () => {
-      clearInterval()
+      if (embla) {
+        embla.off('select', handleSelect)
+      }
     }
-  }, [startInterval, activeIndex])
+  }, [embla])
 
   /**
    * Async analytic event handling
@@ -218,9 +198,10 @@ export const Carousel = (props: Sanity.BlockMedia) => {
         isVideo={isVideo}
         {...cursorState}
       />
-      <Wrapper hero={isHero} layout={layout}>
-        <Container
-          ref={containerEl}
+      <Wrapper hero={isHero} layout={layout} className="embla">
+        <Viewport
+          ref={mergeRefs([viewportRef, containerRef])}
+          className="embla__viewport"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onMouseMove={handleMouseMove}
@@ -231,14 +212,10 @@ export const Carousel = (props: Sanity.BlockMedia) => {
           }}
         >
           {backgroundImage ? <BackgroundImage {...backgroundImage} /> : null}
-          <InfiniteSlider
-            ref={sliderApi}
-            items={items}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-          >
-            {(item) => (
+          <Container className="embla__container">
+            {items.map((item, i) => (
               <CarouselSlide
+                ref={(ref) => (slideRefs.current[i] = ref!)}
                 key={item._key}
                 activeIndex={activeIndex}
                 isPaused={isPaused}
@@ -246,9 +223,9 @@ export const Carousel = (props: Sanity.BlockMedia) => {
                 {...item}
                 hasMobile={Boolean(item.hasMobile)}
               />
-            )}
-          </InfiniteSlider>
-        </Container>
+            ))}
+          </Container>
+        </Viewport>
         {shouldShowDots || currentCaption ? (
           <CarouselFooter
             dotCount={items.length}
@@ -300,7 +277,7 @@ const Wrapper = styled(FadeIn, {
   },
 })
 
-const Container = styled('div', {
+const Viewport = styled('div', {
   width: '100%',
   position: 'relative',
   overflow: 'hidden',
@@ -309,6 +286,11 @@ const Container = styled('div', {
   '@tabletUp': {
     br: '$wrapper',
   },
+})
+
+const Container = styled('ul', {
+  display: 'flex',
+  userSelect: 'none',
 })
 
 const BackgroundImage = styled(Media, {

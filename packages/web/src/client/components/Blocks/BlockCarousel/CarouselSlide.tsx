@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useCallback } from 'react'
+import { Dispatch, forwardRef, SetStateAction, useCallback } from 'react'
 
 import { styled } from 'styles/stitches.config'
 
@@ -14,49 +14,50 @@ interface CarouselSlideProps
   hasMobile: boolean
 }
 
-export const CarouselSlide = ({
-  hasMobile,
-  desktop,
-  mobile,
-  setPaused,
-  isPaused,
-}: CarouselSlideProps) => {
-  const handleVideoClick = () => {
-    setPaused((s) => !s)
-  }
+export const CarouselSlide = forwardRef<HTMLLIElement, CarouselSlideProps>(
+  ({ hasMobile, desktop, mobile, setPaused, isPaused }, ref) => {
+    const handleVideoClick = () => {
+      setPaused((s) => !s)
+    }
 
-  const handleAutoplayCallback = useCallback(
-    (isPlaying: boolean) => {
-      setPaused(!isPlaying)
-    },
-    [setPaused]
-  )
+    const handleAutoplayCallback = useCallback(
+      (isPlaying: boolean) => {
+        setPaused(!isPlaying)
+      },
+      [setPaused]
+    )
 
-  if (!desktop) {
-    return null
-  }
+    if (!desktop) {
+      return null
+    }
 
-  return (
-    <>
-      {mobile?.asset && hasMobile ? (
+    return (
+      <Slide className="embla__slide" ref={ref} tabIndex={-1}>
+        {mobile?.asset && hasMobile ? (
+          <Asset
+            isMobile
+            isPaused={isPaused}
+            onClick={handleVideoClick}
+            onAutoplayCallback={handleAutoplayCallback}
+            {...mobile}
+          />
+        ) : null}
         <Asset
-          isMobile
+          hasMobile={hasMobile}
           isPaused={isPaused}
           onClick={handleVideoClick}
           onAutoplayCallback={handleAutoplayCallback}
-          {...mobile}
+          {...desktop}
         />
-      ) : null}
-      <Asset
-        hasMobile={hasMobile}
-        isPaused={isPaused}
-        onClick={handleVideoClick}
-        onAutoplayCallback={handleAutoplayCallback}
-        {...desktop}
-      />
-    </>
-  )
-}
+      </Slide>
+    )
+  }
+)
+
+const Slide = styled('li', {
+  position: 'relative',
+  flex: '0 0 100%',
+})
 
 const Asset = styled(Media, {
   variants: {
