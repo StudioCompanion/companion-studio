@@ -35,6 +35,10 @@ const nextConfig = {
       return []
     }
   },
+  experimental: {
+    legacyBrowsers: false,
+    browsersListForSwc: true,
+  }
 }
 
 export default withBundleAnalyzer(nextConfig)

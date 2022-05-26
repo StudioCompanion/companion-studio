@@ -9,6 +9,10 @@
     "build:local": "doppler run -c prd -p site-web -- next build",
     "start": "next start"
   },
+  "browserlist": [
+    "last 2 versions",
+    "not dead"
+  ],
   "dependencies": {
     "@portabletext/react": "^1.0.6",
     "@react-hook/intersection-observer": "^3.1.1",
