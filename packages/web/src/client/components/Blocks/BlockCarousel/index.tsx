@@ -260,6 +260,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
 const Wrapper = styled(FadeIn, {
   width: '100%',
   mb: '$s',
+  position: 'relative',
 
   '@tabletUp': {
     mb: '$m',
@@ -316,4 +317,14 @@ const BackgroundImage = styled(Media, {
   inset: 0,
   width: '100%',
   height: '100%',
+
+  /**
+   * Embla seem to break the carousel,
+   * so we enforce these styles
+   */
+  transform: 'none !important',
+
+  span: {
+    width: '100% !important',
+  },
 })
