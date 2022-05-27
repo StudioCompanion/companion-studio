@@ -13,8 +13,8 @@ interface VideoProps {
 }
 
 export const Video = ({ video, setPaused, isPaused }: VideoProps) => {
-  const handleVideoClick = () => {
-    setPaused((s) => !s)
+  const handleVideoClick = (paused: boolean) => {
+    setPaused(paused)
   }
 
   const handleAutoplayCallback = useCallback((isPlaying: boolean) => {
