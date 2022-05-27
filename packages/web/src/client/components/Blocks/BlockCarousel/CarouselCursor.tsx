@@ -79,7 +79,7 @@ const CursorEl = styled(animated.div, {
   display: 'block',
   width: 40,
   height: 40,
-  position: 'absolute',
+  position: 'fixed',
   zIndex: '$1',
   pointerEvents: 'none',
 })
