@@ -149,7 +149,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   const slideRefs = useRef<HTMLLIElement[]>([])
 
   const handleCarouselClick = () => {
-    if (embla) {
+    if (embla && canHover) {
       if (cursorState.direction === CursorDirection.Forwards) {
         embla.scrollNext()
       } else {
