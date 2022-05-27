@@ -98,7 +98,9 @@ export const Carousel = (props: Sanity.BlockMedia) => {
    * Cursor related event handlers
    */
   const handleMouseEnter = () => {
-    setCursorState((s) => ({ ...s, isVisible: true }))
+    if (shouldShowDots || isVideo) {
+      setCursorState((s) => ({ ...s, isVisible: true }))
+    }
   }
 
   const handleMouseLeave = () => {

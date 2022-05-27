@@ -38,7 +38,7 @@ const nextConfig = {
   experimental: {
     legacyBrowsers: false,
     browsersListForSwc: true,
-  }
+  },
 }
 
 export default withBundleAnalyzer(nextConfig)
