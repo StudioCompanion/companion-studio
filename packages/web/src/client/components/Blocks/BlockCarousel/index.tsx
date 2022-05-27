@@ -102,17 +102,7 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   /**
    * Cursor related event handlers
    */
-  const handleMouseEnter = () => {
-    if (shouldShowDots || isVideo) {
-      setCursorState((s) => ({ ...s, isVisible: true }))
-    }
-  }
-
-  const handleMouseLeave = () => {
-    setCursorState((s) => ({ ...s, isVisible: false }))
-  }
-
-  const handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
+  const imperativelyUpdateCursor = ({ clientX, clientY }: MouseEvent) => {
     if (cursorRef.current) {
       /**
        * TODO: review this.
@@ -125,6 +115,22 @@ export const Carousel = (props: Sanity.BlockMedia) => {
       cursorRef.current.style.left = `${clientX}px`
       cursorRef.current.style.top = `${clientY}px`
     }
+  }
+
+  const handleMouseEnter = (e: MouseEvent) => {
+    if (shouldShowDots || isVideo) {
+      setCursorState((s) => ({ ...s, isVisible: true }))
+      imperativelyUpdateCursor(e)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    setCursorState((s) => ({ ...s, isVisible: false }))
+  }
+
+  const handleMouseMove = (e: MouseEvent) => {
+    const { clientX } = e
+    imperativelyUpdateCursor(e)
 
     const currentX = clientX - left
     const shouldBeForwards = currentX >= width / 2
