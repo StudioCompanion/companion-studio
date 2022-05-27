@@ -20,6 +20,7 @@ import { CarouselFooter } from './CarouselFooter'
 import { Sanity } from '@types'
 import { useReducedMotion } from 'hooks/useReducedMotion'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
+import { useCanHover } from 'hooks/useCanHover'
 
 /**
  *
@@ -38,18 +39,6 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   } = props
   const [containerRef, { width, left }] = useMeasure()
   const reducedMotion = useReducedMotion()
-  const [carouselAutoplay] = useState(() =>
-    Autoplay({
-      playOnInit: false,
-    })
-  )
-  const [viewportRef, embla] = useEmblaCarousel(
-    {
-      skipSnaps: false,
-      loop: true,
-    },
-    [carouselAutoplay]
-  )
 
   useIsomorphicLayoutEffect(() => {
     if (reducedMotion) {
@@ -78,6 +67,22 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   const isVideo = items[activeIndex].desktop?._type === 'video'
   const shouldShowDots = items.length > 1
   const currentCaption = items[activeIndex].caption
+
+  const canHover = useCanHover()
+
+  const [carouselAutoplay] = useState(() =>
+    Autoplay({
+      playOnInit: false,
+    })
+  )
+  const [viewportRef, embla] = useEmblaCarousel(
+    {
+      skipSnaps: false,
+      loop: true,
+      draggable: shouldShowDots && !canHover,
+    },
+    [carouselAutoplay]
+  )
 
   /**
    * Cursor State.
