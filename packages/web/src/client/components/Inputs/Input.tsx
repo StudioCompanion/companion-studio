@@ -70,6 +70,7 @@ const FormInput = styled('input', {
   minHeight: 30,
   fontSize: '$XS',
   lineHeight: '$XS',
+  letterSpacing: '-0.01em',
 
   '&::placeholder': {
     color: `$white100`,
