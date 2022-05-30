@@ -90,7 +90,13 @@ export const Avatars = ({ members }: AvatarsProps) => {
 }
 
 const GridWrapper = styled(FadeIn, {
-  width: '100%',
+  width: 'calc(100% + (var(--space-s) * 2))',
+  mx: 'calc($s * -1)',
+
+  '@tabletUp': {
+    mx: 0,
+    width: '100%',
+  },
 })
 
 const GridScrollWrapper = styled('div', {
@@ -98,7 +104,11 @@ const GridScrollWrapper = styled('div', {
   justifyContent: 'flex-start',
   alignItems: 'flex-end',
   overflow: 'auto',
-  py: '$s',
+  p: '$s',
+
+  '@tabletUp': {
+    px: 0,
+  },
 })
 
 const GridItemContainer = styled('div', {

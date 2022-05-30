@@ -1,5 +1,6 @@
 import { Nav } from './SiteHeader'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { StoryFixtures } from '@types'
 
 export default {
   title: 'Headers/Site',
@@ -40,7 +41,7 @@ const links = [
   },
 ]
 
-const fixtures = {
+const fixtures: StoryFixtures<typeof Nav> = {
   noActiveLink: {
     items: links,
     currentPath: '/privacy',

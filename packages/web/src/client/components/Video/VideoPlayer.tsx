@@ -2,17 +2,17 @@ import { useRef, useEffect } from 'react'
 import { animated, useSpring } from '@react-spring/web'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
-import { styled, Widths } from 'styles/stitches.config'
+import { styled } from 'styles/stitches.config'
 
 import { useReducedMotion } from 'hooks/useReducedMotion'
-import { useWindowResize } from 'hooks/useWindowSize'
+import { useCanHover } from 'hooks/useCanHover'
 
 export type VideoPlayerProps = {
   src: string
   poster?: string
   isPaused?: boolean
   onAutoplayCallback?: (isPlaying: boolean) => void
-  onClick?: () => void
+  onClick?: (isPaused: boolean) => void
   controls?: boolean
 }
 
@@ -29,12 +29,11 @@ export const VideoPlayer = ({
   const { isIntersecting } = useIntersectionObserver(videoRef)
 
   const reduceMotion = useReducedMotion()
-
-  const { width } = useWindowResize()
+  const canHover = useCanHover()
 
   const [style, api] = useSpring(
     () => ({
-      scale: width < Widths.Desktop ? 1 : 0,
+      scale: !canHover ? 1 : 0,
       immediate: true,
       config: {
         friction: 30,
@@ -42,26 +41,8 @@ export const VideoPlayer = ({
         mass: 0.1,
       },
     }),
-    [width]
+    [canHover]
   )
-
-  /**
-   * Play/Pause handling
-   */
-  useEffect(() => {
-    /**
-     * If it's not paused and intersecting,
-     * play the video
-     */
-    if (!isPaused && isIntersecting) {
-      videoRef.current.play()
-    } else if (isPaused) {
-      /**
-       * Else if it pause, pause it
-       */
-      videoRef.current.pause()
-    }
-  }, [isIntersecting, isPaused])
 
   /**
    * Autoplay effect handling
@@ -76,7 +57,9 @@ export const VideoPlayer = ({
       /**
        * Otherwise outplay in the frame
        */
-      videoRef.current.play()
+      videoRef.current.play().catch((e) => {
+        console.error('Cant autoplay because:', e)
+      })
     }
 
     if (onAutoplayCallback) {
@@ -118,21 +101,44 @@ export const VideoPlayer = ({
   }, [src])
 
   const handleClick = () => {
-    if (onClick) {
-      onClick()
+    const video = videoRef.current
+
+    if (isPaused) {
+      /**
+       * Play is async so catch just incase
+       * and return if its paused or not
+       * to keep ui in sync with video element
+       */
+      video
+        .play()
+        .then(() => {
+          if (onClick) {
+            onClick(false)
+          }
+        })
+        .catch((e) => {
+          console.error('Failed to play because:', e)
+          if (onClick) {
+            onClick(true)
+          }
+        })
+    } else {
+      video.pause()
+
+      if (onClick) {
+        onClick(true)
+      }
     }
   }
 
   const handleButtonFocus = () => {
-    if (width >= Widths.Desktop) {
-      api.start({
-        scale: 1,
-      })
-    }
+    api.start({
+      scale: 1,
+    })
   }
 
   const handleButtonBlur = () => {
-    if (width >= Widths.Desktop) {
+    if (canHover) {
       api.start({
         scale: 0,
       })

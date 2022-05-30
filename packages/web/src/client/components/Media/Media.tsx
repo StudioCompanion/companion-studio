@@ -24,7 +24,8 @@ export const Media = (props: MediaProps) => {
   const { _type, className, objectFit, dimensions, controls, ...restProps } =
     props
 
-  const aspectRatio = (dimensions.height / dimensions.width) * 100
+  const aspectRatio =
+    ((dimensions?.height ?? 0) / (dimensions?.width ?? 0)) * 100
 
   const aspectRatioCss: CSS = {
     '&:before': {
