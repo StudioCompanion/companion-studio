@@ -60,7 +60,7 @@ const CardsContainer = styled('div', {
   position: 'relative',
 })
 
-const RightContainer = styled('div', {
+const RightContainer = styled(FadeIn, {
   width: '100%',
 
   '@tabletUp': {

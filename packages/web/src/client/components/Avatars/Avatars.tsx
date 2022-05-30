@@ -8,6 +8,7 @@ import { Media } from 'components/Media/Media'
 
 import { Sanity } from '@types'
 import { useCanHover } from '../../hooks/useCanHover'
+import { FadeIn } from 'components/Transitions/FadeIn'
 
 interface AvatarsProps {
   members?: Sanity.TeamMember[]
@@ -49,7 +50,7 @@ export const Avatars = ({ members }: AvatarsProps) => {
   }
 
   return (
-    <GridWrapper>
+    <GridWrapper tag="div">
       <GridScrollWrapper
         css={{
           '@tabletUp': {
@@ -88,7 +89,7 @@ export const Avatars = ({ members }: AvatarsProps) => {
   )
 }
 
-const GridWrapper = styled('div', {
+const GridWrapper = styled(FadeIn, {
   width: 'calc(100% + (var(--space-s) * 2))',
   mx: 'calc($s * -1)',
 

@@ -15,6 +15,7 @@ import { REVALIDATE_TIME } from 'references/constants'
 
 import { Sanity } from '@types'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
+import { FadeIn } from 'components/Transitions/FadeIn'
 
 interface TeamProps extends Sanity.DefaultLayoutProps {
   document: Sanity.TeamPage
@@ -29,16 +30,20 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
       <NextSeo title="Team" />
       <ImageStrip slideshow={slideshow} />
       <PaddingContainer>
-        {textBlockOne ? (
-          <TeamTextBlock
-            blocks={textBlockOne}
-            css={{
-              maxWidth: '55.5rem',
-            }}
-          />
-        ) : null}
+        <FadeIn>
+          {textBlockOne ? (
+            <TeamTextBlock
+              blocks={textBlockOne}
+              css={{
+                maxWidth: '55.5rem',
+              }}
+            />
+          ) : null}
+        </FadeIn>
         <TeamGrid team={team} />
-        {textBlockTwo ? <TeamTextBlock blocks={textBlockTwo} /> : null}
+        <FadeIn>
+          {textBlockTwo ? <TeamTextBlock blocks={textBlockTwo} /> : null}
+        </FadeIn>
         <ValuesGrid qualities={qualities} />
       </PaddingContainer>
     </Layout>
