@@ -64,7 +64,7 @@ export const Media = (props: MediaProps) => {
   }
 }
 
-const MediaContainer = styled('div', {
+export const MediaContainer = styled('div', {
   overflow: 'hidden',
   position: 'relative',
 })
