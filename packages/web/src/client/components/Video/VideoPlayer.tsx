@@ -12,7 +12,7 @@ export type VideoPlayerProps = {
   poster?: string
   isPaused?: boolean
   onAutoplayCallback?: (isPlaying: boolean) => void
-  onClick?: () => void
+  onClick?: (isPaused: boolean) => void
   controls?: boolean
 }
 
@@ -45,24 +45,6 @@ export const VideoPlayer = ({
   )
 
   /**
-   * Play/Pause handling
-   */
-  useEffect(() => {
-    /**
-     * If it's not paused and intersecting,
-     * play the video
-     */
-    if (!isPaused && isIntersecting) {
-      videoRef.current.play()
-    } else if (isPaused) {
-      /**
-       * Else if it pause, pause it
-       */
-      videoRef.current.pause()
-    }
-  }, [isIntersecting, isPaused])
-
-  /**
    * Autoplay effect handling
    */
   useEffect(() => {
@@ -75,7 +57,9 @@ export const VideoPlayer = ({
       /**
        * Otherwise outplay in the frame
        */
-      videoRef.current.play()
+      videoRef.current.play().catch((e) => {
+        console.error('Cant autoplay because:', e)
+      })
     }
 
     if (onAutoplayCallback) {
@@ -117,8 +101,33 @@ export const VideoPlayer = ({
   }, [src])
 
   const handleClick = () => {
-    if (onClick) {
-      onClick()
+    const video = videoRef.current
+
+    if (isPaused) {
+      /**
+       * Play is async so catch just incase
+       * and return if its paused or not
+       * to keep ui in sync with video element
+       */
+      video
+        .play()
+        .then(() => {
+          if (onClick) {
+            onClick(false)
+          }
+        })
+        .catch((e) => {
+          console.error('Failed to play because:', e)
+          if (onClick) {
+            onClick(true)
+          }
+        })
+    } else {
+      video.pause()
+
+      if (onClick) {
+        onClick(true)
+      }
     }
   }
 
