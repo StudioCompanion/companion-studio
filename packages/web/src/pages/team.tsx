@@ -28,7 +28,7 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
   return (
     <Layout documentMeta={meta} {...siteProps}>
       <NextSeo title="Team" />
-      <ImageStrip slideshow={slideshow} />
+      <TeamImageStrip slideshow={slideshow} />
       <PaddingContainer>
         <FadeIn>
           {textBlockOne ? (
@@ -42,7 +42,7 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
         </FadeIn>
         <TeamGrid team={team} />
         <FadeIn>
-          {textBlockTwo ? <TeamTextBlock blocks={textBlockTwo} /> : null}
+          {textBlockTwo ? <TeamTextBlock inline blocks={textBlockTwo} /> : null}
         </FadeIn>
         <ValuesGrid qualities={qualities} />
       </PaddingContainer>
@@ -60,12 +60,26 @@ const PaddingContainer = styled('article', {
   },
 })
 
-const TeamTextBlock = styled(RendererRichText, {
-  mt: '$xxl',
-  maxWidth: '$centeredParagraph',
+const TeamImageStrip = styled(ImageStrip, {
+  mb: '$xxl',
 
   '@tabletUp': {
-    mt: '11.6rem',
+    mb: '11.6rem',
+  },
+})
+
+const TeamTextBlock = styled(RendererRichText, {
+  maxWidth: '$centeredParagraph',
+
+  variants: {
+    inline: {
+      true: {
+        mt: '$xxl',
+        '@tabletUp': {
+          mt: '11.6rem',
+        },
+      },
+    },
   },
 })
 

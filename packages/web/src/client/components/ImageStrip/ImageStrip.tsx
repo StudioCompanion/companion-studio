@@ -68,9 +68,11 @@ const ImageStripImage = ({
   )
 }
 
-export const ImageStrip = ({
-  slideshow,
-}: Pick<Sanity.TeamPage, 'slideshow'>) => {
+interface ImageStripProps extends Pick<Sanity.TeamPage, 'slideshow'> {
+  className?: string
+}
+
+export const ImageStrip = ({ slideshow, className }: ImageStripProps) => {
   const [pageIsVisible, setPageIsVisible] = useState(true)
   const handleVisibilityChange = (isVisible: boolean) => {
     setPageIsVisible(isVisible)
@@ -95,9 +97,13 @@ export const ImageStrip = ({
     }
   }, [isTabletUp])
 
+  if (!slideshow) {
+    return null
+  }
+
   return (
     <PageVisibility onChange={handleVisibilityChange}>
-      <ImageStripContainer>
+      <ImageStripContainer className={className}>
         {pageIsVisible && (
           <Ticker>
             {() => (
