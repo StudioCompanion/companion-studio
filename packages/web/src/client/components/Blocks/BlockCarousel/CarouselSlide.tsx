@@ -16,8 +16,8 @@ interface CarouselSlideProps
 
 export const CarouselSlide = forwardRef<HTMLLIElement, CarouselSlideProps>(
   ({ hasMobile, desktop, mobile, setPaused, isPaused }, ref) => {
-    const handleVideoClick = () => {
-      setPaused((s) => !s)
+    const handleVideoClick = (isPaused: boolean) => {
+      setPaused(isPaused)
     }
 
     const handleAutoplayCallback = useCallback(
