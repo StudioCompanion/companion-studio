@@ -4,27 +4,31 @@ import {
   SanityReference,
 } from 'sanity-codegen'
 import { CarouselLayouts, ThemeTypes } from 'styles/constants'
-import { ScaleValue } from 'styles/stitches.config'
 
 import { SanityGenerated } from './index'
 import { RichText } from './sanity.generated'
 import { PickType } from './utils'
 
+export interface ImageDimensions
+  extends Omit<SanityImageDimensions, 'aspectRatio'> {
+  aspectRatio: string | number
+}
+
 export type Mux = {
   _type: 'video'
-  asset: {
+  asset?: {
     playbackId: string | null
     thumbTime: number | null
   }
-  dimensions: SanityImageDimensions
+  dimensions?: ImageDimensions
 }
 
 export interface Image {
   _type: 'image'
-  dimensions: SanityImageDimensions
-  altText: string | null
-  mimeType: string | null
-  asset: SanityReference<SanityImageAsset>
+  dimensions?: ImageDimensions
+  altText?: string | null
+  mimeType?: string | null
+  asset?: SanityReference<SanityImageAsset>
 }
 
 export type Media = Image | Mux
@@ -35,7 +39,6 @@ export type BlockTestimonial =
   SanityGenerated.SanityKeyed<SanityGenerated.BlockTestimonial>
 
 export interface BlockMediaItem {
-  _type: 'item'
   hasMobile?: boolean
   caption?: RichText
   mobile?: Media
@@ -46,8 +49,8 @@ export type BlockMedia = SanityGenerated.SanityKeyed<
   Omit<SanityGenerated.BlockMedia, 'items' | 'layout' | 'backgroundColor'> & {
     items: SanityGenerated.SanityKeyed<BlockMediaItem>[]
     layout: CarouselLayouts
-    backgroundColor: ScaleValue<'colors'>
-    backgroundImage: Image
+    backgroundColor: string
+    backgroundImage?: Image
   }
 >
 

@@ -1,5 +1,6 @@
 import { Callout } from './SiteCallout'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { StoryFixtures } from '@types'
 
 export default {
   title: 'Site/Callout',
@@ -14,7 +15,7 @@ export const NoLink: ComponentStory<typeof Callout> = () => (
   <Callout {...fixtures.noLink} />
 )
 
-const fixtures = {
+const fixtures: StoryFixtures<typeof Callout> = {
   default: {
     link: {
       isExternal: true,
@@ -22,14 +23,14 @@ const fixtures = {
       url: 'mailto:hello@companion.studio',
     },
     media: {
-      _type: 'image' as const,
+      _type: 'image',
       altText: null,
       asset: {
         _ref: 'image-95f669801220901871774601ca39ee8d442b25e1-2011x1730-png',
-        _type: 'reference' as const,
+        _type: 'reference',
       },
       dimensions: {
-        _type: 'sanity.imageDimensions' as const,
+        _type: 'sanity.imageDimensions',
         aspectRatio: 1.1624277456647398,
         height: 1730,
         width: 2011,
@@ -41,14 +42,14 @@ const fixtures = {
   noLink: {
     link: undefined,
     media: {
-      _type: 'image' as const,
+      _type: 'image',
       altText: null,
       asset: {
         _ref: 'image-95f669801220901871774601ca39ee8d442b25e1-2011x1730-png',
-        _type: 'reference' as const,
+        _type: 'reference',
       },
       dimensions: {
-        _type: 'sanity.imageDimensions' as const,
+        _type: 'sanity.imageDimensions',
         aspectRatio: 1.1624277456647398,
         height: 1730,
         width: 2011,

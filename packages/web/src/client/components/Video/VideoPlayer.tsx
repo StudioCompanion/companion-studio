@@ -2,10 +2,10 @@ import { useRef, useEffect } from 'react'
 import { animated, useSpring } from '@react-spring/web'
 import useIntersectionObserver from '@react-hook/intersection-observer'
 
-import { styled, Widths } from 'styles/stitches.config'
+import { styled } from 'styles/stitches.config'
 
 import { useReducedMotion } from 'hooks/useReducedMotion'
-import { useWindowResize } from 'hooks/useWindowSize'
+import { useCanHover } from 'hooks/useCanHover'
 
 export type VideoPlayerProps = {
   src: string
@@ -29,12 +29,11 @@ export const VideoPlayer = ({
   const { isIntersecting } = useIntersectionObserver(videoRef)
 
   const reduceMotion = useReducedMotion()
-
-  const { width } = useWindowResize()
+  const canHover = useCanHover()
 
   const [style, api] = useSpring(
     () => ({
-      scale: width < Widths.Desktop ? 1 : 0,
+      scale: !canHover ? 1 : 0,
       immediate: true,
       config: {
         friction: 30,
@@ -42,7 +41,7 @@ export const VideoPlayer = ({
         mass: 0.1,
       },
     }),
-    [width]
+    [canHover]
   )
 
   /**
@@ -133,15 +132,13 @@ export const VideoPlayer = ({
   }
 
   const handleButtonFocus = () => {
-    if (width >= Widths.Desktop) {
-      api.start({
-        scale: 1,
-      })
-    }
+    api.start({
+      scale: 1,
+    })
   }
 
   const handleButtonBlur = () => {
-    if (width >= Widths.Desktop) {
+    if (canHover) {
       api.start({
         scale: 0,
       })

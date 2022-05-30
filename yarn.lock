@@ -5823,6 +5823,9 @@ __metadata:
     "@sanity/client": ^3.3.0
     "@sanity/image-url": ^1.0.1
     "@stitches/react": ^1.2.8
+    "@use-gesture/react": ^10.2.15
+    embla-carousel-autoplay: ^6.2.0
+    embla-carousel-react: ^6.2.0
     fontfaceobserver: ^2.3.0
     groq: ^2.29.3
     hls.js: ^1.1.5
@@ -5832,9 +5835,9 @@ __metadata:
     next-seo: ^5.4.0
     react: 17.0.2
     react-dom: 17.0.2
+    react-merge-refs: ^1.1.0
     react-page-visibility: ^7.0.0
     react-ticker: ^1.3.2
-    react-use-gesture: 6.0.14
     react-use-measure: ^2.1.1
     validator: ^13.7.0
   languageName: unknown
@@ -6682,6 +6685,24 @@ __metadata:
     "@typescript-eslint/types": 5.16.0
     eslint-visitor-keys: ^3.0.0
   checksum: b587bf3b0da95bb58ff877b75fefcee6472222de1e3ec76aa4b94cae66078b62a372c7d0343374a16aab15cdcbae3f9e019624028b35827f68ef6559389f7fd0
+  languageName: node
+  linkType: hard
+
+"@use-gesture/core@npm:10.2.15":
+  version: 10.2.15
+  resolution: "@use-gesture/core@npm:10.2.15"
+  checksum: 858ee368e653447c3c5b6d623066477649eaa63cee787556332e81652635b6772c9fee4b51f052975fee7b80e643b71d986963fcc2cbce2476a443a4071507f9
+  languageName: node
+  linkType: hard
+
+"@use-gesture/react@npm:^10.2.15":
+  version: 10.2.15
+  resolution: "@use-gesture/react@npm:10.2.15"
+  dependencies:
+    "@use-gesture/core": 10.2.15
+  peerDependencies:
+    react: ">= 16.8.0"
+  checksum: dbf302a128ac920d2fb0ecbdaa46cfec724775d5b3dd6e33b0c5985bce1e08d0584ca4231154b753351bfe270257196d049cc4c09dc73005a31ddbb2c183e1fa
   languageName: node
   linkType: hard
 
@@ -11191,6 +11212,33 @@ __metadata:
     minimalistic-assert: ^1.0.1
     minimalistic-crypto-utils: ^1.0.1
   checksum: d56d21fd04e97869f7ffcc92e18903b9f67f2d4637a23c860492fbbff5a3155fd9ca0184ce0c865dd6eb2487d234ce9551335c021c376cd2d3b7cb749c7d10f4
+  languageName: node
+  linkType: hard
+
+"embla-carousel-autoplay@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "embla-carousel-autoplay@npm:6.2.0"
+  peerDependencies:
+    embla-carousel: 6.2.0
+  checksum: ba21610b1f8b80599cf1b960adf3862204e752b6bde590624a6f5893a496ed9401f7a8c360b598e841d0fbf4a900ee66f3dc6903f9879bc4056320a5fd77f638
+  languageName: node
+  linkType: hard
+
+"embla-carousel-react@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "embla-carousel-react@npm:6.2.0"
+  dependencies:
+    embla-carousel: 6.2.0
+  peerDependencies:
+    react: ^17.0.2
+  checksum: 3313cf43c203ace93c4cd7351611511bf9859694f116bb239abd327496131c26c5bbfac9ce025adc5f550bc0c6418dd9effd8c2ee104414e3f9111ee96e90c8f
+  languageName: node
+  linkType: hard
+
+"embla-carousel@npm:6.2.0":
+  version: 6.2.0
+  resolution: "embla-carousel@npm:6.2.0"
+  checksum: feaca1fa45ea58b34a80c4b0fd9648b014b09f4c9f29aef8a26ecb0a645168ddb9f7ffcc202cc68a9b4c416b271687d308ea63f598765ac44bcbb4e4d5851921
   languageName: node
   linkType: hard
 
@@ -20497,15 +20545,6 @@ __metadata:
     react: ">=16.6.0"
     react-dom: ">=16.6.0"
   checksum: b67bf5b3e86dbab72d658b9a52a3589e5960583ab28c7c66272427d8fe30d4c7de422d5046ae96bd2683cdf80cc3264b2516f5ce80cae1dbe6cf3ca6dda392c5
-  languageName: node
-  linkType: hard
-
-"react-use-gesture@npm:6.0.14":
-  version: 6.0.14
-  resolution: "react-use-gesture@npm:6.0.14"
-  peerDependencies:
-    react: ">= 16.8.0"
-  checksum: 3450912c0c21fcef972ca9cf69426dc048eccd9c255f1acb3526d0efad9d1363a70bf4f0e29be1482986aa853c89d0ba91d589d0489098877bb680d769d34076
   languageName: node
   linkType: hard
 

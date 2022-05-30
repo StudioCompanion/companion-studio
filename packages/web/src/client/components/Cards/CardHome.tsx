@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import Link from 'next/link'
 import { animated, SpringValues, useSpring } from '@react-spring/web'
-import { useHover } from 'react-use-gesture'
+import { useHover } from '@use-gesture/react'
 
 import { ThemeTypes } from 'styles/constants'
 import { styled } from 'styles/stitches.config'

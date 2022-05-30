@@ -1,5 +1,6 @@
 import { Footer } from './SiteFooter'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { StoryFixtures } from '@types'
 
 export default {
   title: 'Site/Footer',
@@ -10,14 +11,14 @@ export const Default: ComponentStory<typeof Footer> = () => (
   <Footer {...fixtures.default} />
 )
 
-const fixtures = {
+const fixtures: StoryFixtures<typeof Footer> = {
   default: {
     links: [
       {
         label: 'Work',
         url: {
           _id: 'homepage',
-          _type: 'homepage' as const,
+          _type: 'homepage',
           slug: undefined,
         },
       },
@@ -25,7 +26,7 @@ const fixtures = {
         label: 'Approach',
         url: {
           _id: 'approachpage',
-          _type: 'approachpage' as const,
+          _type: 'approachpage',
           slug: 'approach',
         },
       },
@@ -33,7 +34,7 @@ const fixtures = {
         label: 'Team',
         url: {
           _id: 'teampage',
-          _type: 'teampage' as const,
+          _type: 'teampage',
           slug: 'team',
         },
       },
@@ -56,7 +57,7 @@ const fixtures = {
         label: 'Privacy',
         url: {
           _id: 'privacy',
-          _type: 'privacy' as const,
+          _type: 'privacy',
           slug: undefined,
         },
       },
@@ -64,7 +65,7 @@ const fixtures = {
     text: [
       {
         _key: 'f556d0c6986c',
-        _type: 'block' as const,
+        _type: 'block',
         children: [
           {
             _key: 'bbf9e7259f180',

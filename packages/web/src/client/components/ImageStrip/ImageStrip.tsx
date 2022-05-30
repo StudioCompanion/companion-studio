@@ -42,8 +42,8 @@ const ImageStripImage = ({
 
   const maxWidth = tabletUp ? 550 : 275
 
-  const width = media.dimensions.width
-  const height = media.dimensions.height
+  const width = media.dimensions?.width ?? 0
+  const height = media.dimensions?.height ?? 0
 
   const resizedWidth = Math.min(maxWidth, width)
   const resizedHeight = (height * resizedWidth) / width

@@ -6,7 +6,7 @@ export type MediaMuxProps = Sanity.Mux &
   Omit<VideoPlayerProps, 'src' | 'poster'>
 
 export const MediaMux = ({ asset, ...restProps }: MediaMuxProps) => {
-  const { playbackId, thumbTime } = asset
+  const { playbackId, thumbTime } = asset ?? {}
 
   if (!playbackId) {
     console.warn('No playbackId passed to MediaMux')
