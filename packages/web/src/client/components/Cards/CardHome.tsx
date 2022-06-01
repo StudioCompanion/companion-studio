@@ -15,10 +15,10 @@ import { useCanHover } from 'hooks/useCanHover'
 import { PickType, Sanity } from '@types'
 import { getHrefSlugFromSanityReference } from 'helpers/links'
 
-interface CardHomeProps extends Sanity.HomepageCard {
+type CardHomeProps = {
   className?: string
   status?: PickType<Sanity.ProjectPage, 'status'>
-}
+} & Sanity.HomepageCard
 
 interface CardHomeInnerProps
   extends Omit<CardHomeProps, 'slug' | 'type' | 'className'> {
@@ -128,6 +128,21 @@ export const CardHome = (props: CardHomeProps) => {
     return (
       <CardWrapper as="div" className={className}>
         <CardHomeInner {...props} />
+      </CardWrapper>
+    )
+  }
+
+  if (type == 'externalCard') {
+    return (
+      <CardWrapper
+        href={slug}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        theme={theme}
+        {...bind()}
+      >
+        <CardHomeInner {...props} style={styles} />
       </CardWrapper>
     )
   }

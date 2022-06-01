@@ -12,16 +12,23 @@ export const HOMEPAGE = groq`
     meta {
         ${META}
     },
-    cards[]->{
-        "_key": _id,
-        ...card {
+    cards[]{
+        (_type == "reference") => @-> {
+            "_key": _id,
+            ...card {
+                ${CARD}
+            },
+            meta {
+                ${META}
+            },
+            status,
+            "type": _type,
+            "slug": slug.current
+        },
+        (_type == 'externalCard') => {
+            "slug": linkExternal,
+            "type": _type,
             ${CARD}
-        },
-        meta {
-            ${META}
-        },
-        status,
-        "type": _type,
-        "slug": slug.current
+        }
     },
 `
