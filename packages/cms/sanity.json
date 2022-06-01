@@ -16,7 +16,8 @@
     "media",
     "mux-input",
     "dashboard-widget-vercel",
-    "seo-tools"
+    "seo-tools",
+    "plausible"
   ],
   "env": {
     "development": {
