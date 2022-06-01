@@ -9,12 +9,16 @@ export default {
   component: CardHome,
 } as ComponentMeta<typeof CardHome>
 
-export const CardHomeWithContent: ComponentStory<typeof CardHome> = () => (
-  <CardHome {...fixtures.cardHomeWithContent} />
+export const CardHomeLiveProject: ComponentStory<typeof CardHome> = () => (
+  <CardHome {...fixtures.cardHomeLiveProject} />
+)
+
+export const CardHomeComingSoon: ComponentStory<typeof CardHome> = () => (
+  <CardHome {...fixtures.cardHomeComingSoon} />
 )
 
 const fixtures: StoryFixtures<typeof CardHome> = {
-  cardHomeWithContent: {
+  cardHomeLiveProject: {
     _type: 'pageCard',
     backgroundColor: '#FAF263',
     cardButtonLabel: 'View',
@@ -58,6 +62,53 @@ const fixtures: StoryFixtures<typeof CardHome> = {
     subtitle: 'The AI-powered art advisor in your pocket',
     theme: undefined,
     title: 'Limna',
+    type: 'project',
+  },
+  cardHomeComingSoon: {
+    _type: 'pageCard',
+    backgroundColor: '#1D4836',
+    cardButtonLabel: 'Coming 2022',
+    media: {
+      _type: 'image',
+      altText: null,
+      asset: {
+        _ref: 'image-de51e28f2403e7abfae6a048b10ff360d57b1c43-1306x1396-png',
+        _type: 'reference',
+      },
+      dimensions: {
+        _type: 'sanity.imageDimensions',
+        aspectRatio: 0.9355300859598854,
+        height: 1396,
+        width: 1306,
+      },
+      mimeType: 'image/png',
+    },
+    meta: {
+      description: undefined,
+      focusWords: undefined,
+      image: {
+        _type: 'image',
+        altText: null,
+        asset: {
+          _ref: 'image-de51e28f2403e7abfae6a048b10ff360d57b1c43-1306x1396-png',
+          _type: 'reference',
+        },
+        dimensions: {
+          _type: 'sanity.imageDimensions',
+          aspectRatio: 0.9355300859598854,
+          height: 1396,
+          width: 1306,
+        },
+        mimeType: 'image/png',
+      },
+      keyword: undefined,
+      title: undefined,
+    },
+    slug: 'pairup',
+    status: 'comingSoon',
+    subtitle: 'Making creative advice accessible to all.',
+    theme: undefined,
+    title: 'Pair Up',
     type: 'project',
   },
 }
