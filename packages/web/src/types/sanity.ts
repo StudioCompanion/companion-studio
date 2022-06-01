@@ -168,10 +168,17 @@ export interface DefaultLayoutProps {
   callout: Callout
 }
 
-export interface HomepageCard extends Card {
+export interface InternalHomepageCard extends Card {
   slug?: string
   meta?: Meta
 }
+
+export interface ExternalHomepageCard
+  extends Omit<InternalHomepageCard, 'type'> {
+  type: 'externalCard'
+}
+
+export type HomepageCard = InternalHomepageCard | ExternalHomepageCard
 
 export interface HomePage extends DocumentBase {
   standfirst?: SanityGenerated.RichText

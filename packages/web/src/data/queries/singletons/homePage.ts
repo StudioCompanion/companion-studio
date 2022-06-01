@@ -26,6 +26,8 @@ export const HOMEPAGE = groq`
             "slug": slug.current
         },
         (_type == 'externalCard') => {
+            "slug": linkExternal,
+            "type": _type,
             ${CARD}
         }
     },
