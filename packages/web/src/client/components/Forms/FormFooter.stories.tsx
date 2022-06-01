@@ -2,23 +2,15 @@ import { SignUpForm } from './FormFooter'
 
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { styled } from 'styles/stitches.config'
-
 export default {
-  title: 'Site/Footer',
+  title: 'Forms/Footer',
   component: SignUpForm,
+  parameters: {
+    backgrounds: {
+      default: 'blue',
+      values: [{ name: 'blue', value: 'var(--colors-blue100)' }],
+    },
+  },
 } as ComponentMeta<typeof SignUpForm>
 
-export const Form: ComponentStory<typeof SignUpForm> = () => (
-  <Wrap>
-    <SignUpForm />
-  </Wrap>
-)
-
-const Wrap = styled('div', {
-  background: '$blue100',
-  height: '20rem',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-})
+export const Form: ComponentStory<typeof SignUpForm> = () => <SignUpForm />

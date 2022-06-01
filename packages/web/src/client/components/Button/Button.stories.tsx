@@ -2,8 +2,6 @@ import { Button } from './Button'
 
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { StoryFixtures } from '@types'
-
 export default {
   title: 'Blocks/Buttons',
   component: Button,
