@@ -9,18 +9,13 @@ export default {
   component: CardHome,
 } as ComponentMeta<typeof CardHome>
 
-export const CardHomeNoContent: ComponentStory<typeof CardHome> = () => (
-  <CardHome {...fixtures.cardHomeNoContent} />
-)
-
 export const CardHomeWithContent: ComponentStory<typeof CardHome> = () => (
   <CardHome {...fixtures.cardHomeWithContent} />
 )
 
 const fixtures: StoryFixtures<typeof CardHome> = {
-  cardHomeNoContent: undefined,
   cardHomeWithContent: {
-    _key: '8b3f3e5e-a10a-43e6-abc3-a2762b070182',
+    _type: 'pageCard',
     backgroundColor: '#FAF263',
     cardButtonLabel: 'View',
     media: {
