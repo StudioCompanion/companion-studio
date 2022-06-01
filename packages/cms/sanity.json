@@ -16,7 +16,8 @@
     "media",
     "mux-input",
     "dashboard-widget-vercel",
-    "seo-tools"
+    "seo-tools",
+    "plausible"
   ],
   "env": {
     "development": {
@@ -51,6 +52,10 @@
     {
       "implements": "part:sanity-plugin-seo-tools/schema-customizer",
       "path": "./metaSchemaCustomizer.js"
+    },
+    {
+      "implements": "part:@sanity/base/brand-logo",
+      "path": "components/logo.js"
     }
   ]
 }

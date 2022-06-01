@@ -1,0 +1,11 @@
+{
+  "name": "@studiocompanion/plausible-iframe",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "dependencies": {
+    "@sanity/dashboard": "^2.21.10"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0"
+  }
+}

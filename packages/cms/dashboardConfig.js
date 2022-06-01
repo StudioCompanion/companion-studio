@@ -6,5 +6,11 @@ export default {
         width: 'full', // full width is recommended!
       },
     },
+    {
+      name: 'plausible',
+      layout: {
+        width: 'full', // full width is recommended!
+      },
+    },
   ],
 }

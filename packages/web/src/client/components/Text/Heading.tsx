@@ -45,6 +45,7 @@ export const Heading = forwardRef<HTMLHeadingElement, Props>(
 )
 
 const Element = styled('h1', {
+  whiteSpace: 'pre-line',
   variants: {
     size: {
       ['XXXL']: {
