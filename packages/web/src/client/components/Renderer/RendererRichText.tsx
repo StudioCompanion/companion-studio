@@ -74,7 +74,7 @@ const components: Partial<PortableTextReactComponents> = {
           [availableHeadings]: {
             mt: '$xs',
           },
-          '& + &': {
+          'p + &, ul + &': {
             mt: '$s',
           },
         }}
@@ -89,7 +89,7 @@ const components: Partial<PortableTextReactComponents> = {
           [availableHeadings]: {
             mt: '$xs',
           },
-          '& + &': {
+          'p + &, ul + &': {
             mt: '$xs',
           },
         }}
@@ -104,7 +104,7 @@ const components: Partial<PortableTextReactComponents> = {
           [availableHeadings]: {
             mt: '$xxs',
           },
-          '& + &': {
+          'p + &, ul + &': {
             mt: '$xxs',
           },
         }}
