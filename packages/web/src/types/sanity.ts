@@ -157,7 +157,7 @@ export interface Footer {
 
 export interface Callout {
   link?: Link
-  media?: Media
+  mediaItems?: Media[]
   text?: string
 }
 

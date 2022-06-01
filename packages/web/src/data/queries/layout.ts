@@ -13,7 +13,7 @@ export const LAYOUT = groq`
             link {
                 ${LINK}
             },
-            media {
+            mediaItems[]{
                 ${MEDIA}
             },
             text,

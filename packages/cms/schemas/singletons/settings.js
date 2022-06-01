@@ -64,9 +64,18 @@ export default {
           description: 'When clicked the callout links to...?',
         },
         {
-          name: 'media',
-          title: 'Media',
-          type: 'media',
+          name: 'mediaItems',
+          title: 'Media Items',
+          description:
+            'Supply X amount of assets & one will be picked at random everytime someone visits a page!',
+          type: 'array',
+          of: [
+            {
+              name: 'media',
+              title: 'Media',
+              type: 'media',
+            },
+          ],
         },
       ],
     },
