@@ -51,6 +51,10 @@
     {
       "implements": "part:sanity-plugin-seo-tools/schema-customizer",
       "path": "./metaSchemaCustomizer.js"
+    },
+    {
+      "implements": "part:@sanity/base/brand-logo",
+      "path": "components/logo.js"
     }
   ]
 }
