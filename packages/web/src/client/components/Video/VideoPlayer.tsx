@@ -26,7 +26,7 @@ export const VideoPlayer = ({
   controls = true,
 }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null!)
-  const [isLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   const { isIntersecting } = useIntersectionObserver(videoRef)
 
@@ -55,6 +55,8 @@ export const VideoPlayer = ({
     }
   }, [reduceMotion, isIntersecting, onAutoplayCallback])
 
+  const qualitiesRef = useRef<number[]>([])
+
   /**
    * Only used if the video is MUX which at the
    * time of writing it would only be...
@@ -65,7 +67,7 @@ export const VideoPlayer = ({
     if (!video) return
 
     const Hls = require('hls.js')
-    let hls: typeof Hls
+    let hls: import('hls.js').default
 
     if (video.canPlayType('application/vnd.apple.mpegurl')) {
       // This will run in safari, where HLS is supported natively
@@ -76,16 +78,23 @@ export const VideoPlayer = ({
       hls.loadSource(src)
       hls.attachMedia(video)
 
-      // hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
-      //   // Transform available levels into an array of integers (height values).
-      //   const availableQualities = hls.levels.map((l) => l.height)
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        // Transform available levels into an array of integers (height values).
+        qualitiesRef.current = hls.levels.map((l) => l.height)
+      })
 
-      //   console.log(availableQualities, hls.currentLevel)
-      // })
+      hls.on(
+        Hls.Events.LEVEL_SWITCHED,
+        (_: unknown, data: { level: number }) => {
+          const qualityLimit = qualitiesRef.current.length - 1
 
-      // hls.on(Hls.Events.LEVEL_SWITCHED, (event, data) => {
-      //   console.log('LEVEL UP', event, data)
-      // })
+          if (data.level !== qualityLimit) {
+            setIsLoading(true)
+          } else {
+            setIsLoading(false)
+          }
+        }
+      )
     } else {
       const ERR_MSG =
         'This is an old browser that does not support MSE https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API'
