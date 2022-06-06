@@ -184,4 +184,9 @@ const Controls = styled(VideoControls, {
   position: 'absolute',
   bottom: 0,
   right: 0,
+
+  '@tabletUp': {
+    bottom: 16,
+    right: 16,
+  },
 })

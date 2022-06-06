@@ -10,7 +10,11 @@ interface VideoControlsProps {
   className?: string
 }
 
-export const VideoControls = ({ isPaused, src }: VideoControlsProps) => {
+export const VideoControls = ({
+  isPaused,
+  src,
+  className,
+}: VideoControlsProps) => {
   const canHover = useCanHover()
 
   const [style, api] = useSpring(
@@ -42,6 +46,7 @@ export const VideoControls = ({ isPaused, src }: VideoControlsProps) => {
 
   return (
     <VideoButton
+      className={className}
       style={style}
       onFocus={handleButtonFocus}
       onBlur={handleButtonBlur}
@@ -118,11 +123,6 @@ const VideoButton = styled(animated.button, {
   alignItems: 'center',
   borderRadius: '$circle',
   color: '$black100',
-
-  '@tabletUp': {
-    bottom: 16,
-    right: 16,
-  },
 
   '&:focus': {
     outline: 'none',
