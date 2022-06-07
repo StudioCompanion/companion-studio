@@ -52,4 +52,12 @@ const BlockTextContainer = styled('div', {
 
 const BlockText = styled(RendererRichText, {
   maxWidth: '$centeredParagraph',
+
+  '& > p': {
+    fontSize: '$M',
+
+    '@media (min-width: 1200px)': {
+      fontSize: '$L',
+    },
+  },
 })
