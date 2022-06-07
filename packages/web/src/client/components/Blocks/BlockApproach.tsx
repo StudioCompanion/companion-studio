@@ -39,7 +39,7 @@ const BlockMedia = styled(Media, {
   mb: '$l',
 
   '@tabletUp': {
-    flex: '1 1 50%',
+    flex: '1 0 50%',
     mb: 0,
   },
 })
