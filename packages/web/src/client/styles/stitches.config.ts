@@ -163,7 +163,7 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
       br: (value: Stitches.PropertyValue<'borderRadius'>) => ({
         borderRadius: value,
         // Safari requires this to be explicitly set on videos
-        video: {
+        ['video, img']: {
           borderRadius: value,
         },
       }),
