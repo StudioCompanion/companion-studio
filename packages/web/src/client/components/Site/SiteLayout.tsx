@@ -98,6 +98,6 @@ const PaddingContainer = styled('div', {
 
   '@tabletUp': {
     px: '$m',
-    mt: '$xl',
+    mt: '$m',
   },
 })
