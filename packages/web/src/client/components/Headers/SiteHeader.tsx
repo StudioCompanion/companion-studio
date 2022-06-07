@@ -137,7 +137,7 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
     }
   }, [currentPath, items, runBackgroundSpring, fontLoaded])
 
-  if (currentPath === '/' || currentPath === '/instagram') {
+  if (currentPath === '/instagram') {
     return null
   }
 
@@ -181,7 +181,8 @@ export const Nav = ({ currentPath = '/', items }: NavProps) => {
 const isNavItemActive = (item: Sanity.Link, currentPath: string) =>
   urlIsReferenceGuard(item.url)
     ? currentPath === `/${item.url?.slug}` ||
-      (currentPath.includes('projects') && item.label === 'Work')
+      (currentPath.includes('projects') && item.label === 'Work') ||
+      (item.label === 'Work' && currentPath === '/')
     : currentPath === item.url
 
 const LogoWrapper = styled('a', {
