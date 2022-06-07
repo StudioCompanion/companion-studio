@@ -17,7 +17,9 @@ export const BlockApproach = ({
 }: BlockApproachProps) => {
   return (
     <Section className={className}>
-      {media ? <BlockMedia {...media} /> : null}
+      <MediaFlexContainer>
+        {media ? <BlockMedia {...media} /> : null}
+      </MediaFlexContainer>
       {text ? (
         <BlockTextContainer>
           <BlockText blocks={text} />
@@ -34,12 +36,18 @@ const Section = styled(FadeIn, {
   },
 })
 
+const MediaFlexContainer = styled('div', {
+  '@tabletUp': {
+    flex: '1 1 50%',
+    mb: 0,
+  },
+})
+
 const BlockMedia = styled(Media, {
   br: '$wrapperLarge',
   mb: '$l',
 
   '@tabletUp': {
-    flex: '1 0 50%',
     mb: 0,
   },
 })
