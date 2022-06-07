@@ -47,7 +47,7 @@ const OpeningTextInner = styled('div', {
 const LogoContainer = styled('div', {
   display: 'flex',
   justifyContent: 'center',
-  width: '8rem',
+  width: '8.5rem',
   mb: '$s',
 
   '& > svg': {
