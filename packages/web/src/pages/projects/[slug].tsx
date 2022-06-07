@@ -23,12 +23,12 @@ const ProjectPage = ({ document, ...siteProps }: ProjectPageProps) => {
   const { blocks, title, team, meta } = document
 
   return (
-    <Layout {...siteProps} documentMeta={meta}>
+    <ProjectLayout {...siteProps} documentMeta={meta}>
       <Article>
         <ProjecHeader title={title} team={team} />
         <Renderer blocks={blocks ?? []} />
       </Article>
-    </Layout>
+    </ProjectLayout>
   )
 }
 
@@ -86,6 +86,13 @@ export const getStaticProps: GetStaticProps<
     revalidate: REVALIDATE_TIME, // seconds
   }
 }
+
+const ProjectLayout = styled(Layout, {
+  py: '$s',
+  '@tabletUp': {
+    py: '$xl',
+  },
+})
 
 const Article = styled('article', {
   display: 'flex',
