@@ -7,7 +7,7 @@ import { useReducedMotion } from 'hooks/useReducedMotion'
 
 import { VideoLoader } from './VideoLoader'
 import { VideoControls } from './VideoControls'
-import { animated /*useTransition*/ } from '@react-spring/web'
+import { animated, useTransition } from '@react-spring/web'
 
 export type VideoPlayerProps = {
   src: string
@@ -92,7 +92,7 @@ export const VideoPlayer = ({
           if (data.level !== qualityLimit) {
             setIsLoading(true)
           } else {
-            // setIsLoading(false)
+            setIsLoading(false)
           }
         }
       )
@@ -140,17 +140,17 @@ export const VideoPlayer = ({
     }
   }
 
-  // const transitions = useTransition(isLoading, {
-  //   from: {
-  //     opacity: 0,
-  //   },
-  //   enter: {
-  //     opacity: 1,
-  //   },
-  //   leave: {
-  //     opacity: 0,
-  //   },
-  // })
+  const transitions = useTransition(isLoading, {
+    from: {
+      scale: 0,
+    },
+    enter: {
+      scale: 1,
+    },
+    leave: {
+      scale: 0,
+    },
+  })
 
   return (
     <VideoContainer onClick={handleClick}>
@@ -164,12 +164,18 @@ export const VideoPlayer = ({
         playsInline
         id={src}
       />
-      {/* {transitions((style, loading) => loading ? <Loader style={style}><VideoLoader /></Loader> : null)} */}
-      {isLoading ? (
+      {transitions((style, loading) =>
+        loading ? (
+          <Loader style={style}>
+            <VideoLoader />
+          </Loader>
+        ) : null
+      )}
+      {/* {isLoading ? (
         <Loader>
           <VideoLoader />
         </Loader>
-      ) : null}
+      ) : null} */}
       {controls ? <Controls isPaused={Boolean(isPaused)} src={src} /> : null}
     </VideoContainer>
   )
@@ -190,12 +196,15 @@ const Video = styled('video', {
   objectFit: 'cover',
   width: '100%',
   height: '100%',
+  position: 'relative',
 })
 
 const Loader = styled(animated.div, {
   position: 'absolute',
   top: 8,
   right: 8,
+  transform: `translate3d(0,0,0)`,
+  mixBlendMode: 'difference',
 
   '@tabletUp': {
     top: 16,

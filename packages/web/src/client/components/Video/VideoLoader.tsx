@@ -24,6 +24,8 @@ const Loader = styled('div', {
   border: '2px solid rgba(255, 255, 255, 0.3)',
   borderLeft: '2px solid #fff',
   mixBlendMode: 'difference',
+  transform: 'translate3D(0,0,0)',
+  zIndex: 0,
   animation: `${loaderAnimation} 1.1s infinite linear`,
 
   '&::after': {
