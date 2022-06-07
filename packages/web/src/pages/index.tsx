@@ -44,13 +44,9 @@ export default Index
 const HomeContainer = styled(Layout, {
   display: 'flex',
   flexDirection: 'column',
-  p: '$s',
-  pb: 0,
 
   '@tabletUp': {
     gap: '$m',
-    p: '$m',
-    pb: 0,
     flexDirection: 'row',
   },
 })

@@ -1,6 +1,5 @@
 import { styled } from 'styles/stitches.config'
 
-import { Logo } from 'components/Logo/Logo'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 
 import { SanityGenerated } from '@types'
@@ -12,9 +11,6 @@ export interface OpeningTextProps {
 export const OpeningText = ({ text }: OpeningTextProps) => {
   return (
     <OpeningTextContainer>
-      <LogoContainer>
-        <Logo />
-      </LogoContainer>
       <OpeningTextInner>
         {text ? <OpeningTextCopy blocks={text} /> : null}
       </OpeningTextInner>
@@ -35,28 +31,13 @@ const OpeningTextContainer = styled('div', {
     top: 0,
     height: '100vh',
     margin: 0,
+    mt: -86,
   },
 })
 
 const OpeningTextInner = styled('div', {
   '@tabletUp': {
     maxWidth: '75%',
-  },
-})
-
-const LogoContainer = styled('div', {
-  display: 'flex',
-  justifyContent: 'center',
-  width: '8.5rem',
-  mb: '$s',
-
-  '& > svg': {
-    width: '100%',
-  },
-
-  '@tabletUp': {
-    width: '13.8rem',
-    mb: '$m',
   },
 })
 
