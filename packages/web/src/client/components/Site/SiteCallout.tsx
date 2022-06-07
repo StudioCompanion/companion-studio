@@ -11,9 +11,7 @@ import { useState } from 'react'
 import { getRandomInt } from 'helpers/math'
 
 export const Callout = ({ text, link, mediaItems }: Sanity.Callout) => {
-  const [randomInt] = useState(() =>
-    getRandomInt(0, (mediaItems?.length ?? 1) - 1)
-  )
+  const [randomInt] = useState(getRandomInt(0, (mediaItems?.length ?? 1) - 1))
 
   if (!link) {
     return null
@@ -61,6 +59,7 @@ const CalloutText = styled(Heading, {
 const CalloutImageWrapper = styled('div', {
   display: 'none',
   flex: '0 0 17.4rem',
+  alignSelf: 'center',
 
   '@tabletUp': {
     display: 'flex',

@@ -1,10 +1,12 @@
-import { CSS, styled } from 'styles/stitches.config'
+import { styled } from 'styles/stitches.config'
 import { Sanity } from '@types'
 
 import { SizesArray } from '../../helpers/media'
 
 import { MediaImage } from './MediaImage'
 import { MediaMux, MediaMuxProps } from './MediaMux'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
+import { useRef } from 'react'
 
 type SharedMediaProps = Pick<
   MediaMuxProps,
@@ -21,26 +23,29 @@ export type MediaProps =
   | (Sanity.Mux & SharedMediaProps)
 
 export const Media = (props: MediaProps) => {
+  const containerRef = useRef<HTMLDivElement>(null!)
+
   const { _type, className, objectFit, dimensions, controls, ...restProps } =
     props
 
   const aspectRatio =
     ((dimensions?.height ?? 0) / (dimensions?.width ?? 0)) * 100
 
-  const aspectRatioCss: CSS = {
-    '&:before': {
-      display: 'block',
-      content: '',
-      width: '100%',
-      pt: `${aspectRatio.toFixed(2)}%`,
-    },
-  }
+  useIsomorphicLayoutEffect(() => {
+    const { current: container } = containerRef
+
+    container.style.setProperty('---aspectratio', `${aspectRatio.toFixed(2)}%`)
+  }, [aspectRatio])
 
   switch (_type) {
     case 'image':
       const { sizes } = props
       return (
-        <MediaContainer className={className} css={aspectRatioCss}>
+        <MediaContainer
+          ref={containerRef}
+          className={className}
+          css={{ $$aspectratio: `${aspectRatio.toFixed(2)}%` }}
+        >
           <MediaImage
             layout="fill"
             image={{
@@ -53,7 +58,11 @@ export const Media = (props: MediaProps) => {
       )
     case 'video': {
       return (
-        <MediaContainer className={className} css={aspectRatioCss}>
+        <MediaContainer
+          ref={containerRef}
+          className={className}
+          css={{ $$aspectratio: `${aspectRatio.toFixed(2)}%` }}
+        >
           <MediaMux controls={controls} {...(restProps as Sanity.Mux)} />
         </MediaContainer>
       )
@@ -67,4 +76,11 @@ export const Media = (props: MediaProps) => {
 export const MediaContainer = styled('div', {
   overflow: 'hidden',
   position: 'relative',
+
+  '&:before': {
+    display: 'block',
+    content: '',
+    width: '100%',
+    pt: '$$aspectratio',
+  },
 })
