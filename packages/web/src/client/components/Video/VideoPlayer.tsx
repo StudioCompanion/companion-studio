@@ -7,6 +7,7 @@ import { useReducedMotion } from 'hooks/useReducedMotion'
 
 import { VideoLoader } from './VideoLoader'
 import { VideoControls } from './VideoControls'
+import { animated /*useTransition*/ } from '@react-spring/web'
 
 export type VideoPlayerProps = {
   src: string
@@ -91,7 +92,7 @@ export const VideoPlayer = ({
           if (data.level !== qualityLimit) {
             setIsLoading(true)
           } else {
-            setIsLoading(false)
+            // setIsLoading(false)
           }
         }
       )
@@ -139,6 +140,18 @@ export const VideoPlayer = ({
     }
   }
 
+  // const transitions = useTransition(isLoading, {
+  //   from: {
+  //     opacity: 0,
+  //   },
+  //   enter: {
+  //     opacity: 1,
+  //   },
+  //   leave: {
+  //     opacity: 0,
+  //   },
+  // })
+
   return (
     <VideoContainer onClick={handleClick}>
       <Video
@@ -151,7 +164,12 @@ export const VideoPlayer = ({
         playsInline
         id={src}
       />
-      {isLoading ? <Loader /> : null}
+      {/* {transitions((style, loading) => loading ? <Loader style={style}><VideoLoader /></Loader> : null)} */}
+      {isLoading ? (
+        <Loader>
+          <VideoLoader />
+        </Loader>
+      ) : null}
       {controls ? <Controls isPaused={Boolean(isPaused)} src={src} /> : null}
     </VideoContainer>
   )
@@ -174,10 +192,15 @@ const Video = styled('video', {
   height: '100%',
 })
 
-const Loader = styled(VideoLoader, {
+const Loader = styled(animated.div, {
   position: 'absolute',
-  top: 16,
-  right: 16,
+  top: 8,
+  right: 8,
+
+  '@tabletUp': {
+    top: 16,
+    right: 16,
+  },
 })
 
 const Controls = styled(VideoControls, {

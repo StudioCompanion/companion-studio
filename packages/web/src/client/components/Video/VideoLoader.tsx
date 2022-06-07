@@ -18,8 +18,8 @@ const loaderAnimation = keyframes({
 })
 
 const Loader = styled('div', {
-  height: '3rem',
-  width: '3rem',
+  height: '2.4rem',
+  width: '2.4rem',
   borderRadius: '50%',
   border: '2px solid rgba(255, 255, 255, 0.3)',
   borderLeft: '2px solid #fff',
@@ -27,8 +27,8 @@ const Loader = styled('div', {
   animation: `${loaderAnimation} 1.1s infinite linear`,
 
   '&::after': {
-    height: '3rem',
-    width: '3rem',
+    height: '2.4rem',
+    width: '2.4rem',
     borderRadius: '50%',
   },
 })
