@@ -29,15 +29,13 @@ const OpeningTextContainer = styled('div', {
   '@tabletUp': {
     position: 'sticky',
     top: 0,
-    height: '100vh',
+    height: 'calc(100vh - 86px)',
     margin: 0,
   },
 })
 
 const OpeningTextInner = styled('div', {
   '@tabletUp': {
-    position: 'absolute',
-    top: 240,
     maxWidth: '75%',
   },
 })
