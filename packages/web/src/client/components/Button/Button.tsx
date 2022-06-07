@@ -81,11 +81,14 @@ export const ButtonContainer = styled('span', {
   display: 'inline-block',
   borderRadius: '$pill',
   p: '$xxs',
+  m: 0,
   textDecoration: 'none',
   cursor: 'pointer',
   fontSize: '$XS',
   lineHeight: '$XS',
   border: 'none',
+  fontWeight: '$regular',
+  letterSpacing: '-0.01em',
 
   variants: {
     outlineTheme: {
