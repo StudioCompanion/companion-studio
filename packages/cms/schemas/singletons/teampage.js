@@ -93,6 +93,12 @@ export default {
     },
     {
       group: 'content',
+      name: 'cta',
+      title: 'Cta',
+      type: 'link',
+    },
+    {
+      group: 'content',
       name: 'qualities',
       title: 'Qualities',
       type: 'array',
