@@ -148,6 +148,7 @@ export interface TeamPage
   slideshow?: Slide[]
   qualities?: SanityGenerated.SanityKeyed<TeamQuality>[]
   team?: Team
+  cta?: Link
 }
 
 export interface Footer {
