@@ -16,13 +16,15 @@ import { REVALIDATE_TIME } from 'references/constants'
 import { Sanity } from '@types'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
 import { FadeIn } from 'components/Transitions/FadeIn'
+import { Button } from 'components/Button/Button'
+import { ThemeTypes } from 'styles/constants'
 
 interface TeamProps extends Sanity.DefaultLayoutProps {
   document: Sanity.TeamPage
 }
 
 const Team = ({ document, ...siteProps }: TeamProps) => {
-  const { team, textBlockOne, textBlockTwo, qualities, slideshow, meta } =
+  const { team, textBlockOne, textBlockTwo, qualities, slideshow, cta, meta } =
     document
 
   return (
@@ -43,6 +45,7 @@ const Team = ({ document, ...siteProps }: TeamProps) => {
         <TeamGrid team={team} />
         <FadeIn>
           {textBlockTwo ? <TeamTextBlock inline blocks={textBlockTwo} /> : null}
+          {cta ? <Button {...cta} theme={ThemeTypes.DARK} /> : null}
         </FadeIn>
         <ValuesGrid qualities={qualities} />
       </PaddingContainer>
@@ -70,6 +73,7 @@ const TeamImageStrip = styled(ImageStrip, {
 
 const TeamTextBlock = styled(RendererRichText, {
   maxWidth: '$centeredParagraph',
+  mb: '$xs',
 
   variants: {
     inline: {
