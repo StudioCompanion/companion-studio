@@ -171,11 +171,6 @@ export const VideoPlayer = ({
           </Loader>
         ) : null
       )}
-      {/* {isLoading ? (
-        <Loader>
-          <VideoLoader />
-        </Loader>
-      ) : null} */}
       {controls ? <Controls isPaused={Boolean(isPaused)} src={src} /> : null}
     </VideoContainer>
   )
@@ -207,8 +202,8 @@ const Loader = styled(animated.div, {
   mixBlendMode: 'difference',
 
   '@tabletUp': {
-    top: 16,
-    right: 16,
+    top: 20,
+    right: 20,
   },
 })
 
