@@ -9,7 +9,7 @@ import { REVALIDATE_TIME } from 'references/constants'
 
 import { Renderer } from 'components/Renderer/Renderer'
 import { ProjecHeader } from 'components/Headers/ProjectHeader'
-import { Layout } from 'components/Site/SiteLayout'
+import { Layout, PaddingContainer } from 'components/Site/SiteLayout'
 
 import { Sanity } from '@types'
 
@@ -88,9 +88,18 @@ export const getStaticProps: GetStaticProps<
 }
 
 const ProjectLayout = styled(Layout, {
-  py: '$s',
+  [`& + ${PaddingContainer}`]: {
+    mt: 0,
+  },
+
+  pt: '$s',
+
   '@tabletUp': {
-    py: '$xl',
+    [`& + ${PaddingContainer}`]: {
+      mt: 0,
+    },
+
+    pt: '$xl',
   },
 })
 
