@@ -21,6 +21,7 @@ import { Sanity } from '@types'
 import { useReducedMotion } from 'hooks/useReducedMotion'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicEffect'
 import { useCanHover } from 'hooks/useCanHover'
+import { TextContainer } from '../BlockText'
 
 /**
  *
@@ -303,7 +304,13 @@ const Wrapper = styled(FadeIn, {
       },
       [CarouselLayouts.TWO_THIRDS]: {
         '@tabletUp': {
-          width: `${(2 / 3) * 100}%`,
+          mr: '$m',
+          width: `calc(${(2 / 3) * 100}% - $space$m)`,
+
+          [`& + ${TextContainer}`]: {
+            m: 0,
+            flex: '1 0 33%',
+          },
         },
       },
     },
