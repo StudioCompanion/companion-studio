@@ -40,6 +40,12 @@ const RICH_TEXT_THEME = {
     fontFamily: 'Apfel Groteszk',
     letterSpacing: '-0.01em',
   },
+  XS: {
+    fontSize: '12px',
+    lineHeight: '120%',
+    fontFamily: 'Apfel Groteszk',
+    letterSpacing: '-0.01em',
+  },
 }
 
 const styleRenderer = (props) => (
@@ -93,6 +99,13 @@ export const basicRichText = {
         {
           title: 'Small Copy',
           value: 'S',
+          blockEditor: {
+            render: styleRenderer,
+          },
+        },
+        {
+          title: 'Extra Small Copy',
+          value: 'XS',
           blockEditor: {
             render: styleRenderer,
           },

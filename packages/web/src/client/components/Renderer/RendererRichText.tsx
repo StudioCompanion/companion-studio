@@ -111,6 +111,21 @@ const components: Partial<PortableTextReactComponents> = {
         {...props}
       />
     ),
+    XS: ({ ...props }) => (
+      <Heading
+        tag="p"
+        fontStyle="XS"
+        css={{
+          [availableHeadings]: {
+            mt: '$xxs',
+          },
+          'p + &, ul + &': {
+            mt: '$xxs',
+          },
+        }}
+        {...props}
+      />
+    ),
   },
   list: {
     bullet: (props) => {
