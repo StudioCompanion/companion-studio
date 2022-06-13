@@ -28,10 +28,11 @@ const TestimonialContainer = styled('section', {
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
-  my: '$xxl',
+  my: '$l',
 
   '@tabletUp': {
-    my: '$xxxl',
+    my: '$xxl',
+    mt: '$m',
   },
 })
 
