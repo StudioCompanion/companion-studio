@@ -278,10 +278,6 @@ const Wrapper = styled(FadeIn, {
 
   '@tabletUp': {
     mb: '$m',
-
-    '&:last-child': {
-      mb: 0,
-    },
   },
 
   variants: {
