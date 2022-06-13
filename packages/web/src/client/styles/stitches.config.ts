@@ -9,7 +9,7 @@ export enum Widths {
   SmallTablet = 400,
   Tablet = 768,
   Desktop = 1024,
-  LargeDesktop = 1440,
+  LargeDesktop = 1200,
 }
 
 const { styled, globalCss, getCssText, config, keyframes, reset } =

@@ -24,7 +24,7 @@ const Index = ({ document, ...siteProps }: IndexProps) => {
   return (
     <HomeContainer documentMeta={meta} {...siteProps}>
       <RightContainer>
-        <OpeningText text={standfirst} />
+        <OpeningText>{standfirst}</OpeningText>
       </RightContainer>
       <CardsContainer>
         {Array.isArray(cards)
@@ -45,7 +45,7 @@ const HomeContainer = styled(Layout, {
   display: 'flex',
   flexDirection: 'column',
 
-  '@tabletUp': {
+  '@largeDesktopUp': {
     gap: '$m',
     flexDirection: 'row',
   },
@@ -59,7 +59,7 @@ const CardsContainer = styled('div', {
 const RightContainer = styled(FadeIn, {
   width: '100%',
 
-  '@tabletUp': {
+  '@largeDesktopUp': {
     order: 1,
   },
 })
@@ -69,7 +69,7 @@ const HomeCardFade = styled(FadeIn, {
     mt: '$s',
   },
 
-  '@desktopUp': {
+  '@largeDesktopUp': {
     '& + &': {
       mt: '$m',
     },

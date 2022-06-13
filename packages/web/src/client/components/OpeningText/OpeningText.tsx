@@ -1,19 +1,15 @@
+import { ReactNode } from 'react'
+
 import { styled } from 'styles/stitches.config'
 
-import { RendererRichText } from 'components/Renderer/RendererRichText'
-
-import { SanityGenerated } from '@types'
-
 export interface OpeningTextProps {
-  text?: SanityGenerated.RichText
+  children?: ReactNode
 }
 
-export const OpeningText = ({ text }: OpeningTextProps) => {
+export const OpeningText = ({ children }: OpeningTextProps) => {
   return (
     <OpeningTextContainer>
-      <OpeningTextInner>
-        {text ? <OpeningTextCopy blocks={text} /> : null}
-      </OpeningTextInner>
+      <OpeningTextInner>{children}</OpeningTextInner>
     </OpeningTextContainer>
   )
 }
@@ -26,7 +22,7 @@ const OpeningTextContainer = styled('div', {
   m: '$l 0 $xl 0',
   width: '100%',
 
-  '@tabletUp': {
+  '@largeDesktopUp': {
     position: 'sticky',
     top: 0,
     height: '100vh',
@@ -35,12 +31,14 @@ const OpeningTextContainer = styled('div', {
   },
 })
 
-const OpeningTextInner = styled('div', {
-  '@tabletUp': {
-    maxWidth: '75%',
-  },
-})
-
-const OpeningTextCopy = styled(RendererRichText, {
+const OpeningTextInner = styled('p', {
+  fontSize: '$M',
+  lineHeight: '$M',
   textAlign: 'center',
+
+  '@largeDesktopUp': {
+    fontSize: '$XXL',
+    lineHeight: '$XXL',
+    maxWidth: '87%',
+  },
 })

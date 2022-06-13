@@ -64,7 +64,7 @@ const BlockText = styled(RendererRichText, {
   '& > p': {
     fontSize: '$M',
 
-    '@media (min-width: 1200px)': {
+    '@largeDesktopUp': {
       fontSize: '$L',
     },
   },
