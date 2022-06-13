@@ -44,7 +44,7 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
         tablet: `${Widths.Tablet / 10}rem`,
         desktop: `${Widths.Desktop / 10}rem`,
         largeDesktop: `${Widths.LargeDesktop / 10}rem`,
-        centeredParagraph: '65.3rem',
+        centeredParagraph: '65rem',
         documentWrapper: '80rem',
         footerWrapper: '45rem',
       },

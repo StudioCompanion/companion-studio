@@ -6,8 +6,21 @@ import {
 import { CarouselLayouts, ThemeTypes } from 'styles/constants'
 
 import { SanityGenerated } from './index'
-import { RichText } from './sanity.generated'
 import { PickType } from './utils'
+
+export type RichText = Array<
+  SanityGenerated.SanityKeyed<
+    SanityGenerated.SanityBlock & {
+      children: Array<
+        SanityGenerated.SanityKeyed<{
+          _type: string
+          text: string
+          [key: string]: any
+        }>
+      >
+    }
+  >
+>
 
 export interface ImageDimensions
   extends Omit<SanityImageDimensions, 'aspectRatio'> {
