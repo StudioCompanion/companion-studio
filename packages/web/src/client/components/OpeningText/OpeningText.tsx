@@ -35,6 +35,7 @@ const OpeningTextInner = styled('p', {
   fontSize: '$M',
   lineHeight: '$M',
   textAlign: 'center',
+  maxWidth: '60rem',
 
   '@largeDesktopUp': {
     fontSize: '$XXL',
