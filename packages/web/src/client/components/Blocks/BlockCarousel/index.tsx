@@ -66,7 +66,10 @@ export const Carousel = (props: Sanity.BlockMedia) => {
    */
   const isVideo = items[activeIndex].desktop?._type === 'video'
   const shouldShowDots = items.length > 1
-  const currentCaption = items[activeIndex].caption
+  const hasCaption =
+    Array.isArray(items[activeIndex].caption) &&
+    // @ts-ignore
+    Boolean(items[activeIndex].caption[0].children[0].text)
 
   const canHover = useCanHover()
 
@@ -255,11 +258,11 @@ export const Carousel = (props: Sanity.BlockMedia) => {
             ))}
           </Container>
         </Viewport>
-        {shouldShowDots || currentCaption ? (
+        {shouldShowDots || hasCaption ? (
           <CarouselFooter
             dotCount={items.length}
             activeIndex={activeIndex}
-            caption={currentCaption}
+            caption={items[activeIndex].caption}
             onClick={handleDotClick}
           />
         ) : null}
