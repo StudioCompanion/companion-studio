@@ -25,7 +25,7 @@ export default {
   fields: [
     {
       name: 'standfirst',
-      type: 'richText',
+      type: 'text',
       title: 'Standfirst',
       group: 'content',
       validation: (rule) => rule.required(),
