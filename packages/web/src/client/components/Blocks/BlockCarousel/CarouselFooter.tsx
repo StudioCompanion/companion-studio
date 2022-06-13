@@ -62,6 +62,7 @@ const Footer = styled('div', {
 
 const Caption = styled(RendererRichText, {
   mt: '$xs',
+  maxWidth: '$centeredParagraph',
 })
 
 const LiveRegion = styled('div', {
