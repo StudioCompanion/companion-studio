@@ -76,6 +76,7 @@ const CardHomeInner = ({
           ) : null}
         </div>
         <Button
+          tabIndex={-1}
           text={cardButtonLabel}
           theme={theme}
           isOutlined={status === 'comingSoon'}

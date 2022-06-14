@@ -12,6 +12,7 @@ export interface ButtonInnerProps {
   tag?: keyof Pick<JSX.IntrinsicElements, 'button' | 'span'>
   type?: string
   isOutlined?: boolean
+  tabIndex?: number
 }
 
 export interface ButtonAnchorProps {
@@ -24,6 +25,7 @@ export const ButtonInner = ({
   theme,
   type,
   isOutlined,
+  tabIndex = 0,
 }: ButtonInnerProps) => {
   return (
     // @ts-expect-error conflict using as with an optional `type` prop
@@ -32,6 +34,7 @@ export const ButtonInner = ({
       theme={theme}
       type={tag === 'button' ? type : undefined}
       outlineTheme={isOutlined ? theme : undefined}
+      tabIndex={tabIndex}
     >
       {text}
     </ButtonContainer>
@@ -51,6 +54,7 @@ export const Button = ({
   onClick,
   type = 'button',
   isOutlined = false,
+  tabIndex,
 }: ButtonProps) => {
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
@@ -62,7 +66,7 @@ export const Button = ({
     <>
       {url && !isOutlined ? (
         <ButtonAnchor onClick={handleClick} url={url} isExternal={isExternal}>
-          <ButtonInner theme={theme} text={label} />
+          <ButtonInner theme={theme} text={label} tabIndex={tabIndex} />
         </ButtonAnchor>
       ) : (
         <ButtonInner
@@ -71,6 +75,7 @@ export const Button = ({
           isOutlined={isOutlined}
           theme={theme}
           text={text}
+          tabIndex={tabIndex}
         />
       )}
     </>
