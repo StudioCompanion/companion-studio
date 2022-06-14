@@ -81,15 +81,17 @@ export const VideoPlayer = ({
 
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
         // Transform available levels into an array of integers (height values).
-        qualitiesRef.current = hls.levels.map((l) => l.height)
+        qualitiesRef.current = hls.levels
+          .map((l) => l.height)
+          .filter((value, index, self) => self.indexOf(value) === index)
       })
 
       hls.on(
         Hls.Events.LEVEL_SWITCHED,
         (_: unknown, data: { level: number }) => {
-          const qualityLimit = qualitiesRef.current.length - 1
+          const qualityLimit = qualitiesRef.current.length - 2
 
-          if (data.level !== qualityLimit) {
+          if (data.level < qualityLimit) {
             setIsLoading(true)
           } else {
             setIsLoading(false)
