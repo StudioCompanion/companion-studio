@@ -5,6 +5,7 @@ import { MEDIA } from '../objects/media'
 import { META } from '../objects/meta'
 
 export const LINKTREE_PAGE = groq`
+    _id,
     links[]{
         _key,
         link {

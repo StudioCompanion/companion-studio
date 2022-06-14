@@ -6,6 +6,7 @@ import { META } from '../objects/meta'
 import { TEAM_MEMBER } from '../objects/teamMember'
 
 export const PROJECT_PAGE = groq`
+    _id,
     title,
     status,
     meta {

@@ -78,7 +78,9 @@ export const getStaticProps: GetStaticProps<
   })
 
   return {
-    notFound: !sanityResult || sanityResult.document.status === 'comingSoon',
+    notFound:
+      !sanityResult.document._id ||
+      sanityResult.document.status === 'comingSoon',
     props: {
       ...sanityResult,
       preview: !!preview,

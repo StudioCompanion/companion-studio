@@ -5,6 +5,7 @@ import { CARD } from '../objects/card'
 import { META } from '../objects/meta'
 
 export const HOMEPAGE = groq`
+    _id,
     standfirst,
     meta {
         ${META}

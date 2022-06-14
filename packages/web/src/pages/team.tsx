@@ -95,7 +95,7 @@ export const getStaticProps: GetStaticProps = async ({ preview }) => {
   })
 
   return {
-    notFound: !sanityResult,
+    notFound: !sanityResult.document._id,
     props: {
       ...sanityResult,
       preview: !!preview,

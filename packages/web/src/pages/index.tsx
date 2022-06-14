@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps<IndexProps> = async ({
   })
 
   return {
-    notFound: !sanityResult,
+    notFound: !sanityResult.document._id,
     props: {
       ...sanityResult,
       preview: !!preview,
