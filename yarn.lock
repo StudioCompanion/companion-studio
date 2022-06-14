@@ -2625,6 +2625,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@corex/deepmerge@npm:^4.0.14":
+  version: 4.0.22
+  resolution: "@corex/deepmerge@npm:4.0.22"
+  checksum: 095772500fa7e186e36af4788ca504e66a2ae85a94f374bfe41621f6ed462e175651d1242fb3b80d91f578e72cbd26527870cd346774aeccae1a901fffcb5bb6
+  languageName: node
+  linkType: hard
+
 "@cspotcode/source-map-consumer@npm:0.8.0":
   version: 0.8.0
   resolution: "@cspotcode/source-map-consumer@npm:0.8.0"
@@ -5832,6 +5839,7 @@ __metadata:
     lottie-web: ^5.9.4
     next: ^12.1.6
     next-seo: ^5.4.0
+    next-sitemap: ^3.0.5
     react: 17.0.2
     react-dom: 17.0.2
     react-merge-refs: ^1.1.0
@@ -17161,6 +17169,22 @@ __metadata:
     react: ">=16.0.0"
     react-dom: ">=16.0.0"
   checksum: fe19b4f7237111d6e8c2f3e9128946480f1b6e2d7ffab5902e8a4a1114721142daa187175334fa7d6da25605658e63cd8c6e3a68a9d9678fd7fbd4fb4b061391
+  languageName: node
+  linkType: hard
+
+"next-sitemap@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "next-sitemap@npm:3.0.5"
+  dependencies:
+    "@corex/deepmerge": ^4.0.14
+    minimist: ^1.2.6
+  peerDependencies:
+    "@next/env": "*"
+    next: "*"
+  bin:
+    next-sitemap: bin/next-sitemap.mjs
+    next-sitemap-cjs: bin/next-sitemap.cjs
+  checksum: 6c6a74917d8fe43e1e7043fdd993d6e4069c0e84c2548c6689e9922314fec704c9e60246fcc462d298037278bc03542d8e0181ee2e0731dd9ebc77e7953042e7
   languageName: node
   linkType: hard
 
