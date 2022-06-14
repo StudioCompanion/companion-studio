@@ -12,7 +12,6 @@ export default {
         list: [
           { title: 'Full', value: 'full' },
           { title: 'Half', value: 'half' },
-          { title: 'Two Thirds', value: 'two-thirds' },
         ],
       },
       initialValue: 'full',

@@ -224,51 +224,49 @@ export const Carousel = (props: Sanity.BlockMedia) => {
   }, [activeIndex, router.query])
 
   return (
-    <>
+    <Wrapper hero={isHero} layout={layout} className="embla">
       <CarouselCursor
         ref={cursorRef}
         isPaused={isPaused}
         isVideo={isVideo}
         {...cursorState}
       />
-      <Wrapper hero={isHero} layout={layout} className="embla">
-        <Viewport
-          ref={mergeRefs([viewportRef, containerRef])}
-          className="embla__viewport"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onMouseMove={handleMouseMove}
-          onClick={handleCarouselClick}
-          style={{
-            backgroundColor,
-            cursor: cursorState.isVisible ? 'none' : 'auto',
-          }}
-        >
-          {backgroundImage ? <BackgroundImage {...backgroundImage} /> : null}
-          <Container className="embla__container">
-            {items.map((item, i) => (
-              <CarouselSlide
-                ref={(ref) => (slideRefs.current[i] = ref!)}
-                key={item._key}
-                activeIndex={activeIndex}
-                isPaused={isPaused}
-                setPaused={setPaused}
-                {...item}
-                hasMobile={Boolean(item.hasMobile)}
-              />
-            ))}
-          </Container>
-        </Viewport>
-        {shouldShowDots || hasCaption ? (
-          <CarouselFooter
-            dotCount={items.length}
-            activeIndex={activeIndex}
-            caption={items[activeIndex].caption}
-            onClick={handleDotClick}
-          />
-        ) : null}
-      </Wrapper>
-    </>
+      <Viewport
+        ref={mergeRefs([viewportRef, containerRef])}
+        className="embla__viewport"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onMouseMove={handleMouseMove}
+        onClick={handleCarouselClick}
+        style={{
+          backgroundColor,
+          cursor: cursorState.isVisible ? 'none' : 'auto',
+        }}
+      >
+        {backgroundImage ? <BackgroundImage {...backgroundImage} /> : null}
+        <Container className="embla__container">
+          {items.map((item, i) => (
+            <CarouselSlide
+              ref={(ref) => (slideRefs.current[i] = ref!)}
+              key={item._key}
+              activeIndex={activeIndex}
+              isPaused={isPaused}
+              setPaused={setPaused}
+              {...item}
+              hasMobile={Boolean(item.hasMobile)}
+            />
+          ))}
+        </Container>
+      </Viewport>
+      {shouldShowDots || hasCaption ? (
+        <CarouselFooter
+          dotCount={items.length}
+          activeIndex={activeIndex}
+          caption={items[activeIndex].caption}
+          onClick={handleDotClick}
+        />
+      ) : null}
+    </Wrapper>
   )
 }
 
@@ -299,17 +297,17 @@ const Wrapper = styled(FadeIn, {
       },
       [CarouselLayouts.HALF]: {
         '@tabletUp': {
-          width: `calc(50% - var(--space-m) / 2)`,
-        },
-      },
-      [CarouselLayouts.TWO_THIRDS]: {
-        '@tabletUp': {
-          mr: '$m',
-          width: `calc(${(2 / 3) * 100}% - $space$m)`,
+          width: `calc(50% - $space$m / 2)`,
 
           [`& + ${TextContainer}`]: {
             m: 0,
-            flex: '1 0 33%',
+            ml: '$m',
+            flex: '1 0 calc(50% - $space$m)',
+          },
+
+          [`& + & + ${TextContainer}`]: {
+            m: 'calc($xxl - $m) 0 $xxl',
+            flex: 'unset',
           },
         },
       },

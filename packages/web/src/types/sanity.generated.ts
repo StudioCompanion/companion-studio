@@ -196,11 +196,11 @@ export interface Homepage extends SanityDocument {
   _type: 'homepage'
 
   /**
-   * Standfirst — `richText`
+   * Standfirst — `text`
    *
    *
    */
-  standfirst?: RichText
+  standfirst?: string
 
   /**
    * Cards — `array`
@@ -208,9 +208,60 @@ export interface Homepage extends SanityDocument {
    *
    */
   cards?: Array<
-    SanityKeyedReference<
-      Homepage | Teampage | Approachpage | Linktree | Privacy | Project
-    >
+    | SanityKeyedReference<
+        Homepage | Teampage | Approachpage | Linktree | Privacy | Project
+      >
+    | SanityKeyed<{
+        _type: 'externalCard'
+        /**
+         * Link External — `url`
+         *
+         *
+         */
+        linkExternal?: string
+
+        /**
+         * Card Title — `string`
+         *
+         * If omitted, the SEO title will be used
+         */
+        title?: string
+
+        /**
+         * Subtitle — `string`
+         *
+         *
+         */
+        subtitle?: string
+
+        /**
+         * Media — `media`
+         *
+         * If omitted, the SEO media will be used
+         */
+        media?: Media
+
+        /**
+         * Card Button Label — `string`
+         *
+         *
+         */
+        cardButtonLabel?: string
+
+        /**
+         * Theme — `string`
+         *
+         *
+         */
+        theme?: 'light' | 'dark'
+
+        /**
+         * Background Colour — `string`
+         *
+         * The entered value should be in any valid HEX format, e.g. #EF5632, #ef5632, #EF5632A1, #ef5632a1, #ffe, #ffea
+         */
+        backgroundColor?: string
+      }>
   >
 
   /**
@@ -265,11 +316,11 @@ export interface Settings extends SanityDocument {
     link?: Link
 
     /**
-     * Media — `media`
+     * Media Items — `array`
      *
-     *
+     * Supply X amount of assets & one will be picked at random everytime someone visits a page!
      */
-    media?: Media
+    mediaItems?: Array<SanityKeyed<Media>>
   }
 
   /**
@@ -361,6 +412,13 @@ export interface Teampage extends SanityDocument {
    *
    */
   textBlockTwo?: RichText
+
+  /**
+   * Cta — `link`
+   *
+   *
+   */
+  cta?: Link
 
   /**
    * Qualities — `array`
@@ -622,7 +680,7 @@ export type BlockMedia = {
    *
    *
    */
-  layout?: 'full' | 'half' | '2/3'
+  layout?: 'full' | 'half'
 
   /**
    * Is Hero? — `boolean`
