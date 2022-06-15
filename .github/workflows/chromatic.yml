@@ -7,14 +7,12 @@ name: 'Chromatic'
 'on':
   push:
     branches:
-      # TODO: change to main when we've launched site
-      - v2
+      - main
       # remove after this task has been finished
       - chore/visual-regression-testing
   pull_request:
     branches:
-      # TODO: change to main when we've launched site
-      - v2
+      - main
       # remove after this task has been finished
       - chore/visual-regression-testing
 
