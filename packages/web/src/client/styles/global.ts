@@ -32,6 +32,21 @@ export const globalStyles = globalCss({
     m: 0,
     p: 0,
     color: '$darkBlue',
+    minHeight: '100%',
+  },
+
+  html: {
+    display: 'flex',
+    scrollBehavior: 'smooth',
+  },
+
+  body: {
+    flex: 1,
+    flexBasis: '100%',
+  },
+
+  '#__next': {
+    height: '100%',
   },
 
   button: {
