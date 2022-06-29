@@ -168,6 +168,7 @@ const components: Partial<PortableTextReactComponents> = {
     },
   },
   marks: {
+    em: (props) => <SpecialFont {...props} />,
     link: (
       props: PropsWithChildren<
         PortableTextMarkComponentProps<Sanity.Link & { _type: 'link' }>
@@ -180,3 +181,7 @@ const components: Partial<PortableTextReactComponents> = {
     },
   },
 }
+
+const SpecialFont = styled('span', {
+  fontWeight: 600,
+})

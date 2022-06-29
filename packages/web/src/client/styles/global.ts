@@ -12,6 +12,11 @@ export const globalStyles = globalCss({
       src: "url('/fonts/ApfelGrotezk-Fett.woff2') format('woff2'), url('/fonts/ApfelGrotezk-Fett.woff') format('woff')",
       fontWeight: 700,
     },
+    {
+      fontFamily: 'Apfel Groteszk',
+      src: "url('/fonts/ApfelGrotezkDEMO-Mittel.woff2') format('woff2')",
+      fontWeight: 600,
+    },
   ],
 
   '*, *:before, *:after': {
