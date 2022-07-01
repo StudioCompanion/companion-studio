@@ -41,7 +41,6 @@ export const globalStyles = globalCss({
   },
 
   html: {
-    display: 'flex',
     scrollBehavior: 'smooth',
   },
 
