@@ -8,9 +8,6 @@ const withBundleAnalyzer = BundleAnalyzer({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['tsx', 'js', 'ts'],
-  compiler: {
-    styledComponents: true,
-  },
   images: {
     domains: ['cdn.sanity.io'],
     minimumCacheTTL: 31536000,
@@ -34,6 +31,10 @@ const nextConfig = {
       console.error(err)
       return []
     }
+  },
+  experimental: {
+    legacyBrowsers: false,
+    browsersListForSwc: true,
   },
 }
 

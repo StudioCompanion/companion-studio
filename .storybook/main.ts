@@ -42,12 +42,22 @@ const config: StorybookConfig = {
     },
     'storybook-addon-next-router',
   ],
+  // @ts-expect-error
+  env: (config) => ({
+    ...config,
+    NEXT_PUBLIC_SANITY_PROJECT_ID:
+      process.env.STORYBOOK_NEXT_PUBLIC_SANITY_PROJECT_ID,
+    NEXT_PUBLIC_SANITY_DATASET:
+      process.env.STORYBOOK_NEXT_PUBLIC_SANITY_DATASET,
+  }),
   staticDirs: ['../packages/web/public'],
   core: { builder: 'webpack5' },
   webpackFinal: async (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      ...createAliasesFromPaths(),
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        ...createAliasesFromPaths(),
+      }
     }
     // Return the altered config
     return config

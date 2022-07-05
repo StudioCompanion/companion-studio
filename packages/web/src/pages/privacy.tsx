@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps<PrivacyProps> = async ({
   })
 
   return {
-    notFound: !sanityResult,
+    notFound: !sanityResult.document._id,
     props: {
       ...sanityResult,
       preview: !!preview,

@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import Link from 'next/link'
 import { animated, SpringValues, useSpring } from '@react-spring/web'
-import { useHover } from 'react-use-gesture'
+import { useHover } from '@use-gesture/react'
 
 import { ThemeTypes } from 'styles/constants'
 import { styled } from 'styles/stitches.config'
@@ -15,10 +15,10 @@ import { useCanHover } from 'hooks/useCanHover'
 import { PickType, Sanity } from '@types'
 import { getHrefSlugFromSanityReference } from 'helpers/links'
 
-interface CardHomeProps extends Sanity.HomepageCard {
+type CardHomeProps = {
   className?: string
   status?: PickType<Sanity.ProjectPage, 'status'>
-}
+} & Sanity.HomepageCard
 
 interface CardHomeInnerProps
   extends Omit<CardHomeProps, 'slug' | 'type' | 'className'> {
@@ -76,6 +76,7 @@ const CardHomeInner = ({
           ) : null}
         </div>
         <Button
+          tabIndex={-1}
           text={cardButtonLabel}
           theme={theme}
           isOutlined={status === 'comingSoon'}
@@ -128,6 +129,21 @@ export const CardHome = (props: CardHomeProps) => {
     return (
       <CardWrapper as="div" className={className}>
         <CardHomeInner {...props} />
+      </CardWrapper>
+    )
+  }
+
+  if (type == 'externalCard') {
+    return (
+      <CardWrapper
+        href={slug}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        theme={theme}
+        {...bind()}
+      >
+        <CardHomeInner {...props} style={styles} />
       </CardWrapper>
     )
   }
@@ -192,7 +208,11 @@ const CardText = styled('div', {
   left: 0,
   right: 0,
   width: '100%',
-  padding: '$m',
+  padding: '$xs',
+
+  '@tabletUp': {
+    padding: '$m',
+  },
 
   display: 'flex',
   justifyContent: 'space-between',

@@ -5,6 +5,7 @@ import { META } from '../objects/meta'
 import { RICH_TEXT } from '../objects/richText'
 
 export const APPROACH_PAGE = groq`
+    _id,
     "slug": slug.current,
     meta {
         ${META}

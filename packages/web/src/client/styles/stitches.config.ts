@@ -1,6 +1,6 @@
 import * as Stitches from '@stitches/react'
 
-interface AspectRatioProps {
+export interface AspectRatioProps {
   w: number
   h?: number
 }
@@ -9,7 +9,7 @@ export enum Widths {
   SmallTablet = 400,
   Tablet = 768,
   Desktop = 1024,
-  LargeDesktop = 1440,
+  LargeDesktop = 1200,
 }
 
 const { styled, globalCss, getCssText, config, keyframes, reset } =
@@ -44,7 +44,7 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
         tablet: `${Widths.Tablet / 10}rem`,
         desktop: `${Widths.Desktop / 10}rem`,
         largeDesktop: `${Widths.LargeDesktop / 10}rem`,
-        centeredParagraph: '65.3rem',
+        centeredParagraph: '65rem',
         documentWrapper: '80rem',
         footerWrapper: '45rem',
       },
@@ -163,7 +163,7 @@ const { styled, globalCss, getCssText, config, keyframes, reset } =
       br: (value: Stitches.PropertyValue<'borderRadius'>) => ({
         borderRadius: value,
         // Safari requires this to be explicitly set on videos
-        video: {
+        ['video, img']: {
           borderRadius: value,
         },
       }),

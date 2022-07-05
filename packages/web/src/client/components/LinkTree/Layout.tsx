@@ -5,8 +5,6 @@ import { styled } from 'styles/stitches.config'
 
 import { Sanity } from '@types'
 
-import { SquiggleBackground } from './SquiggleBackground'
-
 interface LinkTreeLayoutProps extends Sanity.DefaultLayoutProps {
   children: React.ReactNode
   meta?: Sanity.Meta
@@ -20,7 +18,6 @@ export const LinkTreeLayout = ({
   return (
     <>
       <SiteSeo defaultSeo={defaultMeta} meta={meta} />
-      <SquiggleBackground />
       <LinkTreeContainer>
         <LinkTreeWrapper>
           <LogoContainer>
@@ -37,6 +34,8 @@ const LinkTreeContainer = styled('main', {
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
+  height: '100vh',
+  backgroundColor: '$orange100',
 })
 
 const LinkTreeWrapper = styled('article', {

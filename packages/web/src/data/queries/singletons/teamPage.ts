@@ -7,6 +7,7 @@ import { MEDIA } from '../objects/media'
 import { META } from '../objects/meta'
 
 export const TEAMPAGE = groq`
+    _id,
     team[]->{
         ...{
             ${TEAM_MEMBER}

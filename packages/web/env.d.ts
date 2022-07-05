@@ -14,5 +14,10 @@ declare namespace NodeJS {
 
     // Plausible
     NEXT_PUBLIC_ENABLE_PLAUSIBLE: boolean
+
+    // Mailchimp
+    MAILCHIMP_API_KEY?: string
+    MAILCHIMP_SERVER_PREFFIX?: string
+    MAILCHIMP_LIST_ID?: string
   }
 }

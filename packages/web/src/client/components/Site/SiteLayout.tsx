@@ -91,13 +91,13 @@ const Section = styled('section', {
   },
 })
 
-const PaddingContainer = styled('div', {
+export const PaddingContainer = styled('div', {
   mt: '$s',
   px: '$s',
   pb: '$s',
 
   '@tabletUp': {
     px: '$m',
-    mt: '$xl',
+    mt: '$m',
   },
 })

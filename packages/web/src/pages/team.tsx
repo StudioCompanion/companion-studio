@@ -15,30 +15,38 @@ import { REVALIDATE_TIME } from 'references/constants'
 
 import { Sanity } from '@types'
 import { RendererRichText } from 'components/Renderer/RendererRichText'
+import { FadeIn } from 'components/Transitions/FadeIn'
+import { Button } from 'components/Button/Button'
+import { ThemeTypes } from 'styles/constants'
 
 interface TeamProps extends Sanity.DefaultLayoutProps {
   document: Sanity.TeamPage
 }
 
 const Team = ({ document, ...siteProps }: TeamProps) => {
-  const { team, textBlockOne, textBlockTwo, qualities, slideshow, meta } =
+  const { team, textBlockOne, textBlockTwo, qualities, slideshow, cta, meta } =
     document
 
   return (
     <Layout documentMeta={meta} {...siteProps}>
       <NextSeo title="Team" />
-      <ImageStrip slideshow={slideshow} />
+      <TeamImageStrip slideshow={slideshow} />
       <PaddingContainer>
-        {textBlockOne ? (
-          <TeamTextBlock
-            blocks={textBlockOne}
-            css={{
-              maxWidth: '55.5rem',
-            }}
-          />
-        ) : null}
+        <FadeIn>
+          {textBlockOne ? (
+            <TeamTextBlock
+              blocks={textBlockOne}
+              css={{
+                maxWidth: '55.5rem',
+              }}
+            />
+          ) : null}
+        </FadeIn>
         <TeamGrid team={team} />
-        {textBlockTwo ? <TeamTextBlock blocks={textBlockTwo} /> : null}
+        <FadeIn>
+          {textBlockTwo ? <TeamTextBlock inline blocks={textBlockTwo} /> : null}
+          {cta ? <Button {...cta} theme={ThemeTypes.DARK} /> : null}
+        </FadeIn>
         <ValuesGrid qualities={qualities} />
       </PaddingContainer>
     </Layout>
@@ -55,12 +63,27 @@ const PaddingContainer = styled('article', {
   },
 })
 
-const TeamTextBlock = styled(RendererRichText, {
-  mt: '$xxl',
-  maxWidth: '$centeredParagraph',
+const TeamImageStrip = styled(ImageStrip, {
+  mb: '$xxl',
 
   '@tabletUp': {
-    mt: '11.6rem',
+    mb: '11.6rem',
+  },
+})
+
+const TeamTextBlock = styled(RendererRichText, {
+  maxWidth: '$centeredParagraph',
+  mb: '$xs',
+
+  variants: {
+    inline: {
+      true: {
+        mt: '$xxl',
+        '@tabletUp': {
+          mt: '11.6rem',
+        },
+      },
+    },
   },
 })
 
@@ -72,7 +95,7 @@ export const getStaticProps: GetStaticProps = async ({ preview }) => {
   })
 
   return {
-    notFound: !sanityResult,
+    notFound: !sanityResult.document._id,
     props: {
       ...sanityResult,
       preview: !!preview,

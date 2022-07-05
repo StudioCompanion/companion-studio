@@ -4,19 +4,20 @@ import { Avatars } from 'components/Avatars/Avatars'
 import { Sanity } from '@types'
 
 import { styled } from 'styles/stitches.config'
+import { FadeIn } from 'components/Transitions/FadeIn'
 
 type ProjectHeaderProps = Pick<Sanity.ProjectPage, 'title' | 'team'>
 
 export const ProjecHeader = ({ title, team }: ProjectHeaderProps) => {
   return (
     <Header>
-      <div>
+      <FadeIn tag="div">
         {title ? (
           <Heading tag="h1" fontStyle={'XXXL'} weight="$bold">
             {title}
           </Heading>
         ) : null}
-      </div>
+      </FadeIn>
       <Avatars members={team} />
     </Header>
   )

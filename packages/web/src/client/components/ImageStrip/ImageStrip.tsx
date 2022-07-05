@@ -42,8 +42,8 @@ const ImageStripImage = ({
 
   const maxWidth = tabletUp ? 550 : 275
 
-  const width = media.dimensions.width
-  const height = media.dimensions.height
+  const width = media.dimensions?.width ?? 0
+  const height = media.dimensions?.height ?? 0
 
   const resizedWidth = Math.min(maxWidth, width)
   const resizedHeight = (height * resizedWidth) / width
@@ -68,9 +68,11 @@ const ImageStripImage = ({
   )
 }
 
-export const ImageStrip = ({
-  slideshow,
-}: Pick<Sanity.TeamPage, 'slideshow'>) => {
+interface ImageStripProps extends Pick<Sanity.TeamPage, 'slideshow'> {
+  className?: string
+}
+
+export const ImageStrip = ({ slideshow, className }: ImageStripProps) => {
   const [pageIsVisible, setPageIsVisible] = useState(true)
   const handleVisibilityChange = (isVisible: boolean) => {
     setPageIsVisible(isVisible)
@@ -95,9 +97,13 @@ export const ImageStrip = ({
     }
   }, [isTabletUp])
 
+  if (!slideshow) {
+    return null
+  }
+
   return (
     <PageVisibility onChange={handleVisibilityChange}>
-      <ImageStripContainer>
+      <ImageStripContainer className={className}>
         {pageIsVisible && (
           <Ticker>
             {() => (

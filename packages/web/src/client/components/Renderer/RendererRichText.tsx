@@ -74,7 +74,7 @@ const components: Partial<PortableTextReactComponents> = {
           [availableHeadings]: {
             mt: '$xs',
           },
-          '& + &': {
+          'p + &, ul + &': {
             mt: '$s',
           },
         }}
@@ -89,7 +89,7 @@ const components: Partial<PortableTextReactComponents> = {
           [availableHeadings]: {
             mt: '$xs',
           },
-          '& + &': {
+          'p + &, ul + &': {
             mt: '$xs',
           },
         }}
@@ -104,7 +104,22 @@ const components: Partial<PortableTextReactComponents> = {
           [availableHeadings]: {
             mt: '$xxs',
           },
-          '& + &': {
+          'p + &, ul + &': {
+            mt: '$xxs',
+          },
+        }}
+        {...props}
+      />
+    ),
+    XS: ({ ...props }) => (
+      <Heading
+        tag="p"
+        fontStyle="XS"
+        css={{
+          [availableHeadings]: {
+            mt: '$xxs',
+          },
+          'p + &, ul + &': {
             mt: '$xxs',
           },
         }}
@@ -153,6 +168,7 @@ const components: Partial<PortableTextReactComponents> = {
     },
   },
   marks: {
+    em: (props) => <SpecialFont {...props} />,
     link: (
       props: PropsWithChildren<
         PortableTextMarkComponentProps<Sanity.Link & { _type: 'link' }>
@@ -165,3 +181,7 @@ const components: Partial<PortableTextReactComponents> = {
     },
   },
 }
+
+const SpecialFont = styled('span', {
+  fontWeight: 600,
+})

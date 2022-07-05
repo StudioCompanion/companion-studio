@@ -4,8 +4,10 @@ import { useRouter } from 'next/router'
 
 import { Input } from 'components/Inputs/Input'
 import { Heading } from 'components/Text/Heading'
+import { Button } from 'components/Button/Button'
 
 import { styled } from 'styles/stitches.config'
+import { ThemeTypes } from 'styles/constants'
 
 import { EventNames, firePlausibleEvent } from 'helpers/analytics'
 import { Button } from 'components/Button/Button'
@@ -46,13 +48,24 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
       ? router.route.substring(1)
       : 'Home'
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     setErrorMessage(undefined)
     const error = validateForm(value)
     if (error) {
-      e.preventDefault()
       setErrorMessage(error)
     } else {
+      const headers = new Headers()
+      headers.append('Content-Type', 'application/json;charset=UTF-8')
+
+      await fetch('/api/newsletter_signup', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          email: value,
+        }),
+      })
+
       firePlausibleEvent({
         name: EventNames.NewsletterSubmission,
         additionalProps: {
@@ -85,17 +98,7 @@ export const SignUpForm = ({ className }: SignUpFormProps) => {
 
   return (
     <div className={className}>
-      <iframe
-        name="dummyframe"
-        id="dummyframe"
-        style={{ display: 'none' }}
-      ></iframe>
-      <Form
-        action="https://companionstudio.substack.com/api/v1/free?nojs=true"
-        target="dummyframe"
-        method="post"
-        onSubmit={handleSubmit}
-      >
+      <Form onSubmit={handleSubmit}>
         <InputWrapper>
           <Input
             name="email"

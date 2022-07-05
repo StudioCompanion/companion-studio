@@ -62,7 +62,8 @@ const Label = styled('label', {
 
 const FormInput = styled('input', {
   width: '100%',
-  padding: '$xxs $xs',
+  padding: '0.7rem $xs',
+  m: 0,
   backgroundColor: 'transparent',
   border: '1px solid $white100',
   borderRadius: '$pill',
@@ -70,9 +71,11 @@ const FormInput = styled('input', {
   minHeight: 30,
   fontSize: '$XS',
   lineHeight: '$XS',
+  letterSpacing: '-0.01em',
 
   '&::placeholder': {
     color: `$white100`,
+    letterSpacing: '-0.01em',
   },
 
   '&:focus': {

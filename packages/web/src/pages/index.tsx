@@ -24,7 +24,7 @@ const Index = ({ document, ...siteProps }: IndexProps) => {
   return (
     <HomeContainer documentMeta={meta} {...siteProps}>
       <RightContainer>
-        <OpeningText text={standfirst} />
+        <OpeningText>{standfirst}</OpeningText>
       </RightContainer>
       <CardsContainer>
         {Array.isArray(cards)
@@ -44,13 +44,9 @@ export default Index
 const HomeContainer = styled(Layout, {
   display: 'flex',
   flexDirection: 'column',
-  p: '$s',
-  pb: 0,
 
-  '@tabletUp': {
+  '@largeDesktopUp': {
     gap: '$m',
-    p: '$m',
-    pb: 0,
     flexDirection: 'row',
   },
 })
@@ -60,10 +56,10 @@ const CardsContainer = styled('div', {
   position: 'relative',
 })
 
-const RightContainer = styled('div', {
+const RightContainer = styled(FadeIn, {
   width: '100%',
 
-  '@tabletUp': {
+  '@largeDesktopUp': {
     order: 1,
   },
 })
@@ -73,7 +69,7 @@ const HomeCardFade = styled(FadeIn, {
     mt: '$s',
   },
 
-  '@desktopUp': {
+  '@largeDesktopUp': {
     '& + &': {
       mt: '$m',
     },
@@ -90,7 +86,7 @@ export const getStaticProps: GetStaticProps<IndexProps> = async ({
   })
 
   return {
-    notFound: !sanityResult,
+    notFound: !sanityResult.document._id,
     props: {
       ...sanityResult,
       preview: !!preview,

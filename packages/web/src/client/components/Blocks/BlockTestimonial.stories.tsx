@@ -1,5 +1,6 @@
 import { Testimonial } from './BlockTestimonial'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { StoryFixtures } from '@types'
 
 export default {
   title: 'Blocks/Testimonial',
@@ -7,23 +8,23 @@ export default {
 } as ComponentMeta<typeof Testimonial>
 
 export const NoQuote: ComponentStory<typeof Testimonial> = () => (
-  <Testimonial quote={undefined} author={undefined} {...fixtures.noQuote} />
+  <Testimonial {...fixtures.noQuote} />
 )
 
 export const WithQuote: ComponentStory<typeof Testimonial> = () => (
   <Testimonial {...fixtures.withQuote} />
 )
 
-const fixtures = {
-  noQuote: undefined,
+const fixtures: StoryFixtures<typeof Testimonial> = {
+  noQuote: { _type: 'blockTestimonial', _key: '2801400c4888' },
   withQuote: {
     _key: '2801400c4888',
-    _type: 'blockTestimonial' as const,
+    _type: 'blockTestimonial',
     author: 'Cameron Lamb, Alexander CEO',
     quote: [
       {
         _key: 'af18bbb59a9d',
-        _type: 'block' as const,
+        _type: 'block',
         children: [
           {
             _key: '87f00a1158060',

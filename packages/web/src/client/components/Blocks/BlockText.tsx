@@ -9,15 +9,17 @@ export type TextSectionProps = Sanity.BlockText
 
 export const TextSection = ({ richText }: TextSectionProps) => {
   return (
-    <Container>{richText ? <RichText blocks={richText} /> : null}</Container>
+    <TextContainer>
+      {richText ? <RichText blocks={richText} /> : null}
+    </TextContainer>
   )
 }
 
-const Container = styled(FadeIn, {
+export const TextContainer = styled(FadeIn, {
   m: 'calc($l - $s) 0 $l',
+  width: '100%',
 
   '@tabletUp': {
-    width: '100%',
     m: 'calc($xxl - $m) 0 $xxl',
   },
 })

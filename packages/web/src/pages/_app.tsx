@@ -10,6 +10,7 @@ import { WidgetAccessibe } from 'components/Widgets/WidgetAccessibe'
 import { globalStyles } from 'styles/global'
 
 import { useReducedMotion } from 'hooks/useReducedMotion'
+import { WidgetPlausible } from 'components/Widgets/WidgetPlausible'
 
 globalStyles()
 
@@ -22,6 +23,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Component {...pageProps} />
       <WidgetMarker />
       <WidgetAccessibe />
+      <WidgetPlausible />
     </>
   )
 }
