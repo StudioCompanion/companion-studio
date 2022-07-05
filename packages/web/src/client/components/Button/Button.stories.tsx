@@ -10,12 +10,12 @@ export default {
   component: Button,
 } as ComponentMeta<typeof Button>
 
-export const ButtonDark: ComponentStory<typeof Button> = () => (
-  <Button {...fixtures.buttonDark} />
+export const Default: ComponentStory<typeof Button> = () => (
+  <Button {...fixtures.default} />
 )
 
 const fixtures: StoryFixtures<typeof Button> = {
-  buttonDark: {
+  default: {
     text: `Click Me!`,
     theme: ThemeTypes.DARK,
   },
