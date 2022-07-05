@@ -4,15 +4,15 @@ import { StoryFixtures } from '@types'
 import { Avatars } from './Avatars'
 
 export default {
-  title: 'Avatars',
+  title: 'Blocks/Media',
   component: Avatars,
 } as ComponentMeta<typeof Avatars>
 
-export const NoMembers: ComponentStory<typeof Avatars> = () => (
+export const AvatarsWithoutMembers: ComponentStory<typeof Avatars> = () => (
   <Avatars {...fixtures.noMembers} />
 )
 
-export const WithMembers: ComponentStory<typeof Avatars> = () => (
+export const AvatarsWithMembers: ComponentStory<typeof Avatars> = () => (
   <Avatars {...fixtures.withMembers} />
 )
 
