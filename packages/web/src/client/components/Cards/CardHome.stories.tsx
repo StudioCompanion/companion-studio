@@ -16,7 +16,6 @@ export const CardHomeWithContent: ComponentStory<typeof CardHome> = () => (
 
 const fixtures: StoryFixtures<typeof CardHome> = {
   cardHomeWithContent: {
-    // _key: '8b3f3e5e-a10a-43e6-abc3-a2762b070182',
     _type: 'pageCard',
     backgroundColor: '#FAF263',
     cardButtonLabel: 'View',
