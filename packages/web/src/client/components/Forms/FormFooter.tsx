@@ -10,8 +10,6 @@ import { styled } from 'styles/stitches.config'
 import { ThemeTypes } from 'styles/constants'
 
 import { EventNames, firePlausibleEvent } from 'helpers/analytics'
-import { Button } from 'components/Button/Button'
-import { ThemeTypes } from 'styles/constants'
 
 interface SignUpFormProps {
   className?: string

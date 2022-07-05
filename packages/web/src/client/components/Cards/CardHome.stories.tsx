@@ -3,24 +3,21 @@ import { CardHome } from './CardHome'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { StoryFixtures } from '@types'
+import { ThemeTypes } from 'styles/constants'
 
 export default {
   title: 'Blocks/Media',
   component: CardHome,
 } as ComponentMeta<typeof CardHome>
 
-export const CardHomeNoContent: ComponentStory<typeof CardHome> = () => (
-  <CardHome {...fixtures.cardHomeNoContent} />
-)
-
 export const CardHomeWithContent: ComponentStory<typeof CardHome> = () => (
   <CardHome {...fixtures.cardHomeWithContent} />
 )
 
 const fixtures: StoryFixtures<typeof CardHome> = {
-  cardHomeNoContent: undefined,
   cardHomeWithContent: {
-    _key: '8b3f3e5e-a10a-43e6-abc3-a2762b070182',
+    // _key: '8b3f3e5e-a10a-43e6-abc3-a2762b070182',
+    _type: 'pageCard',
     backgroundColor: '#FAF263',
     cardButtonLabel: 'View',
     media: {
@@ -30,6 +27,7 @@ const fixtures: StoryFixtures<typeof CardHome> = {
         thumbTime: null,
       },
       dimensions: {
+        _type: 'sanity.imageDimensions',
         aspectRatio: '118:135',
         height: 1080,
         width: 944,
@@ -38,7 +36,7 @@ const fixtures: StoryFixtures<typeof CardHome> = {
     meta: {
       description:
         'Created with the worlds largest database of artists, Limna is an iOS app that is aimed at making the art market more transparent, accessible and encouraging more people to purchase art through data visualisation.',
-      focusWords: null,
+      focusWords: undefined,
       image: {
         _type: 'image',
         altText: null,
@@ -54,13 +52,13 @@ const fixtures: StoryFixtures<typeof CardHome> = {
         },
         mimeType: 'image/jpeg',
       },
-      keyword: null,
+      keyword: undefined,
       title: 'Limna',
     },
     slug: 'limna',
-    status: null,
+    status: undefined,
     subtitle: 'The AI-powered art advisor in your pocket',
-    theme: 'dark',
+    theme: 'dark' as ThemeTypes.DARK,
     title: 'Limna',
     type: 'project',
   },
