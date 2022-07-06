@@ -9,12 +9,12 @@ export default {
   component: ProjecHeader,
 } as ComponentMeta<typeof ProjecHeader>
 
-export const TheDoLectures: ComponentStory<typeof ProjecHeader> = () => (
-  <ProjecHeader {...fixtures.theDoLectures} />
+export const Default: ComponentStory<typeof ProjecHeader> = () => (
+  <ProjecHeader {...fixtures.default} />
 )
 
 const fixtures: StoryFixtures<typeof ProjecHeader> = {
-  theDoLectures: {
+  default: {
     title: `The DO Lectures`,
     team: [
       {

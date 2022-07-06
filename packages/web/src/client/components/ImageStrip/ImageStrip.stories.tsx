@@ -4,7 +4,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { StoryFixtures } from '@types'
 
 export default {
-  title: 'Blocks/Media',
+  title: 'Image Strip',
   component: ImageStrip,
 } as ComponentMeta<typeof ImageStrip>
 

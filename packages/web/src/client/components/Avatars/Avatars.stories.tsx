@@ -4,7 +4,7 @@ import { StoryFixtures } from '@types'
 import { Avatars } from './Avatars'
 
 export default {
-  title: 'Blocks/Media',
+  title: 'Avatars',
   component: Avatars,
 } as ComponentMeta<typeof Avatars>
 
