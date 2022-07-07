@@ -10,12 +10,16 @@ export default {
   component: CardHome,
 } as ComponentMeta<typeof CardHome>
 
-export const CardHomeWithContent: ComponentStory<typeof CardHome> = () => (
-  <CardHome {...fixtures.cardHomeWithContent} />
+export const CardHomeWithVideo: ComponentStory<typeof CardHome> = () => (
+  <CardHome {...fixtures.cardHomeWithVideo} />
+)
+
+export const CardHomeWithImage: ComponentStory<typeof CardHome> = () => (
+  <CardHome {...fixtures.cardHomeWithImage} />
 )
 
 const fixtures: StoryFixtures<typeof CardHome> = {
-  cardHomeWithContent: {
+  cardHomeWithVideo: {
     _type: 'pageCard',
     backgroundColor: '#FAF263',
     cardButtonLabel: 'View',
@@ -60,5 +64,28 @@ const fixtures: StoryFixtures<typeof CardHome> = {
     theme: 'dark' as ThemeTypes.DARK,
     title: 'Limna',
     type: 'project',
+  },
+  cardHomeWithImage: {
+    _type: 'pageCard',
+    backgroundColor: '#F7EEE2',
+    cardButtonLabel: 'View',
+    media: {
+      _type: 'image',
+      altText: null,
+      asset: {
+        _ref: 'image-a4c8833d9fe17d520cb4844b54d5d20eaf66faaa-3000x2282-png',
+        _type: 'reference',
+      },
+      dimensions: {
+        _type: 'sanity.imageDimensions',
+        aspectRatio: 1.3146362839614374,
+        height: 2282,
+        width: 3000,
+      },
+      mimeType: 'image/png',
+    },
+    subtitle: 'Read about what makes us tick.',
+    theme: 'dark' as ThemeTypes.DARK,
+    title: 'Our Team',
   },
 }

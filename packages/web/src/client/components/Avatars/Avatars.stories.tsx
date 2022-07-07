@@ -8,11 +8,11 @@ export default {
   component: Avatars,
 } as ComponentMeta<typeof Avatars>
 
-export const AvatarsWithoutMembers: ComponentStory<typeof Avatars> = () => (
-  <Avatars {...fixtures.noMembers} />
+export const WithoutMembers: ComponentStory<typeof Avatars> = () => (
+  <Avatars {...fixtures.withoutMembers} />
 )
 
-export const AvatarsWithMembers: ComponentStory<typeof Avatars> = () => (
+export const WithMembers: ComponentStory<typeof Avatars> = () => (
   <Avatars {...fixtures.withMembers} />
 )
 
@@ -78,5 +78,5 @@ const fixtures: StoryFixtures<typeof Avatars> = {
       },
     ],
   },
-  noMembers: {},
+  withoutMembers: {},
 }
