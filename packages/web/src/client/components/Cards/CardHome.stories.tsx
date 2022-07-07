@@ -6,7 +6,7 @@ import { StoryFixtures } from '@types'
 import { ThemeTypes } from 'styles/constants'
 
 export default {
-  title: 'Cards/Card',
+  title: 'Cards/CardHome',
   component: CardHome,
 } as ComponentMeta<typeof CardHome>
 
