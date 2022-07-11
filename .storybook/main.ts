@@ -34,14 +34,13 @@ const config: StorybookConfig = {
     {
       name: '@storybook/addon-essentials',
       options: {
-        backgrounds: false,
+        backgrounds: true,
         actions: false,
         controls: false,
         docs: false,
       },
     },
     'storybook-addon-next-router',
-    '@storybook/addon-backgrounds',
   ],
   // @ts-expect-error
   env: (config) => ({
