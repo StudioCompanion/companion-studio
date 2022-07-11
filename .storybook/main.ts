@@ -41,6 +41,7 @@ const config: StorybookConfig = {
       },
     },
     'storybook-addon-next-router',
+    '@storybook/addon-backgrounds',
   ],
   // @ts-expect-error
   env: (config) => ({
