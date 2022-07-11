@@ -17,6 +17,10 @@ export const TestimonialHeading: ComponentStory<typeof Heading> = () => (
   <Heading {...fixtures.testimonialHeading} />
 )
 
+export const CardHeading: ComponentStory<typeof Heading> = () => (
+  <Heading {...fixtures.cardHeading} />
+)
+
 const fixtures: StoryFixtures<typeof Heading> = {
   avatarHeading: {
     tag: `h2`,
@@ -28,5 +32,11 @@ const fixtures: StoryFixtures<typeof Heading> = {
     tag: `h3`,
     fontStyle: `S`,
     children: `The DO Lectures`,
+  },
+  cardHeading: {
+    tag: `h2`,
+    fontStyle: `S`,
+    weight: `$bold`,
+    children: `Limna`,
   },
 }
