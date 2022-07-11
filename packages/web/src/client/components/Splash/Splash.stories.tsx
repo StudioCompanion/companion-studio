@@ -3,7 +3,7 @@ import { Splash } from './Splash'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 export default {
-  title: 'Splash',
+  title: 'Site/Splash',
   component: Splash,
 } as ComponentMeta<typeof Splash>
 
