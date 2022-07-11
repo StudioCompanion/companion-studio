@@ -96,6 +96,24 @@ export const ButtonContainer = styled('span', {
   letterSpacing: '-0.01em',
 
   variants: {
+    theme: {
+      [ThemeTypes.LIGHT]: {
+        backgroundColor: '$white100',
+        color: '$black100',
+
+        hover: {
+          backgroundColor: '$grey100',
+        },
+      },
+      [ThemeTypes.DARK]: {
+        backgroundColor: '$black100',
+        color: '$white100',
+
+        hover: {
+          backgroundColor: '$blackHover',
+        },
+      },
+    },
     outlineTheme: {
       [ThemeTypes.LIGHT]: {
         backgroundColor: 'transparent',
@@ -115,24 +133,6 @@ export const ButtonContainer = styled('span', {
 
         hover: {
           backgroundColor: 'transparent',
-        },
-      },
-    },
-    theme: {
-      [ThemeTypes.LIGHT]: {
-        backgroundColor: '$white100',
-        color: '$black100',
-
-        hover: {
-          backgroundColor: '$grey100',
-        },
-      },
-      [ThemeTypes.DARK]: {
-        backgroundColor: '$black100',
-        color: '$white100',
-
-        hover: {
-          backgroundColor: '$blackHover',
         },
       },
     },

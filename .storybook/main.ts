@@ -34,7 +34,7 @@ const config: StorybookConfig = {
     {
       name: '@storybook/addon-essentials',
       options: {
-        backgrounds: false,
+        backgrounds: true,
         actions: false,
         controls: false,
         docs: false,
@@ -53,9 +53,11 @@ const config: StorybookConfig = {
   staticDirs: ['../packages/web/public'],
   core: { builder: 'webpack5' },
   webpackFinal: async (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      ...createAliasesFromPaths(),
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        ...createAliasesFromPaths(),
+      }
     }
     // Return the altered config
     return config

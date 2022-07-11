@@ -29,11 +29,19 @@ export const parameters = {
       ...custom,
     },
   },
+  backgrounds: {
+    default: 'transparent',
+    values: [
+      { name: 'blue', value: '#BFCDEB' },
+      { name: 'orange', value: '#F7BF9D' },
+    ],
+  },
 }
 
 export const decorators = [
   (Story) => {
     globalStyles()
+
     return (
       <>
         <Story />

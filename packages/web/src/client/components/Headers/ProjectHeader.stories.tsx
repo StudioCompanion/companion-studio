@@ -1,25 +1,24 @@
+import { ProjecHeader } from './ProjectHeader'
+
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+
 import { StoryFixtures } from '@types'
 
-import { Avatars } from './Avatars'
-
 export default {
-  title: 'Avatars',
-  component: Avatars,
-} as ComponentMeta<typeof Avatars>
+  title: 'Headers/Project Header',
+  component: ProjecHeader,
+} as ComponentMeta<typeof ProjecHeader>
 
-export const WithoutMembers: ComponentStory<typeof Avatars> = () => (
-  <Avatars {...fixtures.withoutMembers} />
+export const Default: ComponentStory<typeof ProjecHeader> = () => (
+  <ProjecHeader {...fixtures.default} />
 )
 
-export const WithMembers: ComponentStory<typeof Avatars> = () => (
-  <Avatars {...fixtures.withMembers} />
-)
-
-const fixtures: StoryFixtures<typeof Avatars> = {
-  withMembers: {
-    members: [
+const fixtures: StoryFixtures<typeof ProjecHeader> = {
+  default: {
+    title: `The DO Lectures`,
+    team: [
       {
+        _key: '303774d9-252e-4626-90a3-633bceb1f736',
         image: {
           _type: 'image',
           altText: null,
@@ -39,25 +38,7 @@ const fixtures: StoryFixtures<typeof Avatars> = {
         name: 'Myles Palmer',
       },
       {
-        image: {
-          _type: 'image',
-          altText: null,
-          asset: {
-            _ref: 'image-97a970363f316fe8172858eb97517862ecc35a30-1616x1077-jpg',
-            _type: 'reference',
-          },
-          dimensions: {
-            _type: 'sanity.imageDimensions',
-            aspectRatio: 1.500464252553389,
-            height: 1077,
-            width: 1616,
-          },
-          mimeType: 'image/jpeg',
-        },
-        job: 'Senior Digital Designer',
-        name: 'Willem Purdy',
-      },
-      {
+        _key: '303774d9-252e-4626-90a3-633bceb1f736',
         image: {
           _type: 'image',
           altText: null,
@@ -76,7 +57,26 @@ const fixtures: StoryFixtures<typeof Avatars> = {
         job: 'Fullstack Developer',
         name: 'Josh Ellis',
       },
+      {
+        _key: '303774d9-252e-4626-90a3-633bceb1f736',
+        image: {
+          _type: 'image',
+          altText: null,
+          asset: {
+            _ref: 'image-97a970363f316fe8172858eb97517862ecc35a30-1616x1077-jpg',
+            _type: 'reference',
+          },
+          dimensions: {
+            _type: 'sanity.imageDimensions',
+            aspectRatio: 1.500464252553389,
+            height: 1077,
+            width: 1616,
+          },
+          mimeType: 'image/jpeg',
+        },
+        job: 'Senior Digital Designer',
+        name: 'Willem Purdy',
+      },
     ],
   },
-  withoutMembers: {},
 }

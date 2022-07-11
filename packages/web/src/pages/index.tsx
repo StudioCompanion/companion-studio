@@ -29,7 +29,7 @@ const Index = ({ document, ...siteProps }: IndexProps) => {
       <CardsContainer>
         {Array.isArray(cards)
           ? cards.map((item) => (
-              <HomeCardFade tag="div" key={item._key}>
+              <HomeCardFade tag="div" key={item?._key}>
                 <CardHome {...item} />
               </HomeCardFade>
             ))
