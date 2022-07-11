@@ -32,15 +32,15 @@ export const Internal: ComponentStory<typeof Button> = () => (
 
 const fixtures: StoryFixtures<typeof Button> = {
   dark: {
-    text: `Click Me!`,
+    text: `Click me!`,
     theme: ThemeTypes.DARK,
   },
   light: {
-    text: `Click Me!`,
+    text: `Click me!`,
     theme: ThemeTypes.LIGHT,
   },
   outlined: {
-    text: `Click Me!`,
+    text: `Click me!`,
     theme: ThemeTypes.LIGHT,
     isOutlined: true,
   },
@@ -58,6 +58,17 @@ const fixtures: StoryFixtures<typeof Button> = {
   },
 }
 
+Light.parameters = {
+  backgrounds: { default: 'orange' },
+}
 Outlined.parameters = {
+  backgrounds: { default: 'orange' },
+}
+
+External.parameters = {
+  backgrounds: { default: 'orange' },
+}
+
+Internal.parameters = {
   backgrounds: { default: 'orange' },
 }
