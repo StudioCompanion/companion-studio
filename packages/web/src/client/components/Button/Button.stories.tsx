@@ -18,8 +18,20 @@ export const Light: ComponentStory<typeof Button> = () => (
   <Button {...fixtures.light} />
 )
 
-export const Default: ComponentStory<typeof Button> = () => (
-  <Button {...fixtures.span} />
+export const OutlinedDark: ComponentStory<typeof Button> = () => (
+  <Button {...fixtures.outlinedDark} />
+)
+
+export const OutlinedLight: ComponentStory<typeof Button> = () => (
+  <Button {...fixtures.outlinedLight} />
+)
+
+export const External: ComponentStory<typeof Button> = () => (
+  <Button {...fixtures.external} />
+)
+
+export const Internal: ComponentStory<typeof Button> = () => (
+  <Button {...fixtures.internal} />
 )
 
 const fixtures: StoryFixtures<typeof Button> = {
@@ -31,9 +43,25 @@ const fixtures: StoryFixtures<typeof Button> = {
     text: `Click Me!`,
     theme: ThemeTypes.LIGHT,
   },
-  span: {
+  outlinedDark: {
     text: `Click Me!`,
     theme: ThemeTypes.DARK,
-    tag: `span`,
+    isOutlined: true,
+  },
+  outlinedLight: {
+    text: `Click Me!`,
+    isOutlined: true,
+  },
+  external: {
+    text: `Click Me!`,
+    isExternal: true,
+    label: `Companion Studio`,
+    url: `https://companion.studio/`,
+  },
+  internal: {
+    text: `Click Me!`,
+    isExternal: false,
+    label: `Approach`,
+    url: `/approach`,
   },
 }
