@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { StoryFixtures } from '@types'
 import { ThemeTypes } from 'styles/constants'
+import { styled } from 'styles/stitches.config'
 
 export default {
   title: 'Button',
@@ -18,12 +19,8 @@ export const Light: ComponentStory<typeof Button> = () => (
   <Button {...fixtures.light} />
 )
 
-export const OutlinedDark: ComponentStory<typeof Button> = () => (
-  <Button {...fixtures.outlinedDark} />
-)
-
-export const OutlinedLight: ComponentStory<typeof Button> = () => (
-  <Button {...fixtures.outlinedLight} />
+export const Outlined: ComponentStory<typeof Button> = () => (
+  <ButtonWithBackground {...fixtures.outlined} />
 )
 
 export const External: ComponentStory<typeof Button> = () => (
@@ -43,13 +40,9 @@ const fixtures: StoryFixtures<typeof Button> = {
     text: `Click Me!`,
     theme: ThemeTypes.LIGHT,
   },
-  outlinedDark: {
+  outlined: {
     text: `Click Me!`,
     theme: ThemeTypes.DARK,
-    isOutlined: true,
-  },
-  outlinedLight: {
-    text: `Click Me!`,
     isOutlined: true,
   },
   external: {
@@ -65,3 +58,7 @@ const fixtures: StoryFixtures<typeof Button> = {
     url: `/approach`,
   },
 }
+
+const ButtonWithBackground = styled(Button, {
+  backgroundColor: '$blue25',
+})
