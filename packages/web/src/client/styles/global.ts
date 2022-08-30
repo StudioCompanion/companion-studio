@@ -40,9 +40,9 @@ export const globalStyles = globalCss({
     minHeight: '100%',
   },
 
-  html: {
-    scrollBehavior: 'smooth',
-  },
+  // html: {
+  //   scrollBehavior: 'smooth',
+  // },
 
   body: {
     flex: 1,
