@@ -10,6 +10,7 @@ import { Splash } from '../Splash/Splash'
 
 import { Callout } from './SiteCallout'
 import { Footer } from './SiteFooter'
+import { HiatusBanner } from './HiatusBanner'
 import { SiteSeo } from './SiteSeo'
 
 import { Sanity } from '@types'
@@ -46,6 +47,7 @@ export const Layout = ({
   return (
     <>
       <SiteSeo defaultSeo={defaultMeta} meta={documentMeta} />
+      <HiatusBanner />
       {showSplash && <Splash />}
       <Nav items={navigation} currentPath={currentPath} />
       <Main className={className} isTeamRoute={currentPath === '/team'}>

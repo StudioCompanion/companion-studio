@@ -199,9 +199,11 @@ const NavContainer = styled('header', {
   justifyContent: 'space-between',
   alignItems: 'center',
   p: '$s',
+  pt: 'calc($s + 4rem)',
 
   '@tabletUp': {
     p: '$m',
+    pt: 'calc($m + 4.8rem)',
   },
 })
 

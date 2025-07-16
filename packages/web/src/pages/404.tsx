@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { styled } from 'styles/stitches.config'
+import { HiatusBanner } from 'components/Site/HiatusBanner'
 
 const FOX = `
                            :.
@@ -28,20 +29,28 @@ const FOX = `
 
 export default function ErrorPage() {
   return (
-    <Page>
-      <Content>
-        <pre>{FOX}</pre>
-        <p>
-          :( 404. Go <Link href="/">home</Link> instead.
-        </p>
-      </Content>
-    </Page>
+    <>
+      <HiatusBanner />
+      <Page>
+        <Content>
+          <pre>{FOX}</pre>
+          <p>
+            :( 404. Go <Link href="/">home</Link> instead.
+          </p>
+        </Content>
+      </Page>
+    </>
   )
 }
 const Page = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   mb: '$xxxs',
+  pt: '4rem',
+
+  '@tabletUp': {
+    pt: '4.8rem',
+  },
 })
 
 const Content = styled('div', {

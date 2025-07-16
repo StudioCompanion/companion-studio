@@ -1,5 +1,6 @@
 import { SiteSeo } from 'components/Site/SiteSeo'
 import { Logo } from 'components/Logo/Logo'
+import { HiatusBanner } from 'components/Site/HiatusBanner'
 
 import { styled } from 'styles/stitches.config'
 
@@ -18,6 +19,7 @@ export const LinkTreeLayout = ({
   return (
     <>
       <SiteSeo defaultSeo={defaultMeta} meta={meta} />
+      <HiatusBanner />
       <LinkTreeContainer>
         <LinkTreeWrapper>
           <LogoContainer>
@@ -36,6 +38,11 @@ const LinkTreeContainer = styled('main', {
   justifyContent: 'center',
   height: '100vh',
   backgroundColor: '$orange100',
+  pt: '4rem',
+
+  '@tabletUp': {
+    pt: '4.8rem',
+  },
 })
 
 const LinkTreeWrapper = styled('article', {
