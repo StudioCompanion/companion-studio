@@ -7,7 +7,7 @@ export const HiatusBanner = () => {
       <BannerContent>
         <BannerText tag="p" fontStyle="XS">
           We're currently on hiatus and not taking new projects, but you can still{' '}
-          <BannerLink href="https://www.mylespalmer.co.uk">
+          <BannerLink href="https://mylespalmer.co.uk">
             reach out our founder
           </BannerLink>
           .
